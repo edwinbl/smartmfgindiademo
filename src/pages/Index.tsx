@@ -4,6 +4,7 @@ import { AudienceSelector } from "@/components/AudienceSelector";
 import { Modules } from "@/components/Modules";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Insights } from "@/components/Insights";
+import { LeadersSpeak } from "@/components/LeadersSpeak";
 import { Partners } from "@/components/Partners";
 import { Events } from "@/components/Events";
 import { FinalCta } from "@/components/FinalCta";
@@ -19,6 +20,7 @@ const Index = () => {
         <Modules />
         <HowItWorks />
         <Insights />
+        <LeadersSpeak />
         <Partners />
         <Events />
         <FinalCta />
