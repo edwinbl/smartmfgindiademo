@@ -2,62 +2,21 @@ import { useState } from "react";
 import { Play, Quote, Linkedin } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 import leader1 from "@/assets/leader-1.jpg";
-import leader2 from "@/assets/leader-2.jpg";
-import leader3 from "@/assets/leader-3.jpg";
 
-type Leader = {
-  name: string;
-  role: string;
-  org: string;
-  quote: string;
-  image: string;
-  videoUrl: string;
-  duration: string;
+const leader = {
+  name: "Arjun Mehta",
+  role: "Managing Director",
+  org: "Precision Auto Components",
+  quote:
+    "Connecting our shop floor to the platform unlocked insights we didn't know existed. Downtime is down 38% in six months.",
+  image: leader1,
+  videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+  duration: "3:42",
 };
-
-const leaders: Leader[] = [
-  {
-    name: "Arjun Mehta",
-    role: "Managing Director",
-    org: "Precision Auto Components",
-    quote:
-      "Connecting our shop floor to the platform unlocked insights we didn't know existed. Downtime is down 38% in six months.",
-    image: leader1,
-    videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
-    duration: "3:42",
-  },
-  {
-    name: "Dr. Priya Iyer",
-    role: "Chief Technology Officer",
-    org: "Bharat Smart Manufacturing",
-    quote:
-      "The collaboration between MSMEs, academia and providers on this platform is exactly what India's Industry 4.0 push needed.",
-    image: leader2,
-    videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
-    duration: "4:18",
-  },
-  {
-    name: "Rajesh Khanna",
-    role: "Joint Secretary",
-    org: "Ministry of Heavy Industries",
-    quote:
-      "A single ecosystem aligning policy, capability and capital — this is how we move from pilots to nationwide adoption.",
-    image: leader3,
-    videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
-    duration: "5:05",
-  },
-];
 
 export const LeadersSpeak = () => {
   useReveal();
-  const [active, setActive] = useState(0);
   const [playing, setPlaying] = useState(false);
-  const leader = leaders[active];
-
-  const selectLeader = (i: number) => {
-    setActive(i);
-    setPlaying(false);
-  };
 
   return (
     <section id="leaders" className="py-20 md:py-28 bg-background">
@@ -70,18 +29,17 @@ export const LeadersSpeak = () => {
             Voices shaping India's Industry 4.0 future
           </h2>
           <p className="mt-4 text-muted-foreground text-lg">
-            Hear directly from industry pioneers, technology leaders and policymakers
-            on how the ecosystem is transforming manufacturing.
+            Hear directly from industry pioneers on how the ecosystem is
+            transforming manufacturing.
           </p>
         </div>
 
-        <div className="mt-12 grid lg:grid-cols-5 gap-8 lg:gap-10 items-start">
-          {/* Video + active leader */}
+        <div className="mt-12 grid lg:grid-cols-5 gap-8 lg:gap-10 items-center">
+          {/* Video */}
           <div className="lg:col-span-3 reveal">
             <div className="relative aspect-video overflow-hidden rounded-2xl bg-foreground shadow-elevated group">
               {playing ? (
                 <video
-                  key={leader.videoUrl}
                   src={leader.videoUrl}
                   poster={leader.image}
                   controls
@@ -126,72 +84,29 @@ export const LeadersSpeak = () => {
                 </>
               )}
             </div>
+          </div>
 
-            <figure className="mt-6 rounded-2xl border border-border bg-card p-6 shadow-elegant">
-              <Quote className="h-6 w-6 text-brand-1" />
-              <blockquote className="mt-3 font-display text-lg md:text-xl leading-relaxed">
+          {/* Details */}
+          <div className="lg:col-span-2 reveal">
+            <figure className="rounded-2xl border border-border bg-card p-6 md:p-8 shadow-elegant">
+              <Quote className="h-7 w-7 text-brand-1" />
+              <blockquote className="mt-4 font-display text-lg md:text-xl leading-relaxed">
                 "{leader.quote}"
               </blockquote>
-              <figcaption className="mt-4 flex items-center justify-between gap-4 text-sm">
-                <span className="font-semibold">
-                  {leader.name}
-                  <span className="text-muted-foreground font-normal"> — {leader.org}</span>
-                </span>
+              <figcaption className="mt-6 pt-6 border-t border-border">
+                <p className="font-display font-bold text-lg">{leader.name}</p>
+                <p className="text-sm text-muted-foreground">
+                  {leader.role}, {leader.org}
+                </p>
                 <a
                   href="#"
                   aria-label={`${leader.name} on LinkedIn`}
-                  className="inline-flex items-center gap-1.5 text-brand-1 hover:gap-2 transition-all font-semibold"
+                  className="mt-4 inline-flex items-center gap-1.5 text-brand-1 hover:gap-2 transition-all font-semibold text-sm"
                 >
-                  <Linkedin className="h-4 w-4" /> Profile
+                  <Linkedin className="h-4 w-4" /> View profile
                 </a>
               </figcaption>
             </figure>
-          </div>
-
-          {/* Leader list */}
-          <div className="lg:col-span-2 space-y-3 reveal">
-            {leaders.map((l, i) => {
-              const isActive = i === active;
-              return (
-                <button
-                  key={l.name}
-                  type="button"
-                  onClick={() => selectLeader(i)}
-                  className={`w-full text-left flex items-center gap-4 rounded-2xl border p-4 transition-smooth ${
-                    isActive
-                      ? "border-brand-1 bg-accent shadow-elegant"
-                      : "border-border bg-card hover:-translate-y-0.5 hover:shadow-elegant"
-                  }`}
-                >
-                  <div className="relative shrink-0">
-                    <img
-                      src={l.image}
-                      alt=""
-                      loading="lazy"
-                      width={1024}
-                      height={1280}
-                      className="h-16 w-16 rounded-xl object-cover"
-                    />
-                    <span
-                      className={`absolute -bottom-1 -right-1 grid h-6 w-6 place-items-center rounded-full border-2 border-background ${
-                        isActive ? "bg-brand-1 text-primary-foreground" : "bg-card text-brand-1"
-                      }`}
-                    >
-                      <Play className="h-3 w-3 translate-x-px fill-current" />
-                    </span>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="font-display font-bold truncate">{l.name}</p>
-                    <p className="text-sm text-muted-foreground truncate">
-                      {l.role}
-                    </p>
-                    <p className="text-xs text-muted-foreground/80 truncate">
-                      {l.org} • {l.duration}
-                    </p>
-                  </div>
-                </button>
-              );
-            })}
           </div>
         </div>
       </div>
