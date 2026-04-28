@@ -3,12 +3,11 @@ import { Menu, X, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const links = [
-  { label: "Solutions", href: "#modules" },
-  { label: "How it works", href: "#how" },
+  { label: "Assess", href: "#modules" },
+  { label: "Learn", href: "#modules" },
+  { label: "Adopt", href: "#modules" },
+  { label: "Collaborate", href: "#modules" },
   { label: "Insights", href: "#insights" },
-  { label: "Leaders", href: "#leaders" },
-  { label: "Ecosystem", href: "#partners" },
-  { label: "Events", href: "#events" },
 ];
 
 export const Navbar = () => {
