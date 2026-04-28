@@ -3,6 +3,19 @@ import { useEffect } from "react";
 export function useReveal() {
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>(".reveal");
+
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // If the user prefers reduced motion, immediately reveal everything
+    // without animating, then skip setting up the observer.
+    if (prefersReducedMotion) {
+      els.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
