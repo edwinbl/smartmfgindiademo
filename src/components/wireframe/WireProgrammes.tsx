@@ -1,34 +1,69 @@
 import { WireSection } from "./WireSection";
+import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
 
 const programmes = [
-  { title: "Programme title placeholder", date: "DD MMM YYYY", format: "In-person", audience: "MSMEs" },
-  { title: "Programme title placeholder", date: "DD MMM YYYY", format: "Online", audience: "Operations leaders" },
-  { title: "Programme title placeholder", date: "DD MMM YYYY", format: "Hybrid", audience: "Plant heads" },
+  {
+    title: "Industry 4.0 Maturity Bootcamp for MSMEs",
+    date: "12–14 Jun 2026",
+    format: "In-person · Pune",
+    audience: "MSME leadership",
+    tag: "Bootcamp",
+  },
+  {
+    title: "Smart Quality & Traceability Masterclass",
+    date: "27 Jun 2026",
+    format: "Online · 4 hrs",
+    audience: "Quality & Operations heads",
+    tag: "Masterclass",
+  },
+  {
+    title: "Energy Efficiency Adoption Programme",
+    date: "08–09 Jul 2026",
+    format: "Hybrid · Bengaluru",
+    audience: "Plant heads, Sustainability leads",
+    tag: "Programme",
+  },
 ];
 
 export const WireProgrammes = () => {
   return (
-    <WireSection id="programmes" tag="Section 5 — Programmes & Training">
-      <div className="flex flex-wrap items-end justify-between gap-3 mb-6">
-        <h2 className="font-semibold text-2xl md:text-3xl tracking-tight">
-          Upcoming CII programmes
-        </h2>
-        <a href="#" className="wire-cta-link">View all programmes →</a>
+    <WireSection id="programmes" alt>
+      <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
+        <div>
+          <div className="section-eyebrow mb-3">Section 06 — Programmes & Training</div>
+          <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight text-navy-800">
+            Upcoming CII programmes
+          </h2>
+          <p className="mt-4 text-base text-[hsl(var(--neutral-700))] max-w-xl">
+            Workshops, masterclasses and structured adoption programmes — designed for MSMEs and
+            mid-market manufacturers.
+          </p>
+        </div>
+        <a href="#" className="link-arrow">View all programmes <ArrowRight className="h-3.5 w-3.5" /></a>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
-        {programmes.map((p, i) => (
-          <article key={i} className="wire-card flex flex-col">
-            <div className="wire-placeholder border border-dashed border-border rounded-sm aspect-[16/9] mb-4 grid place-items-center">
-              <span className="text-[11px] font-mono text-muted-foreground">[ Image ]</span>
+      <div className="grid gap-5 md:grid-cols-3">
+        {programmes.map((p) => (
+          <article key={p.title} className="cii-card overflow-hidden flex flex-col">
+            <div
+              className="h-32 relative"
+              style={{
+                background:
+                  "linear-gradient(135deg, hsl(var(--navy-800)) 0%, hsl(var(--navy-600)) 100%)",
+              }}
+            >
+              <div className="absolute inset-0 blueprint-grid opacity-40" />
+              <span className="absolute top-4 left-4 cii-chip cii-chip-orange">{p.tag}</span>
             </div>
-            <h3 className="font-semibold text-base">{p.title}</h3>
-            <dl className="mt-3 space-y-1 text-xs text-muted-foreground">
-              <div className="flex gap-2"><dt className="font-medium text-foreground w-20">Date</dt><dd>{p.date}</dd></div>
-              <div className="flex gap-2"><dt className="font-medium text-foreground w-20">Format</dt><dd>{p.format}</dd></div>
-              <div className="flex gap-2"><dt className="font-medium text-foreground w-20">Audience</dt><dd>{p.audience}</dd></div>
-            </dl>
-            <a href="#" className="wire-cta-link mt-4">View details →</a>
+            <div className="p-6 flex flex-col flex-1">
+              <h3 className="font-display font-bold text-navy-800 text-[17px] leading-snug">{p.title}</h3>
+              <ul className="mt-4 space-y-2 text-sm text-[hsl(var(--neutral-700))]">
+                <li className="flex items-center gap-2"><Calendar className="h-4 w-4 text-navy-600" /> {p.date}</li>
+                <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-navy-600" /> {p.format}</li>
+                <li className="flex items-center gap-2"><Users className="h-4 w-4 text-navy-600" /> {p.audience}</li>
+              </ul>
+              <a href="#" className="link-arrow mt-5">View details <ArrowRight className="h-3.5 w-3.5" /></a>
+            </div>
           </article>
         ))}
       </div>
