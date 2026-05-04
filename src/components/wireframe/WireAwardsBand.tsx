@@ -98,9 +98,9 @@ export const WireAwardsBand = () => {
                 </div>
                 <ul className="divide-y divide-white/10">
                   {categories.map((c) => (
-                    <li key={c.name} className="flex items-baseline justify-between py-5">
-                      <span className="font-display font-semibold text-lg md:text-xl">{c.name}</span>
-                      <span className="text-xs md:text-[13px] text-white/55 font-numeric">{c.meta}</span>
+                    <li key={c.name} className="flex items-baseline justify-between py-4">
+                      <span className="font-display font-semibold text-[15px] md:text-base">{c.name}</span>
+                      <span className="text-[11px] md:text-xs text-white/50 font-numeric">{c.meta}</span>
                     </li>
                   ))}
                 </ul>
