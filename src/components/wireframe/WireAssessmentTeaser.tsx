@@ -1,14 +1,5 @@
 import { WireSection } from "./WireSection";
-import { ArrowRight, CheckCircle2, Gauge, Globe2, ShieldCheck, TrendingUp, Zap, Network } from "lucide-react";
-
-const outcomes = [
-  { icon: Globe2, label: "Exports readiness" },
-  { icon: ShieldCheck, label: "Quality improvement" },
-  { icon: Network, label: "Traceability" },
-  { icon: TrendingUp, label: "Productivity" },
-  { icon: Zap, label: "Energy efficiency" },
-  { icon: Gauge, label: "Value-chain participation" },
-];
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export const WireAssessmentTeaser = () => {
   return (
