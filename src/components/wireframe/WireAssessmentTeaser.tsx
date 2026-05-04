@@ -20,12 +20,12 @@ export const WireAssessmentTeaser = () => {
               { name: "Smart Manufacturing Maturity Assessment Model", tag: "Available" },
               { name: "Industry 4.0 Maturity Assessment", tag: "Available" },
             ].map((m) => (
-              <div key={m.name} className="flex items-center justify-between gap-3 p-4 rounded-md border border-[hsl(var(--neutral-150))] bg-white">
-                <div className="flex items-center gap-3 min-w-0">
+              <div key={m.name} className="flex items-center justify-between gap-3 p-3 sm:p-4 rounded-md border border-[hsl(var(--neutral-150))] bg-white flex-wrap sm:flex-nowrap">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
                   <CheckCircle2 className="h-4 w-4 text-[hsl(var(--india-green))] shrink-0" />
-                  <span className="text-sm font-semibold text-navy-800 truncate">{m.name}</span>
+                  <span className="text-sm font-semibold text-navy-800 break-words">{m.name}</span>
                 </div>
-                <span className="cii-chip">{m.tag}</span>
+                <span className="cii-chip shrink-0">{m.tag}</span>
               </div>
             ))}
           </div>
