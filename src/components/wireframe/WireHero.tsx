@@ -1,30 +1,99 @@
+import { ArrowRight, Sparkles, MessageCircle } from "lucide-react";
+import heroImg from "@/assets/hero-smart-mfg.jpg";
+
+const stats = [
+  { v: "Phase 1", l: "Adoption gateway live" },
+  { v: "MSME", l: "Centred journey" },
+  { v: "6+", l: "Outcome pathways" },
+  { v: "CII", l: "National convener" },
+];
+
 export const WireHero = () => {
   return (
-    <section aria-label="Hero" className="border-b border-border py-12 md:py-20">
-      <div className="container">
-        <div className="mb-6">
-          <span className="wire-section-tag">Section 1 — Hero</span>
-        </div>
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-          <div>
-            <h1 className="font-semibold text-3xl md:text-5xl leading-tight tracking-tight text-foreground">
-              India's Industry 4.0 adoption gateway for MSMEs
-            </h1>
-            <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-xl">
-              Assess readiness, explore practical solutions, access CII programmes, and find
-              relevant support for smart manufacturing adoption.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              <a href="#assessment" className="wire-cta-primary">Start Readiness Assessment</a>
-              <a href="#solutions" className="wire-cta-secondary">Explore Solutions</a>
-            </div>
-            <a href="#chatbot" className="mt-5 inline-block text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground">
-              Ask the Smart Manufacturing Assistant →
-            </a>
+    <section className="relative overflow-hidden text-white" aria-label="Hero">
+      {/* Background gradient */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-800)) 60%, hsl(var(--navy-700)) 100%)",
+        }}
+      />
+      <div className="absolute inset-0 blueprint-grid opacity-60" />
+      {/* Orange glow */}
+      <div
+        className="absolute -top-40 -right-40 w-[720px] h-[720px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, hsl(var(--orange-500) / 0.32), hsl(var(--orange-500) / 0) 60%)",
+        }}
+      />
+      {/* Tricolor stripe */}
+      <div className="absolute left-0 top-0 bottom-0 w-1 tricolor-stripe" />
+
+      <div className="container-cii relative py-16 md:py-24 grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
+        <div>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-7 border"
+               style={{ background: "hsl(var(--orange-500) / 0.14)", borderColor: "hsl(var(--orange-500) / 0.4)" }}>
+            <Sparkles className="h-3.5 w-3.5 text-cii-orange" />
+            <span className="eyebrow text-[hsl(var(--orange-100))]">A CII National Initiative</span>
           </div>
 
-          <div className="wire-placeholder border border-dashed border-border rounded-sm aspect-[4/3] grid place-items-center">
-            <span className="text-sm font-mono text-muted-foreground">[ Hero visual placeholder ]</span>
+          <h1 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] tracking-tight">
+            India's{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{ backgroundImage: "linear-gradient(90deg, hsl(var(--orange-500)) 0%, hsl(var(--saffron)) 100%)" }}
+            >
+              Industry 4.0
+            </span>
+            <br />adoption gateway for MSMEs
+          </h1>
+
+          <p className="mt-6 text-base md:text-lg text-white/80 max-w-xl">
+            Assess readiness, explore practical solutions, access CII programmes, and find
+            relevant support for smart manufacturing adoption.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="#assessment" className="btn-primary">
+              Start Readiness Assessment <ArrowRight className="!h-4 !w-4" />
+            </a>
+            <a href="#solutions" className="btn-ghost">Explore Solutions</a>
+          </div>
+
+          <a href="#chatbot" className="mt-5 inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+            <MessageCircle className="h-4 w-4" />
+            Ask the Smart Manufacturing Assistant →
+          </a>
+
+          <div className="mt-10 pt-7 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-6">
+            {stats.map((s) => (
+              <div key={s.l}>
+                <div className="font-numeric font-extrabold text-2xl text-white">{s.v}</div>
+                <div className="mt-1.5 text-[12px] font-medium text-white/65">{s.l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Visual */}
+        <div className="relative">
+          <div className="relative rounded-lg overflow-hidden border border-white/10 shadow-2xl">
+            <img
+              src={heroImg}
+              alt="Smart manufacturing factory with Industry 4.0 digital overlay"
+              width={1280}
+              height={1024}
+              className="w-full h-auto block"
+            />
+            <div className="absolute inset-0 pointer-events-none"
+                 style={{ background: "linear-gradient(180deg, transparent 60%, hsl(var(--navy-900) / 0.5) 100%)" }} />
+          </div>
+          {/* Floating tag */}
+          <div className="absolute -left-3 bottom-6 bg-white text-navy-800 rounded-md shadow-xl px-4 py-3 border border-[hsl(var(--neutral-150))] hidden md:block">
+            <div className="text-[10px] uppercase tracking-[0.14em] font-bold text-cii-red">Now live</div>
+            <div className="text-sm font-display font-semibold mt-0.5">Readiness Assessment</div>
           </div>
         </div>
       </div>
