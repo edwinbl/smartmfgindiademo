@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 export const WireAssessmentTeaser = () => {
   return (
     <WireSection id="assessment" alt>
-      <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr] items-center">
+      <div className="grid gap-8 md:gap-12 lg:grid-cols-[1fr_1.05fr] items-center">
         <div>
           <div className="section-eyebrow mb-3">Maturity Assessments</div>
           <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight text-navy-800">
@@ -44,16 +44,16 @@ export const WireAssessmentTeaser = () => {
 
         {/* Visual gauge card */}
         <div className="relative">
-          <div className="cii-card p-8 bg-white">
-            <div className="flex items-center justify-between">
-              <div>
+          <div className="cii-card p-5 sm:p-8 bg-white">
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <div className="min-w-0">
                 <div className="eyebrow text-[hsl(var(--neutral-500))]">Sample readiness snapshot</div>
-                <div className="font-display font-bold text-navy-800 text-lg mt-1">MSME Pilot Co.</div>
+                <div className="font-display font-bold text-navy-800 text-base sm:text-lg mt-1 truncate">MSME Pilot Co.</div>
               </div>
-              <span className="cii-chip cii-chip-orange">Phase 2</span>
+              <span className="cii-chip cii-chip-orange shrink-0">Phase 2</span>
             </div>
 
-            <div className="mt-7 grid grid-cols-2 gap-5">
+            <div className="mt-6 sm:mt-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
               {[
                 { label: "Strategy & leadership", v: 72 },
                 { label: "Operations & digitisation", v: 58 },
@@ -79,7 +79,7 @@ export const WireAssessmentTeaser = () => {
               ))}
             </div>
 
-            <div className="mt-7 pt-6 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between">
+            <div className="mt-7 pt-6 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between gap-3 flex-wrap">
               <div>
                 <div className="text-xs text-[hsl(var(--neutral-500))]">Overall maturity</div>
                 <div className="font-numeric font-extrabold text-navy-800 text-3xl">59<span className="text-lg text-[hsl(var(--neutral-500))]">/100</span></div>
