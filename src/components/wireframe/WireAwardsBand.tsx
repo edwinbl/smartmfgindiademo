@@ -41,12 +41,12 @@ export const WireAwardsBand = () => {
             }}
           />
 
-          <div className="relative p-8 md:p-12 text-white">
-            <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-14">
+          <div className="relative p-10 md:p-14 lg:p-16 text-white">
+            <div className="grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-20 items-start">
               {/* Left: title + CTAs */}
               <div>
                 <div
-                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-7 border"
+                  className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full mb-10 border"
                   style={{
                     background: "hsl(var(--red-600) / 0.18)",
                     borderColor: "hsl(var(--red-600) / 0.5)",
@@ -56,25 +56,25 @@ export const WireAwardsBand = () => {
                     <span className="absolute inline-flex h-full w-full rounded-full bg-cii-red opacity-90 animate-ping" />
                     <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-cii-red shadow-[0_0_10px_hsl(var(--red-600))] animate-pulse" />
                   </span>
-                  <span className="text-[11px] uppercase tracking-[0.16em] font-bold text-white">
+                  <span className="text-[12px] uppercase tracking-[0.18em] font-bold text-white">
                     FY26 Cycle Open
                   </span>
                 </div>
 
-                <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-[44px] leading-[1.05] tracking-tight">
+                <h2 className="font-display font-extrabold text-4xl md:text-5xl lg:text-[64px] leading-[1.02] tracking-tight">
                   CII National Best Practices Award
                 </h2>
-                <div className="mt-2 font-display font-light text-xl md:text-2xl text-cii-orange">
+                <div className="mt-4 font-display font-light text-2xl md:text-3xl lg:text-[34px] leading-tight text-cii-orange">
                   on Future Ready Manufacturing
                 </div>
 
-                <p className="mt-5 text-sm md:text-base text-white/75 max-w-xl">
+                <p className="mt-7 text-base md:text-[17px] leading-relaxed text-white/70 max-w-xl">
                   Recognising and measuring the outcomes achieved by Indian industry in
                   adopting future-ready technologies in their manufacturing processes —
                   across discrete, process, and continuous-process sectors.
                 </p>
 
-                <div className="mt-8 flex flex-wrap gap-3">
+                <div className="mt-9 flex flex-wrap gap-3">
                   <a href="#" className="btn-primary">
                     Apply for FY26 <ArrowRight className="!h-4 !w-4" />
                   </a>
