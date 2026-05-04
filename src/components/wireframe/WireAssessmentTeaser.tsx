@@ -44,16 +44,16 @@ export const WireAssessmentTeaser = () => {
 
         {/* Visual gauge card */}
         <div className="relative">
-          <div className="cii-card p-8 bg-white">
-            <div className="flex items-center justify-between">
-              <div>
+          <div className="cii-card p-5 sm:p-8 bg-white">
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <div className="min-w-0">
                 <div className="eyebrow text-[hsl(var(--neutral-500))]">Sample readiness snapshot</div>
-                <div className="font-display font-bold text-navy-800 text-lg mt-1">MSME Pilot Co.</div>
+                <div className="font-display font-bold text-navy-800 text-base sm:text-lg mt-1 truncate">MSME Pilot Co.</div>
               </div>
-              <span className="cii-chip cii-chip-orange">Phase 2</span>
+              <span className="cii-chip cii-chip-orange shrink-0">Phase 2</span>
             </div>
 
-            <div className="mt-7 grid grid-cols-2 gap-5">
+            <div className="mt-6 sm:mt-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
               {[
                 { label: "Strategy & leadership", v: 72 },
                 { label: "Operations & digitisation", v: 58 },
