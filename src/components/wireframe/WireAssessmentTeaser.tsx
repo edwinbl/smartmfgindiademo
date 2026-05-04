@@ -6,7 +6,7 @@ export const WireAssessmentTeaser = () => {
     <WireSection id="assessment" alt>
       <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr] items-center">
         <div>
-          <div className="section-eyebrow mb-3">Section 04 — Maturity Assessments</div>
+          <div className="section-eyebrow mb-3">Maturity Assessments</div>
           <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight text-navy-800">
             Start with maturity.<br />Then decide what to adopt.
           </h2>
