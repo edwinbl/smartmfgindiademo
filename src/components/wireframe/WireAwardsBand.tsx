@@ -1,49 +1,162 @@
-import { Award, ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
+
+const categories = [
+  { name: "Discrete Manufacturing", meta: "08 sub-sectors" },
+  { name: "Process Manufacturing", meta: "06 sub-sectors" },
+  { name: "Continuous Process", meta: "04 sub-sectors" },
+  { name: "MSME Special Recognition", meta: "02 categories" },
+];
+
+const timeline = [
+  { date: "APR 26 · NOW", label: "Applications Open", state: "active" },
+  { date: "JUN 30", label: "Submissions Close", state: "upcoming" },
+  { date: "AUG–SEP", label: "Jury Evaluation & Site Visits", state: "upcoming" },
+  { date: "NOV 14", label: "National Awards Ceremony", state: "upcoming" },
+];
 
 export const WireAwardsBand = () => {
   return (
-    <section id="awards" className="py-10 md:py-12 bg-white" aria-label="Smart Manufacturing Awards">
+    <section id="awards" className="py-12 md:py-16 bg-white" aria-label="CII National Best Practices Award">
       <div className="container-cii">
         <div
-          className="relative overflow-hidden rounded-xl border border-[hsl(var(--neutral-150))] p-6 md:p-8"
+          className="relative overflow-hidden rounded-xl border border-[hsl(var(--neutral-150))]"
           style={{
             background:
-              "linear-gradient(90deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-700)) 60%, hsl(var(--red-700)) 100%)",
+              "linear-gradient(120deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-800)) 55%, hsl(var(--navy-700)) 100%)",
           }}
         >
-          <div className="absolute inset-0 blueprint-grid opacity-30" />
+          <div className="absolute inset-0 blueprint-grid opacity-25" />
           <div
-            className="absolute -top-20 -right-20 w-[360px] h-[360px] pointer-events-none"
+            className="absolute -top-32 -left-32 w-[420px] h-[420px] pointer-events-none"
             style={{
               background:
-                "radial-gradient(circle, hsl(var(--orange-500) / 0.28), hsl(var(--orange-500) / 0) 60%)",
+                "radial-gradient(circle, hsl(var(--red-600) / 0.25), hsl(var(--red-600) / 0) 60%)",
+            }}
+          />
+          <div
+            className="absolute -bottom-32 -right-32 w-[480px] h-[480px] pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(circle, hsl(var(--orange-500) / 0.22), hsl(var(--orange-500) / 0) 60%)",
             }}
           />
 
-          <div className="relative flex flex-col md:flex-row md:items-center gap-6 md:gap-8 text-white">
-            <div className="h-14 w-14 rounded-md grid place-items-center bg-white/12 border border-white/25 shrink-0">
-              <Award className="h-7 w-7 text-cii-orange" />
-            </div>
+          <div className="relative p-8 md:p-12 text-white">
+            <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-14">
+              {/* Left: title + CTAs */}
+              <div>
+                <div
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-7 border"
+                  style={{
+                    background: "hsl(var(--red-600) / 0.18)",
+                    borderColor: "hsl(var(--red-600) / 0.5)",
+                  }}
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-cii-red opacity-75 animate-ping" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-cii-red" />
+                  </span>
+                  <span className="text-[11px] uppercase tracking-[0.16em] font-bold text-white">
+                    FY26 Cycle Open
+                  </span>
+                </div>
 
-            <div className="flex-1 min-w-0">
-              <div className="text-[11px] uppercase tracking-[0.16em] font-bold text-[hsl(var(--orange-100))] mb-2">
-                Campaign · Now open
+                <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-[44px] leading-[1.05] tracking-tight">
+                  CII National Best Practices Award
+                </h2>
+                <div className="mt-2 font-display font-semibold text-xl md:text-2xl text-cii-orange">
+                  on Future Ready Manufacturing
+                </div>
+
+                <p className="mt-5 text-sm md:text-base text-white/75 max-w-xl">
+                  Recognising and measuring the outcomes achieved by Indian industry in
+                  adopting future-ready technologies in their manufacturing processes —
+                  across discrete, process, and continuous-process sectors.
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a href="#" className="btn-primary">
+                    Apply for FY26 <ArrowRight className="!h-4 !w-4" />
+                  </a>
+                  <a href="#" className="btn-ghost">
+                    <Download className="!h-4 !w-4" /> Download Brochure (PDF)
+                  </a>
+                </div>
               </div>
-              <h3 className="font-display font-bold text-xl md:text-2xl leading-tight">
-                Smart Manufacturing Awards
-              </h3>
-              <p className="mt-2 text-sm md:text-base text-white/80 max-w-2xl">
-                Recognising excellence in smart manufacturing adoption and innovation.
-              </p>
+
+              {/* Right: categories card */}
+              <div
+                className="rounded-lg border p-6 md:p-7"
+                style={{
+                  background: "hsl(var(--navy-900) / 0.4)",
+                  borderColor: "hsl(var(--white) / 0.12)",
+                }}
+              >
+                <div className="text-[11px] uppercase tracking-[0.16em] font-bold text-cii-orange mb-4">
+                  Award Categories
+                </div>
+                <ul className="divide-y divide-white/10">
+                  {categories.map((c) => (
+                    <li key={c.name} className="flex items-center justify-between py-3.5">
+                      <span className="font-display font-semibold text-base md:text-lg">{c.name}</span>
+                      <span className="text-xs md:text-sm text-white/55 font-numeric">{c.meta}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div
+                  className="mt-5 rounded-md border px-4 py-3 text-sm"
+                  style={{
+                    background: "hsl(var(--orange-500) / 0.08)",
+                    borderColor: "hsl(var(--orange-500) / 0.35)",
+                  }}
+                >
+                  <span className="font-bold text-white">20+</span>{" "}
+                  <span className="text-white/75">categories — every Indian manufacturer can find their fit.</span>
+                </div>
+              </div>
             </div>
 
-            <div className="shrink-0">
-              <a
-                href="#"
-                className="inline-flex items-center gap-2 h-11 px-5 rounded-sm bg-white text-navy-800 font-semibold text-sm hover:bg-[hsl(var(--neutral-100))] transition-colors"
-              >
-                View Awards <ArrowRight className="h-4 w-4" />
-              </a>
+            {/* Timeline */}
+            <div className="mt-12 pt-8 border-t border-white/15">
+              <div className="text-[11px] uppercase tracking-[0.16em] font-bold text-cii-orange mb-6">
+                FY26 Award Timeline
+              </div>
+              <div className="relative">
+                {/* connector line */}
+                <div className="absolute left-0 right-0 top-3 h-px bg-white/20" />
+                <div
+                  className="absolute left-0 top-3 h-px"
+                  style={{
+                    width: "16%",
+                    background: "hsl(var(--red-600))",
+                  }}
+                />
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 relative">
+                  {timeline.map((t, i) => (
+                    <div key={t.label} className="relative">
+                      <div className="flex items-center">
+                        {t.state === "active" ? (
+                          <span className="relative flex h-6 w-6">
+                            <span className="absolute inline-flex h-full w-full rounded-full bg-cii-red opacity-60 animate-ping" />
+                            <span className="relative inline-flex h-6 w-6 rounded-full bg-cii-red border-2 border-cii-red" />
+                          </span>
+                        ) : (
+                          <span
+                            className="h-6 w-6 rounded-full border-2 border-white/40"
+                            style={{ background: "hsl(var(--navy-900))" }}
+                          />
+                        )}
+                      </div>
+                      <div className="mt-4 text-[11px] uppercase tracking-[0.14em] font-bold text-cii-orange">
+                        {t.date}
+                      </div>
+                      <div className="mt-1.5 font-display font-semibold text-base md:text-lg leading-tight">
+                        {t.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
