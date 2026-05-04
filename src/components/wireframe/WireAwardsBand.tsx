@@ -52,9 +52,9 @@ export const WireAwardsBand = () => {
                     borderColor: "hsl(var(--red-600) / 0.5)",
                   }}
                 >
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full rounded-full bg-cii-red opacity-75 animate-ping" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-cii-red" />
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-cii-red opacity-90 animate-ping" />
+                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-cii-red shadow-[0_0_10px_hsl(var(--red-600))] animate-pulse" />
                   </span>
                   <span className="text-[11px] uppercase tracking-[0.16em] font-bold text-white">
                     FY26 Cycle Open
@@ -64,7 +64,7 @@ export const WireAwardsBand = () => {
                 <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-[44px] leading-[1.05] tracking-tight">
                   CII National Best Practices Award
                 </h2>
-                <div className="mt-2 font-display font-semibold text-xl md:text-2xl text-cii-orange">
+                <div className="mt-2 font-display font-light text-xl md:text-2xl text-cii-orange">
                   on Future Ready Manufacturing
                 </div>
 
@@ -137,8 +137,8 @@ export const WireAwardsBand = () => {
                       <div className="flex items-center">
                         {t.state === "active" ? (
                           <span className="relative flex h-6 w-6">
-                            <span className="absolute inline-flex h-full w-full rounded-full bg-cii-red opacity-60 animate-ping" />
-                            <span className="relative inline-flex h-6 w-6 rounded-full bg-cii-red border-2 border-cii-red" />
+                            <span className="absolute inline-flex h-full w-full rounded-full bg-cii-red opacity-80 animate-ping" />
+                            <span className="relative inline-flex h-6 w-6 rounded-full bg-cii-red border-2 border-cii-red shadow-[0_0_16px_hsl(var(--red-600))] animate-pulse" />
                           </span>
                         ) : (
                           <span
