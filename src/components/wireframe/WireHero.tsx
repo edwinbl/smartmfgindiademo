@@ -57,7 +57,7 @@ export const WireHero = () => {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#assessment" className="btn-primary">
-              Start Readiness Assessment <ArrowRight className="!h-4 !w-4" />
+              Access Maturity Assessments <ArrowRight className="!h-4 !w-4" />
             </a>
             <a href="#solutions" className="btn-ghost">Explore Solutions</a>
           </div>
@@ -92,8 +92,8 @@ export const WireHero = () => {
           </div>
           {/* Floating tag */}
           <div className="absolute -left-3 bottom-6 bg-white text-navy-800 rounded-md shadow-xl px-4 py-3 border border-[hsl(var(--neutral-150))] hidden md:block">
-            <div className="text-[10px] uppercase tracking-[0.14em] font-bold text-cii-red">Now live</div>
-            <div className="text-sm font-display font-semibold mt-0.5">Readiness Assessment</div>
+            <div className="text-[10px] uppercase tracking-[0.14em] font-bold text-cii-red">Available now</div>
+            <div className="text-sm font-display font-semibold mt-0.5">Maturity Assessments</div>
           </div>
         </div>
       </div>

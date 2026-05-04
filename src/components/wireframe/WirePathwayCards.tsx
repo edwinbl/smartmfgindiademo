@@ -1,19 +1,19 @@
 import { WireSection } from "./WireSection";
-import { ClipboardCheck, Layers, GraduationCap, Calendar, Mail, ArrowRight } from "lucide-react";
+import { ClipboardCheck, Layers, GraduationCap, Calendar, MessageCircle, ArrowRight } from "lucide-react";
 
 const pathways = [
   {
     icon: ClipboardCheck,
     title: "Assess Readiness",
-    desc: "Understand where your organisation stands before deciding what to adopt.",
-    cta: "Start assessment",
+    desc: "Access maturity assessment models to understand where your organisation stands.",
+    cta: "Access assessments",
     href: "#assessment",
     accent: "red" as const,
   },
   {
     icon: Layers,
     title: "Explore Solutions",
-    desc: "Practical solution areas linked to business problems and outcomes.",
+    desc: "Explore solution areas linked to business problems and outcomes.",
     cta: "Explore solutions",
     href: "#solutions",
     accent: "navy" as const,
@@ -35,11 +35,11 @@ const pathways = [
     accent: "navy" as const,
   },
   {
-    icon: Mail,
-    title: "Contact CII",
-    desc: "Reach out for enquiries, participation or partnership interest.",
-    cta: "Contact us",
-    href: "#contact",
+    icon: MessageCircle,
+    title: "Ask the Assistant",
+    desc: "Use the Smart Manufacturing Assistant to find approved portal content.",
+    cta: "Open assistant",
+    href: "#chatbot",
     accent: "orange" as const,
   },
 ];
