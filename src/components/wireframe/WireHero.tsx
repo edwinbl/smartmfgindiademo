@@ -67,7 +67,7 @@ export const WireHero = () => {
             Ask the Smart Manufacturing Assistant →
           </a>
 
-          <div className="mt-10 pt-7 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-6">
+          <div className="mt-7 pt-5 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-6">
             {stats.map((s) => (
               <div key={s.l}>
                 <div className="font-numeric font-extrabold text-2xl text-white">{s.v}</div>
