@@ -31,9 +31,9 @@ export const WireHero = () => {
       {/* Tricolor stripe */}
       <div className="absolute left-0 top-0 bottom-0 w-1 tricolor-stripe" />
 
-      <div className="container-cii relative py-16 md:py-24 grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
+      <div className="container-cii relative pt-8 pb-12 md:pt-10 md:pb-16 grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-16 items-center">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-7 border"
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-5 border"
                style={{ background: "hsl(var(--orange-500) / 0.14)", borderColor: "hsl(var(--orange-500) / 0.4)" }}>
             <Sparkles className="h-3.5 w-3.5 text-cii-orange" />
             <span className="eyebrow text-[hsl(var(--orange-100))]">A CII National Initiative</span>
@@ -50,12 +50,12 @@ export const WireHero = () => {
             <br />enabled country
           </h1>
 
-          <p className="mt-6 text-base md:text-lg text-white/80 max-w-xl">
+          <p className="mt-5 text-base md:text-lg text-white/80 max-w-xl">
             CII Smart Manufacturing is the national platform that helps Indian industry assess
             where it stands, find what works, and connect with the partners who can move it forward.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-7 flex flex-wrap gap-3">
             <a href="#assessment" className="btn-primary">
               Access Maturity Assessments <ArrowRight className="!h-4 !w-4" />
             </a>
@@ -67,7 +67,7 @@ export const WireHero = () => {
             Ask the Smart Manufacturing Assistant →
           </a>
 
-          <div className="mt-10 pt-7 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-6">
+          <div className="mt-7 pt-5 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-6">
             {stats.map((s) => (
               <div key={s.l}>
                 <div className="font-numeric font-extrabold text-2xl text-white">{s.v}</div>
