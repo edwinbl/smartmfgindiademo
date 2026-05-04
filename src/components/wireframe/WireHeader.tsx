@@ -31,7 +31,7 @@ export const WireHeader = () => {
         </a>
 
         {/* Nav */}
-        <nav className="hidden xl:flex items-center gap-7 mx-auto" aria-label="Primary">
+        <nav className="hidden md:flex items-center gap-7 mx-auto" aria-label="Primary">
           {navLinks.map((l) => {
             const isActive = l.label === active;
             return (
@@ -49,7 +49,7 @@ export const WireHeader = () => {
         </nav>
 
         {/* CTA */}
-        <div className="hidden xl:flex items-center gap-3 shrink-0">
+        <div className="hidden md:flex items-center gap-3 shrink-0">
           <a href="#assessment" className="btn-primary !h-10 !px-4 !text-[13px]">
             Start Assessment <ArrowRight className="!h-3.5 !w-3.5" />
           </a>
@@ -57,7 +57,7 @@ export const WireHeader = () => {
 
         {/* Mobile toggle */}
         <button
-          className="xl:hidden ml-auto grid h-10 w-10 place-items-center border border-[hsl(var(--neutral-200))] rounded-sm text-navy-800"
+          className="md:hidden ml-auto grid h-10 w-10 place-items-center border border-[hsl(var(--neutral-200))] rounded-sm text-navy-800"
           onClick={() => setOpen((o) => !o)}
           aria-label="Toggle menu"
         >
@@ -66,7 +66,7 @@ export const WireHeader = () => {
       </div>
 
       {open && (
-        <div className="xl:hidden border-t border-[hsl(var(--neutral-150))] bg-white">
+        <div className="md:hidden border-t border-[hsl(var(--neutral-150))] bg-white">
           <ul className="container-cii py-3">
             {navLinks.map((l) => (
               <li key={l.label}>
