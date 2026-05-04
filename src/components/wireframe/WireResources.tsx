@@ -53,7 +53,7 @@ export const WireResources = () => {
             key={r.title}
             className="cii-card overflow-hidden flex flex-col bg-white"
           >
-            <div className="aspect-[4/3] w-full overflow-hidden bg-[hsl(var(--neutral-150))]">
+            <div className="h-40 w-full overflow-hidden bg-[hsl(var(--neutral-150))]">
               <img
                 src={r.image}
                 alt={r.title}
