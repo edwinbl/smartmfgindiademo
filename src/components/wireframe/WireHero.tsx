@@ -31,7 +31,7 @@ export const WireHero = () => {
       {/* Tricolor stripe */}
       <div className="absolute left-0 top-0 bottom-0 w-1 tricolor-stripe" />
 
-      <div className="container-cii relative py-16 md:py-24 grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
+      <div className="container-cii relative pt-8 pb-12 md:pt-10 md:pb-16 grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-16 items-center">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-7 border"
                style={{ background: "hsl(var(--orange-500) / 0.14)", borderColor: "hsl(var(--orange-500) / 0.4)" }}>
