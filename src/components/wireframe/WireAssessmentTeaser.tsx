@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 export const WireAssessmentTeaser = () => {
   return (
     <WireSection id="assessment" alt>
-      <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr] items-center">
+      <div className="grid gap-8 md:gap-12 lg:grid-cols-[1fr_1.05fr] items-center">
         <div>
           <div className="section-eyebrow mb-3">Maturity Assessments</div>
           <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight text-navy-800">
