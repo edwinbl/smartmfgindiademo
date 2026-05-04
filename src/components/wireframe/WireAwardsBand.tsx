@@ -86,10 +86,10 @@ export const WireAwardsBand = () => {
 
               {/* Right: categories card */}
               <div
-                className="rounded-lg border p-6 md:p-7"
+                className="rounded-lg border p-6 md:p-7 backdrop-blur-md shadow-xl"
                 style={{
-                  background: "hsl(var(--navy-900) / 0.4)",
-                  borderColor: "hsl(var(--white) / 0.12)",
+                  background: "hsl(var(--white) / 0.08)",
+                  borderColor: "hsl(var(--white) / 0.18)",
                 }}
               >
                 <div className="text-[11px] uppercase tracking-[0.16em] font-bold text-cii-orange mb-4">
