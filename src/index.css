@@ -107,9 +107,9 @@
     background-size: 48px 48px;
   }
 
-  /* Hero gear rotations */
-  .gear-spin-slow { animation: gear-spin 40s linear infinite; transform-origin: center; transform-box: fill-box; }
-  .gear-spin-fast { animation: gear-spin 24s linear infinite reverse; transform-origin: center; transform-box: fill-box; }
+  /* Hero gear rotations — origin set inline on the SVG <g> in user units */
+  .gear-spin-slow { animation: gear-spin 40s linear infinite; }
+  .gear-spin-fast { animation: gear-spin 24s linear infinite reverse; }
 
   /* Tricolor accent stripe */
   .tricolor-stripe {
