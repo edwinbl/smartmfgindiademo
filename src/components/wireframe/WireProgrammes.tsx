@@ -30,7 +30,7 @@ export const WireProgrammes = () => {
     <WireSection id="programmes" alt>
       <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
         <div>
-          <div className="section-eyebrow mb-3">Section 06 — Programmes & Training</div>
+          <div className="section-eyebrow mb-3">Programmes & Training</div>
           <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight text-navy-800">
             Upcoming CII programmes
           </h2>

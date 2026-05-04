@@ -15,7 +15,7 @@ export const WireEcosystem = () => {
     <WireSection id="ecosystem" alt>
       <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] items-center">
         <div>
-          <div className="section-eyebrow mb-3">Section 08 — Ecosystem</div>
+          <div className="section-eyebrow mb-3">Ecosystem</div>
           <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight text-navy-800">
             A platform connecting India's smart manufacturing ecosystem
           </h2>

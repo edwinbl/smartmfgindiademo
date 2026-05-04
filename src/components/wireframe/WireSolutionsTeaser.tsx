@@ -23,7 +23,7 @@ export const WireSolutionsTeaser = () => {
     <WireSection id="solutions">
       <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
         <div className="max-w-2xl">
-          <div className="section-eyebrow mb-3">Section 05 — Solutions</div>
+          <div className="section-eyebrow mb-3">Solutions</div>
           <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight text-navy-800">
             Explore solutions by business problem
           </h2>
