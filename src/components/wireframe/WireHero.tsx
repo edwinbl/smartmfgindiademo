@@ -2,10 +2,10 @@ import { ArrowRight, Sparkles, MessageCircle } from "lucide-react";
 import heroImg from "@/assets/hero-smart-mfg.jpg";
 
 const stats = [
-  { v: "Phase 1", l: "Adoption gateway live" },
-  { v: "MSME", l: "Centred journey" },
-  { v: "6+", l: "Outcome pathways" },
-  { v: "CII", l: "National convener" },
+  { v: "8+", l: "Years convening" },
+  { v: "60", l: "Case studies" },
+  { v: "2,400+", l: "Practitioners trained" },
+  { v: "180+", l: "Solution providers" },
 ];
 
 export const WireHero = () => {
