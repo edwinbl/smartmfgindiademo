@@ -1,5 +1,5 @@
 import { ArrowRight, Sparkles, MessageCircle } from "lucide-react";
-import heroImg from "@/assets/hero-smart-mfg.jpg";
+import { HeroMaturityDial } from "./HeroMaturityDial";
 
 const stats = [
   { v: "8+", l: "Years convening" },
@@ -78,24 +78,7 @@ export const WireHero = () => {
         </div>
 
         {/* Visual */}
-        <div className="relative">
-          <div className="relative rounded-lg overflow-hidden border border-white/10 shadow-2xl">
-            <img
-              src={heroImg}
-              alt="Smart manufacturing factory with Industry 4.0 digital overlay"
-              width={1280}
-              height={1024}
-              className="w-full h-auto block"
-            />
-            <div className="absolute inset-0 pointer-events-none"
-                 style={{ background: "linear-gradient(180deg, transparent 60%, hsl(var(--navy-900) / 0.5) 100%)" }} />
-          </div>
-          {/* Floating tag */}
-          <div className="absolute -left-3 bottom-6 bg-white text-navy-800 rounded-md shadow-xl px-4 py-3 border border-[hsl(var(--neutral-150))] hidden md:block">
-            <div className="text-[10px] uppercase tracking-[0.14em] font-bold text-cii-red">Available now</div>
-            <div className="text-sm font-display font-semibold mt-0.5">Maturity Assessments</div>
-          </div>
-        </div>
+        <HeroMaturityDial />
       </div>
     </section>
   );
