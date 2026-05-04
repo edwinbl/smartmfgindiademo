@@ -7,8 +7,8 @@ export const WireAssessmentTeaser = () => {
       <div className="grid gap-8 md:gap-12 lg:grid-cols-[1fr_1.05fr] items-center">
         <div>
           <div className="section-eyebrow mb-3">Maturity Assessments</div>
-          <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight text-navy-800">
-            Start with maturity.<br />Then decide what to adopt.
+          <h2 className="font-display font-bold text-2xl sm:text-[28px] md:text-[36px] leading-tight tracking-tight text-navy-800">
+            Start with maturity. <span className="block sm:inline">Then decide what to adopt.</span>
           </h2>
           <p className="mt-5 text-base md:text-lg text-[hsl(var(--neutral-700))] max-w-xl">
             Access current smart manufacturing and Industry 4.0 maturity assessment models to
@@ -20,12 +20,12 @@ export const WireAssessmentTeaser = () => {
               { name: "Smart Manufacturing Maturity Assessment Model", tag: "Available" },
               { name: "Industry 4.0 Maturity Assessment", tag: "Available" },
             ].map((m) => (
-              <div key={m.name} className="flex items-center justify-between gap-3 p-4 rounded-md border border-[hsl(var(--neutral-150))] bg-white">
-                <div className="flex items-center gap-3 min-w-0">
+              <div key={m.name} className="flex items-center justify-between gap-3 p-3 sm:p-4 rounded-md border border-[hsl(var(--neutral-150))] bg-white flex-wrap sm:flex-nowrap">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
                   <CheckCircle2 className="h-4 w-4 text-[hsl(var(--india-green))] shrink-0" />
-                  <span className="text-sm font-semibold text-navy-800 truncate">{m.name}</span>
+                  <span className="text-sm font-semibold text-navy-800 break-words">{m.name}</span>
                 </div>
-                <span className="cii-chip">{m.tag}</span>
+                <span className="cii-chip shrink-0">{m.tag}</span>
               </div>
             ))}
           </div>
