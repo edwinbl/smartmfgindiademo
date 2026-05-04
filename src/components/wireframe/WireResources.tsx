@@ -37,12 +37,12 @@ const resources = [
 export const WireResources = () => {
   return (
     <WireSection id="resources" alt>
-      <div className="mb-12">
-        <div className="section-eyebrow mb-3">Solutions Spotlight</div>
+      <div className="mb-6">
+        <div className="section-eyebrow mb-2">Solutions Spotlight</div>
         <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight text-navy-800">
           Learn from practical examples and resources
         </h2>
-        <p className="mt-4 text-base text-[hsl(var(--neutral-700))] max-w-2xl">
+        <p className="mt-2 text-base text-[hsl(var(--neutral-700))] max-w-2xl">
           Case studies, reports and playbooks from manufacturers who have implemented Industry 4.0 solutions.
         </p>
       </div>
