@@ -1,5 +1,5 @@
 import { ArrowRight, Sparkles, MessageCircle } from "lucide-react";
-import heroImg from "@/assets/hero-smart-mfg.jpg";
+import { HeroMaturityDial } from "./HeroMaturityDial";
 
 const stats = [
   { v: "8+", l: "Years convening" },
