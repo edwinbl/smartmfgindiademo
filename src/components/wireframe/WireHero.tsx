@@ -40,14 +40,14 @@ export const WireHero = () => {
           </div>
 
           <h1 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] tracking-tight">
-            India's{" "}
+            Making India an{" "}
             <span
               className="bg-clip-text text-transparent"
               style={{ backgroundImage: "linear-gradient(90deg, hsl(var(--orange-500)) 0%, hsl(var(--saffron)) 100%)" }}
             >
               Industry 4.0
             </span>
-            <br />adoption gateway for MSMEs
+            <br />enabled country
           </h1>
 
           <p className="mt-6 text-base md:text-lg text-white/80 max-w-xl">
