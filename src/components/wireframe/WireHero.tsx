@@ -51,8 +51,8 @@ export const WireHero = () => {
           </h1>
 
           <p className="mt-6 text-base md:text-lg text-white/80 max-w-xl">
-            Assess readiness, explore practical solutions, access CII programmes, and find
-            relevant support for smart manufacturing adoption.
+            CII Smart Manufacturing is the national platform that helps Indian industry assess
+            where it stands, find what works, and connect with the partners who can move it forward.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
