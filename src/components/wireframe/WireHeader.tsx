@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
+import logoSrc from "@/assets/cii-smart-mfg-logo.png";
 
 const navLinks = [
   { label: "Home", href: "#" },
@@ -19,15 +20,12 @@ export const WireHeader = () => {
     <header className="sticky top-0 z-40 bg-white border-b border-[hsl(var(--neutral-150))]">
       <div className="container-cii flex h-[72px] items-center gap-6">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 shrink-0">
-          <div className="relative h-10 w-10 rounded-sm bg-navy-800 grid place-items-center text-white font-display font-bold text-sm">
-            CII
-            <span className="absolute -right-1 -bottom-1 h-2 w-2 rounded-full bg-cii-orange" />
-          </div>
-          <div className="hidden sm:block leading-tight">
-            <div className="font-display font-bold text-[13px] text-navy-800 tracking-tight">CII Smart Manufacturing</div>
-            <div className="text-[10px] uppercase tracking-[0.14em] text-[hsl(var(--neutral-500))] font-semibold">National Industry 4.0 Gateway</div>
-          </div>
+        <a href="#" className="flex items-center shrink-0" aria-label="CII Smart Manufacturing Platform — Home">
+          <img
+            src={logoSrc}
+            alt="CII Smart Manufacturing Platform — An Industry-led initiative on Industry 4.0 and beyond"
+            className="h-11 md:h-12 w-auto"
+          />
         </a>
 
         {/* Nav */}
