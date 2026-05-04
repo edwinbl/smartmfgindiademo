@@ -1,31 +1,33 @@
-import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
-import { AudienceSelector } from "@/components/AudienceSelector";
-import { Modules } from "@/components/Modules";
-import { HowItWorks } from "@/components/HowItWorks";
-import { Insights } from "@/components/Insights";
-import { LeadersSpeak } from "@/components/LeadersSpeak";
-import { Partners } from "@/components/Partners";
-import { Events } from "@/components/Events";
-import { FinalCta } from "@/components/FinalCta";
-import { Footer } from "@/components/Footer";
+import { WireHeader } from "@/components/wireframe/WireHeader";
+import { WireHero } from "@/components/wireframe/WireHero";
+import { WirePathwayCards } from "@/components/wireframe/WirePathwayCards";
+import { WireAssessmentTeaser } from "@/components/wireframe/WireAssessmentTeaser";
+import { WireSolutionsTeaser } from "@/components/wireframe/WireSolutionsTeaser";
+import { WireProgrammes } from "@/components/wireframe/WireProgrammes";
+import { WireResources } from "@/components/wireframe/WireResources";
+import { WireEcosystem } from "@/components/wireframe/WireEcosystem";
+import { WireChatbotBlock } from "@/components/wireframe/WireChatbotBlock";
+import { WireFinalCta } from "@/components/wireframe/WireFinalCta";
+import { WireFooter } from "@/components/wireframe/WireFooter";
+import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <div className="min-h-screen bg-background text-foreground">
+      <WireHeader />
       <main>
-        <Hero />
-        <AudienceSelector />
-        <Modules />
-        <HowItWorks />
-        <Insights />
-        <LeadersSpeak />
-        <Partners />
-        <Events />
-        <FinalCta />
+        <WireHero />
+        <WirePathwayCards />
+        <WireAssessmentTeaser />
+        <WireSolutionsTeaser />
+        <WireProgrammes />
+        <WireResources />
+        <WireEcosystem />
+        <WireChatbotBlock />
+        <WireFinalCta />
       </main>
-      <Footer />
+      <WireFooter />
+      <WireChatbotFAB />
     </div>
   );
 };
