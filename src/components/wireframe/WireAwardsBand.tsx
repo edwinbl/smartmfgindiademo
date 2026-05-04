@@ -17,14 +17,13 @@ const timeline = [
 export const WireAwardsBand = () => {
   return (
     <section id="awards" className="py-12 md:py-16 bg-white" aria-label="CII National Best Practices Award">
-      <div className="container-cii">
-        <div
-          className="relative overflow-hidden rounded-xl border border-[hsl(var(--neutral-150))]"
-          style={{
-            background:
-              "linear-gradient(120deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-800)) 55%, hsl(var(--navy-700)) 100%)",
-          }}
-        >
+      <div
+        className="relative overflow-hidden border-y border-white/10"
+        style={{
+          background:
+            "linear-gradient(120deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-800)) 55%, hsl(var(--navy-700)) 100%)",
+        }}
+      >
           <div className="absolute inset-0 blueprint-grid opacity-25" />
           <div
             className="absolute -top-32 -left-32 w-[420px] h-[420px] pointer-events-none"
@@ -41,7 +40,7 @@ export const WireAwardsBand = () => {
             }}
           />
 
-          <div className="relative p-10 md:p-14 lg:p-16 text-white">
+          <div className="container-cii relative py-12 md:py-16 lg:py-20 text-white">
             <div className="grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-20 items-start">
               {/* Left: title + CTAs */}
               <div>
@@ -61,7 +60,7 @@ export const WireAwardsBand = () => {
                   </span>
                 </div>
 
-                <h2 className="font-display font-extrabold text-4xl md:text-5xl lg:text-[64px] leading-[1.02] tracking-tight">
+                <h2 className="font-display font-semibold text-4xl md:text-5xl lg:text-[64px] leading-[1.02] tracking-tight">
                   CII National Best Practices Award
                 </h2>
                 <div className="mt-4 font-display font-light text-2xl md:text-3xl lg:text-[34px] leading-tight text-cii-orange">
@@ -160,7 +159,6 @@ export const WireAwardsBand = () => {
               </div>
             </div>
           </div>
-        </div>
       </div>
     </section>
   );
