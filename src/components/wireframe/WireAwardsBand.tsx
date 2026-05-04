@@ -86,26 +86,26 @@ export const WireAwardsBand = () => {
 
               {/* Right: categories card */}
               <div
-                className="rounded-lg border p-6 md:p-7 backdrop-blur-2xl shadow-2xl"
+                className="rounded-xl border p-7 md:p-9 backdrop-blur-2xl shadow-2xl"
                 style={{
                   background:
                     "linear-gradient(180deg, hsl(var(--navy-700) / 0.55) 0%, hsl(var(--navy-800) / 0.45) 100%)",
                   borderColor: "hsl(var(--navy-500) / 0.5)",
                 }}
               >
-                <div className="text-[11px] uppercase tracking-[0.16em] font-bold text-cii-orange mb-4">
+                <div className="text-[12px] uppercase tracking-[0.18em] font-bold text-cii-orange mb-6">
                   Award Categories
                 </div>
                 <ul className="divide-y divide-white/10">
                   {categories.map((c) => (
-                    <li key={c.name} className="flex items-center justify-between py-3.5">
-                      <span className="font-display font-semibold text-base md:text-lg">{c.name}</span>
-                      <span className="text-xs md:text-sm text-white/55 font-numeric">{c.meta}</span>
+                    <li key={c.name} className="flex items-baseline justify-between py-5">
+                      <span className="font-display font-semibold text-lg md:text-xl">{c.name}</span>
+                      <span className="text-xs md:text-[13px] text-white/55 font-numeric">{c.meta}</span>
                     </li>
                   ))}
                 </ul>
                 <div
-                  className="mt-5 rounded-md border px-4 py-3 text-sm"
+                  className="mt-7 rounded-md border px-5 py-4 text-sm md:text-[15px]"
                   style={{
                     background: "hsl(var(--orange-500) / 0.08)",
                     borderColor: "hsl(var(--orange-500) / 0.35)",
