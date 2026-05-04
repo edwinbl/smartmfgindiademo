@@ -12,10 +12,28 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+        sans: ["Source Sans 3", "Inter", "system-ui", "sans-serif"],
+        display: ["Inter", "system-ui", "sans-serif"],
+        numeric: ["Inter Tight", "Inter", "sans-serif"],
         mono: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       colors: {
+        navy: {
+          50: "hsl(var(--navy-050))",
+          100: "hsl(var(--navy-100))",
+          500: "hsl(var(--navy-500))",
+          600: "hsl(var(--navy-600))",
+          700: "hsl(var(--navy-700))",
+          800: "hsl(var(--navy-800))",
+          900: "hsl(var(--navy-900))",
+        },
+        cii: {
+          red: "hsl(var(--red-600))",
+          "red-dark": "hsl(var(--red-700))",
+          orange: "hsl(var(--orange-500))",
+          saffron: "hsl(var(--saffron))",
+          green: "hsl(var(--india-green))",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
