@@ -17,39 +17,30 @@ const socials = [
 
 const cols = [
   {
-    title: "About",
+    title: "Explore",
     links: [
-      { label: "About CII", url: "https://www.smartmfgindia.com/CapacityBuildings.aspx#SmartAbout" },
-      { label: "Smart Manufacturing", url: "#" },
-      { label: "Leadership", url: "#" },
-      { label: "Press", url: "#" },
-    ],
-  },
-  {
-    title: "Get started",
-    links: [
+      { label: "Home", url: "#" },
+      { label: "About", url: "https://www.smartmfgindia.com/Home.aspx#SmartAbout" },
       { label: "Readiness Assessment", url: "https://www.smartmfgindia.com/Assesment.aspx" },
-      { label: "Solutions", url: "#solutions" },
       { label: "Programmes & Training", url: "https://www.smartmfgindia.com/CapacityBuildings.aspx" },
-      { label: "Events", url: "#" },
+      { label: "Contact", url: "https://www.smartmfgindia.com/Assesment.aspx#SmartContactus" },
     ],
   },
   {
-    title: "Resources",
+    title: "Solutions",
     links: [
-      { label: "Case studies", url: "#" },
-      { label: "Reports", url: "#" },
-      { label: "Playbooks", url: "#" },
-      { label: "FAQs", url: "#" },
+      { label: "Case Studies", url: "https://www.smartmfgindia.com/CaseStudy.aspx" },
+      { label: "Reports & Publications", url: "https://www.smartmfgindia.com/KnowledgeCenterList.aspx" },
+      { label: "E-Directory", url: "https://www.smartmfgindia.com/e-Directory.aspx" },
     ],
   },
   {
-    title: "Contact",
+    title: "Events",
     links: [
-      { label: "Contact CII", url: "https://www.smartmfgindia.com/CapacityBuildings.aspx#SmartContactus" },
-      { label: "Support", url: "#" },
-      { label: "Partnerships", url: "#" },
-      { label: "Careers", url: "#" },
+      { label: "Upcoming Events", url: "https://www.smartmfgindia.com/UpcommingEvent.aspx" },
+      { label: "Summit", url: "https://www.smartmfgindia.com/Event24.aspx" },
+      { label: "Roundtable", url: "https://www.smartmfgindia.com/Roundtable.aspx" },
+      { label: "Workshop", url: "https://www.smartmfgindia.com/WorkShop.aspx" },
     ],
   },
 ];
@@ -65,7 +56,7 @@ export const WireFooter = () => {
         }}
       />
       <div className="container-cii py-14">
-        <div className="grid gap-10 grid-cols-2 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-10 grid-cols-2 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1 sm:col-span-2 col-span-2">
             <a href="#" className="inline-flex items-center" aria-label="CII Smart Manufacturing Platform — Home">
               <img
