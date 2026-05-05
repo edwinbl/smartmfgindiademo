@@ -35,11 +35,13 @@ export const WireProgrammes = () => {
             Upcoming CII programmes
           </h2>
           <p className="mt-4 text-base text-[hsl(var(--neutral-700))] max-w-xl">
-            Workshops, masterclasses and structured adoption programmes — designed for MSMEs and
-            mid-market manufacturers.
+            Workshops, masterclasses and structured adoption programmes — designed for MSMEs and mid-market
+            manufacturers.
           </p>
         </div>
-        <a href="#" className="link-arrow">View all programmes <ArrowRight className="h-3.5 w-3.5" /></a>
+        <a href="https://www.smartmfgindia.com/CapacityBuildings.aspx" className="link-arrow">
+          View all programmes <ArrowRight className="h-3.5 w-3.5" />
+        </a>
       </div>
 
       <div className="grid gap-5 md:grid-cols-3">
@@ -48,8 +50,7 @@ export const WireProgrammes = () => {
             <div
               className="h-32 relative"
               style={{
-                background:
-                  "linear-gradient(135deg, hsl(var(--navy-800)) 0%, hsl(var(--navy-600)) 100%)",
+                background: "linear-gradient(135deg, hsl(var(--navy-800)) 0%, hsl(var(--navy-600)) 100%)",
               }}
             >
               <div className="absolute inset-0 blueprint-grid opacity-40" />
@@ -58,11 +59,19 @@ export const WireProgrammes = () => {
             <div className="p-6 flex flex-col flex-1">
               <h3 className="font-display font-bold text-navy-800 text-[17px] leading-snug">{p.title}</h3>
               <ul className="mt-4 space-y-2 text-sm text-[hsl(var(--neutral-700))]">
-                <li className="flex items-center gap-2"><Calendar className="h-4 w-4 text-navy-600" /> {p.date}</li>
-                <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-navy-600" /> {p.format}</li>
-                <li className="flex items-center gap-2"><Users className="h-4 w-4 text-navy-600" /> {p.audience}</li>
+                <li className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-navy-600" /> {p.date}
+                </li>
+                <li className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-navy-600" /> {p.format}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Users className="h-4 w-4 text-navy-600" /> {p.audience}
+                </li>
               </ul>
-              <a href="#" className="link-arrow mt-5">View details <ArrowRight className="h-3.5 w-3.5" /></a>
+              <a href="#" className="link-arrow mt-5">
+                View details <ArrowRight className="h-3.5 w-3.5" />
+              </a>
             </div>
           </article>
         ))}
