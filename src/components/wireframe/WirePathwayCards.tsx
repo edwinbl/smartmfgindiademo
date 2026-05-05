@@ -7,7 +7,7 @@ const pathways = [
     title: "Assess Readiness",
     desc: "Access maturity assessment models to understand where your organisation stands.",
     cta: "Access assessments",
-    href: "#assessment",
+    href: "https://www.smartmfgindia.com/Assesment.aspx",
     accent: "red" as const,
   },
   {
