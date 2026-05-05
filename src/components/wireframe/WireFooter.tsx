@@ -1,3 +1,12 @@
+import { Twitter, Linkedin, Facebook, Youtube } from "lucide-react";
+
+const socials = [
+  { label: "Twitter", href: "#", Icon: Twitter },
+  { label: "LinkedIn", href: "#", Icon: Linkedin },
+  { label: "Facebook", href: "#", Icon: Facebook },
+  { label: "YouTube", href: "#", Icon: Youtube },
+];
+
 const cols = [
   { title: "About", links: ["About CII", "Smart Manufacturing", "Leadership", "Press"] },
   { title: "Get started", links: ["Readiness Assessment", "Solutions", "Programmes", "Events"] },
@@ -23,6 +32,18 @@ export const WireFooter = () => {
               Helping Indian MSMEs assess, learn and adopt smart manufacturing — convened by the
               Confederation of Indian Industry.
             </p>
+            <div className="mt-5 flex items-center gap-3">
+              {socials.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="h-9 w-9 grid place-items-center rounded-full border border-white/20 text-white/80 hover:text-white hover:border-white transition-colors"
+                >
+                  <Icon className="h-4 w-4" strokeWidth={1.5} />
+                </a>
+              ))}
+            </div>
           </div>
           {cols.map((c) => (
             <div key={c.title}>
