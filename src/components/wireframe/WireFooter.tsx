@@ -19,7 +19,6 @@ const cols = [
   {
     title: "Explore",
     links: [
-      { label: "Home", url: "#" },
       { label: "About", url: "https://www.smartmfgindia.com/Home.aspx#SmartAbout" },
       { label: "Readiness Assessment", url: "https://www.smartmfgindia.com/Assesment.aspx" },
       { label: "Programmes & Training", url: "https://www.smartmfgindia.com/CapacityBuildings.aspx" },
