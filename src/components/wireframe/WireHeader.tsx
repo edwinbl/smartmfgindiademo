@@ -37,6 +37,11 @@ export const WireHeader = () => {
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
   const [active] = useState("Home");
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-[hsl(var(--neutral-150))]">
       <div className="container-cii flex h-[72px] items-center gap-6">
