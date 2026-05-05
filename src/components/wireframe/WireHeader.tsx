@@ -7,7 +7,7 @@ type NavLink = { label: string; href: string; children?: NavChild[] };
 
 const navLinks: NavLink[] = [
   { label: "Home", href: "#" },
-  { label: "About", href: "#about" },
+  { label: "About", href: "https://www.smartmfgindia.com/Home.aspx#SmartAbout" },
   { label: "Readiness Assessment", href: "#assessment" },
   {
     label: "Solutions",
@@ -60,17 +60,11 @@ export const WireHeader = () => {
             if (l.children) {
               return (
                 <div key={l.label} className="relative group">
-                  <button
-                    type="button"
-                    className={`${baseCls} inline-flex items-center gap-1`}
-                    aria-haspopup="true"
-                  >
+                  <button type="button" className={`${baseCls} inline-flex items-center gap-1`} aria-haspopup="true">
                     {l.label}
                     <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                   </button>
-                  <div
-                    className="absolute left-0 top-full pt-3 min-w-[240px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity z-50"
-                  >
+                  <div className="absolute left-0 top-full pt-3 min-w-[240px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity z-50">
                     <ul className="bg-white border border-[hsl(var(--neutral-150))] rounded-md shadow-lg py-2">
                       {l.children.map((c) => (
                         <li key={c.label}>
