@@ -1,5 +1,5 @@
 import { WireSection } from "./WireSection";
-import { Play, Quote, ArrowRight } from "lucide-react";
+import { Play, Quote } from "lucide-react";
 
 export const WireLeaderSpeak = () => {
   return (
