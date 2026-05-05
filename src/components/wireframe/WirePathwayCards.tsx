@@ -23,7 +23,7 @@ const pathways = [
     title: "Join Programmes",
     desc: "Access CII programmes, workshops and training opportunities.",
     cta: "View programmes",
-    href: "#programmes",
+    href: "https://www.smartmfgindia.com/CapacityBuildings.aspx",
     accent: "navy" as const,
   },
   {
