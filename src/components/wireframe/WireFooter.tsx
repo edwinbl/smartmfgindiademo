@@ -93,9 +93,14 @@ export const WireFooter = () => {
               <h4 className="text-[11px] uppercase tracking-[0.14em] font-bold text-white mb-4">{c.title}</h4>
               <ul className="space-y-2.5">
                 {c.links.map((l) => (
-                  <li key={l}>
-                    <a href="#" className="text-sm text-white/70 hover:text-white transition-colors">
-                      {l}
+                  <li key={l.label}>
+                    <a
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-white/70 hover:text-white transition-colors"
+                    >
+                      {l.label}
                     </a>
                   </li>
                 ))}
