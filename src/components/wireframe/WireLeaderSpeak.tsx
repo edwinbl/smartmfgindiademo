@@ -1,5 +1,5 @@
 import { WireSection } from "./WireSection";
-import { Play, Quote, ArrowRight } from "lucide-react";
+import { Play, Quote } from "lucide-react";
 
 export const WireLeaderSpeak = () => {
   return (
@@ -62,11 +62,6 @@ export const WireLeaderSpeak = () => {
             </div>
           </div>
 
-          <div className="mt-7">
-            <a href="#" className="btn-primary">
-              Watch message <ArrowRight className="!h-4 !w-4" />
-            </a>
-          </div>
         </div>
       </div>
     </WireSection>
