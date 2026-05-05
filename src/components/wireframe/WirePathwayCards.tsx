@@ -31,7 +31,7 @@ const pathways = [
     title: "View Events",
     desc: "Explore upcoming and past smart manufacturing events.",
     cta: "View events",
-    href: "#events",
+    href: "https://www.smartmfgindia.com/UpcommingEvent.aspx",
     accent: "navy" as const,
   },
   {
