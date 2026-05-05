@@ -1,3 +1,12 @@
+import { Twitter, Linkedin, Facebook, Youtube } from "lucide-react";
+
+const socials = [
+  { label: "Twitter", href: "#", Icon: Twitter },
+  { label: "LinkedIn", href: "#", Icon: Linkedin },
+  { label: "Facebook", href: "#", Icon: Facebook },
+  { label: "YouTube", href: "#", Icon: Youtube },
+];
+
 const cols = [
   { title: "About", links: ["About CII", "Smart Manufacturing", "Leadership", "Press"] },
   { title: "Get started", links: ["Readiness Assessment", "Solutions", "Programmes", "Events"] },
