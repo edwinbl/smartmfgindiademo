@@ -26,7 +26,7 @@ const Index = () => {
         <WireResources />
         <WireProgrammes />
         <WireAwardsBand />
-        <WireChatbotBlock />
+        
         <WirePartners />
         <WireFinalCta />
       </main>
