@@ -112,13 +112,13 @@ export const WireFooter = () => {
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-white/60">
           <span>© {new Date().getFullYear()} Confederation of Indian Industry. All rights reserved.</span>
           <div className="flex gap-5">
-            <a href="#" className="hover:text-white">
+            <a href="https://www.smartmfgindia.com/Assesment.aspx#SmartContactus" target="_blank" rel="noopener noreferrer" className="hover:text-white">
               Privacy
             </a>
-            <a href="#" className="hover:text-white">
+            <a href="https://www.smartmfgindia.com/Assesment.aspx#SmartContactus" target="_blank" rel="noopener noreferrer" className="hover:text-white">
               Terms
             </a>
-            <a href="#" className="hover:text-white">
+            <a href="https://www.smartmfgindia.com/Assesment.aspx#SmartContactus" target="_blank" rel="noopener noreferrer" className="hover:text-white">
               Accessibility
             </a>
           </div>
