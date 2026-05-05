@@ -10,7 +10,7 @@ const socials = [
 type FooterLink = { label: string; href: string };
 const cols: { title: string; links: FooterLink[] }[] = [
   { title: "About", links: [
-    { label: "About CII", href: "#" },
+    { label: "About CII", href: "https://www.smartmfgindia.com/Assesment.aspx#SmartAbout" },
     { label: "Smart Manufacturing", href: "#" },
     { label: "Leadership", href: "#" },
     { label: "Press", href: "#" },
@@ -18,7 +18,7 @@ const cols: { title: string; links: FooterLink[] }[] = [
   { title: "Get started", links: [
     { label: "Readiness Assessment", href: "https://www.smartmfgindia.com/Assesment.aspx" },
     { label: "Solutions", href: "#" },
-    { label: "Programmes", href: "#" },
+    { label: "Programmes", href: "https://www.smartmfgindia.com/CapacityBuildings.aspx" },
     { label: "Events", href: "#" },
   ]},
   { title: "Resources", links: [
