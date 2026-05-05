@@ -7,11 +7,50 @@ const socials = [
   { label: "YouTube", href: "#", Icon: Youtube },
 ];
 
+// const cols = [
+//   { title: "About", links: ["About CII", "Smart Manufacturing", "Leadership", "Press"] },
+//   { title: "Get started", links: ["Readiness Assessment", "Solutions", "Programmes & Training", "Events"] },
+//   { title: "Resources", links: ["Case studies", "Reports", "Playbooks", "FAQs"] },
+//   { title: "Contact", links: ["Contact CII", "Support", "Partnerships", "Careers"] },
+// ];
+
 const cols = [
-  { title: "About", links: ["About CII", "Smart Manufacturing", "Leadership", "Press"] },
-  { title: "Get started", links: ["Readiness Assessment", "Solutions", "Programmes & Training", "Events"] },
-  { title: "Resources", links: ["Case studies", "Reports", "Playbooks", "FAQs"] },
-  { title: "Contact", links: ["Contact CII", "Support", "Partnerships", "Careers"] },
+  {
+    title: "About",
+    links: [
+      { label: "About CII", url: "https://www.smartmfgindia.com/AboutUs.aspx" },
+      { label: "Smart Manufacturing", url: "https://www.smartmfgindia.com/" },
+      { label: "Leadership", url: "https://www.smartmfgindia.com/Leadership.aspx" },
+      { label: "Press", url: "https://www.smartmfgindia.com/Press.aspx" },
+    ],
+  },
+  {
+    title: "Get started",
+    links: [
+      { label: "Readiness Assessment", url: "https://www.smartmfgindia.com/Assesment.aspx" },
+      { label: "Solutions", url: "https://www.smartmfgindia.com/Solutions.aspx" },
+      { label: "Programmes & Training", url: "https://www.smartmfgindia.com/Programs.aspx" },
+      { label: "Events", url: "https://www.smartmfgindia.com/Events.aspx" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "Case studies", url: "https://www.smartmfgindia.com/CaseStudy.aspx" },
+      { label: "Reports", url: "https://www.smartmfgindia.com/KnowledgeCenterList.aspx" },
+      { label: "Playbooks", url: "https://www.smartmfgindia.com/Playbooks.aspx" },
+      { label: "FAQs", url: "https://www.smartmfgindia.com/FAQ.aspx" },
+    ],
+  },
+  {
+    title: "Contact",
+    links: [
+      { label: "Contact CII", url: "https://www.smartmfgindia.com/ContactUs.aspx" },
+      { label: "Support", url: "https://www.smartmfgindia.com/Support.aspx" },
+      { label: "Partnerships", url: "https://www.smartmfgindia.com/Partnership.aspx" },
+      { label: "Careers", url: "https://www.smartmfgindia.com/Careers.aspx" },
+    ],
+  },
 ];
 
 export const WireFooter = () => {
@@ -60,9 +99,9 @@ export const WireFooter = () => {
               <h4 className="text-[11px] uppercase tracking-[0.14em] font-bold text-white mb-4">{c.title}</h4>
               <ul className="space-y-2.5">
                 {c.links.map((l) => (
-                  <li key={l}>
-                    <a href="#" className="text-sm text-white/70 hover:text-white transition-colors">
-                      {l} test
+                  <li key={l.label}>
+                    <a href={l.url} className="text-sm text-white/70 hover:text-white transition-colors">
+                      {l.label}
                     </a>
                   </li>
                 ))}
