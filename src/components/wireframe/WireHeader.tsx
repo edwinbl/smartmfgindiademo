@@ -111,7 +111,7 @@ export const WireHeader = () => {
 
       {open && (
         <div className="md:hidden border-t border-[hsl(var(--neutral-150))] bg-white">
-          <ul className="container-cii mx-0 py-3">
+          <ul className="container-cii py-3">
             {navLinks.map((l) => (
               <li key={l.label} className="border-b border-[hsl(var(--neutral-150))] last:border-b-0">
                 {l.children ? (
