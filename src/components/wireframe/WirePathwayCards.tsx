@@ -90,6 +90,10 @@ export const WirePathwayCards = () => {
                 if (p.href === "#chatbot") {
                   e.preventDefault();
                   window.dispatchEvent(new Event("open-assistant"));
+                } else if (p.href.startsWith("#")) {
+                  e.preventDefault();
+                  document.getElementById(p.href.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  history.replaceState(null, "", p.href);
                 }
               }}
               className="group relative flex flex-col p-6 rounded-xl bg-white border border-[hsl(var(--neutral-150))] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_hsl(var(--navy-800)/0.18)] hover:border-transparent"
