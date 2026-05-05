@@ -61,7 +61,15 @@ export const WireHero = () => {
             <a href="https://www.smartmfgindia.com/Assesment.aspx" className="btn-primary">
               Access Maturity Assessments <ArrowRight className="!h-4 !w-4" />
             </a>
-            <a href="#solutions" className="btn-ghost">
+            <a
+              href="#solutions"
+              className="btn-ghost"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("solutions")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                history.replaceState(null, "", "#solutions");
+              }}
+            >
               Explore Solutions
             </a>
           </div>
