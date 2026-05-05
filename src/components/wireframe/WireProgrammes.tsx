@@ -17,7 +17,7 @@ const programmes = [
     tag: "Masterclass",
   },
   {
-    title: "Energy Efficiency Adoption Programme",
+    title: "CII & RA Two-Day Training Programme on Industry 4.0",
     date: "08–09 Jul 2026",
     format: "Hybrid · Bengaluru",
     audience: "Plant heads, Sustainability leads",
