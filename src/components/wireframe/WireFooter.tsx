@@ -29,7 +29,7 @@ const cols = [
     title: "Get started",
     links: [
       { label: "Readiness Assessment", url: "https://www.smartmfgindia.com/Assesment.aspx" },
-      { label: "Solutions", url: "#" },
+      { label: "Solutions", url: "#solutions" },
       { label: "Programmes & Training", url: "https://www.smartmfgindia.com/CapacityBuildings.aspx" },
       { label: "Events", url: "#" },
     ],
@@ -97,7 +97,17 @@ export const WireFooter = () => {
               <ul className="space-y-2.5">
                 {c.links.map((l) => (
                   <li key={l.label}>
-                    <a href={l.url} className="text-sm text-white/70 hover:text-white transition-colors">
+                    <a
+                      href={l.url}
+                      onClick={(e) => {
+                        if (l.url.startsWith("#") && l.url.length > 1) {
+                          e.preventDefault();
+                          document.getElementById(l.url.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
+                          history.replaceState(null, "", l.url);
+                        }
+                      }}
+                      className="text-sm text-white/70 hover:text-white transition-colors"
+                    >
                       {l.label}
                     </a>
                   </li>
