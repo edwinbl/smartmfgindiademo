@@ -3,7 +3,7 @@ import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
 
 const programmes = [
   {
-    title: "Industry 4.0 Maturity Bootcamp for MSMEs",
+    title: "CII-JICA-AOTS Training Programme on Industry 4.0",
     date: "12–14 Jun 2026",
     format: "In-person · Pune",
     audience: "MSME leadership",
