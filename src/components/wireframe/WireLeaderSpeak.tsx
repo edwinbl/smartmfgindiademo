@@ -56,8 +56,8 @@ export const WireLeaderSpeak = () => {
             </p>
             <div className="mt-4 pt-4 border-t border-[hsl(var(--neutral-150))]">
               <div className="font-display font-bold text-navy-800 text-sm">Mr. Dilip Sawhney</div>
-              <div className="text-xs text-[hsl(var(--neutral-500))] mt-0.5">
-                [Designation], Confederation of Indian Industry
+              <div className="text-xs text-[hsl(var(--neutral-500))] mt-0.5 leading-relaxed">
+                Chairman, CII National Committee on Smart Manufacturing, and Managing Director, Rockwell Automation India Pvt Ltd
               </div>
             </div>
           </div>
