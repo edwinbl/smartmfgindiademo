@@ -1,18 +1,29 @@
 import { WireSection } from "./WireSection";
 import { ExternalLink } from "lucide-react";
+import hero from "@/assets/partners/hero.png";
+import ibm from "@/assets/partners/ibm.png";
+import ifm from "@/assets/partners/ifm.png";
+import mahindra from "@/assets/partners/mahindra.png";
+import omron from "@/assets/partners/omron.png";
+import rockwell from "@/assets/partners/rockwell.png";
+import siemens from "@/assets/partners/siemens.png";
+import skf from "@/assets/partners/skf.png";
+import techMahindra from "@/assets/partners/tech-mahindra.png";
 
 const partners = [
-  "Partner Logo 01",
-  "Partner Logo 02",
-  "Partner Logo 03",
-  "Partner Logo 04",
-  "Partner Logo 05",
-  "Partner Logo 06",
-  "Partner Logo 07",
-  "Partner Logo 08",
+  { name: "Hero", src: hero },
+  { name: "IBM", src: ibm },
+  { name: "ifm electronic", src: ifm },
+  { name: "Mahindra Rise", src: mahindra },
+  { name: "Omron", src: omron },
+  { name: "Rockwell Automation", src: rockwell },
+  { name: "Siemens", src: siemens },
+  { name: "SKF", src: skf },
+  { name: "Tech Mahindra", src: techMahindra },
 ];
 
 export const WirePartners = () => {
+  const loop = [...partners, ...partners];
   return (
     <WireSection id="partners">
       <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
@@ -31,17 +42,30 @@ export const WirePartners = () => {
         </a>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
-        {partners.map((p) => (
-          <div
-            key={p}
-            className="aspect-[3/2] rounded-md border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))] grid place-items-center text-center px-2 hover:border-navy-600 hover:bg-white transition-colors"
-          >
-            <span className="text-[10px] uppercase tracking-[0.12em] font-semibold text-[hsl(var(--neutral-500))] leading-tight">
-              {p}
-            </span>
-          </div>
-        ))}
+      <div
+        className="relative overflow-hidden"
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%)",
+        }}
+      >
+        <div className="flex gap-12 md:gap-16 animate-marquee w-max">
+          {loop.map((p, i) => (
+            <div
+              key={`${p.name}-${i}`}
+              className="shrink-0 h-20 md:h-24 w-[180px] md:w-[200px] grid place-items-center"
+            >
+              <img
+                src={p.src}
+                alt={p.name}
+                className="max-h-full max-w-full object-contain opacity-90 hover:opacity-100 transition-opacity"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </WireSection>
   );
