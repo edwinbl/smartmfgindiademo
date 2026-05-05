@@ -20,11 +20,11 @@ export const WireEcosystem = () => {
             A platform connecting India's smart manufacturing ecosystem
           </h2>
           <p className="mt-5 text-base text-[hsl(var(--neutral-700))] max-w-xl">
-            The portal brings together MSMEs, experts, technology providers, larger manufacturers,
-            academia and institutions around practical Industry 4.0 adoption.
+            The portal brings together MSMEs, experts, technology providers, larger manufacturers, academia and
+            institutions around practical Industry 4.0 adoption.
           </p>
           <div className="mt-7">
-            <a href="#contact" className="btn-secondary">
+            <a href="https://www.smartmfgindia.com/Assesment.aspx#SmartContactus" className="btn-secondary">
               Express interest <ArrowRight className="!h-4 !w-4" />
             </a>
           </div>
