@@ -7,11 +7,32 @@ const socials = [
   { label: "YouTube", href: "#", Icon: Youtube },
 ];
 
-const cols = [
-  { title: "About", links: ["About CII", "Smart Manufacturing", "Leadership", "Press"] },
-  { title: "Get started", links: ["Readiness Assessment", "Solutions", "Programmes", "Events"] },
-  { title: "Resources", links: ["Case studies", "Reports", "Playbooks", "FAQs"] },
-  { title: "Contact", links: ["Contact CII", "Support", "Partnerships", "Careers"] },
+type FooterLink = { label: string; href: string };
+const cols: { title: string; links: FooterLink[] }[] = [
+  { title: "About", links: [
+    { label: "About CII", href: "#" },
+    { label: "Smart Manufacturing", href: "#" },
+    { label: "Leadership", href: "#" },
+    { label: "Press", href: "#" },
+  ]},
+  { title: "Get started", links: [
+    { label: "Readiness Assessment", href: "https://www.smartmfgindia.com/Assesment.aspx" },
+    { label: "Solutions", href: "#" },
+    { label: "Programmes", href: "#" },
+    { label: "Events", href: "#" },
+  ]},
+  { title: "Resources", links: [
+    { label: "Case studies", href: "#" },
+    { label: "Reports", href: "#" },
+    { label: "Playbooks", href: "#" },
+    { label: "FAQs", href: "#" },
+  ]},
+  { title: "Contact", links: [
+    { label: "Contact CII", href: "#" },
+    { label: "Support", href: "#" },
+    { label: "Partnerships", href: "#" },
+    { label: "Careers", href: "#" },
+  ]},
 ];
 
 export const WireFooter = () => {
