@@ -18,8 +18,8 @@ const cols = [
   {
     title: "About",
     links: [
-      { label: "About CII", url: "https://www.smartmfgindia.com/AboutUs.aspx" },
-      { label: "Smart Manufacturing", url: "https://www.smartmfgindia.com/" },
+      { label: "About CII", url: "https://www.smartmfgindia.com/CapacityBuildings.aspx#SmartAbout" },
+      { label: "Smart Manufacturing", url: "#" },
       { label: "Leadership", url: "https://www.smartmfgindia.com/Leadership.aspx" },
       { label: "Press", url: "https://www.smartmfgindia.com/Press.aspx" },
     ],
