@@ -16,7 +16,7 @@ export const WireFinalCta = () => {
           <a href="#" className="btn-primary">
             Contact CII <ArrowRight className="!h-4 !w-4" />
           </a>
-          <a href="#assessment" className="btn-outline">
+          <a href="https://www.smartmfgindia.com/Assesment.aspx" className="btn-outline">
             <Mail className="!h-4 !w-4" /> Start with the assessment
           </a>
         </div>
