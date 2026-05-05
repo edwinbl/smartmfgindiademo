@@ -1,37 +1,26 @@
 import { WireSection } from "./WireSection";
-import { Play, Quote } from "lucide-react";
+import { Quote } from "lucide-react";
 
 export const WireLeaderSpeak = () => {
   return (
     <WireSection id="leader-speak" alt>
       <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] items-center">
-        {/* Video placeholder */}
+        {/* Video */}
         <div className="relative">
-          <div
-            className="relative rounded-lg overflow-hidden aspect-video shadow-2xl border border-[hsl(var(--neutral-150))] group cursor-pointer"
-            style={{
-              background:
-                "linear-gradient(135deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-700)) 100%)",
-            }}
-            role="button"
-            aria-label="Play leader message"
-          >
-            <div className="absolute inset-0 blueprint-grid opacity-40" />
-            <div
-              className="absolute -bottom-24 -right-24 w-[420px] h-[420px] pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(circle, hsl(var(--orange-500) / 0.28), hsl(var(--orange-500) / 0) 60%)",
-              }}
-            />
-            <div className="absolute inset-0 grid place-items-center">
-              <div className="h-20 w-20 rounded-full bg-white/95 grid place-items-center shadow-2xl transition-transform group-hover:scale-110">
-                <Play className="h-7 w-7 text-cii-red ml-1" fill="currentColor" />
-              </div>
-            </div>
-            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white">
+          <div className="relative rounded-lg overflow-hidden aspect-video shadow-2xl border border-[hsl(var(--neutral-150))] bg-black">
+            <video
+              className="w-full h-full object-cover"
+              controls
+              poster="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1280&q=80"
+              preload="metadata"
+            >
+              <source
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div className="pointer-events-none absolute top-4 left-4">
               <span className="cii-chip cii-chip-orange">Leader Message</span>
-              <span className="text-xs font-semibold text-white/80">02:48</span>
             </div>
           </div>
           <div className="absolute -z-10 -bottom-6 -left-6 w-40 h-40 rounded-full bg-cii-red/10 blur-2xl" />
