@@ -1,17 +1,50 @@
 import { Twitter, Linkedin, Facebook, Youtube } from "lucide-react";
 
 const socials = [
-  { label: "Twitter", href: "#", Icon: Twitter },
-  { label: "LinkedIn", href: "#", Icon: Linkedin },
-  { label: "Facebook", href: "#", Icon: Facebook },
-  { label: "YouTube", href: "#", Icon: Youtube },
+  { label: "Twitter", href: "https://twitter.com/FollowCII", Icon: Twitter },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/confederation-of-indian-industry/", Icon: Linkedin },
+  { label: "Facebook", href: "https://www.facebook.com/FollowCII", Icon: Facebook },
+  { label: "YouTube", href: "https://www.youtube.com/user/ciinews", Icon: Youtube },
 ];
 
-const cols = [
-  { title: "About", links: ["About CII", "Smart Manufacturing", "Leadership", "Press"] },
-  { title: "Get started", links: ["Readiness Assessment", "Solutions", "Programmes & Training", "Events"] },
-  { title: "Resources", links: ["Case studies", "Reports", "Playbooks", "FAQs"] },
-  { title: "Contact", links: ["Contact CII", "Support", "Partnerships", "Careers"] },
+type FooterLink = { label: string; href: string };
+const cols: { title: string; links: FooterLink[] }[] = [
+  {
+    title: "About",
+    links: [
+      { label: "About CII", href: "https://www.smartmfgindia.com/Assesment.aspx#SmartAbout" },
+      { label: "Smart Manufacturing", href: "https://www.smartmfgindia.com/Home.aspx" },
+      { label: "Leadership", href: "https://www.smartmfgindia.com/Home.aspx#SmartAbout" },
+      { label: "Press", href: "https://www.smartmfgindia.com/KnowledgeCenterList.aspx" },
+    ],
+  },
+  {
+    title: "Get started",
+    links: [
+      { label: "Readiness Assessment", href: "https://www.smartmfgindia.com/Assesment.aspx" },
+      { label: "Solutions", href: "https://www.smartmfgindia.com/CaseStudy.aspx" },
+      { label: "Programmes & Training", href: "https://www.smartmfgindia.com/CapacityBuildings.aspx" },
+      { label: "Events", href: "https://www.smartmfgindia.com/UpcommingEvent.aspx" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "Case studies", href: "https://www.smartmfgindia.com/CaseStudy.aspx" },
+      { label: "Reports", href: "https://www.smartmfgindia.com/KnowledgeCenterList.aspx" },
+      { label: "Playbooks", href: "https://www.smartmfgindia.com/KnowledgeCenterList.aspx" },
+      { label: "E-Directory", href: "https://www.smartmfgindia.com/e-Directory.aspx" },
+    ],
+  },
+  {
+    title: "Contact",
+    links: [
+      { label: "Contact CII", href: "https://www.smartmfgindia.com/Assesment.aspx#SmartContactus" },
+      { label: "Support", href: "https://www.smartmfgindia.com/Assesment.aspx#SmartContactus" },
+      { label: "Partnerships", href: "https://www.smartmfgindia.com/Assesment.aspx#SmartContactus" },
+      { label: "Roundtable", href: "https://www.smartmfgindia.com/Roundtable.aspx" },
+    ],
+  },
 ];
 
 export const WireFooter = () => {
