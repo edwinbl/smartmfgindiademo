@@ -74,13 +74,14 @@ export const WireHero = () => {
             </a>
           </div>
 
-          <a
-            href="#chatbot"
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event("open-assistant"))}
             className="mt-5 inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors"
           >
             <MessageCircle className="h-4 w-4" />
             Ask the Smart Manufacturing Assistant →
-          </a>
+          </button>
 
           <div className="mt-7 pt-5 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-6">
             {stats.map((s) => (

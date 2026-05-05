@@ -1,5 +1,5 @@
 import { MessageCircle, Send, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const prompts = [
   "How do I apply for the Future Ready Manufacturing Award?",
@@ -9,6 +9,12 @@ const prompts = [
 
 export const WireChatbotFAB = () => {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setOpen(true);
+    window.addEventListener("open-assistant", handler);
+    return () => window.removeEventListener("open-assistant", handler);
+  }, []);
 
   return (
     <>
