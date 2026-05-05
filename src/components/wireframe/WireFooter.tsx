@@ -20,35 +20,35 @@ const cols = [
     links: [
       { label: "About CII", url: "https://www.smartmfgindia.com/CapacityBuildings.aspx#SmartAbout" },
       { label: "Smart Manufacturing", url: "#" },
-      { label: "Leadership", url: "https://www.smartmfgindia.com/Leadership.aspx" },
-      { label: "Press", url: "https://www.smartmfgindia.com/Press.aspx" },
+      { label: "Leadership", url: "#" },
+      { label: "Press", url: "#" },
     ],
   },
   {
     title: "Get started",
     links: [
       { label: "Readiness Assessment", url: "https://www.smartmfgindia.com/Assesment.aspx" },
-      { label: "Solutions", url: "https://www.smartmfgindia.com/Solutions.aspx" },
-      { label: "Programmes & Training", url: "https://www.smartmfgindia.com/Programs.aspx" },
-      { label: "Events", url: "https://www.smartmfgindia.com/Events.aspx" },
+      { label: "Solutions", url: "#" },
+      { label: "Programmes & Training", url: "https://www.smartmfgindia.com/CapacityBuildings.aspx" },
+      { label: "Events", url: "#" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Case studies", url: "https://www.smartmfgindia.com/CaseStudy.aspx" },
-      { label: "Reports", url: "https://www.smartmfgindia.com/KnowledgeCenterList.aspx" },
-      { label: "Playbooks", url: "https://www.smartmfgindia.com/Playbooks.aspx" },
-      { label: "FAQs", url: "https://www.smartmfgindia.com/FAQ.aspx" },
+      { label: "Case studies", url: "#" },
+      { label: "Reports", url: "#" },
+      { label: "Playbooks", url: "#" },
+      { label: "FAQs", url: "#" },
     ],
   },
   {
     title: "Contact",
     links: [
-      { label: "Contact CII", url: "https://www.smartmfgindia.com/ContactUs.aspx" },
-      { label: "Support", url: "https://www.smartmfgindia.com/Support.aspx" },
-      { label: "Partnerships", url: "https://www.smartmfgindia.com/Partnership.aspx" },
-      { label: "Careers", url: "https://www.smartmfgindia.com/Careers.aspx" },
+      { label: "Contact CII", url: "https://www.smartmfgindia.com/CapacityBuildings.aspx#SmartContactus" },
+      { label: "Support", url: "#" },
+      { label: "Partnerships", url: "#" },
+      { label: "Careers", url: "#" },
     ],
   },
 ];
