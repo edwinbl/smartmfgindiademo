@@ -19,11 +19,11 @@ export const WireAwardsBand = () => {
     <section
       id="awards"
       className="py-12 md:py-16 bg-[hsl(var(--neutral-50))]"
-      style={{ background: "linear-gradient(120deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-800)) 55%, hsl(var(--navy-700)) 100%)" }}
+      style="background: linear-gradient(120deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-800)) 55%, hsl(var(--navy-700)) 100%);"
       aria-label="CII National Best Practices Award"
     >
       <div
-        className="relative overflow-hidden border-y border-white/10"
+        className="relative overflow-hidden"
         style={{
           background:
             "linear-gradient(120deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-800)) 55%, hsl(var(--navy-700)) 100%)",
