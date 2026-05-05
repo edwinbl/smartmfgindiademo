@@ -11,11 +11,10 @@ export const WireLeaderSpeak = () => {
             <video
               className="w-full h-full object-cover"
               controls
-              poster="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1280&q=80"
               preload="metadata"
             >
               <source
-                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+                src="https://www.smartmfgindia.com/Videos/Dilip%20Sawhney.mp4"
                 type="video/mp4"
               />
             </video>
