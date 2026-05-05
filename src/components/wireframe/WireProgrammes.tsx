@@ -10,7 +10,7 @@ const programmes = [
     tag: "Bootcamp",
   },
   {
-    title: "CII & IITD-AIA FSM Two-Days Masterclass on Smart Manufacturing",
+    title: "CII & IITD-AIA FSM Two-Days Masterclass",
     date: "27 Jun 2026",
     format: "Online · 4 hrs",
     audience: "Quality & Operations heads",
