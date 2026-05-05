@@ -65,7 +65,7 @@ export const WireFooter = () => {
         }}
       />
       <div className="container-cii py-14">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-10 grid-cols-2 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-1">
             <a href="#" className="inline-flex items-center" aria-label="CII Smart Manufacturing Platform — Home">
               <img
@@ -102,7 +102,9 @@ export const WireFooter = () => {
                       onClick={(e) => {
                         if (l.url.startsWith("#") && l.url.length > 1) {
                           e.preventDefault();
-                          document.getElementById(l.url.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
+                          document
+                            .getElementById(l.url.slice(1))
+                            ?.scrollIntoView({ behavior: "smooth", block: "start" });
                           history.replaceState(null, "", l.url);
                         }
                       }}
