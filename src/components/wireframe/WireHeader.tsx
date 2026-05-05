@@ -94,7 +94,7 @@ export const WireHeader = () => {
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3 shrink-0">
-          <a href="#assessment" className="btn-primary !h-10 !px-4 !text-[13px]">
+          <a href="https://www.smartmfgindia.com/Assesment.aspx" className="btn-primary !h-10 !px-4 !text-[13px]">
             Start Assessment <ArrowRight className="!h-3.5 !w-3.5" />
           </a>
         </div>
@@ -157,7 +157,11 @@ export const WireHeader = () => {
               </li>
             ))}
             <li className="pt-4">
-              <a href="#assessment" className="btn-primary w-full" onClick={() => setOpen(false)}>
+              <a
+                href="https://www.smartmfgindia.com/Assesment.aspx"
+                className="btn-primary w-full"
+                onClick={() => setOpen(false)}
+              >
                 Start Assessment <ArrowRight className="!h-3.5 !w-3.5" />
               </a>
             </li>
