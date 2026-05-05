@@ -60,7 +60,7 @@ export const WireAwardsBand = () => {
                   </span>
                 </div>
 
-                <h2 className="font-display font-semibold text-4xl md:text-5xl lg:text-[64px] leading-[1.02] tracking-tight">
+                <h2 className="font-display font-extrabold text-4xl md:text-5xl lg:text-[64px] leading-[1.02] tracking-tight">
                   CII National Best Practices Award
                 </h2>
                 <div className="mt-4 font-display font-light text-2xl md:text-3xl lg:text-[34px] leading-tight text-cii-orange">
