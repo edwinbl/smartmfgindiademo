@@ -11,8 +11,8 @@ export const WireAssessmentTeaser = () => {
             Start with maturity. <span className="block sm:inline">Then decide what to adopt.</span>
           </h2>
           <p className="mt-5 text-base md:text-lg text-[hsl(var(--neutral-700))] max-w-xl">
-            Access current smart manufacturing and Industry 4.0 maturity assessment models to
-            understand where your organisation stands before deciding what to adopt.
+            Access current smart manufacturing and Industry 4.0 maturity assessment models to understand where your
+            organisation stands before deciding what to adopt.
           </p>
 
           <div className="mt-6 space-y-3">
@@ -20,7 +20,10 @@ export const WireAssessmentTeaser = () => {
               { name: "Smart Manufacturing Maturity Assessment Model", tag: "Available" },
               { name: "Industry 4.0 Maturity Assessment", tag: "Available" },
             ].map((m) => (
-              <div key={m.name} className="flex items-center justify-between gap-3 p-3 sm:p-4 rounded-md border border-[hsl(var(--neutral-150))] bg-white flex-wrap sm:flex-nowrap">
+              <div
+                key={m.name}
+                className="flex items-center justify-between gap-3 p-3 sm:p-4 rounded-md border border-[hsl(var(--neutral-150))] bg-white flex-wrap sm:flex-nowrap"
+              >
                 <div className="flex items-center gap-3 min-w-0 flex-1">
                   <CheckCircle2 className="h-4 w-4 text-[hsl(var(--india-green))] shrink-0" />
                   <span className="text-sm font-semibold text-navy-800 break-words">{m.name}</span>
@@ -31,12 +34,12 @@ export const WireAssessmentTeaser = () => {
           </div>
 
           <p className="mt-6 text-sm text-[hsl(var(--neutral-500))] italic max-w-xl">
-            Over time, readiness pathways can also be linked to business outcomes such as exports,
-            quality improvement, traceability, productivity, energy efficiency and value-chain participation.
+            Over time, readiness pathways can also be linked to business outcomes such as exports, quality improvement,
+            traceability, productivity, energy efficiency and value-chain participation.
           </p>
 
           <div className="mt-7">
-            <a href="#" className="btn-primary">
+            <a href="https://www.smartmfgindia.com/Assesment.aspx" className="btn-primary">
               Access Maturity Assessments <ArrowRight className="!h-4 !w-4" />
             </a>
           </div>
@@ -48,7 +51,9 @@ export const WireAssessmentTeaser = () => {
             <div className="flex items-center justify-between gap-3 flex-wrap">
               <div className="min-w-0">
                 <div className="eyebrow text-[hsl(var(--neutral-500))]">Sample readiness snapshot</div>
-                <div className="font-display font-bold text-navy-800 text-base sm:text-lg mt-1 truncate">MSME Pilot Co.</div>
+                <div className="font-display font-bold text-navy-800 text-base sm:text-lg mt-1 truncate">
+                  MSME Pilot Co.
+                </div>
               </div>
               <span className="cii-chip cii-chip-orange shrink-0">Phase 2</span>
             </div>
@@ -70,8 +75,7 @@ export const WireAssessmentTeaser = () => {
                       className="h-full rounded-full"
                       style={{
                         width: `${d.v}%`,
-                        background:
-                          "linear-gradient(90deg, hsl(var(--navy-700)), hsl(var(--orange-500)))",
+                        background: "linear-gradient(90deg, hsl(var(--navy-700)), hsl(var(--orange-500)))",
                       }}
                     />
                   </div>
@@ -82,9 +86,13 @@ export const WireAssessmentTeaser = () => {
             <div className="mt-7 pt-6 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between gap-3 flex-wrap">
               <div>
                 <div className="text-xs text-[hsl(var(--neutral-500))]">Overall maturity</div>
-                <div className="font-numeric font-extrabold text-navy-800 text-3xl">59<span className="text-lg text-[hsl(var(--neutral-500))]">/100</span></div>
+                <div className="font-numeric font-extrabold text-navy-800 text-3xl">
+                  59<span className="text-lg text-[hsl(var(--neutral-500))]">/100</span>
+                </div>
               </div>
-              <a href="#" className="link-arrow">View full report <ArrowRight className="h-3.5 w-3.5" /></a>
+              <a href="#" className="link-arrow">
+                View full report <ArrowRight className="h-3.5 w-3.5" />
+              </a>
             </div>
           </div>
           <div className="absolute -z-10 -top-6 -right-6 w-40 h-40 rounded-full bg-cii-orange/15 blur-2xl" />

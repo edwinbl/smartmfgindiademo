@@ -24,8 +24,7 @@ export const WireHero = () => {
       <div
         className="absolute -top-40 -right-40 w-[720px] h-[720px] pointer-events-none"
         style={{
-          background:
-            "radial-gradient(circle, hsl(var(--orange-500) / 0.32), hsl(var(--orange-500) / 0) 60%)",
+          background: "radial-gradient(circle, hsl(var(--orange-500) / 0.32), hsl(var(--orange-500) / 0) 60%)",
         }}
       />
       {/* Tricolor stripe */}
@@ -33,8 +32,10 @@ export const WireHero = () => {
 
       <div className="container-cii relative pt-8 pb-12 md:pt-10 md:pb-16 grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-16 items-center">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-5 border"
-               style={{ background: "hsl(var(--orange-500) / 0.14)", borderColor: "hsl(var(--orange-500) / 0.4)" }}>
+          <div
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-5 border"
+            style={{ background: "hsl(var(--orange-500) / 0.14)", borderColor: "hsl(var(--orange-500) / 0.4)" }}
+          >
             <Sparkles className="h-3.5 w-3.5 text-cii-orange" />
             <span className="eyebrow text-[hsl(var(--orange-100))]">A CII National Initiative</span>
           </div>
@@ -47,22 +48,28 @@ export const WireHero = () => {
             >
               Industry 4.0
             </span>
-            <br />enabled country
+            <br />
+            enabled country
           </h1>
 
           <p className="mt-5 text-base md:text-lg text-white/80 max-w-xl">
-            CII Smart Manufacturing is the national platform that helps Indian industry assess
-            where it stands, find what works, and connect with the partners who can move it forward.
+            CII Smart Manufacturing is the national platform that helps Indian industry assess where it stands, find
+            what works, and connect with the partners who can move it forward.
           </p>
 
           <div className="mt-7 flex flex-wrap gap-3">
-            <a href="#assessment" className="btn-primary">
+            <a href="https://www.smartmfgindia.com/Assesment.aspx" className="btn-primary">
               Access Maturity Assessments <ArrowRight className="!h-4 !w-4" />
             </a>
-            <a href="#solutions" className="btn-ghost">Explore Solutions</a>
+            <a href="#solutions" className="btn-ghost">
+              Explore Solutions
+            </a>
           </div>
 
-          <a href="#chatbot" className="mt-5 inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+          <a
+            href="#chatbot"
+            className="mt-5 inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors"
+          >
             <MessageCircle className="h-4 w-4" />
             Ask the Smart Manufacturing Assistant →
           </a>
