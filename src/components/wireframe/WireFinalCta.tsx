@@ -5,7 +5,7 @@ export const WireFinalCta = () => {
   return (
     <WireSection id="contact" alt>
       <div className="text-center max-w-3xl mx-auto">
-        <div className="section-eyebrow mb-3">Section 10 — Get in touch</div>
+        <div className="section-eyebrow mb-3">Get in touch</div>
         <h2 className="font-display font-bold text-[32px] md:text-[44px] leading-tight tracking-tight text-navy-800">
           Not sure where to begin?
         </h2>
