@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, ArrowRight, ChevronDown, Linkedin, Twitter, Facebook, Youtube } from "lucide-react";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
 
 type NavChild = { label: string; href: string };
