@@ -50,6 +50,10 @@ export const WireHeader = () => {
           <img
             src={logoSrc}
             alt="CII Smart Manufacturing Platform — An Industry-led initiative on Industry 4.0 and beyond"
+            width={240}
+            height={48}
+            decoding="async"
+            fetchPriority="high"
             className="h-11 md:h-12 w-auto"
           />
         </a>
