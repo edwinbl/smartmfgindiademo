@@ -61,6 +61,8 @@ export const WireFooter = () => {
               <img
                 src={logoSrc}
                 alt="CII Smart Manufacturing Platform"
+                loading="lazy"
+                decoding="async"
                 className="h-11 md:h-12 w-auto brightness-0 invert"
               />
             </a>
