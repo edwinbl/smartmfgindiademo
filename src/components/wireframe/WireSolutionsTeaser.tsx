@@ -1,9 +1,9 @@
 import { WireSection } from "./WireSection";
-import { Globe2, ShieldCheck, Network, Timer, Zap, Smartphone, ArrowRight } from "lucide-react";
+import { TrendingUp, ShieldCheck, Network, Timer, Zap, CalendarClock, ArrowRight } from "lucide-react";
 
 const solutions = [
   {
-    icon: Globe2,
+    icon: TrendingUp,
     title: "Improve productivity",
     desc: "Boost operational efficiency by reducing manual tasks and optimizing machine and workforce performance.",
   },
@@ -28,7 +28,7 @@ const solutions = [
     desc: "Cut energy costs and emissions through real-time consumption insight.",
   },
   {
-    icon: Smartphone,
+    icon: CalendarClock,
     title: "Improve planning",
     desc: "Improve production planning with real-time insights, forecasting and smarter resource allocation.",
   },
@@ -62,9 +62,6 @@ export const WireSolutionsTeaser = () => {
                 <div className="flex-1 min-w-0">
                   <h3 className="font-display font-bold text-navy-800 text-[17px] leading-snug">{s.title}</h3>
                   <p className="mt-2 text-sm text-[hsl(var(--neutral-700))]">{s.desc}</p>
-                  <a href="#" className="link-arrow mt-4">
-                    View solutions <ArrowRight className="h-3.5 w-3.5" />
-                  </a>
                 </div>
               </div>
               <div className="absolute right-0 top-0 h-1 w-0 bg-cii-red transition-all group-hover:w-full" />
