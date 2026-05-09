@@ -97,9 +97,10 @@ export const WireAssessmentTeaser = () => {
               ))}
             </div>
 
-            <div className="mt-6 pt-5 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between gap-3 text-[11px] text-[hsl(var(--neutral-500))]">
-              <span>Lower readiness</span>
-              <span>Higher readiness</span>
+            <div className="mt-6 pt-5 border-t border-[hsl(var(--neutral-150))] flex items-center justify-end">
+              <a href="#" className="link-arrow">
+                Download report <ArrowRight className="h-3.5 w-3.5" />
+              </a>
             </div>
           </div>
           <div className="absolute -z-10 -top-6 -right-6 w-40 h-40 rounded-full bg-cii-orange/15 blur-2xl" />
