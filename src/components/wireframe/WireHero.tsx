@@ -1,12 +1,5 @@
 import { ArrowRight, Sparkles, MessageCircle } from "lucide-react";
-import { HeroMaturityDial } from "./HeroMaturityDial";
-
-const stats = [
-  { v: "8+", l: "Years convening" },
-  { v: "60", l: "Case studies" },
-  { v: "2,400+", l: "Practitioners trained" },
-  { v: "180+", l: "Solution providers" },
-];
+import { HeroEcosystemViz } from "./HeroEcosystemViz";
 
 export const WireHero = () => {
   return (
