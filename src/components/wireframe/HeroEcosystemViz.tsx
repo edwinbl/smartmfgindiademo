@@ -25,6 +25,8 @@ const ecosystem = [
   { Icon: GraduationCap, label: "Academia" },
   { Icon: Users, label: "Experts" },
   { Icon: Building2, label: "Industry" },
+  { Icon: Rocket, label: "Startups" },
+  { Icon: Landmark, label: "Govt / Policy" },
 ];
 
 const polar = (cx: number, cy: number, r: number, deg: number) => {
