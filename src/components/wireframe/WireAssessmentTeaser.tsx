@@ -104,21 +104,6 @@ export const WireAssessmentTeaser = () => {
           </div>
           <div className="absolute -z-10 -top-6 -right-6 w-40 h-40 rounded-full bg-cii-orange/15 blur-2xl" />
         </div>
-
-            <div className="mt-7 pt-6 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between gap-3 flex-wrap">
-              <div>
-                <div className="text-xs text-[hsl(var(--neutral-500))]">Overall maturity</div>
-                <div className="font-numeric font-extrabold text-navy-800 text-3xl">
-                  59<span className="text-lg text-[hsl(var(--neutral-500))]">/100</span>
-                </div>
-              </div>
-              <a href="#" className="link-arrow">
-                View full report <ArrowRight className="h-3.5 w-3.5" />
-              </a>
-            </div>
-          </div>
-          <div className="absolute -z-10 -top-6 -right-6 w-40 h-40 rounded-full bg-cii-orange/15 blur-2xl" />
-        </div>
       </div>
     </WireSection>
   );
