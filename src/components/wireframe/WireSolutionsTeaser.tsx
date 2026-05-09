@@ -5,7 +5,7 @@ const solutions = [
   {
     icon: Globe2,
     title: "Improve productivity",
-    desc: "Meet quality, compliance and digital traceability requirements for global markets.",
+    desc: "Boost operational efficiency by reducing manual tasks and optimizing machine and workforce performance.",
   },
   {
     icon: ShieldCheck,
