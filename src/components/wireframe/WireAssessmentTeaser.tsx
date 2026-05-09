@@ -8,7 +8,7 @@ export const WireAssessmentTeaser = () => {
         <div>
           <div className="section-eyebrow mb-3">Maturity Assessments</div>
           <h2 className="font-display font-bold text-2xl sm:text-[28px] md:text-[36px] leading-tight tracking-tight text-navy-800">
-            Start with maturity. <span className="block sm:inline">Then decide what to adopt.</span>
+            Assessment to Transformation
           </h2>
           <p className="mt-5 text-base md:text-lg text-[hsl(var(--neutral-700))] max-w-xl">
             Access current smart manufacturing and Industry 4.0 maturity assessment models to understand where your
