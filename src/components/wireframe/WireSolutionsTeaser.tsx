@@ -44,8 +44,7 @@ export const WireSolutionsTeaser = () => {
             Transform Operations with AI-Driven Solutions
           </h2>
           <p className="mt-4 text-base md:text-lg text-[hsl(var(--neutral-700))]">
-            Find practical solution areas linked to the outcomes manufacturers care about — quality, traceability,
-            downtime, productivity, energy efficiency and export readiness.
+            Find AI-powered solution areas that help manufacturers improve efficiency, reduce downtime and drive smarter operations.
           </p>
         </div>
         {/* <a href="#" className="btn-outline">Explore Solutions <ArrowRight className="!h-4 !w-4" /></a> */}
