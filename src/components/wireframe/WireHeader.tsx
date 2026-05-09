@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ArrowRight, ChevronDown, Linkedin, Twitter, Facebook, Youtube } from "lucide-react";
+import { Menu, X, ChevronDown, Linkedin, Twitter, Facebook, Youtube } from "lucide-react";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
 
 type NavChild = { label: string; href: string };
@@ -101,11 +101,15 @@ export const WireHeader = () => {
           })}
         </nav>
 
-        {/* CTA */}
-        <div className="hidden md:flex items-center gap-3 shrink-0">
-          <a href="https://www.smartmfgindia.com/Assesment.aspx" className="btn-primary !h-10 !px-4 !text-[13px]">
-            Start Assessment <ArrowRight className="!h-3.5 !w-3.5" />
-          </a>
+        {/* CII Logo */}
+        <div className="hidden md:flex items-center shrink-0">
+          <img
+            src="https://www.smartmfgindia.com/img/CII-Logo.png"
+            alt="Confederation of Indian Industry"
+            className="h-12 md:h-14 w-auto object-contain"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
 
         {/* Mobile toggle */}
@@ -173,7 +177,7 @@ export const WireHeader = () => {
               className="btn-primary w-full"
               onClick={() => setOpen(false)}
             >
-              Start Assessment <ArrowRight className="!h-3.5 !w-3.5" />
+              Start Assessment
             </a>
           </div>
 
