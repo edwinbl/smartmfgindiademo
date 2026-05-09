@@ -14,6 +14,9 @@ const pillars = [
   { Icon: Database, label: "Big Data" },
   { Icon: ShieldCheck, label: "Cybersecurity" },
   { Icon: Network, label: "Integration" },
+  { Icon: Layers, label: "Digital Twin" },
+  { Icon: Radio, label: "5G / Edge" },
+  { Icon: Activity, label: "Predictive Mx" },
 ];
 
 const ecosystem = [
