@@ -4,7 +4,7 @@ import { Globe2, ShieldCheck, Network, Timer, Zap, Smartphone, ArrowRight } from
 const solutions = [
   {
     icon: Globe2,
-    title: "Export readiness",
+    title: "Improve productivity",
     desc: "Meet quality, compliance and digital traceability requirements for global markets.",
   },
   {
