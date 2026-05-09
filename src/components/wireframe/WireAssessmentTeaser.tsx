@@ -50,36 +50,46 @@ export const WireAssessmentTeaser = () => {
           <div className="cii-card p-5 sm:p-8 bg-white">
             <div className="flex items-center justify-between gap-3 flex-wrap">
               <div className="min-w-0">
-                <div className="eyebrow text-[hsl(var(--neutral-500))]">Sample readiness snapshot</div>
-                <div className="font-display font-bold text-navy-800 text-sm sm:text-base mt-1 whitespace-pre-line leading-snug">
-                  Industry 4.0{"\n"}
-                  Adoption and{"\n"}
-                  Strategic Roadmap{"\n"}
-                  for Indian{"\n"}
-                  Manufacturing
+                <div className="eyebrow text-[hsl(var(--neutral-500))]">Sector readiness snapshot</div>
+                <div className="font-display font-bold text-navy-800 text-sm sm:text-base mt-1 leading-snug">
+                  Industry 4.0 Adoption &amp; Strategic Roadmap
+                  <br />
+                  <span className="text-[hsl(var(--neutral-500))] font-medium text-xs sm:text-sm">
+                    for Indian Manufacturing
+                  </span>
                 </div>
               </div>
-              <span className="cii-chip cii-chip-orange shrink-0">Phase 2</span>
+              <span className="cii-chip cii-chip-orange shrink-0">By Sector</span>
             </div>
 
-            <div className="mt-6 sm:mt-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            <div className="mt-6 sm:mt-7 space-y-4">
               {[
-                { label: "Strategy & leadership", v: 72 },
-                { label: "Operations & digitisation", v: 58 },
-                { label: "People & skills", v: 64 },
-                { label: "Technology stack", v: 41 },
+                { label: "Automotive & Auto Components", v: 92 },
+                { label: "Electronics & Electrical Equipment", v: 86 },
+                { label: "Pharmaceuticals & Biotechnology", v: 78 },
+                { label: "Oil & Gas and Chemicals", v: 64 },
+                { label: "Metals & Mining", v: 58 },
+                { label: "Machinery & Heavy Equipment", v: 48 },
+                { label: "Food & Beverage", v: 38 },
+                { label: "Cement & Building Materials", v: 32 },
+                { label: "Paper & Packaging", v: 22 },
+                { label: "Textiles & Apparel", v: 10 },
               ].map((d) => (
-                <div key={d.label}>
-                  <div className="flex items-baseline justify-between">
-                    <span className="text-xs font-semibold text-[hsl(var(--neutral-700))]">{d.label}</span>
-                    <span className="font-numeric font-bold text-navy-800 text-sm">{d.v}</span>
-                  </div>
-                  <div className="mt-2 h-1.5 rounded-full bg-[hsl(var(--neutral-150))] overflow-hidden">
-                    <div
-                      className="h-full rounded-full"
+                <div key={d.label} className="grid grid-cols-[1fr_1.4fr] items-center gap-3 sm:gap-4">
+                  <span className="text-xs sm:text-[13px] font-semibold text-navy-800 leading-snug">
+                    {d.label}
+                  </span>
+                  <div className="relative h-2 rounded-full overflow-visible"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, hsl(0 80% 50%) 0%, hsl(45 95% 55%) 50%, hsl(140 70% 42%) 100%)",
+                    }}
+                  >
+                    <span
+                      className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-3.5 w-3.5 rounded-full border-2 border-white shadow-md"
                       style={{
-                        width: `${d.v}%`,
-                        background: "linear-gradient(90deg, hsl(var(--navy-700)), hsl(var(--orange-500)))",
+                        left: `${d.v}%`,
+                        background: `hsl(${(d.v / 100) * 140} 75% 45%)`,
                       }}
                     />
                   </div>
@@ -87,16 +97,9 @@ export const WireAssessmentTeaser = () => {
               ))}
             </div>
 
-            <div className="mt-7 pt-6 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between gap-3 flex-wrap">
-              <div>
-                <div className="text-xs text-[hsl(var(--neutral-500))]">Overall maturity</div>
-                <div className="font-numeric font-extrabold text-navy-800 text-3xl">
-                  59<span className="text-lg text-[hsl(var(--neutral-500))]">/100</span>
-                </div>
-              </div>
-              <a href="#" className="link-arrow">
-                View full report <ArrowRight className="h-3.5 w-3.5" />
-              </a>
+            <div className="mt-6 pt-5 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between gap-3 text-[11px] text-[hsl(var(--neutral-500))]">
+              <span>Lower readiness</span>
+              <span>Higher readiness</span>
             </div>
           </div>
           <div className="absolute -z-10 -top-6 -right-6 w-40 h-40 rounded-full bg-cii-orange/15 blur-2xl" />
