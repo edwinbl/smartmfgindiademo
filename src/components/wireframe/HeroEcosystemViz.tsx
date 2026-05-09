@@ -1,6 +1,7 @@
 import {
   Cpu, Bot, Cloud, Database, ShieldCheck, Boxes, Glasses, Network, Wifi,
   Factory, GraduationCap, Users, Building2, Wrench,
+  Layers, Radio, Activity, Rocket, Landmark,
 } from "lucide-react";
 
 const pillars = [
@@ -13,6 +14,9 @@ const pillars = [
   { Icon: Database, label: "Big Data" },
   { Icon: ShieldCheck, label: "Cybersecurity" },
   { Icon: Network, label: "Integration" },
+  { Icon: Layers, label: "Digital Twin" },
+  { Icon: Radio, label: "5G / Edge" },
+  { Icon: Activity, label: "Predictive Mx" },
 ];
 
 const ecosystem = [
@@ -21,6 +25,8 @@ const ecosystem = [
   { Icon: GraduationCap, label: "Academia" },
   { Icon: Users, label: "Experts" },
   { Icon: Building2, label: "Industry" },
+  { Icon: Rocket, label: "Startups" },
+  { Icon: Landmark, label: "Govt / Policy" },
 ];
 
 const polar = (cx: number, cy: number, r: number, deg: number) => {
