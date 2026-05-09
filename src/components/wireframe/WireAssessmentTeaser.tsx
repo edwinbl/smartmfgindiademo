@@ -97,7 +97,10 @@ export const WireAssessmentTeaser = () => {
               ))}
             </div>
 
-            <div className="mt-6 pt-5 border-t border-[hsl(var(--neutral-150))] flex items-center justify-end">
+            <div className="mt-6 pt-5 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between gap-3 flex-wrap">
+              <span className="text-[11px] uppercase tracking-wide text-[hsl(var(--neutral-500))]">
+                Source: CII KPMG Maturity Assessment Report
+              </span>
               <a href="#" className="link-arrow">
                 Download report <ArrowRight className="h-3.5 w-3.5" />
               </a>
