@@ -29,8 +29,8 @@ const solutions = [
   },
   {
     icon: Smartphone,
-    title: "Digitise shopfloor reporting",
-    desc: "Replace paper-based reporting with simple, mobile-first digital workflows.",
+    title: "Improve planning",
+    desc: "Improve production planning with real-time insights, forecasting and smarter resource allocation.",
   },
 ];
 
