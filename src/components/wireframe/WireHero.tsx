@@ -76,18 +76,10 @@ export const WireHero = () => {
             Ask the Smart Manufacturing Assistant →
           </button>
 
-          <div className="mt-7 pt-5 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-6">
-            {stats.map((s) => (
-              <div key={s.l}>
-                <div className="font-numeric font-extrabold text-2xl text-white">{s.v}</div>
-                <div className="mt-1.5 text-[12px] font-medium text-white/65">{s.l}</div>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Visual */}
-        <HeroMaturityDial />
+        <HeroEcosystemViz />
       </div>
     </section>
   );
