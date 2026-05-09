@@ -1,6 +1,7 @@
 import {
   Cpu, Bot, Cloud, Database, ShieldCheck, Boxes, Glasses, Network, Wifi,
   Factory, GraduationCap, Users, Building2, Wrench,
+  Layers, Radio, Activity, Rocket, Landmark,
 } from "lucide-react";
 
 const pillars = [
