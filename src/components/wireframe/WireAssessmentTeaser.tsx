@@ -51,8 +51,12 @@ export const WireAssessmentTeaser = () => {
             <div className="flex items-center justify-between gap-3 flex-wrap">
               <div className="min-w-0">
                 <div className="eyebrow text-[hsl(var(--neutral-500))]">Sample readiness snapshot</div>
-                <div className="font-display font-bold text-navy-800 text-base sm:text-lg mt-1 truncate">
-                  MSME Pilot Co.
+                <div className="font-display font-bold text-navy-800 text-sm sm:text-base mt-1 whitespace-pre-line leading-snug">
+                  Industry 4.0{"\n"}
+                  Adoption and{"\n"}
+                  Strategic Roadmap{"\n"}
+                  for Indian{"\n"}
+                  Manufacturing
                 </div>
               </div>
               <span className="cii-chip cii-chip-orange shrink-0">Phase 2</span>
