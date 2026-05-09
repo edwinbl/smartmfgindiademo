@@ -41,7 +41,7 @@ export const WireSolutionsTeaser = () => {
         <div className="max-w-2xl">
           <div className="section-eyebrow mb-3">Solutions</div>
           <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight text-navy-800">
-            Explore solutions by business problem
+            Transform Operations with AI-Driven Solutions
           </h2>
           <p className="mt-4 text-base md:text-lg text-[hsl(var(--neutral-700))]">
             Find practical solution areas linked to the outcomes manufacturers care about — quality, traceability,
