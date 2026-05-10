@@ -102,11 +102,11 @@ export const WireHeader = () => {
         </nav>
 
         {/* CII Logo */}
-        <div className="hidden md:flex items-center shrink-0">
+        <div className="flex items-center shrink-0 ml-auto md:ml-0">
           <img
             src="https://www.smartmfgindia.com/img/CII-Logo.png"
             alt="Confederation of Indian Industry"
-            className="h-12 md:h-14 w-auto object-contain"
+            className="h-9 md:h-14 w-auto object-contain"
             loading="lazy"
             decoding="async"
           />
@@ -171,15 +171,6 @@ export const WireHeader = () => {
             ))}
           </ul>
 
-          <div className="px-6 pt-5">
-            <a
-              href="https://www.smartmfgindia.com/Assesment.aspx"
-              className="btn-primary w-full"
-              onClick={() => setOpen(false)}
-            >
-              Start Assessment
-            </a>
-          </div>
 
           <div className="mt-6 px-6 py-5 border-t border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))]">
             <div className="flex flex-col items-center gap-4">
