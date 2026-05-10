@@ -1,28 +1,29 @@
 import { WireSection } from "./WireSection";
 import { Quote } from "lucide-react";
+import leaderPortrait from "@/assets/leader-portrait.jpg";
 
 export const WireLeaderSpeak = () => {
   return (
     <WireSection id="leader-speak" alt>
       <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] items-center">
-        {/* Video */}
-        <div className="relative">
-          <div className="relative rounded-lg overflow-hidden aspect-video shadow-2xl border border-[hsl(var(--neutral-150))] bg-black">
-            <video
+        {/* Portrait */}
+        <div className="relative flex justify-center">
+          <div className="relative aspect-square w-full max-w-[420px] rounded-full overflow-hidden shadow-2xl border-4 border-white ring-4 ring-cii-orange/20">
+            <img
+              src={leaderPortrait}
+              alt="CII leadership portrait"
+              width={768}
+              height={768}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover"
-              controls
-              preload="metadata"
-            >
-              <source
-                src="https://www.smartmfgindia.com/Videos/Dilip%20Sawhney.mp4"
-                type="video/mp4"
-              />
-            </video>
-            <div className="pointer-events-none absolute top-4 left-4">
+            />
+            <div className="pointer-events-none absolute top-6 left-1/2 -translate-x-1/2">
               <span className="cii-chip cii-chip-orange">Leader Message</span>
             </div>
           </div>
           <div className="absolute -z-10 -bottom-6 -left-6 w-40 h-40 rounded-full bg-cii-red/10 blur-2xl" />
+          <div className="absolute -z-10 -top-6 -right-6 w-40 h-40 rounded-full bg-cii-orange/10 blur-2xl" />
         </div>
 
         {/* Copy */}
