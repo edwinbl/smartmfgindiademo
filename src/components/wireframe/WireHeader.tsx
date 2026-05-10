@@ -102,11 +102,11 @@ export const WireHeader = () => {
         </nav>
 
         {/* CII Logo */}
-        <div className="hidden md:flex items-center shrink-0">
+        <div className="flex items-center shrink-0 ml-auto md:ml-0">
           <img
             src="https://www.smartmfgindia.com/img/CII-Logo.png"
             alt="Confederation of Indian Industry"
-            className="h-12 md:h-14 w-auto object-contain"
+            className="h-9 md:h-14 w-auto object-contain"
             loading="lazy"
             decoding="async"
           />
