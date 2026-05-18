@@ -1,4 +1,5 @@
 import { Twitter, Linkedin, Facebook, Youtube } from "lucide-react";
+import { Link } from "react-router-dom";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
 
 const socials = [
@@ -65,7 +66,7 @@ export const WireFooter = () => {
       <div className="container-cii py-14">
         <div className="grid gap-10 grid-cols-2 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-1 sm:col-span-2 col-span-2">
-            <a href="#" className="inline-flex items-center" aria-label="CII Smart Manufacturing Platform — Home">
+            <Link to="/" className="inline-flex items-center" aria-label="CII Smart Manufacturing Platform — Home">
               <img
                 src={logoSrc}
                 alt="CII Smart Manufacturing Platform"
@@ -73,7 +74,7 @@ export const WireFooter = () => {
                 decoding="async"
                 className="h-11 md:h-12 w-auto brightness-0 invert"
               />
-            </a>
+            </Link>
             <p className="mt-4 text-sm text-white/70 lg:max-w-[240px] sm:max-w-1/2 w-full">
               Helping Indian MSMEs assess, learn and adopt smart manufacturing — convened by the Confederation of Indian
               Industry.
