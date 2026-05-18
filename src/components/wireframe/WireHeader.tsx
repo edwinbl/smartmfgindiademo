@@ -30,7 +30,7 @@ const navLinks: NavLink[] = [
       { label: "Workshop", href: "https://www.smartmfgindia.com/WorkShop.aspx" },
     ],
   },
-  { label: "Contact", href: "https://www.smartmfgindia.com/Assesment.aspx#SmartContactus" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const WireHeader = () => {

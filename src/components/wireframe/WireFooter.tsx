@@ -22,7 +22,7 @@ const cols = [
       { label: "About", url: "/about" },
       { label: "Readiness Assessment", url: "https://www.smartmfgindia.com/Assesment.aspx" },
       { label: "Programmes & Training", url: "https://www.smartmfgindia.com/CapacityBuildings.aspx" },
-      { label: "Contact", url: "https://www.smartmfgindia.com/Assesment.aspx#SmartContactus" },
+      { label: "Contact", url: "/contact" },
     ],
   },
   {
