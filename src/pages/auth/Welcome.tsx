@@ -43,24 +43,27 @@ const Welcome = () => {
           {/* Journey graphic */}
           <div className="my-2 mb-6 rounded-xl border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))] p-5">
             <div className="flex items-center justify-between gap-2">
-              {steps.map(({ Icon, label }, i) => (
-                <div key={label} className="flex-1 flex flex-col items-center gap-2 relative">
-                  {i > 0 && (
+              {steps.map(({ Icon, label }, i) => {
+                const tints = ["--navy-700", "--navy-700", "--navy-800", "--navy-800", "--red-600"];
+                return (
+                  <div key={label} className="flex-1 flex flex-col items-center gap-2 relative">
+                    {i > 0 && (
+                      <span
+                        aria-hidden
+                        className="absolute top-5 right-1/2 w-full h-px"
+                        style={{ background: "linear-gradient(90deg, hsl(var(--navy-100)), hsl(var(--red-600)/0.5))" }}
+                      />
+                    )}
                     <span
-                      aria-hidden
-                      className="absolute top-5 right-1/2 w-full h-px"
-                      style={{ background: "linear-gradient(90deg, hsl(var(--navy-100)), hsl(var(--red-600)/0.5))" }}
-                    />
-                  )}
-                  <span
-                    className="relative grid h-10 w-10 place-items-center rounded-full text-white shadow-sm"
-                    style={{ background: `hsl(var(--navy-${700 + Math.min(i * 50, 200)}))` }}
-                  >
-                    <Icon className="h-4 w-4" />
-                  </span>
-                  <span className="text-[10px] sm:text-xs font-semibold text-[hsl(var(--navy-800))]">{label}</span>
-                </div>
-              ))}
+                      className="relative grid h-10 w-10 place-items-center rounded-full text-white shadow-sm"
+                      style={{ background: `hsl(var(${tints[i]}))` }}
+                    >
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <span className="text-[10px] sm:text-xs font-semibold text-[hsl(var(--navy-800))]">{label}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
