@@ -104,19 +104,8 @@ export const WireHeader = () => {
           })}
         </nav>
 
-        {/* CII Logo */}
-        <div className="flex items-center shrink-0 ml-auto md:ml-0">
-          <img
-            src="https://www.smartmfgindia.com/img/CII-Logo.png"
-            alt="Confederation of Indian Industry"
-            className="h-9 md:h-14 w-auto object-contain"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-
         {/* Auth CTAs / Profile — desktop */}
-        <div className="hidden md:flex items-center gap-2 shrink-0">
+        <div className="hidden md:flex items-center gap-2 shrink-0 ml-auto">
           {user ? (
             <ProfileMenu user={user} />
           ) : (
@@ -135,6 +124,17 @@ export const WireHeader = () => {
               </Link>
             </>
           )}
+        </div>
+
+        {/* CII Logo — right */}
+        <div className="flex items-center shrink-0 ml-auto md:ml-0">
+          <img
+            src="https://www.smartmfgindia.com/img/CII-Logo.png"
+            alt="Confederation of Indian Industry"
+            className="h-9 md:h-14 w-auto object-contain"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
 
         {/* Mobile toggle */}
