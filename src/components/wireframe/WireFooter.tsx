@@ -30,7 +30,7 @@ const cols = [
     title: "Solutions",
     links: [
       { label: "Case Studies", url: "https://www.smartmfgindia.com/CaseStudy.aspx" },
-      { label: "Reports & Publications", url: "https://www.smartmfgindia.com/KnowledgeCenterList.aspx" },
+      { label: "Reports & Insights", url: "/reports" },
       { label: "E-Directory", url: "https://www.smartmfgindia.com/e-Directory.aspx" },
     ],
   },

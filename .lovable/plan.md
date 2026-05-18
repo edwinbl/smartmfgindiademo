@@ -1,70 +1,104 @@
-# Contact Us Page — Implementation Plan
 
-A premium, mobile-first `/contact` route built as a guided "intent → dynamic form" experience, matching the existing Industry 4.0 platform aesthetic (navy + CII red, `cii-card`, `btn-primary/outline`, floating SVG visuals, scroll-reveal).
+# Reports & Insights — Implementation Plan
 
-UI-only. No backend wiring — form `onSubmit` shows a toast + success state (consistent with current mock auth pattern).
-
----
-
-## Route & Navigation
-
-- Add `/contact` route in `src/App.tsx` → `src/pages/Contact.tsx`
-- `WireHeader.tsx`: change existing "Contact" link from the external `smartmfgindia.com` URL to internal `/contact` Link (both desktop nav + mobile drawer)
-- `WireFooter.tsx`: add/repoint "Contact" entry to `/contact`
-- `scripts/generate-sitemap.ts` + `public/sitemap.xml`: add `/contact`
-- SEO via `<SEO />`: title "Contact Us — CII Smart Manufacturing Platform", meta description, single H1
+A premium, mobile-first "Reports & Insights" experience at `/reports` (listing) and `/reports/:slug` (detail), matching the existing Industry 4.0 platform aesthetic (navy + CII red, `cii-card`, `.btn-primary/outline`, `useReveal`, floating SVG visuals). UI-only, no backend — data lives in a typed `src/data/reports.ts` mock module.
 
 ---
 
-## Page Structure (sections, top → bottom)
+## Routes & Navigation
+
+- `src/App.tsx`: add `/reports` → `ReportsIndex` and `/reports/:slug` → `ReportDetail`
+- `WireHeader.tsx`: add **Insights** entry to `navLinks` (desktop + mobile drawer), with a small dropdown linking to "All Reports", "MSME Insights", "Sustainability", "Smart Manufacturing"
+- `WireFooter.tsx`: add **Insights** column linking to the same
+- `scripts/generate-sitemap.ts` + `public/sitemap.xml`: add `/reports` and detail pages
+- SEO via `<SEO />` on both pages (single H1, title <60c, meta <160c)
+
+---
+
+## Page Structure
+
+### `/reports` — ReportsIndex
 
 ```text
-ContactHero            split-screen, headline + 2 CTAs + animated ecosystem SVG
-ContactIntentGrid      5 intent cards — sets active intent state (no form yet)
-ContactSmartForm       card form, common fields + intent-specific fields, sticky on desktop
-EcosystemConnect       5 "who to talk to" cards (Assessment / Advisors / Training / Partners / Tech)
-RegionalPresence       stylized India SVG with pulsing hotspots + legend list
-BookConsultation       centered gradient CTA block with 4 consultation type chips
-SupportChannels        4–5 cards: Email, Phone, WhatsApp, Help Centre, FAQs
-ContactFAQ             shadcn Accordion, 5 questions
-ContactFinalCta        full-width gradient band, 2 CTAs
-WireFooter             reused
-MobileStickyCta        sticky "Talk to us" bar (mobile only, shown after scrolling past hero)
+ReportsHero                editorial split: headline + 2 CTAs + animated chart/dashboard SVG
+ReportsDiscoveryBar        sticky: search input + filter chips + quick-discovery pills
+FeaturedCollections        horizontal-scroll cover cards (5 curated packs)
+ReportsGrid                3/2/1 col responsive card grid, EmptyState fallback
+ReportsFinalCta            full-width gradient band, 2 CTAs
+WireFooter                 reused
+```
+
+### `/reports/:slug` — ReportDetail
+
+```text
+ReportDetailHero           breadcrumb, title, summary, author, date, industry tags
+ReportSplitLayout
+  ├ ReportSummaryPanel     LEFT, sticky on desktop: cover, Download CTA, Save, Share, metadata, tags
+  └ ReportContentPane      RIGHT:
+        ReportKeyHighlights   dashboard-style insight cards + 1 simple chart (Recharts)
+        ReportPreview         scrollable preview with last pages blurred (gated reports)
+        ReportRelated         3-card grid: related reports / case studies / training
+ReportsFinalCta            reused
 ```
 
 ---
 
-## Intent → Dynamic Form Behavior
+## Discovery Behavior (client-side)
 
-Single state in `Contact.tsx`:
+State in `ReportsIndex.tsx`:
 
 ```text
-intent: "journey" | "partnership" | "solution" | "training" | "support" | null
+{ query, filters: { industry, domain, technology, state, type, year }, quickPick }
 ```
 
-- Intent cards: clicking sets `intent`, smoothly scrolls to form, highlights active card with navy ring + subtle scale, updates form heading + CTA label, and renders intent-specific fields below common fields with a fade/slide transition.
-- Common fields (always): Full Name, Organization, Email, Mobile (10-digit), Message.
-- Conditional field sets per intent — exactly as specified in the brief (Partnership / Training / Solution / Support / Journey). All inputs use the existing `FloatingInput` pattern from `src/components/auth/` and shadcn `Select` for dropdowns. Support intent uses a styled file input (drag-drop zone, no upload — just captures filename).
-- Validation: reuse `src/lib/authValidation.ts` (email, mobile, required). Inline error states under inputs.
-- Submit handler: `e.preventDefault()` → toast success → reset form, keep intent.
-- Contextual CTA label: Journey/Partnership/Training → "Request Consultation"; Solution → "Connect With Team"; Support → "Submit Request"; null → disabled "Select an intent above".
+- Search debounced (200ms), case-insensitive across title/summary/tags
+- Filter chips: shadcn `Select` for each facet, plus a "Clear all" link when any active
+- Quick-discovery pills set a preset (e.g. "MSME Insights" → `domain=MSME`)
+- Mobile: chips become a horizontal-scroll row (`overflow-x-auto snap-x`); search bar `sticky top-[64px]`
+- Empty state component when filtered list is empty: illustration + "Clear filters" / "Browse curated collections"
+
+---
+
+## Soft-Gated Download
+
+`DownloadModal` (shadcn `Dialog`):
+- Uses `useMockAuth()` — if signed in, click on Download triggers a toast success and a noop download; if not, opens modal
+- Modal content: "Access This Report" + subtext, "Login" → `/login`, "Create Account" → `/register`, social buttons (visual only, link to register)
+- Each report has `gated: boolean` flag in the data file
+
+---
+
+## Personalized Section (logged-in)
+
+On `/reports` when `useMockAuth()` returns a user, render `PersonalizedShelf` above `FeaturedCollections`:
+- "Recommended for you" (random 3 from data)
+- "Recently viewed" (localStorage `reports_recent`)
+- "Saved reports" (localStorage `reports_saved`)
+Save toggle on cards + detail panel writes to `reports_saved`.
 
 ---
 
 ## Components to Create
 
 ```text
-src/pages/Contact.tsx
-src/components/contact/ContactHero.tsx
-src/components/contact/ContactIntentGrid.tsx     (+ IntentCard subcomponent inline)
-src/components/contact/ContactSmartForm.tsx      (renders intent-specific field groups)
-src/components/contact/EcosystemConnect.tsx
-src/components/contact/RegionalPresence.tsx      (stylized India SVG, no external map lib)
-src/components/contact/BookConsultation.tsx
-src/components/contact/SupportChannels.tsx
-src/components/contact/ContactFAQ.tsx            (shadcn Accordion)
-src/components/contact/ContactFinalCta.tsx
-src/components/contact/MobileStickyCta.tsx
+src/pages/ReportsIndex.tsx
+src/pages/ReportDetail.tsx
+src/data/reports.ts                                  // 12 mock reports + 5 collections
+src/components/reports/ReportsHero.tsx
+src/components/reports/ReportsDiscoveryBar.tsx
+src/components/reports/FeaturedCollections.tsx
+src/components/reports/ReportsGrid.tsx
+src/components/reports/ReportCard.tsx
+src/components/reports/ReportsEmptyState.tsx
+src/components/reports/PersonalizedShelf.tsx
+src/components/reports/ReportsFinalCta.tsx
+src/components/reports/ReportDetailHero.tsx
+src/components/reports/ReportSummaryPanel.tsx
+src/components/reports/ReportKeyHighlights.tsx
+src/components/reports/ReportPreview.tsx
+src/components/reports/ReportRelated.tsx
+src/components/reports/DownloadModal.tsx
+src/lib/reportsStorage.ts                            // saved/recent helpers
 ```
 
 Files edited: `src/App.tsx`, `src/components/wireframe/WireHeader.tsx`, `src/components/wireframe/WireFooter.tsx`, `scripts/generate-sitemap.ts`, `public/sitemap.xml`.
@@ -73,24 +107,24 @@ Files edited: `src/App.tsx`, `src/components/wireframe/WireHeader.tsx`, `src/com
 
 ## Visuals & Animation
 
-- Hero right side: reuse style language of `HeroEcosystemViz` — orbiting nodes + connection lines on a soft navy→white gradient.
-- Section reveals via existing `useReveal` hook (fade-up on intersection).
-- Intent cards: hover lift (translate-y + shadow), active = navy ring + filled icon chip.
-- Form intent-fields: `animate-fade-in` on mount when intent changes.
-- Regional presence: SVG India outline with 5 pulsing dots (CSS `animate-ping` style) + tooltip on hover.
-- Final CTA: navy→navy-700 gradient with blueprint grid overlay (matches About/Final).
+- Hero right side: layered SVG dashboard mock (bars + line + floating KPI tiles) with `animate-float` and reveal
+- Cards: hover lift (`-translate-y-1` + shadow), cover uses a generated gradient + topic icon (no real thumbnails needed)
+- Section reveals via `useReveal`
+- Key Highlights: 4 stat cards + 1 small Recharts bar/line chart (already in deps via shadcn `chart`)
+- Preview: scrollable mock pages, last 2 pages get `blur-sm` + lock overlay when `gated`
+- Final CTA: navy gradient with blueprint grid overlay (matches About/Contact final)
 
 ---
 
-## Design Tokens (no custom colors in components)
+## Design Tokens
 
-All HSL from `index.css`: `navy-700/800`, `cii-red`, `neutral-50/150/200/700`, `--ring`. Buttons: `.btn-primary`, `.btn-outline`. Cards: `.cii-card`. Containers: `.container-cii`. Headings use `font-display`.
+All HSL from `index.css`: `navy-700/800`, `cii-red`, `neutral-50/150/200/700`, `--ring`. Buttons: `.btn-primary`, `.btn-outline`. Cards: `.cii-card`. Containers: `.container-cii`. Headings: `font-display`.
 
 ---
 
 ## Out of Scope
 
-- No real form submission, no email/CRM integration
-- No real map library (Mapbox/Leaflet) — stylized SVG only
-- No calendar/booking integration — "Schedule a Consultation" CTA links to `/register` for now
+- No real PDF rendering — preview is a styled mock
+- No real auth — uses existing `mockAuth`
+- No backend persistence — saved/recent in localStorage
 - No new dependencies
