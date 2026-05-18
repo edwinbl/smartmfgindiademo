@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Linkedin, Twitter, Facebook, Youtube } from "lucide-react";
+import { Link } from "react-router-dom";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
 
 type NavChild = { label: string; href: string };
@@ -7,7 +8,7 @@ type NavLink = { label: string; href: string; children?: NavChild[] };
 
 const navLinks: NavLink[] = [
   { label: "Home", href: "#" },
-  { label: "About", href: "https://www.smartmfgindia.com/Home.aspx#SmartAbout" },
+  { label: "About", href: "/about" },
   { label: "Readiness Assessment", href: "https://www.smartmfgindia.com/Assesment.aspx" },
   {
     label: "Solutions",
@@ -93,7 +94,12 @@ export const WireHeader = () => {
               );
             }
 
-            return (
+            const isInternal = l.href.startsWith("/") && !l.href.startsWith("//");
+            return isInternal ? (
+              <Link key={l.label} to={l.href} className={baseCls}>
+                {l.label}
+              </Link>
+            ) : (
               <a key={l.label} href={l.href} className={baseCls}>
                 {l.label}
               </a>
@@ -158,6 +164,14 @@ export const WireHeader = () => {
                       </ul>
                     )}
                   </>
+                ) : l.href.startsWith("/") && !l.href.startsWith("//") ? (
+                  <Link
+                    to={l.href}
+                    onClick={() => setOpen(false)}
+                    className="block px-6 py-4 text-base font-semibold font-display text-navy-800"
+                  >
+                    {l.label}
+                  </Link>
                 ) : (
                   <a
                     href={l.href}

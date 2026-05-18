@@ -16,6 +16,7 @@ const today = new Date().toISOString().split("T")[0];
 
 const entries: SitemapEntry[] = [
   { path: "/", lastmod: today, changefreq: "weekly", priority: "1.0" },
+  { path: "/about", lastmod: today, changefreq: "monthly", priority: "0.8" },
 ];
 
 function generateSitemap(entries: SitemapEntry[]) {
