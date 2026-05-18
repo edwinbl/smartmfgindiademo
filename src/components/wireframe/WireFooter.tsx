@@ -42,6 +42,14 @@ const cols = [
       { label: "Workshop", url: "https://www.smartmfgindia.com/WorkShop.aspx" },
     ],
   },
+  {
+    title: "Account",
+    links: [
+      { label: "Login", url: "/login" },
+      { label: "Create Account", url: "/register" },
+      { label: "Forgot Password", url: "/forgot-password" },
+    ],
+  },
 ];
 
 export const WireFooter = () => {
@@ -55,7 +63,7 @@ export const WireFooter = () => {
         }}
       />
       <div className="container-cii py-14">
-        <div className="grid gap-10 grid-cols-2 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 grid-cols-2 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-1 sm:col-span-2 col-span-2">
             <a href="#" className="inline-flex items-center" aria-label="CII Smart Manufacturing Platform — Home">
               <img

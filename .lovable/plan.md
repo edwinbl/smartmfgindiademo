@@ -1,74 +1,116 @@
-## Plan: About Us page — storytelling, ecosystem-driven
+# Authentication UI (mock, no backend)
 
-A new `/about` route built as a sequence of full-width, scroll-animated sections. Reuses the existing CII design tokens (cii-red, cii-orange, navy, saffron/india-green tricolor, `container-cii`, `cii-chip`) and existing `WireHeader` / `WireFooter` so it feels native to the site.
+A premium, mobile-first auth experience matching the CII Smart Manufacturing design system. Pure UI with client-side state — no Lovable Cloud, no real session. Google button is decorative. After "login"/"register", the user is sent back to the page they came from (origin route captured via `location.state.from` / `sessionStorage`).
 
-### Routing & navigation
+## Routes (added to `src/App.tsx`)
 
-- Add `<Route path="/about" element={<About />}>` in `src/App.tsx` (above the `*` route).
-- Create `src/pages/About.tsx` using `WireHeader` + new sections + `WireFooter` + `WireChatbotFAB`.
-- `src/components/wireframe/WireHeader.tsx`: change the existing `About` nav entry from the external `smartmfgindia.com/Home.aspx#SmartAbout` link to internal `/about` (both desktop nav + mobile menu). Use `react-router` `Link` so SPA navigation works.
-- `src/components/wireframe/WireFooter.tsx`: change the "About" link in the Explore column to `/about`.
-- Update `scripts/generate-sitemap.ts` to include `/about`.
-- Update `SEO` meta for the page (title, description, JSON-LD `AboutPage`).
+```text
+/login              → Login page
+/register           → 2-step registration
+/welcome            → Post-registration transition
+/forgot-password    → Email entry → confirmation
+/reset-password     → New password form
+```
 
-### Page sections (in order)
+Header "Login" / "Get Started" CTAs in `WireHeader.tsx` and `WireFooter.tsx` link to `/login` and `/register`.
 
-All sections are new components under `src/components/about/`. Each is a self-contained, mobile-first block using Tailwind + existing keyframes (`fade-in`, `scale-in`) and IntersectionObserver-based reveal (lightweight, no extra deps).
+## Layout system
 
-1. **`AboutHero.tsx`** — Full-screen split. Left: eyebrow chip "Our Mission", H1 "Accelerating India's Industry 4.0 Transformation", subtext, two CTAs ("Explore the Platform" → `/#solutions`, "Start Your Assessment" → smartmfgindia Assessment URL). Right: animated ecosystem visual reusing `HeroEcosystemViz` with soft parallax + floating gradient blobs. Gradient bg using navy → cii-orange tokens.
+Shared `AuthLayout.tsx` provides the split-screen shell:
 
-2. **`AboutChallenge.tsx`** — "India's Manufacturing Challenge". Horizontal scroll-snap row on desktop / vertical stack on mobile, 5 cards: Fragmented Adoption, Skill Gaps, Limited Expertise Access, MSME Constraints, Need for Collaboration. Animated connecting line that "draws" on scroll (SVG `stroke-dashoffset`).
+- **Desktop (≥lg):** Left 40% storytelling panel (sticky, gradient navy→navy-700 with blueprint grid, animated orbital ecosystem viz reusing `HeroEcosystemViz` styling, headline, 4 benefit chips). Right 60% centered card.
+- **Mobile:** Storytelling becomes a compact hero band on top (collapsed: logo + 1-line tagline), auth card stacked below, sticky bottom CTA on form screens.
 
-3. **`AboutEcosystem.tsx`** — Interactive network graph. SVG with 7 nodes (MSMEs, Enterprises, Tech Providers, Academia, Government, Experts, Global Orgs) around a central "Platform" hub. Hover/tap a node → side panel reveals role + contribution. Animated connector lines (pulsing gradient stroke).
+Card uses `cii-card` token, generous padding, soft fade-in via `useReveal`.
 
-4. **`AboutJourney.tsx`** — Sticky-scroll horizontal journey: **Assess → Guide → Enable → Connect → Recognise**. Uses `position: sticky` + scroll progress to highlight the active step. Each step: icon (lucide), title, one-liner, micro-animation on activation. Mobile: vertical timeline with scroll-snap.
+## Components
 
-5. **`AboutCapabilities.tsx`** — Bento grid of 8 modules (Maturity Assessment, Solutions Hub, Expert Guidance, Programmes, Ecosystem Directory, Matchmaking, Recognition, Insights Dashboard). Mixed tile sizes on lg+, single-column stack on mobile. Hover-lift + expandable preview.
+```text
+src/components/auth/
+  AuthLayout.tsx            shared split-screen shell + brand panel
+  AuthBrandPanel.tsx        left storytelling (headline, benefits, viz)
+  FloatingInput.tsx         input w/ floating label, inline validation, 52px height
+  PasswordInput.tsx         FloatingInput + show/hide + strength meter
+  SocialButton.tsx          Google button (icon + label, outline style)
+  StepProgress.tsx          "Step X of Y" pill + animated bar
+  AuthCard.tsx              card wrapper with title/subtitle slots
+```
 
-6. **`AboutMetrics.tsx`** — Big stats band with count-up animation triggered by IntersectionObserver (custom hook `useCountUp`). Metrics: MSMEs onboarded, Assessments completed, Ecosystem partners, States reached, Training programmes. Soft animated bar graphs as decoration.
+## Pages
 
-7. **`AboutPartners.tsx`** — Reuses existing `WirePartners` component for visual consistency (logo marquee) rather than duplicating.
+- **`src/pages/auth/Login.tsx`** — Email, password, "Forgot password?" link, primary `Login` button, divider, Google button, "Create account" link. On submit: fake delay, toast success, `navigate(from, { replace: true })`.
+- **`src/pages/auth/Register.tsx`** — Holds step state (1 of 2). Step 1: Title (Mr/Ms/Dr/Other), First/Last name, Email, Mobile (`inputMode="tel"`). Step 2: Company, Designation, Sector dropdown, Category dropdown, Source dropdown. Uses shadcn `Select`. CTAs: Continue / Back / Create Account. Animated slide between steps. On finish → `/welcome` (carries `from`).
+- **`src/pages/auth/Welcome.tsx`** — Headline "Your Industry 4.0 Journey Starts Here", journey graphic (5-node SVG: Assess→Guide→Enable→Connect→Recognise reusing AboutJourney styling), CTAs: "Start Assessment" → returns to origin or `/#assessment`, "Explore Platform" → origin or `/`.
+- **`src/pages/auth/ForgotPassword.tsx`** — State machine: `email` → `sent`. Sent view shows envelope icon, "Resend Link", "Back to Login".
+- **`src/pages/auth/ResetPassword.tsx`** — New + confirm password with live match + strength validation, success state.
 
-8. **`AboutVision.tsx`** — Cinematic full-width section. Large editorial typography ("A national movement for manufacturing competitiveness"), thematic pillars: MSME empowerment, Competitiveness, Export readiness, Future-ready industries, Digital scale. Background: subtle gradient + animated noise/grid pattern.
+## Validation
 
-9. **`AboutHowItWorks.tsx`** — Simple 3-step flow: Assess → Get Guidance → Connect & Adopt. Icons + animated arrows that draw in on scroll.
+Lightweight inline validation (no zod dep needed — plain helpers in `src/lib/authValidation.ts`):
 
-10. **`AboutFinalCta.tsx`** — Full-screen bold CTA. Headline "Join India's Digital Manufacturing Movement", two CTAs ("Start Assessment", "Partner With Us"). Tricolor accent stripe.
+- Email regex
+- Mobile: 10 digits
+- Password: ≥8 chars, 1 upper, 1 number → strength bar (weak/medium/strong)
+- Real-time on blur + submit
 
-### Cross-cutting
+Error states use `text-destructive` + red ring; success uses a check icon in the input's trailing slot.
 
-- **Reveal hook**: `src/hooks/useReveal.ts` — small IntersectionObserver wrapper that toggles a `data-revealed` attribute; sections opt-in with Tailwind utilities (`opacity-0 translate-y-4 data-[revealed=true]:opacity-100 ...`). No new dependency.
-- **Count-up hook**: `src/hooks/useCountUp.ts` — `requestAnimationFrame` interpolation, respects `prefers-reduced-motion`.
-- **Sticky progress indicator**: thin top progress bar (cii-orange → cii-red gradient) tied to page scroll, visible only on `/about`.
-- **Section anchors**: `id="ecosystem"`, `id="journey"`, etc. so the new mobile nav can deep-link later.
-- **Accessibility**: every interactive node has `aria-label`, focus-visible rings, all animations gated by `prefers-reduced-motion`.
+## "Return to origin" behavior
 
-### Technical notes
+Header/footer login links pass `state={{ from: location.pathname + location.search }}`. Auth pages read `location.state?.from` (fallback `sessionStorage.getItem('auth:from')` then `/`). On successful submit (login or register-complete from welcome), `navigate(from, { replace: true })`.
 
-- No new npm dependencies — Tailwind keyframes already define `fade-in`, `scale-in`, `accordion-*`. Add 2 small extras (`marquee`, `draw-line`) to `tailwind.config.ts` if needed.
-- All colors via HSL semantic tokens (`cii-red`, `cii-orange`, `navy-*`, `saffron`, `india-green`) — no hardcoded hex in components.
-- Page is statically imported in `App.tsx` (matches existing pattern after the earlier lazy-load fix).
-- Mobile-first: every section authored at 360px first, then progressively enhanced at `md:` / `lg:`.
+A tiny helper `src/lib/authReturn.ts` exposes `getReturnTo()` / `setReturnTo()` so any non-auth page can deep-link into login with a return path.
 
-### Files
+## Design tokens (all HSL, from `index.css`)
 
-**New**
-- `src/pages/About.tsx`
-- `src/components/about/AboutHero.tsx`
-- `src/components/about/AboutChallenge.tsx`
-- `src/components/about/AboutEcosystem.tsx`
-- `src/components/about/AboutJourney.tsx`
-- `src/components/about/AboutCapabilities.tsx`
-- `src/components/about/AboutMetrics.tsx`
-- `src/components/about/AboutVision.tsx`
-- `src/components/about/AboutHowItWorks.tsx`
-- `src/components/about/AboutFinalCta.tsx`
-- `src/components/about/AboutProgress.tsx`
-- `src/hooks/useReveal.ts`
-- `src/hooks/useCountUp.ts`
+- Brand panel bg: `linear-gradient(135deg, hsl(var(--navy-900)), hsl(var(--navy-700)))` + blueprint grid overlay
+- Primary CTA: existing `.btn-primary` (CII red)
+- Secondary CTA: `.btn-outline`
+- Inputs: `border-neutral-200`, focus ring `--ring` (navy-600)
+- Card: `cii-card`, radius `--radius`
+- Floating label: navy-700 default, red-600 on error
 
-**Edited**
-- `src/App.tsx` — add `/about` route
-- `src/components/wireframe/WireHeader.tsx` — About link → `/about`
-- `src/components/wireframe/WireFooter.tsx` — About link → `/about`
-- `scripts/generate-sitemap.ts` — add `/about` entry
+## Animations (Tailwind keyframes already in config)
+
+- `animate-fade-in` on card mount
+- Step transition: slide+fade on register
+- Button hover lift (`hover-scale` or shadow transition)
+- Progress bar width transition 400ms
+- All respect `prefers-reduced-motion` (already global in `index.css`)
+
+## Mobile specifics
+
+- Single column ≤lg
+- Inputs 52px, 16px font (prevents iOS zoom)
+- Sticky bottom CTA wrapper on Register steps: `fixed bottom-0 inset-x-0 p-4 bg-background border-t lg:static lg:border-0 lg:p-0`
+- `inputMode` + `autoComplete` set per field
+
+## Files to create
+
+```text
+src/pages/auth/Login.tsx
+src/pages/auth/Register.tsx
+src/pages/auth/Welcome.tsx
+src/pages/auth/ForgotPassword.tsx
+src/pages/auth/ResetPassword.tsx
+src/components/auth/AuthLayout.tsx
+src/components/auth/AuthBrandPanel.tsx
+src/components/auth/AuthCard.tsx
+src/components/auth/FloatingInput.tsx
+src/components/auth/PasswordInput.tsx
+src/components/auth/SocialButton.tsx
+src/components/auth/StepProgress.tsx
+src/lib/authValidation.ts
+src/lib/authReturn.ts
+```
+
+## Files to edit
+
+```text
+src/App.tsx                              add 5 routes
+src/components/wireframe/WireHeader.tsx  Login/Get Started → /login, /register (with from state)
+src/components/wireframe/WireFooter.tsx  same
+scripts/generate-sitemap.ts              add /login, /register (exclude /welcome, /reset-password)
+```
+
+No new npm dependencies. No backend changes. No data persistence — purely presentational flow.

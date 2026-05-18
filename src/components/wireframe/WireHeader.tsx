@@ -118,6 +118,22 @@ export const WireHeader = () => {
           />
         </div>
 
+        {/* Auth CTAs — desktop */}
+        <div className="hidden md:flex items-center gap-2 shrink-0">
+          <Link
+            to="/login"
+            className="font-display text-[13px] font-semibold text-navy-800 hover:text-cii-red transition-colors px-3 py-2"
+          >
+            Login
+          </Link>
+          <Link
+            to="/register"
+            className="btn-primary h-9 px-4 text-[13px]"
+          >
+            Get Started
+          </Link>
+        </div>
+
         {/* Mobile toggle */}
         <button
           className="md:hidden ml-auto grid h-10 w-10 place-items-center border border-[hsl(var(--neutral-200))] rounded-sm text-navy-800"
@@ -184,6 +200,15 @@ export const WireHeader = () => {
               </li>
             ))}
           </ul>
+
+          <div className="px-6 py-5 flex flex-col gap-3 border-t border-[hsl(var(--neutral-150))]">
+            <Link to="/login" onClick={() => setOpen(false)} className="btn-outline h-11 w-full">
+              Login
+            </Link>
+            <Link to="/register" onClick={() => setOpen(false)} className="btn-primary h-11 w-full">
+              Get Started
+            </Link>
+          </div>
 
 
           <div className="mt-6 px-6 py-5 border-t border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))]">
