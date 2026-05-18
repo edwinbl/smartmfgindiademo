@@ -36,7 +36,7 @@ const navLinks: NavLink[] = [
 export const WireHeader = () => {
   const [open, setOpen] = useState(false);
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
-  const [active] = useState("Home");
+  const user = useMockAuth();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -47,7 +47,7 @@ export const WireHeader = () => {
     <header className="sticky top-0 z-40 bg-white border-b border-[hsl(var(--neutral-150))]">
       <div className="container-cii flex h-[72px] items-center gap-6">
         {/* Logo */}
-        <a href="#" className="flex items-center shrink-0" aria-label="CII Smart Manufacturing Platform — Home">
+        <Link to="/" className="flex items-center shrink-0" aria-label="CII Smart Manufacturing Platform — Home">
           <img
             src={logoSrc}
             alt="CII Smart Manufacturing Platform — An Industry-led initiative on Industry 4.0 and beyond"
@@ -57,15 +57,12 @@ export const WireHeader = () => {
             fetchPriority="high"
             className="h-11 md:h-12 w-auto"
           />
-        </a>
+        </Link>
 
         {/* Nav */}
         <nav className="hidden md:flex items-center gap-7 mx-auto" aria-label="Primary">
           {navLinks.map((l) => {
-            const isActive = l.label === active;
-            const baseCls = `font-display text-[13px] font-semibold tracking-wide whitespace-nowrap transition-colors ${
-              isActive ? "text-cii-red" : "text-navy-800 hover:text-cii-red"
-            }`;
+            const baseCls = "font-display text-[13px] font-semibold tracking-wide whitespace-nowrap transition-colors text-navy-800 hover:text-cii-red";
 
             if (l.children) {
               return (
@@ -118,20 +115,26 @@ export const WireHeader = () => {
           />
         </div>
 
-        {/* Auth CTAs — desktop */}
+        {/* Auth CTAs / Profile — desktop */}
         <div className="hidden md:flex items-center gap-2 shrink-0">
-          <Link
-            to="/login"
-            className="font-display text-[13px] font-semibold text-navy-800 hover:text-cii-red transition-colors px-3 py-2"
-          >
-            Login
-          </Link>
-          <Link
-            to="/register"
-            className="btn-primary h-9 px-4 text-[13px]"
-          >
-            Get Started
-          </Link>
+          {user ? (
+            <ProfileMenu user={user} />
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="font-display text-[13px] font-semibold text-navy-800 hover:text-cii-red transition-colors px-3 py-2"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="btn-primary h-9 px-4 text-[13px]"
+              >
+                Get Started
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile toggle */}
