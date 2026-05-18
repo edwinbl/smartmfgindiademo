@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { isEmail, isMobile, required } from "@/lib/authValidation";
 import { setReturnTo, getReturnTo } from "@/lib/authReturn";
 import { toast } from "@/hooks/use-toast";
+import { mockAuth } from "@/lib/mockAuth";
 import { cn } from "@/lib/utils";
 
 interface StepOneData {
@@ -83,6 +84,7 @@ const Register = () => {
     if (!validateStep2()) return;
     setLoading(true);
     await new Promise((r) => setTimeout(r, 800));
+    mockAuth.signIn(one.email);
     setLoading(false);
     setReturnTo(from);
     navigate("/welcome", { state: { from, firstName: one.firstName } });

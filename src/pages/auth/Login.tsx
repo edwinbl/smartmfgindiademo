@@ -10,6 +10,7 @@ import { SocialButton } from "@/components/auth/SocialButton";
 import { isEmail } from "@/lib/authValidation";
 import { getReturnTo } from "@/lib/authReturn";
 import { toast } from "@/hooks/use-toast";
+import { mockAuth } from "@/lib/mockAuth";
 
 const Login = () => {
   const location = useLocation();
@@ -34,6 +35,7 @@ const Login = () => {
     if (!validate()) return;
     setLoading(true);
     await new Promise((r) => setTimeout(r, 700));
+    mockAuth.signIn(email);
     setLoading(false);
     toast({ title: "Welcome back", description: "Signed in successfully." });
     navigate(from, { replace: true });
