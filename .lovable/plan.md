@@ -1,116 +1,96 @@
-# Authentication UI (mock, no backend)
+# Contact Us Page — Implementation Plan
 
-A premium, mobile-first auth experience matching the CII Smart Manufacturing design system. Pure UI with client-side state — no Lovable Cloud, no real session. Google button is decorative. After "login"/"register", the user is sent back to the page they came from (origin route captured via `location.state.from` / `sessionStorage`).
+A premium, mobile-first `/contact` route built as a guided "intent → dynamic form" experience, matching the existing Industry 4.0 platform aesthetic (navy + CII red, `cii-card`, `btn-primary/outline`, floating SVG visuals, scroll-reveal).
 
-## Routes (added to `src/App.tsx`)
+UI-only. No backend wiring — form `onSubmit` shows a toast + success state (consistent with current mock auth pattern).
 
-```text
-/login              → Login page
-/register           → 2-step registration
-/welcome            → Post-registration transition
-/forgot-password    → Email entry → confirmation
-/reset-password     → New password form
-```
+---
 
-Header "Login" / "Get Started" CTAs in `WireHeader.tsx` and `WireFooter.tsx` link to `/login` and `/register`.
+## Route & Navigation
 
-## Layout system
+- Add `/contact` route in `src/App.tsx` → `src/pages/Contact.tsx`
+- `WireHeader.tsx`: change existing "Contact" link from the external `smartmfgindia.com` URL to internal `/contact` Link (both desktop nav + mobile drawer)
+- `WireFooter.tsx`: add/repoint "Contact" entry to `/contact`
+- `scripts/generate-sitemap.ts` + `public/sitemap.xml`: add `/contact`
+- SEO via `<SEO />`: title "Contact Us — CII Smart Manufacturing Platform", meta description, single H1
 
-Shared `AuthLayout.tsx` provides the split-screen shell:
+---
 
-- **Desktop (≥lg):** Left 40% storytelling panel (sticky, gradient navy→navy-700 with blueprint grid, animated orbital ecosystem viz reusing `HeroEcosystemViz` styling, headline, 4 benefit chips). Right 60% centered card.
-- **Mobile:** Storytelling becomes a compact hero band on top (collapsed: logo + 1-line tagline), auth card stacked below, sticky bottom CTA on form screens.
-
-Card uses `cii-card` token, generous padding, soft fade-in via `useReveal`.
-
-## Components
+## Page Structure (sections, top → bottom)
 
 ```text
-src/components/auth/
-  AuthLayout.tsx            shared split-screen shell + brand panel
-  AuthBrandPanel.tsx        left storytelling (headline, benefits, viz)
-  FloatingInput.tsx         input w/ floating label, inline validation, 52px height
-  PasswordInput.tsx         FloatingInput + show/hide + strength meter
-  SocialButton.tsx          Google button (icon + label, outline style)
-  StepProgress.tsx          "Step X of Y" pill + animated bar
-  AuthCard.tsx              card wrapper with title/subtitle slots
+ContactHero            split-screen, headline + 2 CTAs + animated ecosystem SVG
+ContactIntentGrid      5 intent cards — sets active intent state (no form yet)
+ContactSmartForm       card form, common fields + intent-specific fields, sticky on desktop
+EcosystemConnect       5 "who to talk to" cards (Assessment / Advisors / Training / Partners / Tech)
+RegionalPresence       stylized India SVG with pulsing hotspots + legend list
+BookConsultation       centered gradient CTA block with 4 consultation type chips
+SupportChannels        4–5 cards: Email, Phone, WhatsApp, Help Centre, FAQs
+ContactFAQ             shadcn Accordion, 5 questions
+ContactFinalCta        full-width gradient band, 2 CTAs
+WireFooter             reused
+MobileStickyCta        sticky "Talk to us" bar (mobile only, shown after scrolling past hero)
 ```
 
-## Pages
+---
 
-- **`src/pages/auth/Login.tsx`** — Email, password, "Forgot password?" link, primary `Login` button, divider, Google button, "Create account" link. On submit: fake delay, toast success, `navigate(from, { replace: true })`.
-- **`src/pages/auth/Register.tsx`** — Holds step state (1 of 2). Step 1: Title (Mr/Ms/Dr/Other), First/Last name, Email, Mobile (`inputMode="tel"`). Step 2: Company, Designation, Sector dropdown, Category dropdown, Source dropdown. Uses shadcn `Select`. CTAs: Continue / Back / Create Account. Animated slide between steps. On finish → `/welcome` (carries `from`).
-- **`src/pages/auth/Welcome.tsx`** — Headline "Your Industry 4.0 Journey Starts Here", journey graphic (5-node SVG: Assess→Guide→Enable→Connect→Recognise reusing AboutJourney styling), CTAs: "Start Assessment" → returns to origin or `/#assessment`, "Explore Platform" → origin or `/`.
-- **`src/pages/auth/ForgotPassword.tsx`** — State machine: `email` → `sent`. Sent view shows envelope icon, "Resend Link", "Back to Login".
-- **`src/pages/auth/ResetPassword.tsx`** — New + confirm password with live match + strength validation, success state.
+## Intent → Dynamic Form Behavior
 
-## Validation
-
-Lightweight inline validation (no zod dep needed — plain helpers in `src/lib/authValidation.ts`):
-
-- Email regex
-- Mobile: 10 digits
-- Password: ≥8 chars, 1 upper, 1 number → strength bar (weak/medium/strong)
-- Real-time on blur + submit
-
-Error states use `text-destructive` + red ring; success uses a check icon in the input's trailing slot.
-
-## "Return to origin" behavior
-
-Header/footer login links pass `state={{ from: location.pathname + location.search }}`. Auth pages read `location.state?.from` (fallback `sessionStorage.getItem('auth:from')` then `/`). On successful submit (login or register-complete from welcome), `navigate(from, { replace: true })`.
-
-A tiny helper `src/lib/authReturn.ts` exposes `getReturnTo()` / `setReturnTo()` so any non-auth page can deep-link into login with a return path.
-
-## Design tokens (all HSL, from `index.css`)
-
-- Brand panel bg: `linear-gradient(135deg, hsl(var(--navy-900)), hsl(var(--navy-700)))` + blueprint grid overlay
-- Primary CTA: existing `.btn-primary` (CII red)
-- Secondary CTA: `.btn-outline`
-- Inputs: `border-neutral-200`, focus ring `--ring` (navy-600)
-- Card: `cii-card`, radius `--radius`
-- Floating label: navy-700 default, red-600 on error
-
-## Animations (Tailwind keyframes already in config)
-
-- `animate-fade-in` on card mount
-- Step transition: slide+fade on register
-- Button hover lift (`hover-scale` or shadow transition)
-- Progress bar width transition 400ms
-- All respect `prefers-reduced-motion` (already global in `index.css`)
-
-## Mobile specifics
-
-- Single column ≤lg
-- Inputs 52px, 16px font (prevents iOS zoom)
-- Sticky bottom CTA wrapper on Register steps: `fixed bottom-0 inset-x-0 p-4 bg-background border-t lg:static lg:border-0 lg:p-0`
-- `inputMode` + `autoComplete` set per field
-
-## Files to create
+Single state in `Contact.tsx`:
 
 ```text
-src/pages/auth/Login.tsx
-src/pages/auth/Register.tsx
-src/pages/auth/Welcome.tsx
-src/pages/auth/ForgotPassword.tsx
-src/pages/auth/ResetPassword.tsx
-src/components/auth/AuthLayout.tsx
-src/components/auth/AuthBrandPanel.tsx
-src/components/auth/AuthCard.tsx
-src/components/auth/FloatingInput.tsx
-src/components/auth/PasswordInput.tsx
-src/components/auth/SocialButton.tsx
-src/components/auth/StepProgress.tsx
-src/lib/authValidation.ts
-src/lib/authReturn.ts
+intent: "journey" | "partnership" | "solution" | "training" | "support" | null
 ```
 
-## Files to edit
+- Intent cards: clicking sets `intent`, smoothly scrolls to form, highlights active card with navy ring + subtle scale, updates form heading + CTA label, and renders intent-specific fields below common fields with a fade/slide transition.
+- Common fields (always): Full Name, Organization, Email, Mobile (10-digit), Message.
+- Conditional field sets per intent — exactly as specified in the brief (Partnership / Training / Solution / Support / Journey). All inputs use the existing `FloatingInput` pattern from `src/components/auth/` and shadcn `Select` for dropdowns. Support intent uses a styled file input (drag-drop zone, no upload — just captures filename).
+- Validation: reuse `src/lib/authValidation.ts` (email, mobile, required). Inline error states under inputs.
+- Submit handler: `e.preventDefault()` → toast success → reset form, keep intent.
+- Contextual CTA label: Journey/Partnership/Training → "Request Consultation"; Solution → "Connect With Team"; Support → "Submit Request"; null → disabled "Select an intent above".
+
+---
+
+## Components to Create
 
 ```text
-src/App.tsx                              add 5 routes
-src/components/wireframe/WireHeader.tsx  Login/Get Started → /login, /register (with from state)
-src/components/wireframe/WireFooter.tsx  same
-scripts/generate-sitemap.ts              add /login, /register (exclude /welcome, /reset-password)
+src/pages/Contact.tsx
+src/components/contact/ContactHero.tsx
+src/components/contact/ContactIntentGrid.tsx     (+ IntentCard subcomponent inline)
+src/components/contact/ContactSmartForm.tsx      (renders intent-specific field groups)
+src/components/contact/EcosystemConnect.tsx
+src/components/contact/RegionalPresence.tsx      (stylized India SVG, no external map lib)
+src/components/contact/BookConsultation.tsx
+src/components/contact/SupportChannels.tsx
+src/components/contact/ContactFAQ.tsx            (shadcn Accordion)
+src/components/contact/ContactFinalCta.tsx
+src/components/contact/MobileStickyCta.tsx
 ```
 
-No new npm dependencies. No backend changes. No data persistence — purely presentational flow.
+Files edited: `src/App.tsx`, `src/components/wireframe/WireHeader.tsx`, `src/components/wireframe/WireFooter.tsx`, `scripts/generate-sitemap.ts`, `public/sitemap.xml`.
+
+---
+
+## Visuals & Animation
+
+- Hero right side: reuse style language of `HeroEcosystemViz` — orbiting nodes + connection lines on a soft navy→white gradient.
+- Section reveals via existing `useReveal` hook (fade-up on intersection).
+- Intent cards: hover lift (translate-y + shadow), active = navy ring + filled icon chip.
+- Form intent-fields: `animate-fade-in` on mount when intent changes.
+- Regional presence: SVG India outline with 5 pulsing dots (CSS `animate-ping` style) + tooltip on hover.
+- Final CTA: navy→navy-700 gradient with blueprint grid overlay (matches About/Final).
+
+---
+
+## Design Tokens (no custom colors in components)
+
+All HSL from `index.css`: `navy-700/800`, `cii-red`, `neutral-50/150/200/700`, `--ring`. Buttons: `.btn-primary`, `.btn-outline`. Cards: `.cii-card`. Containers: `.container-cii`. Headings use `font-display`.
+
+---
+
+## Out of Scope
+
+- No real form submission, no email/CRM integration
+- No real map library (Mapbox/Leaflet) — stylized SVG only
+- No calendar/booking integration — "Schedule a Consultation" CTA links to `/register` for now
+- No new dependencies
