@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Linkedin, Twitter, Facebook, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
+import { useMockAuth } from "@/hooks/useMockAuth";
+import { ProfileMenu } from "@/components/wireframe/ProfileMenu";
 
 type NavChild = { label: string; href: string };
 type NavLink = { label: string; href: string; children?: NavChild[] };
 
 const navLinks: NavLink[] = [
-  { label: "Home", href: "#" },
   { label: "About", href: "/about" },
   { label: "Readiness Assessment", href: "https://www.smartmfgindia.com/Assesment.aspx" },
   {
@@ -30,7 +31,6 @@ const navLinks: NavLink[] = [
       { label: "Workshop", href: "https://www.smartmfgindia.com/WorkShop.aspx" },
     ],
   },
-  { label: "Contact", href: "/contact" },
 ];
 
 export const WireHeader = () => {
