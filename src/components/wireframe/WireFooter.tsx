@@ -42,6 +42,14 @@ const cols = [
       { label: "Workshop", url: "https://www.smartmfgindia.com/WorkShop.aspx" },
     ],
   },
+  {
+    title: "Account",
+    links: [
+      { label: "Login", url: "/login" },
+      { label: "Create Account", url: "/register" },
+      { label: "Forgot Password", url: "/forgot-password" },
+    ],
+  },
 ];
 
 export const WireFooter = () => {
