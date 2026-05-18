@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://smartmfgindia.lovable.app/sitemap.xml
+Sitemap: https://smartmfgindia-demo4.bluelup.in/sitemap.xml
