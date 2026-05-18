@@ -6,7 +6,7 @@ const items = [
   { Icon: GraduationCap, title: "Skill Gaps", body: "Workforce readiness lags behind the pace of digital change." },
   { Icon: Compass, title: "Limited Expertise", body: "Trusted advisors and proven blueprints are hard to find." },
   { Icon: Factory, title: "MSME Constraints", body: "Capital, capacity and confidence stall transformation at scale." },
-  { Icon: Handshake, title: "Need for Collaboration", body: "Isolated efforts can&apos;t deliver national competitiveness." },
+  { Icon: Handshake, title: "Need for Collaboration", body: "Isolated efforts can't deliver national competitiveness." },
 ];
 
 export const AboutChallenge = () => {
