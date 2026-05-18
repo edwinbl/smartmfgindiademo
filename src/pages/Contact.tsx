@@ -1,0 +1,55 @@
+import { useState } from "react";
+import { WireHeader } from "@/components/wireframe/WireHeader";
+import { WireFooter } from "@/components/wireframe/WireFooter";
+import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
+import { SEO } from "@/components/SEO";
+import { ContactHero } from "@/components/contact/ContactHero";
+import { ContactIntentGrid, type IntentKey } from "@/components/contact/ContactIntentGrid";
+import { ContactSmartForm } from "@/components/contact/ContactSmartForm";
+import { EcosystemConnect } from "@/components/contact/EcosystemConnect";
+import { RegionalPresence } from "@/components/contact/RegionalPresence";
+import { BookConsultation } from "@/components/contact/BookConsultation";
+import { SupportChannels } from "@/components/contact/SupportChannels";
+import { ContactFAQ } from "@/components/contact/ContactFAQ";
+import { ContactFinalCta } from "@/components/contact/ContactFinalCta";
+import { MobileStickyCta } from "@/components/contact/MobileStickyCta";
+
+const Contact = () => {
+  const [intent, setIntent] = useState<IntentKey | null>(null);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact CII Smart Manufacturing",
+    description:
+      "Connect with CII Smart Manufacturing for assessments, partnerships, training, solution provider enquiries and platform support.",
+    url: "https://smartmfgindia-demo4.bluelup.in/contact",
+  };
+
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Contact Us — Connect with the Industry 4.0 Ecosystem"
+        description="Reach the right CII Smart Manufacturing team — readiness assessments, partnerships, training, solution providers and platform support."
+        jsonLd={jsonLd}
+      />
+      <WireHeader />
+      <main>
+        <ContactHero />
+        <ContactIntentGrid active={intent} onSelect={setIntent} />
+        <ContactSmartForm intent={intent} />
+        <EcosystemConnect />
+        <RegionalPresence />
+        <BookConsultation />
+        <SupportChannels />
+        <ContactFAQ />
+        <ContactFinalCta />
+      </main>
+      <WireFooter />
+      <WireChatbotFAB />
+      <MobileStickyCta />
+    </div>
+  );
+};
+
+export default Contact;
