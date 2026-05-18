@@ -183,19 +183,30 @@ export const WireHeader = () => {
                     </button>
                     {mobileSubmenu === l.label && (
                       <ul className="pb-2 bg-[hsl(var(--neutral-50))]">
-                        {l.children.map((c) => (
-                          <li key={c.label}>
-                            <a
-                              href={c.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={() => setOpen(false)}
-                              className="block px-8 py-2.5 text-sm font-medium text-[hsl(var(--neutral-700))] hover:text-cii-red"
-                            >
-                              {c.label}
-                            </a>
-                          </li>
-                        ))}
+                        {l.children.map((c) => {
+                          const childInternal = c.href.startsWith("/") && !c.href.startsWith("//");
+                          const mobChildCls =
+                            "block px-8 py-2.5 text-sm font-medium text-[hsl(var(--neutral-700))] hover:text-cii-red";
+                          return (
+                            <li key={c.label}>
+                              {childInternal ? (
+                                <Link to={c.href} onClick={() => setOpen(false)} className={mobChildCls}>
+                                  {c.label}
+                                </Link>
+                              ) : (
+                                <a
+                                  href={c.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={() => setOpen(false)}
+                                  className={mobChildCls}
+                                >
+                                  {c.label}
+                                </a>
+                              )}
+                            </li>
+                          );
+                        })}
                       </ul>
                     )}
                   </>
