@@ -83,18 +83,24 @@ export const WireHeader = () => {
                   </button>
                   <div className="absolute left-0 top-full pt-3 min-w-[240px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity z-50">
                     <ul className="bg-white border border-[hsl(var(--neutral-150))] rounded-md shadow-lg py-2">
-                      {l.children.map((c) => (
-                        <li key={c.label}>
-                          <a
-                            href={c.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-4 py-2.5 text-[13px] font-medium font-display text-navy-800 hover:bg-[hsl(var(--neutral-50))] hover:text-cii-red transition-colors"
-                          >
-                            {c.label}
-                          </a>
-                        </li>
-                      ))}
+                      {l.children.map((c) => {
+                        const childInternal = c.href.startsWith("/") && !c.href.startsWith("//");
+                        const childCls =
+                          "block px-4 py-2.5 text-[13px] font-medium font-display text-navy-800 hover:bg-[hsl(var(--neutral-50))] hover:text-cii-red transition-colors";
+                        return (
+                          <li key={c.label}>
+                            {childInternal ? (
+                              <Link to={c.href} className={childCls}>
+                                {c.label}
+                              </Link>
+                            ) : (
+                              <a href={c.href} target="_blank" rel="noopener noreferrer" className={childCls}>
+                                {c.label}
+                              </a>
+                            )}
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </div>
