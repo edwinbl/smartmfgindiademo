@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Linkedin, Twitter, Facebook, Youtube } from "lucide-react";
+import { Link } from "react-router-dom";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
 
 type NavChild = { label: string; href: string };
@@ -7,7 +8,7 @@ type NavLink = { label: string; href: string; children?: NavChild[] };
 
 const navLinks: NavLink[] = [
   { label: "Home", href: "#" },
-  { label: "About", href: "https://www.smartmfgindia.com/Home.aspx#SmartAbout" },
+  { label: "About", href: "/about" },
   { label: "Readiness Assessment", href: "https://www.smartmfgindia.com/Assesment.aspx" },
   {
     label: "Solutions",
