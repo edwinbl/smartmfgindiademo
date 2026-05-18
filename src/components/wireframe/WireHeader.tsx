@@ -16,8 +16,18 @@ const navLinks: NavLink[] = [
     href: "#solutions",
     children: [
       { label: "Case Studies", href: "https://www.smartmfgindia.com/CaseStudy.aspx" },
-      { label: "Reports & Publications", href: "https://www.smartmfgindia.com/KnowledgeCenterList.aspx" },
+      { label: "Reports & Publications", href: "/reports" },
       { label: "E-Directory", href: "https://www.smartmfgindia.com/e-Directory.aspx" },
+    ],
+  },
+  {
+    label: "Insights",
+    href: "/reports",
+    children: [
+      { label: "All Reports", href: "/reports" },
+      { label: "MSME Insights", href: "/reports?topic=msme" },
+      { label: "Sustainability", href: "/reports?topic=sustainability" },
+      { label: "Smart Manufacturing", href: "/reports?topic=smart" },
     ],
   },
   { label: "Programmes & Training", href: "https://www.smartmfgindia.com/CapacityBuildings.aspx" },

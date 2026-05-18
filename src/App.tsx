@@ -9,6 +9,8 @@ import { initGA, trackPageView } from "@/lib/analytics";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import ReportsIndex from "./pages/ReportsIndex";
+import ReportDetail from "./pages/ReportDetail";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Welcome from "./pages/auth/Welcome";
@@ -41,6 +43,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/reports" element={<ReportsIndex />} />
+            <Route path="/reports/:slug" element={<ReportDetail />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/welcome" element={<Welcome />} />
