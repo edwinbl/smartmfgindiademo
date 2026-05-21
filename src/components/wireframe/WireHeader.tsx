@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Linkedin, Twitter, Facebook, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
-import { useMockAuth } from "@/hooks/useMockAuth";
-import { ProfileMenu } from "@/components/wireframe/ProfileMenu";
 
 type NavChild = { label: string; href: string };
 type NavLink = { label: string; href: string; children?: NavChild[] };
@@ -46,7 +44,6 @@ const navLinks: NavLink[] = [
 export const WireHeader = () => {
   const [open, setOpen] = useState(false);
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
-  const user = useMockAuth();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -119,28 +116,6 @@ export const WireHeader = () => {
             );
           })}
         </nav>
-
-        {/* Auth CTAs / Profile — desktop */}
-        <div className="hidden md:flex items-center gap-2 shrink-0 ml-auto">
-          {user ? (
-            <ProfileMenu user={user} />
-          ) : (
-            <>
-              <Link
-                to="/login"
-                className="font-display text-[13px] font-semibold text-navy-800 hover:text-cii-red transition-colors px-3 py-2"
-              >
-                Login
-              </Link>
-              <Link
-                to="/register"
-                className="btn-primary h-9 px-4 text-[13px]"
-              >
-                Get Started
-              </Link>
-            </>
-          )}
-        </div>
 
         {/* CII Logo — right */}
         <div className="flex items-center shrink-0 ml-auto md:ml-0">
@@ -230,22 +205,6 @@ export const WireHeader = () => {
               </li>
             ))}
           </ul>
-
-          <div className="px-6 py-5 flex flex-col gap-3 border-t border-[hsl(var(--neutral-150))]">
-            {user ? (
-              <ProfileMenu user={user} variant="mobile" onNavigate={() => setOpen(false)} />
-            ) : (
-              <>
-                <Link to="/login" onClick={() => setOpen(false)} className="btn-outline h-11 w-full">
-                  Login
-                </Link>
-                <Link to="/register" onClick={() => setOpen(false)} className="btn-primary h-11 w-full">
-                  Get Started
-                </Link>
-              </>
-            )}
-          </div>
-
 
           <div className="mt-6 px-6 py-5 border-t border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))]">
             <div className="flex flex-col items-center gap-4">
