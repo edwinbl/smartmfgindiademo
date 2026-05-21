@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Linkedin, Twitter, Facebook, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
-import { useMockAuth } from "@/hooks/useMockAuth";
-import { ProfileMenu } from "@/components/wireframe/ProfileMenu";
 
 type NavChild = { label: string; href: string };
 type NavLink = { label: string; href: string; children?: NavChild[] };
