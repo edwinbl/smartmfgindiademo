@@ -44,7 +44,6 @@ const navLinks: NavLink[] = [
 export const WireHeader = () => {
   const [open, setOpen] = useState(false);
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
-  const user = useMockAuth();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
