@@ -206,22 +206,6 @@ export const WireHeader = () => {
             ))}
           </ul>
 
-          <div className="px-6 py-5 flex flex-col gap-3 border-t border-[hsl(var(--neutral-150))]">
-            {user ? (
-              <ProfileMenu user={user} variant="mobile" onNavigate={() => setOpen(false)} />
-            ) : (
-              <>
-                <Link to="/login" onClick={() => setOpen(false)} className="btn-outline h-11 w-full">
-                  Login
-                </Link>
-                <Link to="/register" onClick={() => setOpen(false)} className="btn-primary h-11 w-full">
-                  Get Started
-                </Link>
-              </>
-            )}
-          </div>
-
-
           <div className="mt-6 px-6 py-5 border-t border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))]">
             <div className="flex flex-col items-center gap-4">
               <div className="flex items-center gap-3">
