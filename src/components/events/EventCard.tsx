@@ -1,0 +1,245 @@
+import { Link } from "react-router-dom";
+import { MapPin, Clock, Users, ArrowRight, Wifi, Lock, GraduationCap, Sparkles } from "lucide-react";
+import { accentBar, accentSoft, accentText } from "@/lib/eventsStorage";
+import type { EventItem } from "@/data/events";
+
+interface Props {
+  event: EventItem;
+  onRegister: (e: EventItem) => void;
+}
+
+const TypeBadge = ({ event }: { event: EventItem }) => (
+  <span
+    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] uppercase tracking-[0.12em] font-bold ${accentSoft[event.accent]}`}
+  >
+    {event.type}
+  </span>
+);
+
+const SpeakerStack = ({ event, max = 3 }: { event: EventItem; max?: number }) => (
+  <div className="flex items-center -space-x-2">
+    {event.speakers.slice(0, max).map((s) => (
+      <div
+        key={s.name}
+        title={`${s.name} · ${s.org}`}
+        className="h-8 w-8 rounded-full border-2 border-white bg-gradient-to-br from-[hsl(var(--navy-700))] to-[hsl(var(--navy-600))] grid place-items-center text-[10px] font-bold text-white"
+      >
+        {s.initials}
+      </div>
+    ))}
+    {event.speakers.length > max && (
+      <div className="h-8 w-8 rounded-full border-2 border-white bg-[hsl(var(--neutral-100))] grid place-items-center text-[10px] font-bold text-[hsl(var(--navy-800))]">
+        +{event.speakers.length - max}
+      </div>
+    )}
+  </div>
+);
+
+// WEBINAR — compact, learning focus
+const WebinarCard = ({ event, onRegister }: Props) => (
+  <article className="cii-card overflow-hidden flex flex-col">
+    <div className={`h-1 ${accentBar[event.accent]}`} />
+    <div className="p-5 flex-1 flex flex-col gap-3">
+      <div className="flex items-center justify-between">
+        <TypeBadge event={event} />
+        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[hsl(180_60%_30%)]">
+          <Wifi className="h-3 w-3" /> Virtual
+        </span>
+      </div>
+      <h3 className="font-display font-bold text-lg leading-snug text-[hsl(var(--navy-900))]">
+        <Link to={`/events/${event.slug}`} className="hover:text-[hsl(var(--red-600))] transition-colors">
+          {event.title}
+        </Link>
+      </h3>
+      <p className="text-sm text-[hsl(var(--neutral-700))] line-clamp-2">{event.summary}</p>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[hsl(var(--neutral-500))]">
+        <span className="inline-flex items-center gap-1"><Clock className="h-3 w-3" />{event.duration}</span>
+        <span>{event.date}</span>
+      </div>
+      {event.speakers[0] && (
+        <div className="flex items-center gap-2 mt-1">
+          <div className="h-7 w-7 rounded-full bg-gradient-to-br from-[hsl(180_60%_38%)] to-[hsl(180_60%_28%)] grid place-items-center text-[10px] font-bold text-white">
+            {event.speakers[0].initials}
+          </div>
+          <div className="text-xs">
+            <div className="font-semibold text-[hsl(var(--navy-800))]">{event.speakers[0].name}</div>
+            <div className="text-[hsl(var(--neutral-500))]">{event.speakers[0].org}</div>
+          </div>
+        </div>
+      )}
+      <div className="mt-auto pt-3 flex items-center justify-between">
+        <Link to={`/events/${event.slug}`} className="link-arrow text-xs">Details <ArrowRight className="h-3 w-3" /></Link>
+        <button onClick={() => onRegister(event)} className="btn-primary h-9 px-4 text-xs">
+          {event.registrationLabel}
+        </button>
+      </div>
+    </div>
+  </article>
+);
+
+// ROUNDTABLE — premium invite
+const RoundtableCard = ({ event, onRegister }: Props) => (
+  <article
+    className="cii-card overflow-hidden flex flex-col relative"
+    style={{
+      borderColor: "hsl(45_70%_82%)",
+      background:
+        "linear-gradient(180deg, hsl(45_100%_98%) 0%, white 30%)",
+    }}
+  >
+    <div className={`h-1 ${accentBar[event.accent]}`} />
+    <div className="p-5 flex-1 flex flex-col gap-3">
+      <div className="flex items-center justify-between">
+        <TypeBadge event={event} />
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.12em] font-bold bg-[hsl(38_90%_42%)] text-white">
+          <Lock className="h-2.5 w-2.5" /> Invite Only
+        </span>
+      </div>
+      <h3 className="font-display font-bold text-lg leading-snug text-[hsl(var(--navy-900))]">
+        <Link to={`/events/${event.slug}`} className="hover:text-[hsl(var(--red-600))] transition-colors">
+          {event.title}
+        </Link>
+      </h3>
+      <p className="text-sm text-[hsl(var(--neutral-700))] line-clamp-2">{event.summary}</p>
+
+      <div className="rounded-md border border-[hsl(45_70%_82%)] bg-white/60 backdrop-blur-sm px-3 py-2.5 flex items-center justify-between">
+        <div>
+          <div className="text-[10px] uppercase tracking-[0.14em] font-bold text-[hsl(38_90%_38%)]">Limited Seats</div>
+          <div className="text-sm font-semibold text-[hsl(var(--navy-800))]">{event.seats ?? "Curated participation"}</div>
+        </div>
+        <SpeakerStack event={event} />
+      </div>
+
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[hsl(var(--neutral-500))]">
+        <span className="inline-flex items-center gap-1"><MapPin className="h-3 w-3" />{event.location}</span>
+        <span>{event.date}</span>
+      </div>
+
+      <div className="mt-auto pt-3 flex items-center justify-between">
+        <Link to={`/events/${event.slug}`} className="link-arrow text-xs">Details <ArrowRight className="h-3 w-3" /></Link>
+        <button onClick={() => onRegister(event)} className="btn-outline h-9 px-4 text-xs" style={{ borderColor: "hsl(38_90%_42%)", color: "hsl(38_90%_38%)" }}>
+          {event.registrationLabel}
+        </button>
+      </div>
+    </div>
+  </article>
+);
+
+// SUMMIT / CONFERENCE — large immersive
+const SummitCard = ({ event, onRegister }: Props) => (
+  <article className="cii-card overflow-hidden flex flex-col lg:col-span-2">
+    <div className={`relative h-40 md:h-48 overflow-hidden`}>
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(120deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-700)) 60%, hsl(var(--red-600)) 130%)",
+        }}
+      />
+      <div className="absolute inset-0 blueprint-grid opacity-30" />
+      <div className="absolute inset-0 p-5 flex flex-col justify-between text-white">
+        <div className="flex items-center gap-2">
+          {event.flagship && (
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[hsl(var(--red-600))] text-[10px] uppercase tracking-[0.12em] font-bold">
+              <Sparkles className="h-2.5 w-2.5" /> Flagship
+            </span>
+          )}
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-[11px] uppercase tracking-[0.12em] font-bold">
+            {event.type}
+          </span>
+        </div>
+        <div>
+          <div className="text-[11px] uppercase tracking-[0.14em] text-white/70">{event.date}</div>
+          <h3 className="font-display font-bold text-xl md:text-2xl mt-1 leading-tight">
+            <Link to={`/events/${event.slug}`} className="hover:text-white/90">
+              {event.title}
+            </Link>
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div className="p-5 flex-1 flex flex-col gap-3">
+      <p className="text-sm text-[hsl(var(--neutral-700))] line-clamp-2">{event.summary}</p>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[hsl(var(--neutral-500))]">
+        <span className="inline-flex items-center gap-1"><MapPin className="h-3 w-3" />{event.location}</span>
+        <span>{event.duration}</span>
+        <span>{event.mode}</span>
+      </div>
+      <div className="flex items-center justify-between gap-3 mt-1">
+        <SpeakerStack event={event} max={4} />
+        {event.partners && (
+          <div className="text-[10px] uppercase tracking-[0.12em] text-[hsl(var(--neutral-500))] font-bold text-right max-w-[60%]">
+            Partners · {event.partners.slice(0, 3).join(" · ")}
+          </div>
+        )}
+      </div>
+      <div className="mt-auto pt-3 flex items-center justify-between">
+        <Link to={`/events/${event.slug}`} className="link-arrow text-xs">View agenda <ArrowRight className="h-3 w-3" /></Link>
+        <button onClick={() => onRegister(event)} className="btn-primary h-9 px-4 text-xs">
+          {event.registrationLabel}
+        </button>
+      </div>
+    </div>
+  </article>
+);
+
+// SEMINAR / PROGRAMME — structured learning
+const ProgrammeCard = ({ event, onRegister }: Props) => (
+  <article className="cii-card overflow-hidden flex flex-col">
+    <div className={`h-1 ${accentBar[event.accent]}`} />
+    <div className="p-5 flex-1 flex flex-col gap-3">
+      <div className="flex items-center justify-between">
+        <TypeBadge event={event} />
+        <span className={`inline-flex items-center gap-1 text-[11px] font-bold ${accentText[event.accent]}`}>
+          <GraduationCap className="h-3 w-3" /> {event.level}
+        </span>
+      </div>
+      <h3 className="font-display font-bold text-lg leading-snug text-[hsl(var(--navy-900))]">
+        <Link to={`/events/${event.slug}`} className="hover:text-[hsl(var(--red-600))] transition-colors">
+          {event.title}
+        </Link>
+      </h3>
+      <p className="text-sm text-[hsl(var(--neutral-700))] line-clamp-2">{event.summary}</p>
+
+      {event.outcomes && (
+        <ul className="space-y-1.5 mt-1">
+          {event.outcomes.slice(0, 3).map((o) => (
+            <li key={o} className="text-xs text-[hsl(var(--navy-800))] flex gap-2">
+              <span className={`mt-1.5 h-1 w-1 rounded-full shrink-0 ${accentBar[event.accent]}`} />
+              <span>{o}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[hsl(var(--neutral-500))]">
+        <span className="inline-flex items-center gap-1"><Clock className="h-3 w-3" />{event.duration}</span>
+        <span className="inline-flex items-center gap-1"><Users className="h-3 w-3" />{event.segment}</span>
+        <span>{event.date}</span>
+      </div>
+
+      <div className="mt-auto pt-3 flex items-center justify-between">
+        <Link to={`/events/${event.slug}`} className="link-arrow text-xs">Curriculum <ArrowRight className="h-3 w-3" /></Link>
+        <button onClick={() => onRegister(event)} className="btn-primary h-9 px-4 text-xs">
+          {event.registrationLabel}
+        </button>
+      </div>
+    </div>
+  </article>
+);
+
+export const EventCard = ({ event, onRegister }: Props) => {
+  switch (event.type) {
+    case "Webinar":
+      return <WebinarCard event={event} onRegister={onRegister} />;
+    case "Roundtable":
+      return <RoundtableCard event={event} onRegister={onRegister} />;
+    case "Summit":
+    case "Conference":
+      return <SummitCard event={event} onRegister={onRegister} />;
+    case "Seminar":
+    case "Programme":
+    default:
+      return <ProgrammeCard event={event} onRegister={onRegister} />;
+  }
+};
