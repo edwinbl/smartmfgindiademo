@@ -117,28 +117,6 @@ export const WireHeader = () => {
           })}
         </nav>
 
-        {/* Auth CTAs / Profile — desktop */}
-        <div className="hidden md:flex items-center gap-2 shrink-0 ml-auto">
-          {user ? (
-            <ProfileMenu user={user} />
-          ) : (
-            <>
-              <Link
-                to="/login"
-                className="font-display text-[13px] font-semibold text-navy-800 hover:text-cii-red transition-colors px-3 py-2"
-              >
-                Login
-              </Link>
-              <Link
-                to="/register"
-                className="btn-primary h-9 px-4 text-[13px]"
-              >
-                Get Started
-              </Link>
-            </>
-          )}
-        </div>
-
         {/* CII Logo — right */}
         <div className="flex items-center shrink-0 ml-auto md:ml-0">
           <img
