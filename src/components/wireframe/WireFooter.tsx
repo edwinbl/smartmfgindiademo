@@ -37,10 +37,11 @@ const cols = [
   {
     title: "Events",
     links: [
-      { label: "Upcoming Events", url: "https://www.smartmfgindia.com/UpcommingEvent.aspx" },
-      { label: "Summit", url: "https://www.smartmfgindia.com/Event24.aspx" },
-      { label: "Roundtable", url: "https://www.smartmfgindia.com/Roundtable.aspx" },
-      { label: "Workshop", url: "https://www.smartmfgindia.com/WorkShop.aspx" },
+      { label: "All Events", url: "/events" },
+      { label: "Flagship Summit", url: "/events/smart-mfg-summit-2026" },
+      { label: "Webinars", url: "/events" },
+      { label: "Roundtables", url: "/events" },
+      { label: "Programmes", url: "/events" },
     ],
   },
   {
