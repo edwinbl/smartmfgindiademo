@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Sparkles, ArrowRight } from "lucide-react";
 import { events, type EventItem } from "@/data/events";
-import type { MockUser } from "@/hooks/useMockAuth";
+import type { MockUser } from "@/lib/mockAuth";
 import { accentSoft } from "@/lib/eventsStorage";
 
 interface Props {
