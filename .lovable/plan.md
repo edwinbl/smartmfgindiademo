@@ -1,145 +1,157 @@
 
-# Events & Ecosystem Engagement — Implementation Plan
+# Programmes & Training — Implementation Plan
 
-A premium, mobile-first events hub at `/events` (listing) and `/events/:slug` (detail with per-type layouts), matching the existing navy + CII red, `cii-card`, `.btn-primary/outline`, `useReveal` system. UI-only, mock data in `src/data/events.ts`.
+A premium, mobile-first capability-building hub at `/programmes` (discovery + listing) and `/programmes/:slug` (type-aware detail), matching the existing navy + CII red, `.cii-card`, `.btn-primary/outline`, `useReveal` system. UI-only, mock data.
 
 ---
 
 ## Routes & Navigation
 
-- `src/App.tsx`: add `/events` → `EventsIndex`, `/events/:slug` → `EventDetail`
-- `WireHeader.tsx`: change `Events` link from external `smartmfgindia.com/UpcommingEvent.aspx` to internal `/events` (no dropdown)
-- `WireFooter.tsx`: add/replace **Events** column linking to `/events` plus quick sub-links (Summits, Webinars, Roundtables, Programmes, Past Events)
-- `scripts/generate-sitemap.ts` + `public/sitemap.xml`: add `/events` and detail slugs
+- `src/App.tsx`: add `/programmes` → `ProgrammesIndex`, `/programmes/:slug` → `ProgrammeDetail`
+- `WireHeader.tsx`: replace external Programmes link with internal `/programmes` (no dropdown)
+- `WireFooter.tsx`: Programmes column → `/programmes` + sub-links (Workshops, Certifications, Bootcamps, Leadership, Webinars)
+- `scripts/generate-sitemap.ts` + `public/sitemap.xml`: add `/programmes` + detail slugs
 - `<SEO />` on both pages, single H1, title <60c, meta <160c
 
 ---
 
-## Page Structure — `/events`
+## Page Structure — `/programmes`
 
 ```text
-EventsFlagshipHero         full-bleed hero w/ generated summit image + animated overlay,
-                           countdown, status badge, 4 CTAs, speaker preview strip
-EventsTypeTabs             sticky pill nav (All / Summits / Conferences / Roundtables /
-                           Webinars / Seminars / Programmes), swipeable on mobile
-EventsDiscoveryBar         smart filter chips + quick-discovery pills (This Month,
-                           MSME Focus, Sustainability, AI & Automation, Networking, Training)
-EventsGrid                 responsive 3/2/1 grid, renders type-specific card variants
-PersonalizedEventsShelf    logged-in only (uses useMockAuth) — Recommended carousel
-EventsImpactStats          animated counters (participants, industries, states, sessions)
-PastEventsArchive          timeline + card hybrid w/ highlights, recordings, proceedings
-EventsFinalCta             "Be Part of India's Smart Manufacturing Ecosystem" gradient band
+ProgrammesHero              full-bleed immersive hero w/ generated training image,
+                            motion overlay, headline, dual CTA, floating learning cards
+GuidedDiscovery             "What are you looking to achieve?" — 7 outcome cards
+                            (Digital Transformation, Op Efficiency, Smart Factory,
+                            Sustainability, Workforce Upskilling, MSME, Leadership).
+                            Selecting one sets a recommendation filter + scrolls to grid
+ProgrammeTypeTabs           sticky pill nav (All / Workshops / Certifications / Bootcamps
+                            / Leadership / Webinars / Industry Sessions), swipeable
+ProgrammesDiscoveryBar      smart filter chips (Industry, Skill Level, Format, Mode,
+                            Duration, Certification, Segment, Tech Focus) + quick
+                            pills (MSMEs, Beginner, Leadership, AI, Sustainability,
+                            Factory Digitization)
+ProgrammesGrid              responsive 3/2/1 grid of ProgrammeCard
+FeaturedProgrammes          editorial 2-up large cards / carousel for flagship
+                            (Smart Mfg Leadership, MSME Bootcamp, Sustainability)
+LearningPathways            3 outcome-based pathway tracks (visual stepper)
+ImpactStats                 reuse useCountUp — learners trained, certificates, partners
+PersonalizedShelf           logged-in only (useMockAuth) — "Recommended" + "Registered"
+ProgrammesFinalCta          "Build the Capabilities for Industry 4.0 Transformation"
 WireFooter
 ```
 
-### Event card variants (one component, `variant` prop)
-
-- **WebinarCard** — compact, virtual badge, speaker + duration, "Register Free"
-- **RoundtableCard** — invite-style, gold accent, "Limited seats", "Request Invite"
-- **SummitCard / ConferenceCard** — larger immersive cover, venue, multi-day, partner logos, "Explore Event"
-- **SeminarCard / ProgrammeCard** — structured learning, skill level, outcomes, "Join Programme"
+### ProgrammeCard
+Thumbnail/gradient header w/ type badge → title → outcome summary → meta row (duration, format, level, start date) → outcome tags chips → CTA `Explore Programme`. Hover lift, type-tinted accent border, optional "Recommended for you" ribbon when discovery filter matches.
 
 ---
 
-## Page Structure — `/events/:slug`
+## Page Structure — `/programmes/:slug`
 
-Detail layout switches on `event.type`:
+Single shared template — sections conditionally render based on `programme.type`:
 
 ```text
-WebinarDetail        compact: hero strip, speaker, learning outcomes, fast-register sticky CTA
-SummitDetail         immersive: hero banner, agenda timeline, tracks, speakers grid,
-                     sponsors, venue map placeholder, networking, FAQs, sticky register
-RoundtableDetail     executive: themes, participants list, invitation process,
-                     "Request Participation" CTA
-ProgrammeDetail      curriculum modules, facilitator, skill outcomes, cohort dates
+ProgrammeDetailHero         category badge, title, meta strip, dual CTA (Register / Brochure)
+StickyActionPanel (desktop) right-side card: fee/status, seats, start, duration, Register CTA
+ProgrammeOverview           what it is, why it matters, industry relevance
+LearningOutcomes            capability cards grid
+WhoShouldAttend             audience persona cards
+ProgrammeAgenda             timeline / modular session cards (hidden for short webinars)
+ExpertsFaculty              speaker/mentor grid (reuse EventSpeakersGrid pattern)
+CertificationBlock          certificate, badge, LinkedIn-shareable note (hidden for webinars)
+RelatedProgrammes           similar + next-level pathway cards
+MobileStickyRegister        mobile-only sticky bottom CTA
 ```
 
-Shared sub-components: `EventDetailHero`, `EventAgendaTimeline`, `EventSpeakersGrid`, `EventSponsorsBand`, `EventFAQ`, `EventStickyRegister`, `EventShareBar`.
+Type-awareness (single template, conditional sections):
+- Webinar → hide CertificationBlock + StickyActionPanel fee, compact agenda
+- Bootcamp / Certification → full agenda + cohort dates emphasis
+- Leadership → faculty + outcomes prominent, fee shown
+- Workshop / Industry Session → compact, focus on outcomes + agenda
+
+---
+
+## 3-Step Registration Modal
+
+`ProgrammeRegisterModal` — multi-step with auto-save to `localStorage`:
+
+```text
+Step 1  Basic Info        Name, Organization, Email, Mobile
+Step 2  Professional      Industry, Role, Org Size, Learning Objectives
+Step 3  Confirmation      Programme summary, "Add to Calendar" (.ics blob),
+                          "Seat Reserved" success state, fit indicator
+```
+
+- `StepProgress` header (reuse existing `src/components/auth/StepProgress.tsx` pattern)
+- Inline validation, smooth transitions (fade/slide)
+- Persists draft per-slug in `localStorage`; cleared on submit
+- Signed-out users: same flow (no auth gate) — registration stored in `programmesStorage`
 
 ---
 
 ## Discovery Behavior (client-side)
 
-State in `EventsIndex.tsx`:
-
+State in `ProgrammesIndex.tsx`:
 ```text
-{ type, filters: { industry, technology, location, mode, level, segment, date }, quickPick }
+{ type, outcome (from GuidedDiscovery), filters: { industry, level, format, mode,
+  duration, certification, segment, technology }, quickPick }
 ```
-
-- Type pills set primary filter; chip filters refine
-- Sticky filter bar on desktop; mobile shows "Filters" button → bottom drawer
-- Smooth `framer`-free fade via `useReveal` + tailwind transitions
-- Empty state component when filtered list empty
-
----
-
-## Soft-Gated Registration
-
-Reuse `DownloadModal` pattern → new `RegisterEventModal`:
-- Signed-in → toast success
-- Signed-out → modal: "Reserve Your Spot", Login / Create Account, social buttons (visual only)
-
-Each event in data has `registration: 'open' | 'invite' | 'soon' | 'completed'`.
+- Outcome card click → sets `outcome`, smooth-scrolls to grid, shows "Recommended for [outcome]" banner with clear button
+- Type pills set primary filter; chips refine
+- Mobile: "Filters" button → bottom drawer
+- Empty state component
 
 ---
 
-## Components to Create
+## Files to Create
 
 ```text
-src/pages/EventsIndex.tsx
-src/pages/EventDetail.tsx
-src/data/events.ts                                    // 14 mock events across all types + past
-src/components/events/EventsFlagshipHero.tsx
-src/components/events/EventsTypeTabs.tsx
-src/components/events/EventsDiscoveryBar.tsx
-src/components/events/EventsGrid.tsx
-src/components/events/EventCard.tsx                   // variant-driven
-src/components/events/EventsEmptyState.tsx
-src/components/events/PersonalizedEventsShelf.tsx
-src/components/events/EventsImpactStats.tsx
-src/components/events/PastEventsArchive.tsx
-src/components/events/EventsFinalCta.tsx
-src/components/events/RegisterEventModal.tsx
-src/components/events/CountdownTimer.tsx
-src/components/events/detail/EventDetailHero.tsx
-src/components/events/detail/EventAgendaTimeline.tsx
-src/components/events/detail/EventSpeakersGrid.tsx
-src/components/events/detail/EventSponsorsBand.tsx
-src/components/events/detail/EventFAQ.tsx
-src/components/events/detail/EventStickyRegister.tsx
-src/components/events/detail/WebinarDetail.tsx
-src/components/events/detail/SummitDetail.tsx
-src/components/events/detail/RoundtableDetail.tsx
-src/components/events/detail/ProgrammeDetail.tsx
-src/lib/eventsStorage.ts                              // saved/registered helpers
-src/assets/events-flagship-hero.jpg                   // generated (premium image, 1920x1080)
+src/pages/ProgrammesIndex.tsx
+src/pages/ProgrammeDetail.tsx
+src/data/programmes.ts                                 // 12–14 mock programmes across all types
+src/lib/programmesStorage.ts                           // saved/registered + draft persistence
+src/assets/programmes-hero.jpg                         // generated premium image (1920x1080)
+
+src/components/programmes/ProgrammesHero.tsx
+src/components/programmes/GuidedDiscovery.tsx
+src/components/programmes/ProgrammeTypeTabs.tsx
+src/components/programmes/ProgrammesDiscoveryBar.tsx
+src/components/programmes/ProgrammesGrid.tsx
+src/components/programmes/ProgrammeCard.tsx
+src/components/programmes/ProgrammesEmptyState.tsx
+src/components/programmes/FeaturedProgrammes.tsx
+src/components/programmes/LearningPathways.tsx
+src/components/programmes/ProgrammesImpactStats.tsx
+src/components/programmes/PersonalizedProgrammesShelf.tsx
+src/components/programmes/ProgrammesFinalCta.tsx
+src/components/programmes/ProgrammeRegisterModal.tsx   // 3-step flow
+
+src/components/programmes/detail/ProgrammeDetailHero.tsx
+src/components/programmes/detail/StickyActionPanel.tsx
+src/components/programmes/detail/ProgrammeOverview.tsx
+src/components/programmes/detail/LearningOutcomes.tsx
+src/components/programmes/detail/WhoShouldAttend.tsx
+src/components/programmes/detail/ProgrammeAgenda.tsx
+src/components/programmes/detail/ExpertsFaculty.tsx
+src/components/programmes/detail/CertificationBlock.tsx
+src/components/programmes/detail/RelatedProgrammes.tsx
+src/components/programmes/detail/MobileStickyRegister.tsx
 ```
 
 Files edited: `src/App.tsx`, `src/components/wireframe/WireHeader.tsx`, `src/components/wireframe/WireFooter.tsx`, `scripts/generate-sitemap.ts`, `public/sitemap.xml`.
 
 ---
 
-## Visuals & Animation
-
-- Flagship hero: generated cinematic conference photo + animated gradient + floating KPI tiles + countdown
-- Type tabs: pill highlight slides via CSS transform on active index
-- Cards: hover lift, type-tinted accent border (webinar=teal, roundtable=gold, summit=cii-red, programme=navy)
-- Impact: `useCountUp` (already in project)
-- Past archive: vertical timeline (desktop) / horizontal scroll (mobile), each node opens card with recording/proceeding links
-- Final CTA: navy gradient w/ blueprint grid overlay (matches site)
-
----
-
 ## Design Tokens
 
-All HSL from `index.css`: `navy-700/800`, `cii-red`, `neutral-50/150/200/700`. New per-type accents derived from existing palette (no new tokens). Buttons: `.btn-primary`, `.btn-outline`. Cards: `.cii-card`. Container: `.container-cii`. Headings: `font-display`.
+All HSL from `index.css`: `navy-700/800/900`, `cii-red`, `neutral-*`, `orange-*`. Per-type accents derived from existing palette (workshop=teal, certification=cii-red, bootcamp=orange, leadership=navy, webinar=neutral). Buttons `.btn-primary/.btn-outline`, cards `.cii-card`, container `.container-cii`, headings `font-display`.
+
+Animations: `animate-fade-in`, `useReveal`, hover lift, sticky pill slide, scroll-triggered counters. No new deps.
 
 ---
 
 ## Out of Scope
 
-- No real registration/calendar backend — `.ics` "Add to calendar" is a static blob
+- No real registration/payment backend — `.ics` is a static blob
 - No real auth — uses `mockAuth`
-- No video playback — "Watch Highlights" links to YouTube placeholder
-- No real maps — venue is a styled placeholder
-- No new heavy deps (Recharts/Embla already in project)
+- No real video/maps
+- No new heavy deps

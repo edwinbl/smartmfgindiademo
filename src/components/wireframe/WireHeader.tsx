@@ -18,7 +18,7 @@ const navLinks: NavLink[] = [
       { label: "E-Directory", href: "https://www.smartmfgindia.com/e-Directory.aspx" },
     ],
   },
-  { label: "Programmes & Training", href: "https://www.smartmfgindia.com/CapacityBuildings.aspx" },
+  { label: "Programmes & Training", href: "/programmes" },
   { label: "Events", href: "/events" },
   { label: "Contact", href: "/contact" },
 ];
