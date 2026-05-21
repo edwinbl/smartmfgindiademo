@@ -1,104 +1,118 @@
 
-# Reports & Insights — Implementation Plan
+# Events & Ecosystem Engagement — Implementation Plan
 
-A premium, mobile-first "Reports & Insights" experience at `/reports` (listing) and `/reports/:slug` (detail), matching the existing Industry 4.0 platform aesthetic (navy + CII red, `cii-card`, `.btn-primary/outline`, `useReveal`, floating SVG visuals). UI-only, no backend — data lives in a typed `src/data/reports.ts` mock module.
+A premium, mobile-first events hub at `/events` (listing) and `/events/:slug` (detail with per-type layouts), matching the existing navy + CII red, `cii-card`, `.btn-primary/outline`, `useReveal` system. UI-only, mock data in `src/data/events.ts`.
 
 ---
 
 ## Routes & Navigation
 
-- `src/App.tsx`: add `/reports` → `ReportsIndex` and `/reports/:slug` → `ReportDetail`
-- `WireHeader.tsx`: add **Insights** entry to `navLinks` (desktop + mobile drawer), with a small dropdown linking to "All Reports", "MSME Insights", "Sustainability", "Smart Manufacturing"
-- `WireFooter.tsx`: add **Insights** column linking to the same
-- `scripts/generate-sitemap.ts` + `public/sitemap.xml`: add `/reports` and detail pages
-- SEO via `<SEO />` on both pages (single H1, title <60c, meta <160c)
+- `src/App.tsx`: add `/events` → `EventsIndex`, `/events/:slug` → `EventDetail`
+- `WireHeader.tsx`: change `Events` link from external `smartmfgindia.com/UpcommingEvent.aspx` to internal `/events` (no dropdown)
+- `WireFooter.tsx`: add/replace **Events** column linking to `/events` plus quick sub-links (Summits, Webinars, Roundtables, Programmes, Past Events)
+- `scripts/generate-sitemap.ts` + `public/sitemap.xml`: add `/events` and detail slugs
+- `<SEO />` on both pages, single H1, title <60c, meta <160c
 
 ---
 
-## Page Structure
-
-### `/reports` — ReportsIndex
+## Page Structure — `/events`
 
 ```text
-ReportsHero                editorial split: headline + 2 CTAs + animated chart/dashboard SVG
-ReportsDiscoveryBar        sticky: search input + filter chips + quick-discovery pills
-FeaturedCollections        horizontal-scroll cover cards (5 curated packs)
-ReportsGrid                3/2/1 col responsive card grid, EmptyState fallback
-ReportsFinalCta            full-width gradient band, 2 CTAs
-WireFooter                 reused
+EventsFlagshipHero         full-bleed hero w/ generated summit image + animated overlay,
+                           countdown, status badge, 4 CTAs, speaker preview strip
+EventsTypeTabs             sticky pill nav (All / Summits / Conferences / Roundtables /
+                           Webinars / Seminars / Programmes), swipeable on mobile
+EventsDiscoveryBar         smart filter chips + quick-discovery pills (This Month,
+                           MSME Focus, Sustainability, AI & Automation, Networking, Training)
+EventsGrid                 responsive 3/2/1 grid, renders type-specific card variants
+PersonalizedEventsShelf    logged-in only (uses useMockAuth) — Recommended carousel
+EventsImpactStats          animated counters (participants, industries, states, sessions)
+PastEventsArchive          timeline + card hybrid w/ highlights, recordings, proceedings
+EventsFinalCta             "Be Part of India's Smart Manufacturing Ecosystem" gradient band
+WireFooter
 ```
 
-### `/reports/:slug` — ReportDetail
+### Event card variants (one component, `variant` prop)
+
+- **WebinarCard** — compact, virtual badge, speaker + duration, "Register Free"
+- **RoundtableCard** — invite-style, gold accent, "Limited seats", "Request Invite"
+- **SummitCard / ConferenceCard** — larger immersive cover, venue, multi-day, partner logos, "Explore Event"
+- **SeminarCard / ProgrammeCard** — structured learning, skill level, outcomes, "Join Programme"
+
+---
+
+## Page Structure — `/events/:slug`
+
+Detail layout switches on `event.type`:
 
 ```text
-ReportDetailHero           breadcrumb, title, summary, author, date, industry tags
-ReportSplitLayout
-  ├ ReportSummaryPanel     LEFT, sticky on desktop: cover, Download CTA, Save, Share, metadata, tags
-  └ ReportContentPane      RIGHT:
-        ReportKeyHighlights   dashboard-style insight cards + 1 simple chart (Recharts)
-        ReportPreview         scrollable preview with last pages blurred (gated reports)
-        ReportRelated         3-card grid: related reports / case studies / training
-ReportsFinalCta            reused
+WebinarDetail        compact: hero strip, speaker, learning outcomes, fast-register sticky CTA
+SummitDetail         immersive: hero banner, agenda timeline, tracks, speakers grid,
+                     sponsors, venue map placeholder, networking, FAQs, sticky register
+RoundtableDetail     executive: themes, participants list, invitation process,
+                     "Request Participation" CTA
+ProgrammeDetail      curriculum modules, facilitator, skill outcomes, cohort dates
 ```
+
+Shared sub-components: `EventDetailHero`, `EventAgendaTimeline`, `EventSpeakersGrid`, `EventSponsorsBand`, `EventFAQ`, `EventStickyRegister`, `EventShareBar`.
 
 ---
 
 ## Discovery Behavior (client-side)
 
-State in `ReportsIndex.tsx`:
+State in `EventsIndex.tsx`:
 
 ```text
-{ query, filters: { industry, domain, technology, state, type, year }, quickPick }
+{ type, filters: { industry, technology, location, mode, level, segment, date }, quickPick }
 ```
 
-- Search debounced (200ms), case-insensitive across title/summary/tags
-- Filter chips: shadcn `Select` for each facet, plus a "Clear all" link when any active
-- Quick-discovery pills set a preset (e.g. "MSME Insights" → `domain=MSME`)
-- Mobile: chips become a horizontal-scroll row (`overflow-x-auto snap-x`); search bar `sticky top-[64px]`
-- Empty state component when filtered list is empty: illustration + "Clear filters" / "Browse curated collections"
+- Type pills set primary filter; chip filters refine
+- Sticky filter bar on desktop; mobile shows "Filters" button → bottom drawer
+- Smooth `framer`-free fade via `useReveal` + tailwind transitions
+- Empty state component when filtered list empty
 
 ---
 
-## Soft-Gated Download
+## Soft-Gated Registration
 
-`DownloadModal` (shadcn `Dialog`):
-- Uses `useMockAuth()` — if signed in, click on Download triggers a toast success and a noop download; if not, opens modal
-- Modal content: "Access This Report" + subtext, "Login" → `/login`, "Create Account" → `/register`, social buttons (visual only, link to register)
-- Each report has `gated: boolean` flag in the data file
+Reuse `DownloadModal` pattern → new `RegisterEventModal`:
+- Signed-in → toast success
+- Signed-out → modal: "Reserve Your Spot", Login / Create Account, social buttons (visual only)
 
----
-
-## Personalized Section (logged-in)
-
-On `/reports` when `useMockAuth()` returns a user, render `PersonalizedShelf` above `FeaturedCollections`:
-- "Recommended for you" (random 3 from data)
-- "Recently viewed" (localStorage `reports_recent`)
-- "Saved reports" (localStorage `reports_saved`)
-Save toggle on cards + detail panel writes to `reports_saved`.
+Each event in data has `registration: 'open' | 'invite' | 'soon' | 'completed'`.
 
 ---
 
 ## Components to Create
 
 ```text
-src/pages/ReportsIndex.tsx
-src/pages/ReportDetail.tsx
-src/data/reports.ts                                  // 12 mock reports + 5 collections
-src/components/reports/ReportsHero.tsx
-src/components/reports/ReportsDiscoveryBar.tsx
-src/components/reports/FeaturedCollections.tsx
-src/components/reports/ReportsGrid.tsx
-src/components/reports/ReportCard.tsx
-src/components/reports/ReportsEmptyState.tsx
-src/components/reports/PersonalizedShelf.tsx
-src/components/reports/ReportsFinalCta.tsx
-src/components/reports/ReportDetailHero.tsx
-src/components/reports/ReportSummaryPanel.tsx
-src/components/reports/ReportKeyHighlights.tsx
-src/components/reports/ReportPreview.tsx
-src/components/reports/ReportRelated.tsx
-src/components/reports/DownloadModal.tsx
-src/lib/reportsStorage.ts                            // saved/recent helpers
+src/pages/EventsIndex.tsx
+src/pages/EventDetail.tsx
+src/data/events.ts                                    // 14 mock events across all types + past
+src/components/events/EventsFlagshipHero.tsx
+src/components/events/EventsTypeTabs.tsx
+src/components/events/EventsDiscoveryBar.tsx
+src/components/events/EventsGrid.tsx
+src/components/events/EventCard.tsx                   // variant-driven
+src/components/events/EventsEmptyState.tsx
+src/components/events/PersonalizedEventsShelf.tsx
+src/components/events/EventsImpactStats.tsx
+src/components/events/PastEventsArchive.tsx
+src/components/events/EventsFinalCta.tsx
+src/components/events/RegisterEventModal.tsx
+src/components/events/CountdownTimer.tsx
+src/components/events/detail/EventDetailHero.tsx
+src/components/events/detail/EventAgendaTimeline.tsx
+src/components/events/detail/EventSpeakersGrid.tsx
+src/components/events/detail/EventSponsorsBand.tsx
+src/components/events/detail/EventFAQ.tsx
+src/components/events/detail/EventStickyRegister.tsx
+src/components/events/detail/WebinarDetail.tsx
+src/components/events/detail/SummitDetail.tsx
+src/components/events/detail/RoundtableDetail.tsx
+src/components/events/detail/ProgrammeDetail.tsx
+src/lib/eventsStorage.ts                              // saved/registered helpers
+src/assets/events-flagship-hero.jpg                   // generated (premium image, 1920x1080)
 ```
 
 Files edited: `src/App.tsx`, `src/components/wireframe/WireHeader.tsx`, `src/components/wireframe/WireFooter.tsx`, `scripts/generate-sitemap.ts`, `public/sitemap.xml`.
@@ -107,24 +121,25 @@ Files edited: `src/App.tsx`, `src/components/wireframe/WireHeader.tsx`, `src/com
 
 ## Visuals & Animation
 
-- Hero right side: layered SVG dashboard mock (bars + line + floating KPI tiles) with `animate-float` and reveal
-- Cards: hover lift (`-translate-y-1` + shadow), cover uses a generated gradient + topic icon (no real thumbnails needed)
-- Section reveals via `useReveal`
-- Key Highlights: 4 stat cards + 1 small Recharts bar/line chart (already in deps via shadcn `chart`)
-- Preview: scrollable mock pages, last 2 pages get `blur-sm` + lock overlay when `gated`
-- Final CTA: navy gradient with blueprint grid overlay (matches About/Contact final)
+- Flagship hero: generated cinematic conference photo + animated gradient + floating KPI tiles + countdown
+- Type tabs: pill highlight slides via CSS transform on active index
+- Cards: hover lift, type-tinted accent border (webinar=teal, roundtable=gold, summit=cii-red, programme=navy)
+- Impact: `useCountUp` (already in project)
+- Past archive: vertical timeline (desktop) / horizontal scroll (mobile), each node opens card with recording/proceeding links
+- Final CTA: navy gradient w/ blueprint grid overlay (matches site)
 
 ---
 
 ## Design Tokens
 
-All HSL from `index.css`: `navy-700/800`, `cii-red`, `neutral-50/150/200/700`, `--ring`. Buttons: `.btn-primary`, `.btn-outline`. Cards: `.cii-card`. Containers: `.container-cii`. Headings: `font-display`.
+All HSL from `index.css`: `navy-700/800`, `cii-red`, `neutral-50/150/200/700`. New per-type accents derived from existing palette (no new tokens). Buttons: `.btn-primary`, `.btn-outline`. Cards: `.cii-card`. Container: `.container-cii`. Headings: `font-display`.
 
 ---
 
 ## Out of Scope
 
-- No real PDF rendering — preview is a styled mock
-- No real auth — uses existing `mockAuth`
-- No backend persistence — saved/recent in localStorage
-- No new dependencies
+- No real registration/calendar backend — `.ics` "Add to calendar" is a static blob
+- No real auth — uses `mockAuth`
+- No video playback — "Watch Highlights" links to YouTube placeholder
+- No real maps — venue is a styled placeholder
+- No new heavy deps (Recharts/Embla already in project)

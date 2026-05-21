@@ -11,6 +11,8 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import ReportsIndex from "./pages/ReportsIndex";
 import ReportDetail from "./pages/ReportDetail";
+import EventsIndex from "./pages/EventsIndex";
+import EventDetail from "./pages/EventDetail";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Welcome from "./pages/auth/Welcome";
@@ -45,6 +47,8 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/reports" element={<ReportsIndex />} />
             <Route path="/reports/:slug" element={<ReportDetail />} />
+            <Route path="/events" element={<EventsIndex />} />
+            <Route path="/events/:slug" element={<EventDetail />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/welcome" element={<Welcome />} />
