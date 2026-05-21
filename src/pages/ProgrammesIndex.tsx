@@ -1,0 +1,153 @@
+import { useEffect, useMemo, useRef, useState } from "react";
+import { WireHeader } from "@/components/wireframe/WireHeader";
+import { WireFooter } from "@/components/wireframe/WireFooter";
+import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
+import { SEO } from "@/components/SEO";
+import { ProgrammesHero } from "@/components/programmes/ProgrammesHero";
+import { GuidedDiscovery } from "@/components/programmes/GuidedDiscovery";
+import { ProgrammeTypeTabs } from "@/components/programmes/ProgrammeTypeTabs";
+import {
+  ProgrammesDiscoveryBar,
+  emptyProgrammeFilters,
+  type ProgrammeFilters,
+} from "@/components/programmes/ProgrammesDiscoveryBar";
+import { ProgrammesGrid } from "@/components/programmes/ProgrammesGrid";
+import { FeaturedProgrammes } from "@/components/programmes/FeaturedProgrammes";
+import { LearningPathways } from "@/components/programmes/LearningPathways";
+import { ProgrammesImpactStats } from "@/components/programmes/ProgrammesImpactStats";
+import { PersonalizedProgrammesShelf } from "@/components/programmes/PersonalizedProgrammesShelf";
+import { ProgrammesFinalCta } from "@/components/programmes/ProgrammesFinalCta";
+import { ProgrammeRegisterModal } from "@/components/programmes/ProgrammeRegisterModal";
+import {
+  programmes,
+  programmeTypes,
+  type ProgrammeItem,
+  type ProgrammeQuickPickId,
+  type OutcomeId,
+} from "@/data/programmes";
+import { useMockAuth } from "@/hooks/useMockAuth";
+
+const quickPickFilter = (p: ProgrammeItem, pick: ProgrammeQuickPickId | null): boolean => {
+  if (!pick) return true;
+  switch (pick) {
+    case "msme-recommended": return p.segment === "MSME" || p.industry === "MSME";
+    case "beginner": return p.level === "Beginner" || p.level === "All Levels";
+    case "leadership": return p.type === "Leadership";
+    case "ai-automation": return /AI|Automation/i.test(p.technology);
+    case "sustainability": return /Sustain/i.test(p.technology);
+    case "factory-digitization": return /IoT|Industry 4\.0|Lean/i.test(p.technology);
+    default: return true;
+  }
+};
+
+const ProgrammesIndex = () => {
+  const user = useMockAuth();
+  const [type, setType] = useState<string>("All");
+  const [query, setQuery] = useState("");
+  const [filters, setFilters] = useState<ProgrammeFilters>(emptyProgrammeFilters);
+  const [quickPick, setQuickPick] = useState<ProgrammeQuickPickId | null>(null);
+  const [outcome, setOutcome] = useState<OutcomeId | null>(null);
+  const [modalProgramme, setModalProgramme] = useState<ProgrammeItem | null>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return programmes.filter((p) => {
+      if (type !== "All" && p.type !== type) return false;
+      if (q) {
+        const hay = `${p.title} ${p.summary} ${p.tagline} ${p.industry} ${p.technology} ${p.tags.join(" ")} ${p.faculty.map((f) => f.name).join(" ")}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      if (filters.industry !== "all" && p.industry !== filters.industry) return false;
+      if (filters.level !== "all" && p.level !== filters.level) return false;
+      if (filters.mode !== "all" && p.mode !== filters.mode) return false;
+      if (filters.segment !== "all" && p.segment !== filters.segment) return false;
+      if (filters.certification === "yes" && !p.certification) return false;
+      if (filters.certification === "no" && p.certification) return false;
+      if (!quickPickFilter(p, quickPick)) return false;
+      if (outcome && !p.outcomes.includes(outcome)) return false;
+      return true;
+    });
+  }, [type, query, filters, quickPick, outcome]);
+
+  const counts = useMemo(() => {
+    const c: Record<string, number> = { All: programmes.length };
+    programmeTypes.slice(1).forEach((t) => {
+      c[t] = programmes.filter((p) => p.type === t).length;
+    });
+    return c;
+  }, []);
+
+  const handleRegister = (p: ProgrammeItem) => setModalProgramme(p);
+  const handleOutcome = (id: OutcomeId | null) => {
+    setOutcome(id);
+    if (id) setTimeout(() => gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 150);
+  };
+  const scrollToGrid = () => gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const scrollToDiscovery = () => document.getElementById("guided-discovery")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const clearAll = () => {
+    setQuery(""); setFilters(emptyProgrammeFilters); setQuickPick(null); setType("All"); setOutcome(null);
+  };
+
+  useEffect(() => { /* scroll-into-view trigger handled in handleOutcome */ }, []);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "CII Smart Manufacturing — Programmes & Training",
+    itemListElement: programmes.slice(0, 8).map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `https://smartmfgindia-demo4.bluelup.in/programmes/${p.slug}`,
+      name: p.title,
+    })),
+  };
+
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Programmes & Training — Industry 4.0 Capability Building"
+        description="Expert-led programmes, workshops, certifications and bootcamps to build Industry 4.0 capability across India's manufacturing ecosystem."
+        jsonLd={jsonLd}
+      />
+      <WireHeader />
+      <main>
+        <ProgrammesHero onExplore={scrollToGrid} onFindPath={scrollToDiscovery} />
+        <GuidedDiscovery selected={outcome} onSelect={handleOutcome} />
+        <ProgrammeTypeTabs active={type} onChange={setType} counts={counts} />
+        <ProgrammesDiscoveryBar
+          query={query}
+          onQuery={setQuery}
+          filters={filters}
+          onFilters={setFilters}
+          quickPick={quickPick}
+          onQuickPick={setQuickPick}
+          onClear={clearAll}
+          resultCount={filtered.length}
+        />
+        <div ref={gridRef}>
+          <ProgrammesGrid
+            programmes={filtered}
+            onRegister={handleRegister}
+            onClear={clearAll}
+            recommendOutcome={outcome}
+          />
+        </div>
+        <FeaturedProgrammes />
+        <LearningPathways />
+        {user && <PersonalizedProgrammesShelf user={user} onRegister={handleRegister} />}
+        <ProgrammesImpactStats />
+        <ProgrammesFinalCta />
+      </main>
+      <WireFooter />
+      <WireChatbotFAB />
+      <ProgrammeRegisterModal
+        open={modalProgramme !== null}
+        onOpenChange={(v) => !v && setModalProgramme(null)}
+        programme={modalProgramme}
+      />
+    </div>
+  );
+};
+
+export default ProgrammesIndex;

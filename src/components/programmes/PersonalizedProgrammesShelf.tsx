@@ -27,7 +27,7 @@ export const PersonalizedProgrammesShelf = ({ user, onRegister }: Props) => {
     <section className="py-12 md:py-16 bg-[hsl(var(--neutral-50))] border-y border-[hsl(var(--neutral-150))]">
       <div className="container-cii space-y-10">
         <div>
-          <div className="section-eyebrow mb-2">For you, {user.firstName ?? user.email.split("@")[0]}</div>
+          <div className="section-eyebrow mb-2">For you, {user.name.split(" ")[0]}</div>
           <h2 className="font-display font-bold text-[22px] md:text-[28px] text-[hsl(var(--navy-900))]">
             Your learning dashboard
           </h2>
