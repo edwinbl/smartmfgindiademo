@@ -13,6 +13,8 @@ import ReportsIndex from "./pages/ReportsIndex";
 import ReportDetail from "./pages/ReportDetail";
 import EventsIndex from "./pages/EventsIndex";
 import EventDetail from "./pages/EventDetail";
+import ProgrammesIndex from "./pages/ProgrammesIndex";
+import ProgrammeDetail from "./pages/ProgrammeDetail";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Welcome from "./pages/auth/Welcome";
@@ -49,6 +51,8 @@ const App = () => (
             <Route path="/reports/:slug" element={<ReportDetail />} />
             <Route path="/events" element={<EventsIndex />} />
             <Route path="/events/:slug" element={<EventDetail />} />
+            <Route path="/programmes" element={<ProgrammesIndex />} />
+            <Route path="/programmes/:slug" element={<ProgrammeDetail />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/welcome" element={<Welcome />} />

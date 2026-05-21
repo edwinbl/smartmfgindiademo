@@ -22,16 +22,18 @@ const cols = [
     links: [
       { label: "About", url: "/about" },
       { label: "Readiness Assessment", url: "https://www.smartmfgindia.com/Assesment.aspx" },
-      { label: "Programmes & Training", url: "https://www.smartmfgindia.com/CapacityBuildings.aspx" },
       { label: "Contact", url: "/contact" },
     ],
   },
   {
-    title: "Solutions",
+    title: "Programmes",
     links: [
-      { label: "Case Studies", url: "https://www.smartmfgindia.com/CaseStudy.aspx" },
-      { label: "Reports & Insights", url: "/reports" },
-      { label: "E-Directory", url: "https://www.smartmfgindia.com/e-Directory.aspx" },
+      { label: "All Programmes", url: "/programmes" },
+      { label: "Workshops", url: "/programmes" },
+      { label: "Certifications", url: "/programmes" },
+      { label: "Bootcamps", url: "/programmes" },
+      { label: "Leadership", url: "/programmes" },
+      { label: "Webinars", url: "/programmes" },
     ],
   },
   {
@@ -41,15 +43,14 @@ const cols = [
       { label: "Flagship Summit", url: "/events/smart-mfg-summit-2026" },
       { label: "Webinars", url: "/events" },
       { label: "Roundtables", url: "/events" },
-      { label: "Programmes", url: "/events" },
     ],
   },
   {
-    title: "Account",
+    title: "Solutions",
     links: [
-      { label: "Login", url: "/login" },
-      { label: "Create Account", url: "/register" },
-      { label: "Forgot Password", url: "/forgot-password" },
+      { label: "Case Studies", url: "https://www.smartmfgindia.com/CaseStudy.aspx" },
+      { label: "Reports & Insights", url: "/reports" },
+      { label: "E-Directory", url: "https://www.smartmfgindia.com/e-Directory.aspx" },
     ],
   },
 ];
