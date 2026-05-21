@@ -18,27 +18,8 @@ const navLinks: NavLink[] = [
       { label: "E-Directory", href: "https://www.smartmfgindia.com/e-Directory.aspx" },
     ],
   },
-  {
-    label: "Insights",
-    href: "/reports",
-    children: [
-      { label: "All Reports", href: "/reports" },
-      { label: "MSME Insights", href: "/reports?topic=msme" },
-      { label: "Sustainability", href: "/reports?topic=sustainability" },
-      { label: "Smart Manufacturing", href: "/reports?topic=smart" },
-    ],
-  },
   { label: "Programmes & Training", href: "https://www.smartmfgindia.com/CapacityBuildings.aspx" },
-  {
-    label: "Events",
-    href: "#events",
-    children: [
-      { label: "Upcoming Events", href: "https://www.smartmfgindia.com/UpcommingEvent.aspx" },
-      { label: "Summit", href: "https://www.smartmfgindia.com/Event24.aspx" },
-      { label: "Roundtable", href: "https://www.smartmfgindia.com/Roundtable.aspx" },
-      { label: "Workshop", href: "https://www.smartmfgindia.com/WorkShop.aspx" },
-    ],
-  },
+  { label: "Events", href: "https://www.smartmfgindia.com/UpcommingEvent.aspx" },
 ];
 
 export const WireHeader = () => {
