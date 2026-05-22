@@ -25,7 +25,7 @@ const EventDetail = () => {
 
   if (!event) {
     return (
-      <div className="min-h-screen bg-background text-foreground flex flex-col">
+      <div className="min-h-dvh bg-background text-foreground flex flex-col">
         <WireHeader />
         <main className="flex-1 grid place-items-center py-24">
           <div className="text-center">
@@ -69,7 +69,7 @@ const EventDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-dvh bg-background text-foreground">
       <SEO
         title={`${event.title} — Events`}
         description={event.summary.slice(0, 155)}

@@ -82,7 +82,7 @@ const ReportsIndex = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-dvh bg-background text-foreground">
       <SEO
         title="Insights & Reports — Industry 4.0 Intelligence Hub"
         description="Explore curated research, playbooks and transformation insights to accelerate Industry 4.0 adoption across Indian manufacturing."

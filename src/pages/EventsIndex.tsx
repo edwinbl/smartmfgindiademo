@@ -117,7 +117,7 @@ const EventsIndex = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-dvh bg-background text-foreground">
       <SEO
         title="Events & Ecosystem — Summits, Webinars & Programmes"
         description="Discover India's premier Industry 4.0 summits, conferences, roundtables, webinars and programmes — curated by CII Smart Manufacturing."

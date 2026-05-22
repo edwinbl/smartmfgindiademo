@@ -34,7 +34,7 @@ const ProgrammeDetail = () => {
 
   if (!programme) {
     return (
-      <div className="min-h-screen bg-background text-foreground flex flex-col">
+      <div className="min-h-dvh bg-background text-foreground flex flex-col">
         <WireHeader />
         <main className="flex-1 grid place-items-center py-24">
           <div className="text-center">
@@ -69,7 +69,7 @@ const ProgrammeDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground pb-20 lg:pb-0">
+    <div className="min-h-dvh bg-background text-foreground pb-20 lg:pb-0">
       <SEO
         title={`${programme.title} — Programmes`}
         description={programme.summary.slice(0, 155)}
