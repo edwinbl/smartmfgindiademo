@@ -92,3 +92,6 @@ const ProgrammeCardImpl = ({ programme, onRegister, recommended }: Props) => {
     </article>
   );
 };
+
+export const ProgrammeCard = memo(ProgrammeCardImpl);
+
