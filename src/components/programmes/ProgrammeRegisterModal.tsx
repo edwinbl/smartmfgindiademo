@@ -13,6 +13,7 @@ import {
 import { StepProgress } from "@/components/auth/StepProgress";
 import { CheckCircle2, ArrowRight, ArrowLeft, CalendarPlus, X } from "lucide-react";
 import { programmesStorage, type RegistrationDraft } from "@/lib/programmesStorage";
+import { downloadIcs } from "@/lib/ics";
 import { toast } from "@/hooks/use-toast";
 import type { ProgrammeItem } from "@/data/programmes";
 
