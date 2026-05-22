@@ -1,26 +1,28 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { initGA, trackPageView } from "@/lib/analytics";
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import ReportsIndex from "./pages/ReportsIndex";
-import ReportDetail from "./pages/ReportDetail";
-import EventsIndex from "./pages/EventsIndex";
-import EventDetail from "./pages/EventDetail";
-import ProgrammesIndex from "./pages/ProgrammesIndex";
-import ProgrammeDetail from "./pages/ProgrammeDetail";
-import Login from "./pages/auth/Login";
-import Register from "./pages/auth/Register";
-import Welcome from "./pages/auth/Welcome";
-import ForgotPassword from "./pages/auth/ForgotPassword";
-import ResetPassword from "./pages/auth/ResetPassword";
-import NotFound from "./pages/NotFound";
+import { PageSkeleton } from "@/components/skeletons/PageSkeleton";
+
+const Index = lazy(() => import("./pages/Index"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const ReportsIndex = lazy(() => import("./pages/ReportsIndex"));
+const ReportDetail = lazy(() => import("./pages/ReportDetail"));
+const EventsIndex = lazy(() => import("./pages/EventsIndex"));
+const EventDetail = lazy(() => import("./pages/EventDetail"));
+const ProgrammesIndex = lazy(() => import("./pages/ProgrammesIndex"));
+const ProgrammeDetail = lazy(() => import("./pages/ProgrammeDetail"));
+const Login = lazy(() => import("./pages/auth/Login"));
+const Register = lazy(() => import("./pages/auth/Register"));
+const Welcome = lazy(() => import("./pages/auth/Welcome"));
+const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
+const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
@@ -35,6 +37,10 @@ const RouteTracker = () => {
   return null;
 };
 
+const withSuspense = (node: React.ReactNode, variant: "list" | "detail" | "form" | "default" = "default") => (
+  <Suspense fallback={<PageSkeleton variant={variant} />}>{node}</Suspense>
+);
+
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
@@ -44,22 +50,22 @@ const App = () => (
         <BrowserRouter>
           <RouteTracker />
           <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/reports" element={<ReportsIndex />} />
-            <Route path="/reports/:slug" element={<ReportDetail />} />
-            <Route path="/events" element={<EventsIndex />} />
-            <Route path="/events/:slug" element={<EventDetail />} />
-            <Route path="/programmes" element={<ProgrammesIndex />} />
-            <Route path="/programmes/:slug" element={<ProgrammeDetail />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/welcome" element={<Welcome />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/" element={withSuspense(<Index />)} />
+            <Route path="/about" element={withSuspense(<About />, "detail")} />
+            <Route path="/contact" element={withSuspense(<Contact />, "form")} />
+            <Route path="/reports" element={withSuspense(<ReportsIndex />, "list")} />
+            <Route path="/reports/:slug" element={withSuspense(<ReportDetail />, "detail")} />
+            <Route path="/events" element={withSuspense(<EventsIndex />, "list")} />
+            <Route path="/events/:slug" element={withSuspense(<EventDetail />, "detail")} />
+            <Route path="/programmes" element={withSuspense(<ProgrammesIndex />, "list")} />
+            <Route path="/programmes/:slug" element={withSuspense(<ProgrammeDetail />, "detail")} />
+            <Route path="/login" element={withSuspense(<Login />, "form")} />
+            <Route path="/register" element={withSuspense(<Register />, "form")} />
+            <Route path="/welcome" element={withSuspense(<Welcome />, "form")} />
+            <Route path="/forgot-password" element={withSuspense(<ForgotPassword />, "form")} />
+            <Route path="/reset-password" element={withSuspense(<ResetPassword />, "form")} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={withSuspense(<NotFound />)} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
