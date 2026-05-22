@@ -189,7 +189,14 @@ export const ProgrammeRegisterModal = ({ open, onOpenChange, programme, batchId 
                 </div>
                 <dl className="space-y-1.5 text-sm">
                   <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Programme</dt><dd className="font-semibold text-[hsl(var(--navy-900))] text-right">{programme.title}</dd></div>
-                  <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Starts</dt><dd className="font-semibold text-[hsl(var(--navy-900))]">{programme.startDate}</dd></div>
+                  {batch && (
+                    <>
+                      <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Batch</dt><dd className="font-semibold text-[hsl(var(--navy-900))] text-right">{batch.label}</dd></div>
+                      <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Dates</dt><dd className="font-semibold text-[hsl(var(--navy-900))]">{batch.dates}</dd></div>
+                      <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Location</dt><dd className="font-semibold text-[hsl(var(--navy-900))] text-right">{batch.location}</dd></div>
+                    </>
+                  )}
+                  {!batch && <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Starts</dt><dd className="font-semibold text-[hsl(var(--navy-900))]">{programme.startDate}</dd></div>}
                   <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Duration</dt><dd className="font-semibold text-[hsl(var(--navy-900))]">{programme.duration}</dd></div>
                   <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Mode</dt><dd className="font-semibold text-[hsl(var(--navy-900))]">{programme.mode}</dd></div>
                   {programme.fee && <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Fee</dt><dd className="font-semibold text-[hsl(var(--navy-900))]">{programme.fee}</dd></div>}
