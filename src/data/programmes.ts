@@ -64,7 +64,15 @@ export interface ProgrammeItem {
   faculty: ProgrammeFaculty[];
   faqs?: { q: string; a: string }[];
   accent: "navy" | "red" | "gold" | "teal" | "orange";
+  objective?: string[];
+  keyHighlights?: string[];
+  focusedDiscussions?: string[];
+  feeTable?: { segment: string; member: string; nonMember: string }[];
+  feeNote?: string;
+  contacts?: { name: string; email: string; phone: string }[];
+  registrationLinks?: { label: string; url?: string }[];
 }
+
 
 const F = {
   meera: { name: "Dr. Meera Iyer", role: "Director, Industry 4.0", org: "IIT Madras", initials: "MI" },
@@ -125,7 +133,11 @@ export const programmes: ProgrammeItem[] = [
       "Analyse technical, management and human-resource factors behind successful transformations",
       "Apply Japanese-style Industry 4.0 introduction methods to your own plant with expert advice",
     ],
-    audience: [persona.plant, persona.digital, persona.mgr],
+    audience: [
+      { persona: "Discrete Manufacturing", description: "Leaders and managers from discrete manufacturing operations (automotive, electronics, machinery)." },
+      { persona: "Process Manufacturing", description: "Decision-makers from process industries (chemicals, pharma, food, metals)." },
+      { persona: "Hybrid Manufacturing", description: "Cross-functional leaders from hybrid manufacturing environments combining batch and continuous flow." },
+    ],
     modules: [
       {
         label: "Day 1 · Morning",
@@ -187,16 +199,50 @@ export const programmes: ProgrammeItem[] = [
       },
     ],
     faculty: [
+      { name: "Mr Mitsuru Abe", role: "Representative Director / General Secretary", org: "AI & IoT Promotions Association / AOTS, Japan", initials: "MA" },
       { name: "CII Smart Manufacturing Faculty", role: "Programme Lead", org: "Confederation of Indian Industry", initials: "CII" },
-      { name: "JICA Expert Faculty", role: "Industry 4.0 Expert", org: "Japan International Cooperation Agency", initials: "JICA" },
-      { name: "AOTS Lead Trainer", role: "Lead Trainer", org: "The Association for Overseas Technical Cooperation and Sustainable Partnerships", initials: "AOTS" },
+      { name: "JICA Expert Faculty", role: "Industry 4.0 Expert", org: "Japan International Cooperation Agency", initials: "JI" },
+      { name: "AOTS Lead Trainer", role: "Lead Trainer", org: "Association for Overseas Technical Cooperation and Sustainable Partnerships", initials: "AO" },
     ],
     faqs: [
-      { q: "Who can attend?", a: "Plant heads, digital leaders and manufacturing managers from Indian companies looking to learn from Japanese Industry 4.0 best practices. Participation is by invitation." },
+      { q: "Who can attend?", a: "Participants from discrete, process and hybrid manufacturing industries. Each participant receives a certificate upon successful completion." },
       { q: "Are both batches identical?", a: "Yes — the Gurgaon (1–3 July 2024) and Mumbai (4–6 July 2024) batches follow the same 3-day structure including opening, lecture, case-study workshop, individual company analysis, plenary, and industry visit." },
+    ],
+    objective: [
+      "Provide participants with a thorough grasp of Industry 4.0 and a conceptual framework to lead their organization's transformation journey effectively.",
+      "Learn Industry 4.0 adoption and implementation strategies for systematically overcoming issues using advanced case studies.",
+    ],
+    keyHighlights: [
+      "Overview of Industry 4.0 in Japan / USA / Germany",
+      "Society 5.0 in Japan and overview of DX among major Japanese corporations",
+      "Success stories of Smart Factory & case study analysis",
+      "Overview of Cyber Physical Systems",
+      "Tools such as IoT, AI and other digital technologies used by global manufacturers",
+      "Role of IoT implementation, Big Data analysis, AI analysis and Kaizen case studies using data",
+    ],
+    focusedDiscussions: [
+      "Management factor analysis, technical factor analysis and analytical exercises using digital tools",
+      "Frameworks up to the introduction of Japanese-style Industry 4.0",
+      "How to introduce Japanese-style Industry 4.0 in your organization",
+      "Developing Industry 4.0 strategy with participant company case studies",
+      "Individual company in India case studies with advice for each participant",
+    ],
+    feeTable: [
+      { segment: "CII Members", member: "INR 45,000", nonMember: "INR 35,000" },
+      { segment: "CII Non-Members", member: "INR 50,000", nonMember: "INR 40,000" },
+    ],
+    feeNote: "Columns: Large & Medium-Scale Industries and PSUs · Micro & Small-Scale Industries. Early bird discount available till 31 May 2024. Plus taxes as applicable.",
+    contacts: [
+      { name: "Mr Abilash Uttam", email: "abilash.uttam@cii.in", phone: "+91-8121996942" },
+      { name: "Mr Saunak Banerjee", email: "saunak.banerjee@cii.in", phone: "+91-9999907564" },
+    ],
+    registrationLinks: [
+      { label: "Gurgaon (1–3 July 2024)" },
+      { label: "Mumbai (4–6 July 2024)" },
     ],
     accent: "navy",
   },
+
 
 
   // BOOTCAMP — MSME
