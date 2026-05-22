@@ -33,7 +33,7 @@ const Index = () => {
 
   return (
     <div
-      className="min-h-screen bg-background text-foreground"
+      className="min-h-dvh bg-background text-foreground"
       onClick={(e) => {
         const target = e.target as HTMLElement;
         const link = target.closest("a, button");

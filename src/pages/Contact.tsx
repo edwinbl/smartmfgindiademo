@@ -27,7 +27,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-dvh bg-background text-foreground">
       <SEO
         title="Contact Us — Connect with the Industry 4.0 Ecosystem"
         description="Reach the right CII Smart Manufacturing team — readiness assessments, partnerships, training, solution providers and platform support."

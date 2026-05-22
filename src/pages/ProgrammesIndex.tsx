@@ -104,7 +104,7 @@ const ProgrammesIndex = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-dvh bg-background text-foreground">
       <SEO
         title="Programmes & Training — Industry 4.0 Capability Building"
         description="Expert-led programmes, workshops, certifications and bootcamps to build Industry 4.0 capability across India's manufacturing ecosystem."

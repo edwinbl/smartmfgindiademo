@@ -21,14 +21,20 @@ export const ProgrammeGallery = ({ programme }: Props) => {
           <figure key={i} className="cii-card overflow-hidden group">
             <div className="relative aspect-[4/3] bg-[hsl(var(--neutral-100))]">
               {item.type === "video" ? (
-                <a href={item.url} target="_blank" rel="noreferrer" className="block w-full h-full">
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block w-full h-full"
+                  aria-label={`Play video: ${item.caption ?? programme.title}`}
+                >
                   <img
                     src={item.thumbnail ?? "/placeholder.svg"}
-                    alt={item.caption ?? "Programme video"}
+                    alt=""
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
-                  <span className="absolute inset-0 grid place-items-center bg-black/30 group-hover:bg-black/40 transition">
+                  <span aria-hidden className="absolute inset-0 grid place-items-center bg-black/30 group-hover:bg-black/40 transition">
                     <span className="h-12 w-12 rounded-full bg-white/95 grid place-items-center text-[hsl(var(--navy-900))]">
                       <Play className="h-5 w-5 ml-0.5" />
                     </span>

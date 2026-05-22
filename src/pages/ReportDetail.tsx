@@ -28,7 +28,7 @@ const ReportDetail = () => {
 
   if (!report) {
     return (
-      <div className="min-h-screen bg-background text-foreground flex flex-col">
+      <div className="min-h-dvh bg-background text-foreground flex flex-col">
         <WireHeader />
         <main className="flex-1 grid place-items-center py-24">
           <div className="text-center">
@@ -55,7 +55,7 @@ const ReportDetail = () => {
   const related = getRelated(report.slug);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-dvh bg-background text-foreground">
       <SEO
         title={`${report.title} — Insights`}
         description={report.summary.slice(0, 155)}

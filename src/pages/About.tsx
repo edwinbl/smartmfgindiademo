@@ -25,7 +25,7 @@ const About = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-dvh bg-background text-foreground">
       <SEO
         title="About — India's Industry 4.0 Movement"
         description="Discover how CII Smart Manufacturing accelerates India's Industry 4.0 transformation through ecosystem collaboration, guided journeys and proven solutions."
