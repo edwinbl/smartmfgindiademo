@@ -70,8 +70,6 @@ export const ProgrammeRegisterModal = ({ open, onOpenChange, programme, batchId 
     URL.revokeObjectURL(url);
   };
 
-  const inputCls =
-    "w-full h-11 px-3 rounded-sm border bg-white text-sm text-[hsl(var(--navy-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))]";
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
