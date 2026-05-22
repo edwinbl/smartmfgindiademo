@@ -71,6 +71,17 @@ export interface ProgrammeItem {
   feeNote?: string;
   contacts?: { name: string; email: string; phone: string }[];
   registrationLinks?: { label: string; url?: string }[];
+  batches?: {
+    id: string;
+    label: string;
+    dates: string;
+    location: string;
+    status?: ProgrammeStatus;
+    seats?: string;
+    url?: string;
+  }[];
+  gallery?: { type: "image" | "video"; url: string; thumbnail?: string; caption?: string }[];
+  testimonials?: { name: string; role: string; org: string; quote: string; avatar?: string }[];
 }
 
 
