@@ -83,7 +83,7 @@ export const ProgrammeRegisterModal = ({ open, onOpenChange, programme, batchId 
           <button
             onClick={() => onOpenChange(false)}
             className="absolute top-4 right-4 h-8 w-8 rounded-full grid place-items-center hover:bg-white/10"
-            aria-label="Close"
+            aria-label="Close registration dialog"
           >
             <X className="h-4 w-4" />
           </button>
@@ -124,72 +124,103 @@ export const ProgrammeRegisterModal = ({ open, onOpenChange, programme, batchId 
               </div>
             </div>
           ) : step === 1 ? (
-            <div className="space-y-3 animate-fade-in">
-              <input
-                className={inputCls}
-                placeholder="Full name"
-                value={draft.name ?? ""}
-                onChange={(e) => set("name", e.target.value)}
-                style={{ borderColor: "hsl(var(--neutral-200))" }}
-              />
-              <input
-                className={inputCls}
-                placeholder="Organization"
-                value={draft.organization ?? ""}
-                onChange={(e) => set("organization", e.target.value)}
-                style={{ borderColor: "hsl(var(--neutral-200))" }}
-              />
-              <input
-                type="email"
-                className={inputCls}
-                placeholder="Work email"
-                value={draft.email ?? ""}
-                onChange={(e) => set("email", e.target.value)}
-                style={{ borderColor: "hsl(var(--neutral-200))" }}
-              />
-              <input
-                className={inputCls}
-                placeholder="Mobile number"
-                value={draft.mobile ?? ""}
-                onChange={(e) => set("mobile", e.target.value)}
-                style={{ borderColor: "hsl(var(--neutral-200))" }}
-              />
+            <div className="space-y-4 animate-fade-in">
+              <div className="space-y-1.5">
+                <Label htmlFor="reg-name">Full name<span aria-hidden className="text-[hsl(var(--red-600))]"> *</span></Label>
+                <Input
+                  id="reg-name"
+                  placeholder="e.g. Priya Sharma"
+                  aria-required="true"
+                  value={draft.name ?? ""}
+                  onChange={(e) => set("name", e.target.value)}
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="reg-org">Organization<span aria-hidden className="text-[hsl(var(--red-600))]"> *</span></Label>
+                <Input
+                  id="reg-org"
+                  placeholder="Company or institution"
+                  aria-required="true"
+                  value={draft.organization ?? ""}
+                  onChange={(e) => set("organization", e.target.value)}
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="reg-email">Work email<span aria-hidden className="text-[hsl(var(--red-600))]"> *</span></Label>
+                <Input
+                  id="reg-email"
+                  type="email"
+                  inputMode="email"
+                  autoComplete="email"
+                  placeholder="name@company.com"
+                  aria-required="true"
+                  value={draft.email ?? ""}
+                  onChange={(e) => set("email", e.target.value)}
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="reg-mobile">Mobile number<span aria-hidden className="text-[hsl(var(--red-600))]"> *</span></Label>
+                <Input
+                  id="reg-mobile"
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  placeholder="+91 98765 43210"
+                  aria-required="true"
+                  value={draft.mobile ?? ""}
+                  onChange={(e) => set("mobile", e.target.value)}
+                />
+              </div>
             </div>
           ) : step === 2 ? (
-            <div className="space-y-3 animate-fade-in">
-              <input
-                className={inputCls}
-                placeholder="Industry (e.g. Automotive)"
-                value={draft.industry ?? ""}
-                onChange={(e) => set("industry", e.target.value)}
-                style={{ borderColor: "hsl(var(--neutral-200))" }}
-              />
-              <input
-                className={inputCls}
-                placeholder="Role / Designation"
-                value={draft.role ?? ""}
-                onChange={(e) => set("role", e.target.value)}
-                style={{ borderColor: "hsl(var(--neutral-200))" }}
-              />
-              <select
-                className={inputCls}
-                value={draft.orgSize ?? ""}
-                onChange={(e) => set("orgSize", e.target.value)}
-                style={{ borderColor: "hsl(var(--neutral-200))" }}
-              >
-                <option value="">Organization size</option>
-                <option>1–50</option>
-                <option>51–250</option>
-                <option>251–1,000</option>
-                <option>1,000+</option>
-              </select>
-              <textarea
-                className="w-full min-h-[88px] p-3 rounded-sm border bg-white text-sm"
-                placeholder="What do you want to take away? (optional)"
-                value={draft.objectives ?? ""}
-                onChange={(e) => set("objectives", e.target.value)}
-                style={{ borderColor: "hsl(var(--neutral-200))" }}
-              />
+            <div className="space-y-4 animate-fade-in">
+              <div className="space-y-1.5">
+                <Label htmlFor="reg-industry">Industry<span aria-hidden className="text-[hsl(var(--red-600))]"> *</span></Label>
+                <Input
+                  id="reg-industry"
+                  placeholder="e.g. Automotive"
+                  aria-required="true"
+                  value={draft.industry ?? ""}
+                  onChange={(e) => set("industry", e.target.value)}
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="reg-role">Role / Designation<span aria-hidden className="text-[hsl(var(--red-600))]"> *</span></Label>
+                <Input
+                  id="reg-role"
+                  placeholder="e.g. Plant Head"
+                  aria-required="true"
+                  value={draft.role ?? ""}
+                  onChange={(e) => set("role", e.target.value)}
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="reg-orgsize">Organization size<span aria-hidden className="text-[hsl(var(--red-600))]"> *</span></Label>
+                <Select
+                  value={draft.orgSize ?? ""}
+                  onValueChange={(v) => set("orgSize", v)}
+                >
+                  <SelectTrigger id="reg-orgsize" aria-required="true">
+                    <SelectValue placeholder="Select organization size" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1–50">1–50</SelectItem>
+                    <SelectItem value="51–250">51–250</SelectItem>
+                    <SelectItem value="251–1,000">251–1,000</SelectItem>
+                    <SelectItem value="1,000+">1,000+</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="reg-objectives">What do you want to take away? <span className="text-[hsl(var(--neutral-500))] font-normal">(optional)</span></Label>
+                <Textarea
+                  id="reg-objectives"
+                  className="min-h-[88px]"
+                  placeholder="Share your goals for this programme"
+                  value={draft.objectives ?? ""}
+                  onChange={(e) => set("objectives", e.target.value)}
+                />
+              </div>
             </div>
           ) : (
             <div className="space-y-4 animate-fade-in">
