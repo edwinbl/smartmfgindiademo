@@ -2,19 +2,32 @@ const SAVED_KEY = "programmes_saved";
 const REGISTERED_KEY = "programmes_registered";
 const DRAFT_PREFIX = "programmes_draft_";
 
+export const PROGRAMMES_STORAGE_EVENT = "programmes-storage-change";
+
 const read = (key: string): string[] => {
   try {
     const raw = localStorage.getItem(key);
-    return raw ? (JSON.parse(raw) as string[]) : [];
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter((v): v is string => typeof v === "string");
   } catch {
     return [];
+  }
+};
+
+const emit = () => {
+  try {
+    window.dispatchEvent(new Event(PROGRAMMES_STORAGE_EVENT));
+  } catch {
+    /* noop */
   }
 };
 
 const write = (key: string, value: string[]) => {
   try {
     localStorage.setItem(key, JSON.stringify(value));
-    window.dispatchEvent(new Event("programmes-storage-change"));
+    emit();
   } catch {
     /* noop */
   }
@@ -29,6 +42,7 @@ export interface RegistrationDraft {
   role?: string;
   orgSize?: string;
   objectives?: string;
+  step?: number;
 }
 
 export const programmesStorage = {
@@ -49,7 +63,9 @@ export const programmesStorage = {
   getDraft: (slug: string): RegistrationDraft => {
     try {
       const raw = localStorage.getItem(DRAFT_PREFIX + slug);
-      return raw ? (JSON.parse(raw) as RegistrationDraft) : {};
+      if (!raw) return {};
+      const parsed = JSON.parse(raw);
+      return parsed && typeof parsed === "object" ? (parsed as RegistrationDraft) : {};
     } catch {
       return {};
     }
@@ -57,6 +73,7 @@ export const programmesStorage = {
   saveDraft: (slug: string, draft: RegistrationDraft) => {
     try {
       localStorage.setItem(DRAFT_PREFIX + slug, JSON.stringify(draft));
+      emit();
     } catch {
       /* noop */
     }
@@ -64,41 +81,22 @@ export const programmesStorage = {
   clearDraft: (slug: string) => {
     try {
       localStorage.removeItem(DRAFT_PREFIX + slug);
+      emit();
     } catch {
       /* noop */
     }
   },
   subscribe: (cb: () => void) => {
     const handler = () => cb();
-    window.addEventListener("programmes-storage-change", handler);
+    window.addEventListener(PROGRAMMES_STORAGE_EVENT, handler);
     window.addEventListener("storage", handler);
     return () => {
-      window.removeEventListener("programmes-storage-change", handler);
+      window.removeEventListener(PROGRAMMES_STORAGE_EVENT, handler);
       window.removeEventListener("storage", handler);
     };
   },
 };
 
-export const accentBar = {
-  navy: "bg-[hsl(var(--navy-700))]",
-  red: "bg-[hsl(var(--red-600))]",
-  gold: "bg-[hsl(var(--saffron))]",
-  teal: "bg-[hsl(180_60%_38%)]",
-  orange: "bg-[hsl(var(--orange-500))]",
-} as const;
-
-export const accentText = {
-  navy: "text-[hsl(var(--navy-700))]",
-  red: "text-[hsl(var(--red-600))]",
-  gold: "text-[hsl(38_90%_42%)]",
-  teal: "text-[hsl(180_60%_30%)]",
-  orange: "text-[hsl(var(--orange-600))]",
-} as const;
-
-export const accentSoft = {
-  navy: "bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))]",
-  red: "bg-[hsl(var(--red-100))] text-[hsl(var(--red-700))]",
-  gold: "bg-[hsl(45_100%_94%)] text-[hsl(38_90%_38%)]",
-  teal: "bg-[hsl(180_55%_94%)] text-[hsl(180_60%_28%)]",
-  orange: "bg-[hsl(var(--orange-100))] text-[hsl(var(--orange-600))]",
-} as const;
+// Re-export accent maps for backwards compatibility. New code should import
+// from "@/lib/programmeAccents" directly.
+export { accentBar, accentText, accentSoft } from "./programmeAccents";
