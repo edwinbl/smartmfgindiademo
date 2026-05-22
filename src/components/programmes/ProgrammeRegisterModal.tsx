@@ -81,7 +81,9 @@ export const ProgrammeRegisterModal = ({ open, onOpenChange, programme, batchId 
             {programme.type}
           </div>
           <h2 className="font-display font-bold text-xl mt-1">{programme.title}</h2>
-          <div className="text-xs text-white/70 mt-1">{programme.startDate} · {programme.duration}</div>
+          <div className="text-xs text-white/70 mt-1">
+            {batch ? `${batch.label} · ${batch.dates}` : `${programme.startDate} · ${programme.duration}`}
+          </div>
         </div>
 
         <div className="p-6 space-y-5">
