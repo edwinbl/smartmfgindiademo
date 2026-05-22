@@ -12,6 +12,11 @@ import { WhoShouldAttend } from "@/components/programmes/detail/WhoShouldAttend"
 import { ProgrammeAgenda } from "@/components/programmes/detail/ProgrammeAgenda";
 import { ExpertsFaculty } from "@/components/programmes/detail/ExpertsFaculty";
 import { CertificationBlock } from "@/components/programmes/detail/CertificationBlock";
+import { ProgrammeObjective } from "@/components/programmes/detail/ProgrammeObjective";
+import { KeyHighlights } from "@/components/programmes/detail/KeyHighlights";
+import { FocusedDiscussions } from "@/components/programmes/detail/FocusedDiscussions";
+import { FeeTable } from "@/components/programmes/detail/FeeTable";
+import { ProgrammeContacts } from "@/components/programmes/detail/ProgrammeContacts";
 import { RelatedProgrammes } from "@/components/programmes/detail/RelatedProgrammes";
 import { MobileStickyRegister } from "@/components/programmes/detail/MobileStickyRegister";
 import { ProgrammesFinalCta } from "@/components/programmes/ProgrammesFinalCta";
