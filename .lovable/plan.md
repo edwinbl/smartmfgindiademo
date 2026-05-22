@@ -1,157 +1,52 @@
 
-# Programmes & Training — Implementation Plan
+## Goal
 
-A premium, mobile-first capability-building hub at `/programmes` (discovery + listing) and `/programmes/:slug` (type-aware detail), matching the existing navy + CII red, `.cii-card`, `.btn-primary/outline`, `useReveal` system. UI-only, mock data.
+Fill the programme currently shown at `/programmes/smart-manufacturing-leadership-programme` with real content from the PDF (CII–JICA–AOTS Training Programme on Industry 4.0).
 
----
+## Source content (from PDF)
 
-## Routes & Navigation
+- **Title**: CII–JICA–AOTS Training Programme on Industry 4.0
+- **Partners**: CII, JICA, AOTS
+- **Batches**: 1–3 July 2024, Gurgaon · 4–6 July 2024, Mumbai
+- **Format**: 3-day in-person workshop, two batches
+- **Structure per batch**:
+  - Day 1: Opening Ceremony → Lecture (Industry 4.0 in Japan/USA/Germany; success stories of large, mid-size and SME Japanese manufacturers; technical, management & HR factor analysis; India case studies) → Networking Lunch → Case study explanation, Japanese-style I4.0 introduction methods, group work, participant company case studies, discussion
+  - Day 2: Individual company analysis & advice → Networking Lunch → Whole group work (group presentations, plenary, Q&A, summary)
+  - Day 3: Industry Visit
 
-- `src/App.tsx`: add `/programmes` → `ProgrammesIndex`, `/programmes/:slug` → `ProgrammeDetail`
-- `WireHeader.tsx`: replace external Programmes link with internal `/programmes` (no dropdown)
-- `WireFooter.tsx`: Programmes column → `/programmes` + sub-links (Workshops, Certifications, Bootcamps, Leadership, Webinars)
-- `scripts/generate-sitemap.ts` + `public/sitemap.xml`: add `/programmes` + detail slugs
-- `<SEO />` on both pages, single H1, title <60c, meta <160c
+## Changes (single file)
 
----
+**`src/data/programmes.ts`** — update the `smart-manufacturing-leadership-programme` entry only (keep slug, accent, type so routing, nav, and styling don't break):
 
-## Page Structure — `/programmes`
+- `title`: "CII–JICA–AOTS Training Programme on Industry 4.0"
+- `tagline`: "A Japan-India executive workshop on Industry 4.0 adoption"
+- `summary`: rewrite to describe the joint CII / JICA / AOTS programme, Japanese best-practice transfer, individual company analysis and India case studies
+- `startDate`: "1–3 July 2024, Gurgaon · 4–6 July 2024, Mumbai"
+- `isoDate`: "2024-07-01T09:30:00+05:30"
+- `duration`: "3 days (two batches)"
+- `format`: "In-person · Gurgaon & Mumbai batches"
+- `mode`: "In-person"
+- `level`: "Advanced"
+- `industry`: "Manufacturing"
+- `segment`: "Enterprise"
+- `status`: "closed" (the dates have passed) — keep `registrationLabel` as "Express Interest"
+- `fee`: remove or set to "By invitation"
+- `seats`: "Two batches · Gurgaon & Mumbai"
+- `highlights`: Duration "3 days", Batches "Gurgaon · Mumbai", Partners "CII · JICA · AOTS", Format "In-person workshop"
+- `learningOutcomes`: 4 items derived from the lecture topics (Japanese I4.0 models, technical/management/HR factor analysis, individual company analysis, applying Japanese-style I4.0 to Indian plants)
+- `audience`: plant heads, digital leaders, manufacturing managers (keep existing personas)
+- `modules`: replace 6 modules with the 6 real sessions across the 3 days, e.g.
+  - "Day 1 · Morning — Opening & Lecture: Industry 4.0 in Japan / USA / Germany" (topics: large/mid/SME Japanese success stories, technical/management/HR factor analysis, India case studies)
+  - "Day 1 · Afternoon — Case study workshop & group work" (topics: Japanese-style I4.0 introduction methods, framework group work, participant case studies, discussion)
+  - "Day 2 · Morning — Individual company analysis & advice"
+  - "Day 2 · Afternoon — Whole group work: presentations, plenary, Q&A, summary"
+  - "Day 3 — Industry visit"
+  - "Batch 2 — Mumbai (4–6 July 2024): same 3-day structure"
+- `faculty`: replace with three partner placeholders representing CII, JICA, AOTS faculty (e.g. "CII Smart Manufacturing Faculty", "JICA Expert Faculty", "AOTS Lead Trainer") using the existing `ProgrammeFaculty` shape — no changes to the schema
+- `faqs`: 2 entries — "Who can attend?" and "Are both batches identical?" based on PDF content
 
-```text
-ProgrammesHero              full-bleed immersive hero w/ generated training image,
-                            motion overlay, headline, dual CTA, floating learning cards
-GuidedDiscovery             "What are you looking to achieve?" — 7 outcome cards
-                            (Digital Transformation, Op Efficiency, Smart Factory,
-                            Sustainability, Workforce Upskilling, MSME, Leadership).
-                            Selecting one sets a recommendation filter + scrolls to grid
-ProgrammeTypeTabs           sticky pill nav (All / Workshops / Certifications / Bootcamps
-                            / Leadership / Webinars / Industry Sessions), swipeable
-ProgrammesDiscoveryBar      smart filter chips (Industry, Skill Level, Format, Mode,
-                            Duration, Certification, Segment, Tech Focus) + quick
-                            pills (MSMEs, Beginner, Leadership, AI, Sustainability,
-                            Factory Digitization)
-ProgrammesGrid              responsive 3/2/1 grid of ProgrammeCard
-FeaturedProgrammes          editorial 2-up large cards / carousel for flagship
-                            (Smart Mfg Leadership, MSME Bootcamp, Sustainability)
-LearningPathways            3 outcome-based pathway tracks (visual stepper)
-ImpactStats                 reuse useCountUp — learners trained, certificates, partners
-PersonalizedShelf           logged-in only (useMockAuth) — "Recommended" + "Registered"
-ProgrammesFinalCta          "Build the Capabilities for Industry 4.0 Transformation"
-WireFooter
-```
+## Out of scope
 
-### ProgrammeCard
-Thumbnail/gradient header w/ type badge → title → outcome summary → meta row (duration, format, level, start date) → outcome tags chips → CTA `Explore Programme`. Hover lift, type-tinted accent border, optional "Recommended for you" ribbon when discovery filter matches.
-
----
-
-## Page Structure — `/programmes/:slug`
-
-Single shared template — sections conditionally render based on `programme.type`:
-
-```text
-ProgrammeDetailHero         category badge, title, meta strip, dual CTA (Register / Brochure)
-StickyActionPanel (desktop) right-side card: fee/status, seats, start, duration, Register CTA
-ProgrammeOverview           what it is, why it matters, industry relevance
-LearningOutcomes            capability cards grid
-WhoShouldAttend             audience persona cards
-ProgrammeAgenda             timeline / modular session cards (hidden for short webinars)
-ExpertsFaculty              speaker/mentor grid (reuse EventSpeakersGrid pattern)
-CertificationBlock          certificate, badge, LinkedIn-shareable note (hidden for webinars)
-RelatedProgrammes           similar + next-level pathway cards
-MobileStickyRegister        mobile-only sticky bottom CTA
-```
-
-Type-awareness (single template, conditional sections):
-- Webinar → hide CertificationBlock + StickyActionPanel fee, compact agenda
-- Bootcamp / Certification → full agenda + cohort dates emphasis
-- Leadership → faculty + outcomes prominent, fee shown
-- Workshop / Industry Session → compact, focus on outcomes + agenda
-
----
-
-## 3-Step Registration Modal
-
-`ProgrammeRegisterModal` — multi-step with auto-save to `localStorage`:
-
-```text
-Step 1  Basic Info        Name, Organization, Email, Mobile
-Step 2  Professional      Industry, Role, Org Size, Learning Objectives
-Step 3  Confirmation      Programme summary, "Add to Calendar" (.ics blob),
-                          "Seat Reserved" success state, fit indicator
-```
-
-- `StepProgress` header (reuse existing `src/components/auth/StepProgress.tsx` pattern)
-- Inline validation, smooth transitions (fade/slide)
-- Persists draft per-slug in `localStorage`; cleared on submit
-- Signed-out users: same flow (no auth gate) — registration stored in `programmesStorage`
-
----
-
-## Discovery Behavior (client-side)
-
-State in `ProgrammesIndex.tsx`:
-```text
-{ type, outcome (from GuidedDiscovery), filters: { industry, level, format, mode,
-  duration, certification, segment, technology }, quickPick }
-```
-- Outcome card click → sets `outcome`, smooth-scrolls to grid, shows "Recommended for [outcome]" banner with clear button
-- Type pills set primary filter; chips refine
-- Mobile: "Filters" button → bottom drawer
-- Empty state component
-
----
-
-## Files to Create
-
-```text
-src/pages/ProgrammesIndex.tsx
-src/pages/ProgrammeDetail.tsx
-src/data/programmes.ts                                 // 12–14 mock programmes across all types
-src/lib/programmesStorage.ts                           // saved/registered + draft persistence
-src/assets/programmes-hero.jpg                         // generated premium image (1920x1080)
-
-src/components/programmes/ProgrammesHero.tsx
-src/components/programmes/GuidedDiscovery.tsx
-src/components/programmes/ProgrammeTypeTabs.tsx
-src/components/programmes/ProgrammesDiscoveryBar.tsx
-src/components/programmes/ProgrammesGrid.tsx
-src/components/programmes/ProgrammeCard.tsx
-src/components/programmes/ProgrammesEmptyState.tsx
-src/components/programmes/FeaturedProgrammes.tsx
-src/components/programmes/LearningPathways.tsx
-src/components/programmes/ProgrammesImpactStats.tsx
-src/components/programmes/PersonalizedProgrammesShelf.tsx
-src/components/programmes/ProgrammesFinalCta.tsx
-src/components/programmes/ProgrammeRegisterModal.tsx   // 3-step flow
-
-src/components/programmes/detail/ProgrammeDetailHero.tsx
-src/components/programmes/detail/StickyActionPanel.tsx
-src/components/programmes/detail/ProgrammeOverview.tsx
-src/components/programmes/detail/LearningOutcomes.tsx
-src/components/programmes/detail/WhoShouldAttend.tsx
-src/components/programmes/detail/ProgrammeAgenda.tsx
-src/components/programmes/detail/ExpertsFaculty.tsx
-src/components/programmes/detail/CertificationBlock.tsx
-src/components/programmes/detail/RelatedProgrammes.tsx
-src/components/programmes/detail/MobileStickyRegister.tsx
-```
-
-Files edited: `src/App.tsx`, `src/components/wireframe/WireHeader.tsx`, `src/components/wireframe/WireFooter.tsx`, `scripts/generate-sitemap.ts`, `public/sitemap.xml`.
-
----
-
-## Design Tokens
-
-All HSL from `index.css`: `navy-700/800/900`, `cii-red`, `neutral-*`, `orange-*`. Per-type accents derived from existing palette (workshop=teal, certification=cii-red, bootcamp=orange, leadership=navy, webinar=neutral). Buttons `.btn-primary/.btn-outline`, cards `.cii-card`, container `.container-cii`, headings `font-display`.
-
-Animations: `animate-fade-in`, `useReveal`, hover lift, sticky pill slide, scroll-triggered counters. No new deps.
-
----
-
-## Out of Scope
-
-- No real registration/payment backend — `.ics` is a static blob
-- No real auth — uses `mockAuth`
-- No real video/maps
-- No new heavy deps
+- No schema changes, no new files, no routing or component changes.
+- Other programmes, hero, and nav remain untouched.
+- Not downloading or hosting the PDF logos.
