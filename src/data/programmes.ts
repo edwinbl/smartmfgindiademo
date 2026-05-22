@@ -64,7 +64,15 @@ export interface ProgrammeItem {
   faculty: ProgrammeFaculty[];
   faqs?: { q: string; a: string }[];
   accent: "navy" | "red" | "gold" | "teal" | "orange";
+  objective?: string[];
+  keyHighlights?: string[];
+  focusedDiscussions?: string[];
+  feeTable?: { segment: string; member: string; nonMember: string }[];
+  feeNote?: string;
+  contacts?: { name: string; email: string; phone: string }[];
+  registrationLinks?: { label: string; url?: string }[];
 }
+
 
 const F = {
   meera: { name: "Dr. Meera Iyer", role: "Director, Industry 4.0", org: "IIT Madras", initials: "MI" },

@@ -1,52 +1,44 @@
 
 ## Goal
 
-Fill the programme currently shown at `/programmes/smart-manufacturing-leadership-programme` with real content from the PDF (CII–JICA–AOTS Training Programme on Industry 4.0).
+Merge the CII–JICA–AOTS flyer content into the same programme entry (`/programmes/smart-manufacturing-leadership-programme`) and render the new structured fields in the detail page.
 
-## Source content (from PDF)
+## Schema additions (`src/data/programmes.ts`)
 
-- **Title**: CII–JICA–AOTS Training Programme on Industry 4.0
-- **Partners**: CII, JICA, AOTS
-- **Batches**: 1–3 July 2024, Gurgaon · 4–6 July 2024, Mumbai
-- **Format**: 3-day in-person workshop, two batches
-- **Structure per batch**:
-  - Day 1: Opening Ceremony → Lecture (Industry 4.0 in Japan/USA/Germany; success stories of large, mid-size and SME Japanese manufacturers; technical, management & HR factor analysis; India case studies) → Networking Lunch → Case study explanation, Japanese-style I4.0 introduction methods, group work, participant company case studies, discussion
-  - Day 2: Individual company analysis & advice → Networking Lunch → Whole group work (group presentations, plenary, Q&A, summary)
-  - Day 3: Industry Visit
+Add optional fields to `ProgrammeItem` (non-breaking — existing entries unaffected):
 
-## Changes (single file)
+- `objective?: string[]` — 2 objective bullets from flyer
+- `keyHighlights?: string[]` — 6 bullets ("Overview of Industry 4.0 in Japan/USA/Germany", "Society 5.0…", "Smart Factory case studies", "Cyber Physical System", "IoT/AI tools used by global companies", "IoT, Big Data, AI & Kaizen case studies")
+- `focusedDiscussions?: string[]` — 5 bullets
+- `feeTable?: { segment: string; member: string; nonMember: string }[]` — Large & Medium / PSU vs Micro & Small rows + early-bird note
+- `feeNote?: string` — "Early bird discount available till 31 May 2024. Plus taxes as applicable."
+- `contacts?: { name: string; email: string; phone: string }[]` — Abilash Uttam, Saunak Banerjee
+- `registrationLinks?: { label: string; url?: string }[]` — Gurgaon & Mumbai placeholders (QR-only in flyer, no URL captured)
 
-**`src/data/programmes.ts`** — update the `smart-manufacturing-leadership-programme` entry only (keep slug, accent, type so routing, nav, and styling don't break):
+## Data updates (same entry only)
 
-- `title`: "CII–JICA–AOTS Training Programme on Industry 4.0"
-- `tagline`: "A Japan-India executive workshop on Industry 4.0 adoption"
-- `summary`: rewrite to describe the joint CII / JICA / AOTS programme, Japanese best-practice transfer, individual company analysis and India case studies
-- `startDate`: "1–3 July 2024, Gurgaon · 4–6 July 2024, Mumbai"
-- `isoDate`: "2024-07-01T09:30:00+05:30"
-- `duration`: "3 days (two batches)"
-- `format`: "In-person · Gurgaon & Mumbai batches"
-- `mode`: "In-person"
-- `level`: "Advanced"
-- `industry`: "Manufacturing"
-- `segment`: "Enterprise"
-- `status`: "closed" (the dates have passed) — keep `registrationLabel` as "Express Interest"
-- `fee`: remove or set to "By invitation"
-- `seats`: "Two batches · Gurgaon & Mumbai"
-- `highlights`: Duration "3 days", Batches "Gurgaon · Mumbai", Partners "CII · JICA · AOTS", Format "In-person workshop"
-- `learningOutcomes`: 4 items derived from the lecture topics (Japanese I4.0 models, technical/management/HR factor analysis, individual company analysis, applying Japanese-style I4.0 to Indian plants)
-- `audience`: plant heads, digital leaders, manufacturing managers (keep existing personas)
-- `modules`: replace 6 modules with the 6 real sessions across the 3 days, e.g.
-  - "Day 1 · Morning — Opening & Lecture: Industry 4.0 in Japan / USA / Germany" (topics: large/mid/SME Japanese success stories, technical/management/HR factor analysis, India case studies)
-  - "Day 1 · Afternoon — Case study workshop & group work" (topics: Japanese-style I4.0 introduction methods, framework group work, participant case studies, discussion)
-  - "Day 2 · Morning — Individual company analysis & advice"
-  - "Day 2 · Afternoon — Whole group work: presentations, plenary, Q&A, summary"
-  - "Day 3 — Industry visit"
-  - "Batch 2 — Mumbai (4–6 July 2024): same 3-day structure"
-- `faculty`: replace with three partner placeholders representing CII, JICA, AOTS faculty (e.g. "CII Smart Manufacturing Faculty", "JICA Expert Faculty", "AOTS Lead Trainer") using the existing `ProgrammeFaculty` shape — no changes to the schema
-- `faqs`: 2 entries — "Who can attend?" and "Are both batches identical?" based on PDF content
+- Update `audience` to: "Discrete Manufacturing", "Process Manufacturing", "Hybrid Manufacturing" (replace existing personas for this programme only — use inline objects matching `ProgrammeAudience` shape).
+- Add faculty: **Mr Mitsuru Abe** — "Representative Director / General Secretary, AI & IoT Promotions Association / AOTS, Japan" (initials `MA`). Keep existing 3 partner entries.
+- Populate new fields above with flyer text.
+- Keep title, dates, modules, slug, accent unchanged (already loaded from previous edit).
+
+## UI rendering (detail page)
+
+Create small, focused additions under `src/components/programmes/detail/`:
+
+1. **`ProgrammeObjective.tsx`** — renders `objective` as a bulleted intro block (only if present). Added in `ProgrammeDetail.tsx` right after `ProgrammeOverview`.
+2. **`KeyHighlights.tsx`** — two-column grid card list for `keyHighlights` (only if present). Placed before `LearningOutcomes`.
+3. **`FocusedDiscussions.tsx`** — checklist-style card list for `focusedDiscussions`. Placed after `LearningOutcomes`.
+4. **`FeeTable.tsx`** — responsive table comparing CII Members vs Non-Members across the two industry segments; shows `feeNote` underneath. Placed after `CertificationBlock`.
+5. **`ProgrammeContacts.tsx`** — small contacts card (name, email link, phone link). Placed at the end of the left column.
+
+Each new component is conditional (renders nothing if its source field is missing), so all other programmes remain visually identical.
+
+`ProgrammeDetail.tsx` — import + render the new sections inside the existing left column in this order:
+`Overview → Objective → KeyHighlights → LearningOutcomes → FocusedDiscussions → WhoShouldAttend → Agenda → Faculty → Certification → FeeTable → Contacts`.
 
 ## Out of scope
 
-- No schema changes, no new files, no routing or component changes.
-- Other programmes, hero, and nav remain untouched.
-- Not downloading or hosting the PDF logos.
+- No nav, routing, or other programmes touched.
+- QR images from the flyer not embedded (registration URLs unknown).
+- No backend / form changes — registration modal stays as-is.
