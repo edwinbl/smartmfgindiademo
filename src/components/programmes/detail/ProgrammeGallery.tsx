@@ -25,15 +25,19 @@ export const ProgrammeGallery = ({ programme }: Props) => {
                   href={item.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="block w-full h-full"
-                  aria-label={`Play video: ${item.caption ?? programme.title}`}
+                  className="block w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--navy-600))]"
+                  aria-label={`Play video: ${item.caption ?? programme.title} (opens in new tab)`}
                 >
-                  <img
-                    src={item.thumbnail ?? "/placeholder.svg"}
-                    alt=""
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
+                  {item.thumbnail ? (
+                    <img
+                      src={item.thumbnail}
+                      alt=""
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div aria-hidden className="w-full h-full bg-[hsl(var(--neutral-100))]" />
+                  )}
                   <span aria-hidden className="absolute inset-0 grid place-items-center bg-black/30 group-hover:bg-black/40 transition">
                     <span className="h-12 w-12 rounded-full bg-white/95 grid place-items-center text-[hsl(var(--navy-900))]">
                       <Play className="h-5 w-5 ml-0.5" />
