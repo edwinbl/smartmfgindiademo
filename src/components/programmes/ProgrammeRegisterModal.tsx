@@ -31,6 +31,7 @@ export const ProgrammeRegisterModal = ({ open, onOpenChange, programme, batchId 
   }, [draft, programme, open]);
 
   if (!programme) return null;
+  const batch = batchId ? programme.batches?.find((b) => b.id === batchId) : undefined;
 
   const set = <K extends keyof RegistrationDraft>(k: K, v: RegistrationDraft[K]) =>
     setDraft((d) => ({ ...d, [k]: v }));
