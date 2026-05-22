@@ -10,9 +10,10 @@ interface Props {
   open: boolean;
   onOpenChange: (v: boolean) => void;
   programme: ProgrammeItem | null;
+  batchId?: string;
 }
 
-export const ProgrammeRegisterModal = ({ open, onOpenChange, programme }: Props) => {
+export const ProgrammeRegisterModal = ({ open, onOpenChange, programme, batchId }: Props) => {
   const [step, setStep] = useState(1);
   const [draft, setDraft] = useState<RegistrationDraft>({});
   const [submitted, setSubmitted] = useState(false);
