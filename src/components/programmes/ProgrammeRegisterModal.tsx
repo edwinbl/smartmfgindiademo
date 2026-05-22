@@ -10,9 +10,10 @@ interface Props {
   open: boolean;
   onOpenChange: (v: boolean) => void;
   programme: ProgrammeItem | null;
+  batchId?: string;
 }
 
-export const ProgrammeRegisterModal = ({ open, onOpenChange, programme }: Props) => {
+export const ProgrammeRegisterModal = ({ open, onOpenChange, programme, batchId }: Props) => {
   const [step, setStep] = useState(1);
   const [draft, setDraft] = useState<RegistrationDraft>({});
   const [submitted, setSubmitted] = useState(false);
@@ -30,6 +31,7 @@ export const ProgrammeRegisterModal = ({ open, onOpenChange, programme }: Props)
   }, [draft, programme, open]);
 
   if (!programme) return null;
+  const batch = batchId ? programme.batches?.find((b) => b.id === batchId) : undefined;
 
   const set = <K extends keyof RegistrationDraft>(k: K, v: RegistrationDraft[K]) =>
     setDraft((d) => ({ ...d, [k]: v }));
@@ -79,7 +81,9 @@ export const ProgrammeRegisterModal = ({ open, onOpenChange, programme }: Props)
             {programme.type}
           </div>
           <h2 className="font-display font-bold text-xl mt-1">{programme.title}</h2>
-          <div className="text-xs text-white/70 mt-1">{programme.startDate} · {programme.duration}</div>
+          <div className="text-xs text-white/70 mt-1">
+            {batch ? `${batch.label} · ${batch.dates}` : `${programme.startDate} · ${programme.duration}`}
+          </div>
         </div>
 
         <div className="p-6 space-y-5">
@@ -185,7 +189,14 @@ export const ProgrammeRegisterModal = ({ open, onOpenChange, programme }: Props)
                 </div>
                 <dl className="space-y-1.5 text-sm">
                   <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Programme</dt><dd className="font-semibold text-[hsl(var(--navy-900))] text-right">{programme.title}</dd></div>
-                  <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Starts</dt><dd className="font-semibold text-[hsl(var(--navy-900))]">{programme.startDate}</dd></div>
+                  {batch && (
+                    <>
+                      <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Batch</dt><dd className="font-semibold text-[hsl(var(--navy-900))] text-right">{batch.label}</dd></div>
+                      <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Dates</dt><dd className="font-semibold text-[hsl(var(--navy-900))]">{batch.dates}</dd></div>
+                      <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Location</dt><dd className="font-semibold text-[hsl(var(--navy-900))] text-right">{batch.location}</dd></div>
+                    </>
+                  )}
+                  {!batch && <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Starts</dt><dd className="font-semibold text-[hsl(var(--navy-900))]">{programme.startDate}</dd></div>}
                   <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Duration</dt><dd className="font-semibold text-[hsl(var(--navy-900))]">{programme.duration}</dd></div>
                   <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Mode</dt><dd className="font-semibold text-[hsl(var(--navy-900))]">{programme.mode}</dd></div>
                   {programme.fee && <div className="flex justify-between"><dt className="text-[hsl(var(--neutral-500))]">Fee</dt><dd className="font-semibold text-[hsl(var(--navy-900))]">{programme.fee}</dd></div>}
