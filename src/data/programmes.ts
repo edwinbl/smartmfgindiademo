@@ -251,6 +251,46 @@ export const programmes: ProgrammeItem[] = [
       { label: "Gurgaon (1–3 July 2024)" },
       { label: "Mumbai (4–6 July 2024)" },
     ],
+    batches: [
+      {
+        id: "gurgaon-jul-2024",
+        label: "Batch 1 · Gurgaon",
+        dates: "1–3 July 2024",
+        location: "CII Northern Region HQ, Gurgaon",
+        status: "closed",
+        seats: "Closed",
+      },
+      {
+        id: "mumbai-jul-2024",
+        label: "Batch 2 · Mumbai",
+        dates: "4–6 July 2024",
+        location: "CII Western Region, Mumbai",
+        status: "closed",
+        seats: "Closed",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Anand Subramanian",
+        role: "VP Manufacturing",
+        org: "Tier-1 Auto Supplier",
+        quote:
+          "The Japanese-style case studies and individual company analysis gave us a clear, sequenced playbook for our Industry 4.0 rollout.",
+      },
+      {
+        name: "Reema Shetty",
+        role: "Head of Operations",
+        org: "Process Manufacturing Co.",
+        quote:
+          "The plenary and group work were the most useful sessions — we left with prioritised, expert-vetted next steps for our plant.",
+      },
+    ],
+    gallery: [
+      { type: "image", url: "/placeholder.svg", caption: "Opening ceremony — Gurgaon batch" },
+      { type: "image", url: "/placeholder.svg", caption: "Group work with post-its and case studies" },
+      { type: "image", url: "/placeholder.svg", caption: "Industry visit — Day 3" },
+      { type: "image", url: "/placeholder.svg", caption: "Mumbai batch plenary presentations" },
+    ],
     accent: "navy",
   },
 
