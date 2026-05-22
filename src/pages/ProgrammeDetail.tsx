@@ -64,11 +64,17 @@ const ProgrammeDetail = () => {
           <div className="container-cii grid lg:grid-cols-12 gap-10">
             <div className="lg:col-span-8 space-y-12">
               <ProgrammeOverview programme={programme} />
+              <ProgrammeObjective programme={programme} />
+              <KeyHighlights programme={programme} />
               <LearningOutcomes programme={programme} />
+              <FocusedDiscussions programme={programme} />
               <WhoShouldAttend programme={programme} />
               <ProgrammeAgenda programme={programme} />
               <ExpertsFaculty programme={programme} />
               {programme.certification && !isShort && <CertificationBlock programme={programme} />}
+              <FeeTable programme={programme} />
+              <ProgrammeContacts programme={programme} />
+
             </div>
             <div className="lg:col-span-4">
               <StickyActionPanel programme={programme} onRegister={onRegister} />
