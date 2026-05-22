@@ -1,5 +1,15 @@
 import { useEffect, useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { StepProgress } from "@/components/auth/StepProgress";
 import { CheckCircle2, ArrowRight, ArrowLeft, CalendarPlus, X } from "lucide-react";
 import { programmesStorage, type RegistrationDraft } from "@/lib/programmesStorage";
