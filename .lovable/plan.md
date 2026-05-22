@@ -1,44 +1,65 @@
+# Accessibility Audit — Programmes module
 
-## Goal
+Focused audit of the recently built Programmes pages and shared chrome (header/footer). HTML lang, single `<main>` per route, header/footer landmarks, primary nav `aria-label`, and hero/logo `alt` text all look good.
 
-Merge the CII–JICA–AOTS flyer content into the same programme entry (`/programmes/smart-manufacturing-leadership-programme`) and render the new structured fields in the detail page.
+## Findings
 
-## Schema additions (`src/data/programmes.ts`)
+### Critical (blocks assistive tech users)
 
-Add optional fields to `ProgrammeItem` (non-breaking — existing entries unaffected):
+1. **Register modal form fields have no labels** — `src/components/programmes/ProgrammeRegisterModal.tsx`
+   All inputs (Full name, Organization, Work email, Mobile, Industry, Role, Org size `<select>`, Objectives `<textarea>`) rely on `placeholder` only. Screen readers announce these as unlabeled. Placeholders also disappear on input, hurting cognition.
 
-- `objective?: string[]` — 2 objective bullets from flyer
-- `keyHighlights?: string[]` — 6 bullets ("Overview of Industry 4.0 in Japan/USA/Germany", "Society 5.0…", "Smart Factory case studies", "Cyber Physical System", "IoT/AI tools used by global companies", "IoT, Big Data, AI & Kaizen case studies")
-- `focusedDiscussions?: string[]` — 5 bullets
-- `feeTable?: { segment: string; member: string; nonMember: string }[]` — Large & Medium / PSU vs Micro & Small rows + early-bird note
-- `feeNote?: string` — "Early bird discount available till 31 May 2024. Plus taxes as applicable."
-- `contacts?: { name: string; email: string; phone: string }[]` — Abilash Uttam, Saunak Banerjee
-- `registrationLinks?: { label: string; url?: string }[]` — Gurgaon & Mumbai placeholders (QR-only in flyer, no URL captured)
+2. **Register modal uses native `<select>` and `<input>` instead of design-system primitives**
+   These bypass shadcn's Label/Input/Select wiring used elsewhere (e.g. `ProgrammesDiscoveryBar` uses shadcn `Select` correctly). Inconsistent focus rings and no `htmlFor` association.
 
-## Data updates (same entry only)
+### Warning (degrades experience)
 
-- Update `audience` to: "Discrete Manufacturing", "Process Manufacturing", "Hybrid Manufacturing" (replace existing personas for this programme only — use inline objects matching `ProgrammeAudience` shape).
-- Add faculty: **Mr Mitsuru Abe** — "Representative Director / General Secretary, AI & IoT Promotions Association / AOTS, Japan" (initials `MA`). Keep existing 3 partner entries.
-- Populate new fields above with flyer text.
-- Keep title, dates, modules, slug, accent unchanged (already loaded from previous edit).
+3. **`min-h-screen` used on every page wrapper** — all `src/pages/*.tsx`
+   On mobile browsers with dynamic toolbars this overflows. Use `min-h-dvh` (or pair `min-h-screen min-h-dvh`).
 
-## UI rendering (detail page)
+4. **StickyActionPanel + MobileStickyRegister icon+text buttons OK, but Share button on success has no live feedback**
+   `handleShare` triggers a toast — fine — but ensure focus returns to trigger after copy. Low impact; flag only.
 
-Create small, focused additions under `src/components/programmes/detail/`:
+5. **Gallery video tiles**: `<a>` wraps an `<img>` with a decorative play overlay. The link has no accessible name beyond the image alt. If `item.caption` is missing, alt falls back to "Programme video" which is generic. Recommend adding `aria-label={`Play video: ${caption ?? programme.title}`}` to the anchor.
 
-1. **`ProgrammeObjective.tsx`** — renders `objective` as a bulleted intro block (only if present). Added in `ProgrammeDetail.tsx` right after `ProgrammeOverview`.
-2. **`KeyHighlights.tsx`** — two-column grid card list for `keyHighlights` (only if present). Placed before `LearningOutcomes`.
-3. **`FocusedDiscussions.tsx`** — checklist-style card list for `focusedDiscussions`. Placed after `LearningOutcomes`.
-4. **`FeeTable.tsx`** — responsive table comparing CII Members vs Non-Members across the two industry segments; shows `feeNote` underneath. Placed after `CertificationBlock`.
-5. **`ProgrammeContacts.tsx`** — small contacts card (name, email link, phone link). Placed at the end of the left column.
+### Info (best practice)
 
-Each new component is conditional (renders nothing if its source field is missing), so all other programmes remain visually identical.
+6. **ProgrammesHero decorative image** uses `alt=""` correctly. ✓
+7. **Breadcrumb nav has `aria-label="Breadcrumb"`** ✓
+8. **Mobile sticky register bar** sits above page content — verify it doesn't cover focus outlines on the last focusable element. Add `pb-20 lg:pb-0` to detail page wrapper (already present ✓).
+9. **Modal close button has `aria-label="Close"`** ✓ but consider "Close registration dialog" for clarity.
 
-`ProgrammeDetail.tsx` — import + render the new sections inside the existing left column in this order:
-`Overview → Objective → KeyHighlights → LearningOutcomes → FocusedDiscussions → WhoShouldAttend → Agenda → Faculty → Certification → FeeTable → Contacts`.
+## Proposed fixes (in priority order)
+
+### Fix 1 — Label the registration form (critical)
+
+Replace native `<input>/<select>/<textarea>` in `ProgrammeRegisterModal.tsx` step 1 and step 2 with shadcn `Input`, `Select`, `Textarea` + visible `Label` from `@/components/ui/label`. Each field gets:
+- A visible `<Label htmlFor="...">` above the control
+- `id` matching `htmlFor`
+- Keep placeholder as a hint, not the label
+- `aria-required` on required fields
+- `type="tel"` on mobile, `inputMode="email"` on email (already typed)
+
+This also fixes finding 2 (consistency).
+
+### Fix 2 — Swap `min-h-screen` → `min-h-dvh` (warning)
+
+Find/replace across `src/pages/*.tsx` page wrappers. No layout change on desktop; fixes mobile viewport jump.
+
+### Fix 3 — Improve gallery video link names (warning)
+
+In `ProgrammeGallery.tsx`, add `aria-label={\`Play video: ${item.caption ?? programme.title}\`}` to the `<a>` and change image to `alt=""` (decorative since link is named).
+
+### Fix 4 — Modal close label polish (info)
+
+Change `aria-label="Close"` → `aria-label="Close registration dialog"`.
 
 ## Out of scope
 
-- No nav, routing, or other programmes touched.
-- QR images from the flyer not embedded (registration URLs unknown).
-- No backend / form changes — registration modal stays as-is.
+- Other modules (Events, Reports, About, Contact) — same audit can run separately.
+- Color contrast audit of tokens — requires running axe in browser; flag for follow-up.
+- Keyboard trap testing inside the multi-step modal (Radix Dialog handles focus trap; no custom focus logic added).
+
+## Approval
+
+On approval I'll apply Fix 1–4 in a single pass and verify the modal still submits and validation states render.
