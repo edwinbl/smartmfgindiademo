@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
@@ -51,28 +51,65 @@ const ProgrammeDetail = () => {
   }
 
   const isShort = programme.type === "Webinar" || programme.type === "Industry Session";
-  const related = getRelatedProgrammes(programme.slug);
+  const related = useMemo(() => getRelatedProgrammes(programme.slug), [programme.slug]);
   const hasMultipleBatches = (programme.batches?.length ?? 0) > 1;
   const isClosed = programme.status === "closed";
 
-  const onRegister = (batchId?: string) => {
-    if (!batchId && hasMultipleBatches) {
-      // Multiple batches but none picked — scroll to batch selection
-      const el = document.getElementById("batches");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-        return;
+  const onRegister = useCallback(
+    (batchId?: string) => {
+      if (!batchId && hasMultipleBatches) {
+        const el = document.getElementById("batches");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
       }
-    }
-    setSelectedBatchId(batchId ?? programme.batches?.[0]?.id);
-    setModalOpen(true);
-  };
+      setSelectedBatchId(batchId ?? programme.batches?.[0]?.id);
+      setModalOpen(true);
+    },
+    [hasMultipleBatches, programme.batches]
+  );
+
+  const metaDescription = useMemo(() => {
+    const s = programme.summary;
+    if (s.length <= 155) return s;
+    const sliced = s.slice(0, 155);
+    const lastSpace = sliced.lastIndexOf(" ");
+    return (lastSpace > 100 ? sliced.slice(0, lastSpace) : sliced).replace(/[.,;:\s]+$/, "") + "…";
+  }, [programme.summary]);
+
+  const courseJsonLd = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "Course",
+      name: programme.title,
+      description: programme.summary,
+      provider: {
+        "@type": "Organization",
+        name: "CII Smart Manufacturing",
+        sameAs: "https://smartmfgindia-demo4.bluelup.in",
+      },
+      hasCourseInstance: (programme.batches?.length
+        ? programme.batches
+        : [{ id: programme.slug, dates: programme.startDate, location: programme.mode }]
+      ).map((b) => ({
+        "@type": "CourseInstance",
+        name: "label" in b ? b.label : programme.title,
+        courseMode: programme.mode,
+        location: b.location,
+        startDate: programme.isoDate,
+      })),
+    }),
+    [programme]
+  );
 
   return (
     <div className="min-h-dvh bg-background text-foreground pb-20 lg:pb-0">
       <SEO
         title={`${programme.title} — Programmes`}
-        description={programme.summary.slice(0, 155)}
+        description={metaDescription}
+        type="article"
+        jsonLd={courseJsonLd}
       />
       <WireHeader />
       <main>
