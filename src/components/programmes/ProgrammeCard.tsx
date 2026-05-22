@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { Link } from "react-router-dom";
 import { Clock, MapPin, ArrowRight, GraduationCap, Award, Sparkles } from "lucide-react";
-import { accentBar, accentSoft, accentText } from "@/lib/programmesStorage";
+import { accentBar, accentSoft, accentText } from "@/lib/programmeAccents";
 import type { ProgrammeItem } from "@/data/programmes";
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
   recommended?: boolean;
 }
 
-export const ProgrammeCard = ({ programme, onRegister, recommended }: Props) => {
+const ProgrammeCardImpl = ({ programme, onRegister, recommended }: Props) => {
   const p = programme;
   return (
     <article className="cii-card overflow-hidden flex flex-col group relative">
@@ -91,3 +92,6 @@ export const ProgrammeCard = ({ programme, onRegister, recommended }: Props) => 
     </article>
   );
 };
+
+export const ProgrammeCard = memo(ProgrammeCardImpl);
+

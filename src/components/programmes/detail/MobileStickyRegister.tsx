@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const MobileStickyRegister = ({ programme, onRegister }: Props) => (
-  <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-[hsl(var(--neutral-150))] p-3 flex items-center gap-3 shadow-lg">
+  <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-white border-t border-[hsl(var(--neutral-150))] p-3 flex items-center gap-3 shadow-lg">
     <div className="flex-1 min-w-0">
       <div className="text-[10px] uppercase tracking-[0.12em] font-bold text-[hsl(var(--red-600))]">
         {programme.fee ?? "Open"}

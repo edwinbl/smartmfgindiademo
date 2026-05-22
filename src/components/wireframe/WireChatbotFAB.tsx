@@ -22,7 +22,7 @@ export const WireChatbotFAB = () => {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Open Smart Manufacturing Assistant"
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 h-12 px-5 rounded-full text-white font-semibold text-sm shadow-2xl transition-transform hover:scale-105"
+        className="fixed bottom-24 sm:bottom-6 right-6 z-50 flex items-center gap-2 h-12 px-5 rounded-full text-white font-semibold text-sm shadow-2xl transition-transform hover:scale-105"
         style={{
           background:
             "linear-gradient(135deg, hsl(var(--navy-800)) 0%, hsl(var(--navy-600)) 100%)",

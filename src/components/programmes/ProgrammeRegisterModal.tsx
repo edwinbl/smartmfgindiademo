@@ -13,6 +13,7 @@ import {
 import { StepProgress } from "@/components/auth/StepProgress";
 import { CheckCircle2, ArrowRight, ArrowLeft, CalendarPlus, X } from "lucide-react";
 import { programmesStorage, type RegistrationDraft } from "@/lib/programmesStorage";
+import { downloadIcs } from "@/lib/ics";
 import { toast } from "@/hooks/use-toast";
 import type { ProgrammeItem } from "@/data/programmes";
 
@@ -56,19 +57,7 @@ export const ProgrammeRegisterModal = ({ open, onOpenChange, programme, batchId 
     toast({ title: "Seat reserved", description: programme.title });
   };
 
-  const addToCalendar = () => {
-    const dt = (s: string) => s.replace(/[-:]/g, "").replace(/\.\d+/, "");
-    const start = dt(new Date(programme.isoDate).toISOString());
-    const end = dt(new Date(new Date(programme.isoDate).getTime() + 3600000).toISOString());
-    const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:${programme.slug}@smartmfgindia\nDTSTAMP:${start}\nDTSTART:${start}\nDTEND:${end}\nSUMMARY:${programme.title}\nDESCRIPTION:${programme.summary}\nEND:VEVENT\nEND:VCALENDAR`;
-    const blob = new Blob([ics], { type: "text/calendar" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${programme.slug}.ics`;
-    a.click();
-    URL.revokeObjectURL(url);
-  };
+  const addToCalendar = () => downloadIcs(programme, batch);
 
 
   return (

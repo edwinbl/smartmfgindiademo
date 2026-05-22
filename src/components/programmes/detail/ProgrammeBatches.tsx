@@ -56,9 +56,15 @@ export const ProgrammeBatches = ({ programme, onRegister }: Props) => {
               <button
                 onClick={() => onRegister(b.id)}
                 disabled={disabled}
+                aria-label={disabled ? `Registration closed for ${b.label}` : `Register for ${b.label}`}
                 className="btn-primary mt-auto disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {disabled ? "Registration closed" : `Register for ${b.label}`}
+                {disabled ? "Registration closed" : (
+                  <>
+                    Register
+                    <span className="sr-only"> for {b.label}</span>
+                  </>
+                )}
               </button>
             </div>
           );
