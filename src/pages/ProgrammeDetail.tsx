@@ -17,6 +17,9 @@ import { KeyHighlights } from "@/components/programmes/detail/KeyHighlights";
 import { FocusedDiscussions } from "@/components/programmes/detail/FocusedDiscussions";
 import { FeeTable } from "@/components/programmes/detail/FeeTable";
 import { ProgrammeContacts } from "@/components/programmes/detail/ProgrammeContacts";
+import { ProgrammeBatches } from "@/components/programmes/detail/ProgrammeBatches";
+import { ProgrammeGallery } from "@/components/programmes/detail/ProgrammeGallery";
+import { ProgrammeTestimonials } from "@/components/programmes/detail/ProgrammeTestimonials";
 import { RelatedProgrammes } from "@/components/programmes/detail/RelatedProgrammes";
 import { MobileStickyRegister } from "@/components/programmes/detail/MobileStickyRegister";
 import { ProgrammesFinalCta } from "@/components/programmes/ProgrammesFinalCta";
@@ -27,6 +30,7 @@ const ProgrammeDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const programme = slug ? getProgrammeBySlug(slug) : undefined;
   const [modalOpen, setModalOpen] = useState(false);
+  const [selectedBatchId, setSelectedBatchId] = useState<string | undefined>();
 
   if (!programme) {
     return (
@@ -48,7 +52,21 @@ const ProgrammeDetail = () => {
 
   const isShort = programme.type === "Webinar" || programme.type === "Industry Session";
   const related = getRelatedProgrammes(programme.slug);
-  const onRegister = () => setModalOpen(true);
+  const hasMultipleBatches = (programme.batches?.length ?? 0) > 1;
+  const isClosed = programme.status === "closed";
+
+  const onRegister = (batchId?: string) => {
+    if (!batchId && hasMultipleBatches) {
+      // Multiple batches but none picked — scroll to batch selection
+      const el = document.getElementById("batches");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+    }
+    setSelectedBatchId(batchId ?? programme.batches?.[0]?.id);
+    setModalOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-20 lg:pb-0">
@@ -58,7 +76,7 @@ const ProgrammeDetail = () => {
       />
       <WireHeader />
       <main>
-        <ProgrammeDetailHero programme={programme} onRegister={onRegister} />
+        <ProgrammeDetailHero programme={programme} onRegister={() => onRegister()} />
 
         <section className="py-12 md:py-16">
           <div className="container-cii grid lg:grid-cols-12 gap-10">
@@ -73,11 +91,13 @@ const ProgrammeDetail = () => {
               <ExpertsFaculty programme={programme} />
               {programme.certification && !isShort && <CertificationBlock programme={programme} />}
               <FeeTable programme={programme} />
+              <ProgrammeBatches programme={programme} onRegister={onRegister} />
+              {isClosed && <ProgrammeGallery programme={programme} />}
+              {isClosed && <ProgrammeTestimonials programme={programme} />}
               <ProgrammeContacts programme={programme} />
-
             </div>
             <div className="lg:col-span-4">
-              <StickyActionPanel programme={programme} onRegister={onRegister} />
+              <StickyActionPanel programme={programme} onRegister={() => onRegister()} />
             </div>
           </div>
         </section>
@@ -87,11 +107,12 @@ const ProgrammeDetail = () => {
       </main>
       <WireFooter />
       <WireChatbotFAB />
-      <MobileStickyRegister programme={programme} onRegister={onRegister} />
+      <MobileStickyRegister programme={programme} onRegister={() => onRegister()} />
       <ProgrammeRegisterModal
         open={modalOpen}
         onOpenChange={setModalOpen}
         programme={programme}
+        batchId={selectedBatchId}
       />
     </div>
   );
