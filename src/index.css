@@ -216,3 +216,13 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+@media print {
+  .print\:hidden { display: none !important; }
+  body { background: #fff !important; color: #000 !important; font-size: 12pt; }
+  .terms-page aside { display: none !important; }
+  .terms-page main { padding: 0 !important; }
+  .terms-page .container-cii { max-width: none !important; padding: 0 !important; }
+  .terms-page [data-terms-section] { break-inside: avoid; page-break-inside: avoid; }
+  a { color: #000 !important; text-decoration: underline; }
+}
