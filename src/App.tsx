@@ -23,6 +23,7 @@ const Welcome = lazy(() => import("./pages/auth/Welcome"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Terms = lazy(() => import("./pages/Terms"));
 
 const queryClient = new QueryClient();
 
@@ -64,6 +65,7 @@ const App = () => (
             <Route path="/welcome" element={withSuspense(<Welcome />, "form")} />
             <Route path="/forgot-password" element={withSuspense(<ForgotPassword />, "form")} />
             <Route path="/reset-password" element={withSuspense(<ResetPassword />, "form")} />
+            <Route path="/terms" element={withSuspense(<Terms />, "detail")} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={withSuspense(<NotFound />)} />
           </Routes>

@@ -23,6 +23,7 @@ const entries: SitemapEntry[] = [
   { path: "/programmes", lastmod: today, changefreq: "weekly", priority: "0.9" },
   { path: "/login", lastmod: today, changefreq: "yearly", priority: "0.5" },
   { path: "/register", lastmod: today, changefreq: "yearly", priority: "0.5" },
+  { path: "/terms", lastmod: today, changefreq: "yearly", priority: "0.4" },
 ];
 
 function generateSitemap(entries: SitemapEntry[]) {
