@@ -23,6 +23,7 @@ const Welcome = lazy(() => import("./pages/auth/Welcome"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Terms = lazy(() => import("./pages/Terms"));
 
 const queryClient = new QueryClient();
 
