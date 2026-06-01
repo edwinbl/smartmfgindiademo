@@ -1,13 +1,10 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowUp,
   ChevronRight,
-  Download,
   Link2,
   Mail,
-  Printer,
-  Search,
   ShieldCheck,
   Info,
   AlertTriangle,
@@ -212,13 +209,7 @@ const TermsSection = ({
 };
 
 /* ---------------------- Sidebar (desktop) + dropdown (mobile) ---------------------- */
-const TermsSidebar = ({
-  activeId,
-  filtered,
-}: {
-  activeId: string;
-  filtered: Set<string>;
-}) => (
+const TermsSidebar = ({ activeId }: { activeId: string }) => (
   <nav aria-label="Terms of Use sections" className="text-sm">
     <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--neutral-500))] mb-3">
       On this page
@@ -226,7 +217,6 @@ const TermsSidebar = ({
     <ul className="space-y-1">
       {SECTIONS.map((s, i) => {
         const isActive = activeId === s.id;
-        const dim = filtered.size > 0 && !filtered.has(s.id);
         return (
           <li key={s.id}>
             <a
@@ -235,7 +225,7 @@ const TermsSidebar = ({
                 isActive
                   ? "border-[hsl(var(--navy-600))] bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-800))] font-semibold"
                   : "border-transparent text-[hsl(var(--neutral-700))] hover:bg-[hsl(var(--neutral-50))] hover:text-[hsl(var(--navy-800))]"
-              } ${dim ? "opacity-40" : ""}`}
+              }`}
             >
               <span className="font-numeric text-xs text-[hsl(var(--neutral-500))] w-6">
                 {String(i + 1).padStart(2, "0")}
@@ -252,7 +242,6 @@ const TermsSidebar = ({
 /* ---------------------- Page ---------------------- */
 const Terms = () => {
   const [activeId, setActiveId] = useState<string>(SECTIONS[0].id);
-  const [query, setQuery] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -274,20 +263,6 @@ const Terms = () => {
     els.forEach((el) => obs.observe(el));
     return () => obs.disconnect();
   }, []);
-
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return new Set<string>();
-    const matches = new Set<string>();
-    SECTIONS.forEach((s) => {
-      const el = document.getElementById(s.id);
-      const txt = (el?.textContent ?? s.label).toLowerCase();
-      if (txt.includes(q)) matches.add(s.id);
-    });
-    return matches;
-  }, [query]);
-
-  const handlePrint = () => window.print();
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -366,45 +341,18 @@ const Terms = () => {
           </div>
         </section>
 
-        {/* Toolbar */}
+        {/* Mobile nav toggle */}
         <div className="sticky top-0 z-30 border-b border-border bg-background/95 backdrop-blur print:hidden">
           <div className="container-cii py-3 flex items-center gap-3">
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--neutral-500))]" />
-              <input
-                type="search"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search within Terms…"
-                aria-label="Search within Terms"
-                className="w-full h-10 pl-9 pr-3 text-sm rounded-md border border-border bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--navy-600))]"
-              />
-            </div>
-            <div className="ml-auto flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => setMobileOpen((v) => !v)}
-                className="lg:hidden inline-flex items-center gap-1.5 h-10 px-3 text-sm font-semibold rounded-md border border-border text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))]"
-                aria-expanded={mobileOpen}
-                aria-controls="terms-mobile-nav"
-              >
-                <Menu className="h-4 w-4" /> Sections
-              </button>
-              <button
-                type="button"
-                onClick={handlePrint}
-                className="hidden sm:inline-flex items-center gap-1.5 h-10 px-3 text-sm font-semibold rounded-md border border-border text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))]"
-              >
-                <Printer className="h-4 w-4" /> Print
-              </button>
-              <button
-                type="button"
-                onClick={handlePrint}
-                className="inline-flex items-center gap-1.5 h-10 px-3 text-sm font-semibold rounded-md text-white bg-[hsl(var(--navy-800))] hover:bg-[hsl(var(--navy-700))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[hsl(var(--navy-600))]"
-              >
-                <Download className="h-4 w-4" /> Download PDF
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={() => setMobileOpen((v) => !v)}
+              className="lg:hidden inline-flex items-center gap-1.5 h-10 px-3 text-sm font-semibold rounded-md border border-border text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))]"
+              aria-expanded={mobileOpen}
+              aria-controls="terms-mobile-nav"
+            >
+              <Menu className="h-4 w-4" /> Sections
+            </button>
           </div>
           {mobileOpen && (
             <div
@@ -412,7 +360,7 @@ const Terms = () => {
               className="lg:hidden border-t border-border bg-background"
             >
               <div className="container-cii py-3 max-h-[60vh] overflow-y-auto">
-                <TermsSidebar activeId={activeId} filtered={filtered} />
+                <TermsSidebar activeId={activeId} />
               </div>
             </div>
           )}
@@ -423,7 +371,7 @@ const Terms = () => {
           {/* Desktop sidebar */}
           <aside className="hidden lg:block">
             <div className="sticky top-24">
-              <TermsSidebar activeId={activeId} filtered={filtered} />
+              <TermsSidebar activeId={activeId} />
             </div>
           </aside>
 
