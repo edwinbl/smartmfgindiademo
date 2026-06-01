@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowUp,
   ChevronRight,
-  Link2,
   Mail,
   ShieldCheck,
   Info,
@@ -20,7 +19,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useToast } from "@/hooks/use-toast";
 
 const EFFECTIVE_DATE = "1 January 2026";
 const LAST_UPDATED = "15 May 2026";
