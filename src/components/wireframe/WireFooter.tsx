@@ -125,9 +125,9 @@ export const WireFooter = () => {
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-white/60">
           <span>© {new Date().getFullYear()} Confederation of Indian Industry. All rights reserved.</span>
           <div className="flex gap-5">
-            <a href="#" className="hover:text-white">
+            <Link to="/privacy" className="hover:text-white">
               Privacy
-            </a>
+            </Link>
             <Link to="/terms" className="hover:text-white">
               Terms
             </Link>
