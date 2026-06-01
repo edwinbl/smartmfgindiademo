@@ -158,14 +158,6 @@ const TermsSection = ({
   summary?: string;
   children: React.ReactNode;
 }) => {
-  const { toast } = useToast();
-  const copyLink = useCallback(() => {
-    const url = `${window.location.origin}${window.location.pathname}#${id}`;
-    navigator.clipboard?.writeText(url).then(
-      () => toast({ title: "Link copied", description: url }),
-      () => toast({ title: "Could not copy", description: url }),
-    );
-  }, [id, toast]);
   return (
     <section
       id={id}
@@ -173,22 +165,12 @@ const TermsSection = ({
       data-label={title}
       className="scroll-mt-28 py-8 md:py-10 border-b border-border last:border-b-0"
     >
-      <div className="flex items-start justify-between gap-4 mb-4">
-        <h2 className="text-2xl md:text-[28px] font-bold tracking-tight text-[hsl(var(--navy-900))]">
-          <span className="text-[hsl(var(--navy-500))] font-numeric mr-2">
-            {String(number).padStart(2, "0")}.
-          </span>
-          {title}
-        </h2>
-        <button
-          type="button"
-          onClick={copyLink}
-          className="shrink-0 inline-flex items-center gap-1.5 text-xs font-semibold text-[hsl(var(--navy-600))] hover:text-[hsl(var(--navy-800))] px-2 py-1 rounded-md hover:bg-[hsl(var(--navy-050))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--navy-600))] print:hidden"
-          aria-label={`Copy link to ${title}`}
-        >
-          <Link2 className="h-3.5 w-3.5" /> Copy link
-        </button>
-      </div>
+      <h2 className="text-2xl md:text-[28px] font-bold tracking-tight text-[hsl(var(--navy-900))] mb-4">
+        <span className="text-[hsl(var(--navy-500))] font-numeric mr-2">
+          {String(number).padStart(2, "0")}.
+        </span>
+        {title}
+      </h2>
       {summary && (
         <div className="mb-5 rounded-lg border border-[hsl(var(--navy-100))] bg-[hsl(var(--navy-050))] p-4">
           <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--navy-600))] mb-1">
