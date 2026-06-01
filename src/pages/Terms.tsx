@@ -209,13 +209,7 @@ const TermsSection = ({
 };
 
 /* ---------------------- Sidebar (desktop) + dropdown (mobile) ---------------------- */
-const TermsSidebar = ({
-  activeId,
-  filtered,
-}: {
-  activeId: string;
-  filtered: Set<string>;
-}) => (
+const TermsSidebar = ({ activeId }: { activeId: string }) => (
   <nav aria-label="Terms of Use sections" className="text-sm">
     <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--neutral-500))] mb-3">
       On this page
@@ -223,7 +217,6 @@ const TermsSidebar = ({
     <ul className="space-y-1">
       {SECTIONS.map((s, i) => {
         const isActive = activeId === s.id;
-        const dim = filtered.size > 0 && !filtered.has(s.id);
         return (
           <li key={s.id}>
             <a
@@ -232,7 +225,7 @@ const TermsSidebar = ({
                 isActive
                   ? "border-[hsl(var(--navy-600))] bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-800))] font-semibold"
                   : "border-transparent text-[hsl(var(--neutral-700))] hover:bg-[hsl(var(--neutral-50))] hover:text-[hsl(var(--navy-800))]"
-              } ${dim ? "opacity-40" : ""}`}
+              }`}
             >
               <span className="font-numeric text-xs text-[hsl(var(--neutral-500))] w-6">
                 {String(i + 1).padStart(2, "0")}
