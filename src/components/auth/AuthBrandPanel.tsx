@@ -78,7 +78,7 @@ export const AuthBrandPanel = () => {
           </ul>
         </div>
 
-        <p className="mt-10 text-xs text-white/50">
+        <p className="mt-10 text-xs text-white/75">
           Convened by the Confederation of Indian Industry
         </p>
       </div>
