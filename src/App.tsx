@@ -25,6 +25,7 @@ const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Privacy = lazy(() => import("./pages/Privacy"));
+const ReadinessAssessment = lazy(() => import("./pages/ReadinessAssessment"));
 
 const queryClient = new QueryClient();
 
@@ -68,6 +69,7 @@ const App = () => (
             <Route path="/reset-password" element={withSuspense(<ResetPassword />, "form")} />
             <Route path="/terms" element={withSuspense(<Terms />, "detail")} />
             <Route path="/privacy" element={withSuspense(<Privacy />, "detail")} />
+            <Route path="/readiness-assessment" element={withSuspense(<ReadinessAssessment />, "detail")} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={withSuspense(<NotFound />)} />
           </Routes>
