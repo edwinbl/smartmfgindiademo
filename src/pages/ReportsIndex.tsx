@@ -6,11 +6,13 @@ import { SEO } from "@/components/SEO";
 import { ReportsHero } from "@/components/reports/ReportsHero";
 import { ReportsDiscoveryBar, emptyFilters, type ReportFilters } from "@/components/reports/ReportsDiscoveryBar";
 import { FeaturedCollections } from "@/components/reports/FeaturedCollections";
+import { ReportsThemesExplorer } from "@/components/reports/ReportsThemesExplorer";
+import { ReportsSectorExplorer } from "@/components/reports/ReportsSectorExplorer";
 import { ReportsGrid } from "@/components/reports/ReportsGrid";
 import { PersonalizedShelf } from "@/components/reports/PersonalizedShelf";
 import { ReportsFinalCta } from "@/components/reports/ReportsFinalCta";
 import { DownloadModal } from "@/components/reports/DownloadModal";
-import { reports, type Report, type QuickPickId } from "@/data/reports";
+import { reports, reportFacets, type Report, type QuickPickId } from "@/data/reports";
 import { useMockAuth } from "@/hooks/useMockAuth";
 import { toast } from "@/hooks/use-toast";
 
@@ -90,7 +92,7 @@ const ReportsIndex = () => {
       />
       <WireHeader />
       <main>
-        <ReportsHero />
+        <ReportsHero query={query} onQuery={setQuery} onTag={setQuery} />
         <ReportsDiscoveryBar
           query={query}
           onQuery={setQuery}
@@ -103,6 +105,16 @@ const ReportsIndex = () => {
         />
         {user && <PersonalizedShelf user={user} />}
         <FeaturedCollections />
+        <ReportsThemesExplorer onSelect={(t) => setQuery(t)} />
+        <ReportsSectorExplorer
+          onSelect={(industry) => {
+            if (reportFacets.industry.includes(industry)) {
+              setFilters({ ...filters, industry });
+            } else {
+              setQuery(industry);
+            }
+          }}
+        />
         <ReportsGrid reports={filtered} onDownload={handleDownload} onClear={clearAll} />
         <ReportsFinalCta />
       </main>
