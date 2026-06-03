@@ -52,7 +52,7 @@ export const WireHero = () => {
           </p>
 
           <div className="mt-7 flex flex-wrap gap-3">
-            <a href="https://www.smartmfgindia.com/Assesment.aspx" className="btn-primary">
+            <a href="/assessment" className="btn-primary">
               Access Maturity Assessments <ArrowRight className="!h-4 !w-4" />
             </a>
             <a
