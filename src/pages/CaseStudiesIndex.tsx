@@ -144,7 +144,7 @@ const CaseStudiesIndex = () => {
       <SEO
         title="Manufacturing Case Studies | CII Smart Manufacturing"
         description="Explore real manufacturing transformation stories from MSMEs and enterprises across India — productivity, quality, traceability, sustainability and exports."
-        canonical="/case-studies"
+        url="/case-studies"
       />
       <WireHeader />
 

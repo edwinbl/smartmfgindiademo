@@ -56,7 +56,7 @@ const CaseStudyDetail = () => {
       <SEO
         title={`${cs.company} — ${cs.headline} | Case Study`}
         description={cs.summary}
-        canonical={`/case-studies/${cs.slug}`}
+        url={`/case-studies/${cs.slug}`}
       />
       <WireHeader />
 
