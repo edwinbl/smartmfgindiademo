@@ -6,9 +6,13 @@ import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
 import { ReportDetailHero } from "@/components/reports/ReportDetailHero";
 import { ReportSummaryPanel } from "@/components/reports/ReportSummaryPanel";
+import { ReportKeyInsightsSnapshot } from "@/components/reports/ReportKeyInsightsSnapshot";
 import { ReportKeyHighlights } from "@/components/reports/ReportKeyHighlights";
+import { ReportThemes } from "@/components/reports/ReportThemes";
 import { ReportPreview } from "@/components/reports/ReportPreview";
+import { ReportDownloadModule } from "@/components/reports/ReportDownloadModule";
 import { ReportRelated } from "@/components/reports/ReportRelated";
+import { ReportEcosystemRecommendations } from "@/components/reports/ReportEcosystemRecommendations";
 import { ReportsFinalCta } from "@/components/reports/ReportsFinalCta";
 import { DownloadModal } from "@/components/reports/DownloadModal";
 import { getReportBySlug, getRelated } from "@/data/reports";
@@ -69,9 +73,13 @@ const ReportDetail = () => {
               <ReportSummaryPanel report={report} onDownload={handleDownload} />
             </div>
             <div className="lg:col-span-8">
+              <ReportKeyInsightsSnapshot report={report} />
               <ReportKeyHighlights report={report} />
+              <ReportThemes />
               <ReportPreview report={report} onUnlock={handleDownload} />
+              <ReportDownloadModule report={report} onDownload={handleDownload} />
               <ReportRelated related={related} />
+              <ReportEcosystemRecommendations />
             </div>
           </div>
         </section>
