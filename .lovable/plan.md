@@ -1,37 +1,42 @@
 ## Goal
-Resolve all "Background and foreground colors do not have a sufficient contrast ratio" accessibility violations (WCAG AA: 4.5:1 for normal text, 3:1 for large text / UI components).
+Add a new enterprise-grade Readiness Assessment landing page at `/assessment`, positioning assessment as the starting point before transformation. Match the existing CII design system (navy/orange/green tokens, `cii-card`, `section-eyebrow`, `btn-primary`, `WireSection`, `WireHeader`, `WireFooter`).
 
-## Approach
+## Route & wiring
+- Create `src/pages/Assessment.tsx` lazy-loaded in `src/App.tsx` at `/assessment` (variant `detail`).
+- Add `/assessment` to `scripts/generate-sitemap.ts` (weekly, priority 0.9).
+- Add a header nav link and footer link to the new page (in `WireHeader.tsx` and `WireFooter.tsx`).
+- Update the existing hero/teaser CTAs that point to the external `smartmfgindia.com/Assesment.aspx` to instead route to `/assessment` (WireHero, WireAssessmentTeaser); keep the external "Access Current Assessment" button inside the new page's sticky/overview card.
 
-### 1. Audit
-- Run an automated accessibility scan (axe-core via the browser tool) across key routes: `/`, `/about`, `/programmes`, `/programmes/:id`, `/events`, `/events/:id`, `/reports`, `/reports/:id`, `/contact`, `/terms`, `/privacy`, `/auth/login`, `/auth/register`.
-- Collect every contrast violation with the offending selector, computed fg/bg colors, and contrast ratio.
-- Cross-check against the design tokens in `src/index.css` to identify token-level vs one-off issues.
+## Page structure (`src/pages/Assessment.tsx`)
+Compose 14 modular components under `src/components/assessment/`:
 
-### 2. Categorize findings
-Group issues into:
-- **Token-level** — a semantic token pair (e.g. `--muted-foreground` on `--background`) fails globally. Fix once in `index.css`.
-- **Component-level** — hardcoded Tailwind colors (`text-white/60`, `text-gray-400`, `text-neutral-400`, opacity modifiers on text) in specific components.
-- **State-level** — hover/disabled/placeholder states failing contrast.
+1. `AssessmentHero.tsx` — Headline "Understand Where You Stand Before Deciding What to Do Next", supporting copy, primary CTA "Start Assessment", secondary "Request Assessment Access", text links "View Sample Output" + "Learn How It Works". Right visual: a custom SVG/illustrated readiness dashboard card (maturity dial + KPI tiles + sparkline) reusing the navy/orange gradient hero treatment from `WireHero`. No stock factory imagery.
+2. `AssessmentWhyMatters.tsx` — 4 insight cards (Avoid Random Adoption / Focus on Outcomes / Prioritize High-Impact / Structured Path) with Lucide line icons, `cii-card` styling, subtle hover lift.
+3. `AssessmentOverview.tsx` — Two-column: left = description, process, duration, dimensions, expected outputs; right = sticky summary card (time / outcomes / guided process / mini report preview / "Access Current Assessment" CTA linking to the external CII URL).
+4. `AssessmentOutcomes.tsx` — 6 outcome cards (Productivity, Quality, Traceability, Energy Efficiency, Export Readiness, Value Chain) with icon + helper "Assessment helps evaluate readiness for this outcome."
+5. `AssessmentWhoFor.tsx` — Persona cards for MSMEs, Growing Enterprises, Supplier Ecosystems, Operations Leaders.
+6. `AssessmentCoverage.tsx` — Readiness framework visual. Implementation: connected-grid layout — center hub ("Readiness") with 8 category nodes (Operations, Production Planning, Quality, Data & Visibility, Machine Connectivity, Workforce, Sustainability, Supply Chain) rendered via CSS grid + SVG connector lines; degrades to a stacked list on mobile.
+7. `AssessmentWhatYouGet.tsx` — Benefit cards (Readiness Snapshot, Outcome Insights, Priority Areas, Next-Step Guidance, Benchmarking, Recommendations Engine). Last two visually muted with "Coming Soon" chip.
+8. `AssessmentJourney.tsx` — Horizontal 5-step timeline (Start → Inputs → Review → Insights → Next-Step). Stacks vertically on mobile with left rail connector.
+9. `AssessmentCta.tsx` — Conversion band, navy gradient bg, "Start Your Readiness Journey", two buttons.
+10. `AssessmentRoadmap.tsx` — 5 muted future capability cards with `cii-chip` "Future" tags.
+11. `AssessmentFaq.tsx` — Accordion (reuse `@/components/ui/accordion`) with 5 Q&As (duration, expertise, confidentiality, post-assessment, industry applicability).
+12. `AssessmentSupport.tsx` — 4-up: Contact support, Request consultation, Email assistance, Talk to an Expert.
+13. `AssessmentMobileCta.tsx` — Sticky bottom "Start Assessment" CTA (md:hidden), pattern from `MobileStickyCta`.
+14. SEO via `<SEO>` component + JSON-LD `WebPage` schema.
 
-### 3. Fix strategy
-- Replace arbitrary low-contrast utilities with semantic tokens (`text-muted-foreground`, `text-foreground`).
-- For dark hero sections (navy backgrounds), ensure white-on-navy text uses at least `text-white/80` for body and solid `text-white` for headings; bump any `text-white/60` or lower used for readable content.
-- For light surfaces, replace `text-[hsl(var(--neutral-400))]` and `text-[hsl(var(--neutral-500))]` body usages with `--neutral-700` where they fall below 4.5:1 on white.
-- Adjust the actual HSL values of `--neutral-500` / `--muted-foreground` only if they fail in many places — single source of truth fix.
-- Verify badge/chip combinations (e.g. `cii-chip` navy text on navy-050) meet 4.5:1.
-- Verify button states (ghost button on navy hero, outline button hover).
+## Design system
+- Use only existing tokens: `--navy-*`, `--orange-*`, `--india-green`, `--neutral-*`, `cii-card`, `cii-chip`, `cii-chip-orange`, `section-eyebrow`, `btn-primary`, `btn-ghost`, `link-arrow`, `blueprint-grid`, `tricolor-stripe`.
+- Green = readiness/progress, blue/navy = analytics/trust, orange = opportunities/CTAs.
+- Lucide line icons throughout (no new asset images).
+- Responsive: horizontal-scroll snap on mobile for outcome/persona/roadmap grids, accordion compression for FAQ, vertical-rail timeline on mobile.
 
-### 4. Verification
-- Re-run the axe scan on the same routes; confirm zero contrast violations.
-- Spot-check visually in light viewport at desktop + mobile sizes.
-- Build check.
+## Out of scope
+- Backend, real assessment form/flow, auth gating, A/B testing.
+- New design tokens, dark mode redesign, logo work.
+- Changes to other pages beyond the nav/footer link and the two hero/teaser CTA href updates.
 
-## Scope / Out of scope
-- In scope: CSS token tweaks in `src/index.css`, className changes in components, `tailwind.config.ts` color additions if needed.
-- Out of scope: layout changes, new components, business logic, dark mode redesign.
-
-## Deliverable
-- A list of fixed violations (before → after contrast ratio).
-- Updated tokens + component classes.
-- Clean axe contrast report.
+## Verification
+- Build passes; `/assessment` renders without errors at desktop (1000px) and mobile widths.
+- Header/footer link navigates correctly; sitemap.xml regenerates with new entry.
+- No hardcoded hex colors; all styling through existing tokens/utilities.
