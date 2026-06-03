@@ -21,7 +21,7 @@ const cols = [
     title: "Explore",
     links: [
       { label: "About", url: "/about" },
-      { label: "Readiness Assessment", url: "https://www.smartmfgindia.com/Assesment.aspx" },
+      { label: "Readiness Assessment", url: "/assessment" },
       { label: "Contact", url: "/contact" },
     ],
   },
