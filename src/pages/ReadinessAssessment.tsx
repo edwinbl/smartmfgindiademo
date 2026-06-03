@@ -275,6 +275,7 @@ const ReadinessAssessment = () => {
             <div className="mt-10 grid gap-6 md:grid-cols-2">
               {[
                 {
+                  slug: "smart-manufacturing-maturity",
                   tag: "Smart Manufacturing",
                   title: "Smart Manufacturing Maturity Assessment Model",
                   desc: "Evaluate your readiness across smart manufacturing dimensions — operations, digital adoption, quality and sustainability.",
@@ -285,6 +286,7 @@ const ReadinessAssessment = () => {
                   accentSoft: "hsl(var(--navy-050))",
                 },
                 {
+                  slug: "industry-4-0-maturity",
                   tag: "Industry 4.0",
                   title: "Industry 4.0 Maturity Assessment",
                   desc: "Benchmark your Industry 4.0 maturity across technology, processes, people and data foundations.",
@@ -309,7 +311,11 @@ const ReadinessAssessment = () => {
                     </span>
                   </div>
 
-                  <h3 className="mt-4 font-display font-bold text-navy-800 text-lg leading-snug">{a.title}</h3>
+                  <Link to={`/readiness-assessment/${a.slug}`} className="mt-4 group">
+                    <h3 className="font-display font-bold text-navy-800 text-lg leading-snug group-hover:underline underline-offset-4 decoration-2 decoration-[hsl(var(--orange-500))]">
+                      {a.title}
+                    </h3>
+                  </Link>
                   <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{a.desc}</p>
 
                   <div className="mt-5 flex flex-wrap gap-2">
@@ -341,17 +347,20 @@ const ReadinessAssessment = () => {
                   </dl>
 
                   <div className="mt-6 flex flex-wrap gap-2 mt-auto">
+                    <Link
+                      to={`/readiness-assessment/${a.slug}`}
+                      className="btn-primary flex-1 min-w-[160px]"
+                    >
+                      View Details <ArrowRight className="!h-4 !w-4" />
+                    </Link>
                     <a
                       href={ASSESSMENT_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-primary flex-1 min-w-[160px]"
+                      className="btn-outline"
                     >
-                      Take Assessment <ArrowRight className="!h-4 !w-4" />
+                      Take Assessment
                     </a>
-                    <Link to="/contact" className="btn-outline">
-                      Request Assistance
-                    </Link>
                   </div>
                 </div>
               ))}
