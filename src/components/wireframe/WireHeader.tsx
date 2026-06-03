@@ -8,7 +8,7 @@ type NavLink = { label: string; href: string; children?: NavChild[] };
 
 const navLinks: NavLink[] = [
   { label: "About", href: "/about" },
-  { label: "Readiness Assessment", href: "https://www.smartmfgindia.com/Assesment.aspx" },
+  { label: "Readiness Assessment", href: "/readiness-assessment" },
   {
     label: "Solutions",
     href: "#solutions",
