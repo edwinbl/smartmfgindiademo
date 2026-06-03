@@ -27,6 +27,8 @@ const Terms = lazy(() => import("./pages/Terms"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const ReadinessAssessment = lazy(() => import("./pages/ReadinessAssessment"));
 const AssessmentDetail = lazy(() => import("./pages/AssessmentDetail"));
+const CaseStudiesIndex = lazy(() => import("./pages/CaseStudiesIndex"));
+const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail"));
 
 const queryClient = new QueryClient();
 
@@ -72,6 +74,8 @@ const App = () => (
             <Route path="/privacy" element={withSuspense(<Privacy />, "detail")} />
             <Route path="/readiness-assessment" element={withSuspense(<ReadinessAssessment />, "detail")} />
             <Route path="/readiness-assessment/:slug" element={withSuspense(<AssessmentDetail />, "detail")} />
+            <Route path="/case-studies" element={withSuspense(<CaseStudiesIndex />, "list")} />
+            <Route path="/case-studies/:slug" element={withSuspense(<CaseStudyDetail />, "detail")} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={withSuspense(<NotFound />)} />
           </Routes>

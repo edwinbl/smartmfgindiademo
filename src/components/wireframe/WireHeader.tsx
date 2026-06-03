@@ -13,7 +13,7 @@ const navLinks: NavLink[] = [
     label: "Solutions",
     href: "#solutions",
     children: [
-      { label: "Case Studies", href: "https://www.smartmfgindia.com/CaseStudy.aspx" },
+      { label: "Case Studies", href: "/case-studies" },
       { label: "Reports & Publications", href: "/reports" },
       { label: "E-Directory", href: "https://www.smartmfgindia.com/e-Directory.aspx" },
     ],
