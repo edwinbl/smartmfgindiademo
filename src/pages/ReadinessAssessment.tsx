@@ -249,6 +249,116 @@ const ReadinessAssessment = () => {
           </div>
         </section>
 
+        {/* ============== LIVE ASSESSMENTS ============== */}
+        <section className="py-16 md:py-24 bg-[hsl(var(--neutral-50))]">
+          <div className="container-cii">
+            <div className="flex items-end justify-between gap-6 flex-wrap">
+              <div className="max-w-2xl">
+                <div className="section-eyebrow mb-3 flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--india-green))] opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-[hsl(var(--india-green))]" />
+                  </span>
+                  Live now
+                </div>
+                <h2 className="font-display font-bold text-[26px] md:text-[34px] leading-tight tracking-tight text-navy-800">
+                  Assessments Currently Available
+                </h2>
+                <p className="mt-4 text-base text-[hsl(var(--neutral-700))]">
+                  Two readiness assessments are open for participation. Choose the one most aligned to your
+                  manufacturing transformation priorities.
+                </p>
+              </div>
+              <span className="cii-chip">2 assessments live</span>
+            </div>
+
+            <div className="mt-10 grid gap-6 md:grid-cols-2">
+              {[
+                {
+                  tag: "Smart Manufacturing",
+                  title: "Smart Manufacturing Maturity Assessment Model",
+                  desc: "Evaluate your readiness across smart manufacturing dimensions — operations, digital adoption, quality and sustainability.",
+                  dimensions: ["Operations", "Digital", "Quality", "Sustainability"],
+                  duration: "25–40 mins",
+                  audience: "MSME & mid-sized manufacturers",
+                  accent: "hsl(var(--navy-700))",
+                  accentSoft: "hsl(var(--navy-050))",
+                },
+                {
+                  tag: "Industry 4.0",
+                  title: "Industry 4.0 Maturity Assessment",
+                  desc: "Benchmark your Industry 4.0 maturity across technology, processes, people and data foundations.",
+                  dimensions: ["Technology", "Processes", "People", "Data"],
+                  duration: "30–45 mins",
+                  audience: "Manufacturing leaders & plant heads",
+                  accent: "hsl(var(--orange-600))",
+                  accentSoft: "hsl(var(--orange-100))",
+                },
+              ].map((a) => (
+                <div key={a.title} className="cii-card p-6 sm:p-7 bg-white flex flex-col">
+                  <div className="flex items-center justify-between gap-3 flex-wrap">
+                    <span
+                      className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full"
+                      style={{ background: a.accentSoft, color: a.accent }}
+                    >
+                      {a.tag}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-wide font-bold text-[hsl(var(--india-green))]">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[hsl(var(--india-green))]" />
+                      Open for participation
+                    </span>
+                  </div>
+
+                  <h3 className="mt-4 font-display font-bold text-navy-800 text-lg leading-snug">{a.title}</h3>
+                  <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{a.desc}</p>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {a.dimensions.map((d) => (
+                      <span
+                        key={d}
+                        className="px-2.5 py-1 text-[11px] font-semibold rounded-md border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))] text-[hsl(var(--neutral-700))]"
+                      >
+                        {d}
+                      </span>
+                    ))}
+                  </div>
+
+                  <dl className="mt-5 grid grid-cols-2 gap-3 pt-5 border-t border-[hsl(var(--neutral-150))]">
+                    <div className="flex items-start gap-2">
+                      <Clock className="h-4 w-4 mt-0.5 text-[hsl(var(--navy-600))] shrink-0" />
+                      <div>
+                        <dt className="text-[10px] uppercase tracking-wide font-semibold text-[hsl(var(--neutral-500))]">Duration</dt>
+                        <dd className="text-xs text-navy-800 font-medium mt-0.5">{a.duration}</dd>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <ClipboardList className="h-4 w-4 mt-0.5 text-[hsl(var(--navy-600))] shrink-0" />
+                      <div>
+                        <dt className="text-[10px] uppercase tracking-wide font-semibold text-[hsl(var(--neutral-500))]">Best for</dt>
+                        <dd className="text-xs text-navy-800 font-medium mt-0.5">{a.audience}</dd>
+                      </div>
+                    </div>
+                  </dl>
+
+                  <div className="mt-6 flex flex-wrap gap-2 mt-auto">
+                    <a
+                      href={ASSESSMENT_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary flex-1 min-w-[160px]"
+                    >
+                      Take Assessment <ArrowRight className="!h-4 !w-4" />
+                    </a>
+                    <Link to="/contact" className="btn-outline">
+                      Request Assistance
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ============== CURRENT ASSESSMENT ACCESS ============== */}
         <section className="py-16 md:py-24 bg-[hsl(var(--neutral-50))]">
           <div className="container-cii">
