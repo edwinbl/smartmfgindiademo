@@ -114,27 +114,47 @@ const ProgrammesIndex = () => {
       <WireHeader />
       <main>
         <ProgrammesHero onExplore={scrollToGrid} onFindPath={scrollToDiscovery} />
+        <FeaturedProgrammes />
         <GuidedDiscovery selected={outcome} onSelect={handleOutcome} />
         <ProgrammeTypeTabs active={type} onChange={setType} counts={counts} />
-        <ProgrammesDiscoveryBar
-          query={query}
-          onQuery={setQuery}
-          filters={filters}
-          onFilters={setFilters}
-          quickPick={quickPick}
-          onQuickPick={setQuickPick}
-          onClear={clearAll}
-          resultCount={filtered.length}
-        />
-        <div ref={gridRef}>
-          <ProgrammesGrid
-            programmes={filtered}
-            onRegister={handleRegister}
-            onClear={clearAll}
-            recommendOutcome={outcome}
-          />
-        </div>
-        <FeaturedProgrammes />
+        <section className="py-12 md:py-16" id="programmes-grid" ref={gridRef}>
+          <div className="container-cii">
+            <div className="grid gap-8 lg:grid-cols-[280px_1fr]">
+              <ProgrammesFilterSidebar
+                query={query}
+                onQuery={setQuery}
+                filters={filters}
+                onFilters={setFilters}
+                quickPick={quickPick}
+                onQuickPick={setQuickPick}
+                onClear={clearAll}
+                resultCount={filtered.length}
+              />
+              <div className="min-w-0">
+                <div className="mb-6">
+                  <div className="section-eyebrow mb-2">All Programmes</div>
+                  <h2 className="font-display font-bold text-[24px] md:text-[28px] text-[hsl(var(--navy-900))] tracking-tight">
+                    Build the skills the future of manufacturing needs
+                  </h2>
+                </div>
+                {filtered.length === 0 ? (
+                  <ProgrammesEmptyState onClear={clearAll} />
+                ) : (
+                  <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                    {filtered.map((p) => (
+                      <ProgrammeCard
+                        key={p.slug}
+                        programme={p}
+                        onRegister={handleRegister}
+                        recommended={!!outcome && p.outcomes.includes(outcome)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
         <LearningPathways />
         {user && <PersonalizedProgrammesShelf user={user} onRegister={handleRegister} />}
         <ProgrammesImpactStats />
