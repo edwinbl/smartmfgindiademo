@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import type { ProgrammeQuickPickId } from "@/data/programmes";
 
 export interface ProgrammeFilters {
@@ -40,9 +41,9 @@ interface Props {
 }
 
 const quickPicks: { id: ProgrammeQuickPickId; label: string; Icon: typeof Users }[] = [
-  { id: "msme-recommended", label: "Recommended for MSMEs", Icon: Users },
-  { id: "beginner", label: "Beginner Friendly", Icon: Sparkles },
-  { id: "leadership", label: "Leadership Programmes", Icon: GraduationCap },
+  { id: "msme-recommended", label: "MSMEs", Icon: Users },
+  { id: "beginner", label: "Beginner", Icon: Sparkles },
+  { id: "leadership", label: "Leadership", Icon: GraduationCap },
   { id: "ai-automation", label: "AI & Automation", Icon: Cpu },
   { id: "sustainability", label: "Sustainability", Icon: Leaf },
   { id: "factory-digitization", label: "Factory Digitization", Icon: Factory },
@@ -59,118 +60,112 @@ export const ProgrammesDiscoveryBar = ({
   resultCount,
 }: Props) => {
   const setF = (k: keyof ProgrammeFilters, v: string) => onFilters({ ...filters, [k]: v });
-  const hasActive =
-    query.length > 0 ||
-    quickPick !== null ||
-    Object.values(filters).some((v) => v !== "all");
+  const activeFilterCount = Object.values(filters).filter((v) => v !== "all").length;
+  const hasActive = query.length > 0 || quickPick !== null || activeFilterCount > 0;
 
   return (
     <section className="bg-[hsl(var(--neutral-50))] border-b border-[hsl(var(--neutral-150))]">
-      <div className="container-cii py-6 md:py-8 space-y-5">
-        <div className="flex flex-col lg:flex-row gap-3">
-          <label className="relative flex-1">
+      <div className="container-cii py-3">
+        <div className="flex items-center gap-2 flex-wrap lg:flex-nowrap">
+          {/* Search */}
+          <label className="relative flex-1 min-w-[220px]">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--neutral-500))]" />
             <input
               type="search"
               value={query}
               onChange={(e) => onQuery(e.target.value)}
               placeholder="Search programmes, topics, faculty…"
-              className="w-full h-11 pl-10 pr-3 rounded-sm border bg-white text-sm text-[hsl(var(--navy-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))]"
+              className="w-full h-10 pl-9 pr-3 rounded-sm border bg-white text-sm text-[hsl(var(--navy-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))]"
               style={{ borderColor: "hsl(var(--neutral-200))" }}
             />
           </label>
 
-          <div className="hidden lg:flex items-center gap-2 flex-wrap">
-            <Select value={filters.industry} onValueChange={(v) => setF("industry", v)}>
-              <SelectTrigger className="h-11 w-[150px]"><SelectValue placeholder="Industry" /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All industries</SelectItem>
-                <SelectItem value="MSME">MSME</SelectItem>
-                <SelectItem value="Manufacturing">Manufacturing</SelectItem>
-                <SelectItem value="Cross-industry">Cross-industry</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select value={filters.level} onValueChange={(v) => setF("level", v)}>
-              <SelectTrigger className="h-11 w-[140px]"><SelectValue placeholder="Level" /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">Any level</SelectItem>
-                <SelectItem value="Beginner">Beginner</SelectItem>
-                <SelectItem value="Intermediate">Intermediate</SelectItem>
-                <SelectItem value="Advanced">Advanced</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select value={filters.mode} onValueChange={(v) => setF("mode", v)}>
-              <SelectTrigger className="h-11 w-[130px]"><SelectValue placeholder="Mode" /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">Any mode</SelectItem>
-                <SelectItem value="Online">Online</SelectItem>
-                <SelectItem value="Hybrid">Hybrid</SelectItem>
-                <SelectItem value="In-person">In-person</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select value={filters.certification} onValueChange={(v) => setF("certification", v)}>
-              <SelectTrigger className="h-11 w-[150px]"><SelectValue placeholder="Certification" /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">Any</SelectItem>
-                <SelectItem value="yes">Certified</SelectItem>
-                <SelectItem value="no">Non-certified</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select value={filters.segment} onValueChange={(v) => setF("segment", v)}>
-              <SelectTrigger className="h-11 w-[140px]"><SelectValue placeholder="Segment" /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">Any segment</SelectItem>
-                <SelectItem value="MSME">MSME</SelectItem>
-                <SelectItem value="Enterprise">Enterprise</SelectItem>
-                <SelectItem value="Ecosystem">Ecosystem</SelectItem>
-              </SelectContent>
-            </Select>
+          {/* Inline quick picks (horizontal scroll) */}
+          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none flex-1 min-w-0">
+            {quickPicks.map(({ id, label, Icon }) => {
+              const active = quickPick === id;
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => onQuickPick(active ? null : id)}
+                  className={`whitespace-nowrap inline-flex items-center gap-1.5 px-2.5 h-8 rounded-full text-[11px] font-semibold border transition-all ${
+                    active
+                      ? "bg-[hsl(var(--red-600))] text-white border-[hsl(var(--red-600))]"
+                      : "bg-white text-[hsl(var(--navy-800))] border-[hsl(var(--neutral-200))] hover:border-[hsl(var(--red-600))] hover:text-[hsl(var(--red-700))]"
+                  }`}
+                >
+                  <Icon className="h-3 w-3" /> {label}
+                </button>
+              );
+            })}
           </div>
 
-          <button
-            type="button"
-            className="lg:hidden inline-flex items-center justify-center gap-2 h-11 px-4 rounded-sm border bg-white text-sm font-semibold text-[hsl(var(--navy-800))]"
-            style={{ borderColor: "hsl(var(--neutral-200))" }}
-          >
-            <SlidersHorizontal className="h-4 w-4" /> Filters
-          </button>
-        </div>
-
-        <div className="flex items-center gap-2 overflow-x-auto -mx-2 px-2 scrollbar-none">
-          {quickPicks.map(({ id, label, Icon }) => {
-            const active = quickPick === id;
-            return (
+          {/* More filters popover */}
+          <Popover>
+            <PopoverTrigger asChild>
               <button
-                key={id}
                 type="button"
-                onClick={() => onQuickPick(active ? null : id)}
-                className={`whitespace-nowrap inline-flex items-center gap-1.5 px-3.5 h-9 rounded-full text-xs font-semibold border transition-all ${
-                  active
-                    ? "bg-[hsl(var(--red-600))] text-white border-[hsl(var(--red-600))]"
-                    : "bg-white text-[hsl(var(--navy-800))] border-[hsl(var(--neutral-200))] hover:border-[hsl(var(--red-600))] hover:text-[hsl(var(--red-700))]"
-                }`}
+                className="relative inline-flex items-center gap-1.5 h-10 px-3 rounded-sm border bg-white text-xs font-semibold text-[hsl(var(--navy-800))] hover:border-[hsl(var(--navy-600))]"
+                style={{ borderColor: "hsl(var(--neutral-200))" }}
               >
-                <Icon className="h-3.5 w-3.5" /> {label}
+                <SlidersHorizontal className="h-3.5 w-3.5" /> Filters
+                {activeFilterCount > 0 && (
+                  <span className="ml-1 inline-grid place-items-center h-4 min-w-4 px-1 rounded-full text-[10px] bg-[hsl(var(--red-600))] text-white">
+                    {activeFilterCount}
+                  </span>
+                )}
               </button>
-            );
-          })}
-        </div>
+            </PopoverTrigger>
+            <PopoverContent align="end" className="w-[300px] space-y-3">
+              <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--neutral-500))]">
+                Refine results
+              </div>
+              {[
+                { key: "industry" as const, label: "Industry", opts: [["all","All industries"],["MSME","MSME"],["Manufacturing","Manufacturing"],["Cross-industry","Cross-industry"]] },
+                { key: "level" as const, label: "Level", opts: [["all","Any level"],["Beginner","Beginner"],["Intermediate","Intermediate"],["Advanced","Advanced"]] },
+                { key: "mode" as const, label: "Mode", opts: [["all","Any mode"],["Online","Online"],["Hybrid","Hybrid"],["In-person","In-person"]] },
+                { key: "certification" as const, label: "Certification", opts: [["all","Any"],["yes","Certified"],["no","Non-certified"]] },
+                { key: "segment" as const, label: "Segment", opts: [["all","Any segment"],["MSME","MSME"],["Enterprise","Enterprise"],["Ecosystem","Ecosystem"]] },
+              ].map((row) => (
+                <div key={row.key} className="grid grid-cols-[90px_1fr] items-center gap-2">
+                  <span className="text-xs font-semibold text-[hsl(var(--neutral-700))]">{row.label}</span>
+                  <Select value={filters[row.key]} onValueChange={(v) => setF(row.key, v)}>
+                    <SelectTrigger className="h-9 text-xs"><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      {row.opts.map(([v, l]) => (
+                        <SelectItem key={v} value={v}>{l}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              ))}
+              {hasActive && (
+                <button
+                  type="button"
+                  onClick={onClear}
+                  className="w-full inline-flex items-center justify-center gap-1 h-9 rounded-sm border text-xs font-semibold text-[hsl(var(--navy-700))] hover:text-[hsl(var(--red-600))]"
+                  style={{ borderColor: "hsl(var(--neutral-200))" }}
+                >
+                  <X className="h-3 w-3" /> Clear all
+                </button>
+              )}
+            </PopoverContent>
+          </Popover>
 
-        <div className="flex items-center justify-between text-xs text-[hsl(var(--neutral-500))]">
-          <span>{resultCount} programme{resultCount === 1 ? "" : "s"} found</span>
-          {hasActive && (
-            <button
-              type="button"
-              onClick={onClear}
-              className="inline-flex items-center gap-1 font-semibold text-[hsl(var(--navy-700))] hover:text-[hsl(var(--red-600))]"
-            >
-              <X className="h-3 w-3" /> Clear all
-            </button>
-          )}
+          {/* Count + clear */}
+          <div className="flex items-center gap-2 text-[11px] text-[hsl(var(--neutral-500))] whitespace-nowrap">
+            <span className="font-semibold text-[hsl(var(--navy-800))]">{resultCount}</span> results
+            {hasActive && (
+              <button
+                type="button"
+                onClick={onClear}
+                className="inline-flex items-center gap-1 font-semibold text-[hsl(var(--navy-700))] hover:text-[hsl(var(--red-600))]"
+              >
+                <X className="h-3 w-3" /> Clear
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </section>
