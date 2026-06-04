@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { CalendarPlus, Share2, Bookmark, BookmarkCheck } from "lucide-react";
+import { CalendarPlus, Share2 } from "lucide-react";
 import { programmesStorage } from "@/lib/programmesStorage";
 import { downloadIcs } from "@/lib/ics";
 import { toast } from "@/hooks/use-toast";
