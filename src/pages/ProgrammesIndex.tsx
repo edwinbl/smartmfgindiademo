@@ -49,7 +49,7 @@ const ProgrammesIndex = () => {
   const [quickPick, setQuickPick] = useState<ProgrammeQuickPickId | null>(null);
   const [outcome, setOutcome] = useState<OutcomeId | null>(null);
   const [modalProgramme, setModalProgramme] = useState<ProgrammeItem | null>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLElement>(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
