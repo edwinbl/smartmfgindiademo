@@ -7,11 +7,12 @@ import { ProgrammesHero } from "@/components/programmes/ProgrammesHero";
 import { GuidedDiscovery } from "@/components/programmes/GuidedDiscovery";
 import { ProgrammeTypeTabs } from "@/components/programmes/ProgrammeTypeTabs";
 import {
-  ProgrammesDiscoveryBar,
   emptyProgrammeFilters,
   type ProgrammeFilters,
 } from "@/components/programmes/ProgrammesDiscoveryBar";
-import { ProgrammesGrid } from "@/components/programmes/ProgrammesGrid";
+import { ProgrammesFilterSidebar } from "@/components/programmes/ProgrammesFilterSidebar";
+import { ProgrammeCard } from "@/components/programmes/ProgrammeCard";
+import { ProgrammesEmptyState } from "@/components/programmes/ProgrammesEmptyState";
 import { FeaturedProgrammes } from "@/components/programmes/FeaturedProgrammes";
 import { LearningPathways } from "@/components/programmes/LearningPathways";
 import { ProgrammesImpactStats } from "@/components/programmes/ProgrammesImpactStats";
