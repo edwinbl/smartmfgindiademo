@@ -25,13 +25,13 @@ export const ProgrammesHero = ({ onExplore, onFindPath }: Props) => {
         }}
       />
 
-      <div className="container-cii relative py-16 md:py-24 lg:py-28">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div className="container-cii relative py-10 md:py-14 lg:py-16">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Content */}
-          <div className="lg:col-span-7 space-y-8 animate-fade-in">
-            <div className="flex items-center gap-4">
+          <div className="lg:col-span-7 space-y-5 animate-fade-in">
+            <div className="flex items-center gap-3">
               <span
-                className="px-3 py-1 text-[11px] font-bold tracking-[0.15em] uppercase rounded-sm border"
+                className="px-2.5 py-0.5 text-[11px] font-semibold tracking-[0.12em] uppercase rounded-sm border"
                 style={{
                   background: "hsl(var(--red-100))",
                   color: "hsl(var(--red-700))",
@@ -40,63 +40,60 @@ export const ProgrammesHero = ({ onExplore, onFindPath }: Props) => {
               >
                 Capability Building
               </span>
-              <div className="h-px w-8 bg-[hsl(var(--neutral-200))]" />
-              <span className="text-[11px] font-bold tracking-[0.15em] uppercase text-[hsl(var(--neutral-500))]">
+              <div className="h-px w-6 bg-[hsl(var(--neutral-200))]" />
+              <span className="text-[11px] font-semibold tracking-[0.12em] uppercase text-[hsl(var(--neutral-500))]">
                 Industry 4.0
               </span>
             </div>
 
-            <div className="space-y-6">
-              <h1
-                className="font-display font-bold text-[44px] sm:text-[56px] lg:text-[76px] leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]"
-              >
+            <div className="space-y-4">
+              <h1 className="font-display font-semibold text-[32px] sm:text-[40px] lg:text-[48px] leading-[1.1] tracking-tight text-[hsl(var(--navy-900))]">
                 Programmes{" "}
-                <span className="italic font-bold" style={{ color: "hsl(var(--red-600))" }}>
+                <span className="italic font-semibold" style={{ color: "hsl(var(--red-600))" }}>
                   &amp;
-                </span>
-                <br />
+                </span>{" "}
                 Training
               </h1>
-              <p className="text-lg md:text-xl text-[hsl(var(--neutral-700))] max-w-xl leading-relaxed">
+              <p className="text-base md:text-lg text-[hsl(var(--neutral-700))] max-w-lg leading-relaxed">
                 Build Industry 4.0 capabilities through expert-led programmes,
                 workshops and transformation learning pathways designed for
                 industrial leaders.
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <button
                 onClick={onExplore}
-                className="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 font-semibold text-white transition-all hover:opacity-90"
+                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-all hover:opacity-90"
                 style={{
                   background: "hsl(var(--navy-900))",
-                  boxShadow: "0 20px 40px -16px hsl(var(--navy-900) / 0.35)",
+                  boxShadow: "0 12px 24px -10px hsl(var(--navy-900) / 0.25)",
                 }}
               >
                 Explore Programmes
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-4 w-4" />
               </button>
               <button
                 onClick={onFindPath}
-                className="px-8 md:px-10 py-4 md:py-5 border font-semibold text-[hsl(var(--navy-900))] transition-colors hover:bg-[hsl(var(--neutral-100))]"
+                className="px-6 py-3 border text-sm font-semibold text-[hsl(var(--navy-900))] transition-colors hover:bg-[hsl(var(--neutral-100))]"
                 style={{ borderColor: "hsl(var(--neutral-200))" }}
               >
                 Find Learning Path
               </button>
               <Link
                 to="/contact"
-                className="text-sm font-bold uppercase tracking-wider text-[hsl(var(--navy-900))] border-b-2 pb-1 transition-colors hover:border-[hsl(var(--red-600))]"
+                className="text-sm font-semibold uppercase tracking-wider text-[hsl(var(--navy-900))] border-b-2 pb-0.5 transition-colors hover:border-[hsl(var(--red-600))]"
                 style={{ borderColor: "hsl(var(--red-100))" }}
               >
                 Talk to an advisor
               </Link>
             </div>
 
-            <div className="pt-10 border-t border-[hsl(var(--neutral-150))]">
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[hsl(var(--neutral-500))] mb-5">
+            <div className="pt-6 border-t border-[hsl(var(--neutral-150))]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[hsl(var(--neutral-500))] mb-3">
                 Strategic Partners &amp; Faculty
               </p>
-              <div className="flex flex-wrap gap-x-10 gap-y-3 text-[hsl(var(--neutral-700))] font-semibold text-sm">
+              <div className="flex flex-wrap gap-x-8 gap-y-2 text-[hsl(var(--neutral-700))] font-medium text-sm">
                 {["IIT Madras", "Bosch", "Mahindra", "Tata Steel", "Wipro", "Siemens"].map((p) => (
                   <span key={p} className="hover:text-[hsl(var(--navy-900))] transition-colors">
                     {p}
@@ -108,9 +105,7 @@ export const ProgrammesHero = ({ onExplore, onFindPath }: Props) => {
 
           {/* Visual */}
           <div className="lg:col-span-5 relative">
-            <div
-              className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-sm bg-[hsl(var(--neutral-100))]"
-            >
+            <div className="relative aspect-[4/5] max-h-[420px] overflow-hidden rounded-sm shadow-sm bg-[hsl(var(--neutral-100))]">
               <img
                 src={heroImage}
                 alt="Industrial leaders in a smart manufacturing learning session"
@@ -136,8 +131,8 @@ export const ProgrammesHero = ({ onExplore, onFindPath }: Props) => {
 
             {/* Metrics layer */}
             <div
-              className="absolute -bottom-8 left-4 lg:-left-16 bg-white p-8 lg:p-10 border border-[hsl(var(--neutral-150))] hidden md:grid grid-cols-2 gap-x-12 gap-y-8 min-w-[400px]"
-              style={{ boxShadow: "0 32px 64px -16px hsl(var(--navy-900) / 0.15)" }}
+              className="absolute -bottom-6 left-4 lg:-left-12 bg-white p-5 lg:p-6 border border-[hsl(var(--neutral-150))] hidden md:grid grid-cols-2 gap-x-8 gap-y-5 min-w-[280px]"
+              style={{ boxShadow: "0 20px 40px -12px hsl(var(--navy-900) / 0.12)" }}
             >
               {[
                 { value: "14,500+", label: "Leaders Trained" },
@@ -145,8 +140,8 @@ export const ProgrammesHero = ({ onExplore, onFindPath }: Props) => {
                 { value: "85", label: "Partners" },
                 { value: "28", label: "Industries" },
               ].map((s) => (
-                <div key={s.label} className="space-y-1.5">
-                  <div className="font-numeric font-bold text-3xl lg:text-4xl tracking-tight text-[hsl(var(--navy-900))]">
+                <div key={s.label} className="space-y-1">
+                  <div className="font-numeric font-semibold text-xl lg:text-2xl tracking-tight text-[hsl(var(--navy-900))]">
                     {s.value.endsWith("+") ? (
                       <>
                         {s.value.slice(0, -1)}
@@ -156,7 +151,7 @@ export const ProgrammesHero = ({ onExplore, onFindPath }: Props) => {
                       s.value
                     )}
                   </div>
-                  <div className="text-[10px] font-bold text-[hsl(var(--neutral-500))] uppercase tracking-[0.2em]">
+                  <div className="text-[10px] font-semibold text-[hsl(var(--neutral-500))] uppercase tracking-[0.15em]">
                     {s.label}
                   </div>
                 </div>
