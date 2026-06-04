@@ -1,5 +1,4 @@
 import { CalendarPlus, Share2 } from "lucide-react";
-import { programmesStorage } from "@/lib/programmesStorage";
 import { downloadIcs } from "@/lib/ics";
 import { toast } from "@/hooks/use-toast";
 import type { ProgrammeItem } from "@/data/programmes";
@@ -10,13 +9,6 @@ interface Props {
 }
 
 export const StickyActionPanel = ({ programme, onRegister }: Props) => {
-  const [saved, setSaved] = useState(false);
-
-  useEffect(() => {
-    setSaved(programmesStorage.isSaved(programme.slug));
-    return programmesStorage.subscribe(() => setSaved(programmesStorage.isSaved(programme.slug)));
-  }, [programme.slug]);
-
   const handleShare = async () => {
     const url = typeof window !== "undefined" ? window.location.href : "";
     try {
@@ -44,25 +36,13 @@ export const StickyActionPanel = ({ programme, onRegister }: Props) => {
       <button onClick={onRegister} className="btn-primary w-full">
         {programme.registrationLabel}
       </button>
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-2 gap-2">
         <button
           onClick={addToCalendar}
           aria-label="Add programme to calendar"
           className="inline-flex items-center justify-center gap-1.5 h-10 rounded-sm border border-[hsl(var(--neutral-200))] text-xs font-semibold text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--navy-600))] focus-visible:ring-offset-2"
         >
           <CalendarPlus className="h-4 w-4" /> Calendar
-        </button>
-        <button
-          onClick={() => {
-            const next = programmesStorage.toggleSaved(programme.slug);
-            toast({ title: next ? "Saved" : "Removed", description: programme.title });
-          }}
-          aria-label={saved ? "Remove bookmark" : "Bookmark this programme"}
-          aria-pressed={saved}
-          className="inline-flex items-center justify-center gap-1.5 h-10 rounded-sm border border-[hsl(var(--neutral-200))] text-xs font-semibold text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--navy-600))] focus-visible:ring-offset-2"
-        >
-          {saved ? <BookmarkCheck className="h-4 w-4" /> : <Bookmark className="h-4 w-4" />}
-          {saved ? "Saved" : "Bookmark"}
         </button>
         <button
           onClick={handleShare}
