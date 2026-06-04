@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, GraduationCap, Sparkles, Users, Award } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/programmes-hero.jpg";
 
 interface Props {
@@ -9,99 +9,158 @@ interface Props {
 
 export const ProgrammesHero = ({ onExplore, onFindPath }: Props) => {
   return (
-    <section className="relative isolate overflow-hidden text-white">
-      <img
-        src={heroImage}
-        alt=""
-        aria-hidden
-        width={1920}
-        height={1080}
-        fetchPriority="high"
-        decoding="async"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+    <section
+      className="relative w-full"
+      style={{ background: "hsl(var(--neutral-50))" }}
+      aria-label="Programmes & Training"
+    >
+      {/* subtle paper texture / accent */}
       <div
-        className="absolute inset-0"
+        aria-hidden
+        className="absolute inset-0 pointer-events-none opacity-[0.35]"
         style={{
-          background:
-            "linear-gradient(115deg, hsl(var(--navy-900) / 0.94) 0%, hsl(var(--navy-800) / 0.82) 45%, hsl(var(--navy-900) / 0.55) 100%)",
+          backgroundImage:
+            "radial-gradient(hsl(var(--navy-100)) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
         }}
       />
-      <div className="absolute inset-0 blueprint-grid opacity-30" aria-hidden />
-      <div
-        aria-hidden
-        className="absolute -top-32 -right-24 h-[520px] w-[520px] rounded-full blur-3xl opacity-40 animate-pulse"
-        style={{ background: "radial-gradient(circle, hsl(var(--orange-500) / 0.55) 0%, transparent 60%)" }}
-      />
-      <div
-        aria-hidden
-        className="absolute bottom-0 left-1/4 h-72 w-72 rounded-full blur-3xl opacity-30"
-        style={{ background: "radial-gradient(circle, hsl(var(--red-600) / 0.45) 0%, transparent 65%)" }}
-      />
 
-      <div className="container-cii relative z-10 pt-20 pb-24 md:pt-28 md:pb-32 lg:pt-32 lg:pb-40">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-7 space-y-6">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-[11px] uppercase tracking-[0.14em] font-bold">
-                <Sparkles className="h-3 w-3" /> Capability Building
+      <div className="container-cii relative py-16 md:py-24 lg:py-28">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Content */}
+          <div className="lg:col-span-7 space-y-8 animate-fade-in">
+            <div className="flex items-center gap-4">
+              <span
+                className="px-3 py-1 text-[11px] font-bold tracking-[0.15em] uppercase rounded-sm border"
+                style={{
+                  background: "hsl(var(--red-100))",
+                  color: "hsl(var(--red-700))",
+                  borderColor: "hsl(var(--red-100))",
+                }}
+              >
+                Capability Building
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[hsl(var(--red-600))] text-[11px] uppercase tracking-[0.14em] font-bold">
+              <div className="h-px w-8 bg-[hsl(var(--neutral-200))]" />
+              <span className="text-[11px] font-bold tracking-[0.15em] uppercase text-[hsl(var(--neutral-500))]">
                 Industry 4.0
               </span>
             </div>
 
-            <h1 className="font-display font-bold text-[36px] sm:text-[44px] md:text-[60px] leading-[1.05] tracking-tight">
-              Programmes &amp; Training
-            </h1>
+            <div className="space-y-6">
+              <h1
+                className="font-display font-bold text-[44px] sm:text-[56px] lg:text-[76px] leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]"
+              >
+                Programmes{" "}
+                <span className="italic font-bold" style={{ color: "hsl(var(--red-600))" }}>
+                  &amp;
+                </span>
+                <br />
+                Training
+              </h1>
+              <p className="text-lg md:text-xl text-[hsl(var(--neutral-700))] max-w-xl leading-relaxed">
+                Build Industry 4.0 capabilities through expert-led programmes,
+                workshops and transformation learning pathways designed for
+                industrial leaders.
+              </p>
+            </div>
 
-            <p className="text-lg md:text-xl text-white/85 font-medium max-w-2xl">
-              Build Industry 4.0 capabilities through expert-led programmes, workshops and transformation learning pathways.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <button onClick={onExplore} className="btn-primary">
-                Explore Programmes <ArrowRight className="h-4 w-4" />
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <button
+                onClick={onExplore}
+                className="inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 font-semibold text-white transition-all hover:opacity-90"
+                style={{
+                  background: "hsl(var(--navy-900))",
+                  boxShadow: "0 20px 40px -16px hsl(var(--navy-900) / 0.35)",
+                }}
+              >
+                Explore Programmes
+                <ArrowRight className="h-5 w-5" />
               </button>
-              <button onClick={onFindPath} className="btn-ghost">
-                <GraduationCap className="h-4 w-4" /> Find Learning Path
+              <button
+                onClick={onFindPath}
+                className="px-8 md:px-10 py-4 md:py-5 border font-semibold text-[hsl(var(--navy-900))] transition-colors hover:bg-[hsl(var(--neutral-100))]"
+                style={{ borderColor: "hsl(var(--neutral-200))" }}
+              >
+                Find Learning Path
               </button>
-              <Link to="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-white/90 hover:text-white transition-colors">
-                Talk to programme advisor
+              <Link
+                to="/contact"
+                className="text-sm font-bold uppercase tracking-wider text-[hsl(var(--navy-900))] border-b-2 pb-1 transition-colors hover:border-[hsl(var(--red-600))]"
+                style={{ borderColor: "hsl(var(--red-100))" }}
+              >
+                Talk to an advisor
               </Link>
+            </div>
+
+            <div className="pt-10 border-t border-[hsl(var(--neutral-150))]">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[hsl(var(--neutral-500))] mb-5">
+                Strategic Partners &amp; Faculty
+              </p>
+              <div className="flex flex-wrap gap-x-10 gap-y-3 text-[hsl(var(--neutral-700))] font-semibold text-sm">
+                {["IIT Madras", "Bosch", "Mahindra", "Tata Steel", "Wipro", "Siemens"].map((p) => (
+                  <span key={p} className="hover:text-[hsl(var(--navy-900))] transition-colors">
+                    {p}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
+          {/* Visual */}
           <div className="lg:col-span-5 relative">
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { icon: Users, value: "14,500+", label: "Leaders trained" },
-                { icon: GraduationCap, value: "120+", label: "Programmes delivered" },
-                { icon: Award, value: "85", label: "Industry partners" },
-                { icon: Sparkles, value: "28", label: "Industries served" },
-              ].map((tile, i) => {
-                const Icon = tile.icon;
-                return (
-                  <div
-                    key={tile.label}
-                    className="rounded-lg p-5 bg-white/10 backdrop-blur-md border border-white/15 animate-fade-in"
-                    style={{ transform: `translateY(${i % 2 === 0 ? "-8px" : "8px"})`, animationDelay: `${i * 100}ms` }}
-                  >
-                    <Icon className="h-5 w-5 text-white/70 mb-3" />
-                    <div className="font-numeric font-bold text-2xl md:text-3xl text-white">{tile.value}</div>
-                    <div className="text-[11px] uppercase tracking-[0.14em] text-white/70 mt-1">{tile.label}</div>
-                  </div>
-                );
-              })}
+            <div
+              className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-sm bg-[hsl(var(--neutral-100))]"
+            >
+              <img
+                src={heroImage}
+                alt="Industrial leaders in a smart manufacturing learning session"
+                width={1200}
+                height={1500}
+                loading="eager"
+                decoding="async"
+                className="w-full h-full object-cover"
+              />
+              <div
+                className="absolute inset-0 mix-blend-multiply"
+                style={{ background: "hsl(var(--navy-900) / 0.10)" }}
+              />
+              {/* small accent strip */}
+              <div
+                className="absolute top-0 left-0 w-1 h-full"
+                style={{
+                  background:
+                    "linear-gradient(to bottom, hsl(var(--saffron)) 0% 33%, #ffffff 33% 66%, hsl(var(--india-green)) 66% 100%)",
+                }}
+              />
             </div>
 
-            <div className="mt-6 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 p-4">
-              <div className="text-[11px] uppercase tracking-[0.14em] font-bold text-white/70 mb-2">
-                Faculty & partners
-              </div>
-              <div className="text-sm text-white/85 leading-snug">
-                IIT Madras · Bosch · Mahindra · Tata Steel · Wipro · Siemens
-              </div>
+            {/* Metrics layer */}
+            <div
+              className="absolute -bottom-8 left-4 lg:-left-16 bg-white p-8 lg:p-10 border border-[hsl(var(--neutral-150))] hidden md:grid grid-cols-2 gap-x-12 gap-y-8 min-w-[400px]"
+              style={{ boxShadow: "0 32px 64px -16px hsl(var(--navy-900) / 0.15)" }}
+            >
+              {[
+                { value: "14,500+", label: "Leaders Trained" },
+                { value: "120+", label: "Programmes" },
+                { value: "85", label: "Partners" },
+                { value: "28", label: "Industries" },
+              ].map((s) => (
+                <div key={s.label} className="space-y-1.5">
+                  <div className="font-numeric font-bold text-3xl lg:text-4xl tracking-tight text-[hsl(var(--navy-900))]">
+                    {s.value.endsWith("+") ? (
+                      <>
+                        {s.value.slice(0, -1)}
+                        <span style={{ color: "hsl(var(--red-600))" }}>+</span>
+                      </>
+                    ) : (
+                      s.value
+                    )}
+                  </div>
+                  <div className="text-[10px] font-bold text-[hsl(var(--neutral-500))] uppercase tracking-[0.2em]">
+                    {s.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
