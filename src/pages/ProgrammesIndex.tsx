@@ -7,11 +7,12 @@ import { ProgrammesHero } from "@/components/programmes/ProgrammesHero";
 import { GuidedDiscovery } from "@/components/programmes/GuidedDiscovery";
 import { ProgrammeTypeTabs } from "@/components/programmes/ProgrammeTypeTabs";
 import {
-  ProgrammesDiscoveryBar,
   emptyProgrammeFilters,
   type ProgrammeFilters,
 } from "@/components/programmes/ProgrammesDiscoveryBar";
-import { ProgrammesGrid } from "@/components/programmes/ProgrammesGrid";
+import { ProgrammesFilterSidebar } from "@/components/programmes/ProgrammesFilterSidebar";
+import { ProgrammeCard } from "@/components/programmes/ProgrammeCard";
+import { ProgrammesEmptyState } from "@/components/programmes/ProgrammesEmptyState";
 import { FeaturedProgrammes } from "@/components/programmes/FeaturedProgrammes";
 import { LearningPathways } from "@/components/programmes/LearningPathways";
 import { ProgrammesImpactStats } from "@/components/programmes/ProgrammesImpactStats";
@@ -48,7 +49,7 @@ const ProgrammesIndex = () => {
   const [quickPick, setQuickPick] = useState<ProgrammeQuickPickId | null>(null);
   const [outcome, setOutcome] = useState<OutcomeId | null>(null);
   const [modalProgramme, setModalProgramme] = useState<ProgrammeItem | null>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLElement>(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -113,27 +114,47 @@ const ProgrammesIndex = () => {
       <WireHeader />
       <main>
         <ProgrammesHero onExplore={scrollToGrid} onFindPath={scrollToDiscovery} />
+        <FeaturedProgrammes />
         <GuidedDiscovery selected={outcome} onSelect={handleOutcome} />
         <ProgrammeTypeTabs active={type} onChange={setType} counts={counts} />
-        <ProgrammesDiscoveryBar
-          query={query}
-          onQuery={setQuery}
-          filters={filters}
-          onFilters={setFilters}
-          quickPick={quickPick}
-          onQuickPick={setQuickPick}
-          onClear={clearAll}
-          resultCount={filtered.length}
-        />
-        <div ref={gridRef}>
-          <ProgrammesGrid
-            programmes={filtered}
-            onRegister={handleRegister}
-            onClear={clearAll}
-            recommendOutcome={outcome}
-          />
-        </div>
-        <FeaturedProgrammes />
+        <section className="py-12 md:py-16" id="programmes-grid" ref={gridRef}>
+          <div className="container-cii">
+            <div className="grid gap-8 lg:grid-cols-[280px_1fr]">
+              <ProgrammesFilterSidebar
+                query={query}
+                onQuery={setQuery}
+                filters={filters}
+                onFilters={setFilters}
+                quickPick={quickPick}
+                onQuickPick={setQuickPick}
+                onClear={clearAll}
+                resultCount={filtered.length}
+              />
+              <div className="min-w-0">
+                <div className="mb-6">
+                  <div className="section-eyebrow mb-2">All Programmes</div>
+                  <h2 className="font-display font-bold text-[24px] md:text-[28px] text-[hsl(var(--navy-900))] tracking-tight">
+                    Build the skills the future of manufacturing needs
+                  </h2>
+                </div>
+                {filtered.length === 0 ? (
+                  <ProgrammesEmptyState onClear={clearAll} />
+                ) : (
+                  <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                    {filtered.map((p) => (
+                      <ProgrammeCard
+                        key={p.slug}
+                        programme={p}
+                        onRegister={handleRegister}
+                        recommended={!!outcome && p.outcomes.includes(outcome)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
         <LearningPathways />
         {user && <PersonalizedProgrammesShelf user={user} onRegister={handleRegister} />}
         <ProgrammesImpactStats />
