@@ -1,16 +1,14 @@
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
-import { WirePartners } from "@/components/wireframe/WirePartners";
 import { SEO } from "@/components/SEO";
 import { AboutHero } from "@/components/about/AboutHero";
-import { AboutChallenge } from "@/components/about/AboutChallenge";
-import { AboutEcosystem } from "@/components/about/AboutEcosystem";
-import { AboutJourney } from "@/components/about/AboutJourney";
-import { AboutCapabilities } from "@/components/about/AboutCapabilities";
-import { AboutMetrics } from "@/components/about/AboutMetrics";
-import { AboutVision } from "@/components/about/AboutVision";
-import { AboutHowItWorks } from "@/components/about/AboutHowItWorks";
+import { AboutPillars } from "@/components/about/AboutPillars";
+import { AboutWhyMatters } from "@/components/about/AboutWhyMatters";
+import { AboutPlatformJourney } from "@/components/about/AboutPlatformJourney";
+import { AboutWhoServes } from "@/components/about/AboutWhoServes";
+import { AboutPlatformEcosystem } from "@/components/about/AboutPlatformEcosystem";
+import { AboutLivingPlatform } from "@/components/about/AboutLivingPlatform";
 import { AboutFinalCta } from "@/components/about/AboutFinalCta";
 import { AboutProgress } from "@/components/about/AboutProgress";
 
@@ -27,22 +25,20 @@ const About = () => {
   return (
     <div className="min-h-dvh bg-background text-foreground">
       <SEO
-        title="About — India's Industry 4.0 Movement"
-        description="Discover how CII Smart Manufacturing accelerates India's Industry 4.0 transformation through ecosystem collaboration, guided journeys and proven solutions."
+        title="About — Accelerating India's Smart Manufacturing Transformation"
+        description="A mission-driven platform helping manufacturers assess readiness, discover solutions, learn from peers and build capabilities for sustainable growth."
         jsonLd={jsonLd}
       />
       <WireHeader />
       <AboutProgress />
       <main>
         <AboutHero />
-        <AboutChallenge />
-        <AboutEcosystem />
-        <AboutJourney />
-        <AboutCapabilities />
-        <AboutMetrics />
-        <WirePartners />
-        <AboutVision />
-        <AboutHowItWorks />
+        <AboutPillars />
+        <AboutWhyMatters />
+        <AboutPlatformJourney />
+        <AboutWhoServes />
+        <AboutPlatformEcosystem />
+        <AboutLivingPlatform />
         <AboutFinalCta />
       </main>
       <WireFooter />
