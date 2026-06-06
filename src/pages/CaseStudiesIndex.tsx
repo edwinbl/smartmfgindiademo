@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Search,
   X,
   ArrowRight,
   TrendingUp,
@@ -15,7 +14,6 @@ import {
   Leaf,
   Network,
   ChevronRight,
-  Sparkles,
 } from "lucide-react";
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
