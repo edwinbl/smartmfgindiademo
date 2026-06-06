@@ -21,6 +21,7 @@ import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
+import { CaseStudiesHero } from "@/components/casestudies/CaseStudiesHero";
 import {
   caseStudies,
   sectors,
