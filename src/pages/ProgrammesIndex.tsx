@@ -113,7 +113,13 @@ const ProgrammesIndex = () => {
       />
       <WireHeader />
       <main>
-        <ProgrammesHero onExplore={scrollToGrid} onFindPath={scrollToDiscovery} />
+        <ProgrammesHero
+          onExplore={scrollToGrid}
+          onFindPath={scrollToDiscovery}
+          query={query}
+          onQuery={setQuery}
+          onTag={setQuery}
+        />
         <FeaturedProgrammes />
         <GuidedDiscovery selected={outcome} onSelect={handleOutcome} />
         <ProgrammeTypeTabs active={type} onChange={setType} counts={counts} />

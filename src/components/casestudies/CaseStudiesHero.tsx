@@ -1,29 +1,31 @@
-import { Link } from "react-router-dom";
-import { ArrowRight, Search, Sparkles, GraduationCap, Award, Users } from "lucide-react";
+import { Search, Sparkles, TrendingUp, Factory, MapPin, Gauge } from "lucide-react";
 
 interface Props {
-  onExplore: () => void;
-  onFindPath: () => void;
   query?: string;
   onQuery?: (v: string) => void;
   onTag?: (tag: string) => void;
 }
 
 const heroTags = [
-  "MSMEs",
-  "Beginner",
-  "Leadership",
-  "AI & Automation",
-  "Sustainability",
-  "Factory Digitization",
+  "Productivity",
+  "Quality",
+  "Energy",
+  "Traceability",
+  "MSME",
+  "Smart Factory",
 ];
 
-export const ProgrammesHero = ({ onExplore, onFindPath, query = "", onQuery, onTag }: Props) => {
+export const CaseStudiesHero = ({ query = "", onQuery, onTag }: Props) => {
+  const focusResults = () => {
+    const el = document.getElementById("all");
+    el?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <section
       className="relative overflow-hidden bg-background border-b"
       style={{ borderColor: "hsl(var(--neutral-150))" }}
-      aria-label="Programmes & Training"
+      aria-label="Case Studies hero"
     >
       <div
         className="absolute inset-0 -z-10"
@@ -47,11 +49,11 @@ export const ProgrammesHero = ({ onExplore, onFindPath, query = "", onQuery, onT
       <div className="container-cii relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-center py-14 lg:py-20">
         <div className="lg:col-span-7 animate-fade-in">
           <span className="cii-chip">
-            <Sparkles className="h-3.5 w-3.5" /> Capability Building Hub
+            <Sparkles className="h-3.5 w-3.5" /> Real Manufacturer Stories
           </span>
 
           <h1 className="font-display mt-5 text-[36px] sm:text-5xl lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
-            Programmes, Training &amp;{" "}
+            Case Studies &amp;{" "}
             <span className="relative inline-block">
               <span
                 className="relative z-10 bg-clip-text text-transparent"
@@ -60,7 +62,7 @@ export const ProgrammesHero = ({ onExplore, onFindPath, query = "", onQuery, onT
                     "linear-gradient(90deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
                 }}
               >
-                Capability Building
+                Proof in Practice
               </span>
               <span
                 className="absolute left-0 right-0 bottom-1 h-2 -z-0 rounded-sm opacity-70"
@@ -71,14 +73,14 @@ export const ProgrammesHero = ({ onExplore, onFindPath, query = "", onQuery, onT
           </h1>
 
           <p className="mt-5 text-base sm:text-lg text-[hsl(var(--neutral-700))] max-w-xl leading-relaxed">
-            Build Industry 4.0 capabilities through expert-led programmes, workshops and
-            transformation learning pathways designed for industrial leaders.
+            Discover how manufacturers across sectors are improving productivity, quality,
+            traceability, sustainability and competitiveness.
           </p>
 
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              onExplore();
+              focusResults();
             }}
             className="mt-7 relative max-w-2xl"
           >
@@ -87,10 +89,10 @@ export const ProgrammesHero = ({ onExplore, onFindPath, query = "", onQuery, onT
               type="text"
               value={query}
               onChange={(e) => onQuery?.(e.target.value)}
-              placeholder="Search by programme, topic, level or skill area…"
+              placeholder="Search by sector, company, state or business outcome…"
               className="w-full h-14 pl-14 pr-32 rounded-full border bg-white text-sm text-[hsl(var(--neutral-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] shadow-sm transition-shadow"
               style={{ borderColor: "hsl(var(--neutral-200))" }}
-              aria-label="Search programmes"
+              aria-label="Search case studies"
             />
             <button
               type="submit"
@@ -113,7 +115,7 @@ export const ProgrammesHero = ({ onExplore, onFindPath, query = "", onQuery, onT
                 type="button"
                 onClick={() => {
                   onTag?.(t);
-                  onExplore();
+                  focusResults();
                 }}
                 className="h-8 px-3.5 rounded-full text-xs font-semibold border bg-white text-[hsl(var(--navy-700))] hover:border-[hsl(var(--navy-600))] hover:text-[hsl(var(--navy-900))] transition-colors"
                 style={{ borderColor: "hsl(var(--neutral-200))" }}
@@ -121,20 +123,13 @@ export const ProgrammesHero = ({ onExplore, onFindPath, query = "", onQuery, onT
                 {t}
               </button>
             ))}
-            <button
-              type="button"
-              onClick={onFindPath}
-              className="inline-flex items-center gap-1.5 h-8 px-3.5 rounded-full text-xs font-semibold text-[hsl(var(--red-600))] hover:text-[hsl(var(--red-700))] transition-colors"
-            >
-              Find learning path <ArrowRight className="h-3 w-3" />
-            </button>
           </div>
 
           <div className="mt-9 grid grid-cols-3 gap-6 max-w-md">
             {[
-              { v: "120+", l: "Programmes" },
-              { v: "14.5K", l: "Leaders Trained" },
-              { v: "85", l: "Partners" },
+              { v: "220+", l: "Stories" },
+              { v: "25", l: "Sectors" },
+              { v: "18", l: "States" },
             ].map((s) => (
               <div key={s.l}>
                 <div className="font-numeric text-2xl font-extrabold text-[hsl(var(--navy-900))]">
@@ -149,67 +144,62 @@ export const ProgrammesHero = ({ onExplore, onFindPath, query = "", onQuery, onT
         </div>
 
         <div className="lg:col-span-5 relative h-[380px] sm:h-[440px] lg:h-[500px] animate-scale-in">
-          <ProgrammesCollage />
+          <CaseStudiesCollage />
         </div>
       </div>
     </section>
   );
 };
 
-const ProgrammesCollage = () => {
+const CaseStudiesCollage = () => {
   return (
     <div className="absolute inset-0">
       <div className="absolute top-2 right-2 w-[82%] cii-card p-5 rotate-[2deg]">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--red-600))]">
-            <GraduationCap className="h-3.5 w-3.5" />
-            Live Cohort
+            <Gauge className="h-3.5 w-3.5" />
+            Outcome Snapshot
           </div>
-          <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-[hsl(var(--india-green))]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[hsl(var(--india-green))] animate-pulse" /> Open
-          </span>
+          <span className="text-[10px] text-[hsl(var(--neutral-500))]">Tier-2 MSME</span>
         </div>
-        <div className="mt-2 text-sm font-bold text-[hsl(var(--navy-900))] leading-snug">
-          Industry 4.0 Leadership Programme
+        <div className="mt-3 grid grid-cols-2 gap-3">
+          <div>
+            <div className="text-[10px] uppercase tracking-wider text-[hsl(var(--neutral-500))] font-bold">
+              Throughput
+            </div>
+            <div className="mt-1 font-display text-2xl font-extrabold text-[hsl(var(--india-green))]">
+              +38%
+            </div>
+          </div>
+          <div>
+            <div className="text-[10px] uppercase tracking-wider text-[hsl(var(--neutral-500))] font-bold">
+              Defects
+            </div>
+            <div className="mt-1 font-display text-2xl font-extrabold text-[hsl(var(--india-green))]">
+              −62%
+            </div>
+          </div>
         </div>
-        <div className="mt-3 text-xs text-[hsl(var(--neutral-700))]">
-          IIT Madras · 6 weekends · Hybrid
-        </div>
-        <div className="mt-3 flex items-center -space-x-2">
-          {["AR", "PK", "SM", "JV"].map((t, i) => (
-            <span
-              key={t}
-              className="h-7 w-7 rounded-full grid place-items-center text-[10px] font-bold text-white border-2 border-white"
-              style={{ background: `hsl(var(--navy-${800 - i * 100}))` }}
-            >
-              {t}
-            </span>
-          ))}
-          <span className="pl-3 text-[10px] text-[hsl(var(--neutral-500))]">+42 enrolled</span>
-        </div>
+        <p className="mt-3 text-xs text-[hsl(var(--neutral-700))] leading-relaxed">
+          Auto-component plant, Pune — 9-month Industry 4.0 rollout.
+        </p>
       </div>
 
       <div className="absolute top-[46%] left-0 w-[60%] cii-card p-4 -rotate-[3deg]">
         <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--navy-700))]">
-          <Award className="h-3.5 w-3.5" />
-          Certification
+          <Factory className="h-3.5 w-3.5" />
+          Featured Sectors
         </div>
-        <div className="mt-2 text-sm font-bold text-[hsl(var(--navy-900))] leading-snug">
-          Smart Manufacturing Practitioner — Level 2
-        </div>
-        <div className="mt-3 flex gap-2">
-          <span
-            className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
-            style={{ background: "hsl(var(--orange-100))", color: "hsl(var(--orange-600))" }}
-          >
-            Co-certified
-          </span>
-          <span
-            className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
-            style={{ background: "hsl(var(--navy-050))", color: "hsl(var(--navy-700))" }}
-          >
-            CII + Bosch
-          </span>
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {["Auto", "Pharma", "Steel", "F&B", "Textile", "Electronics"].map((t) => (
+            <span
+              key={t}
+              className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
+              style={{ background: "hsl(var(--navy-050))", color: "hsl(var(--navy-700))" }}
+            >
+              {t}
+            </span>
+          ))}
         </div>
       </div>
 
@@ -218,13 +208,13 @@ const ProgrammesCollage = () => {
           className="h-9 w-9 rounded-md grid place-items-center text-white"
           style={{ background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))" }}
         >
-          <Users className="h-4 w-4" />
+          <MapPin className="h-4 w-4" />
         </div>
         <div>
           <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
-            Mentor pool
+            Pan-India
           </div>
-          <div className="text-sm font-bold text-[hsl(var(--navy-900))]">120+ industry experts</div>
+          <div className="text-sm font-bold text-[hsl(var(--navy-900))]">18 states · 60 cities</div>
         </div>
       </div>
 
@@ -236,7 +226,7 @@ const ProgrammesCollage = () => {
         }}
         aria-hidden
       >
-        <Sparkles className="h-5 w-5" />
+        <TrendingUp className="h-5 w-5" />
       </div>
 
       <style>{`

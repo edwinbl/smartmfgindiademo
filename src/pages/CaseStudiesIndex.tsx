@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Search,
   X,
   ArrowRight,
   TrendingUp,
@@ -15,12 +14,12 @@ import {
   Leaf,
   Network,
   ChevronRight,
-  Sparkles,
 } from "lucide-react";
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
+import { CaseStudiesHero } from "@/components/casestudies/CaseStudiesHero";
 import {
   caseStudies,
   sectors,
@@ -149,62 +148,7 @@ const CaseStudiesIndex = () => {
       <WireHeader />
 
       {/* HERO */}
-      <section className="relative bg-gradient-to-br from-[hsl(var(--navy-900))] via-[hsl(var(--navy-800))] to-[hsl(var(--navy-700))] text-white overflow-hidden">
-        <div className="absolute inset-0 blueprint-grid opacity-50" />
-        <div className="container-cii relative py-16 md:py-24">
-          <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur text-xs font-semibold">
-              <Sparkles className="h-3.5 w-3.5" /> Transformation Stories
-            </span>
-            <h1 className="mt-5 font-display font-bold text-[36px] md:text-[52px] leading-[1.05] tracking-tight">
-              Explore Real Manufacturing Transformation Stories
-            </h1>
-            <p className="mt-4 text-base md:text-lg text-white/80 max-w-2xl">
-              Discover how manufacturers across sectors are improving productivity, quality, traceability,
-              sustainability and competitiveness.
-            </p>
-
-            {/* Search */}
-            <div className="mt-8 relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[hsl(var(--neutral-500))]" />
-              <input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search by sector, company, state or business outcome…"
-                className="w-full h-14 pl-12 pr-12 rounded-2xl bg-white text-[hsl(var(--neutral-900))] text-sm md:text-base shadow-xl focus:outline-none focus:ring-2 focus:ring-white/40"
-              />
-              {query && (
-                <button onClick={() => setQuery("")} aria-label="Clear" className="absolute right-3 top-1/2 -translate-y-1/2 h-9 w-9 grid place-items-center rounded-full hover:bg-[hsl(var(--neutral-100))] text-[hsl(var(--neutral-500))]">
-                  <X className="h-4 w-4" />
-                </button>
-              )}
-            </div>
-
-            {/* Chips */}
-            <div className="mt-5 flex flex-wrap gap-2">
-              {quickChips.map((q) => {
-                const active = chip === q;
-                return (
-                  <button
-                    key={q}
-                    onClick={() => setChip(active ? null : q)}
-                    className={`h-9 px-4 rounded-full text-xs font-semibold border transition-all ${
-                      active
-                        ? "bg-white text-[hsl(var(--navy-800))] border-white"
-                        : "bg-white/10 text-white border-white/20 hover:bg-white/20"
-                    }`}
-                  >
-                    {q.replace(" Improvement", "")}
-                  </button>
-                );
-              })}
-              <Link to="/readiness-assessment" className="h-9 px-4 rounded-full text-xs font-semibold border border-white/20 bg-white/10 hover:bg-white/20 inline-flex items-center gap-1">
-                MSMEs <ArrowRight className="h-3 w-3" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CaseStudiesHero query={query} onQuery={setQuery} onTag={setQuery} />
 
       {/* FEATURED */}
       <section className="py-16 md:py-20 bg-white">

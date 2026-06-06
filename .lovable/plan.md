@@ -1,59 +1,63 @@
-## Goal
+# Unify Internal Page Heroes to the /reports Pattern
 
-Create a modern, enterprise-grade **Assessment Detail Page** for an individual assessment (e.g. "Smart Manufacturing Readiness Assessment"). This sits one level below `/readiness-assessment` and is what users land on when they click an assessment from the existing "Live now" section.
+Bring all internal listing pages to the same hero anatomy as `/reports` so the platform reads as one consistent system. Each page keeps its own copy and a thematic right-side visual collage, but the structure, background treatment, type scale, and chrome become identical.
 
-## Route & file
+## The /reports hero pattern (reference)
 
-- New page: `src/pages/AssessmentDetail.tsx`
-- Route: `/readiness-assessment/:slug` (lazy-loaded, `detail` skeleton) in `src/App.tsx`
-- Two assessment slugs supported via a small in-file config map:
-  - `smart-manufacturing-maturity` — Smart Manufacturing Maturity Assessment Model (navy)
-  - `industry-4-0-maturity` — Industry 4.0 Maturity Assessment (orange)
-- Update the two "Live now" cards in `src/pages/ReadinessAssessment.tsx` so their primary CTA / card link goes to the matching detail route (external `ASSESSMENT_URL` stays on the in-page Start button).
+Light background hero, two-column 7/5 grid, with these elements (top → bottom on the left):
 
-## Page sections (top → bottom)
+1. Soft radial wash background (`orange-500/0.10` top-right + `navy-600/0.12` bottom-left) over a faint grid masked with a radial ellipse — same tokens, same values.
+2. Small `cii-chip` eyebrow with a `Sparkles` icon — page-specific label.
+3. Large `font-display` extrabold headline in `navy-900`, with one phrase wrapped in a gradient (`red-600 → orange-500`) + soft orange underline highlight bar.
+4. Lede paragraph in `neutral-700`, max-w-xl.
+5. **Search bar** OR **CTA pair** depending on the page (see "Per-page variation").
+6. Quick chips row (only when the page is searchable).
+7. Three stat tiles (`v` / `l` pairs) in a `grid-cols-3 max-w-md`.
+8. Right column: themed floating-card collage (3 tilted cards + 1 floating accent badge), positioned absolutely inside a `h-[380px] sm:h-[440px] lg:h-[500px]` container, using `cii-card`, the same rotation values, and the same `@keyframes float` animation.
 
-1. **Hero (split layout)**
-   - Left: category chips (Readiness Assessment · Smart Manufacturing · MSME Transformation), H1 title, supporting copy, metadata row (duration, MSME-focused, guided, outcome-based, readiness insights), CTAs: Start Assessment (primary, → `ASSESSMENT_URL`), Request Assistance (secondary, → `/contact`), Download Sample Report (ghost, disabled / "Coming soon" tooltip).
-   - Right: lightweight readiness dashboard mock — overall readiness gauge, 4–5 dimension bars, small KPI tiles. Pure CSS/SVG, no chart lib.
+A shared internal helper (`InsightHeroShell`) is NOT introduced — each page keeps its own file for content freedom, but every file follows the same skeleton/markup so spacing, type, and motion stay locked.
 
-2. **Assessment Summary** — 4 compact icon cards: Type, Duration, Coverage Areas, Expected Output.
+## Pages updated
 
-3. **Outcome-Based Framing** — heading "What This Assessment Helps You Understand" + responsive grid of 6 outcome cards (Productivity, Quality, Traceability, Energy Efficiency, Export Readiness, Value Chain Participation). Subtle hover lift.
+Scope per your answer: **listing pages only**, themed-per-page collage, search bar only where there is searchable content.
 
-4. **What's Covered** — modular connected card grid of 8 dimensions (Operations, Production Planning, Quality Systems, Data & Visibility, Machine Connectivity, Workforce Readiness, Sustainability, Supply Chain Integration). Each card shows icon + label + 1-line scope.
+| Page | File | Search/CTA mode | Collage theme |
+|---|---|---|---|
+| About | `src/components/about/AboutHero.tsx` | CTA pair: "Explore the Platform" + "Start Your Assessment" | Mission/ecosystem: companies-engaged stat card, sectors card, ecosystem avatars stack |
+| Programmes & Training | `src/components/programmes/ProgrammesHero.tsx` | Search bar + chips (MSMEs, Beginner, Leadership, AI & Automation, Sustainability, Factory Digitization) | Learning theme: "Live cohort" enrollment card, certification badge, "Industry mentor" card |
+| Events | `src/components/events/EventsFlagshipHero.tsx` | CTA pair: "Browse Events" + "View Flagship Summit" (kept) | Events theme: upcoming-event card with countdown chip, agenda card, "registrations open" badge |
+| Case Studies | inline hero block in `src/pages/CaseStudiesIndex.tsx` (lines ~152–207) — extract to `src/components/casestudies/CaseStudiesHero.tsx` | Search bar + outcome chips (Productivity, Quality, Energy, Traceability, MSME, Smart Factory) | Outcome theme: metric card (e.g. "+38% throughput"), sector chip card, geo/state badge |
+| Contact | `src/components/contact/ContactHero.tsx` | CTA pair (kept) — already matches | Already matches — only tightens stat tiles to the same 3-up format for consistency |
+| Reports (reference) | `src/components/reports/ReportsHero.tsx` | unchanged | unchanged |
 
-5. **Who It's For** — 4 persona cards: MSMEs, Growing Manufacturers, Supplier Ecosystems, Operations Teams.
+## Per-page variation rules
 
-6. **Assessment Process** — horizontal 5-step timeline (Access → Complete Inputs → Review → Receive Insights → Explore Next Steps) with connector lines on desktop, vertical stack on mobile.
+- Headline gradient phrase: pick one keyword per page (e.g., About: "rewire"; Programmes: "Capability Building"; Events: "Convene & Learn"; Case Studies: "Proof in Practice").
+- Eyebrow chip text: page-specific (e.g., "Capability Hub", "Industry Gatherings", "Real Manufacturer Stories").
+- Stat tiles: 3 numbers relevant to the page (Programmes: `120+ programmes / 14.5K leaders / 85 partners`; Events: `40+ events / 12K attendees / 28 cities`; Case Studies: `220+ stories / 25 sectors / 18 states`; About: `1,200+ companies / 25 sectors / 50+ partners`).
+- Right collage: same skeleton (3 tilted `cii-card`s + 1 floating gradient badge with the float animation), themed icons/copy per page.
 
-7. **What Users Receive** — 4 large benefit cards (Readiness Snapshot, Outcome Insights, Priority Areas, Next-Step Guidance) + a visually muted "Roadmap" subgrid of 3 Coming Soon cards (Benchmarking, Recommendations Engine, Transformation Roadmaps).
+## Conflict callout (please confirm)
 
-8. **Sample Insights / Preview** — 2-column: mock report preview card (header, readiness bars, callout insight quote) + insight cards (e.g. "Operational visibility maturity is moderate, while data integration readiness remains low") and a benchmark teaser.
+Two heroes you redesigned in earlier turns will be **replaced** under this request:
 
-9. **FAQ** — accordion (use existing `@/components/ui/accordion`) for: duration, expertise required, confidentiality, support, post-assessment process.
+- **Programmes** — the recent "editorial academic" hero (navy serif headline, image right, metrics box, partners row) will be replaced with the Reports-style light hero.
+- **Events flagship** — the current image-led flagship hero will be replaced with the Reports-style light hero (the countdown moves into the right collage as a tilted card).
 
-10. **Sticky CTA**
-    - Desktop: bottom CTA ribbon (fixed, appears after hero scroll) with title + Start / Assist buttons.
-    - Mobile: full-width sticky bottom bar with single "Start Assessment" primary CTA.
+If either should be preserved instead of unified, say so and I'll exclude it.
 
-## Visual style
+## Technical notes
 
-- Use existing semantic tokens from `index.css` / `tailwind.config.ts` (`bg-background`, `text-foreground`, `border`, `muted`, `primary`, `accent`). No raw hex.
-- Accent strategy reuses platform conventions: primary (navy/blue) for trust/analytics, success-tinted muted green for readiness/progress bars, accent-orange for opportunity highlights — all via existing tokens.
-- Rounded cards (`rounded-2xl`), soft borders (`border border-border/60`), subtle shadows (`shadow-sm` / hover `shadow-md`), generous spacing, executive typography scale already used on `ReadinessAssessment.tsx`.
-- Per-assessment accent color (navy vs orange) driven by the slug config so both detail pages feel distinct but share layout.
-
-## SEO
-
-- `<SEO />` with per-slug title/description and `WebPage` JSON-LD including assessment name and canonical URL.
-
-## Reuse
-
-- `WireHeader`, `WireFooter`, `WireChatbotFAB`, `SEO`, shadcn `accordion`, `button`, `badge`, lucide icons. No new dependencies.
+- All colors continue to use HSL design tokens from `index.css` (`--navy-900`, `--neutral-700`, `--orange-500`, `--red-600`, `--neutral-150`, `--neutral-200`, `--india-green`). No hard-coded hex.
+- Reuses `cii-chip`, `cii-card`, `container-cii`, `font-display`, `font-numeric`, and existing `btn-primary` / `btn-outline` utilities.
+- New `CaseStudiesHero` component extracted from `CaseStudiesIndex.tsx` so the page imports it the same way `/reports` imports `ReportsHero`. The existing hero JSX block in `CaseStudiesIndex.tsx` is removed; props mirror Reports: `{ query, onQuery, onTag }`.
+- `ProgrammesHero` prop signature becomes `{ query, onQuery, onTag, onExplore, onFindPath }` — `onExplore`/`onFindPath` retained so existing callers in `ProgrammesIndex.tsx` keep working; the CTAs render as the search "Search" submit + a secondary chip-row action.
+- `EventsFlagshipHero` keeps its `{ event }` prop; the countdown becomes one of the three right-collage tiles.
+- `AboutHero` becomes light-themed (was dark navy). The bottom "pillars" marquee strip is preserved beneath the hero as a `border-t` sub-band so the About narrative doesn't lose its anchor.
+- No business-logic, data, or routing changes. Pure presentation.
 
 ## Out of scope
 
-- No backend wiring, no real submission flow (Start Assessment continues to deep-link to `ASSESSMENT_URL`).
-- No new design tokens or theme changes.
-- Sample Report download stays a "Coming soon" affordance.
+- Detail-page heroes (Report/Programme/Event/Case Study detail) — per your answer.
+- Home page hero.
+- Auth, Privacy, Terms, NotFound.
