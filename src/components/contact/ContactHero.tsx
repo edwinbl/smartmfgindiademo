@@ -2,17 +2,18 @@ import { ArrowRight, Sparkles, Mail, Phone, MessageCircle, Calendar, Zap } from 
 
 export const ContactHero = () => {
   return (
-    <section className="relative overflow-hidden bg-background border-b" style={{ borderColor: "hsl(var(--neutral-150))" }}>
-      {/* Soft background wash */}
+    <section
+      className="relative overflow-hidden bg-background border-b"
+      style={{ borderColor: "hsl(var(--neutral-150))" }}
+    >
       <div
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(1200px 500px at 85% 0%, hsl(var(--orange-500) / 0.10), transparent 60%), radial-gradient(900px 600px at 0% 100%, hsl(var(--navy-600) / 0.10), transparent 55%)",
+            "radial-gradient(1100px 500px at 85% 0%, hsl(var(--orange-500) / 0.10), transparent 60%), radial-gradient(900px 600px at 0% 100%, hsl(var(--navy-600) / 0.12), transparent 55%)",
         }}
         aria-hidden
       />
-      {/* faint grid */}
       <div
         className="absolute inset-0 -z-10 opacity-[0.35]"
         style={{
@@ -25,13 +26,12 @@ export const ContactHero = () => {
       />
 
       <div className="container-cii relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-center py-14 lg:py-20">
-        {/* Left text — asymmetric, takes 7 cols */}
         <div className="lg:col-span-7 animate-fade-in">
           <span className="cii-chip">
-            <Sparkles className="h-3.5 w-3.5" /> We typically reply within a few hours
+            <Sparkles className="h-3.5 w-3.5" /> We reply within a few hours
           </span>
 
-          <h1 className="font-display mt-5 text-[40px] sm:text-5xl lg:text-[64px] font-extrabold leading-[1.02] tracking-tight text-[hsl(var(--navy-900))]">
+          <h1 className="font-display mt-5 text-[36px] sm:text-5xl lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
             Let's start a{" "}
             <span className="relative inline-block">
               <span
@@ -45,17 +45,16 @@ export const ContactHero = () => {
                 style={{ background: "hsl(var(--orange-500) / 0.25)" }}
                 aria-hidden
               />
-            </span>
-            <br className="hidden sm:block" />
+            </span>{" "}
             that moves manufacturing forward.
           </h1>
 
-          <p className="mt-6 text-base sm:text-lg text-[hsl(var(--neutral-700))] max-w-xl leading-relaxed">
+          <p className="mt-5 text-base sm:text-lg text-[hsl(var(--neutral-700))] max-w-xl leading-relaxed">
             Tell us what you're working on — readiness, partnerships, training or platform
             help — and we'll route you to the right people in the ecosystem.
           </p>
 
-          <div className="mt-8 flex flex-col sm:flex-row gap-3">
+          <div className="mt-7 flex flex-col sm:flex-row gap-3">
             <a href="#intent" className="btn-primary group">
               Start Your Journey
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -65,42 +64,51 @@ export const ContactHero = () => {
             </a>
           </div>
 
-          {/* Quick connect strip */}
-          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+          <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
             <a href="mailto:smartmfg@cii.in" className="inline-flex items-center gap-2 text-[hsl(var(--neutral-700))] hover:text-[hsl(var(--red-600))] transition-colors">
               <Mail className="h-4 w-4" />
               smartmfg@cii.in
             </a>
-            <span className="h-3 w-px hidden sm:block" style={{ background: "hsl(var(--neutral-200))" }} />
             <a href="tel:+911141502301" className="inline-flex items-center gap-2 text-[hsl(var(--neutral-700))] hover:text-[hsl(var(--red-600))] transition-colors">
               <Phone className="h-4 w-4" />
               +91 11 4150 2301
             </a>
-            <span className="h-3 w-px hidden sm:block" style={{ background: "hsl(var(--neutral-200))" }} />
             <span className="inline-flex items-center gap-2 text-[hsl(var(--neutral-500))]">
               <Zap className="h-4 w-4 text-[hsl(var(--india-green))]" />
               Avg response &lt; 4 hrs
             </span>
           </div>
+
+          <div className="mt-9 grid grid-cols-3 gap-6 max-w-md">
+            {[
+              { v: "< 4h", l: "Avg Reply" },
+              { v: "12", l: "Regional Hubs" },
+              { v: "50+", l: "Partner Experts" },
+            ].map((s) => (
+              <div key={s.l}>
+                <div className="font-numeric text-2xl font-extrabold text-[hsl(var(--navy-900))]">
+                  {s.v}
+                </div>
+                <div className="text-[11px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--neutral-500))] mt-1">
+                  {s.l}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Right — floating message/card collage, 5 cols */}
         <div className="lg:col-span-5 relative h-[380px] sm:h-[440px] lg:h-[500px] animate-scale-in">
-          <CardCollage />
+          <ContactCollage />
         </div>
       </div>
     </section>
   );
 };
 
-const CardCollage = () => {
+const ContactCollage = () => {
   return (
     <div className="absolute inset-0">
-      {/* big back card — incoming message */}
-      <div
-        className="absolute top-2 right-2 w-[78%] cii-card p-5 rotate-[3deg]"
-        style={{ animation: "gear-spin 0s" }}
-      >
+      <div className="absolute top-2 right-2 w-[82%] cii-card p-5 rotate-[2deg]">
         <div className="flex items-center gap-3">
           <div
             className="h-9 w-9 rounded-full grid place-items-center text-white text-xs font-bold"
@@ -127,10 +135,7 @@ const CardCollage = () => {
         </div>
       </div>
 
-      {/* mid card — routing */}
-      <div
-        className="absolute top-[42%] left-0 w-[62%] cii-card p-4 -rotate-[4deg]"
-      >
+      <div className="absolute top-[44%] left-0 w-[60%] cii-card p-4 -rotate-[3deg]">
         <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--red-600))]">
           <span className="h-1.5 w-1.5 rounded-full" style={{ background: "hsl(var(--red-600))" }} />
           Smart routing
@@ -146,25 +151,25 @@ const CardCollage = () => {
               {String.fromCharCode(65 + i)}
             </span>
           ))}
-          <span className="pl-3 text-[10px] text-[hsl(var(--neutral-500))]">+ ecosystem partners</span>
+          <span className="pl-3 text-[10px] text-[hsl(var(--neutral-500))]">+ partners</span>
         </div>
       </div>
 
-      {/* small chip — booking */}
       <div className="absolute bottom-6 right-6 cii-card px-4 py-3 rotate-[2deg] flex items-center gap-3">
         <div
-          className="h-8 w-8 rounded-md grid place-items-center text-white"
-          style={{ background: "hsl(var(--navy-700))" }}
+          className="h-9 w-9 rounded-md grid place-items-center text-white"
+          style={{ background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))" }}
         >
           <Calendar className="h-4 w-4" />
         </div>
         <div>
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">Consultation</div>
-          <div className="text-xs font-bold text-[hsl(var(--navy-900))]">Tue · 11:30 AM IST</div>
+          <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
+            Consultation
+          </div>
+          <div className="text-sm font-bold text-[hsl(var(--navy-900))]">Tue · 11:30 AM IST</div>
         </div>
       </div>
 
-      {/* floating bubble */}
       <div
         className="absolute top-0 left-4 h-12 w-12 rounded-full grid place-items-center text-white shadow-lg"
         style={{

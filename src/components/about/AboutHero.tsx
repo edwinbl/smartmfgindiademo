@@ -1,245 +1,191 @@
-import { ArrowRight, Sparkles, TrendingUp, Factory, Users2, Compass } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ArrowRight, Sparkles, TrendingUp, Factory, Users2, Compass } from "lucide-react";
 
 export const AboutHero = () => {
   return (
     <section
-      className="relative overflow-hidden text-white"
-      style={{ background: "hsl(var(--navy-900))" }}
+      className="relative overflow-hidden bg-background border-b"
+      style={{ borderColor: "hsl(var(--neutral-150))" }}
       aria-label="About hero"
     >
-      {/* Editorial background: diagonal split + soft washes */}
-      <div className="absolute inset-0" aria-hidden>
-        <div
-          className="absolute inset-0 opacity-[0.07]"
-          style={{
-            backgroundImage:
-              "linear-gradient(hsl(0 0% 100%/0.6) 1px, transparent 1px), linear-gradient(90deg, hsl(0 0% 100%/0.6) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-            maskImage:
-              "radial-gradient(ellipse at 70% 40%, black 30%, transparent 75%)",
-          }}
-        />
-        <div
-          className="absolute -top-40 left-1/3 h-[34rem] w-[34rem] rounded-full blur-3xl opacity-30"
-          style={{
-            background:
-              "radial-gradient(circle, hsl(var(--orange-500)/0.7), transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute bottom-0 right-0 h-[28rem] w-[28rem] blur-3xl opacity-25"
-          style={{
-            background:
-              "radial-gradient(circle, hsl(var(--red-600)/0.6), transparent 70%)",
-          }}
-        />
-        {/* Diagonal accent line */}
-        <svg
-          className="absolute inset-0 h-full w-full"
-          preserveAspectRatio="none"
-          viewBox="0 0 100 100"
-        >
-          <line
-            x1="0" y1="100" x2="100" y2="0"
-            stroke="hsl(var(--orange-500)/0.35)"
-            strokeWidth="0.15"
-            strokeDasharray="0.6 0.8"
-          />
-        </svg>
-      </div>
+      <div
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(1100px 500px at 85% 0%, hsl(var(--orange-500) / 0.10), transparent 60%), radial-gradient(900px 600px at 0% 100%, hsl(var(--navy-600) / 0.12), transparent 55%)",
+        }}
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 -z-10 opacity-[0.35]"
+        style={{
+          backgroundImage:
+            "linear-gradient(hsl(var(--neutral-200) / 0.5) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--neutral-200) / 0.5) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
+          maskImage: "radial-gradient(ellipse at center, black 40%, transparent 80%)",
+        }}
+        aria-hidden
+      />
 
-      <div className="container-cii relative py-20 lg:py-28">
-        {/* Top eyebrow row */}
-        <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-white/55">
-          <span className="h-px w-10 bg-white/30" />
-          <span>Chapter 01 — Who We Are</span>
-        </div>
+      <div className="container-cii relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-center py-14 lg:py-20">
+        <div className="lg:col-span-7 animate-fade-in">
+          <span className="cii-chip">
+            <Sparkles className="h-3.5 w-3.5" /> Who We Are
+          </span>
 
-        <div className="mt-6 grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          {/* Left — editorial manifesto */}
-          <div className="lg:col-span-7 animate-fade-in">
-            <span className="cii-chip cii-chip-orange">
-              <Sparkles className="h-3.5 w-3.5" /> Our Mission
-            </span>
-
-            <h1 className="font-display mt-5 text-[2.5rem] sm:text-5xl lg:text-[5.25rem] font-extrabold leading-[0.98] tracking-tight">
-              We exist to{" "}
-              <span className="relative inline-block">
-                <span
-                  className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, hsl(var(--orange-500)), hsl(var(--saffron)))",
-                  }}
-                >
-                  rewire
-                </span>
-                <svg
-                  className="absolute -bottom-2 left-0 w-full"
-                  viewBox="0 0 200 12" preserveAspectRatio="none"
-                  aria-hidden
-                >
-                  <path
-                    d="M2 8 Q 50 1, 100 7 T 198 5"
-                    fill="none"
-                    stroke="hsl(var(--orange-500))"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    opacity="0.7"
-                  />
-                </svg>
+          <h1 className="font-display mt-5 text-[36px] sm:text-5xl lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
+            We exist to{" "}
+            <span className="relative inline-block">
+              <span
+                className="relative z-10 bg-clip-text text-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(90deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
+                }}
+              >
+                rewire
               </span>
-              <br />
-              Indian manufacturing.
-            </h1>
+              <span
+                className="absolute left-0 right-0 bottom-1 h-2 -z-0 rounded-sm opacity-70"
+                style={{ background: "hsl(var(--orange-500) / 0.25)" }}
+                aria-hidden
+              />
+            </span>{" "}
+            Indian manufacturing.
+          </h1>
 
-            <p className="mt-7 text-base sm:text-lg text-white/75 max-w-xl leading-relaxed">
-              A national, industry-led movement helping manufacturers assess, adopt
-              and scale Industry 4.0 — together with India's most trusted ecosystem
-              of enterprises, experts, academia and government.
-            </p>
+          <p className="mt-5 text-base sm:text-lg text-[hsl(var(--neutral-700))] max-w-xl leading-relaxed">
+            A national, industry-led movement helping manufacturers assess, adopt and scale
+            Industry 4.0 — together with India's most trusted ecosystem of enterprises,
+            experts, academia and government.
+          </p>
 
-            <div className="mt-9 flex flex-col sm:flex-row gap-3">
-              <Link to="/#solutions" className="btn-primary group">
-                Explore the Platform
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </Link>
-              <a
-                href="https://www.smartmfgindia.com/Assesment.aspx"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-ghost"
-              >
-                Start Your Assessment
-              </a>
-            </div>
+          <div className="mt-7 flex flex-col sm:flex-row gap-3">
+            <Link to="/#solutions" className="btn-primary group">
+              Explore the Platform
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <a
+              href="https://www.smartmfgindia.com/Assesment.aspx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline"
+            >
+              Start Your Assessment
+            </a>
           </div>
 
-          {/* Right — bento mosaic */}
-          <div className="lg:col-span-5 animate-scale-in">
-            <BentoMosaic />
-          </div>
-        </div>
-
-        {/* Bottom marquee strip — pillars */}
-        <div className="mt-14 lg:mt-20 relative">
-          <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-white/45 mb-4">
-            <span>What drives us</span>
-            <span className="h-px flex-1 bg-white/10" />
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm">
+          <div className="mt-9 grid grid-cols-3 gap-6 max-w-md">
             {[
-              { k: "Convened by", v: "CII" },
-              { k: "Built for", v: "Indian MSMEs" },
-              { k: "Anchored in", v: "Industry 4.0" },
-              { k: "Scaled by", v: "Ecosystem" },
-            ].map((m) => (
-              <div
-                key={m.v}
-                className="px-5 py-5 bg-[hsl(var(--navy-900))]/60 hover:bg-[hsl(var(--navy-800))]/70 transition-colors"
-              >
-                <div className="text-[10px] uppercase tracking-widest text-white/45">{m.k}</div>
-                <div className="mt-1 font-display text-lg font-bold text-white">{m.v}</div>
+              { v: "1,200+", l: "Companies" },
+              { v: "25", l: "Sectors" },
+              { v: "50+", l: "Partners" },
+            ].map((s) => (
+              <div key={s.l}>
+                <div className="font-numeric text-2xl font-extrabold text-[hsl(var(--navy-900))]">
+                  {s.v}
+                </div>
+                <div className="text-[11px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--neutral-500))] mt-1">
+                  {s.l}
+                </div>
               </div>
             ))}
           </div>
         </div>
-      </div>
 
-      <div
-        className="absolute bottom-0 inset-x-0 h-px"
-        style={{
-          background:
-            "linear-gradient(to right, transparent, hsl(0 0% 100%/0.2), transparent)",
-        }}
-      />
+        <div className="lg:col-span-5 relative h-[380px] sm:h-[440px] lg:h-[500px] animate-scale-in">
+          <AboutCollage />
+        </div>
+      </div>
     </section>
   );
 };
 
-const BentoMosaic = () => {
+const AboutCollage = () => {
   return (
-    <div className="relative grid grid-cols-6 grid-rows-6 gap-3 h-[440px] lg:h-[520px]">
-      {/* Big stat card */}
-      <div
-        className="col-span-4 row-span-3 rounded-2xl p-5 border border-white/15 backdrop-blur-sm relative overflow-hidden group"
-        style={{
-          background:
-            "linear-gradient(135deg, hsl(var(--orange-500)/0.18), hsl(var(--navy-800)/0.6))",
-        }}
-      >
-        <div className="flex items-start justify-between">
-          <span className="text-[10px] uppercase tracking-widest text-white/60">Companies Engaged</span>
-          <TrendingUp className="h-4 w-4 text-cii-orange" />
+    <div className="absolute inset-0">
+      <div className="absolute top-2 right-2 w-[82%] cii-card p-5 rotate-[2deg]">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--red-600))]">
+            <TrendingUp className="h-3.5 w-3.5" />
+            Companies Engaged
+          </div>
+          <span className="text-[10px] text-[hsl(var(--neutral-500))]">2020 — 2025</span>
         </div>
-        <div className="mt-6 font-display text-5xl lg:text-6xl font-extrabold tracking-tight">
-          1,200<span className="text-cii-orange">+</span>
+        <div className="mt-3 font-display text-5xl font-extrabold text-[hsl(var(--navy-900))]">
+          1,200<span className="text-[hsl(var(--red-600))]">+</span>
         </div>
-        <p className="mt-2 text-xs text-white/65 max-w-[18rem]">
+        <p className="mt-2 text-xs text-[hsl(var(--neutral-700))] leading-relaxed">
           Manufacturers across India assessed on their digital maturity journey.
         </p>
-        <div
-          className="absolute -bottom-8 -right-8 h-32 w-32 rounded-full opacity-40 group-hover:opacity-60 transition-opacity"
-          style={{
-            background:
-              "radial-gradient(circle, hsl(var(--orange-500)/0.6), transparent 70%)",
-          }}
-        />
-      </div>
-
-      {/* Compass card */}
-      <div className="col-span-2 row-span-3 rounded-2xl p-4 border border-white/15 bg-white/[0.04] backdrop-blur-sm flex flex-col justify-between">
-        <Compass className="h-5 w-5 text-cii-orange animate-[pulse_3s_ease-in-out_infinite]" />
-        <div>
-          <div className="text-[10px] uppercase tracking-widest text-white/55">Guided</div>
-          <div className="font-display text-lg font-bold leading-tight mt-1">
-            Assessment-led pathways
-          </div>
-        </div>
-      </div>
-
-      {/* Sectors */}
-      <div className="col-span-2 row-span-3 rounded-2xl p-4 border border-white/15 bg-white/[0.04] backdrop-blur-sm flex flex-col justify-between">
-        <Factory className="h-5 w-5 text-cii-orange" />
-        <div>
-          <div className="font-display text-3xl font-extrabold">25+</div>
-          <div className="text-[11px] text-white/60 mt-0.5">Sectors covered</div>
-        </div>
-      </div>
-
-      {/* Ecosystem card */}
-      <div
-        className="col-span-4 row-span-3 rounded-2xl p-5 border border-white/15 backdrop-blur-sm relative overflow-hidden"
-        style={{
-          background:
-            "linear-gradient(135deg, hsl(var(--navy-700)/0.7), hsl(var(--red-600)/0.25))",
-        }}
-      >
-        <div className="flex items-start justify-between">
-          <span className="text-[10px] uppercase tracking-widest text-white/60">Ecosystem</span>
-          <Users2 className="h-4 w-4 text-white/80" />
-        </div>
-        <div className="mt-4 flex -space-x-2">
-          {["MSME", "ENT", "EDU", "GOV", "EXP"].map((t, i) => (
+        <div className="mt-3 flex items-end gap-1.5 h-12">
+          {[20, 32, 44, 58, 72, 90].map((v, i) => (
             <div
-              key={t}
-              className="h-10 w-10 rounded-full grid place-items-center text-[10px] font-bold border border-white/30 backdrop-blur"
+              key={i}
+              className="flex-1 rounded-t-sm"
               style={{
-                background: `hsl(var(--navy-${800 - i * 100})/0.85)`,
+                height: `${v}%`,
+                background:
+                  i === 5
+                    ? "linear-gradient(180deg, hsl(var(--orange-500)), hsl(var(--red-600)))"
+                    : "hsl(var(--navy-600) / 0.85)",
               }}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="absolute top-[46%] left-0 w-[58%] cii-card p-4 -rotate-[3deg]">
+        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--navy-700))]">
+          <Factory className="h-3.5 w-3.5" />
+          Sectors Covered
+        </div>
+        <div className="mt-2 font-display text-3xl font-extrabold text-[hsl(var(--navy-900))]">25+</div>
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {["Auto", "Steel", "Pharma", "F&B", "Textile"].map((t) => (
+            <span
+              key={t}
+              className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
+              style={{ background: "hsl(var(--navy-050))", color: "hsl(var(--navy-700))" }}
             >
               {t}
-            </div>
+            </span>
           ))}
-          <div className="h-10 w-10 rounded-full grid place-items-center text-[10px] font-bold border border-white/30 bg-cii-orange/80">
-            +
-          </div>
         </div>
-        <p className="mt-4 text-xs text-white/70 max-w-[16rem]">
-          A coalition of industry, academia, government & global partners.
-        </p>
       </div>
+
+      <div className="absolute bottom-6 right-6 cii-card px-4 py-3 rotate-[2deg] flex items-center gap-3">
+        <div
+          className="h-9 w-9 rounded-md grid place-items-center text-white"
+          style={{ background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))" }}
+        >
+          <Users2 className="h-4 w-4" />
+        </div>
+        <div>
+          <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
+            Ecosystem
+          </div>
+          <div className="text-sm font-bold text-[hsl(var(--navy-900))]">MSME · ENT · EDU · GOV</div>
+        </div>
+      </div>
+
+      <div
+        className="absolute top-0 left-4 h-12 w-12 rounded-full grid place-items-center text-white shadow-lg"
+        style={{
+          background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
+          animation: "float 6s ease-in-out infinite",
+        }}
+        aria-hidden
+      >
+        <Compass className="h-5 w-5" />
+      </div>
+
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+      `}</style>
     </div>
   );
 };
