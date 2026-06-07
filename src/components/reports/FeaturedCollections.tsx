@@ -13,9 +13,6 @@ export const FeaturedCollections = () => {
               Hand-picked report packs to guide your journey
             </h2>
           </div>
-          <Link to="/reports" className="hidden md:inline-flex link-arrow">
-            View all <ArrowRight className="h-4 w-4" />
-          </Link>
         </div>
 
         <div className="flex gap-5 overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0 snap-x pb-2 scrollbar-none">
