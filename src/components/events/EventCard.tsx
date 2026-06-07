@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { MapPin, Clock, Users, ArrowRight, Wifi, Lock, GraduationCap, Sparkles } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { accentBar, accentSoft, accentText } from "@/lib/eventsStorage";
 import type { EventItem } from "@/data/events";
 
 interface Props {
   event: EventItem;
   onRegister: (e: EventItem) => void;
+  className?: string;
 }
 
 const TypeBadge = ({ event }: { event: EventItem }) => (
