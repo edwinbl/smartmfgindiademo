@@ -48,6 +48,34 @@ import {
 
 const ASSESSMENT_URL = "https://www.smartmfgindia.com/Assesment.aspx";
 
+// Rotating color palette for card accents — uses existing design tokens
+const CARD_PALETTE = [
+  {
+    accent: "hsl(var(--orange-600))",
+    soft: "hsl(var(--orange-100))",
+    tint: "hsl(var(--orange-500) / 0.06)",
+    ring: "hsl(var(--orange-500) / 0.18)",
+  },
+  {
+    accent: "hsl(var(--navy-700))",
+    soft: "hsl(var(--navy-100))",
+    tint: "hsl(var(--navy-700) / 0.05)",
+    ring: "hsl(var(--navy-700) / 0.18)",
+  },
+  {
+    accent: "hsl(var(--india-green))",
+    soft: "hsl(var(--india-green) / 0.12)",
+    tint: "hsl(var(--india-green) / 0.06)",
+    ring: "hsl(var(--india-green) / 0.22)",
+  },
+  {
+    accent: "hsl(var(--red-600))",
+    soft: "hsl(var(--red-600) / 0.12)",
+    tint: "hsl(var(--red-600) / 0.05)",
+    ring: "hsl(var(--red-600) / 0.18)",
+  },
+] as const;
+
 type AssessmentConfig = {
   slug: string;
   tag: string;
