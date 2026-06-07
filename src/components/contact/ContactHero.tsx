@@ -47,9 +47,6 @@ export const ContactHero = () => {
               Start Your Journey
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
-            <a href="#ecosystem" className="btn-outline">
-              Explore the Ecosystem
-            </a>
           </div>
 
           <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
@@ -65,23 +62,6 @@ export const ContactHero = () => {
               <Zap className="h-4 w-4 text-[hsl(var(--india-green))]" />
               Avg response &lt; 4 hrs
             </span>
-          </div>
-
-          <div className="mt-9 grid grid-cols-3 gap-6 max-w-md">
-            {[
-              { v: "< 4h", l: "Avg Reply" },
-              { v: "12", l: "Regional Hubs" },
-              { v: "50+", l: "Partner Experts" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="font-numeric text-2xl font-extrabold text-[hsl(var(--navy-900))]">
-                  {s.v}
-                </div>
-                <div className="text-[11px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--neutral-500))] mt-1">
-                  {s.l}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 
