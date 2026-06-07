@@ -906,30 +906,6 @@ const AssessmentDetail = () => {
           </div>
         </section>
 
-        {/* ============== FINAL CTA ============== */}
-        <section className="py-16 md:py-20 bg-white">
-          <div className="container-cii">
-            <div
-              className="cii-card p-8 md:p-12 text-center"
-              style={{ background: cfg.accentSoft }}
-            >
-              <h2 className="font-display font-bold text-[24px] md:text-[32px] leading-tight tracking-tight text-navy-800 max-w-2xl mx-auto">
-                Ready to understand where your plant stands?
-              </h2>
-              <p className="mt-3 text-base text-[hsl(var(--neutral-700))] max-w-xl mx-auto">
-                Start the {cfg.tag.toLowerCase()} assessment now, or request a guided session with a CII facilitator.
-              </p>
-              <div className="mt-7 flex flex-wrap gap-3 justify-center">
-                <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                  Start Assessment <ArrowRight className="!h-4 !w-4" />
-                </a>
-                <Link to="/contact" className="btn-outline">
-                  <MessageCircle className="!h-4 !w-4" /> Request Assistance
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
 
       {/* ============== STICKY CTA ============== */}
