@@ -309,19 +309,7 @@ const SolutionsHero = ({ query, onQuery }: { query: string; onQuery: (v: string)
 
           <h1 className="font-display mt-5 text-[34px] sm:text-5xl lg:text-[52px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
             Find Practical{" "}
-            <span className="relative inline-block">
-              <span
-                className="relative z-10 bg-clip-text text-transparent"
-                style={{ backgroundImage: "linear-gradient(90deg, hsl(var(--red-600)), hsl(var(--orange-500)))" }}
-              >
-                Solution Pathways
-              </span>
-              <span
-                className="absolute left-0 right-0 bottom-1 h-2 -z-0 rounded-sm opacity-70"
-                style={{ background: "hsl(var(--orange-500) / 0.25)" }}
-                aria-hidden
-              />
-            </span>{" "}
+            <span className="text-[hsl(var(--red-600))]">Solution Pathways</span>{" "}
             for Your Manufacturing Challenges
           </h1>
 
@@ -352,14 +340,6 @@ const SolutionsHero = ({ query, onQuery }: { query: string; onQuery: (v: string)
               Search
             </button>
           </form>
-
-          <div className="mt-7 flex flex-col sm:flex-row gap-3">
-            <Link to="/readiness-assessment" className="btn-primary group">
-              Take Readiness Assessment
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </Link>
-            <a href="#categories" className="btn-outline">Explore Solutions</a>
-          </div>
         </div>
 
         <div className="lg:col-span-5 relative h-[400px] sm:h-[460px] lg:h-[500px] animate-scale-in">
