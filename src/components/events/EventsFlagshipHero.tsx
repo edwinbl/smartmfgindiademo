@@ -210,6 +210,25 @@ const EventsCollage = ({ event }: { event: EventItem }) => {
             </div>
             <CountdownTimer isoDate={event.isoDate} compact />
           </div>
+          <div className="mt-3 pt-3 border-t border-[hsl(var(--neutral-150))]">
+            <div className="flex items-center justify-between mb-1">
+              <div className="text-[9px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
+                Seats filled
+              </div>
+              <span className="inline-flex items-center gap-0.5 text-[9px] font-bold text-[hsl(var(--red-600))]">
+                <TrendingUp className="h-2.5 w-2.5" /> 78%
+              </span>
+            </div>
+            <div className="h-1.5 w-full rounded-full bg-[hsl(var(--neutral-100))] overflow-hidden">
+              <div
+                className="h-full rounded-full"
+                style={{
+                  width: "78%",
+                  background: "linear-gradient(90deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
+                }}
+              />
+            </div>
+          </div>
           <div className="mt-4 flex items-center justify-between">
             <div className="flex items-center -space-x-2">
               {event.speakers.slice(0, 4).map((s, i) => (
