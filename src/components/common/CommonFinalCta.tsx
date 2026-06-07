@@ -201,7 +201,7 @@ const buttonClassFor = (variant: CtaAction["variant"]) => {
 };
 
 const primaryStyle = {
-  background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
+  background: "hsl(var(--red-600))",
 };
 
 export const CommonFinalCta = () => {
