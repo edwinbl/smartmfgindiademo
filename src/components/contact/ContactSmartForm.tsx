@@ -69,10 +69,8 @@ export const ContactSmartForm = ({ intent, embedded = false }: Props) => {
 
   const activeMeta = intent ? INTENTS.find((i) => i.key === intent) : null;
 
-  return (
-    <section className="py-12 lg:py-20 bg-[hsl(var(--neutral-50))]">
-      <div className="container-cii">
-        <div ref={formRef} className="max-w-3xl mx-auto cii-card p-6 sm:p-10">
+  const Inner = (
+    <div ref={formRef} className={cn("cii-card p-6 sm:p-8", !embedded && "max-w-3xl mx-auto sm:p-10")}>
           <div className="flex items-start gap-4">
             <div
               className="grid place-items-center h-11 w-11 rounded-md text-white shrink-0"
