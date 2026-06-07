@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import {
   ArrowUp,
   ChevronRight,
