@@ -166,11 +166,17 @@ const SolutionsIndex = () => {
                   <Link
                     key={c.slug}
                     to={`/solutions/${c.slug}`}
-                    className="group relative cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all"
+                    className="group relative cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all overflow-hidden"
+                    style={{ background: `linear-gradient(180deg, ${a.bg}, white 70%)` }}
                   >
                     <div
-                      className="h-12 w-12 rounded-xl grid place-items-center"
-                      style={{ background: a.bg, color: a.fg }}
+                      className="absolute top-0 left-0 right-0 h-1"
+                      style={{ background: a.bar }}
+                      aria-hidden
+                    />
+                    <div
+                      className="h-12 w-12 rounded-xl grid place-items-center shadow-sm"
+                      style={{ background: a.bar, color: "white" }}
                     >
                       <Icon className="h-5 w-5" />
                     </div>
@@ -185,7 +191,7 @@ const SolutionsIndex = () => {
                         <span
                           key={id}
                           className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
-                          style={{ background: "hsl(var(--navy-050))", color: "hsl(var(--navy-700))" }}
+                          style={{ background: a.bg, color: a.fg }}
                         >
                           {outcomeLabel(id)}
                         </span>
