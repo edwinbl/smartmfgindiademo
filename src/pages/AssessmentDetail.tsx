@@ -619,45 +619,6 @@ const AssessmentDetail = () => {
         </section>
 
 
-        {/* ============== PROCESS TIMELINE ============== */}
-        <section className="py-16 md:py-24 bg-white">
-          <div className="container-cii">
-            <div className="max-w-2xl">
-              <div className="section-eyebrow mb-3">How it works</div>
-              <h2 className="font-display font-bold text-[26px] md:text-[34px] leading-tight tracking-tight text-navy-800">
-                Assessment Process
-              </h2>
-              <p className="mt-4 text-base text-[hsl(var(--neutral-700))]">
-                A guided 5-step journey from access to next steps.
-              </p>
-            </div>
-
-            <div className="mt-12 relative">
-              {/* desktop connector */}
-              <div className="hidden md:block absolute top-5 left-[8%] right-[8%] h-0.5 bg-[hsl(var(--neutral-150))]" />
-              <ol className="grid gap-8 md:gap-4 md:grid-cols-5 relative">
-                {processSteps.map((s, i) => (
-                  <li key={s.title} className="relative md:text-center">
-                    <div className="flex md:flex-col items-start md:items-center gap-4 md:gap-0">
-                      <div
-                        className="h-10 w-10 rounded-full grid place-items-center font-numeric font-bold text-sm text-white shrink-0 ring-4 ring-white relative z-10"
-                        style={{ background: cfg.accent }}
-                      >
-                        {i + 1}
-                      </div>
-                      <div className="md:mt-4">
-                        <div className="font-display font-bold text-navy-800 text-sm">{s.title}</div>
-                        <p className="mt-1.5 text-xs text-[hsl(var(--neutral-700))] leading-relaxed md:px-2">
-                          {s.desc}
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
-        </section>
 
         {/* ============== WHAT USERS RECEIVE ============== */}
         <section className="py-16 md:py-24 bg-[hsl(var(--neutral-50))]">
