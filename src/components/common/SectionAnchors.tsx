@@ -15,6 +15,10 @@ export const SectionAnchors = ({
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
       history.replaceState(null, "", `#${id}`);
+      // Move keyboard focus to the target so screen reader / Tab order continues from the section.
+      const prevTabIndex = el.getAttribute("tabindex");
+      if (prevTabIndex === null) el.setAttribute("tabindex", "-1");
+      (el as HTMLElement).focus({ preventScroll: true });
     }
   };
 
