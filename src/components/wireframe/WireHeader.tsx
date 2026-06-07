@@ -146,7 +146,7 @@ export const WireHeader = () => {
                     <button
                       type="button"
                       onClick={() => setMobileSubmenu(mobileSubmenu === l.label ? null : l.label)}
-                      className="w-full flex items-center justify-between px-6 py-4 text-base font-semibold font-display text-navy-800"
+                      className={`w-full flex items-center justify-between px-6 py-4 text-base font-semibold font-display ${isLinkActive(pathname, l) ? "text-cii-red" : "text-navy-800"}`}
                       aria-expanded={mobileSubmenu === l.label}
                     >
                       {l.label}
