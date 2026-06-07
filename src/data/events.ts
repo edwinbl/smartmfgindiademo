@@ -315,91 +315,7 @@ export const events: EventItem[] = [
     accent: "teal",
   },
 
-  // SEMINARS
-  {
-    slug: "seminar-digital-twins",
-    type: "Seminar",
-    title: "Digital Twins for Process Manufacturing",
-    tagline: "A practitioner seminar with live walk-throughs",
-    summary:
-      "Half-day seminar exploring how process manufacturers are using digital twins to optimise yield, energy and quality.",
-    date: "11 March 2026",
-    isoDate: "2026-03-11T10:00:00+05:30",
-    duration: "Half day",
-    location: "Hyderabad, India",
-    venue: "T-Hub, Hyderabad",
-    mode: "Physical",
-    level: "Intermediate",
-    industry: "Process",
-    technology: "Digital Twin",
-    segment: "Enterprise",
-    status: "open",
-    registrationLabel: "Reserve Seat",
-    highlights: [
-      { label: "Format", value: "Workshop" },
-      { label: "Capacity", value: "80 seats" },
-    ],
-    speakers: [S.meera, S.vikram],
-    accent: "navy",
-  },
 
-  // PROGRAMMES
-  {
-    slug: "programme-i40-readiness-cohort",
-    type: "Programme",
-    title: "Industry 4.0 Readiness Cohort",
-    tagline: "12-week structured journey for MSMEs",
-    summary:
-      "A guided programme combining diagnostics, mentor sessions and shop-floor sprints to take MSMEs from assessment to first pilot.",
-    date: "Starts 03 February 2026",
-    isoDate: "2026-02-03T10:00:00+05:30",
-    duration: "12 weeks",
-    location: "Online + 2 plant visits",
-    mode: "Hybrid",
-    level: "Beginner",
-    industry: "MSME",
-    technology: "Industry 4.0",
-    segment: "MSME",
-    status: "open",
-    registrationLabel: "Join Programme",
-    highlights: [
-      { label: "Duration", value: "12 weeks" },
-      { label: "Cohort size", value: "30" },
-      { label: "Mentors", value: "8" },
-    ],
-    speakers: [S.neha, S.priya],
-    outcomes: [
-      "Complete CII readiness assessment with mentor review",
-      "Identify and scope your first Industry 4.0 pilot",
-      "Build a 12-month transformation roadmap",
-    ],
-    accent: "orange",
-  },
-  {
-    slug: "programme-smart-factory-leaders",
-    type: "Programme",
-    title: "Smart Factory Leaders Programme",
-    tagline: "Executive certification with IIT Madras",
-    summary:
-      "Six-week advanced certification for plant heads and transformation leaders, co-designed with IIT Madras and CII.",
-    date: "Starts 14 April 2026",
-    isoDate: "2026-04-14T09:00:00+05:30",
-    duration: "6 weeks",
-    location: "Online + Chennai immersion",
-    mode: "Hybrid",
-    level: "Advanced",
-    industry: "Cross-industry",
-    technology: "Industry 4.0",
-    segment: "Enterprise",
-    status: "soon",
-    registrationLabel: "Notify Me",
-    highlights: [
-      { label: "Duration", value: "6 weeks" },
-      { label: "Cohort size", value: "40" },
-    ],
-    speakers: [S.meera, S.ravi],
-    accent: "orange",
-  },
 
   // PAST
   {
@@ -508,8 +424,6 @@ export const eventTypes: ("All" | EventType)[] = [
   "Conference",
   "Roundtable",
   "Webinar",
-  "Seminar",
-  "Programme",
 ];
 
 export type QuickPickId =
@@ -517,8 +431,7 @@ export type QuickPickId =
   | "msme"
   | "sustainability"
   | "ai"
-  | "networking"
-  | "training";
+  | "networking";
 
 export const getEventBySlug = (slug: string) => events.find((e) => e.slug === slug);
 export const getFlagship = () => events.find((e) => e.flagship) ?? events[0];

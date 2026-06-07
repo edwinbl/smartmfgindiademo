@@ -43,8 +43,6 @@ const quickPickFilter = (e: EventItem, pick: QuickPickId | null): boolean => {
       return /AI|Automation|Analytics/i.test(e.technology);
     case "networking":
       return e.type === "Roundtable" || e.type === "Summit" || e.type === "Conference";
-    case "training":
-      return e.type === "Programme" || e.type === "Seminar";
     default:
       return true;
   }
