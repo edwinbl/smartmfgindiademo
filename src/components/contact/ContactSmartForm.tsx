@@ -128,7 +128,7 @@ export const ContactSmartForm = ({ intent, embedded = false }: Props) => {
                     errors.message ? "border-[hsl(var(--red-600))]" : "border-[hsl(var(--neutral-200))]",
                   )}
                 />
-                {errors.message && <p className="mt-1.5 text-xs font-medium text-[hsl(var(--red-600))]">{errors.message}</p>}
+                {errors.message && <p className="mt-1.5 text-[13px] font-medium text-[hsl(var(--red-600))]" role="alert">{errors.message}</p>}
               </div>
 
               <button
