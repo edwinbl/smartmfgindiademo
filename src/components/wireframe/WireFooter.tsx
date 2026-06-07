@@ -124,9 +124,12 @@ export const WireFooter = () => {
             <Link to="/terms" className="hover:text-white">
               Terms
             </Link>
-            <a href="#" className="hover:text-white">
+            <Link to="/accessibility" className="hover:text-white">
               Accessibility
-            </a>
+            </Link>
+            <Link to="/cookies" className="hover:text-white">
+              Cookies
+            </Link>
           </div>
         </div>
       </div>

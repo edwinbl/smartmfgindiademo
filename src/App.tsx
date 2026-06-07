@@ -76,6 +76,8 @@ const App = () => (
             <Route path="/reset-password" element={withSuspense(<ResetPassword />, "form")} />
             <Route path="/terms" element={withSuspense(<Terms />, "detail")} />
             <Route path="/privacy" element={withSuspense(<Privacy />, "detail")} />
+            <Route path="/accessibility" element={withSuspense(<Accessibility />, "detail")} />
+            <Route path="/cookies" element={withSuspense(<Cookies />, "detail")} />
             <Route path="/readiness-assessment" element={withSuspense(<ReadinessAssessment />, "detail")} />
             <Route path="/readiness-assessment/:slug" element={withSuspense(<AssessmentDetail />, "detail")} />
             <Route path="/case-studies" element={withSuspense(<CaseStudiesIndex />, "list")} />
