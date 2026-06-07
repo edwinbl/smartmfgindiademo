@@ -342,7 +342,7 @@ const SolutionsHero = ({ query, onQuery }: { query: string; onQuery: (v: string)
           </form>
         </div>
 
-        <div className="lg:col-span-5 relative h-[400px] sm:h-[460px] lg:h-[500px] animate-scale-in">
+        <div className="lg:col-span-5 relative animate-scale-in flex items-center justify-center">
           <SolutionsHeroViz />
         </div>
       </div>
