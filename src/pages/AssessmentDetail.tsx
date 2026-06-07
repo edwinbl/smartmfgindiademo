@@ -29,8 +29,6 @@ import {
   Download,
   MessageCircle,
   Lightbulb,
-  Building2,
-  Boxes,
   HardHat,
   Lock,
   HelpCircle,
@@ -161,20 +159,7 @@ const outcomes = [
   { icon: Layers, title: "Value Chain Participation", desc: "Readiness to integrate with OEM and supplier ecosystems." },
 ];
 
-const personas = [
-  { icon: Building2, title: "MSMEs", desc: "Small and medium manufacturers starting their transformation journey." },
-  { icon: TrendingUp, title: "Growing Manufacturers", desc: "Mid-sized plants scaling operations, quality and digital systems." },
-  { icon: Boxes, title: "Supplier Ecosystems", desc: "Tier-1 and Tier-2 suppliers strengthening readiness for OEM expectations." },
-  { icon: Users, title: "Operations Teams", desc: "Plant, production and quality leaders aligning on priority areas." },
-];
 
-const processSteps = [
-  { title: "Access Assessment", desc: "Open the guided web assessment — no installation needed." },
-  { title: "Complete Readiness Inputs", desc: "Answer structured questions across operational and digital dimensions." },
-  { title: "Assessment Review", desc: "Inputs are reviewed and mapped against readiness dimensions." },
-  { title: "Receive Insights", desc: "Get a readiness snapshot with outcome-aligned priority areas." },
-  { title: "Explore Next Steps", desc: "Use insights to decide what to improve, adopt or transform." },
-];
 
 const currentBenefits = [
   { icon: Gauge, title: "Readiness Snapshot", desc: "A clear, executive-friendly view of your current manufacturing readiness." },
