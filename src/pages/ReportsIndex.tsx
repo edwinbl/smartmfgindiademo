@@ -108,6 +108,24 @@ const ReportsIndex = () => {
         />
         {user && <PersonalizedShelf user={user} />}
         <FeaturedCollections />
+
+        {/* CII Reports */}
+        <section id="cii-reports" className="py-14 md:py-20">
+          <div className="container-cii">
+            <div className="mb-8">
+              <div className="section-eyebrow mb-2">Published by CII</div>
+              <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight text-[hsl(var(--navy-900))]">
+                Reports from CII
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {ciiReports.map((r) => (
+                <ReportCard key={r.slug} report={r} onDownload={handleDownload} />
+              ))}
+            </div>
+          </div>
+        </section>
+
         <ReportsThemesExplorer onSelect={(t) => setQuery(t)} />
         <ReportsSectorExplorer
           onSelect={(industry) => {
