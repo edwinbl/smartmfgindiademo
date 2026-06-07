@@ -249,37 +249,48 @@ const ReadinessAssessment = () => {
         </section>
 
         {/* ============== OUTCOMES ============== */}
-        <section className="py-16 md:py-24 bg-white">
+        <section className="py-14 md:py-20 bg-white">
           <div className="container-cii">
             <div className="max-w-2xl">
               <div className="section-eyebrow mb-3">Outcome-based readiness</div>
-              <h2 className="font-display font-bold text-[26px] md:text-[34px] leading-tight tracking-tight text-navy-800">
+              <h2 className="font-display font-bold text-[24px] md:text-[30px] leading-tight tracking-tight text-navy-800">
                 What Readiness Can Help Improve
               </h2>
-              <p className="mt-4 text-base text-[hsl(var(--neutral-700))]">
+              <p className="mt-3 text-sm md:text-base text-[hsl(var(--neutral-700))]">
                 Readiness is not a score — it is a lens to evaluate where your organisation is positioned for the
                 business outcomes that matter most.
               </p>
             </div>
 
             {/* Mobile: horizontal scroll */}
-            <div className="mt-10 -mx-6 px-6 md:mx-0 md:px-0 overflow-x-auto md:overflow-visible">
-              <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 snap-x snap-mandatory pb-2 md:pb-0">
-                {outcomes.map(({ icon: Icon, title, desc }) => (
-                  <div
-                    key={title}
-                    className="cii-card group p-6 min-w-[280px] md:min-w-0 snap-start bg-white"
-                  >
-                    <div className="h-11 w-11 rounded-md grid place-items-center bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))] group-hover:bg-[hsl(var(--navy-100))] transition-colors">
-                      <Icon className="h-5 w-5" strokeWidth={1.75} />
+            <div className="mt-8 -mx-6 px-6 md:mx-0 md:px-0 overflow-x-auto md:overflow-visible">
+              <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 snap-x snap-mandatory pb-2 md:pb-0">
+                {outcomes.map(({ icon: Icon, title, desc }, i) => {
+                  const accents = [
+                    { bg: "hsl(var(--india-green)/0.1)", text: "hsl(var(--india-green))" },
+                    { bg: "hsl(var(--navy-100))", text: "hsl(var(--navy-600))" },
+                    { bg: "hsl(var(--orange-100))", text: "hsl(var(--orange-600))" },
+                    { bg: "hsl(var(--navy-050))", text: "hsl(var(--navy-700))" },
+                    { bg: "hsl(var(--red-100))", text: "hsl(var(--red-600))" },
+                    { bg: "hsl(var(--orange-100))", text: "hsl(var(--orange-500))" },
+                  ];
+                  const accent = accents[i];
+                  return (
+                    <div
+                      key={title}
+                      className="cii-card group p-5 min-w-[260px] md:min-w-0 snap-start bg-white"
+                    >
+                      <div
+                        className="h-10 w-10 rounded-md grid place-items-center transition-colors"
+                        style={{ background: accent.bg, color: accent.text }}
+                      >
+                        <Icon className="h-5 w-5" strokeWidth={1.75} />
+                      </div>
+                      <h3 className="mt-3 font-display font-bold text-navy-800 text-base">{title}</h3>
+                      <p className="mt-1.5 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
                     </div>
-                    <h3 className="mt-4 font-display font-bold text-navy-800 text-lg">{title}</h3>
-                    <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
-                    <p className="mt-4 pt-3 border-t border-[hsl(var(--neutral-150))] text-xs text-[hsl(var(--neutral-500))] italic">
-                      Assessment helps evaluate readiness for this outcome.
-                    </p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -382,7 +393,7 @@ const ReadinessAssessment = () => {
                     </div>
                   </dl>
 
-                  <div className="mt-6 flex flex-wrap gap-2 mt-auto">
+                  <div className="mt-8 flex flex-wrap gap-2 mt-auto pt-2">
                     <Link
                       to={`/readiness-assessment/${a.slug}`}
                       className="btn-primary flex-1 min-w-[160px]"
