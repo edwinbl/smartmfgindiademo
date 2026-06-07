@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, MessageCircle } from "lucide-react";
 import { HeroEcosystemViz } from "./HeroEcosystemViz";
 
@@ -52,20 +53,12 @@ export const WireHero = () => {
           </p>
 
           <div className="mt-7 flex flex-wrap gap-3">
-            <a href="https://www.smartmfgindia.com/Assesment.aspx" className="btn-primary">
+            <Link to="/readiness-assessment" className="btn-primary">
               Access Maturity Assessments <ArrowRight className="!h-4 !w-4" />
-            </a>
-            <a
-              href="#solutions"
-              className="btn-ghost"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById("solutions")?.scrollIntoView({ behavior: "smooth", block: "start" });
-                history.replaceState(null, "", "#solutions");
-              }}
-            >
+            </Link>
+            <Link to="/solutions" className="btn-ghost">
               Explore Solutions
-            </a>
+            </Link>
           </div>
 
           <button

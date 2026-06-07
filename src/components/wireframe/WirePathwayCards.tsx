@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { WireSection } from "./WireSection";
 import { ClipboardCheck, Layers, GraduationCap, Calendar, MessageCircle, ArrowRight } from "lucide-react";
 
@@ -7,7 +8,7 @@ const pathways = [
     title: "Assess Readiness",
     desc: "Access maturity assessment models to understand where your organisation stands.",
     cta: "Access assessments",
-    href: "https://www.smartmfgindia.com/Assesment.aspx",
+    href: "/readiness-assessment",
     accent: "red" as const,
   },
   {
@@ -15,7 +16,7 @@ const pathways = [
     title: "Explore Solutions",
     desc: "Explore solution areas linked to business problems and outcomes.",
     cta: "Explore solutions",
-    href: "#solutions",
+    href: "/solutions",
     accent: "navy" as const,
   },
   {
@@ -23,7 +24,7 @@ const pathways = [
     title: "Join Programmes",
     desc: "Access CII programmes, workshops and training opportunities.",
     cta: "View programmes",
-    href: "https://www.smartmfgindia.com/CapacityBuildings.aspx",
+    href: "/programmes",
     accent: "navy" as const,
   },
   {
@@ -31,7 +32,7 @@ const pathways = [
     title: "View Events",
     desc: "Explore upcoming and past smart manufacturing events.",
     cta: "View events",
-    href: "https://www.smartmfgindia.com/UpcommingEvent.aspx",
+    href: "/events",
     accent: "navy" as const,
   },
   {
@@ -82,22 +83,11 @@ export const WirePathwayCards = () => {
         {pathways.map((p, idx) => {
           const a = accentMap[p.accent];
           const Icon = p.icon;
-          return (
-            <a
-              key={p.title}
-              href={p.href}
-              onClick={(e) => {
-                if (p.href === "#chatbot") {
-                  e.preventDefault();
-                  window.dispatchEvent(new Event("open-assistant"));
-                } else if (p.href.startsWith("#")) {
-                  e.preventDefault();
-                  document.getElementById(p.href.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
-                  history.replaceState(null, "", p.href);
-                }
-              }}
-              className="group relative flex flex-col p-6 rounded-xl bg-white border border-[hsl(var(--neutral-150))] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_hsl(var(--navy-800)/0.18)] hover:border-transparent"
-            >
+          const isInternal = p.href.startsWith("/") && !p.href.startsWith("//");
+          const cardClass =
+            "group relative flex flex-col p-6 rounded-xl bg-white border border-[hsl(var(--neutral-150))] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_hsl(var(--navy-800)/0.18)] hover:border-transparent";
+          const cardContent = (
+            <>
               {/* Top gradient bar */}
               <span className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${a.bar} opacity-90`} />
 
@@ -131,6 +121,25 @@ export const WirePathwayCards = () => {
                 {p.cta}
                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
               </span>
+            </>
+          );
+          return isInternal ? (
+            <Link key={p.title} to={p.href} className={cardClass}>
+              {cardContent}
+            </Link>
+          ) : (
+            <a
+              key={p.title}
+              href={p.href}
+              onClick={(e) => {
+                if (p.href === "#chatbot") {
+                  e.preventDefault();
+                  window.dispatchEvent(new Event("open-assistant"));
+                }
+              }}
+              className={cardClass}
+            >
+              {cardContent}
             </a>
           );
         })}

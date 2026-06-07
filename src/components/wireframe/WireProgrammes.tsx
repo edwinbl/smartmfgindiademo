@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { WireSection } from "./WireSection";
 import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
 
@@ -39,9 +40,9 @@ export const WireProgrammes = () => {
             manufacturers.
           </p>
         </div>
-        <a href="https://www.smartmfgindia.com/CapacityBuildings.aspx" className="link-arrow">
+        <Link to="/programmes" className="link-arrow">
           View all programmes <ArrowRight className="h-3.5 w-3.5" />
-        </a>
+        </Link>
       </div>
 
       <div className="grid gap-5 md:grid-cols-3">
