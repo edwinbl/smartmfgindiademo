@@ -166,11 +166,17 @@ const SolutionsIndex = () => {
                   <Link
                     key={c.slug}
                     to={`/solutions/${c.slug}`}
-                    className="group relative cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all"
+                    className="group relative cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all overflow-hidden"
+                    style={{ background: `linear-gradient(180deg, ${a.bg}, white 70%)` }}
                   >
                     <div
-                      className="h-12 w-12 rounded-xl grid place-items-center"
-                      style={{ background: a.bg, color: a.fg }}
+                      className="absolute top-0 left-0 right-0 h-1"
+                      style={{ background: a.bar }}
+                      aria-hidden
+                    />
+                    <div
+                      className="h-12 w-12 rounded-xl grid place-items-center shadow-sm"
+                      style={{ background: a.bar, color: "white" }}
                     >
                       <Icon className="h-5 w-5" />
                     </div>
@@ -185,7 +191,7 @@ const SolutionsIndex = () => {
                         <span
                           key={id}
                           className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
-                          style={{ background: "hsl(var(--navy-050))", color: "hsl(var(--navy-700))" }}
+                          style={{ background: a.bg, color: a.fg }}
                         >
                           {outcomeLabel(id)}
                         </span>
@@ -309,19 +315,7 @@ const SolutionsHero = ({ query, onQuery }: { query: string; onQuery: (v: string)
 
           <h1 className="font-display mt-5 text-[34px] sm:text-5xl lg:text-[52px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
             Find Practical{" "}
-            <span className="relative inline-block">
-              <span
-                className="relative z-10 bg-clip-text text-transparent"
-                style={{ backgroundImage: "linear-gradient(90deg, hsl(var(--red-600)), hsl(var(--orange-500)))" }}
-              >
-                Solution Pathways
-              </span>
-              <span
-                className="absolute left-0 right-0 bottom-1 h-2 -z-0 rounded-sm opacity-70"
-                style={{ background: "hsl(var(--orange-500) / 0.25)" }}
-                aria-hidden
-              />
-            </span>{" "}
+            <span className="text-[hsl(var(--red-600))]">Solution Pathways</span>{" "}
             for Your Manufacturing Challenges
           </h1>
 
@@ -352,17 +346,9 @@ const SolutionsHero = ({ query, onQuery }: { query: string; onQuery: (v: string)
               Search
             </button>
           </form>
-
-          <div className="mt-7 flex flex-col sm:flex-row gap-3">
-            <Link to="/readiness-assessment" className="btn-primary group">
-              Take Readiness Assessment
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </Link>
-            <a href="#categories" className="btn-outline">Explore Solutions</a>
-          </div>
         </div>
 
-        <div className="lg:col-span-5 relative h-[400px] sm:h-[460px] lg:h-[500px] animate-scale-in">
+        <div className="lg:col-span-5 relative animate-scale-in flex items-center justify-center">
           <SolutionsHeroViz />
         </div>
       </div>
@@ -371,78 +357,157 @@ const SolutionsHero = ({ query, onQuery }: { query: string; onQuery: (v: string)
 };
 
 const SolutionsHeroViz = () => {
-  const stages = [
-    { label: "Challenge", color: "var(--red-600)" },
-    { label: "Solution", color: "var(--navy-600)" },
-    { label: "Example", color: "var(--orange-500)" },
-    { label: "Guidance", color: "var(--india-green)" },
-    { label: "Action", color: "var(--red-600)" },
+  const size = 520;
+  const c = size / 2;
+  const rInner = 138;
+  const rOuter = 226;
+
+  const categories = [
+    { Icon: Workflow, label: "Process" },
+    { Icon: ClipboardCheck, label: "Quality" },
+    { Icon: Compass, label: "Strategy" },
+    { Icon: Send, label: "Logistics" },
+    { Icon: Sparkles, label: "Automation" },
+    { Icon: GraduationCap, label: "Skills" },
+    { Icon: FileText, label: "Standards" },
+    { Icon: MessageCircle, label: "Advisory" },
   ];
+
+  const outcomesRing = [
+    "Productivity",
+    "Quality",
+    "Energy",
+    "Traceability",
+    "Competitiveness",
+    "Safety",
+    "Sustainability",
+  ];
+
+  const polar = (cx: number, cy: number, r: number, deg: number) => {
+    const rad = ((deg - 90) * Math.PI) / 180;
+    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+  };
+
   return (
-    <div className="absolute inset-0">
-      <div className="absolute top-2 right-2 w-[86%] cii-card p-5 rotate-[2deg]">
-        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--red-600))]">
-          <Compass className="h-3.5 w-3.5" /> Pathway Builder
-        </div>
-        <div className="mt-3 space-y-2">
-          {stages.map((s, i) => (
-            <div key={s.label} className="flex items-center gap-3">
-              <span
-                className="h-7 w-7 rounded-full grid place-items-center text-[10px] font-bold text-white flex-shrink-0"
-                style={{ background: `hsl(${s.color})` }}
-              >
-                {i + 1}
-              </span>
-              <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: "hsl(var(--neutral-150))" }}>
-                <div
-                  className="h-full"
-                  style={{ width: `${30 + i * 17}%`, background: `hsl(${s.color})` }}
-                />
-              </div>
-              <span className="text-[11px] font-bold text-[hsl(var(--navy-900))] w-20">{s.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+    <div className="relative w-full max-w-[520px] aspect-square mx-auto">
+      <svg viewBox={`0 0 ${size} ${size}`} className="absolute inset-0 w-full h-full" aria-hidden>
+        <defs>
+          <radialGradient id="solHubGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="hsl(var(--red-600))" stopOpacity="0.35" />
+            <stop offset="60%" stopColor="hsl(var(--orange-500))" stopOpacity="0.08" />
+            <stop offset="100%" stopColor="hsl(var(--orange-500))" stopOpacity="0" />
+          </radialGradient>
+          <linearGradient id="solRingStroke" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="hsl(var(--red-600))" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="hsl(var(--orange-500))" stopOpacity="0.3" />
+          </linearGradient>
+        </defs>
 
-      <div className="absolute top-[58%] left-0 w-[58%] cii-card p-4 -rotate-[3deg]">
-        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--navy-700))]">
-          <Workflow className="h-3.5 w-3.5" /> Outcome Map
-        </div>
-        <div className="mt-2 grid grid-cols-2 gap-2">
-          {["Productivity", "Quality", "Energy", "Traceability"].map((o) => (
-            <div key={o} className="rounded-md px-2 py-1.5 text-[10px] font-bold text-[hsl(var(--navy-900))]" style={{ background: "hsl(var(--navy-050))" }}>
-              {o}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="absolute bottom-6 right-6 cii-card px-4 py-3 rotate-[2deg] flex items-center gap-3">
-        <div
-          className="h-9 w-9 rounded-md grid place-items-center text-white"
-          style={{ background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))" }}
+        <circle cx={c} cy={c} r={140} fill="url(#solHubGlow)" />
+        <circle cx={c} cy={c} r={rInner} fill="none" stroke="hsl(var(--neutral-200))" strokeWidth="1" />
+        <circle
+          cx={c} cy={c} r={rOuter}
+          fill="none" stroke="url(#solRingStroke)" strokeWidth="1" strokeDasharray="3 6"
         >
-          <ClipboardCheck className="h-4 w-4" />
-        </div>
-        <div>
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">Recommendations</div>
-          <div className="text-sm font-bold text-[hsl(var(--navy-900))]">Tailored pathways</div>
-        </div>
-      </div>
+          <animateTransform attributeName="transform" type="rotate"
+            from={`0 ${c} ${c}`} to={`360 ${c} ${c}`} dur="80s" repeatCount="indefinite" />
+        </circle>
 
+        {categories.map((_, i) => {
+          const p = polar(c, c, rInner, (360 / categories.length) * i);
+          return (
+            <line key={`s-${i}`} x1={c} y1={c} x2={p.x} y2={p.y}
+              stroke="hsl(var(--neutral-200))" strokeWidth="1" />
+          );
+        })}
+
+        {outcomesRing.map((_, i) => {
+          const p = polar(c, c, rOuter, (360 / outcomesRing.length) * i + 25);
+          const pIn = polar(c, c, rInner, (360 / outcomesRing.length) * i + 25);
+          return (
+            <line key={`e-${i}`}
+              x1={pIn.x} y1={pIn.y} x2={p.x} y2={p.y}
+              stroke="hsl(var(--red-600))" strokeOpacity="0.35"
+              strokeWidth="1" strokeDasharray="4 5">
+              <animate attributeName="stroke-dashoffset" from="0" to="-18" dur="2.4s" repeatCount="indefinite" />
+            </line>
+          );
+        })}
+
+        {categories.map((_, i) => {
+          const p = polar(c, c, rInner, (360 / categories.length) * i);
+          return (
+            <circle key={`d-${i}`} r="2.4" fill="hsl(var(--red-600))">
+              <animate attributeName="cx" values={`${c};${p.x}`} dur="3s" begin={`${i * 0.25}s`} repeatCount="indefinite" />
+              <animate attributeName="cy" values={`${c};${p.y}`} dur="3s" begin={`${i * 0.25}s`} repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0;1;0" dur="3s" begin={`${i * 0.25}s`} repeatCount="indefinite" />
+            </circle>
+          );
+        })}
+      </svg>
+
+      {/* Center hub */}
       <div
-        className="absolute top-0 left-4 h-12 w-12 rounded-full grid place-items-center text-white shadow-lg"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                   h-[118px] w-[118px] rounded-full grid place-items-center text-center
+                   border border-white text-white shadow-xl"
         style={{
-          background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
-          animation: "float 6s ease-in-out infinite",
+          background: "linear-gradient(135deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
+          boxShadow: "0 10px 40px hsl(var(--red-600) / 0.35)",
         }}
-        aria-hidden
       >
-        <Compass className="h-5 w-5" />
+        <div>
+          <div className="font-display text-[10px] font-bold tracking-[0.18em] text-white/80 uppercase">
+            Solution
+          </div>
+          <div className="font-display text-[14px] font-extrabold leading-tight mt-0.5">
+            Pathways<br/>Hub
+          </div>
+        </div>
       </div>
 
-      <style>{`@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }`}</style>
+      {/* Inner ring: category nodes */}
+      {categories.map(({ Icon, label }, i) => {
+        const p = polar(c, c, rInner, (360 / categories.length) * i);
+        const xPct = (p.x / size) * 100;
+        const yPct = (p.y / size) * 100;
+        return (
+          <div key={label}
+            className="absolute -translate-x-1/2 -translate-y-1/2 group"
+            style={{ left: `${xPct}%`, top: `${yPct}%` }}>
+            <div className="h-11 w-11 rounded-full grid place-items-center border bg-white shadow-md
+                            transition-all duration-300 group-hover:scale-110"
+              style={{ borderColor: "hsl(var(--neutral-200))" }}>
+              <Icon className="h-4 w-4 text-[hsl(var(--red-600))]" strokeWidth={2} />
+            </div>
+            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1 whitespace-nowrap
+                            text-[9.5px] font-semibold tracking-wide uppercase text-[hsl(var(--navy-700))]
+                            opacity-0 group-hover:opacity-100 transition-opacity">
+              {label}
+            </div>
+          </div>
+        );
+      })}
+
+      {/* Outer ring: outcome chips */}
+      {outcomesRing.map((label, i) => {
+        const p = polar(c, c, rOuter, (360 / outcomesRing.length) * i + 25);
+        const xPct = (p.x / size) * 100;
+        const yPct = (p.y / size) * 100;
+        return (
+          <div key={label}
+            className="absolute -translate-x-1/2 -translate-y-1/2"
+            style={{ left: `${xPct}%`, top: `${yPct}%` }}>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border bg-white shadow-sm"
+              style={{ borderColor: "hsl(var(--orange-500) / 0.4)" }}>
+              <span className="h-1.5 w-1.5 rounded-full bg-[hsl(var(--orange-500))]" />
+              <span className="font-display text-[10.5px] font-semibold tracking-wide whitespace-nowrap text-[hsl(var(--navy-800))]">
+                {label}
+              </span>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
@@ -459,29 +524,39 @@ export const ExpertPerspectives = () => (
         </h2>
       </div>
       <div className="grid md:grid-cols-3 gap-4">
-        {expertInsights.map((e) => (
-          <div key={e.name} className="relative cii-card p-7">
-            <Quote className="h-8 w-8 text-[hsl(var(--orange-500))] opacity-30 absolute top-5 right-5" />
-            <div className="font-display text-lg font-bold text-[hsl(var(--navy-900))] leading-snug">
-              "{e.headline}"
-            </div>
-            <p className="mt-3 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">
-              {e.quote}
-            </p>
-            <div className="mt-6 pt-5 border-t border-[hsl(var(--neutral-150))] flex items-center gap-3">
-              <div
-                className="h-10 w-10 rounded-full grid place-items-center text-xs font-bold text-white"
-                style={{ background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))" }}
-              >
-                {e.initials}
+        {expertInsights.map((e, i) => {
+          const palettes = [
+            { bg: "hsl(var(--navy-050))", bar: "hsl(var(--navy-600))", grad: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))" },
+            { bg: "hsl(var(--orange-100))", bar: "hsl(var(--orange-500))", grad: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))" },
+            { bg: "hsl(var(--india-green) / 0.10)", bar: "hsl(var(--india-green))", grad: "linear-gradient(135deg, hsl(var(--india-green)), hsl(var(--navy-700)))" },
+          ];
+          const pal = palettes[i % palettes.length];
+          return (
+            <div key={e.name} className="relative cii-card p-7 overflow-hidden"
+              style={{ background: `linear-gradient(180deg, ${pal.bg}, white 75%)` }}>
+              <div className="absolute top-0 left-0 right-0 h-1" style={{ background: pal.bar }} />
+              <Quote className="h-8 w-8 opacity-40 absolute top-5 right-5" style={{ color: pal.bar }} />
+              <div className="font-display text-lg font-bold text-[hsl(var(--navy-900))] leading-snug">
+                "{e.headline}"
               </div>
-              <div className="text-xs">
-                <div className="font-bold text-[hsl(var(--navy-900))]">{e.name}</div>
-                <div className="text-[hsl(var(--neutral-500))]">{e.role}</div>
+              <p className="mt-3 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">
+                {e.quote}
+              </p>
+              <div className="mt-6 pt-5 border-t border-[hsl(var(--neutral-150))] flex items-center gap-3">
+                <div
+                  className="h-10 w-10 rounded-full grid place-items-center text-xs font-bold text-white shadow-sm"
+                  style={{ background: pal.grad }}
+                >
+                  {e.initials}
+                </div>
+                <div className="text-xs">
+                  <div className="font-bold text-[hsl(var(--navy-900))]">{e.name}</div>
+                  <div className="text-[hsl(var(--neutral-500))]">{e.role}</div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   </section>
@@ -502,25 +577,36 @@ export const ResourcesBand = () => (
         </Link>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {solutionResources.map((r) => (
-          <Link key={r.title} to={r.href} className="group cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all">
-            <div className="flex items-center justify-between">
-              <span
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider"
-                style={{ background: "hsl(var(--navy-050))", color: "hsl(var(--navy-700))" }}
-              >
-                <FileText className="h-3 w-3" /> {r.type}
-              </span>
-              <Download className="h-4 w-4 text-[hsl(var(--neutral-500))] group-hover:text-[hsl(var(--red-600))] transition-colors" />
-            </div>
-            <div className="mt-4 font-display text-base font-bold text-[hsl(var(--navy-900))] leading-snug">
-              {r.title}
-            </div>
-            <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">
-              {r.desc}
-            </p>
-          </Link>
-        ))}
+        {solutionResources.map((r, i) => {
+          const palettes = [
+            { bg: "hsl(var(--navy-050))", fg: "hsl(var(--navy-700))", bar: "hsl(var(--navy-600))" },
+            { bg: "hsl(var(--orange-100))", fg: "hsl(var(--orange-600))", bar: "hsl(var(--orange-500))" },
+            { bg: "hsl(var(--india-green) / 0.10)", fg: "hsl(var(--india-green))", bar: "hsl(var(--india-green))" },
+            { bg: "hsl(var(--red-100))", fg: "hsl(var(--red-600))", bar: "hsl(var(--red-600))" },
+          ];
+          const pal = palettes[i % palettes.length];
+          return (
+            <Link key={r.title} to={r.href} className="group cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all relative overflow-hidden"
+              style={{ background: `linear-gradient(180deg, ${pal.bg}, white 70%)` }}>
+              <div className="absolute top-0 left-0 right-0 h-1" style={{ background: pal.bar }} />
+              <div className="flex items-center justify-between">
+                <span
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider"
+                  style={{ background: pal.bar, color: "white" }}
+                >
+                  <FileText className="h-3 w-3" /> {r.type}
+                </span>
+                <Download className="h-4 w-4 text-[hsl(var(--neutral-500))] group-hover:text-[hsl(var(--red-600))] transition-colors" />
+              </div>
+              <div className="mt-4 font-display text-base font-bold text-[hsl(var(--navy-900))] leading-snug">
+                {r.title}
+              </div>
+              <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">
+                {r.desc}
+              </p>
+            </Link>
+          );
+        })}
       </div>
     </div>
   </section>
@@ -541,27 +627,38 @@ export const ProgrammesBand = () => (
         </Link>
       </div>
       <div className="grid md:grid-cols-3 gap-4">
-        {solutionProgrammes.map((p) => (
-          <div key={p.slug} className="cii-card p-6">
-            <div
-              className="h-11 w-11 rounded-xl grid place-items-center"
-              style={{ background: "hsl(var(--orange-100))", color: "hsl(var(--orange-600))" }}
-            >
-              <GraduationCap className="h-5 w-5" />
+        {solutionProgrammes.map((p, i) => {
+          const palettes = [
+            { bg: "hsl(var(--orange-100))", bar: "hsl(var(--orange-500))" },
+            { bg: "hsl(var(--navy-050))", bar: "hsl(var(--navy-600))" },
+            { bg: "hsl(var(--india-green) / 0.10)", bar: "hsl(var(--india-green))" },
+            { bg: "hsl(var(--red-100))", bar: "hsl(var(--red-600))" },
+          ];
+          const pal = palettes[i % palettes.length];
+          return (
+            <div key={p.slug} className="cii-card p-6 relative overflow-hidden"
+              style={{ background: `linear-gradient(180deg, ${pal.bg}, white 70%)` }}>
+              <div className="absolute top-0 left-0 right-0 h-1" style={{ background: pal.bar }} />
+              <div
+                className="h-11 w-11 rounded-xl grid place-items-center text-white shadow-sm"
+                style={{ background: pal.bar }}
+              >
+                <GraduationCap className="h-5 w-5" />
+              </div>
+              <div className="mt-4 font-display text-lg font-bold text-[hsl(var(--navy-900))] leading-snug">
+                {p.name}
+              </div>
+              <div className="mt-3 space-y-1.5 text-xs text-[hsl(var(--neutral-700))]">
+                <div><span className="font-bold text-[hsl(var(--navy-900))]">Duration:</span> {p.duration}</div>
+                <div><span className="font-bold text-[hsl(var(--navy-900))]">For:</span> {p.audience}</div>
+                <div><span className="font-bold text-[hsl(var(--navy-900))]">Outcomes:</span> {p.outcomes}</div>
+              </div>
+              <Link to="/programmes" className="mt-5 inline-flex items-center gap-1 text-xs font-bold text-[hsl(var(--red-600))] hover:underline">
+                View Programme <ArrowRight className="h-3 w-3" />
+              </Link>
             </div>
-            <div className="mt-4 font-display text-lg font-bold text-[hsl(var(--navy-900))] leading-snug">
-              {p.name}
-            </div>
-            <div className="mt-3 space-y-1.5 text-xs text-[hsl(var(--neutral-700))]">
-              <div><span className="font-bold text-[hsl(var(--navy-900))]">Duration:</span> {p.duration}</div>
-              <div><span className="font-bold text-[hsl(var(--navy-900))]">For:</span> {p.audience}</div>
-              <div><span className="font-bold text-[hsl(var(--navy-900))]">Outcomes:</span> {p.outcomes}</div>
-            </div>
-            <Link to="/programmes" className="mt-5 inline-flex items-center gap-1 text-xs font-bold text-[hsl(var(--red-600))] hover:underline">
-              View Programme <ArrowRight className="h-3 w-3" />
-            </Link>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   </section>
