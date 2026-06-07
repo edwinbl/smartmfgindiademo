@@ -24,6 +24,31 @@ export interface KPI {
   direction: "up" | "down" | "flat";
 }
 
+export interface SolutionProvider {
+  name: string;
+  overview: string;
+  capabilities: string[];
+  industries?: string[];
+  technologies?: string[];
+}
+
+export interface ManufacturerProfile {
+  industry: string;
+  footprint: string;
+  highlights: string[];
+}
+
+export interface DiscoveryStep { title: string; desc: string }
+export interface ComplexityStat { value: string; label: string }
+export interface TimelineStep { phase: string; title: string; desc: string }
+export interface TeamRole { role: string; scope: string }
+export interface ChangeAction { challenge: string; actions: string[]; outcome: string }
+export interface ArchComponent { name: string; layer: string; desc: string }
+export interface SolutionFeature { title: string; desc: string }
+export interface ImplementationChallenge { challenge: string; mitigation: string; outcome: string }
+export interface OutcomeGroup { operational: KPI[]; business: KPI[]; user: string[] }
+export interface ResourceItem { title: string; type: string; href?: string }
+
 export interface CaseStudy {
   slug: string;
   company: string;
@@ -44,6 +69,21 @@ export interface CaseStudy {
   capabilities: string[];
   beforeAfter: { label: string; before: string; after: string }[];
   featured?: boolean;
+  // Rich blueprint fields (optional, with smart fallbacks)
+  categoryTags?: string[];
+  executiveSummary?: string;
+  solutionProvider?: SolutionProvider;
+  manufacturer?: ManufacturerProfile;
+  discoveryFlow?: DiscoveryStep[];
+  complexity?: ComplexityStat[];
+  timeline?: TimelineStep[];
+  team?: TeamRole[];
+  changeManagement?: ChangeAction;
+  architecture?: ArchComponent[];
+  solutionFeatures?: SolutionFeature[];
+  implementationChallenges?: ImplementationChallenge[];
+  outcomes?: OutcomeGroup;
+  resources?: ResourceItem[];
 }
 
 export const sectors: Sector[] = [
