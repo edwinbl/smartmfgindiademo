@@ -54,49 +54,77 @@ const MetricPill = ({ value, direction }: { value: string; direction: "up" | "do
   );
 };
 
-const CaseCard = ({ c }: { c: CaseStudy }) => (
-  <Link
-    to={`/case-studies/${c.slug}`}
-    className="group flex flex-col rounded-2xl bg-white border border-[hsl(var(--neutral-150))] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all overflow-hidden"
-  >
-    <div className="relative h-44 bg-gradient-to-br from-[hsl(var(--navy-700))] to-[hsl(var(--navy-900))] overflow-hidden">
-      <div className="absolute inset-0 blueprint-grid opacity-40" />
-      <div className="absolute inset-0 p-5 flex flex-col justify-between text-white">
-        <div className="flex items-center justify-between">
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/15 backdrop-blur text-[11px] font-semibold">
-            <Factory className="h-3 w-3" /> {c.sector}
-          </span>
-          <MetricPill value={c.metric.value} direction={c.metric.direction} />
-        </div>
-        <div>
-          <div className="text-xs uppercase tracking-wider text-white/70">{c.company}</div>
-          <div className="mt-1 flex items-center gap-2 text-[11px] text-white/80">
-            <MapPin className="h-3 w-3" /> {c.state}
-            <span className="h-1 w-1 rounded-full bg-white/40" />
-            <Building2 className="h-3 w-3" /> {c.companyType}
+const cardPalettes = [
+  {
+    header: "linear-gradient(135deg, hsl(var(--navy-700)), hsl(var(--navy-900)))",
+    tint: "linear-gradient(180deg, hsl(var(--navy-050)), white 70%)",
+    bar: "hsl(var(--navy-700))",
+  },
+  {
+    header: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
+    tint: "linear-gradient(180deg, hsl(var(--orange-100)), white 70%)",
+    bar: "hsl(var(--orange-500))",
+  },
+  {
+    header: "linear-gradient(135deg, hsl(var(--india-green)), hsl(var(--navy-700)))",
+    tint: "linear-gradient(180deg, hsl(var(--india-green) / 0.10), white 70%)",
+    bar: "hsl(var(--india-green))",
+  },
+  {
+    header: "linear-gradient(135deg, hsl(var(--red-600)), hsl(var(--navy-800)))",
+    tint: "linear-gradient(180deg, hsl(var(--red-600) / 0.08), white 70%)",
+    bar: "hsl(var(--red-600))",
+  },
+];
+
+const CaseCard = ({ c, index = 0 }: { c: CaseStudy; index?: number }) => {
+  const pal = cardPalettes[index % cardPalettes.length];
+  return (
+    <Link
+      to={`/case-studies/${c.slug}`}
+      className="group flex flex-col rounded-2xl border border-[hsl(var(--neutral-150))] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all overflow-hidden"
+      style={{ background: pal.tint }}
+    >
+      <div className="h-1.5 w-full" style={{ background: pal.bar }} />
+      <div className="relative h-44 overflow-hidden" style={{ background: pal.header }}>
+        <div className="absolute inset-0 blueprint-grid opacity-40" />
+        <div className="absolute inset-0 p-5 flex flex-col justify-between text-white">
+          <div className="flex items-center justify-between">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/15 backdrop-blur text-[11px] font-semibold">
+              <Factory className="h-3 w-3" /> {c.sector}
+            </span>
+            <MetricPill value={c.metric.value} direction={c.metric.direction} />
+          </div>
+          <div>
+            <div className="text-xs uppercase tracking-wider text-white/70">{c.company}</div>
+            <div className="mt-1 flex items-center gap-2 text-[11px] text-white/80">
+              <MapPin className="h-3 w-3" /> {c.state}
+              <span className="h-1 w-1 rounded-full bg-white/40" />
+              <Building2 className="h-3 w-3" /> {c.companyType}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div className="p-5 flex flex-col flex-1">
-      <h3 className="font-display font-bold text-[17px] leading-snug text-[hsl(var(--navy-900))] group-hover:text-[hsl(var(--red-600))] transition-colors">
-        {c.headline}
-      </h3>
-      <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] line-clamp-2">{c.challenge}</p>
-      <div className="mt-4 flex flex-wrap gap-1.5">
-        {c.valueProps.slice(0, 3).map((v) => (
-          <span key={v} className="cii-chip text-[11px] px-2 py-0.5">{v}</span>
-        ))}
+      <div className="p-5 flex flex-col flex-1">
+        <h3 className="font-display font-bold text-[17px] leading-snug text-[hsl(var(--navy-900))] group-hover:text-[hsl(var(--red-600))] transition-colors">
+          {c.headline}
+        </h3>
+        <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] line-clamp-2">{c.challenge}</p>
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {c.valueProps.slice(0, 3).map((v) => (
+            <span key={v} className="cii-chip text-[11px] px-2 py-0.5">{v}</span>
+          ))}
+        </div>
+        <div className="mt-4 pt-4 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between text-sm">
+          <span className="text-[hsl(var(--neutral-500))]">{c.durationMonths} mo · {c.companySize}</span>
+          <span className="font-semibold inline-flex items-center gap-1 group-hover:text-[hsl(var(--red-600))]" style={{ color: pal.bar }}>
+            View Case Study <ArrowRight className="h-3.5 w-3.5" />
+          </span>
+        </div>
       </div>
-      <div className="mt-4 pt-4 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between text-sm">
-        <span className="text-[hsl(var(--neutral-500))]">{c.durationMonths} mo · {c.companySize}</span>
-        <span className="font-semibold text-[hsl(var(--navy-700))] group-hover:text-[hsl(var(--red-600))] inline-flex items-center gap-1">
-          View Case Study <ArrowRight className="h-3.5 w-3.5" />
-        </span>
-      </div>
-    </div>
-  </Link>
-);
+    </Link>
+  );
+};
 
 const CaseStudiesIndex = () => {
   const [query, setQuery] = useState("");
@@ -155,9 +183,9 @@ const CaseStudiesIndex = () => {
           </div>
 
           <div className="flex gap-5 overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0 snap-x scrollbar-none pb-2">
-            {featured.map((c) => (
+            {featured.map((c, i) => (
               <div key={c.slug} className="snap-start shrink-0 w-[88%] md:w-[420px]">
-                <CaseCard c={c} />
+                <CaseCard c={c} index={i} />
               </div>
             ))}
           </div>
@@ -172,18 +200,21 @@ const CaseStudiesIndex = () => {
             Find stories based on the business outcome you care about
           </h2>
           <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-            {outcomeTiles.map(({ vp: v, icon: Icon, label, tone }) => {
+            {outcomeTiles.map(({ vp: v, icon: Icon, label, tone }, i) => {
               const count = caseStudies.filter((c) => c.valueProps.includes(v)).length;
+              const pal = cardPalettes[i % cardPalettes.length];
               return (
                 <button
                   key={label}
                   onClick={() => { setVp(v); setChip(null); document.getElementById("all")?.scrollIntoView({ behavior: "smooth" }); }}
-                  className="group text-left rounded-2xl bg-white border border-[hsl(var(--neutral-150))] p-6 hover:shadow-md hover:-translate-y-0.5 transition-all"
+                  className="group text-left rounded-2xl border border-[hsl(var(--neutral-150))] p-6 hover:shadow-md hover:-translate-y-0.5 transition-all overflow-hidden relative"
+                  style={{ background: pal.tint }}
                 >
+                  <div className="absolute top-0 left-0 right-0 h-1.5" style={{ background: pal.bar }} />
                   <div className={`h-12 w-12 rounded-xl grid place-items-center ${tone}`}><Icon className="h-6 w-6" /></div>
                   <div className="mt-5 font-display font-bold text-lg text-[hsl(var(--navy-900))]">{label}</div>
                   <div className="mt-1 text-xs text-[hsl(var(--neutral-500))]">{count} case stud{count === 1 ? "y" : "ies"}</div>
-                  <div className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[hsl(var(--navy-700))] group-hover:text-[hsl(var(--red-600))]">
+                  <div className="mt-5 inline-flex items-center gap-1 text-sm font-semibold group-hover:text-[hsl(var(--red-600))]" style={{ color: pal.bar }}>
                     Explore <ArrowRight className="h-3.5 w-3.5" />
                   </div>
                 </button>
@@ -233,7 +264,7 @@ const CaseStudiesIndex = () => {
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  {filtered.map((c) => <CaseCard key={c.slug} c={c} />)}
+                  {filtered.map((c, i) => <CaseCard key={c.slug} c={c} index={i} />)}
                 </div>
               )}
             </div>
