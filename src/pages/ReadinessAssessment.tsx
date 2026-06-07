@@ -467,28 +467,8 @@ const ReadinessAssessment = () => {
                   ))}
                 </ul>
 
-                {/* 3-step visual */}
-                <div className="mt-10">
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    {processSteps.map((s, idx) => (
-                      <div key={s.n} className="relative">
-                        <div className="cii-card p-5 bg-white h-full">
-                          <div className="flex items-center gap-3">
-                            <span className="h-8 w-8 grid place-items-center rounded-full bg-[hsl(var(--navy-800))] text-white text-xs font-bold font-numeric">
-                              {idx + 1}
-                            </span>
-                            <div className="font-display font-bold text-navy-800 text-sm">{s.title}</div>
-                          </div>
-                          <p className="mt-3 text-xs text-[hsl(var(--neutral-700))] leading-relaxed">{s.desc}</p>
-                        </div>
-                        {idx < processSteps.length - 1 && (
-                          <ArrowRight className="hidden sm:block absolute -right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--neutral-400))]" />
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
+
 
               {/* Sticky summary card */}
               <aside className="lg:sticky lg:top-24">
