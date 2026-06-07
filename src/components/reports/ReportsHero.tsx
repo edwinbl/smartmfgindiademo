@@ -6,15 +6,6 @@ interface Props {
   onTag?: (tag: string) => void;
 }
 
-const heroTags = [
-  "Productivity",
-  "Industry 4.0",
-  "Sustainability",
-  "MSMEs",
-  "Traceability",
-  "Digital Readiness",
-  "Export Competitiveness",
-];
 
 export const ReportsHero = ({ query = "", onQuery, onTag }: Props) => {
   const focusResults = () => {
@@ -93,23 +84,6 @@ export const ReportsHero = ({ query = "", onQuery, onTag }: Props) => {
             </button>
           </form>
 
-          {/* Quick tags */}
-          <div className="mt-5 flex flex-wrap items-center gap-2">
-            {heroTags.map((t) => (
-              <button
-                key={t}
-                type="button"
-                onClick={() => {
-                  onTag?.(t);
-                  focusResults();
-                }}
-                className="h-8 px-3.5 rounded-full text-xs font-semibold border bg-white text-[hsl(var(--navy-700))] hover:border-[hsl(var(--navy-600))] hover:text-[hsl(var(--navy-900))] transition-colors"
-                style={{ borderColor: "hsl(var(--neutral-200))" }}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
 
         </div>
 
