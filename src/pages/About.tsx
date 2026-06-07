@@ -9,7 +9,7 @@ import { AboutWhyMatters } from "@/components/about/AboutWhyMatters";
 import { WireLeaderSpeak } from "@/components/wireframe/WireLeaderSpeak";
 import { AboutWhoServes } from "@/components/about/AboutWhoServes";
 import { AboutPlatformEcosystem } from "@/components/about/AboutPlatformEcosystem";
-import { AboutLivingPlatform } from "@/components/about/AboutLivingPlatform";
+
 import { AboutProgress } from "@/components/about/AboutProgress";
 
 const About = () => {
