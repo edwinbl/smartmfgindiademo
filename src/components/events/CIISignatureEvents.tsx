@@ -38,22 +38,7 @@ export const CIISignatureEvents = ({ onRegister }: Props) => {
             </div>
             <h2 className="font-display font-bold text-[26px] md:text-[36px] text-[hsl(var(--navy-900))] tracking-tight leading-tight">
               Convenings hosted by{" "}
-              <span className="relative inline-block">
-                <span
-                  className="relative z-10 bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
-                  }}
-                >
-                  CII
-                </span>
-                <span
-                  className="absolute left-0 right-0 bottom-0 h-2 -z-0 rounded-sm opacity-70"
-                  style={{ background: "hsl(var(--orange-500) / 0.25)" }}
-                  aria-hidden
-                />
-              </span>
+              <span className="text-[hsl(var(--red-600))]">CII</span>
             </h2>
             <p className="mt-3 text-sm md:text-base text-[hsl(var(--neutral-700))] max-w-2xl">
               Flagship summits, roundtables and programmes anchored by the Confederation of
@@ -66,7 +51,7 @@ export const CIISignatureEvents = ({ onRegister }: Props) => {
           </div>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-2 gap-4 md:gap-6">
           {ciiEvents.map((e) => (
             <EventCard key={e.slug} event={e} onRegister={onRegister} />
           ))}

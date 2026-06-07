@@ -1,4 +1,4 @@
-import { Search, Sparkles, Calendar, MapPin, Users, Mic, Ticket, Clock } from "lucide-react";
+import { Search, Sparkles, Calendar, MapPin, Users, Mic, Ticket, Clock, TrendingUp } from "lucide-react";
 import { CountdownTimer } from "./CountdownTimer";
 import type { EventItem } from "@/data/events";
 
@@ -49,22 +49,7 @@ export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
         <div className="lg:col-span-7 animate-fade-in">
           <h1 className="font-display text-[36px] sm:text-5xl lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
             Summits, Webinars &amp;{" "}
-            <span className="relative inline-block">
-              <span
-                className="relative z-10 bg-clip-text text-transparent"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(90deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
-                }}
-              >
-                Convenings
-              </span>
-              <span
-                className="absolute left-0 right-0 bottom-1 h-2 -z-0 rounded-sm opacity-70"
-                style={{ background: "hsl(var(--orange-500) / 0.25)" }}
-                aria-hidden
-              />
-            </span>
+            <span className="text-[hsl(var(--red-600))]">Convenings</span>
           </h1>
 
           <p className="mt-5 text-base sm:text-lg text-[hsl(var(--neutral-700))] max-w-xl leading-relaxed">
@@ -160,6 +145,30 @@ const EventsCollage = ({ event }: { event: EventItem }) => {
               </span>
             </div>
           ))}
+          <div className="mt-3 pt-3 border-t border-[hsl(var(--neutral-150))]">
+            <div className="text-[9px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
+              Top Tracks
+            </div>
+            <div className="mt-2 space-y-1.5">
+              {[
+                { l: "Digital Twin", w: "80%", c: "hsl(var(--red-600))" },
+                { l: "AI Ops", w: "60%", c: "hsl(var(--navy-600))" },
+                { l: "Green Mfg", w: "45%", c: "hsl(var(--orange-500))" },
+              ].map((b, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <span className="text-[9px] text-[hsl(var(--neutral-700))] w-16 truncate">
+                    {b.l}
+                  </span>
+                  <div className="flex-1 h-1.5 rounded-full bg-[hsl(var(--neutral-100))]">
+                    <div
+                      className="h-full rounded-full"
+                      style={{ width: b.w, background: b.c }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -200,6 +209,25 @@ const EventsCollage = ({ event }: { event: EventItem }) => {
               <Clock className="h-3 w-3 text-[hsl(var(--neutral-500))]" />
             </div>
             <CountdownTimer isoDate={event.isoDate} compact />
+          </div>
+          <div className="mt-3 pt-3 border-t border-[hsl(var(--neutral-150))]">
+            <div className="flex items-center justify-between mb-1">
+              <div className="text-[9px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
+                Seats filled
+              </div>
+              <span className="inline-flex items-center gap-0.5 text-[9px] font-bold text-[hsl(var(--red-600))]">
+                <TrendingUp className="h-2.5 w-2.5" /> 78%
+              </span>
+            </div>
+            <div className="h-1.5 w-full rounded-full bg-[hsl(var(--neutral-100))] overflow-hidden">
+              <div
+                className="h-full rounded-full"
+                style={{
+                  width: "78%",
+                  background: "linear-gradient(90deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
+                }}
+              />
+            </div>
           </div>
           <div className="mt-4 flex items-center justify-between">
             <div className="flex items-center -space-x-2">
