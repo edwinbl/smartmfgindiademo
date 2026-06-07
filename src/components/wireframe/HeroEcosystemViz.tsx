@@ -166,7 +166,7 @@ export const HeroEcosystemViz = () => {
               <Icon className="h-4 w-4 text-cii-orange" strokeWidth={2} />
             </div>
             <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1.5 whitespace-nowrap
-                            text-[9.5px] font-semibold tracking-wide text-white/55 uppercase
+                            text-[9.5px] font-semibold tracking-wide text-white/85 uppercase
                             opacity-0 group-hover:opacity-100 transition-opacity">
               {label}
             </div>
