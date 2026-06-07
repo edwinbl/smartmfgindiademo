@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { WireSection } from "./WireSection";
 import { ClipboardCheck, Layers, GraduationCap, Calendar, MessageCircle, ArrowRight } from "lucide-react";
 
@@ -7,7 +8,7 @@ const pathways = [
     title: "Assess Readiness",
     desc: "Access maturity assessment models to understand where your organisation stands.",
     cta: "Access assessments",
-    href: "https://www.smartmfgindia.com/Assesment.aspx",
+    href: "/readiness-assessment",
     accent: "red" as const,
   },
   {
@@ -15,7 +16,7 @@ const pathways = [
     title: "Explore Solutions",
     desc: "Explore solution areas linked to business problems and outcomes.",
     cta: "Explore solutions",
-    href: "#solutions",
+    href: "/solutions",
     accent: "navy" as const,
   },
   {
@@ -23,7 +24,7 @@ const pathways = [
     title: "Join Programmes",
     desc: "Access CII programmes, workshops and training opportunities.",
     cta: "View programmes",
-    href: "https://www.smartmfgindia.com/CapacityBuildings.aspx",
+    href: "/programmes",
     accent: "navy" as const,
   },
   {
@@ -31,7 +32,7 @@ const pathways = [
     title: "View Events",
     desc: "Explore upcoming and past smart manufacturing events.",
     cta: "View events",
-    href: "https://www.smartmfgindia.com/UpcommingEvent.aspx",
+    href: "/events",
     accent: "navy" as const,
   },
   {
