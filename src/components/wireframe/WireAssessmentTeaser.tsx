@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { WireSection } from "./WireSection";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
@@ -39,9 +40,9 @@ export const WireAssessmentTeaser = () => {
           </p>
 
           <div className="mt-7">
-            <a href="https://www.smartmfgindia.com/Assesment.aspx" className="btn-primary">
+            <Link to="/readiness-assessment" className="btn-primary">
               Access Maturity Assessments <ArrowRight className="!h-4 !w-4" />
-            </a>
+            </Link>
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { z } from "zod";
 import { WireSection } from "./WireSection";
 import { ArrowRight, Mail, Send } from "lucide-react";
@@ -102,9 +103,9 @@ export const WireFinalCta = () => {
           <button type="button" onClick={() => setOpen(true)} className="btn-primary">
             Contact CII <ArrowRight className="!h-4 !w-4" />
           </button>
-          <a href="https://www.smartmfgindia.com/Assesment.aspx" className="btn-outline">
+          <Link to="/readiness-assessment" className="btn-outline">
             <Mail className="!h-4 !w-4" /> Start with the assessment
-          </a>
+          </Link>
         </div>
       </div>
 
