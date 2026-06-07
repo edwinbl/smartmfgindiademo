@@ -517,15 +517,6 @@ const ReadinessAssessment = () => {
                     ))}
                   </dl>
 
-                  <div className="mt-6 flex flex-col gap-2">
-                    <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer" className="btn-primary w-full">
-                      Access Current Assessment <ArrowRight className="!h-4 !w-4" />
-                    </a>
-                    <Link to="/contact" className="btn-outline w-full">
-                      <MessageCircle className="!h-4 !w-4" />
-                      Request Assistance
-                    </Link>
-                  </div>
                 </div>
               </aside>
             </div>
