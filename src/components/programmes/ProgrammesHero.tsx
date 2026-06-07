@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Search, Sparkles, GraduationCap, Award, Users, BookOpen, PlayCircle, Trophy, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Search, Sparkles, GraduationCap, Award, Users, BookOpen, PlayCircle, Trophy, CheckCircle2, TrendingUp } from "lucide-react";
 
 interface Props {
   onExplore: () => void;
@@ -99,66 +99,62 @@ export const ProgrammesHero = ({ onExplore, onFindPath, query = "", onQuery, onT
 };
 
 const ProgrammesCollage = () => {
-  const modules = [
-    { icon: PlayCircle, label: "Foundations of Industry 4.0", status: "done" },
-    { icon: BookOpen, label: "Smart Factory Design", status: "active" },
-    { icon: Trophy, label: "Capstone & Certification", status: "todo" },
-  ];
-
   return (
-    <div className="absolute inset-0">
-      {/* Learning path card - main */}
-      <div className="absolute top-4 right-2 w-[86%] cii-card p-5 rotate-[2deg]">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--red-600))]">
-            <GraduationCap className="h-3.5 w-3.5" />
-            Learning Path
-          </div>
-          <span className="text-[10px] font-semibold text-[hsl(var(--neutral-500))]">3 modules · 12 wks</span>
-        </div>
-        <div className="mt-2 text-sm font-bold text-[hsl(var(--navy-900))] leading-snug">
-          Smart Manufacturing Leader
-        </div>
+    <div className="absolute inset-0 grid place-items-center">
+      {/* Soft halo */}
+      <div
+        className="absolute h-[360px] w-[360px] rounded-full blur-3xl opacity-60"
+        style={{
+          background:
+            "radial-gradient(circle, hsl(var(--orange-500) / 0.22), transparent 70%)",
+        }}
+        aria-hidden
+      />
 
-        <div className="mt-4 space-y-2.5">
-          {modules.map((m, i) => {
-            const Icon = m.icon;
-            const isDone = m.status === "done";
-            const isActive = m.status === "active";
+      {/* Back programme brochure */}
+      <div
+        className="absolute left-[8%] top-[10%] w-[58%] h-[78%] rounded-xl shadow-xl border border-[hsl(var(--neutral-150))] overflow-hidden -rotate-[8deg] bg-white"
+        style={{ animation: "float 7s ease-in-out infinite" }}
+      >
+        <div
+          className="h-[42%] w-full p-4 flex flex-col justify-between text-white"
+          style={{
+            background:
+              "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
+          }}
+        >
+          <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.14em] opacity-90">
+            <GraduationCap className="h-3 w-3" /> Live Cohort
+          </div>
+          <div>
+            <div className="text-[10px] opacity-80">Cohort 12 · 2025</div>
+            <div className="text-sm font-extrabold leading-snug">
+              Industry 4.0 Leadership Programme
+            </div>
+          </div>
+        </div>
+        <div className="p-4 space-y-3">
+          <div className="text-[9px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
+            Modules
+          </div>
+          {[
+            { label: "Foundations", icon: PlayCircle, done: true },
+            { label: "Smart Factory Design", icon: BookOpen, done: true },
+            { label: "Capstone & Certification", icon: Trophy, done: false },
+          ].map((m, i) => {
+            const Ico = m.done ? CheckCircle2 : m.icon;
             return (
-              <div key={i} className="flex items-center gap-3">
-                <div
-                  className="h-7 w-7 rounded-full grid place-items-center shrink-0"
+              <div key={i} className="flex items-center gap-2">
+                <Ico
+                  className="h-3.5 w-3.5"
                   style={{
-                    background: isDone
-                      ? "hsl(var(--india-green) / 0.15)"
-                      : isActive
-                      ? "hsl(var(--orange-500) / 0.18)"
-                      : "hsl(var(--neutral-100))",
-                    color: isDone
+                    color: m.done
                       ? "hsl(var(--india-green))"
-                      : isActive
-                      ? "hsl(var(--orange-600))"
                       : "hsl(var(--neutral-500))",
                   }}
-                >
-                  {isDone ? <CheckCircle2 className="h-4 w-4" /> : <Icon className="h-3.5 w-3.5" />}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-[12px] font-semibold text-[hsl(var(--navy-900))] truncate">
-                    {m.label}
-                  </div>
-                  <div className="mt-1 h-1 rounded-full bg-[hsl(var(--neutral-100))] overflow-hidden">
-                    <div
-                      className="h-full rounded-full"
-                      style={{
-                        width: isDone ? "100%" : isActive ? "55%" : "0%",
-                        background: isDone
-                          ? "hsl(var(--india-green))"
-                          : "linear-gradient(90deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
-                      }}
-                    />
-                  </div>
+                />
+                <div className="text-[10px] font-semibold text-[hsl(var(--navy-900))]">
+                  {m.label}
                 </div>
               </div>
             );
@@ -166,69 +162,109 @@ const ProgrammesCollage = () => {
         </div>
       </div>
 
-      {/* Certificate badge */}
-      <div className="absolute bottom-8 left-0 w-[58%] cii-card p-4 -rotate-[4deg]">
-        <div className="flex items-center gap-3">
-          <div
-            className="h-12 w-12 rounded-full grid place-items-center shrink-0 text-white shadow-md"
-            style={{
-              background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
-            }}
-          >
-            <Award className="h-6 w-6" />
-          </div>
+      {/* Front programme card with progress + cohort */}
+      <div
+        className="absolute right-[6%] top-[18%] w-[62%] h-[74%] rounded-xl shadow-2xl border border-[hsl(var(--neutral-150))] overflow-hidden rotate-[4deg] bg-white"
+        style={{ animation: "float 6s ease-in-out infinite 0.4s" }}
+      >
+        <div
+          className="h-[36%] w-full p-4 flex items-start justify-between text-white"
+          style={{
+            background:
+              "linear-gradient(135deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
+          }}
+        >
           <div>
-            <div className="text-[9px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--neutral-500))]">
-              Certificate Earned
+            <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.14em] opacity-90">
+              <Sparkles className="h-3 w-3" /> Learning Path
             </div>
-            <div className="text-[12px] font-bold text-[hsl(var(--navy-900))] leading-snug mt-0.5">
-              Industry 4.0 Practitioner
+            <div className="mt-2 text-sm font-extrabold leading-snug max-w-[80%]">
+              Smart Manufacturing Leader
             </div>
-            <div className="mt-1 text-[10px] text-[hsl(var(--neutral-700))]">CII · Verified credential</div>
+          </div>
+          <div className="h-9 w-9 rounded-lg bg-white/15 backdrop-blur grid place-items-center">
+            <Trophy className="h-5 w-5" />
+          </div>
+        </div>
+        <div className="p-4">
+          <div className="flex items-center justify-between">
+            <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
+              Cohort Progress
+            </div>
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-[hsl(var(--india-green))]">
+              <TrendingUp className="h-3 w-3" /> 65%
+            </span>
+          </div>
+          <div className="mt-3 h-2 w-full rounded-full bg-[hsl(var(--neutral-100))] overflow-hidden">
+            <div
+              className="h-full rounded-full"
+              style={{
+                width: "65%",
+                background:
+                  "linear-gradient(90deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
+              }}
+            />
+          </div>
+          <div className="mt-4 flex items-center justify-between">
+            <div className="flex items-center -space-x-2">
+              {["AR", "PK", "SM", "JV"].map((t, i) => (
+                <span
+                  key={t}
+                  className="h-7 w-7 rounded-full grid place-items-center text-[9px] font-bold text-white border-2 border-white"
+                  style={{ background: `hsl(var(--navy-${800 - i * 100}))` }}
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+            <div className="text-[10px] font-semibold text-[hsl(var(--neutral-700))]">
+              +42 enrolled
+            </div>
+          </div>
+          <div className="mt-3 flex items-center justify-between text-[10px] text-[hsl(var(--neutral-500))]">
+            <span>Week 1</span><span>Week 12</span>
           </div>
         </div>
       </div>
 
-      {/* Live cohort pill */}
-      <div className="absolute bottom-2 right-4 cii-card px-3.5 py-2.5 rotate-[2deg] flex items-center gap-2.5">
-        <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[hsl(var(--india-green))] opacity-70" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-[hsl(var(--india-green))]" />
-        </span>
+      {/* Floating learners badge */}
+      <div
+        className="absolute bottom-2 left-2 cii-card px-3 py-2 flex items-center gap-2 -rotate-[3deg] bg-white"
+        style={{ animation: "float 7.5s ease-in-out infinite 1s" }}
+      >
+        <div
+          className="h-8 w-8 rounded-lg grid place-items-center text-white"
+          style={{
+            background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
+          }}
+        >
+          <Users className="h-4 w-4" />
+        </div>
         <div>
-          <div className="text-[9px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">Live now</div>
-          <div className="text-[11px] font-bold text-[hsl(var(--navy-900))]">42 learners in cohort</div>
+          <div className="text-[9px] uppercase tracking-wider font-bold text-[hsl(var(--neutral-500))]">
+            Leaders Trained
+          </div>
+          <div className="text-sm font-extrabold text-[hsl(var(--navy-900))] font-numeric">
+            14.5K+
+          </div>
         </div>
       </div>
 
-      {/* Floating book icon */}
+      {/* Floating certificate chip */}
       <div
-        className="absolute top-0 left-6 h-11 w-11 rounded-2xl grid place-items-center text-white shadow-lg rotate-[-8deg]"
-        style={{
-          background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
-          animation: "float 6s ease-in-out infinite",
-        }}
-        aria-hidden
+        className="absolute top-2 right-4 cii-card px-3 py-2 flex items-center gap-2 rotate-[4deg] bg-white"
+        style={{ animation: "float 8s ease-in-out infinite 0.7s" }}
       >
-        <BookOpen className="h-5 w-5" />
-      </div>
-
-      {/* Floating sparkle */}
-      <div
-        className="absolute top-[40%] right-0 h-9 w-9 rounded-full grid place-items-center text-white shadow-lg"
-        style={{
-          background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
-          animation: "float 7s ease-in-out infinite",
-        }}
-        aria-hidden
-      >
-        <Sparkles className="h-4 w-4" />
+        <Award className="h-4 w-4 text-[hsl(var(--red-600))]" />
+        <div className="text-[10px] font-bold text-[hsl(var(--navy-900))]">
+          120+ Programmes · CII Certified
+        </div>
       </div>
 
       <style>{`
         @keyframes float {
-          0%, 100% { transform: translateY(0) rotate(-8deg); }
-          50% { transform: translateY(-10px) rotate(-8deg); }
+          0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+          50% { transform: translateY(-8px) rotate(var(--r, 0deg)); }
         }
       `}</style>
     </div>
