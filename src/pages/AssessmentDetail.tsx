@@ -590,21 +590,30 @@ const AssessmentDetail = () => {
             </div>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {cfg.coverage.map(({ icon: Icon, label, scope }) => (
-                <div
-                  key={label}
-                  className="cii-card p-5 bg-white relative transition-all hover:-translate-y-0.5 hover:shadow-md"
-                >
+              {cfg.coverage.map(({ icon: Icon, label, scope }, i) => {
+                const c = CARD_PALETTE[i % CARD_PALETTE.length];
+                return (
                   <div
-                    className="h-10 w-10 grid place-items-center rounded-md mb-4"
-                    style={{ background: cfg.accentSoft, color: cfg.accent }}
+                    key={label}
+                    className="cii-card group relative overflow-hidden p-5 transition-all hover:-translate-y-1 hover:shadow-lg"
+                    style={{ background: `linear-gradient(180deg, ${c.tint}, #fff 65%)`, borderColor: c.ring }}
                   >
-                    <Icon className="h-5 w-5" strokeWidth={1.75} />
+                    <span
+                      className="absolute left-0 top-0 h-full w-1"
+                      style={{ background: c.accent }}
+                      aria-hidden
+                    />
+                    <div
+                      className="relative h-10 w-10 grid place-items-center rounded-lg mb-4 transition-transform group-hover:scale-105"
+                      style={{ background: c.soft, color: c.accent }}
+                    >
+                      <Icon className="h-5 w-5" strokeWidth={1.75} />
+                    </div>
+                    <div className="relative font-display font-bold text-navy-800 text-sm">{label}</div>
+                    <p className="relative mt-2 text-xs text-[hsl(var(--neutral-700))] leading-relaxed">{scope}</p>
                   </div>
-                  <div className="font-display font-bold text-navy-800 text-sm">{label}</div>
-                  <p className="mt-2 text-xs text-[hsl(var(--neutral-700))] leading-relaxed">{scope}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
