@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { ArrowRight, Sparkles, Mail, Phone, MessageCircle, Bot, Zap, Sparkle } from "lucide-react";
 
 export const ContactHero = () => {
