@@ -18,7 +18,7 @@ import {
   FileBarChart,
   Clock,
   HelpCircle,
-  MessageCircle,
+  
   Layers,
   PlayCircle,
 } from "lucide-react";
