@@ -265,9 +265,6 @@ const AssessmentDetail = () => {
                   <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
                     Start Assessment <ArrowRight className="!h-4 !w-4" />
                   </a>
-                  <Link to="/contact" className="btn-outline">
-                    <MessageCircle className="!h-4 !w-4" /> Request Assistance
-                  </Link>
                   <button
                     type="button"
                     disabled
@@ -828,9 +825,6 @@ const AssessmentDetail = () => {
               </div>
             </div>
             <div className="flex items-center gap-2 shrink-0">
-              <Link to="/contact" className="btn-outline !py-2">
-                Request Assistance
-              </Link>
               <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer" className="btn-primary !py-2">
                 Start Assessment <ArrowRight className="!h-4 !w-4" />
               </a>
