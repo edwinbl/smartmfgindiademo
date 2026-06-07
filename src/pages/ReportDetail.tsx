@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
@@ -13,7 +14,6 @@ import { ReportPreview } from "@/components/reports/ReportPreview";
 import { ReportDownloadModule } from "@/components/reports/ReportDownloadModule";
 import { ReportRelated } from "@/components/reports/ReportRelated";
 import { ReportEcosystemRecommendations } from "@/components/reports/ReportEcosystemRecommendations";
-import { ReportsFinalCta } from "@/components/reports/ReportsFinalCta";
 import { DownloadModal } from "@/components/reports/DownloadModal";
 import { getReportBySlug, getRelated } from "@/data/reports";
 import { reportsStorage } from "@/lib/reportsStorage";
@@ -83,9 +83,8 @@ const ReportDetail = () => {
             </div>
           </div>
         </section>
-        <ReportsFinalCta />
-      </main>
-      <WireFooter />
+        <CommonFinalCta />
+            <WireFooter />
       <WireChatbotFAB />
       <DownloadModal open={modalOpen} onOpenChange={setModalOpen} report={report} />
     </div>

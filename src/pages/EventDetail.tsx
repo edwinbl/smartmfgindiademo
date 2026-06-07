@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
@@ -9,7 +10,6 @@ import { WebinarDetail } from "@/components/events/detail/WebinarDetail";
 import { SummitDetail } from "@/components/events/detail/SummitDetail";
 import { RoundtableDetail } from "@/components/events/detail/RoundtableDetail";
 import { ProgrammeDetail } from "@/components/events/detail/ProgrammeDetail";
-import { EventsFinalCta } from "@/components/events/EventsFinalCta";
 import { RegisterEventModal } from "@/components/events/RegisterEventModal";
 import { getEventBySlug, getRelatedEvents } from "@/data/events";
 import { useMockAuth } from "@/hooks/useMockAuth";
@@ -94,9 +94,8 @@ const EventDetail = () => {
           </section>
         )}
 
-        <EventsFinalCta />
-      </main>
-      <WireFooter />
+        <CommonFinalCta />
+            <WireFooter />
       <WireChatbotFAB />
       <RegisterEventModal open={modalOpen} onOpenChange={setModalOpen} event={event} />
     </div>
