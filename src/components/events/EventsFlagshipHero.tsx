@@ -145,6 +145,30 @@ const EventsCollage = ({ event }: { event: EventItem }) => {
               </span>
             </div>
           ))}
+          <div className="mt-3 pt-3 border-t border-[hsl(var(--neutral-150))]">
+            <div className="text-[9px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
+              Top Tracks
+            </div>
+            <div className="mt-2 space-y-1.5">
+              {[
+                { l: "Digital Twin", w: "80%", c: "hsl(var(--red-600))" },
+                { l: "AI Ops", w: "60%", c: "hsl(var(--navy-600))" },
+                { l: "Green Mfg", w: "45%", c: "hsl(var(--orange-500))" },
+              ].map((b, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <span className="text-[9px] text-[hsl(var(--neutral-700))] w-16 truncate">
+                    {b.l}
+                  </span>
+                  <div className="flex-1 h-1.5 rounded-full bg-[hsl(var(--neutral-100))]">
+                    <div
+                      className="h-full rounded-full"
+                      style={{ width: b.w, background: b.c }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
