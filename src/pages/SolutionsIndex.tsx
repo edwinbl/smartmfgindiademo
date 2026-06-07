@@ -524,29 +524,39 @@ export const ExpertPerspectives = () => (
         </h2>
       </div>
       <div className="grid md:grid-cols-3 gap-4">
-        {expertInsights.map((e) => (
-          <div key={e.name} className="relative cii-card p-7">
-            <Quote className="h-8 w-8 text-[hsl(var(--orange-500))] opacity-30 absolute top-5 right-5" />
-            <div className="font-display text-lg font-bold text-[hsl(var(--navy-900))] leading-snug">
-              "{e.headline}"
-            </div>
-            <p className="mt-3 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">
-              {e.quote}
-            </p>
-            <div className="mt-6 pt-5 border-t border-[hsl(var(--neutral-150))] flex items-center gap-3">
-              <div
-                className="h-10 w-10 rounded-full grid place-items-center text-xs font-bold text-white"
-                style={{ background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))" }}
-              >
-                {e.initials}
+        {expertInsights.map((e, i) => {
+          const palettes = [
+            { bg: "hsl(var(--navy-050))", bar: "hsl(var(--navy-600))", grad: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))" },
+            { bg: "hsl(var(--orange-100))", bar: "hsl(var(--orange-500))", grad: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))" },
+            { bg: "hsl(var(--india-green) / 0.10)", bar: "hsl(var(--india-green))", grad: "linear-gradient(135deg, hsl(var(--india-green)), hsl(var(--navy-700)))" },
+          ];
+          const pal = palettes[i % palettes.length];
+          return (
+            <div key={e.name} className="relative cii-card p-7 overflow-hidden"
+              style={{ background: `linear-gradient(180deg, ${pal.bg}, white 75%)` }}>
+              <div className="absolute top-0 left-0 right-0 h-1" style={{ background: pal.bar }} />
+              <Quote className="h-8 w-8 opacity-40 absolute top-5 right-5" style={{ color: pal.bar }} />
+              <div className="font-display text-lg font-bold text-[hsl(var(--navy-900))] leading-snug">
+                "{e.headline}"
               </div>
-              <div className="text-xs">
-                <div className="font-bold text-[hsl(var(--navy-900))]">{e.name}</div>
-                <div className="text-[hsl(var(--neutral-500))]">{e.role}</div>
+              <p className="mt-3 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">
+                {e.quote}
+              </p>
+              <div className="mt-6 pt-5 border-t border-[hsl(var(--neutral-150))] flex items-center gap-3">
+                <div
+                  className="h-10 w-10 rounded-full grid place-items-center text-xs font-bold text-white shadow-sm"
+                  style={{ background: pal.grad }}
+                >
+                  {e.initials}
+                </div>
+                <div className="text-xs">
+                  <div className="font-bold text-[hsl(var(--navy-900))]">{e.name}</div>
+                  <div className="text-[hsl(var(--neutral-500))]">{e.role}</div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   </section>
