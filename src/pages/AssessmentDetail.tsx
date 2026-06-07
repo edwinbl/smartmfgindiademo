@@ -541,18 +541,35 @@ const AssessmentDetail = () => {
 
             <div className="mt-10 -mx-6 px-6 md:mx-0 md:px-0 overflow-x-auto md:overflow-visible">
               <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 snap-x snap-mandatory pb-2 md:pb-0">
-                {outcomes.map(({ icon: Icon, title, desc }) => (
-                  <div
-                    key={title}
-                    className="cii-card group p-6 min-w-[280px] md:min-w-0 snap-start bg-white transition-all hover:-translate-y-0.5 hover:shadow-md"
-                  >
-                    <div className="h-11 w-11 rounded-md grid place-items-center bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))] group-hover:bg-[hsl(var(--navy-100))] transition-colors">
-                      <Icon className="h-5 w-5" strokeWidth={1.75} />
+                {outcomes.map(({ icon: Icon, title, desc }, i) => {
+                  const c = CARD_PALETTE[i % CARD_PALETTE.length];
+                  return (
+                    <div
+                      key={title}
+                      className="cii-card group relative overflow-hidden p-6 min-w-[280px] md:min-w-0 snap-start transition-all hover:-translate-y-1 hover:shadow-lg"
+                      style={{ background: `linear-gradient(180deg, ${c.tint}, #fff 60%)`, borderColor: c.ring }}
+                    >
+                      <span
+                        className="absolute inset-x-0 top-0 h-1"
+                        style={{ background: c.accent }}
+                        aria-hidden
+                      />
+                      <span
+                        className="absolute -top-10 -right-10 h-28 w-28 rounded-full blur-2xl opacity-40 pointer-events-none"
+                        style={{ background: c.soft }}
+                        aria-hidden
+                      />
+                      <div
+                        className="relative h-11 w-11 rounded-lg grid place-items-center transition-transform group-hover:scale-105"
+                        style={{ background: c.soft, color: c.accent }}
+                      >
+                        <Icon className="h-5 w-5" strokeWidth={1.75} />
+                      </div>
+                      <h3 className="relative mt-4 font-display font-bold text-navy-800 text-lg">{title}</h3>
+                      <p className="relative mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
                     </div>
-                    <h3 className="mt-4 font-display font-bold text-navy-800 text-lg">{title}</h3>
-                    <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
