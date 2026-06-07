@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles, Calendar, MapPin, Users, Handshake } from "lucide-react";
+import { ArrowRight, Sparkles, Calendar, MapPin, Users, Mic, Ticket, Clock } from "lucide-react";
 import { CountdownTimer } from "./CountdownTimer";
 import type { EventItem } from "@/data/events";
 
@@ -43,11 +43,7 @@ export const EventsFlagshipHero = ({ event }: Props) => {
 
       <div className="container-cii relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-center py-14 lg:py-20">
         <div className="lg:col-span-7 animate-fade-in">
-          <span className="cii-chip">
-            <Sparkles className="h-3.5 w-3.5" /> Industry Gatherings
-          </span>
-
-          <h1 className="font-display mt-5 text-[36px] sm:text-5xl lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
+          <h1 className="font-display text-[36px] sm:text-5xl lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
             Summits, Webinars &amp;{" "}
             <span className="relative inline-block">
               <span
@@ -81,23 +77,6 @@ export const EventsFlagshipHero = ({ event }: Props) => {
               View Flagship Summit
             </Link>
           </div>
-
-          <div className="mt-9 grid grid-cols-3 gap-6 max-w-md">
-            {[
-              { v: "40+", l: "Events / yr" },
-              { v: "12K", l: "Attendees" },
-              { v: "28", l: "Cities" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="font-numeric text-2xl font-extrabold text-[hsl(var(--navy-900))]">
-                  {s.v}
-                </div>
-                <div className="text-[11px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--neutral-500))] mt-1">
-                  {s.l}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         <div className="lg:col-span-5 relative h-[400px] sm:h-[460px] lg:h-[520px] animate-scale-in">
@@ -110,85 +89,154 @@ export const EventsFlagshipHero = ({ event }: Props) => {
 
 const EventsCollage = ({ event }: { event: EventItem }) => {
   return (
-    <div className="absolute inset-0">
-      <div className="absolute top-2 right-2 w-[86%] cii-card p-5 rotate-[2deg]">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--red-600))]">
-            <Sparkles className="h-3.5 w-3.5" />
-            Flagship Summit
-          </div>
-          <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-[hsl(var(--india-green))]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[hsl(var(--india-green))] animate-pulse" />
-            {statusLabel[event.status]}
-          </span>
-        </div>
-        <div className="mt-2 text-sm font-bold text-[hsl(var(--navy-900))] leading-snug line-clamp-2">
-          {event.title}
-        </div>
-        <div className="mt-3 flex items-center gap-x-4 gap-y-1 flex-wrap text-[11px] text-[hsl(var(--neutral-700))]">
-          <span className="inline-flex items-center gap-1.5"><Calendar className="h-3 w-3" />{event.date}</span>
-          <span className="inline-flex items-center gap-1.5"><MapPin className="h-3 w-3" />{event.location}</span>
-        </div>
-        <div className="mt-3 pt-3 border-t border-[hsl(var(--neutral-150))]">
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))] mb-1.5">
-            Begins in
-          </div>
-          <CountdownTimer isoDate={event.isoDate} compact />
-        </div>
-      </div>
-
-      <div className="absolute top-[58%] left-0 w-[56%] cii-card p-4 -rotate-[3deg]">
-        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--navy-700))]">
-          <Users className="h-3.5 w-3.5" />
-          Featured Speakers
-        </div>
-        <div className="mt-2 flex items-center -space-x-2">
-          {event.speakers.slice(0, 4).map((s, i) => (
-            <span
-              key={s.name}
-              className="h-8 w-8 rounded-full grid place-items-center text-[10px] font-bold text-white border-2 border-white"
-              style={{ background: `hsl(var(--navy-${800 - i * 100}))` }}
-              title={s.name}
-            >
-              {s.initials}
-            </span>
-          ))}
-        </div>
-        <div className="mt-2 text-[11px] text-[hsl(var(--neutral-700))] line-clamp-1">
-          {event.speakers.slice(0, 2).map((s) => s.name).join(" · ")}
-        </div>
-      </div>
-
-      <div className="absolute bottom-6 right-6 cii-card px-4 py-3 rotate-[2deg] flex items-center gap-3">
-        <div
-          className="h-9 w-9 rounded-md grid place-items-center text-white"
-          style={{ background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))" }}
-        >
-          <Handshake className="h-4 w-4" />
-        </div>
-        <div>
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
-            Partners
-          </div>
-          <div className="text-sm font-bold text-[hsl(var(--navy-900))]">85+ ecosystem</div>
-        </div>
-      </div>
-
+    <div className="absolute inset-0 grid place-items-center">
+      {/* Soft halo */}
       <div
-        className="absolute top-0 left-4 h-12 w-12 rounded-full grid place-items-center text-white shadow-lg"
+        className="absolute h-[360px] w-[360px] rounded-full blur-3xl opacity-60"
         style={{
-          background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
-          animation: "float 6s ease-in-out infinite",
+          background:
+            "radial-gradient(circle, hsl(var(--orange-500) / 0.22), transparent 70%)",
         }}
         aria-hidden
+      />
+
+      {/* Back card — Agenda */}
+      <div
+        className="absolute left-[6%] top-[8%] w-[58%] h-[80%] rounded-xl shadow-xl border border-[hsl(var(--neutral-150))] overflow-hidden -rotate-[7deg] bg-white"
+        style={{ animation: "evFloat 7s ease-in-out infinite" }}
       >
-        <Calendar className="h-5 w-5" />
+        <div
+          className="h-[36%] w-full p-4 flex flex-col justify-between text-white"
+          style={{
+            background:
+              "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
+          }}
+        >
+          <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.14em] opacity-90">
+            <Calendar className="h-3 w-3" /> Agenda · Day 1
+          </div>
+          <div>
+            <div className="text-[10px] opacity-80">Smart Manufacturing Summit</div>
+            <div className="text-sm font-extrabold leading-snug line-clamp-2">
+              {event.title}
+            </div>
+          </div>
+        </div>
+        <div className="p-4 space-y-2.5">
+          {[
+            { t: "09:30", l: "Opening Keynote" },
+            { t: "11:00", l: "Factory of the Future" },
+            { t: "14:00", l: "MSME Roundtable" },
+          ].map((s, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <span className="text-[10px] font-bold font-numeric text-[hsl(var(--red-600))] w-10">
+                {s.t}
+              </span>
+              <span className="h-1.5 w-1.5 rounded-full bg-[hsl(var(--orange-500))]" />
+              <span className="text-[11px] font-semibold text-[hsl(var(--navy-900))] truncate">
+                {s.l}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Front card — Live event with countdown */}
+      <div
+        className="absolute right-[5%] top-[18%] w-[62%] h-[74%] rounded-xl shadow-2xl border border-[hsl(var(--neutral-150))] overflow-hidden rotate-[4deg] bg-white"
+        style={{ animation: "evFloat 6s ease-in-out infinite 0.4s" }}
+      >
+        <div
+          className="h-[38%] w-full p-4 flex items-start justify-between text-white"
+          style={{
+            background:
+              "linear-gradient(135deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
+          }}
+        >
+          <div>
+            <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.14em] opacity-90">
+              <Sparkles className="h-3 w-3" /> Flagship Summit
+            </div>
+            <div className="mt-2 text-sm font-extrabold leading-snug max-w-[80%]">
+              {statusLabel[event.status]}
+            </div>
+          </div>
+          <div className="h-9 w-9 rounded-lg bg-white/15 backdrop-blur grid place-items-center">
+            <Ticket className="h-5 w-5" />
+          </div>
+        </div>
+        <div className="p-4">
+          <div className="flex items-center gap-x-3 gap-y-1 flex-wrap text-[10px] text-[hsl(var(--neutral-700))]">
+            <span className="inline-flex items-center gap-1"><Calendar className="h-3 w-3" />{event.date}</span>
+            <span className="inline-flex items-center gap-1"><MapPin className="h-3 w-3" />{event.location}</span>
+          </div>
+          <div className="mt-3 pt-3 border-t border-[hsl(var(--neutral-150))]">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
+                Begins in
+              </div>
+              <Clock className="h-3 w-3 text-[hsl(var(--neutral-500))]" />
+            </div>
+            <CountdownTimer isoDate={event.isoDate} compact />
+          </div>
+          <div className="mt-4 flex items-center justify-between">
+            <div className="flex items-center -space-x-2">
+              {event.speakers.slice(0, 4).map((s, i) => (
+                <span
+                  key={s.name}
+                  className="h-7 w-7 rounded-full grid place-items-center text-[9px] font-bold text-white border-2 border-white"
+                  style={{ background: `hsl(var(--navy-${800 - i * 100}))` }}
+                  title={s.name}
+                >
+                  {s.initials}
+                </span>
+              ))}
+            </div>
+            <div className="text-[10px] font-semibold text-[hsl(var(--neutral-700))]">
+              + speakers
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating speaker badge */}
+      <div
+        className="absolute bottom-2 left-2 cii-card px-3 py-2 flex items-center gap-2 -rotate-[3deg] bg-white"
+        style={{ animation: "evFloat 7.5s ease-in-out infinite 1s" }}
+      >
+        <div
+          className="h-8 w-8 rounded-lg grid place-items-center text-white"
+          style={{
+            background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
+          }}
+        >
+          <Mic className="h-4 w-4" />
+        </div>
+        <div>
+          <div className="text-[9px] uppercase tracking-wider font-bold text-[hsl(var(--neutral-500))]">
+            Expert Speakers
+          </div>
+          <div className="text-sm font-extrabold text-[hsl(var(--navy-900))] font-numeric">
+            300+
+          </div>
+        </div>
+      </div>
+
+      {/* Floating attendees chip */}
+      <div
+        className="absolute top-2 right-4 cii-card px-3 py-2 flex items-center gap-2 rotate-[4deg] bg-white"
+        style={{ animation: "evFloat 8s ease-in-out infinite 0.7s" }}
+      >
+        <Users className="h-4 w-4 text-[hsl(var(--red-600))]" />
+        <div className="text-[10px] font-bold text-[hsl(var(--navy-900))]">
+          12K+ Attendees · 28 Cities
+        </div>
       </div>
 
       <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
+        @keyframes evFloat {
+          0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+          50% { transform: translateY(-8px) rotate(var(--r, 0deg)); }
         }
       `}</style>
     </div>
