@@ -39,7 +39,7 @@ const SpeakerStack = ({ event, max = 3 }: { event: EventItem; max?: number }) =>
 
 // WEBINAR — compact, learning focus
 const WebinarCard = ({ event, onRegister, className }: Props) => (
-  <article className="cii-card overflow-hidden flex flex-col">
+  <article className={cn("cii-card overflow-hidden flex flex-col", className)}>
     <div className={`h-1 ${accentBar[event.accent]}`} />
     <div className="p-5 flex-1 flex flex-col gap-3">
       <div className="flex items-center justify-between">
