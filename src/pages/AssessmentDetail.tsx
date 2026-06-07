@@ -402,7 +402,102 @@ const AssessmentDetail = () => {
           </div>
         </section>
 
+        {/* ============== ASSESSMENT OVERVIEW ============== */}
+        <section className="py-16 md:py-24 bg-white border-t border-[hsl(var(--neutral-150))]">
+          <div className="container-cii">
+            <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] items-start">
+              <div>
+                <div className="section-eyebrow mb-3">Assessment overview</div>
+                <h2 className="font-display font-bold text-[26px] md:text-[34px] leading-tight tracking-tight text-navy-800">
+                  A guided readiness lens for manufacturing leaders
+                </h2>
+                <p className="mt-5 text-base text-[hsl(var(--neutral-700))] leading-relaxed">
+                  {cfg.description}
+                </p>
+                <p className="mt-4 text-base text-[hsl(var(--neutral-700))] leading-relaxed">
+                  The {cfg.title.toLowerCase()} translates day-to-day plant practices into a structured, executive-friendly readiness view —
+                  so leadership teams can decide what to improve, adopt or transform next, with confidence.
+                </p>
+
+                <div className="mt-7 grid sm:grid-cols-2 gap-3">
+                  {[
+                    { icon: ClipboardList, label: "Format", value: "Guided online self-assessment" },
+                    { icon: Clock, label: "Time required", value: cfg.duration },
+                    { icon: Users, label: "Best taken by", value: cfg.audience },
+                    { icon: FileBarChart, label: "Walk away with", value: cfg.expectedOutput },
+                  ].map(({ icon: Icon, label, value }) => (
+                    <div
+                      key={label}
+                      className="flex items-start gap-3 rounded-md border border-[hsl(var(--neutral-150))] bg-white p-3"
+                    >
+                      <div
+                        className="h-9 w-9 rounded-md grid place-items-center shrink-0"
+                        style={{ background: cfg.accentSoft, color: cfg.accent }}
+                      >
+                        <Icon className="h-4 w-4" strokeWidth={1.75} />
+                      </div>
+                      <div>
+                        <div className="text-[11px] uppercase tracking-wide font-semibold text-[hsl(var(--neutral-500))]">
+                          {label}
+                        </div>
+                        <div className="mt-0.5 text-sm font-semibold text-navy-800 leading-snug">{value}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                    Start Assessment <ArrowRight className="!h-4 !w-4" />
+                  </a>
+                  <Link to="/contact" className="btn-outline">
+                    <MessageCircle className="!h-4 !w-4" /> Request a guided session
+                  </Link>
+                </div>
+              </div>
+
+              <aside className="cii-card p-6 bg-[hsl(var(--navy-050))] border-[hsl(var(--navy-100))]">
+                <div className="flex items-center gap-2 mb-4">
+                  <Sparkles className="h-4 w-4 text-[hsl(var(--orange-600))]" />
+                  <span className="text-[11px] uppercase tracking-wide font-bold text-[hsl(var(--navy-700))]">
+                    Why teams take this assessment
+                  </span>
+                </div>
+                <ul className="space-y-3">
+                  {[
+                    "Get a shared, leadership-level view of plant readiness — no jargon, no IT pre-work.",
+                    "Frame Industry 4.0 decisions around business outcomes, not technology checklists.",
+                    "Surface the 2–3 priority areas that will most influence your next transformation step.",
+                    "Use a CII-backed framework trusted across MSME and mid-sized manufacturers in India.",
+                  ].map((b) => (
+                    <li key={b} className="flex items-start gap-2.5 text-sm text-navy-800 leading-relaxed">
+                      <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-[hsl(var(--india-green))]" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-5 pt-5 border-t border-[hsl(var(--navy-100))] grid grid-cols-3 gap-3 text-center">
+                  {[
+                    { v: "8", l: "Dimensions" },
+                    { v: "5", l: "Step journey" },
+                    { v: "100%", l: "Confidential" },
+                  ].map((s) => (
+                    <div key={s.l}>
+                      <div className="font-numeric font-bold text-navy-800 text-lg">{s.v}</div>
+                      <div className="text-[10px] uppercase tracking-wide text-[hsl(var(--neutral-500))] mt-0.5">
+                        {s.l}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
         {/* ============== OUTCOMES ============== */}
+
         <section className="py-16 md:py-24 bg-[hsl(var(--neutral-50))]">
           <div className="container-cii">
             <div className="max-w-2xl">
