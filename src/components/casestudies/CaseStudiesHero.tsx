@@ -1,4 +1,17 @@
-import { Search, Sparkles, TrendingUp, Factory, MapPin, Gauge } from "lucide-react";
+import {
+  Sparkles,
+  TrendingUp,
+  Factory,
+  MapPin,
+  Gauge,
+  ShieldCheck,
+  Leaf,
+  Network,
+  Cpu,
+  Boxes,
+  Award,
+  BarChart3,
+} from "lucide-react";
 
 interface Props {
   query?: string;
@@ -6,21 +19,7 @@ interface Props {
   onTag?: (tag: string) => void;
 }
 
-const heroTags = [
-  "Productivity",
-  "Quality",
-  "Energy",
-  "Traceability",
-  "MSME",
-  "Smart Factory",
-];
-
-export const CaseStudiesHero = ({ query = "", onQuery, onTag }: Props) => {
-  const focusResults = () => {
-    const el = document.getElementById("all");
-    el?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
+export const CaseStudiesHero = (_props: Props) => {
   return (
     <section
       className="relative overflow-hidden bg-background border-b"
@@ -54,76 +53,13 @@ export const CaseStudiesHero = ({ query = "", onQuery, onTag }: Props) => {
 
           <h1 className="font-display mt-5 text-[36px] sm:text-5xl lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
             Case Studies &amp;{" "}
-            <span className="relative inline-block">
-              <span
-                className="relative z-10 bg-clip-text text-transparent"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(90deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
-                }}
-              >
-                Proof in Practice
-              </span>
-              <span
-                className="absolute left-0 right-0 bottom-1 h-2 -z-0 rounded-sm opacity-70"
-                style={{ background: "hsl(var(--orange-500) / 0.25)" }}
-                aria-hidden
-              />
-            </span>
+            <span className="text-[hsl(var(--red-600))]">Proof in Practice</span>
           </h1>
 
           <p className="mt-5 text-base sm:text-lg text-[hsl(var(--neutral-700))] max-w-xl leading-relaxed">
             Discover how manufacturers across sectors are improving productivity, quality,
             traceability, sustainability and competitiveness.
           </p>
-
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              focusResults();
-            }}
-            className="mt-7 relative max-w-2xl"
-          >
-            <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-[hsl(var(--neutral-500))]" />
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => onQuery?.(e.target.value)}
-              placeholder="Search by sector, company, state or business outcome…"
-              className="w-full h-14 pl-14 pr-32 rounded-full border bg-white text-sm text-[hsl(var(--neutral-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] shadow-sm transition-shadow"
-              style={{ borderColor: "hsl(var(--neutral-200))" }}
-              aria-label="Search case studies"
-            />
-            <button
-              type="submit"
-              className="absolute right-2 top-1/2 -translate-y-1/2 h-10 px-5 rounded-full text-xs font-bold uppercase tracking-wider text-white"
-              style={{
-                background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
-              }}
-            >
-              Search
-            </button>
-          </form>
-
-          <div className="mt-5 flex flex-wrap items-center gap-2">
-            <span className="text-[11px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--neutral-500))] mr-1">
-              Popular
-            </span>
-            {heroTags.map((t) => (
-              <button
-                key={t}
-                type="button"
-                onClick={() => {
-                  onTag?.(t);
-                  focusResults();
-                }}
-                className="h-8 px-3.5 rounded-full text-xs font-semibold border bg-white text-[hsl(var(--navy-700))] hover:border-[hsl(var(--navy-600))] hover:text-[hsl(var(--navy-900))] transition-colors"
-                style={{ borderColor: "hsl(var(--neutral-200))" }}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
 
           <div className="mt-9 grid grid-cols-3 gap-6 max-w-md">
             {[
@@ -143,96 +79,147 @@ export const CaseStudiesHero = ({ query = "", onQuery, onTag }: Props) => {
           </div>
         </div>
 
-        <div className="lg:col-span-5 relative h-[380px] sm:h-[440px] lg:h-[500px] animate-scale-in">
-          <CaseStudiesCollage />
+        <div className="lg:col-span-5 relative h-[420px] sm:h-[480px] lg:h-[520px] animate-scale-in">
+          <CaseStudiesHub />
         </div>
       </div>
     </section>
   );
 };
 
-const CaseStudiesCollage = () => {
+const innerNodes = [
+  { icon: Gauge, label: "Productivity", color: "hsl(var(--navy-700))" },
+  { icon: ShieldCheck, label: "Quality", color: "hsl(var(--india-green))" },
+  { icon: Leaf, label: "Energy", color: "hsl(var(--orange-600))" },
+  { icon: Network, label: "Traceability", color: "hsl(var(--navy-600))" },
+  { icon: Factory, label: "Smart Factory", color: "hsl(var(--red-600))" },
+  { icon: Cpu, label: "Automation", color: "hsl(var(--navy-800))" },
+  { icon: Boxes, label: "Supply Chain", color: "hsl(var(--orange-500))" },
+  { icon: Award, label: "Excellence", color: "hsl(var(--india-green))" },
+];
+
+const outerChips = ["Auto", "Pharma", "Steel", "F&B", "Textile", "Electronics"];
+
+const CaseStudiesHub = () => {
   return (
-    <div className="absolute inset-0">
-      <div className="absolute top-2 right-2 w-[82%] cii-card p-5 rotate-[2deg]">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--red-600))]">
-            <Gauge className="h-3.5 w-3.5" />
-            Outcome Snapshot
-          </div>
-          <span className="text-[10px] text-[hsl(var(--neutral-500))]">Tier-2 MSME</span>
-        </div>
-        <div className="mt-3 grid grid-cols-2 gap-3">
-          <div>
-            <div className="text-[10px] uppercase tracking-wider text-[hsl(var(--neutral-500))] font-bold">
-              Throughput
-            </div>
-            <div className="mt-1 font-display text-2xl font-extrabold text-[hsl(var(--india-green))]">
-              +38%
-            </div>
-          </div>
-          <div>
-            <div className="text-[10px] uppercase tracking-wider text-[hsl(var(--neutral-500))] font-bold">
-              Defects
-            </div>
-            <div className="mt-1 font-display text-2xl font-extrabold text-[hsl(var(--india-green))]">
-              −62%
-            </div>
-          </div>
-        </div>
-        <p className="mt-3 text-xs text-[hsl(var(--neutral-700))] leading-relaxed">
-          Auto-component plant, Pune — 9-month Industry 4.0 rollout.
-        </p>
-      </div>
+    <div className="absolute inset-0 grid place-items-center">
+      {/* Rotating outer ring */}
+      <div
+        className="absolute h-[420px] w-[420px] rounded-full border-2 border-dashed"
+        style={{
+          borderColor: "hsl(var(--orange-500) / 0.4)",
+          animation: "spin-slow 40s linear infinite",
+        }}
+        aria-hidden
+      />
+      <div
+        className="absolute h-[300px] w-[300px] rounded-full border border-dashed"
+        style={{ borderColor: "hsl(var(--navy-600) / 0.3)" }}
+        aria-hidden
+      />
 
-      <div className="absolute top-[46%] left-0 w-[60%] cii-card p-4 -rotate-[3deg]">
-        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--navy-700))]">
-          <Factory className="h-3.5 w-3.5" />
-          Featured Sectors
-        </div>
-        <div className="mt-2 flex flex-wrap gap-1.5">
-          {["Auto", "Pharma", "Steel", "F&B", "Textile", "Electronics"].map((t) => (
-            <span
-              key={t}
-              className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
-              style={{ background: "hsl(var(--navy-050))", color: "hsl(var(--navy-700))" }}
+      {/* Outer chips */}
+      {outerChips.map((label, i) => {
+        const angle = (i / outerChips.length) * Math.PI * 2 - Math.PI / 2;
+        const r = 210;
+        const x = Math.cos(angle) * r;
+        const y = Math.sin(angle) * r;
+        return (
+          <div
+            key={label}
+            className="absolute px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white border shadow-sm"
+            style={{
+              transform: `translate(${x}px, ${y}px)`,
+              borderColor: "hsl(var(--neutral-200))",
+              color: "hsl(var(--navy-700))",
+            }}
+          >
+            {label}
+          </div>
+        );
+      })}
+
+      {/* Inner nodes */}
+      {innerNodes.map(({ icon: Icon, label, color }, i) => {
+        const angle = (i / innerNodes.length) * Math.PI * 2 - Math.PI / 2;
+        const r = 150;
+        const x = Math.cos(angle) * r;
+        const y = Math.sin(angle) * r;
+        return (
+          <div
+            key={label}
+            className="absolute flex flex-col items-center gap-1"
+            style={{
+              transform: `translate(${x}px, ${y}px)`,
+              animation: `float 6s ease-in-out infinite`,
+              animationDelay: `${i * 0.3}s`,
+            }}
+          >
+            <div
+              className="h-12 w-12 rounded-xl grid place-items-center text-white shadow-md"
+              style={{ background: color }}
             >
-              {t}
+              <Icon className="h-5 w-5" />
+            </div>
+            <span className="text-[10px] font-bold text-[hsl(var(--navy-900))] whitespace-nowrap">
+              {label}
             </span>
-          ))}
+          </div>
+        );
+      })}
+
+      {/* Center hub */}
+      <div
+        className="relative h-32 w-32 rounded-full grid place-items-center text-white shadow-xl"
+        style={{
+          background:
+            "linear-gradient(135deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
+        }}
+      >
+        <div className="text-center">
+          <BarChart3 className="h-7 w-7 mx-auto" />
+          <div className="mt-1 text-[10px] font-extrabold uppercase tracking-wider leading-tight">
+            Proof
+            <br />
+            in Practice
+          </div>
         </div>
       </div>
 
-      <div className="absolute bottom-6 right-6 cii-card px-4 py-3 rotate-[2deg] flex items-center gap-3">
-        <div
-          className="h-9 w-9 rounded-md grid place-items-center text-white"
-          style={{ background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))" }}
-        >
-          <MapPin className="h-4 w-4" />
-        </div>
+      {/* Floating outcome badge */}
+      <div
+        className="absolute top-2 right-2 cii-card px-3 py-2 flex items-center gap-2 rotate-[3deg]"
+        style={{ animation: "float 5s ease-in-out infinite" }}
+      >
+        <TrendingUp className="h-4 w-4 text-[hsl(var(--india-green))]" />
         <div>
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
-            Pan-India
+          <div className="text-[9px] uppercase tracking-wider font-bold text-[hsl(var(--neutral-500))]">
+            Throughput
           </div>
-          <div className="text-sm font-bold text-[hsl(var(--navy-900))]">18 states · 60 cities</div>
+          <div className="text-sm font-extrabold text-[hsl(var(--india-green))] font-numeric">
+            +38%
+          </div>
         </div>
       </div>
 
       <div
-        className="absolute top-0 left-4 h-12 w-12 rounded-full grid place-items-center text-white shadow-lg"
-        style={{
-          background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
-          animation: "float 6s ease-in-out infinite",
-        }}
-        aria-hidden
+        className="absolute bottom-4 left-2 cii-card px-3 py-2 flex items-center gap-2 -rotate-[3deg]"
+        style={{ animation: "float 7s ease-in-out infinite" }}
       >
-        <TrendingUp className="h-5 w-5" />
+        <MapPin className="h-4 w-4 text-[hsl(var(--navy-700))]" />
+        <div className="text-[10px] font-bold text-[hsl(var(--navy-900))]">
+          18 states · 60 cities
+        </div>
       </div>
 
       <style>{`
         @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
+          0%, 100% { transform: translate(var(--tx, 0), var(--ty, 0)) translateY(0); }
+          50% { transform: translate(var(--tx, 0), var(--ty, 0)) translateY(-8px); }
+        }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
       `}</style>
     </div>
