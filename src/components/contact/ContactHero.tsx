@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { ArrowRight, Sparkles, Mail, Phone, MessageCircle, Bot, Zap, Sparkle } from "lucide-react";
 
 export const ContactHero = () => {
@@ -47,9 +48,6 @@ export const ContactHero = () => {
               Start Your Journey
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
-            <a href="#ecosystem" className="btn-outline">
-              Explore the Ecosystem
-            </a>
           </div>
 
           <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
@@ -66,23 +64,6 @@ export const ContactHero = () => {
               Avg response &lt; 4 hrs
             </span>
           </div>
-
-          <div className="mt-9 grid grid-cols-3 gap-6 max-w-md">
-            {[
-              { v: "< 4h", l: "Avg Reply" },
-              { v: "12", l: "Regional Hubs" },
-              { v: "50+", l: "Partner Experts" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="font-numeric text-2xl font-extrabold text-[hsl(var(--navy-900))]">
-                  {s.v}
-                </div>
-                <div className="text-[11px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--neutral-500))] mt-1">
-                  {s.l}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         <div className="lg:col-span-5 relative h-[380px] sm:h-[440px] lg:h-[500px] animate-scale-in">
@@ -93,12 +74,61 @@ export const ContactHero = () => {
   );
 };
 
+const QA_PAIRS: { q: string; a: string; chips?: string[] }[] = [
+  {
+    q: "How do I assess my plant's Industry 4.0 readiness?",
+    a: "Take our 15-min readiness assessment — you'll get a maturity score and roadmap.",
+    chips: ["Start Assessment", "See Sample Report"],
+  },
+  {
+    q: "Can CII help us pilot a smart factory use case?",
+    a: "Yes — our demo centres run guided pilots across IIoT, AI and robotics.",
+    chips: ["Book a Visit", "View Demo Centres"],
+  },
+  {
+    q: "What training programmes are available for our team?",
+    a: "Cohort programmes, executive masterclasses and on-site workshops.",
+    chips: ["Explore Programmes"],
+  },
+  {
+    q: "How do I become a solution partner?",
+    a: "Submit a partner enquiry — we'll match you to manufacturer demand.",
+    chips: ["Partner Enquiry"],
+  },
+  {
+    q: "Do you support MSMEs with funding pathways?",
+    a: "Yes — we connect MSMEs to schemes, mentors and adoption grants.",
+    chips: ["MSME Support"],
+  },
+];
+
 const ContactCollage = () => {
+  const [idx, setIdx] = useState(0);
+  const [stage, setStage] = useState<"q" | "typing" | "a">("q");
+
+  useEffect(() => {
+    if (stage === "q") {
+      const t = setTimeout(() => setStage("typing"), 1800);
+      return () => clearTimeout(t);
+    }
+    if (stage === "typing") {
+      const t = setTimeout(() => setStage("a"), 1400);
+      return () => clearTimeout(t);
+    }
+    const t = setTimeout(() => {
+      setIdx((i) => (i + 1) % QA_PAIRS.length);
+      setStage("q");
+    }, 3800);
+    return () => clearTimeout(t);
+  }, [stage]);
+
+  const current = QA_PAIRS[idx];
+
   return (
     <div className="absolute inset-0">
-      {/* Floating sparkle accents */}
+      {/* Floating accents */}
       <div
-        className="absolute -top-2 right-8 h-10 w-10 rounded-full grid place-items-center text-white shadow-lg z-10"
+        className="absolute -top-2 right-6 h-10 w-10 rounded-full grid place-items-center text-white shadow-lg z-10"
         style={{
           background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
           animation: "ch-float 6s ease-in-out infinite",
@@ -108,7 +138,7 @@ const ContactCollage = () => {
         <Sparkle className="h-4 w-4" />
       </div>
       <div
-        className="absolute top-1/2 -left-2 h-8 w-8 rounded-full grid place-items-center text-white shadow-md z-10"
+        className="absolute top-1/2 -left-3 h-8 w-8 rounded-full grid place-items-center text-white shadow-md z-10"
         style={{
           background: "linear-gradient(135deg, hsl(var(--navy-700)), hsl(var(--navy-500)))",
           animation: "ch-float 7s ease-in-out infinite 1s",
@@ -118,8 +148,8 @@ const ContactCollage = () => {
         <MessageCircle className="h-4 w-4" />
       </div>
 
-      {/* Main chatbot window */}
-      <div className="absolute inset-x-2 top-4 bottom-4 cii-card overflow-hidden flex flex-col rotate-[1.5deg]">
+      {/* Main chatbot window — straight, no rotation */}
+      <div className="absolute inset-x-2 top-4 bottom-4 cii-card overflow-hidden flex flex-col">
         {/* Header */}
         <div
           className="flex items-center gap-3 px-4 py-3 border-b"
@@ -132,9 +162,9 @@ const ContactCollage = () => {
             className="relative h-9 w-9 rounded-full grid place-items-center text-white"
             style={{ background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))" }}
           >
-            <Bot className="h-4.5 w-4.5" />
+            <Bot className="h-4 w-4" />
             <span
-              className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full ring-2"
+              className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full"
               style={{ background: "hsl(var(--india-green))", boxShadow: "0 0 0 2px hsl(var(--navy-900))" }}
             />
           </div>
@@ -148,78 +178,75 @@ const ContactCollage = () => {
           <Sparkles className="h-4 w-4 text-white/80" />
         </div>
 
-        {/* Messages */}
+        {/* Messages — rotating Q&A */}
         <div
           className="flex-1 px-4 py-4 space-y-3 overflow-hidden"
           style={{ background: "hsl(var(--neutral-050))" }}
         >
-          {/* Bot message 1 */}
-          <div className="flex items-end gap-2 ch-msg" style={{ animationDelay: "0.2s" }}>
+          {/* User question */}
+          <div key={`q-${idx}`} className="flex justify-end ch-msg">
             <div
-              className="h-6 w-6 rounded-full grid place-items-center text-white shrink-0"
-              style={{ background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))" }}
-            >
-              <Bot className="h-3 w-3" />
-            </div>
-            <div
-              className="max-w-[78%] px-3 py-2 rounded-2xl rounded-bl-sm text-xs leading-relaxed shadow-sm"
-              style={{ background: "white", color: "hsl(var(--navy-900))" }}
-            >
-              Hi 👋 How can I help — readiness, training or partnerships?
-            </div>
-          </div>
-
-          {/* User message */}
-          <div className="flex justify-end ch-msg" style={{ animationDelay: "1.4s" }}>
-            <div
-              className="max-w-[72%] px-3 py-2 rounded-2xl rounded-br-sm text-xs leading-relaxed text-white shadow-sm"
+              className="max-w-[80%] px-3 py-2 rounded-2xl rounded-br-sm text-xs leading-relaxed text-white shadow-sm"
               style={{ background: "linear-gradient(135deg, hsl(var(--navy-700)), hsl(var(--navy-500)))" }}
             >
-              We need a readiness assessment for our plant.
-            </div>
-          </div>
-
-          {/* Bot message 2 with chips */}
-          <div className="flex items-end gap-2 ch-msg" style={{ animationDelay: "2.6s" }}>
-            <div
-              className="h-6 w-6 rounded-full grid place-items-center text-white shrink-0"
-              style={{ background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))" }}
-            >
-              <Bot className="h-3 w-3" />
-            </div>
-            <div
-              className="max-w-[80%] px-3 py-2 rounded-2xl rounded-bl-sm text-xs leading-relaxed shadow-sm"
-              style={{ background: "white", color: "hsl(var(--navy-900))" }}
-            >
-              Matched you with 3 experts. Pick a slot:
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold" style={{ background: "hsl(var(--orange-100))", color: "hsl(var(--orange-600))" }}>
-                  Tue 11:30
-                </span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold" style={{ background: "hsl(var(--navy-050))", color: "hsl(var(--navy-700))" }}>
-                  Wed 3:00
-                </span>
-              </div>
+              {current.q}
             </div>
           </div>
 
           {/* Typing indicator */}
-          <div className="flex items-end gap-2 ch-msg" style={{ animationDelay: "3.8s" }}>
-            <div
-              className="h-6 w-6 rounded-full grid place-items-center text-white shrink-0"
-              style={{ background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))" }}
-            >
-              <Bot className="h-3 w-3" />
+          {stage === "typing" && (
+            <div className="flex items-end gap-2 ch-msg">
+              <div
+                className="h-6 w-6 rounded-full grid place-items-center text-white shrink-0"
+                style={{ background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))" }}
+              >
+                <Bot className="h-3 w-3" />
+              </div>
+              <div
+                className="px-3 py-2.5 rounded-2xl rounded-bl-sm shadow-sm flex items-center gap-1"
+                style={{ background: "white" }}
+              >
+                <span className="ch-dot" style={{ animationDelay: "0s" }} />
+                <span className="ch-dot" style={{ animationDelay: "0.15s" }} />
+                <span className="ch-dot" style={{ animationDelay: "0.3s" }} />
+              </div>
             </div>
-            <div
-              className="px-3 py-2.5 rounded-2xl rounded-bl-sm shadow-sm flex items-center gap-1"
-              style={{ background: "white" }}
-            >
-              <span className="ch-dot" style={{ animationDelay: "0s" }} />
-              <span className="ch-dot" style={{ animationDelay: "0.15s" }} />
-              <span className="ch-dot" style={{ animationDelay: "0.3s" }} />
+          )}
+
+          {/* Bot answer */}
+          {stage === "a" && (
+            <div key={`a-${idx}`} className="flex items-end gap-2 ch-msg">
+              <div
+                className="h-6 w-6 rounded-full grid place-items-center text-white shrink-0"
+                style={{ background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))" }}
+              >
+                <Bot className="h-3 w-3" />
+              </div>
+              <div
+                className="max-w-[82%] px-3 py-2 rounded-2xl rounded-bl-sm text-xs leading-relaxed shadow-sm"
+                style={{ background: "white", color: "hsl(var(--navy-900))" }}
+              >
+                {current.a}
+                {current.chips && (
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {current.chips.map((c, i) => (
+                      <span
+                        key={c}
+                        className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
+                        style={
+                          i % 2 === 0
+                            ? { background: "hsl(var(--orange-100))", color: "hsl(var(--orange-600))" }
+                            : { background: "hsl(var(--navy-050))", color: "hsl(var(--navy-700))" }
+                        }
+                      >
+                        {c}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Composer */}
@@ -255,7 +282,7 @@ const ContactCollage = () => {
         }
         .ch-msg {
           opacity: 0;
-          animation: ch-msg-in 0.5s ease-out forwards;
+          animation: ch-msg-in 0.45s ease-out forwards;
         }
         @keyframes ch-dot-bounce {
           0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }

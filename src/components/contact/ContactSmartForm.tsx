@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 
 interface Props {
   intent: IntentKey | null;
+  embedded?: boolean;
 }
 
 const CTA_LABEL: Record<IntentKey, string> = {
@@ -19,7 +20,7 @@ const CTA_LABEL: Record<IntentKey, string> = {
   support: "Submit Request",
 };
 
-export const ContactSmartForm = ({ intent }: Props) => {
+export const ContactSmartForm = ({ intent, embedded = false }: Props) => {
   const [values, setValues] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Record<string, string | null>>({});
   const [fileName, setFileName] = useState<string | null>(null);
@@ -68,10 +69,8 @@ export const ContactSmartForm = ({ intent }: Props) => {
 
   const activeMeta = intent ? INTENTS.find((i) => i.key === intent) : null;
 
-  return (
-    <section className="py-12 lg:py-20 bg-[hsl(var(--neutral-50))]">
-      <div className="container-cii">
-        <div ref={formRef} className="max-w-3xl mx-auto cii-card p-6 sm:p-10">
+  const Inner = (
+    <div ref={formRef} className={cn("cii-card p-6 sm:p-8", !embedded && "max-w-3xl mx-auto sm:p-10")}>
           <div className="flex items-start gap-4">
             <div
               className="grid place-items-center h-11 w-11 rounded-md text-white shrink-0"
@@ -143,8 +142,14 @@ export const ContactSmartForm = ({ intent }: Props) => {
               <p className="text-xs text-[hsl(var(--neutral-500))]">By submitting you agree to be contacted by the CII Smart Manufacturing team about your request.</p>
             </form>
           )}
-        </div>
-      </div>
+    </div>
+  );
+
+  if (embedded) return Inner;
+
+  return (
+    <section className="py-12 lg:py-20 bg-[hsl(var(--neutral-50))]">
+      <div className="container-cii">{Inner}</div>
     </section>
   );
 };

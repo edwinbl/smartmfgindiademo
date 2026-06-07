@@ -63,8 +63,16 @@ const Contact = () => {
       <WireHeader />
       <main>
         <ContactHero />
-        <ContactIntentGrid active={intent} onSelect={setIntent} />
-        <ContactSmartForm intent={intent} />
+        <section id="intent" className="py-14 lg:py-20 bg-[hsl(var(--neutral-50))]">
+          <div className="container-cii">
+            <div className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-8 lg:gap-12 items-start">
+              <div className="lg:sticky lg:top-24">
+                <ContactIntentGrid active={intent} onSelect={setIntent} embedded />
+              </div>
+              <ContactSmartForm intent={intent} embedded />
+            </div>
+          </div>
+        </section>
         <RegionalPresence />
         <SupportChannels />
         <ContactFAQ />
