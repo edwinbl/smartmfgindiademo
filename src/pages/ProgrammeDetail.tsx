@@ -149,7 +149,8 @@ const ProgrammeDetail = () => {
 
         <RelatedProgrammes programmes={related} />
         <CommonFinalCta />
-            <WireFooter />
+      </main>
+      <WireFooter />
       <WireChatbotFAB />
       <MobileStickyRegister programme={programme} onRegister={() => onRegister()} />
       <ProgrammeRegisterModal
