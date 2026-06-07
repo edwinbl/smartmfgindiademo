@@ -129,7 +129,7 @@ const RoundtableCard = ({ event, onRegister, className }: Props) => (
 
 // SUMMIT / CONFERENCE — large immersive
 const SummitCard = ({ event, onRegister, className }: Props) => (
-  <article className="cii-card overflow-hidden flex flex-col lg:col-span-2">
+  <article className={cn("cii-card overflow-hidden flex flex-col lg:col-span-2", className)}>
     <div className={`relative h-40 md:h-48 overflow-hidden`}>
       <div
         className="absolute inset-0"
