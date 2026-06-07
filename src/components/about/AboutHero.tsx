@@ -47,22 +47,6 @@ export const AboutHero = () => {
           </p>
 
 
-          <div className="mt-9 grid grid-cols-3 gap-6 max-w-md">
-            {[
-              { v: "1,200+", l: "Companies" },
-              { v: "25", l: "Sectors" },
-              { v: "50+", l: "Partners" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="font-numeric text-2xl font-extrabold text-[hsl(var(--navy-900))]">
-                  {s.v}
-                </div>
-                <div className="text-[11px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--neutral-500))] mt-1">
-                  {s.l}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         <div className="lg:col-span-5 relative h-[380px] sm:h-[440px] lg:h-[500px] animate-scale-in">
