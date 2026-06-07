@@ -20,7 +20,7 @@ const CTA_LABEL: Record<IntentKey, string> = {
   support: "Submit Request",
 };
 
-export const ContactSmartForm = ({ intent }: Props) => {
+export const ContactSmartForm = ({ intent, embedded = false }: Props) => {
   const [values, setValues] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Record<string, string | null>>({});
   const [fileName, setFileName] = useState<string | null>(null);
