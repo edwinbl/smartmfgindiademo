@@ -14,7 +14,6 @@ import {
   ShieldCheck,
   Leaf,
   Network,
-  ChevronRight,
 } from "lucide-react";
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
@@ -293,27 +292,6 @@ const CaseStudiesIndex = () => {
             </div>
           </div>
         )}
-      </section>
-
-      {/* FINAL CTA */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="container-cii">
-          <div className="rounded-3xl bg-gradient-to-br from-[hsl(var(--navy-800))] to-[hsl(var(--navy-900))] p-10 md:p-14 text-white overflow-hidden relative">
-            <div className="absolute inset-0 blueprint-grid opacity-30" />
-            <div className="relative max-w-2xl">
-              <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight">
-                Inspired by what's possible? Start with a readiness check.
-              </h2>
-              <p className="mt-3 text-white/80">
-                Understand where you stand today, and where to focus first for the biggest business impact.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link to="/readiness-assessment" className="btn-primary">Take Readiness Assessment <ChevronRight className="h-4 w-4" /></Link>
-                <Link to="/contact" className="btn-ghost">Talk to an Expert</Link>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       <CommonFinalCta />
