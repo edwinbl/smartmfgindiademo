@@ -181,11 +181,9 @@ const CaseStudiesIndex = () => {
             <a href="#all" className="hidden md:inline-flex link-arrow">Browse all <ArrowRight className="h-4 w-4" /></a>
           </div>
 
-          <div className="flex gap-5 overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0 snap-x scrollbar-none pb-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {featured.map((c, i) => (
-              <div key={c.slug} className="snap-start shrink-0 w-[88%] md:w-[420px]">
-                <CaseCard c={c} index={i} />
-              </div>
+              <CaseCard key={c.slug} c={c} index={i} />
             ))}
           </div>
         </div>
