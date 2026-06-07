@@ -167,18 +167,6 @@ const PillarsViz = () => {
         );
       })}
 
-      {/* floating sparkle */}
-      <div
-        className="absolute top-1 right-2 h-9 w-9 rounded-full grid place-items-center text-white shadow-lg"
-        style={{
-          background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
-          animation: "float-node 6s ease-in-out infinite",
-        }}
-        aria-hidden
-      >
-        <Sparkles className="h-4 w-4" />
-      </div>
-
       <style>{`
         @keyframes float-node {
           0%, 100% { transform: translate(-50%, -50%) translateY(0); }
