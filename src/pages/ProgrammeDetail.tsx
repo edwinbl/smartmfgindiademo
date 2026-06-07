@@ -20,6 +20,10 @@ import { ProgrammeContacts } from "@/components/programmes/detail/ProgrammeConta
 import { ProgrammeBatches } from "@/components/programmes/detail/ProgrammeBatches";
 import { ProgrammeGallery } from "@/components/programmes/detail/ProgrammeGallery";
 import { ProgrammeTestimonials } from "@/components/programmes/detail/ProgrammeTestimonials";
+import { PostProgrammeHighlights } from "@/components/programmes/detail/PostProgrammeHighlights";
+import { ProgrammeReports } from "@/components/programmes/detail/ProgrammeReports";
+import { ProgrammePresentations } from "@/components/programmes/detail/ProgrammePresentations";
+import { ProgrammeRecording } from "@/components/programmes/detail/ProgrammeRecording";
 import { RelatedProgrammes } from "@/components/programmes/detail/RelatedProgrammes";
 import { MobileStickyRegister } from "@/components/programmes/detail/MobileStickyRegister";
 import { ProgrammesFinalCta } from "@/components/programmes/ProgrammesFinalCta";
