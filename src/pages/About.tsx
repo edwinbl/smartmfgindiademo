@@ -38,7 +38,7 @@ const About = () => {
         <WireLeaderSpeak />
         <AboutWhoServes />
         <AboutPlatformEcosystem />
-        <AboutLivingPlatform />
+        
         <CommonFinalCta />
       </main>
       <WireFooter />
