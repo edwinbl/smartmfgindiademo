@@ -1,17 +1,5 @@
-import {
-  Sparkles,
-  TrendingUp,
-  Factory,
-  MapPin,
-  Gauge,
-  ShieldCheck,
-  Leaf,
-  Network,
-  Cpu,
-  Boxes,
-  Award,
-  BarChart3,
-} from "lucide-react";
+import { Sparkles, TrendingUp, MapPin, Factory, Leaf, ShieldCheck } from "lucide-react";
+
 
 interface Props {
   query?: string;
