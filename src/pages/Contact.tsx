@@ -10,14 +10,14 @@ import { EcosystemConnect } from "@/components/contact/EcosystemConnect";
 import { RegionalPresence } from "@/components/contact/RegionalPresence";
 import { BookConsultation } from "@/components/contact/BookConsultation";
 import { SupportChannels } from "@/components/contact/SupportChannels";
-import { ContactFAQ } from "@/components/contact/ContactFAQ";
+import { ContactFAQ, faqs } from "@/components/contact/ContactFAQ";
 import { ContactFinalCta } from "@/components/contact/ContactFinalCta";
 import { MobileStickyCta } from "@/components/contact/MobileStickyCta";
 
 const Contact = () => {
   const [intent, setIntent] = useState<IntentKey | null>(null);
 
-  const jsonLd = {
+  const contactPageLd = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     name: "Contact CII Smart Manufacturing",
@@ -26,12 +26,42 @@ const Contact = () => {
     url: "https://smartmfgindia-demo4.bluelup.in/contact",
   };
 
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
+  const localBusinessLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "CII Smart Manufacturing",
+    description:
+      "National platform from the Confederation of Indian Industry supporting Indian manufacturers on their Industry 4.0 journey through regional demo centres, academic partners and industry clusters.",
+    url: "https://smartmfgindia-demo4.bluelup.in/contact",
+    areaServed: [
+      { "@type": "AdministrativeArea", name: "North India" },
+      { "@type": "AdministrativeArea", name: "South India" },
+      { "@type": "AdministrativeArea", name: "East India" },
+      { "@type": "AdministrativeArea", name: "West India" },
+    ],
+    address: { "@type": "PostalAddress", addressCountry: "IN" },
+    parentOrganization: {
+      "@type": "Organization",
+      name: "Confederation of Indian Industry (CII)",
+    },
+  };
+
   return (
     <div className="min-h-dvh bg-background text-foreground">
       <SEO
         title="Contact Us — Connect with the Industry 4.0 Ecosystem"
         description="Reach the right CII Smart Manufacturing team — readiness assessments, partnerships, training, solution providers and platform support."
-        jsonLd={jsonLd}
+        jsonLd={[contactPageLd, faqLd, localBusinessLd]}
       />
       <WireHeader />
       <main>
