@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { ArrowRight, ClipboardCheck, GraduationCap, Send, MessageCircle, LucideIcon } from "lucide-react";
+import { ArrowRight, ClipboardCheck, GraduationCap, Send, MessageCircle, BookOpen, Lightbulb, LucideIcon } from "lucide-react";
 
 type CtaAction = {
   label: string;
@@ -127,20 +127,20 @@ const ROUTE_CONTENT: { match: (path: string) => boolean; content: CtaContent }[]
   {
     match: (p) => p.startsWith("/readiness-assessment") || p.startsWith("/assessment"),
     content: {
-      eyebrow: "Your Roadmap Starts Here",
-      title: "Assess. Benchmark. Transform.",
+      eyebrow: "See It In Action",
+      title: "Learn from manufacturers who've transformed",
       description:
-        "Take the assessment to understand your maturity and unlock a personalized Industry 4.0 transformation roadmap.",
+        "Explore real-world case studies of Indian manufacturers using Industry 4.0 to drive measurable outcomes — and discover what's possible for your plant.",
       actions: [
-        { label: "Start Assessment", href: "https://www.smartmfgindia.com/Assesment.aspx", icon: ClipboardCheck, variant: "primary" },
-        { label: "Explore Programmes", to: "/programmes", icon: GraduationCap, variant: "secondary" },
-        { label: "Request Guided Session", to: "/contact", icon: Send, variant: "ghost" },
+        { label: "Browse Case Studies", to: "/case-studies", icon: BookOpen, variant: "primary" },
+        { label: "Explore Solutions", to: "/solutions", icon: Lightbulb, variant: "secondary" },
+        { label: "Talk to an Expert", to: "/contact", icon: Send, variant: "ghost" },
       ],
       assistant: {
         eyebrow: "AI Assistant",
-        title: "Need help interpreting your readiness?",
+        title: "Find case studies relevant to you",
         description:
-          "Ask the assistant about dimensions, scoring and next steps based on your manufacturing context.",
+          "Ask about case studies by sector, plant size or technology — and get matched examples to inspire your roadmap.",
       },
     },
   },
