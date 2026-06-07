@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { ArrowRight, ClipboardCheck, GraduationCap, Send, MessageCircle, LucideIcon } from "lucide-react";
+import { ArrowRight, ClipboardCheck, GraduationCap, Send, MessageCircle, BookOpen, Lightbulb, LucideIcon } from "lucide-react";
 
 type CtaAction = {
   label: string;
