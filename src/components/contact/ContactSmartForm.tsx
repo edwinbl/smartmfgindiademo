@@ -142,8 +142,14 @@ export const ContactSmartForm = ({ intent, embedded = false }: Props) => {
               <p className="text-xs text-[hsl(var(--neutral-500))]">By submitting you agree to be contacted by the CII Smart Manufacturing team about your request.</p>
             </form>
           )}
-        </div>
-      </div>
+    </div>
+  );
+
+  if (embedded) return Inner;
+
+  return (
+    <section className="py-12 lg:py-20 bg-[hsl(var(--neutral-50))]">
+      <div className="container-cii">{Inner}</div>
     </section>
   );
 };
