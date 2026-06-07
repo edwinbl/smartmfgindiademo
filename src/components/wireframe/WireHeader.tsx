@@ -105,9 +105,11 @@ export const WireHeader = () => {
           <img
             src="https://www.smartmfgindia.com/img/CII-Logo.png"
             alt="Confederation of Indian Industry"
+            width={232}
+            height={74}
             className="h-9 md:h-14 w-auto object-contain"
-            loading="lazy"
             decoding="async"
+            fetchPriority="high"
           />
         </div>
 
