@@ -34,6 +34,7 @@ const CaseStudiesIndex = lazy(() => import("./pages/CaseStudiesIndex"));
 const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail"));
 const SolutionsIndex = lazy(() => import("./pages/SolutionsIndex"));
 const SolutionDetail = lazy(() => import("./pages/SolutionDetail"));
+const Directories = lazy(() => import("./pages/Directories"));
 
 const queryClient = new QueryClient();
 
@@ -85,6 +86,7 @@ const App = () => (
             <Route path="/case-studies/:slug" element={withSuspense(<CaseStudyDetail />, "detail")} />
             <Route path="/solutions" element={withSuspense(<SolutionsIndex />, "list")} />
             <Route path="/solutions/:slug" element={withSuspense(<SolutionDetail />, "detail")} />
+            <Route path="/directories" element={withSuspense(<Directories />, "detail")} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={withSuspense(<NotFound />)} />
           </Routes>
