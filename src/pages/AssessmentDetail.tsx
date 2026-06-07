@@ -29,8 +29,6 @@ import {
   Download,
   MessageCircle,
   Lightbulb,
-  Building2,
-  Boxes,
   HardHat,
   Lock,
   HelpCircle,
@@ -161,20 +159,7 @@ const outcomes = [
   { icon: Layers, title: "Value Chain Participation", desc: "Readiness to integrate with OEM and supplier ecosystems." },
 ];
 
-const personas = [
-  { icon: Building2, title: "MSMEs", desc: "Small and medium manufacturers starting their transformation journey." },
-  { icon: TrendingUp, title: "Growing Manufacturers", desc: "Mid-sized plants scaling operations, quality and digital systems." },
-  { icon: Boxes, title: "Supplier Ecosystems", desc: "Tier-1 and Tier-2 suppliers strengthening readiness for OEM expectations." },
-  { icon: Users, title: "Operations Teams", desc: "Plant, production and quality leaders aligning on priority areas." },
-];
 
-const processSteps = [
-  { title: "Access Assessment", desc: "Open the guided web assessment — no installation needed." },
-  { title: "Complete Readiness Inputs", desc: "Answer structured questions across operational and digital dimensions." },
-  { title: "Assessment Review", desc: "Inputs are reviewed and mapped against readiness dimensions." },
-  { title: "Receive Insights", desc: "Get a readiness snapshot with outcome-aligned priority areas." },
-  { title: "Explore Next Steps", desc: "Use insights to decide what to improve, adopt or transform." },
-];
 
 const currentBenefits = [
   { icon: Gauge, title: "Readiness Snapshot", desc: "A clear, executive-friendly view of your current manufacturing readiness." },
@@ -618,83 +603,7 @@ const AssessmentDetail = () => {
           </div>
         </section>
 
-        {/* ============== WHO IT'S FOR ============== */}
-        <section className="py-16 md:py-24 bg-[hsl(var(--neutral-50))]">
-          <div className="container-cii">
-            <div className="max-w-2xl">
-              <div className="section-eyebrow mb-3">Who it's for</div>
-              <h2 className="font-display font-bold text-[26px] md:text-[34px] leading-tight tracking-tight text-navy-800">
-                Built for Manufacturing Leaders
-              </h2>
-            </div>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {personas.map(({ icon: Icon, title, desc }, i) => {
-                const c = CARD_PALETTE[i % CARD_PALETTE.length];
-                return (
-                  <div
-                    key={title}
-                    className="cii-card group relative overflow-hidden p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
-                    style={{ background: `linear-gradient(180deg, ${c.tint}, #fff 60%)`, borderColor: c.ring }}
-                  >
-                    <span
-                      className="absolute -bottom-12 -right-12 h-32 w-32 rounded-full blur-2xl opacity-50 pointer-events-none"
-                      style={{ background: c.soft }}
-                      aria-hidden
-                    />
-                    <div
-                      className="relative h-11 w-11 rounded-full grid place-items-center transition-transform group-hover:scale-105"
-                      style={{ background: c.soft, color: c.accent, boxShadow: `0 0 0 4px ${c.tint}` }}
-                    >
-                      <Icon className="h-5 w-5" strokeWidth={1.75} />
-                    </div>
-                    <h3 className="relative mt-4 font-display font-bold text-navy-800 text-base">{title}</h3>
-                    <p className="relative mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
 
-        {/* ============== PROCESS TIMELINE ============== */}
-        <section className="py-16 md:py-24 bg-white">
-          <div className="container-cii">
-            <div className="max-w-2xl">
-              <div className="section-eyebrow mb-3">How it works</div>
-              <h2 className="font-display font-bold text-[26px] md:text-[34px] leading-tight tracking-tight text-navy-800">
-                Assessment Process
-              </h2>
-              <p className="mt-4 text-base text-[hsl(var(--neutral-700))]">
-                A guided 5-step journey from access to next steps.
-              </p>
-            </div>
-
-            <div className="mt-12 relative">
-              {/* desktop connector */}
-              <div className="hidden md:block absolute top-5 left-[8%] right-[8%] h-0.5 bg-[hsl(var(--neutral-150))]" />
-              <ol className="grid gap-8 md:gap-4 md:grid-cols-5 relative">
-                {processSteps.map((s, i) => (
-                  <li key={s.title} className="relative md:text-center">
-                    <div className="flex md:flex-col items-start md:items-center gap-4 md:gap-0">
-                      <div
-                        className="h-10 w-10 rounded-full grid place-items-center font-numeric font-bold text-sm text-white shrink-0 ring-4 ring-white relative z-10"
-                        style={{ background: cfg.accent }}
-                      >
-                        {i + 1}
-                      </div>
-                      <div className="md:mt-4">
-                        <div className="font-display font-bold text-navy-800 text-sm">{s.title}</div>
-                        <p className="mt-1.5 text-xs text-[hsl(var(--neutral-700))] leading-relaxed md:px-2">
-                          {s.desc}
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
-        </section>
 
         {/* ============== WHAT USERS RECEIVE ============== */}
         <section className="py-16 md:py-24 bg-[hsl(var(--neutral-50))]">
