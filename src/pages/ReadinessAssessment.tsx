@@ -413,7 +413,7 @@ const ReadinessAssessment = () => {
                     </div>
                   </dl>
 
-                  <div className="mt-8 flex flex-wrap gap-2 mt-auto pt-2">
+                  <div className="mt-12 flex flex-wrap gap-2 mt-auto pt-4">
                     <Link
                       to={`/readiness-assessment/${a.slug}`}
                       className="btn-primary flex-1 min-w-[160px]"
