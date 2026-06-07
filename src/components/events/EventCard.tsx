@@ -186,8 +186,8 @@ const SummitCard = ({ event, onRegister, className }: Props) => (
 );
 
 // SEMINAR / PROGRAMME — structured learning
-const ProgrammeCard = ({ event, onRegister }: Props) => (
-  <article className="cii-card overflow-hidden flex flex-col">
+const ProgrammeCard = ({ event, onRegister, className }: Props) => (
+  <article className={cn("cii-card overflow-hidden flex flex-col", className)}>
     <div className={`h-1 ${accentBar[event.accent]}`} />
     <div className="p-5 flex-1 flex flex-col gap-3">
       <div className="flex items-center justify-between">
