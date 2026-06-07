@@ -100,7 +100,9 @@ const ReadinessAssessment = () => {
               <div>
                 <div className="section-eyebrow mb-4">Readiness Assessment</div>
                 <h1 className="font-display font-bold text-[30px] sm:text-[36px] md:text-[44px] leading-[1.1] tracking-tight text-navy-800">
-                  Understand Your Manufacturing Readiness Before You Transform
+                  Understand Your{" "}
+                  <span className="text-[hsl(var(--red-600))]">Manufacturing Readiness</span>{" "}
+                  Before You Transform
                 </h1>
                 <p className="mt-5 text-base md:text-lg text-[hsl(var(--neutral-700))] max-w-xl">
                   Assess your current readiness across operations, productivity, quality and digital adoption before
@@ -114,15 +116,6 @@ const ReadinessAssessment = () => {
                       {t}
                     </span>
                   ))}
-                </div>
-
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                    Start Assessment <ArrowRight className="!h-4 !w-4" />
-                  </a>
-                  <Link to="/contact" className="btn-outline">
-                    Request Assessment Access
-                  </Link>
                 </div>
               </div>
 
