@@ -1,4 +1,4 @@
-import { Sparkles, TrendingUp, MapPin, Factory, Leaf, ShieldCheck } from "lucide-react";
+import { Sparkles, TrendingUp, Factory, Leaf, ShieldCheck, Quote, Award, BarChart3 } from "lucide-react";
 
 interface Props {
   query?: string;
