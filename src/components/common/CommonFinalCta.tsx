@@ -68,19 +68,19 @@ const ROUTE_CONTENT: { match: (path: string) => boolean; content: CtaContent }[]
     match: (p) => p.startsWith("/programmes"),
     content: {
       eyebrow: "Next Step",
-      title: "Build the capabilities to lead Industry 4.0",
+      title: "Turn insights into action with CII reports",
       description:
-        "Pick a learning pathway aligned to your role, sector and maturity — and accelerate your team's transformation journey.",
+        "Access research-backed reports to benchmark, plan and accelerate your Industry 4.0 transformation journey.",
       actions: [
-        { label: "Explore All Programmes", to: "/programmes", icon: GraduationCap, variant: "primary" },
+        { label: "Explore All Reports", to: "/reports", icon: BookOpen, variant: "primary" },
         { label: "Take Readiness Assessment", to: "/readiness-assessment", icon: ClipboardCheck, variant: "secondary" },
-        { label: "Request Custom Programme", to: "/contact", icon: Send, variant: "ghost" },
+        { label: "Request Custom Insights", to: "/contact", icon: Send, variant: "ghost" },
       ],
       assistant: {
         eyebrow: "AI Assistant",
-        title: "Find the right programme for your team",
+        title: "Ask for insights from CII reports",
         description:
-          "Tell us your role and goals — the assistant will recommend programmes and learning pathways.",
+          "Ask questions grounded in CII's published research and get the relevant reports and excerpts.",
       },
     },
   },
