@@ -13,6 +13,7 @@ import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
+import { SectionAnchors } from "@/components/common/SectionAnchors";
 
 const EFFECTIVE_DATE = "1 January 2026";
 const LAST_UPDATED = "15 May 2026";
@@ -348,6 +349,7 @@ const Accessibility = () => {
 
           {/* Content */}
           <div ref={contentRef} className="max-w-3xl">
+            <SectionAnchors sections={SECTIONS} />
             <AccessibilitySection
               id="introduction"
               number={1}
