@@ -79,48 +79,14 @@ export const ProgrammesHero = ({ onExplore, onFindPath, query = "", onQuery, onT
             </button>
           </form>
 
-          <div className="mt-5 flex flex-wrap items-center gap-2">
-            <span className="text-[11px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--neutral-500))] mr-1">
-              Popular
-            </span>
-            {heroTags.map((t) => (
-              <button
-                key={t}
-                type="button"
-                onClick={() => {
-                  onTag?.(t);
-                  onExplore();
-                }}
-                className="h-8 px-3.5 rounded-full text-xs font-semibold border bg-white text-[hsl(var(--navy-700))] hover:border-[hsl(var(--navy-600))] hover:text-[hsl(var(--navy-900))] transition-colors"
-                style={{ borderColor: "hsl(var(--neutral-200))" }}
-              >
-                {t}
-              </button>
-            ))}
+          <div className="mt-6">
             <button
               type="button"
               onClick={onFindPath}
-              className="inline-flex items-center gap-1.5 h-8 px-3.5 rounded-full text-xs font-semibold text-[hsl(var(--red-600))] hover:text-[hsl(var(--red-700))] transition-colors"
+              className="inline-flex items-center gap-1.5 h-9 px-4 rounded-full text-sm font-semibold text-[hsl(var(--red-600))] hover:text-[hsl(var(--red-700))] transition-colors"
             >
-              Find learning path <ArrowRight className="h-3 w-3" />
+              Find learning path <ArrowRight className="h-3.5 w-3.5" />
             </button>
-          </div>
-
-          <div className="mt-9 grid grid-cols-3 gap-6 max-w-md">
-            {[
-              { v: "120+", l: "Programmes" },
-              { v: "14.5K", l: "Leaders Trained" },
-              { v: "85", l: "Partners" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="font-numeric text-2xl font-extrabold text-[hsl(var(--navy-900))]">
-                  {s.v}
-                </div>
-                <div className="text-[11px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--neutral-500))] mt-1">
-                  {s.l}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 
