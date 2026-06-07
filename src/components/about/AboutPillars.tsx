@@ -97,17 +97,9 @@ export const AboutPillars = () => {
                   <div className="mt-8 font-display text-2xl font-extrabold text-[hsl(var(--navy-900))]">
                     {p.title}
                   </div>
-                  <div
-                    className="mt-3 italic text-sm font-medium"
-                    style={{ color: s.accent }}
-                  >
-                    {p.question}
-                  </div>
-                  <ul className="mt-6 space-y-3 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">
-                    {p.items.map((it) => (
-                      <li key={it}>{it}</li>
-                    ))}
-                  </ul>
+                  <p className="mt-5 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">
+                    {p.subtitle}
+                  </p>
                 </div>
               </div>
             );
