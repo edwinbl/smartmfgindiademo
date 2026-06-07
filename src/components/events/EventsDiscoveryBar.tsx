@@ -42,8 +42,7 @@ const quickPicks: { id: QuickPickId; label: string; Icon: typeof Calendar }[] = 
   { id: "msme", label: "MSME Focus", Icon: Users },
   { id: "sustainability", label: "Sustainability", Icon: Leaf },
   { id: "ai", label: "AI & Automation", Icon: Cpu },
-  { id: "networking", label: "Networking", Icon: Award },
-  { id: "training", label: "Training", Icon: GraduationCap },
+  { id: "networking", label: "Networking", Icon: Award }
 ];
 
 export const EventsDiscoveryBar = ({
