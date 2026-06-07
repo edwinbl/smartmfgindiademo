@@ -15,6 +15,7 @@ const outcomes = [
     desc: "Increase efficiency and operational visibility across the shopfloor.",
     metric: "+38%",
     metricLabel: "avg throughput",
+    metricPeriod: "over 5 years",
     accent: "navy",
   },
   {
@@ -23,6 +24,7 @@ const outcomes = [
     desc: "Reduce defects and improve product consistency at scale.",
     metric: "−62%",
     metricLabel: "defect rate",
+    metricPeriod: "since digitization",
     accent: "green",
   },
   {
@@ -31,6 +33,7 @@ const outcomes = [
     desc: "Improve transparency across operations and supply chain.",
     metric: "100%",
     metricLabel: "lot tracking",
+    metricPeriod: "within 2 years",
     accent: "orange",
   },
   {
@@ -39,6 +42,7 @@ const outcomes = [
     desc: "Optimize resource utilization and reduce operational waste.",
     metric: "−24%",
     metricLabel: "energy / unit",
+    metricPeriod: "in 3 years",
     accent: "green",
   },
   {
@@ -47,6 +51,7 @@ const outcomes = [
     desc: "Prepare for evolving market demands and global benchmarks.",
     metric: "2.4x",
     metricLabel: "export readiness",
+    metricPeriod: "since adoption",
     accent: "red",
   },
   {
@@ -55,6 +60,7 @@ const outcomes = [
     desc: "Build resilience, scalability and long-term sustainability.",
     metric: "+45%",
     metricLabel: "capacity",
+    metricPeriod: "over 4 years",
     accent: "navy",
   },
 ] as const;
@@ -112,6 +118,11 @@ export const AboutWhyMatters = () => {
                     <div className="text-[10px] uppercase tracking-wider text-[hsl(var(--neutral-500))] mt-1 font-bold">
                       {o.metricLabel}
                     </div>
+                    {o.metricPeriod && (
+                      <div className="text-[10px] text-[hsl(var(--neutral-400))] mt-0.5">
+                        {o.metricPeriod}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="mt-5 font-display text-lg font-bold text-[hsl(var(--navy-900))]">
