@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles, Gauge, BookOpen, Network, Workflow } from "lucide-react";
+import { Sparkles, Gauge, BookOpen, Network, Workflow } from "lucide-react";
 
 export const AboutHero = () => {
   return (
