@@ -31,7 +31,7 @@ const cols = [
       { label: "All Solutions", url: "/solutions" },
       { label: "Case Studies", url: "/case-studies" },
       { label: "Reports & Publications", url: "/reports" },
-      { label: "E-Directory", url: "https://www.smartmfgindia.com/e-Directory.aspx" },
+      { label: "E-Directory", url: "/directories" },
     ],
   },
   {
