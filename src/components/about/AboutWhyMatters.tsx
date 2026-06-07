@@ -118,6 +118,11 @@ export const AboutWhyMatters = () => {
                     <div className="text-[10px] uppercase tracking-wider text-[hsl(var(--neutral-500))] mt-1 font-bold">
                       {o.metricLabel}
                     </div>
+                    {o.metricPeriod && (
+                      <div className="text-[10px] text-[hsl(var(--neutral-400))] mt-0.5">
+                        {o.metricPeriod}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="mt-5 font-display text-lg font-bold text-[hsl(var(--navy-900))]">
