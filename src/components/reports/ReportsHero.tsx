@@ -1,4 +1,4 @@
-import { Search, BarChart3, TrendingUp, FileText, Sparkles } from "lucide-react";
+import { Search, BarChart3, TrendingUp, FileText, Sparkles, PieChart, Download, BookOpen } from "lucide-react";
 
 interface Props {
   query?: string;
