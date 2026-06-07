@@ -1,33 +1,40 @@
 const pillars = [
   {
     num: "01",
-    title: "Assess",
-    question: "Where do I stand?",
+    title: "Access",
+    question: "Where do I begin?",
     items: ["Maturity assessment · Readiness score", "Gap diagnosis", "Sector benchmarking"],
-    tone: "navy",
+    tone: "navy" as const,
   },
   {
     num: "02",
-    title: "Learn",
+    title: "Guide",
     question: "What should I know?",
     items: ["Reports & insights", "Curated case studies", "Expert research & guides"],
-    tone: "orange",
+    tone: "orange" as const,
   },
   {
     num: "03",
-    title: "Connect",
-    question: "Who should I work with?",
-    items: ["Solution providers", "Domain experts", "Academia & large manufacturers"],
-    tone: "green",
+    title: "Enable",
+    question: "How do I build capability?",
+    items: ["Adoption pathways", "Capability building", "Playbooks & training"],
+    tone: "green" as const,
   },
   {
     num: "04",
-    title: "Transform",
-    question: "How do I adopt correctly?",
-    items: ["Adoption pathways", "Capability building", "Playbooks & training"],
-    tone: "red",
+    title: "Connect",
+    question: "Who should I work with?",
+    items: ["Solution providers", "Domain experts", "Academia & large manufacturers"],
+    tone: "red" as const,
   },
-] as const;
+  {
+    num: "05",
+    title: "Recognise",
+    question: "How do I stand out?",
+    items: ["Awards & certification", "Visibility & showcase", "Peer recognition"],
+    tone: "saffron" as const,
+  },
+];
 
 const toneStyles = {
   navy: {
@@ -50,6 +57,11 @@ const toneStyles = {
     bg: "linear-gradient(180deg, hsl(var(--red-100)) 0%, hsl(0 0% 100%) 60%)",
     accent: "hsl(var(--red-600))",
   },
+  saffron: {
+    bar: "hsl(var(--saffron))",
+    bg: "linear-gradient(180deg, hsl(30 100% 94%) 0%, hsl(0 0% 100%) 60%)",
+    accent: "hsl(30 90% 45%)",
+  },
 };
 
 export const AboutPillars = () => {
@@ -64,11 +76,11 @@ export const AboutPillars = () => {
           <p className="mt-5 text-base text-[hsl(var(--neutral-700))] leading-relaxed">
             CII Smart Manufacturing is an industry-led, mission-driven platform that helps
             manufacturers progress through every stage of their transformation — anchored
-            in four capability tracks.
+            in five capability tracks.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
           {pillars.map((p) => {
             const s = toneStyles[p.tone];
             return (
