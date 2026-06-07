@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles, Calendar, MapPin, Users, Mic, Ticket, Clock } from "lucide-react";
+import { Search, Sparkles, Calendar, MapPin, Users, Mic, Ticket, Clock } from "lucide-react";
 import { CountdownTimer } from "./CountdownTimer";
 import type { EventItem } from "@/data/events";
 
 interface Props {
   event: EventItem;
+  query?: string;
+  onQuery?: (v: string) => void;
 }
 
 const statusLabel: Record<EventItem["status"], string> = {
@@ -15,7 +16,10 @@ const statusLabel: Record<EventItem["status"], string> = {
   completed: "Completed",
 };
 
-export const EventsFlagshipHero = ({ event }: Props) => {
+export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
+  const focusResults = () => {
+    document.getElementById("all-events")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
   return (
     <section
       className="relative overflow-hidden bg-background border-b"
@@ -68,15 +72,33 @@ export const EventsFlagshipHero = ({ event }: Props) => {
             webinars, roundtables and capability programmes across the year.
           </p>
 
-          <div className="mt-7 flex flex-col sm:flex-row gap-3">
-            <a href="#all-events" className="btn-primary group">
-              Browse Events
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </a>
-            <Link to={`/events/${event.slug}`} className="btn-outline">
-              View Flagship Summit
-            </Link>
-          </div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              focusResults();
+            }}
+            className="mt-7 relative max-w-2xl"
+          >
+            <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-[hsl(var(--neutral-500))]" />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => onQuery?.(e.target.value)}
+              placeholder="Search events, topics, speakers or themes…"
+              className="w-full h-14 pl-14 pr-32 rounded-full border bg-white text-sm text-[hsl(var(--neutral-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] shadow-sm transition-shadow"
+              style={{ borderColor: "hsl(var(--neutral-200))" }}
+              aria-label="Search events"
+            />
+            <button
+              type="submit"
+              className="absolute right-2 top-1/2 -translate-y-1/2 h-10 px-5 rounded-full text-xs font-bold uppercase tracking-wider text-white"
+              style={{
+                background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
+              }}
+            >
+              Search
+            </button>
+          </form>
         </div>
 
         <div className="lg:col-span-5 relative h-[400px] sm:h-[460px] lg:h-[520px] animate-scale-in">

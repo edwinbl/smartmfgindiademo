@@ -15,7 +15,7 @@ import { EventsEmptyState } from "@/components/events/EventsEmptyState";
 import { PersonalizedEventsShelf } from "@/components/events/PersonalizedEventsShelf";
 import { EventsImpactStats } from "@/components/events/EventsImpactStats";
 import { PastEventsArchive } from "@/components/events/PastEventsArchive";
-import { EventsCaseStudiesShowcase } from "@/components/events/EventsCaseStudiesShowcase";
+import { CIISignatureEvents } from "@/components/events/CIISignatureEvents";
 import { RegisterEventModal } from "@/components/events/RegisterEventModal";
 import {
   events,
@@ -124,7 +124,8 @@ const EventsIndex = () => {
       />
       <WireHeader />
       <main>
-        <EventsFlagshipHero event={flagship} />
+        <EventsFlagshipHero event={flagship} query={query} onQuery={setQuery} />
+        <CIISignatureEvents onRegister={handleRegister} />
         <EventsTypeTabs active={type} onChange={setType} counts={counts} />
         {user && <PersonalizedEventsShelf user={user} onRegister={handleRegister} />}
         <section className="py-12 md:py-16" id="all-events">
@@ -162,7 +163,6 @@ const EventsIndex = () => {
         </section>
         <EventsImpactStats />
         <PastEventsArchive />
-        <EventsCaseStudiesShowcase />
       </main>
       <WireFooter />
       <WireChatbotFAB />
