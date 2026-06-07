@@ -80,9 +80,9 @@ const WebinarCard = ({ event, onRegister, className }: Props) => (
 );
 
 // ROUNDTABLE — premium invite
-const RoundtableCard = ({ event, onRegister }: Props) => (
+const RoundtableCard = ({ event, onRegister, className }: Props) => (
   <article
-    className="cii-card overflow-hidden flex flex-col relative"
+    className={cn("cii-card overflow-hidden flex flex-col relative", className)}
     style={{
       borderColor: "hsl(45_70%_82%)",
       background:
