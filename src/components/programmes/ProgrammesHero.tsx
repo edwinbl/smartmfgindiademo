@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Search, Sparkles, GraduationCap, Award, Users } from "lucide-react";
+import { ArrowRight, Search, Sparkles, GraduationCap, Award, Users, BookOpen, PlayCircle, Trophy, CheckCircle2 } from "lucide-react";
 
 interface Props {
   onExplore: () => void;
@@ -8,15 +8,6 @@ interface Props {
   onQuery?: (v: string) => void;
   onTag?: (tag: string) => void;
 }
-
-const heroTags = [
-  "MSMEs",
-  "Beginner",
-  "Leadership",
-  "AI & Automation",
-  "Sustainability",
-  "Factory Digitization",
-];
 
 export const ProgrammesHero = ({ onExplore, onFindPath, query = "", onQuery, onTag }: Props) => {
   return (
