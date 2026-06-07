@@ -472,32 +472,49 @@ const ReadinessAssessment = () => {
 
               {/* Sticky summary card */}
               <aside className="lg:sticky lg:top-24">
-                <div className="cii-card p-6 bg-white">
-                  <div className="flex items-center gap-2">
-                    <ClipboardList className="h-4 w-4 text-[hsl(var(--navy-700))]" />
-                    <div className="eyebrow text-[hsl(var(--neutral-500))]">Assessment Summary</div>
-                  </div>
-                  <h3 className="mt-3 font-display font-bold text-navy-800 text-lg">At a glance</h3>
-
-                  <dl className="mt-5 divide-y divide-[hsl(var(--neutral-150))]">
-                    {[
-                      { icon: Clock, k: "Completion time", v: "25–40 minutes" },
-                      { icon: PlayCircle, k: "Format", v: "Guided web-based assessment" },
-                      { icon: Layers, k: "Dimensions covered", v: "Operations, Quality, Digital, Energy, People" },
-                      { icon: Gauge, k: "Output", v: "Readiness snapshot + priority areas" },
-                      { icon: HelpCircle, k: "Support", v: "Facilitator assistance on request" },
-                    ].map(({ icon: Icon, k, v }) => (
-                      <div key={k} className="py-3 flex items-start gap-3">
-                        <Icon className="h-4 w-4 mt-0.5 text-[hsl(var(--navy-600))] shrink-0" />
-                        <div className="flex-1 min-w-0">
-                          <dt className="text-[11px] uppercase tracking-wide text-[hsl(var(--neutral-500))] font-semibold">{k}</dt>
-                          <dd className="text-sm text-navy-800 font-medium mt-0.5">{v}</dd>
-                        </div>
+                <div className="relative overflow-hidden cii-card p-6 bg-gradient-to-br from-[hsl(var(--navy-050))] via-white to-[hsl(var(--orange-100)/0.4)] border-t-4 border-t-[hsl(var(--orange-500))]">
+                  <div
+                    className="absolute -top-12 -right-12 w-40 h-40 rounded-full blur-2xl opacity-40 pointer-events-none"
+                    style={{ background: "hsl(var(--orange-500) / 0.35)" }}
+                  />
+                  <div
+                    className="absolute -bottom-16 -left-16 w-44 h-44 rounded-full blur-2xl opacity-40 pointer-events-none"
+                    style={{ background: "hsl(var(--navy-100))" }}
+                  />
+                  <div className="relative">
+                    <div className="flex items-center gap-2">
+                      <div className="h-7 w-7 rounded-md grid place-items-center bg-[hsl(var(--navy-700))] text-white">
+                        <ClipboardList className="h-4 w-4" />
                       </div>
-                    ))}
-                  </dl>
+                      <div className="eyebrow text-[hsl(var(--navy-700))] font-semibold">Assessment Summary</div>
+                    </div>
+                    <h3 className="mt-3 font-display font-bold text-navy-800 text-lg">At a glance</h3>
 
+                    <dl className="mt-5 divide-y divide-[hsl(var(--neutral-150))]">
+                      {[
+                        { icon: Clock, k: "Completion time", v: "25–40 minutes", color: "hsl(var(--india-green))", bg: "hsl(var(--india-green) / 0.12)" },
+                        { icon: PlayCircle, k: "Format", v: "Guided web-based assessment", color: "hsl(var(--navy-700))", bg: "hsl(var(--navy-100))" },
+                        { icon: Layers, k: "Dimensions covered", v: "Operations, Quality, Digital, Energy, People", color: "hsl(var(--orange-600))", bg: "hsl(var(--orange-100))" },
+                        { icon: Gauge, k: "Output", v: "Readiness snapshot + priority areas", color: "hsl(var(--red-600))", bg: "hsl(var(--red-100) / 0.6)" },
+                        { icon: HelpCircle, k: "Support", v: "Facilitator assistance on request", color: "hsl(var(--navy-600))", bg: "hsl(var(--navy-050))" },
+                      ].map(({ icon: Icon, k, v, color, bg }) => (
+                        <div key={k} className="py-3 flex items-start gap-3">
+                          <div
+                            className="h-8 w-8 rounded-md grid place-items-center shrink-0"
+                            style={{ background: bg, color }}
+                          >
+                            <Icon className="h-4 w-4" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <dt className="text-[11px] uppercase tracking-wide text-[hsl(var(--neutral-500))] font-semibold">{k}</dt>
+                            <dd className="text-sm text-navy-800 font-medium mt-0.5">{v}</dd>
+                          </div>
+                        </div>
+                      ))}
+                    </dl>
+                  </div>
                 </div>
+
               </aside>
             </div>
           </div>
