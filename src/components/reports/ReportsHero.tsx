@@ -1,4 +1,4 @@
-import { Search, BarChart3, TrendingUp, FileText, Sparkles } from "lucide-react";
+import { Search, BarChart3, TrendingUp, FileText, Sparkles, PieChart, Download, BookOpen } from "lucide-react";
 
 interface Props {
   query?: string;
@@ -54,23 +54,9 @@ export const ReportsHero = ({ query = "", onQuery, onTag }: Props) => {
 
           <h1 className="font-display mt-5 text-[36px] sm:text-5xl lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
             Insights, Research &amp;{" "}
-            <span className="relative inline-block">
-              <span
-                className="relative z-10 bg-clip-text text-transparent"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(90deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
-                }}
-              >
-                Manufacturing Intelligence
-              </span>
-              <span
-                className="absolute left-0 right-0 bottom-1 h-2 -z-0 rounded-sm opacity-70"
-                style={{ background: "hsl(var(--orange-500) / 0.25)" }}
-                aria-hidden
-              />
-            </span>
+            <span className="text-[hsl(var(--red-600))]">Manufacturing Intelligence</span>
           </h1>
+
 
           <p className="mt-5 text-base sm:text-lg text-[hsl(var(--neutral-700))] max-w-xl leading-relaxed">
             Explore reports, research and industry insights focused on smart manufacturing,
@@ -109,9 +95,6 @@ export const ReportsHero = ({ query = "", onQuery, onTag }: Props) => {
 
           {/* Quick tags */}
           <div className="mt-5 flex flex-wrap items-center gap-2">
-            <span className="text-[11px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--neutral-500))] mr-1">
-              Popular
-            </span>
             {heroTags.map((t) => (
               <button
                 key={t}
@@ -128,22 +111,6 @@ export const ReportsHero = ({ query = "", onQuery, onTag }: Props) => {
             ))}
           </div>
 
-          <div className="mt-9 grid grid-cols-3 gap-6 max-w-md">
-            {[
-              { v: "80+", l: "Reports" },
-              { v: "25", l: "Sectors" },
-              { v: "1.2K+", l: "Insights" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="font-numeric text-2xl font-extrabold text-[hsl(var(--navy-900))]">
-                  {s.v}
-                </div>
-                <div className="text-[11px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--neutral-500))] mt-1">
-                  {s.l}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         <div className="lg:col-span-5 relative h-[380px] sm:h-[440px] lg:h-[500px] animate-scale-in">
@@ -156,96 +123,153 @@ export const ReportsHero = ({ query = "", onQuery, onTag }: Props) => {
 
 const DashboardCollage = () => {
   return (
-    <div className="absolute inset-0">
-      <div className="absolute top-2 right-2 w-[82%] cii-card p-5 rotate-[2deg]">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--red-600))]">
-            <BarChart3 className="h-3.5 w-3.5" />
-            Readiness Index
-          </div>
-          <span className="text-[10px] text-[hsl(var(--neutral-500))]">2020 — 2025</span>
-        </div>
-        <div className="mt-3 flex items-end gap-1.5 h-28">
-          {[18, 28, 41, 55, 67, 78].map((v, i) => (
-            <div
-              key={i}
-              className="flex-1 rounded-t-sm"
-              style={{
-                height: `${v}%`,
-                background:
-                  i === 5
-                    ? "linear-gradient(180deg, hsl(var(--orange-500)), hsl(var(--red-600)))"
-                    : "hsl(var(--navy-600) / 0.85)",
-              }}
-            />
-          ))}
-        </div>
-        <div className="mt-3 flex items-center justify-between">
-          <div className="text-xs font-bold text-[hsl(var(--navy-900))]">+45 pts since 2020</div>
-          <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-[hsl(var(--india-green))]">
-            <TrendingUp className="h-3 w-3" /> +12%
-          </span>
-        </div>
-      </div>
+    <div className="absolute inset-0 grid place-items-center">
+      {/* Soft halo */}
+      <div
+        className="absolute h-[360px] w-[360px] rounded-full blur-3xl opacity-60"
+        style={{
+          background:
+            "radial-gradient(circle, hsl(var(--orange-500) / 0.22), transparent 70%)",
+        }}
+        aria-hidden
+      />
 
-      <div className="absolute top-[44%] left-0 w-[60%] cii-card p-4 -rotate-[3deg]">
-        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--navy-700))]">
-          <FileText className="h-3.5 w-3.5" />
-          Featured Insight
-        </div>
-        <div className="mt-2 text-sm font-bold text-[hsl(var(--navy-900))] leading-snug">
-          Skills are the #1 reported barrier to Industry 4.0 adoption.
-        </div>
-        <div className="mt-3 flex gap-2">
-          <span
-            className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
-            style={{ background: "hsl(var(--navy-050))", color: "hsl(var(--navy-700))" }}
-          >
-            MSME
-          </span>
-          <span
-            className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
-            style={{ background: "hsl(var(--orange-100))", color: "hsl(var(--orange-600))" }}
-          >
-            Workforce
-          </span>
-        </div>
-      </div>
-
-      <div className="absolute bottom-6 right-6 cii-card px-4 py-3 rotate-[2deg] flex items-center gap-3">
+      {/* Back report cover */}
+      <div
+        className="absolute left-[8%] top-[10%] w-[58%] h-[78%] rounded-xl shadow-xl border border-[hsl(var(--neutral-150))] overflow-hidden -rotate-[8deg] bg-white"
+        style={{ animation: "float 7s ease-in-out infinite" }}
+      >
         <div
-          className="h-9 w-9 rounded-md grid place-items-center text-white"
+          className="h-[42%] w-full p-4 flex flex-col justify-between text-white"
+          style={{
+            background:
+              "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
+          }}
+        >
+          <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.14em] opacity-90">
+            <BookOpen className="h-3 w-3" /> Sector Report
+          </div>
+          <div>
+            <div className="text-[10px] opacity-80">Vol. 04 · 2025</div>
+            <div className="text-sm font-extrabold leading-snug">
+              Smart Manufacturing Outlook
+            </div>
+          </div>
+        </div>
+        <div className="p-4 space-y-2">
+          <div className="h-2 w-full rounded-full bg-[hsl(var(--neutral-100))]" />
+          <div className="h-2 w-[88%] rounded-full bg-[hsl(var(--neutral-100))]" />
+          <div className="h-2 w-[72%] rounded-full bg-[hsl(var(--neutral-100))]" />
+          <div className="mt-3 grid grid-cols-3 gap-2">
+            {[60, 82, 45].map((v, i) => (
+              <div key={i} className="rounded-md bg-[hsl(var(--neutral-50))] p-2">
+                <div className="text-[9px] uppercase tracking-wider font-bold text-[hsl(var(--neutral-500))]">
+                  KPI
+                </div>
+                <div className="text-sm font-extrabold font-numeric text-[hsl(var(--navy-900))]">
+                  {v}%
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Front report cover with chart */}
+      <div
+        className="absolute right-[6%] top-[18%] w-[62%] h-[74%] rounded-xl shadow-2xl border border-[hsl(var(--neutral-150))] overflow-hidden rotate-[4deg] bg-white"
+        style={{ animation: "float 6s ease-in-out infinite 0.4s" }}
+      >
+        <div
+          className="h-[36%] w-full p-4 flex items-start justify-between text-white"
+          style={{
+            background:
+              "linear-gradient(135deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
+          }}
+        >
+          <div>
+            <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.14em] opacity-90">
+              <FileText className="h-3 w-3" /> Research Brief
+            </div>
+            <div className="mt-2 text-sm font-extrabold leading-snug max-w-[80%]">
+              Industry 4.0 Readiness Index 2025
+            </div>
+          </div>
+          <div className="h-9 w-9 rounded-lg bg-white/15 backdrop-blur grid place-items-center">
+            <PieChart className="h-5 w-5" />
+          </div>
+        </div>
+        <div className="p-4">
+          <div className="flex items-center justify-between">
+            <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
+              Readiness Trend
+            </div>
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-[hsl(var(--india-green))]">
+              <TrendingUp className="h-3 w-3" /> +12%
+            </span>
+          </div>
+          <div className="mt-3 flex items-end gap-1.5 h-20">
+            {[22, 34, 46, 58, 70, 84].map((v, i) => (
+              <div
+                key={i}
+                className="flex-1 rounded-t-sm"
+                style={{
+                  height: `${v}%`,
+                  background:
+                    i === 5
+                      ? "linear-gradient(180deg, hsl(var(--orange-500)), hsl(var(--red-600)))"
+                      : "hsl(var(--navy-600) / 0.85)",
+                }}
+              />
+            ))}
+          </div>
+          <div className="mt-3 flex items-center justify-between text-[10px] text-[hsl(var(--neutral-500))]">
+            <span>2020</span><span>2025</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating download badge */}
+      <div
+        className="absolute bottom-2 left-2 cii-card px-3 py-2 flex items-center gap-2 -rotate-[3deg] bg-white"
+        style={{ animation: "float 7.5s ease-in-out infinite 1s" }}
+      >
+        <div
+          className="h-8 w-8 rounded-lg grid place-items-center text-white"
           style={{
             background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
           }}
         >
-          <TrendingUp className="h-4 w-4" />
+          <Download className="h-4 w-4" />
         </div>
         <div>
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
-            Pilots scaled
+          <div className="text-[9px] uppercase tracking-wider font-bold text-[hsl(var(--neutral-500))]">
+            Downloads
           </div>
-          <div className="text-sm font-bold text-[hsl(var(--navy-900))]">+38% YoY</div>
+          <div className="text-sm font-extrabold text-[hsl(var(--navy-900))] font-numeric">
+            48K+
+          </div>
         </div>
       </div>
 
+      {/* Floating insight chip */}
       <div
-        className="absolute top-0 left-4 h-12 w-12 rounded-full grid place-items-center text-white shadow-lg"
-        style={{
-          background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
-          animation: "float 6s ease-in-out infinite",
-        }}
-        aria-hidden
+        className="absolute top-2 right-4 cii-card px-3 py-2 flex items-center gap-2 rotate-[4deg] bg-white"
+        style={{ animation: "float 8s ease-in-out infinite 0.7s" }}
       >
-        <Sparkles className="h-5 w-5" />
+        <BarChart3 className="h-4 w-4 text-[hsl(var(--red-600))]" />
+        <div className="text-[10px] font-bold text-[hsl(var(--navy-900))]">
+          80+ Reports · 25 Sectors
+        </div>
       </div>
 
       <style>{`
         @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
+          0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+          50% { transform: translateY(-8px) rotate(var(--r, 0deg)); }
         }
       `}</style>
     </div>
   );
 };
+
