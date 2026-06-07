@@ -48,6 +48,34 @@ import {
 
 const ASSESSMENT_URL = "https://www.smartmfgindia.com/Assesment.aspx";
 
+// Rotating color palette for card accents — uses existing design tokens
+const CARD_PALETTE = [
+  {
+    accent: "hsl(var(--orange-600))",
+    soft: "hsl(var(--orange-100))",
+    tint: "hsl(var(--orange-500) / 0.06)",
+    ring: "hsl(var(--orange-500) / 0.18)",
+  },
+  {
+    accent: "hsl(var(--navy-700))",
+    soft: "hsl(var(--navy-100))",
+    tint: "hsl(var(--navy-700) / 0.05)",
+    ring: "hsl(var(--navy-700) / 0.18)",
+  },
+  {
+    accent: "hsl(var(--india-green))",
+    soft: "hsl(var(--india-green) / 0.12)",
+    tint: "hsl(var(--india-green) / 0.06)",
+    ring: "hsl(var(--india-green) / 0.22)",
+  },
+  {
+    accent: "hsl(var(--red-600))",
+    soft: "hsl(var(--red-600) / 0.12)",
+    tint: "hsl(var(--red-600) / 0.05)",
+    ring: "hsl(var(--red-600) / 0.18)",
+  },
+] as const;
+
 type AssessmentConfig = {
   slug: string;
   tag: string;
@@ -513,18 +541,35 @@ const AssessmentDetail = () => {
 
             <div className="mt-10 -mx-6 px-6 md:mx-0 md:px-0 overflow-x-auto md:overflow-visible">
               <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 snap-x snap-mandatory pb-2 md:pb-0">
-                {outcomes.map(({ icon: Icon, title, desc }) => (
-                  <div
-                    key={title}
-                    className="cii-card group p-6 min-w-[280px] md:min-w-0 snap-start bg-white transition-all hover:-translate-y-0.5 hover:shadow-md"
-                  >
-                    <div className="h-11 w-11 rounded-md grid place-items-center bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))] group-hover:bg-[hsl(var(--navy-100))] transition-colors">
-                      <Icon className="h-5 w-5" strokeWidth={1.75} />
+                {outcomes.map(({ icon: Icon, title, desc }, i) => {
+                  const c = CARD_PALETTE[i % CARD_PALETTE.length];
+                  return (
+                    <div
+                      key={title}
+                      className="cii-card group relative overflow-hidden p-6 min-w-[280px] md:min-w-0 snap-start transition-all hover:-translate-y-1 hover:shadow-lg"
+                      style={{ background: `linear-gradient(180deg, ${c.tint}, #fff 60%)`, borderColor: c.ring }}
+                    >
+                      <span
+                        className="absolute inset-x-0 top-0 h-1"
+                        style={{ background: c.accent }}
+                        aria-hidden
+                      />
+                      <span
+                        className="absolute -top-10 -right-10 h-28 w-28 rounded-full blur-2xl opacity-40 pointer-events-none"
+                        style={{ background: c.soft }}
+                        aria-hidden
+                      />
+                      <div
+                        className="relative h-11 w-11 rounded-lg grid place-items-center transition-transform group-hover:scale-105"
+                        style={{ background: c.soft, color: c.accent }}
+                      >
+                        <Icon className="h-5 w-5" strokeWidth={1.75} />
+                      </div>
+                      <h3 className="relative mt-4 font-display font-bold text-navy-800 text-lg">{title}</h3>
+                      <p className="relative mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
                     </div>
-                    <h3 className="mt-4 font-display font-bold text-navy-800 text-lg">{title}</h3>
-                    <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -545,21 +590,30 @@ const AssessmentDetail = () => {
             </div>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {cfg.coverage.map(({ icon: Icon, label, scope }) => (
-                <div
-                  key={label}
-                  className="cii-card p-5 bg-white relative transition-all hover:-translate-y-0.5 hover:shadow-md"
-                >
+              {cfg.coverage.map(({ icon: Icon, label, scope }, i) => {
+                const c = CARD_PALETTE[i % CARD_PALETTE.length];
+                return (
                   <div
-                    className="h-10 w-10 grid place-items-center rounded-md mb-4"
-                    style={{ background: cfg.accentSoft, color: cfg.accent }}
+                    key={label}
+                    className="cii-card group relative overflow-hidden p-5 transition-all hover:-translate-y-1 hover:shadow-lg"
+                    style={{ background: `linear-gradient(180deg, ${c.tint}, #fff 65%)`, borderColor: c.ring }}
                   >
-                    <Icon className="h-5 w-5" strokeWidth={1.75} />
+                    <span
+                      className="absolute left-0 top-0 h-full w-1"
+                      style={{ background: c.accent }}
+                      aria-hidden
+                    />
+                    <div
+                      className="relative h-10 w-10 grid place-items-center rounded-lg mb-4 transition-transform group-hover:scale-105"
+                      style={{ background: c.soft, color: c.accent }}
+                    >
+                      <Icon className="h-5 w-5" strokeWidth={1.75} />
+                    </div>
+                    <div className="relative font-display font-bold text-navy-800 text-sm">{label}</div>
+                    <p className="relative mt-2 text-xs text-[hsl(var(--neutral-700))] leading-relaxed">{scope}</p>
                   </div>
-                  <div className="font-display font-bold text-navy-800 text-sm">{label}</div>
-                  <p className="mt-2 text-xs text-[hsl(var(--neutral-700))] leading-relaxed">{scope}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -574,15 +628,30 @@ const AssessmentDetail = () => {
               </h2>
             </div>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {personas.map(({ icon: Icon, title, desc }) => (
-                <div key={title} className="cii-card p-6 bg-white">
-                  <div className="h-11 w-11 rounded-full grid place-items-center bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))]">
-                    <Icon className="h-5 w-5" strokeWidth={1.75} />
+              {personas.map(({ icon: Icon, title, desc }, i) => {
+                const c = CARD_PALETTE[i % CARD_PALETTE.length];
+                return (
+                  <div
+                    key={title}
+                    className="cii-card group relative overflow-hidden p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
+                    style={{ background: `linear-gradient(180deg, ${c.tint}, #fff 60%)`, borderColor: c.ring }}
+                  >
+                    <span
+                      className="absolute -bottom-12 -right-12 h-32 w-32 rounded-full blur-2xl opacity-50 pointer-events-none"
+                      style={{ background: c.soft }}
+                      aria-hidden
+                    />
+                    <div
+                      className="relative h-11 w-11 rounded-full grid place-items-center transition-transform group-hover:scale-105"
+                      style={{ background: c.soft, color: c.accent, boxShadow: `0 0 0 4px ${c.tint}` }}
+                    >
+                      <Icon className="h-5 w-5" strokeWidth={1.75} />
+                    </div>
+                    <h3 className="relative mt-4 font-display font-bold text-navy-800 text-base">{title}</h3>
+                    <p className="relative mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
                   </div>
-                  <h3 className="mt-4 font-display font-bold text-navy-800 text-base">{title}</h3>
-                  <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -638,15 +707,30 @@ const AssessmentDetail = () => {
             </div>
 
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {currentBenefits.map(({ icon: Icon, title, desc }) => (
-                <div key={title} className="cii-card p-6 bg-white">
-                  <div className="h-11 w-11 rounded-md grid place-items-center bg-[hsl(var(--india-green))]/10 text-[hsl(var(--india-green))]">
-                    <Icon className="h-5 w-5" strokeWidth={1.75} />
+              {currentBenefits.map(({ icon: Icon, title, desc }, i) => {
+                const c = CARD_PALETTE[i % CARD_PALETTE.length];
+                return (
+                  <div
+                    key={title}
+                    className="cii-card group relative overflow-hidden p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
+                    style={{ background: `linear-gradient(180deg, ${c.tint}, #fff 60%)`, borderColor: c.ring }}
+                  >
+                    <span
+                      className="absolute inset-x-0 top-0 h-1"
+                      style={{ background: c.accent }}
+                      aria-hidden
+                    />
+                    <div
+                      className="relative h-11 w-11 rounded-lg grid place-items-center transition-transform group-hover:scale-105"
+                      style={{ background: c.soft, color: c.accent }}
+                    >
+                      <Icon className="h-5 w-5" strokeWidth={1.75} />
+                    </div>
+                    <h3 className="relative mt-4 font-display font-bold text-navy-800 text-base">{title}</h3>
+                    <p className="relative mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
                   </div>
-                  <h3 className="mt-4 font-display font-bold text-navy-800 text-base">{title}</h3>
-                  <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Roadmap */}
