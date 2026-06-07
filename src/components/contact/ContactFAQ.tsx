@@ -1,6 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-const faqs = [
+export const faqs = [
   {
     q: "How does the assessment work?",
     a: "Our readiness assessment is a guided digital questionnaire that evaluates your operations across people, processes and technology. You receive a benchmarked report and a tailored next-step roadmap.",
