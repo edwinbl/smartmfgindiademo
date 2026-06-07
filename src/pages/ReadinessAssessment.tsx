@@ -68,7 +68,30 @@ const dimensions = [
   { label: "People & Skills", v: 60 },
 ];
 
+const Counter = ({ to, start, duration = 1400 }: { to: number; start: boolean; duration?: number }) => {
+  const [v, setV] = useState(0);
+  useEffect(() => {
+    if (!start) { setV(0); return; }
+    let raf = 0; const t0 = performance.now();
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - t0) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setV(Math.round(to * eased));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [to, start, duration]);
+  return <>{v}</>;
+};
+
 const ReadinessAssessment = () => {
+  const [animateOn, setAnimateOn] = useState(false);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setAnimateOn(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -77,6 +100,7 @@ const ReadinessAssessment = () => {
       "Assess your manufacturing readiness across operations, quality, digital adoption and sustainability before deciding what to improve, adopt or transform.",
     url: "https://smartmfgindia-demo4.bluelup.in/readiness-assessment",
   };
+
 
   return (
     <div className="min-h-dvh bg-background text-foreground">
