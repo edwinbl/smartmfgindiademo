@@ -1,4 +1,4 @@
-import { Sparkles, Gauge, BookOpen, Network, Workflow } from "lucide-react";
+import { Sparkles, ClipboardCheck, Compass, Rocket, Network, Award } from "lucide-react";
 
 export const AboutHero = () => {
   return (
@@ -45,96 +45,134 @@ export const AboutHero = () => {
             and build capabilities for sustainable growth, competitiveness and operational
             excellence.
           </p>
-
-
         </div>
 
-        <div className="lg:col-span-5 relative h-[380px] sm:h-[440px] lg:h-[500px] animate-scale-in">
-          <EcosystemNetworkViz />
+        <div className="lg:col-span-5 relative h-[420px] sm:h-[480px] lg:h-[520px] animate-scale-in">
+          <PillarsViz />
         </div>
       </div>
     </section>
   );
 };
 
-const EcosystemNetworkViz = () => {
-  const nodes = [
-    { icon: Gauge, label: "Assess", x: 50, y: 18, color: "var(--navy-700)" },
-    { icon: BookOpen, label: "Learn", x: 14, y: 48, color: "var(--orange-500)" },
-    { icon: Network, label: "Connect", x: 86, y: 48, color: "var(--india-green)" },
-    { icon: Workflow, label: "Transform", x: 50, y: 82, color: "var(--red-600)" },
+const PillarsViz = () => {
+  const pillars = [
+    { icon: ClipboardCheck, label: "Assess",    color: "var(--navy-700)",   accent: "var(--navy-600)" },
+    { icon: Compass,        label: "Guide",     color: "var(--orange-500)", accent: "var(--orange-500)" },
+    { icon: Rocket,         label: "Enable",    color: "var(--red-600)",    accent: "var(--red-600)" },
+    { icon: Network,        label: "Connect",   color: "var(--india-green)",accent: "var(--india-green)" },
+    { icon: Award,          label: "Recognise", color: "var(--navy-800)",   accent: "var(--orange-500)" },
   ];
+
+  // 5 nodes on a circle
+  const cx = 50, cy = 52, r = 36;
+  const nodes = pillars.map((p, i) => {
+    const angle = (-Math.PI / 2) + (i * (2 * Math.PI) / pillars.length);
+    return { ...p, x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
+  });
 
   return (
     <div className="absolute inset-0">
       <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden>
         <defs>
-          <linearGradient id="line-grad" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0%" stopColor="hsl(var(--navy-600))" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="hsl(var(--orange-500))" stopOpacity="0.6" />
+          <linearGradient id="pillar-line" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stopColor="hsl(var(--navy-600))" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="hsl(var(--orange-500))" stopOpacity="0.55" />
           </linearGradient>
+          <radialGradient id="hub-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="hsl(var(--orange-500))" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="hsl(var(--orange-500))" stopOpacity="0" />
+          </radialGradient>
         </defs>
-        {nodes.map((n, i) =>
-          nodes.slice(i + 1).map((m, j) => (
-            <line
-              key={`${i}-${j}`}
-              x1={n.x} y1={n.y} x2={m.x} y2={m.y}
-              stroke="url(#line-grad)"
-              strokeWidth="0.3"
-              strokeDasharray="0.8 0.6"
-            />
-          ))
-        )}
+
+        {/* glow behind hub */}
+        <circle cx={cx} cy={cy} r="22" fill="url(#hub-glow)" />
+
+        {/* orbit ring */}
+        <circle
+          cx={cx} cy={cy} r={r}
+          fill="none"
+          stroke="hsl(var(--neutral-200))"
+          strokeWidth="0.25"
+          strokeDasharray="0.8 0.8"
+          className="origin-center"
+          style={{ animation: "spin-slow 60s linear infinite", transformOrigin: "50% 52%" }}
+        />
+
+        {/* lines from hub to each pillar */}
+        {nodes.map((n, i) => (
+          <line
+            key={`l-${i}`}
+            x1={cx} y1={cy} x2={n.x} y2={n.y}
+            stroke="url(#pillar-line)"
+            strokeWidth="0.35"
+            strokeDasharray="0.9 0.6"
+          />
+        ))}
       </svg>
 
       {/* Central hub */}
       <div
-        className="absolute h-20 w-20 rounded-full grid place-items-center text-white shadow-xl"
+        className="absolute h-24 w-24 rounded-full grid place-items-center text-white shadow-xl"
         style={{
-          left: "50%", top: "50%", transform: "translate(-50%, -50%)",
+          left: `${cx}%`, top: `${cy}%`, transform: "translate(-50%, -50%)",
           background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
         }}
       >
-        <div className="text-center">
-          <div className="font-display font-extrabold text-sm leading-tight">CII</div>
+        <div className="text-center px-2">
+          <div className="font-display font-extrabold text-base leading-tight">CII</div>
           <div className="text-[8px] uppercase tracking-widest opacity-80">Smart Mfg</div>
         </div>
         <span
           className="absolute inset-0 rounded-full"
           style={{
-            boxShadow: "0 0 0 8px hsl(var(--orange-500) / 0.10), 0 0 0 20px hsl(var(--orange-500) / 0.05)",
+            boxShadow:
+              "0 0 0 6px hsl(var(--orange-500) / 0.12), 0 0 0 16px hsl(var(--orange-500) / 0.06)",
+            animation: "pulse-ring 3.5s ease-out infinite",
           }}
           aria-hidden
         />
       </div>
 
-      {/* Orbit nodes */}
-      {nodes.map((n) => {
+      {/* Pillar nodes */}
+      {nodes.map((n, i) => {
         const Icon = n.icon;
         return (
           <div
             key={n.label}
-            className="absolute flex flex-col items-center gap-1.5"
-            style={{ left: `${n.x}%`, top: `${n.y}%`, transform: "translate(-50%, -50%)" }}
+            className="absolute flex flex-col items-center gap-1.5 group"
+            style={{
+              left: `${n.x}%`,
+              top: `${n.y}%`,
+              transform: "translate(-50%, -50%)",
+              animation: `float-node 6s ease-in-out ${i * 0.6}s infinite`,
+            }}
           >
             <div
-              className="h-14 w-14 rounded-2xl border bg-white grid place-items-center shadow-md"
-              style={{ borderColor: "hsl(var(--neutral-150))" }}
+              className="h-16 w-16 rounded-2xl grid place-items-center shadow-lg transition-transform duration-300 group-hover:scale-110"
+              style={{
+                background: `linear-gradient(135deg, hsl(${n.color}), hsl(${n.accent}))`,
+                boxShadow: `0 10px 24px -8px hsl(${n.color} / 0.55)`,
+              }}
             >
-              <Icon className="h-6 w-6" style={{ color: `hsl(${n.color})` }} />
+              <Icon className="h-7 w-7 text-white" />
             </div>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--navy-900))] bg-white/80 backdrop-blur px-2 py-0.5 rounded">
+            <span
+              className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-white/90 backdrop-blur"
+              style={{ color: `hsl(${n.color})` }}
+            >
               {n.label}
             </span>
           </div>
         );
       })}
 
+      {/* floating sparkle */}
       <div
-        className="absolute top-0 left-2 h-10 w-10 rounded-full grid place-items-center text-white shadow-lg"
+        className="absolute top-1 right-2 h-9 w-9 rounded-full grid place-items-center text-white shadow-lg"
         style={{
           background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
-          animation: "float 6s ease-in-out infinite",
+          animation: "float-node 6s ease-in-out infinite",
         }}
         aria-hidden
       >
@@ -142,7 +180,19 @@ const EcosystemNetworkViz = () => {
       </div>
 
       <style>{`
-        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes float-node {
+          0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+          50%      { transform: translate(-50%, -50%) translateY(-6px); }
+        }
+        @keyframes pulse-ring {
+          0%   { box-shadow: 0 0 0 0 hsl(var(--orange-500) / 0.35), 0 0 0 0 hsl(var(--orange-500) / 0.2); }
+          70%  { box-shadow: 0 0 0 14px hsl(var(--orange-500) / 0), 0 0 0 28px hsl(var(--orange-500) / 0); }
+          100% { box-shadow: 0 0 0 0 hsl(var(--orange-500) / 0), 0 0 0 0 hsl(var(--orange-500) / 0); }
+        }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
       `}</style>
     </div>
   );
