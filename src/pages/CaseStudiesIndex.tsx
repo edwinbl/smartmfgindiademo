@@ -200,18 +200,21 @@ const CaseStudiesIndex = () => {
             Find stories based on the business outcome you care about
           </h2>
           <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-            {outcomeTiles.map(({ vp: v, icon: Icon, label, tone }) => {
+            {outcomeTiles.map(({ vp: v, icon: Icon, label, tone }, i) => {
               const count = caseStudies.filter((c) => c.valueProps.includes(v)).length;
+              const pal = cardPalettes[i % cardPalettes.length];
               return (
                 <button
                   key={label}
                   onClick={() => { setVp(v); setChip(null); document.getElementById("all")?.scrollIntoView({ behavior: "smooth" }); }}
-                  className="group text-left rounded-2xl bg-white border border-[hsl(var(--neutral-150))] p-6 hover:shadow-md hover:-translate-y-0.5 transition-all"
+                  className="group text-left rounded-2xl border border-[hsl(var(--neutral-150))] p-6 hover:shadow-md hover:-translate-y-0.5 transition-all overflow-hidden relative"
+                  style={{ background: pal.tint }}
                 >
+                  <div className="absolute top-0 left-0 right-0 h-1.5" style={{ background: pal.bar }} />
                   <div className={`h-12 w-12 rounded-xl grid place-items-center ${tone}`}><Icon className="h-6 w-6" /></div>
                   <div className="mt-5 font-display font-bold text-lg text-[hsl(var(--navy-900))]">{label}</div>
                   <div className="mt-1 text-xs text-[hsl(var(--neutral-500))]">{count} case stud{count === 1 ? "y" : "ies"}</div>
-                  <div className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[hsl(var(--navy-700))] group-hover:text-[hsl(var(--red-600))]">
+                  <div className="mt-5 inline-flex items-center gap-1 text-sm font-semibold group-hover:text-[hsl(var(--red-600))]" style={{ color: pal.bar }}>
                     Explore <ArrowRight className="h-3.5 w-3.5" />
                   </div>
                 </button>
