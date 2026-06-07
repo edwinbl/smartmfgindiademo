@@ -7,7 +7,6 @@ import {
   GraduationCap,
   Calendar,
   Cpu,
-  Library,
   ArrowUpRight,
 } from "lucide-react";
 
@@ -19,6 +18,14 @@ const modules = [
     href: "/readiness-assessment",
     color: "hsl(var(--orange-500))",
     tint: "hsl(var(--orange-500) / 0.10)",
+  },
+  {
+    icon: Cpu,
+    label: "Solutions Ecosystem",
+    desc: "Tech for every stage",
+    href: "/solutions",
+    color: "hsl(var(--navy-700))",
+    tint: "hsl(var(--navy-700) / 0.10)",
   },
   {
     icon: FileText,
@@ -40,7 +47,7 @@ const modules = [
     icon: Building2,
     label: "E-Directory",
     desc: "Find trusted partners",
-    href: "/",
+    href: "https://www.smartmfgindia.com/e-Directory.aspx",
     color: "hsl(var(--green-600, 142 70% 35%))",
     tint: "hsl(var(--green-600, 142 70% 35%) / 0.10)",
   },
@@ -60,22 +67,6 @@ const modules = [
     color: "hsl(var(--red-600))",
     tint: "hsl(var(--red-600) / 0.10)",
   },
-  {
-    icon: Cpu,
-    label: "Solutions Ecosystem",
-    desc: "Tech for every stage",
-    href: "/",
-    color: "hsl(var(--navy-700))",
-    tint: "hsl(var(--navy-700) / 0.10)",
-  },
-  {
-    icon: Library,
-    label: "Knowledge Resources",
-    desc: "Guides & frameworks",
-    href: "/",
-    color: "hsl(var(--green-600, 142 70% 35%))",
-    tint: "hsl(var(--green-600, 142 70% 35%) / 0.10)",
-  },
 ];
 
 export const AboutPlatformEcosystem = () => {
@@ -88,20 +79,16 @@ export const AboutPlatformEcosystem = () => {
             Everything You Need to Support Your Transformation Journey
           </h2>
           <p className="mt-3 text-base text-[hsl(var(--neutral-700))] leading-relaxed">
-            Eight modules working as one — every interaction strengthens the next.
+            Modules working as one — every interaction strengthens the next.
           </p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {modules.map((m) => {
             const Icon = m.icon;
-            return (
-              <Link
-                key={m.label}
-                to={m.href}
-                className="group relative overflow-hidden rounded-xl border bg-white p-4 transition-all hover:-translate-y-0.5 hover:shadow-md"
-                style={{ borderColor: "hsl(var(--neutral-150))" }}
-              >
+            const isExternal = m.href.startsWith("http");
+            const cardBody = (
+              <>
                 <div
                   className="absolute inset-x-0 top-0 h-1 transition-all group-hover:h-1.5"
                   style={{ background: m.color }}
@@ -132,6 +119,29 @@ export const AboutPlatformEcosystem = () => {
                     {m.desc}
                   </div>
                 </div>
+              </>
+            );
+            const cardClass =
+              "group relative overflow-hidden rounded-xl border bg-white p-4 transition-all hover:-translate-y-0.5 hover:shadow-md";
+            return isExternal ? (
+              <a
+                key={m.label}
+                href={m.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cardClass}
+                style={{ borderColor: "hsl(var(--neutral-150))" }}
+              >
+                {cardBody}
+              </a>
+            ) : (
+              <Link
+                key={m.label}
+                to={m.href}
+                className={cardClass}
+                style={{ borderColor: "hsl(var(--neutral-150))" }}
+              >
+                {cardBody}
               </Link>
             );
           })}
