@@ -6,16 +6,18 @@ import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
 import { ReportsHero } from "@/components/reports/ReportsHero";
-import { ReportsDiscoveryBar, emptyFilters, type ReportFilters } from "@/components/reports/ReportsDiscoveryBar";
+import { emptyFilters, type ReportFilters } from "@/components/reports/ReportsDiscoveryBar";
+import { ReportsFilterSidebar } from "@/components/reports/ReportsFilterSidebar";
 import { FeaturedCollections } from "@/components/reports/FeaturedCollections";
 import { ReportsThemesExplorer } from "@/components/reports/ReportsThemesExplorer";
 import { ReportsSectorExplorer } from "@/components/reports/ReportsSectorExplorer";
-import { ReportsGrid } from "@/components/reports/ReportsGrid";
+import { ReportsEmptyState } from "@/components/reports/ReportsEmptyState";
 import { PersonalizedShelf } from "@/components/reports/PersonalizedShelf";
 import { DownloadModal } from "@/components/reports/DownloadModal";
 import { reports, reportFacets, type Report, type QuickPickId } from "@/data/reports";
 import { useMockAuth } from "@/hooks/useMockAuth";
 import { toast } from "@/hooks/use-toast";
+
 
 const quickPickFilter = (r: Report, pick: QuickPickId | null) => {
   switch (pick) {
