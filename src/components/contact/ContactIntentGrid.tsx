@@ -91,52 +91,78 @@ export const ContactIntentGrid = ({ active, onSelect, embedded = false }: Props)
             key={key}
             type="button"
             onClick={() => onSelect(key)}
+            aria-pressed={isActive}
             className={cn(
-              "group relative text-left rounded-xl p-4 sm:p-5 flex items-start gap-4 border bg-white overflow-hidden transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--ring))]",
-              isActive
-                ? "shadow-lg -translate-y-0.5"
-                : "border-[hsl(var(--neutral-150))] hover:shadow-md hover:-translate-y-0.5",
+              "group relative text-left rounded-2xl p-5 min-h-[88px] flex items-start gap-4 border-2 bg-white overflow-hidden",
+              "transition-all duration-300 ease-out",
+              "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[hsl(var(--ring))]",
+              "hover:-translate-y-1 hover:shadow-xl",
+              isActive ? "shadow-xl -translate-y-1" : "border-[hsl(var(--neutral-150))] shadow-sm",
             )}
             style={isActive ? { borderColor: accent.text } : undefined}
           >
-            {/* Decorative accent bar */}
+            {/* Hover gradient wash */}
             <span
-              className="absolute left-0 top-0 bottom-0 w-1"
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{ background: `linear-gradient(135deg, ${accent.from}0D, ${accent.to}1A)` }}
+              aria-hidden
+            />
+            {/* Active fill */}
+            {isActive && (
+              <span
+                className="absolute inset-0"
+                style={{ background: `linear-gradient(135deg, ${accent.from}14, ${accent.to}1F)` }}
+                aria-hidden
+              />
+            )}
+            {/* Left accent bar */}
+            <span
+              className="absolute left-0 top-0 bottom-0 w-1.5 transition-all duration-300 group-hover:w-2"
               style={{ background: `linear-gradient(180deg, ${accent.from}, ${accent.to})` }}
               aria-hidden
             />
             {/* Decorative blob */}
             <span
-              className="absolute -right-8 -top-8 h-24 w-24 rounded-full opacity-60 transition-opacity group-hover:opacity-100"
+              className="absolute -right-10 -top-10 h-28 w-28 rounded-full opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
               style={{ background: accent.soft }}
               aria-hidden
             />
+
+            {/* Icon */}
             <div
-              className="relative grid place-items-center h-11 w-11 rounded-lg text-white shrink-0 shadow-sm"
-              style={{ background: `linear-gradient(135deg, ${accent.from}, ${accent.to})` }}
+              className="relative grid place-items-center h-12 w-12 rounded-xl text-white shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3"
+              style={{
+                background: `linear-gradient(135deg, ${accent.from}, ${accent.to})`,
+                boxShadow: `0 8px 20px -8px ${accent.from}`,
+              }}
             >
-              <Icon className="h-5 w-5" />
+              <Icon className="h-6 w-6" strokeWidth={2.25} aria-hidden />
             </div>
+
             <div className="relative flex-1 min-w-0">
               <div className="flex items-start justify-between gap-2">
-                <h3 className="font-display text-sm font-bold leading-snug text-[hsl(var(--navy-900))]">
+                <h3 className="font-display text-[15px] sm:text-base font-bold leading-snug text-[hsl(var(--navy-900))]">
                   {title}
                 </h3>
                 {isActive ? (
                   <span
-                    className="grid place-items-center h-5 w-5 rounded-full text-white shrink-0"
+                    className="grid place-items-center h-6 w-6 rounded-full text-white shrink-0 shadow-sm"
                     style={{ background: "hsl(var(--india-green))" }}
+                    aria-hidden
                   >
-                    <Check className="h-3 w-3" />
+                    <Check className="h-3.5 w-3.5" strokeWidth={3} />
                   </span>
                 ) : (
                   <ArrowRight
-                    className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5"
+                    className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1"
                     style={{ color: accent.text }}
+                    aria-hidden
                   />
                 )}
               </div>
-              <p className="text-xs text-[hsl(var(--neutral-500))] leading-relaxed mt-1">{desc}</p>
+              <p className="text-[13px] text-[hsl(var(--neutral-700))] leading-relaxed mt-1.5">
+                {desc}
+              </p>
             </div>
           </button>
         );

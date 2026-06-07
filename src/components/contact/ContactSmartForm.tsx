@@ -83,7 +83,7 @@ export const ContactSmartForm = ({ intent, embedded = false }: Props) => {
               <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[hsl(var(--navy-900))] tracking-tight mt-1">
                 {activeMeta ? activeMeta.title : "Tell us about you"}
               </h2>
-              <p className="text-sm text-[hsl(var(--neutral-500))] mt-1">
+              <p className="text-sm text-[hsl(var(--neutral-700))] mt-1.5">
                 {activeMeta
                   ? "We've tailored the form for your request — fields adapt as you go."
                   : "Pick an intent above to personalize this form."}
@@ -128,18 +128,18 @@ export const ContactSmartForm = ({ intent, embedded = false }: Props) => {
                     errors.message ? "border-[hsl(var(--red-600))]" : "border-[hsl(var(--neutral-200))]",
                   )}
                 />
-                {errors.message && <p className="mt-1.5 text-xs font-medium text-[hsl(var(--red-600))]">{errors.message}</p>}
+                {errors.message && <p className="mt-1.5 text-[13px] font-medium text-[hsl(var(--red-600))]" role="alert">{errors.message}</p>}
               </div>
 
               <button
                 type="submit"
                 disabled={!intent}
-                className="btn-primary w-full sm:w-auto group disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-primary w-full sm:w-auto min-h-11 group disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {intent ? CTA_LABEL[intent] : "Select an intent above"}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
               </button>
-              <p className="text-xs text-[hsl(var(--neutral-500))]">By submitting you agree to be contacted by the CII Smart Manufacturing team about your request.</p>
+              <p className="text-[13px] text-[hsl(var(--neutral-700))] leading-relaxed">By submitting you agree to be contacted by the CII Smart Manufacturing team about your request.</p>
             </form>
           )}
     </div>
