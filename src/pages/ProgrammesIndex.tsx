@@ -15,7 +15,6 @@ import { ProgrammesFilterSidebar } from "@/components/programmes/ProgrammesFilte
 import { ProgrammeCard } from "@/components/programmes/ProgrammeCard";
 import { ProgrammesEmptyState } from "@/components/programmes/ProgrammesEmptyState";
 import { FeaturedProgrammes } from "@/components/programmes/FeaturedProgrammes";
-import { LearningPathways } from "@/components/programmes/LearningPathways";
 import { ProgrammesImpactStats } from "@/components/programmes/ProgrammesImpactStats";
 import { PersonalizedProgrammesShelf } from "@/components/programmes/PersonalizedProgrammesShelf";
 import { ProgrammeRegisterModal } from "@/components/programmes/ProgrammeRegisterModal";
@@ -161,7 +160,6 @@ const ProgrammesIndex = () => {
             </div>
           </div>
         </section>
-        <LearningPathways />
         {user && <PersonalizedProgrammesShelf user={user} onRegister={handleRegister} />}
         <ProgrammesImpactStats />
         <CommonFinalCta />
