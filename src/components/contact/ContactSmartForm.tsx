@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 
 interface Props {
   intent: IntentKey | null;
+  embedded?: boolean;
 }
 
 const CTA_LABEL: Record<IntentKey, string> = {
