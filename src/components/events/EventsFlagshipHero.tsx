@@ -49,22 +49,7 @@ export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
         <div className="lg:col-span-7 animate-fade-in">
           <h1 className="font-display text-[36px] sm:text-5xl lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
             Summits, Webinars &amp;{" "}
-            <span className="relative inline-block">
-              <span
-                className="relative z-10 bg-clip-text text-transparent"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(90deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
-                }}
-              >
-                Convenings
-              </span>
-              <span
-                className="absolute left-0 right-0 bottom-1 h-2 -z-0 rounded-sm opacity-70"
-                style={{ background: "hsl(var(--orange-500) / 0.25)" }}
-                aria-hidden
-              />
-            </span>
+            <span className="text-[hsl(var(--red-600))]">Convenings</span>
           </h1>
 
           <p className="mt-5 text-base sm:text-lg text-[hsl(var(--neutral-700))] max-w-xl leading-relaxed">
