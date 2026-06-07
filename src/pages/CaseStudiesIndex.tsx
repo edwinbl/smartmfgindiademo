@@ -124,16 +124,6 @@ const CaseStudiesIndex = () => {
 
   const featured = caseStudies.filter((c) => c.featured);
 
-  const sectorCounts = sectors.map((s) => ({ s, n: caseStudies.filter((c) => c.sector === s).length }));
-  const stateCounts = states
-    .map((st) => {
-      const items = caseStudies.filter((c) => c.state === st);
-      const topSectors = Array.from(new Set(items.map((i) => i.sector))).slice(0, 2);
-      const topVps = Array.from(new Set(items.flatMap((i) => i.valueProps))).slice(0, 2);
-      return { st, n: items.length, topSectors, topVps };
-    })
-    .filter((s) => s.n > 0);
-
   const clearAll = () => {
     setQuery(""); setChip(null); setSector("all"); setState("all"); setCompanyType("all"); setVp("all");
   };
@@ -271,56 +261,6 @@ const CaseStudiesIndex = () => {
             </div>
           </div>
         )}
-      </section>
-
-      {/* SECTOR & STATE EXPLORER */}
-      <section className="py-16 md:py-20 bg-[hsl(var(--neutral-50))]">
-        <div className="container-cii">
-          <div className="section-eyebrow mb-2">Explorer</div>
-          <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight text-[hsl(var(--navy-900))]">
-            Browse by sector & state
-          </h2>
-
-          <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div>
-              <div className="text-sm font-semibold uppercase tracking-wider text-[hsl(var(--neutral-500))] mb-4">By Sector</div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {sectorCounts.map(({ s, n }) => (
-                  <button
-                    key={s}
-                    onClick={() => { setSector(s); document.getElementById("all")?.scrollIntoView({ behavior: "smooth" }); }}
-                    className="rounded-xl border border-[hsl(var(--neutral-150))] bg-white p-4 text-left hover:border-[hsl(var(--navy-600))] hover:shadow-sm transition-all"
-                  >
-                    <Factory className="h-5 w-5 text-[hsl(var(--navy-700))]" />
-                    <div className="mt-3 font-display font-bold text-sm text-[hsl(var(--navy-900))]">{s}</div>
-                    <div className="text-xs text-[hsl(var(--neutral-500))]">{n} case stud{n === 1 ? "y" : "ies"}</div>
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div>
-              <div className="text-sm font-semibold uppercase tracking-wider text-[hsl(var(--neutral-500))] mb-4">By State</div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {stateCounts.map(({ st, n, topSectors, topVps }) => (
-                  <button
-                    key={st}
-                    onClick={() => { setState(st); document.getElementById("all")?.scrollIntoView({ behavior: "smooth" }); }}
-                    className="rounded-xl border border-[hsl(var(--neutral-150))] bg-white p-4 text-left hover:border-[hsl(var(--navy-600))] hover:shadow-sm transition-all"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="font-display font-bold text-[hsl(var(--navy-900))] inline-flex items-center gap-1.5">
-                        <MapPin className="h-4 w-4 text-[hsl(var(--red-600))]" /> {st}
-                      </div>
-                      <span className="text-xs font-bold font-numeric text-[hsl(var(--navy-700))]">{n}</span>
-                    </div>
-                    <div className="mt-2 text-xs text-[hsl(var(--neutral-500))]">Top: {topSectors.join(", ")}</div>
-                    <div className="mt-1 text-xs text-[hsl(var(--neutral-500))]">Outcomes: {topVps.join(", ")}</div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* FINAL CTA */}
