@@ -274,14 +274,6 @@ const DirectoriesHero = ({ onBrowse }: { onBrowse: () => void }) => (
           transformation enablers.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
-          <button
-            type="button"
-            onClick={onBrowse}
-            className="inline-flex items-center gap-2 h-12 px-6 rounded-md font-semibold text-white"
-            style={{ background: "hsl(var(--red-600))" }}
-          >
-            Browse Directories <ArrowRight className="h-4 w-4" />
-          </button>
           <Link
             to="/reports"
             className="inline-flex items-center gap-2 h-12 px-6 rounded-md font-semibold text-[hsl(var(--navy-800))] border border-[hsl(var(--neutral-200))] bg-white hover:bg-[hsl(var(--neutral-50))]"
