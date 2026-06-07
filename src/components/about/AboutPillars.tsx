@@ -1,37 +1,37 @@
 const pillars = [
   {
     num: "01",
-    title: "Access",
-    question: "Where do I begin?",
-    items: ["Maturity assessment · Readiness score", "Gap diagnosis", "Sector benchmarking"],
+    title: "Assess",
+    subtitle:
+      "Start with a clear maturity baseline. Benchmark against sector peers and identify the priority gaps to address first.",
     tone: "navy" as const,
   },
   {
     num: "02",
     title: "Guide",
-    question: "What should I know?",
-    items: ["Reports & insights", "Curated case studies", "Expert research & guides"],
+    subtitle:
+      "Stay informed with curated reports, relevant case studies, and expert research tailored to Indian manufacturing.",
     tone: "orange" as const,
   },
   {
     num: "03",
     title: "Enable",
-    question: "How do I build capability?",
-    items: ["Adoption pathways", "Capability building", "Playbooks & training"],
+    subtitle:
+      "Build real capability through structured adoption pathways, hands-on training, and ready-to-use playbooks.",
     tone: "green" as const,
   },
   {
     num: "04",
     title: "Connect",
-    question: "Who should I work with?",
-    items: ["Solution providers", "Domain experts", "Academia & large manufacturers"],
+    subtitle:
+      "Find the right solution providers, domain experts, and partners to accelerate your transformation journey.",
     tone: "red" as const,
   },
   {
     num: "05",
     title: "Recognise",
-    question: "How do I stand out?",
-    items: ["Awards & certification", "Visibility & showcase", "Peer recognition"],
+    subtitle:
+      "Gain visibility through awards, certification, and peer showcases that celebrate and motivate progress.",
     tone: "saffron" as const,
   },
 ];
