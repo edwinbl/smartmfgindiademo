@@ -628,15 +628,30 @@ const AssessmentDetail = () => {
               </h2>
             </div>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {personas.map(({ icon: Icon, title, desc }) => (
-                <div key={title} className="cii-card p-6 bg-white">
-                  <div className="h-11 w-11 rounded-full grid place-items-center bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))]">
-                    <Icon className="h-5 w-5" strokeWidth={1.75} />
+              {personas.map(({ icon: Icon, title, desc }, i) => {
+                const c = CARD_PALETTE[i % CARD_PALETTE.length];
+                return (
+                  <div
+                    key={title}
+                    className="cii-card group relative overflow-hidden p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
+                    style={{ background: `linear-gradient(180deg, ${c.tint}, #fff 60%)`, borderColor: c.ring }}
+                  >
+                    <span
+                      className="absolute -bottom-12 -right-12 h-32 w-32 rounded-full blur-2xl opacity-50 pointer-events-none"
+                      style={{ background: c.soft }}
+                      aria-hidden
+                    />
+                    <div
+                      className="relative h-11 w-11 rounded-full grid place-items-center transition-transform group-hover:scale-105"
+                      style={{ background: c.soft, color: c.accent, boxShadow: `0 0 0 4px ${c.tint}` }}
+                    >
+                      <Icon className="h-5 w-5" strokeWidth={1.75} />
+                    </div>
+                    <h3 className="relative mt-4 font-display font-bold text-navy-800 text-base">{title}</h3>
+                    <p className="relative mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
                   </div>
-                  <h3 className="mt-4 font-display font-bold text-navy-800 text-base">{title}</h3>
-                  <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
