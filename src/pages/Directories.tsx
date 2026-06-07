@@ -273,14 +273,6 @@ const DirectoriesHero = ({ onBrowse }: { onBrowse: () => void }) => (
           partners — showcasing technology providers, consultants, manufacturers and digital
           transformation enablers.
         </p>
-        <div className="mt-7 flex flex-wrap gap-3">
-          <Link
-            to="/reports"
-            className="inline-flex items-center gap-2 h-12 px-6 rounded-md font-semibold text-[hsl(var(--navy-800))] border border-[hsl(var(--neutral-200))] bg-white hover:bg-[hsl(var(--neutral-50))]"
-          >
-            <BookOpen className="h-4 w-4" /> View All Reports
-          </Link>
-        </div>
       </div>
 
       {/* Editorial collage */}
@@ -662,7 +654,7 @@ const Directories = () => {
                 ecosystems.
               </p>
             </div>
-            <div className="grid grid-cols-1 gap-8 max-w-4xl">
+            <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
               {DIRECTORIES.map((d) => (
                 <DirectoryCard
                   key={d.slug}
