@@ -241,17 +241,6 @@ const AssessmentDetail = () => {
 
             <div className="grid gap-10 lg:gap-14 lg:grid-cols-[1.05fr_1fr] items-center">
               <div>
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {["Readiness Assessment", "Smart Manufacturing", "MSME Transformation"].map((c) => (
-                    <span
-                      key={c}
-                      className="inline-flex items-center px-3 py-1 text-[11px] font-semibold rounded-full"
-                      style={{ background: cfg.accentSoft, color: cfg.accent }}
-                    >
-                      {c}
-                    </span>
-                  ))}
-                </div>
 
                 <h1 className="font-display font-bold text-[30px] sm:text-[36px] md:text-[44px] leading-[1.1] tracking-tight text-navy-800">
                   {cfg.title}
