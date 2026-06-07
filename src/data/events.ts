@@ -315,33 +315,6 @@ export const events: EventItem[] = [
     accent: "teal",
   },
 
-  // SEMINARS
-  {
-    slug: "seminar-digital-twins",
-    type: "Seminar",
-    title: "Digital Twins for Process Manufacturing",
-    tagline: "A practitioner seminar with live walk-throughs",
-    summary:
-      "Half-day seminar exploring how process manufacturers are using digital twins to optimise yield, energy and quality.",
-    date: "11 March 2026",
-    isoDate: "2026-03-11T10:00:00+05:30",
-    duration: "Half day",
-    location: "Hyderabad, India",
-    venue: "T-Hub, Hyderabad",
-    mode: "Physical",
-    level: "Intermediate",
-    industry: "Process",
-    technology: "Digital Twin",
-    segment: "Enterprise",
-    status: "open",
-    registrationLabel: "Reserve Seat",
-    highlights: [
-      { label: "Format", value: "Workshop" },
-      { label: "Capacity", value: "80 seats" },
-    ],
-    speakers: [S.meera, S.vikram],
-    accent: "navy",
-  },
 
   // PROGRAMMES
   {
