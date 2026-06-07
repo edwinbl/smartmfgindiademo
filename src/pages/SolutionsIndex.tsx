@@ -627,27 +627,38 @@ export const ProgrammesBand = () => (
         </Link>
       </div>
       <div className="grid md:grid-cols-3 gap-4">
-        {solutionProgrammes.map((p) => (
-          <div key={p.slug} className="cii-card p-6">
-            <div
-              className="h-11 w-11 rounded-xl grid place-items-center"
-              style={{ background: "hsl(var(--orange-100))", color: "hsl(var(--orange-600))" }}
-            >
-              <GraduationCap className="h-5 w-5" />
+        {solutionProgrammes.map((p, i) => {
+          const palettes = [
+            { bg: "hsl(var(--orange-100))", bar: "hsl(var(--orange-500))" },
+            { bg: "hsl(var(--navy-050))", bar: "hsl(var(--navy-600))" },
+            { bg: "hsl(var(--india-green) / 0.10)", bar: "hsl(var(--india-green))" },
+            { bg: "hsl(var(--red-100))", bar: "hsl(var(--red-600))" },
+          ];
+          const pal = palettes[i % palettes.length];
+          return (
+            <div key={p.slug} className="cii-card p-6 relative overflow-hidden"
+              style={{ background: `linear-gradient(180deg, ${pal.bg}, white 70%)` }}>
+              <div className="absolute top-0 left-0 right-0 h-1" style={{ background: pal.bar }} />
+              <div
+                className="h-11 w-11 rounded-xl grid place-items-center text-white shadow-sm"
+                style={{ background: pal.bar }}
+              >
+                <GraduationCap className="h-5 w-5" />
+              </div>
+              <div className="mt-4 font-display text-lg font-bold text-[hsl(var(--navy-900))] leading-snug">
+                {p.name}
+              </div>
+              <div className="mt-3 space-y-1.5 text-xs text-[hsl(var(--neutral-700))]">
+                <div><span className="font-bold text-[hsl(var(--navy-900))]">Duration:</span> {p.duration}</div>
+                <div><span className="font-bold text-[hsl(var(--navy-900))]">For:</span> {p.audience}</div>
+                <div><span className="font-bold text-[hsl(var(--navy-900))]">Outcomes:</span> {p.outcomes}</div>
+              </div>
+              <Link to="/programmes" className="mt-5 inline-flex items-center gap-1 text-xs font-bold text-[hsl(var(--red-600))] hover:underline">
+                View Programme <ArrowRight className="h-3 w-3" />
+              </Link>
             </div>
-            <div className="mt-4 font-display text-lg font-bold text-[hsl(var(--navy-900))] leading-snug">
-              {p.name}
-            </div>
-            <div className="mt-3 space-y-1.5 text-xs text-[hsl(var(--neutral-700))]">
-              <div><span className="font-bold text-[hsl(var(--navy-900))]">Duration:</span> {p.duration}</div>
-              <div><span className="font-bold text-[hsl(var(--navy-900))]">For:</span> {p.audience}</div>
-              <div><span className="font-bold text-[hsl(var(--navy-900))]">Outcomes:</span> {p.outcomes}</div>
-            </div>
-            <Link to="/programmes" className="mt-5 inline-flex items-center gap-1 text-xs font-bold text-[hsl(var(--red-600))] hover:underline">
-              View Programme <ArrowRight className="h-3 w-3" />
-            </Link>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   </section>
