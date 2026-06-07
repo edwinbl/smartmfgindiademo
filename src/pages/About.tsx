@@ -6,7 +6,7 @@ import { SEO } from "@/components/SEO";
 import { AboutHero } from "@/components/about/AboutHero";
 import { AboutPillars } from "@/components/about/AboutPillars";
 import { AboutWhyMatters } from "@/components/about/AboutWhyMatters";
-import { AboutPlatformJourney } from "@/components/about/AboutPlatformJourney";
+import { WireLeaderSpeak } from "@/components/wireframe/WireLeaderSpeak";
 import { AboutWhoServes } from "@/components/about/AboutWhoServes";
 import { AboutPlatformEcosystem } from "@/components/about/AboutPlatformEcosystem";
 import { AboutLivingPlatform } from "@/components/about/AboutLivingPlatform";
