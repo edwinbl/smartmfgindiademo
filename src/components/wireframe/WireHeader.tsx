@@ -207,6 +207,28 @@ export const WireHeader = () => {
 
           <div className="mt-6 px-6 py-5 border-t border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))]">
             <div className="flex flex-col items-center gap-4">
+              <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+                {[
+                  { label: "Privacy", to: "/privacy" },
+                  { label: "Terms", to: "/terms" },
+                  { label: "Accessibility", to: "/accessibility" },
+                  { label: "Cookies", to: "/cookies" },
+                ].map(({ label, to }) => {
+                  const active = pathname === to;
+                  return (
+                    <li key={label}>
+                      <Link
+                        to={to}
+                        onClick={() => setOpen(false)}
+                        className={`text-sm font-medium ${active ? "text-cii-red" : "text-navy-800 hover:text-cii-red"}`}
+                        aria-current={active ? "page" : undefined}
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
               <div className="flex items-center gap-3">
                 {[
                   { Icon: Linkedin, href: "https://www.linkedin.com", label: "LinkedIn" },
