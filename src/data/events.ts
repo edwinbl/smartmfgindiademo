@@ -431,8 +431,7 @@ export type QuickPickId =
   | "msme"
   | "sustainability"
   | "ai"
-  | "networking"
-  | "training";
+  | "networking";
 
 export const getEventBySlug = (slug: string) => events.find((e) => e.slug === slug);
 export const getFlagship = () => events.find((e) => e.flagship) ?? events[0];
