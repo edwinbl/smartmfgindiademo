@@ -25,7 +25,7 @@ import {
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
-import { CommonFinalCta } from "@/components/common/CommonFinalCta";
+
 import { SEO } from "@/components/SEO";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { toast } from "@/hooks/use-toast";
@@ -274,14 +274,6 @@ const DirectoriesHero = ({ onBrowse }: { onBrowse: () => void }) => (
           transformation enablers.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
-          <button
-            type="button"
-            onClick={onBrowse}
-            className="inline-flex items-center gap-2 h-12 px-6 rounded-md font-semibold text-white"
-            style={{ background: "hsl(var(--red-600))" }}
-          >
-            Browse Directories <ArrowRight className="h-4 w-4" />
-          </button>
           <Link
             to="/reports"
             className="inline-flex items-center gap-2 h-12 px-6 rounded-md font-semibold text-[hsl(var(--navy-800))] border border-[hsl(var(--neutral-200))] bg-white hover:bg-[hsl(var(--neutral-50))]"
@@ -670,7 +662,7 @@ const Directories = () => {
                 ecosystems.
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 gap-8 max-w-4xl">
               {DIRECTORIES.map((d) => (
                 <DirectoryCard
                   key={d.slug}
@@ -805,7 +797,7 @@ const Directories = () => {
           </div>
         </section>
 
-        <CommonFinalCta />
+        
       </main>
 
       <WireFooter />
