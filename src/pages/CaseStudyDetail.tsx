@@ -57,6 +57,33 @@ const CaseStudyDetail = () => {
         title={`${cs.company} — ${cs.headline} | Case Study`}
         description={cs.summary}
         url={`/case-studies/${cs.slug}`}
+        type="article"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: cs.headline,
+          description: cs.summary,
+          image: "https://www.smartmfgindia.com/img/Logo-final.png",
+          articleSection: cs.sector,
+          keywords: [cs.sector, cs.companyType, cs.state, ...cs.valueProps].join(", "),
+          author: {
+            "@type": "Organization",
+            name: "CII Smart Manufacturing",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "CII Smart Manufacturing",
+            logo: {
+              "@type": "ImageObject",
+              url: "https://www.smartmfgindia.com/img/Logo-final.png",
+            },
+          },
+          about: {
+            "@type": "Organization",
+            name: cs.company,
+          },
+          mainEntityOfPage: `https://smartmfgindia-demo4.bluelup.in/case-studies/${cs.slug}`,
+        }}
       />
       <WireHeader />
 
