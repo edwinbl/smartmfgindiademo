@@ -46,15 +46,6 @@ export const AboutHero = () => {
             excellence.
           </p>
 
-          <div className="mt-7 flex flex-col sm:flex-row gap-3">
-            <Link to="/readiness-assessment" className="btn-primary group">
-              Take Readiness Assessment
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </Link>
-            <Link to="/programmes" className="btn-outline">
-              Explore Programmes &amp; Training
-            </Link>
-          </div>
 
           <div className="mt-9 grid grid-cols-3 gap-6 max-w-md">
             {[
