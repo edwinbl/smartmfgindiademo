@@ -264,7 +264,7 @@ const CaseStudiesIndex = () => {
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  {filtered.map((c) => <CaseCard key={c.slug} c={c} />)}
+                  {filtered.map((c, i) => <CaseCard key={c.slug} c={c} index={i} />)}
                 </div>
               )}
             </div>
