@@ -35,21 +35,8 @@ export const AboutHero = () => {
 
           <h1 className="font-display mt-5 text-[36px] sm:text-5xl lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
             Accelerating India's{" "}
-            <span className="relative inline-block">
-              <span
-                className="relative z-10 bg-clip-text text-transparent"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(90deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
-                }}
-              >
-                Smart Manufacturing
-              </span>
-              <span
-                className="absolute left-0 right-0 bottom-1 h-2 -z-0 rounded-sm opacity-70"
-                style={{ background: "hsl(var(--orange-500) / 0.25)" }}
-                aria-hidden
-              />
+            <span className="text-[hsl(var(--red-600))]">
+              Smart Manufacturing
             </span>{" "}
             Transformation
           </h1>
