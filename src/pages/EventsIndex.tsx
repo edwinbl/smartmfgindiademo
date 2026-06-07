@@ -1,20 +1,21 @@
 import { useMemo, useState } from "react";
 import { WireHeader } from "@/components/wireframe/WireHeader";
-import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
 import { EventsFlagshipHero } from "@/components/events/EventsFlagshipHero";
 import { EventsTypeTabs } from "@/components/events/EventsTypeTabs";
 import {
-  EventsDiscoveryBar,
   emptyEventFilters,
   type EventFilters,
 } from "@/components/events/EventsDiscoveryBar";
-import { EventsGrid } from "@/components/events/EventsGrid";
+import { EventsFilterSidebar } from "@/components/events/EventsFilterSidebar";
+import { EventCard } from "@/components/events/EventCard";
+import { EventsEmptyState } from "@/components/events/EventsEmptyState";
 import { PersonalizedEventsShelf } from "@/components/events/PersonalizedEventsShelf";
 import { EventsImpactStats } from "@/components/events/EventsImpactStats";
 import { PastEventsArchive } from "@/components/events/PastEventsArchive";
+import { EventsCaseStudiesShowcase } from "@/components/events/EventsCaseStudiesShowcase";
 import { RegisterEventModal } from "@/components/events/RegisterEventModal";
 import {
   events,
@@ -125,21 +126,43 @@ const EventsIndex = () => {
       <main>
         <EventsFlagshipHero event={flagship} />
         <EventsTypeTabs active={type} onChange={setType} counts={counts} />
-        <EventsDiscoveryBar
-          query={query}
-          onQuery={setQuery}
-          filters={filters}
-          onFilters={setFilters}
-          quickPick={quickPick}
-          onQuickPick={setQuickPick}
-          onClear={clearAll}
-          resultCount={filtered.length}
-        />
         {user && <PersonalizedEventsShelf user={user} onRegister={handleRegister} />}
-        <EventsGrid events={filtered} onRegister={handleRegister} onClear={clearAll} />
+        <section className="py-12 md:py-16" id="all-events">
+          <div className="container-cii">
+            <div className="grid gap-8 lg:grid-cols-[280px_1fr]">
+              <EventsFilterSidebar
+                query={query}
+                onQuery={setQuery}
+                filters={filters}
+                onFilters={setFilters}
+                quickPick={quickPick}
+                onQuickPick={setQuickPick}
+                onClear={clearAll}
+                resultCount={filtered.length}
+              />
+              <div className="min-w-0">
+                <div className="mb-6">
+                  <div className="section-eyebrow mb-2">Upcoming Events</div>
+                  <h2 className="font-display font-bold text-[24px] md:text-[28px] text-[hsl(var(--navy-900))] tracking-tight">
+                    Discover the ecosystem in motion
+                  </h2>
+                </div>
+                {filtered.length === 0 ? (
+                  <EventsEmptyState onClear={clearAll} />
+                ) : (
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    {filtered.map((e) => (
+                      <EventCard key={e.slug} event={e} onRegister={handleRegister} />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
         <EventsImpactStats />
         <PastEventsArchive />
-        <CommonFinalCta />
+        <EventsCaseStudiesShowcase />
       </main>
       <WireFooter />
       <WireChatbotFAB />
