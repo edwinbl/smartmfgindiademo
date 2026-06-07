@@ -35,7 +35,7 @@ const About = () => {
         <AboutHero />
         <AboutPillars />
         <AboutWhyMatters />
-        <AboutPlatformJourney />
+        <WireLeaderSpeak />
         <AboutWhoServes />
         <AboutPlatformEcosystem />
         <AboutLivingPlatform />
