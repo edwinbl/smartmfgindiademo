@@ -26,30 +26,38 @@ export const GuidedDiscovery = ({ selected, onSelect }: Props) => {
           {outcomes.map((o, i) => {
             const Icon = iconMap[o.icon];
             const active = selected === o.id;
+            const palettes = [
+              { bg: "hsl(var(--red-50))", iconBg: "hsl(var(--red-100))", iconFg: "hsl(var(--red-700))", bar: "hsl(var(--red-600))", border: "hsl(var(--red-200))" },
+              { bg: "hsl(var(--orange-100) / 0.5)", iconBg: "hsl(var(--orange-100))", iconFg: "hsl(var(--orange-600))", bar: "hsl(var(--orange-500))", border: "hsl(var(--orange-200))" },
+              { bg: "hsl(var(--navy-050))", iconBg: "hsl(var(--navy-100))", iconFg: "hsl(var(--navy-700))", bar: "hsl(var(--navy-600))", border: "hsl(var(--navy-100))" },
+              { bg: "hsl(var(--india-green) / 0.08)", iconBg: "hsl(var(--india-green) / 0.15)", iconFg: "hsl(var(--india-green))", bar: "hsl(var(--india-green))", border: "hsl(var(--india-green) / 0.25)" },
+            ];
+            const p = palettes[i % palettes.length];
             return (
               <button
                 key={o.id}
                 type="button"
                 onClick={() => onSelect(active ? null : o.id)}
-                className={`group text-left cii-card p-5 transition-all relative overflow-hidden animate-fade-in ${
+                className={`group text-left cii-card p-5 transition-all relative overflow-hidden animate-fade-in hover:-translate-y-0.5 ${
                   active ? "ring-2 ring-[hsl(var(--red-600))] border-[hsl(var(--red-600))]" : ""
                 }`}
-                style={{ animationDelay: `${i * 60}ms` }}
+                style={{ animationDelay: `${i * 60}ms`, background: p.bg, borderColor: active ? undefined : p.border }}
               >
                 <span
-                  className={`h-1 absolute top-0 left-0 right-0 transition-all ${
-                    active ? "bg-[hsl(var(--red-600))]" : "bg-transparent group-hover:bg-[hsl(var(--navy-600))]"
-                  }`}
+                  className="h-1 absolute top-0 left-0 right-0 transition-all"
+                  style={{ background: p.bar }}
                 />
-                <div className="h-10 w-10 rounded-md grid place-items-center mb-3 bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))] group-hover:bg-[hsl(var(--red-100))] group-hover:text-[hsl(var(--red-700))] transition-colors">
+                <div
+                  className="h-10 w-10 rounded-md grid place-items-center mb-3 transition-colors"
+                  style={{ background: p.iconBg, color: p.iconFg }}
+                >
                   <Icon className="h-5 w-5" />
                 </div>
                 <h3 className="font-display font-bold text-[15px] text-[hsl(var(--navy-900))] leading-snug">{o.title}</h3>
                 <p className="mt-1.5 text-xs text-[hsl(var(--neutral-700))] line-clamp-2">{o.description}</p>
                 <div
-                  className={`mt-3 inline-flex items-center gap-1 text-[11px] font-semibold transition-colors ${
-                    active ? "text-[hsl(var(--red-700))]" : "text-[hsl(var(--navy-700))] group-hover:text-[hsl(var(--red-600))]"
-                  }`}
+                  className="mt-3 inline-flex items-center gap-1 text-[11px] font-semibold transition-colors"
+                  style={{ color: active ? "hsl(var(--red-700))" : p.iconFg }}
                 >
                   {active ? "Recommended" : "See programmes"} <ArrowRight className="h-3 w-3" />
                 </div>
