@@ -68,12 +68,9 @@ const Contact = () => {
         <ContactHero />
         <ContactIntentGrid active={intent} onSelect={setIntent} />
         <ContactSmartForm intent={intent} />
-        <EcosystemConnect />
         <RegionalPresence />
-        <BookConsultation />
         <SupportChannels />
         <ContactFAQ />
-        <CommonFinalCta />
       </main>
       <WireFooter />
       <WireChatbotFAB />
