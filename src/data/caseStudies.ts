@@ -209,7 +209,128 @@ export const caseStudies: CaseStudy[] = [
       { label: "Export share", before: "30%", after: "50%" },
     ],
     featured: true,
+    categoryTags: ["Textiles", "Quality Systems", "Industry 4.0"],
+    executiveSummary:
+      "Vastra Textiles re-engineered its quality operating system across weaving — combining digital defect capture, standardised inspection protocols and operator-led quality circles — to unlock export-grade consistency and a step change in first-pass yield.",
+    solutionProvider: {
+      name: "Aarav Smart Systems",
+      overview:
+        "An industrial digital solutions partner specialising in shop-floor quality systems, IIoT enablement and operator engagement programmes for discrete and process manufacturers.",
+      capabilities: ["Quality Systems", "IIoT Enablement", "Analytics", "Operator Apps", "Change Management"],
+      industries: ["Textiles", "Auto Components", "Food Processing"],
+      technologies: ["Edge IoT", "Cloud Analytics", "Mobile QC Apps", "Computer Vision"],
+    },
+    manufacturer: {
+      industry: "Textile manufacturing — weaving & finishing",
+      footprint: "3 plants across Gujarat with 1,200+ looms serving domestic and export markets",
+      highlights: ["420 employees", "50% export share post-programme", "ISO 9001 certified", "Tier-1 supplier to global brands"],
+    },
+    discoveryFlow: [
+      { title: "Manual QC Paperwork", desc: "Defect logs captured on paper across shifts." },
+      { title: "Export Pressure", desc: "Global buyers demanded tighter consistency and traceability." },
+      { title: "Rising Rejections", desc: "Rejection rate trending above 6% across lines." },
+      { title: "Variability Across Shifts", desc: "Inspection criteria interpreted differently across teams." },
+      { title: "Need for Digital Quality OS", desc: "Recognised need for a unified, real-time quality system." },
+    ],
+    complexity: [
+      { value: "1,200+", label: "Active Looms" },
+      { value: "3", label: "Plants Integrated" },
+      { value: "120+", label: "Defect Categories" },
+      { value: "24x7", label: "Continuous Operations" },
+    ],
+    timeline: [
+      { phase: "01", title: "Discovery Workshop", desc: "Quality baseline and gap diagnostic across plants." },
+      { phase: "02", title: "Requirement Finalisation", desc: "SOPs, defect taxonomy and dashboard scope locked." },
+      { phase: "03", title: "Proof of Concept", desc: "Two pilot lines instrumented with tablet-based capture." },
+      { phase: "04", title: "Full Solution Rollout", desc: "Scaled across 1,200+ looms in 3 plants." },
+      { phase: "05", title: "Deployment & Training", desc: "Operator and supervisor enablement programmes." },
+      { phase: "06", title: "Value Realisation", desc: "Sustained quality circles and continuous improvement." },
+    ],
+    team: [
+      { role: "Executive Sponsor", scope: "Plant Director, Vastra" },
+      { role: "Project Manager", scope: "Joint Vastra–Aarav PMO" },
+      { role: "Quality Lead", scope: "Defect taxonomy & SOP owner" },
+      { role: "IIoT Consultant", scope: "Tablet & edge rollout" },
+      { role: "Analytics Lead", scope: "Dashboard & insights design" },
+      { role: "Change Champion", scope: "Operator engagement & circles" },
+    ],
+    changeManagement: {
+      challenge: "Inspector resistance to digital capture and fear of being monitored.",
+      actions: [
+        "Hands-on training programmes per shift",
+        "Tool capability workshops with supervisors",
+        "Defect simulation drills",
+        "Historical data walkthroughs",
+        "Onsite collaboration with line teams",
+      ],
+      outcome: "Strong inspector buy-in, voluntary quality circles and visible pride in shift-level scoreboards.",
+    },
+    architecture: [
+      { name: "Edge Capture Tablets", layer: "Capture", desc: "Tablets at every loom for real-time defect capture." },
+      { name: "Defect Taxonomy Engine", layer: "Standardisation", desc: "Unified 120+ defect codes across plants." },
+      { name: "Quality Data Lake", layer: "Data", desc: "Centralised store of QC events across plants." },
+      { name: "Analytics & Dashboards", layer: "Insights", desc: "First-pass yield, top defects and shift comparisons." },
+      { name: "Quality Circles Workflow", layer: "Action", desc: "Action items and CAPA tracking by line." },
+      { name: "Export Compliance Pack", layer: "Reporting", desc: "Auto-generated reports for buyer audits." },
+    ],
+    solutionFeatures: [
+      { title: "Digital Defect Capture", desc: "Tablet-based capture replacing paper QC." },
+      { title: "Standardised Taxonomy", desc: "Unified defect codes across all plants." },
+      { title: "Real-time Dashboards", desc: "Live FPY and rejection visibility for supervisors." },
+      { title: "Shift Scoreboards", desc: "Line-level scoreboards to drive engagement." },
+      { title: "Quality Circles Workflow", desc: "Action tracking from circle to closure." },
+      { title: "Audit-ready Reporting", desc: "Auto-generated buyer audit packs." },
+      { title: "Defect Trend Analytics", desc: "Pareto and trend views for root cause." },
+      { title: "Mobile-first UX", desc: "Designed for shop-floor use, even with gloves." },
+    ],
+    implementationChallenges: [
+      {
+        challenge: "Operator resistance to digital capture",
+        mitigation: "Hands-on training, peer champions and visible scoreboards",
+        outcome: "95% voluntary adoption within 8 weeks",
+      },
+      {
+        challenge: "Inconsistent defect interpretation",
+        mitigation: "Co-created defect taxonomy with image references",
+        outcome: "Inter-shift variance reduced by 60%",
+      },
+      {
+        challenge: "Connectivity gaps in older sheds",
+        mitigation: "Edge caching with offline-first capture",
+        outcome: "Zero data loss across rollout",
+      },
+      {
+        challenge: "Buyer audit alignment",
+        mitigation: "Pre-mapped reports to top-3 buyer audit templates",
+        outcome: "Audit prep time reduced by 70%",
+      },
+    ],
+    outcomes: {
+      operational: [
+        { label: "First-pass yield", value: "+15%", direction: "up" },
+        { label: "Rejections", value: "-28%", direction: "down" },
+        { label: "Reporting lag", value: "-90%", direction: "down" },
+      ],
+      business: [
+        { label: "Export orders", value: "+20%", direction: "up" },
+        { label: "Customer complaints", value: "-35%", direction: "down" },
+        { label: "Export share", value: "30% → 50%", direction: "up" },
+      ],
+      user: [
+        "Greater visibility for supervisors",
+        "Faster defect-to-decision cycle",
+        "Improved cross-shift communication",
+        "Operator pride and engagement",
+      ],
+    },
+    resources: [
+      { title: "Full Case Study PDF", type: "PDF" },
+      { title: "Quality Systems Implementation Framework", type: "Framework" },
+      { title: "Textile Industry 4.0 Outlook", type: "Report" },
+      { title: "Operator Engagement Best Practice Guide", type: "Guide" },
+    ],
   },
+
   {
     slug: "prakriti-chem-energy-optimisation",
     company: "Prakriti Chem",
