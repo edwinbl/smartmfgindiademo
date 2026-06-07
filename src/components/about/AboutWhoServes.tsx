@@ -1,41 +1,35 @@
-import { Factory, Building2, Crown, Briefcase, Cpu, Handshake } from "lucide-react";
+import { Rocket, Wrench, Anchor, GraduationCap, Landmark } from "lucide-react";
 
 const personas = [
   {
-    icon: Factory,
-    title: "MSMEs",
-    desc: "Beginning their digital and operational transformation journey.",
+    icon: Rocket,
+    title: "The Adopter",
+    desc: "MSMEs and MSME digital champions.",
     accent: "orange",
   },
   {
-    icon: Building2,
-    title: "Manufacturing Enterprises",
-    desc: "Scaling efficiency, quality and competitiveness across plants.",
+    icon: Wrench,
+    title: "The Enabler",
+    desc: "Domain experts; technology / platform providers.",
     accent: "navy",
   },
   {
-    icon: Crown,
-    title: "Industry Leaders",
-    desc: "Driving innovation, advocacy and adoption across the sector.",
+    icon: Anchor,
+    title: "The Anchor",
+    desc: "Larger manufacturing companies.",
     accent: "red",
   },
   {
-    icon: Briefcase,
-    title: "Consultants & Experts",
-    desc: "Supporting transformation initiatives with deep domain expertise.",
+    icon: GraduationCap,
+    title: "The Knowledge Partner",
+    desc: "Academia and research institutions.",
     accent: "green",
   },
   {
-    icon: Cpu,
-    title: "Solution Providers",
-    desc: "Showcasing technologies, platforms and implementation capability.",
+    icon: Landmark,
+    title: "The Institutional Catalyst",
+    desc: "Policy bodies, international institutions and country partners.",
     accent: "navy",
-  },
-  {
-    icon: Handshake,
-    title: "Ecosystem Partners",
-    desc: "Academia, government and institutions enabling manufacturing progress.",
-    accent: "orange",
   },
 ] as const;
 
