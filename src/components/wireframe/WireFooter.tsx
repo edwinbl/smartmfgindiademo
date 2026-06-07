@@ -18,7 +18,7 @@ const socials = [
 
 const cols = [
   {
-    title: "Explore",
+    title: "About",
     links: [
       { label: "About", url: "/about" },
       { label: "Readiness Assessment", url: "/readiness-assessment" },
@@ -26,31 +26,23 @@ const cols = [
     ],
   },
   {
-    title: "Programmes",
+    title: "Solutions",
+    links: [
+      { label: "Case Studies", url: "/case-studies" },
+      { label: "Reports & Publications", url: "/reports" },
+      { label: "E-Directory", url: "https://www.smartmfgindia.com/e-Directory.aspx" },
+    ],
+  },
+  {
+    title: "Programmes & Training",
     links: [
       { label: "All Programmes", url: "/programmes" },
-      { label: "Workshops", url: "/programmes" },
-      { label: "Certifications", url: "/programmes" },
-      { label: "Bootcamps", url: "/programmes" },
-      { label: "Leadership", url: "/programmes" },
-      { label: "Webinars", url: "/programmes" },
     ],
   },
   {
     title: "Events",
     links: [
       { label: "All Events", url: "/events" },
-      { label: "Flagship Summit", url: "/events/smart-mfg-summit-2026" },
-      { label: "Webinars", url: "/events" },
-      { label: "Roundtables", url: "/events" },
-    ],
-  },
-  {
-    title: "Solutions",
-    links: [
-      { label: "Case Studies", url: "https://www.smartmfgindia.com/CaseStudy.aspx" },
-      { label: "Reports & Insights", url: "/reports" },
-      { label: "E-Directory", url: "https://www.smartmfgindia.com/e-Directory.aspx" },
     ],
   },
 ];
