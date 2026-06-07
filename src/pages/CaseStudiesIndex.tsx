@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import {
   X,
   ArrowRight,
@@ -284,6 +285,7 @@ const CaseStudiesIndex = () => {
         </div>
       </section>
 
+      <CommonFinalCta />
       <WireFooter />
       <WireChatbotFAB />
     </div>

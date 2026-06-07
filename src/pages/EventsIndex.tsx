@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { WireHeader } from "@/components/wireframe/WireHeader";
+import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
@@ -14,7 +15,6 @@ import { EventsGrid } from "@/components/events/EventsGrid";
 import { PersonalizedEventsShelf } from "@/components/events/PersonalizedEventsShelf";
 import { EventsImpactStats } from "@/components/events/EventsImpactStats";
 import { PastEventsArchive } from "@/components/events/PastEventsArchive";
-import { EventsFinalCta } from "@/components/events/EventsFinalCta";
 import { RegisterEventModal } from "@/components/events/RegisterEventModal";
 import {
   events,
@@ -139,7 +139,7 @@ const EventsIndex = () => {
         <EventsGrid events={filtered} onRegister={handleRegister} onClear={clearAll} />
         <EventsImpactStats />
         <PastEventsArchive />
-        <EventsFinalCta />
+        <CommonFinalCta />
       </main>
       <WireFooter />
       <WireChatbotFAB />

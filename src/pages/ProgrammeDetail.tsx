@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
@@ -26,7 +27,6 @@ import { ProgrammePresentations } from "@/components/programmes/detail/Programme
 import { ProgrammeRecording } from "@/components/programmes/detail/ProgrammeRecording";
 import { RelatedProgrammes } from "@/components/programmes/detail/RelatedProgrammes";
 import { MobileStickyRegister } from "@/components/programmes/detail/MobileStickyRegister";
-import { ProgrammesFinalCta } from "@/components/programmes/ProgrammesFinalCta";
 import { ProgrammeRegisterModal } from "@/components/programmes/ProgrammeRegisterModal";
 import { getProgrammeBySlug, getRelatedProgrammes } from "@/data/programmes";
 
@@ -148,7 +148,7 @@ const ProgrammeDetail = () => {
         </section>
 
         <RelatedProgrammes programmes={related} />
-        <ProgrammesFinalCta />
+        <CommonFinalCta />
       </main>
       <WireFooter />
       <WireChatbotFAB />

@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { WireHeader } from "@/components/wireframe/WireHeader";
+import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
@@ -10,7 +11,6 @@ import { ReportsThemesExplorer } from "@/components/reports/ReportsThemesExplore
 import { ReportsSectorExplorer } from "@/components/reports/ReportsSectorExplorer";
 import { ReportsGrid } from "@/components/reports/ReportsGrid";
 import { PersonalizedShelf } from "@/components/reports/PersonalizedShelf";
-import { ReportsFinalCta } from "@/components/reports/ReportsFinalCta";
 import { DownloadModal } from "@/components/reports/DownloadModal";
 import { reports, reportFacets, type Report, type QuickPickId } from "@/data/reports";
 import { useMockAuth } from "@/hooks/useMockAuth";
@@ -116,7 +116,7 @@ const ReportsIndex = () => {
           }}
         />
         <ReportsGrid reports={filtered} onDownload={handleDownload} onClear={clearAll} />
-        <ReportsFinalCta />
+        <CommonFinalCta />
       </main>
       <WireFooter />
       <WireChatbotFAB />

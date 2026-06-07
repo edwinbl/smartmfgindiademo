@@ -1,5 +1,6 @@
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
+import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
 import { AboutHero } from "@/components/about/AboutHero";
@@ -9,7 +10,6 @@ import { AboutPlatformJourney } from "@/components/about/AboutPlatformJourney";
 import { AboutWhoServes } from "@/components/about/AboutWhoServes";
 import { AboutPlatformEcosystem } from "@/components/about/AboutPlatformEcosystem";
 import { AboutLivingPlatform } from "@/components/about/AboutLivingPlatform";
-import { AboutFinalCta } from "@/components/about/AboutFinalCta";
 import { AboutProgress } from "@/components/about/AboutProgress";
 
 const About = () => {
@@ -39,7 +39,7 @@ const About = () => {
         <AboutWhoServes />
         <AboutPlatformEcosystem />
         <AboutLivingPlatform />
-        <AboutFinalCta />
+        <CommonFinalCta />
       </main>
       <WireFooter />
       <WireChatbotFAB />

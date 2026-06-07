@@ -1,5 +1,6 @@
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireHero } from "@/components/wireframe/WireHero";
+import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WirePathwayCards } from "@/components/wireframe/WirePathwayCards";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { SEO } from "@/components/SEO";
@@ -11,7 +12,6 @@ import { WireResources } from "@/components/wireframe/WireResources";
 import { WireProgrammes } from "@/components/wireframe/WireProgrammes";
 import { WireAwardsBand } from "@/components/wireframe/WireAwardsBand";
 import { WirePartners } from "@/components/wireframe/WirePartners";
-import { WireFinalCta } from "@/components/wireframe/WireFinalCta";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 
 const Index = () => {
@@ -59,7 +59,7 @@ const Index = () => {
         <WireProgrammes />
         <WireAwardsBand />
         <WirePartners />
-        <WireFinalCta />
+        <CommonFinalCta />
       </main>
       <WireFooter />
       <WireChatbotFAB />

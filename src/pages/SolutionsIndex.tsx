@@ -15,6 +15,7 @@ import {
   Send,
 } from "lucide-react";
 import { useMemo, useState } from "react";
+import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
@@ -264,7 +265,7 @@ const SolutionsIndex = () => {
         <ProgrammesBand />
 
         {/* NEXT STEP */}
-        <NextStepCta />
+        <CommonFinalCta />
       </main>
       <WireFooter />
       <WireChatbotFAB />

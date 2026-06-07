@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { WireHeader } from "@/components/wireframe/WireHeader";
+import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
@@ -11,7 +12,6 @@ import { RegionalPresence } from "@/components/contact/RegionalPresence";
 import { BookConsultation } from "@/components/contact/BookConsultation";
 import { SupportChannels } from "@/components/contact/SupportChannels";
 import { ContactFAQ, faqs } from "@/components/contact/ContactFAQ";
-import { ContactFinalCta } from "@/components/contact/ContactFinalCta";
 import { MobileStickyCta } from "@/components/contact/MobileStickyCta";
 
 const Contact = () => {
@@ -73,7 +73,7 @@ const Contact = () => {
         <BookConsultation />
         <SupportChannels />
         <ContactFAQ />
-        <ContactFinalCta />
+        <CommonFinalCta />
       </main>
       <WireFooter />
       <WireChatbotFAB />

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { WireHeader } from "@/components/wireframe/WireHeader";
+import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
@@ -17,7 +18,6 @@ import { FeaturedProgrammes } from "@/components/programmes/FeaturedProgrammes";
 import { LearningPathways } from "@/components/programmes/LearningPathways";
 import { ProgrammesImpactStats } from "@/components/programmes/ProgrammesImpactStats";
 import { PersonalizedProgrammesShelf } from "@/components/programmes/PersonalizedProgrammesShelf";
-import { ProgrammesFinalCta } from "@/components/programmes/ProgrammesFinalCta";
 import { ProgrammeRegisterModal } from "@/components/programmes/ProgrammeRegisterModal";
 import {
   programmes,
@@ -164,7 +164,7 @@ const ProgrammesIndex = () => {
         <LearningPathways />
         {user && <PersonalizedProgrammesShelf user={user} onRegister={handleRegister} />}
         <ProgrammesImpactStats />
-        <ProgrammesFinalCta />
+        <CommonFinalCta />
       </main>
       <WireFooter />
       <WireChatbotFAB />
