@@ -99,92 +99,136 @@ export const ProgrammesHero = ({ onExplore, onFindPath, query = "", onQuery, onT
 };
 
 const ProgrammesCollage = () => {
+  const modules = [
+    { icon: PlayCircle, label: "Foundations of Industry 4.0", status: "done" },
+    { icon: BookOpen, label: "Smart Factory Design", status: "active" },
+    { icon: Trophy, label: "Capstone & Certification", status: "todo" },
+  ];
+
   return (
     <div className="absolute inset-0">
-      <div className="absolute top-2 right-2 w-[82%] cii-card p-5 rotate-[2deg]">
+      {/* Learning path card - main */}
+      <div className="absolute top-4 right-2 w-[86%] cii-card p-5 rotate-[2deg]">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--red-600))]">
             <GraduationCap className="h-3.5 w-3.5" />
-            Live Cohort
+            Learning Path
           </div>
-          <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-[hsl(var(--india-green))]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[hsl(var(--india-green))] animate-pulse" /> Open
-          </span>
+          <span className="text-[10px] font-semibold text-[hsl(var(--neutral-500))]">3 modules · 12 wks</span>
         </div>
         <div className="mt-2 text-sm font-bold text-[hsl(var(--navy-900))] leading-snug">
-          Industry 4.0 Leadership Programme
+          Smart Manufacturing Leader
         </div>
-        <div className="mt-3 text-xs text-[hsl(var(--neutral-700))]">
-          IIT Madras · 6 weekends · Hybrid
-        </div>
-        <div className="mt-3 flex items-center -space-x-2">
-          {["AR", "PK", "SM", "JV"].map((t, i) => (
-            <span
-              key={t}
-              className="h-7 w-7 rounded-full grid place-items-center text-[10px] font-bold text-white border-2 border-white"
-              style={{ background: `hsl(var(--navy-${800 - i * 100}))` }}
-            >
-              {t}
-            </span>
-          ))}
-          <span className="pl-3 text-[10px] text-[hsl(var(--neutral-500))]">+42 enrolled</span>
+
+        <div className="mt-4 space-y-2.5">
+          {modules.map((m, i) => {
+            const Icon = m.icon;
+            const isDone = m.status === "done";
+            const isActive = m.status === "active";
+            return (
+              <div key={i} className="flex items-center gap-3">
+                <div
+                  className="h-7 w-7 rounded-full grid place-items-center shrink-0"
+                  style={{
+                    background: isDone
+                      ? "hsl(var(--india-green) / 0.15)"
+                      : isActive
+                      ? "hsl(var(--orange-500) / 0.18)"
+                      : "hsl(var(--neutral-100))",
+                    color: isDone
+                      ? "hsl(var(--india-green))"
+                      : isActive
+                      ? "hsl(var(--orange-600))"
+                      : "hsl(var(--neutral-500))",
+                  }}
+                >
+                  {isDone ? <CheckCircle2 className="h-4 w-4" /> : <Icon className="h-3.5 w-3.5" />}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[12px] font-semibold text-[hsl(var(--navy-900))] truncate">
+                    {m.label}
+                  </div>
+                  <div className="mt-1 h-1 rounded-full bg-[hsl(var(--neutral-100))] overflow-hidden">
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: isDone ? "100%" : isActive ? "55%" : "0%",
+                        background: isDone
+                          ? "hsl(var(--india-green))"
+                          : "linear-gradient(90deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      <div className="absolute top-[46%] left-0 w-[60%] cii-card p-4 -rotate-[3deg]">
-        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--navy-700))]">
-          <Award className="h-3.5 w-3.5" />
-          Certification
-        </div>
-        <div className="mt-2 text-sm font-bold text-[hsl(var(--navy-900))] leading-snug">
-          Smart Manufacturing Practitioner — Level 2
-        </div>
-        <div className="mt-3 flex gap-2">
-          <span
-            className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
-            style={{ background: "hsl(var(--orange-100))", color: "hsl(var(--orange-600))" }}
+      {/* Certificate badge */}
+      <div className="absolute bottom-8 left-0 w-[58%] cii-card p-4 -rotate-[4deg]">
+        <div className="flex items-center gap-3">
+          <div
+            className="h-12 w-12 rounded-full grid place-items-center shrink-0 text-white shadow-md"
+            style={{
+              background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
+            }}
           >
-            Co-certified
-          </span>
-          <span
-            className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
-            style={{ background: "hsl(var(--navy-050))", color: "hsl(var(--navy-700))" }}
-          >
-            CII + Bosch
-          </span>
+            <Award className="h-6 w-6" />
+          </div>
+          <div>
+            <div className="text-[9px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--neutral-500))]">
+              Certificate Earned
+            </div>
+            <div className="text-[12px] font-bold text-[hsl(var(--navy-900))] leading-snug mt-0.5">
+              Industry 4.0 Practitioner
+            </div>
+            <div className="mt-1 text-[10px] text-[hsl(var(--neutral-700))]">CII · Verified credential</div>
+          </div>
         </div>
       </div>
 
-      <div className="absolute bottom-6 right-6 cii-card px-4 py-3 rotate-[2deg] flex items-center gap-3">
-        <div
-          className="h-9 w-9 rounded-md grid place-items-center text-white"
-          style={{ background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))" }}
-        >
-          <Users className="h-4 w-4" />
-        </div>
+      {/* Live cohort pill */}
+      <div className="absolute bottom-2 right-4 cii-card px-3.5 py-2.5 rotate-[2deg] flex items-center gap-2.5">
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[hsl(var(--india-green))] opacity-70" />
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-[hsl(var(--india-green))]" />
+        </span>
         <div>
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
-            Mentor pool
-          </div>
-          <div className="text-sm font-bold text-[hsl(var(--navy-900))]">120+ industry experts</div>
+          <div className="text-[9px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">Live now</div>
+          <div className="text-[11px] font-bold text-[hsl(var(--navy-900))]">42 learners in cohort</div>
         </div>
       </div>
 
+      {/* Floating book icon */}
       <div
-        className="absolute top-0 left-4 h-12 w-12 rounded-full grid place-items-center text-white shadow-lg"
+        className="absolute top-0 left-6 h-11 w-11 rounded-2xl grid place-items-center text-white shadow-lg rotate-[-8deg]"
         style={{
-          background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
+          background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
           animation: "float 6s ease-in-out infinite",
         }}
         aria-hidden
       >
-        <Sparkles className="h-5 w-5" />
+        <BookOpen className="h-5 w-5" />
+      </div>
+
+      {/* Floating sparkle */}
+      <div
+        className="absolute top-[40%] right-0 h-9 w-9 rounded-full grid place-items-center text-white shadow-lg"
+        style={{
+          background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
+          animation: "float 7s ease-in-out infinite",
+        }}
+        aria-hidden
+      >
+        <Sparkles className="h-4 w-4" />
       </div>
 
       <style>{`
         @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
+          0%, 100% { transform: translateY(0) rotate(-8deg); }
+          50% { transform: translateY(-10px) rotate(-8deg); }
         }
       `}</style>
     </div>
