@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import {
   ArrowUp,
   ChevronRight,
@@ -662,7 +661,6 @@ const Terms = () => {
 
       <BackToTopFab />
       <div className="print:hidden">
-        <CommonFinalCta />
             <WireFooter />
         <WireChatbotFAB />
       </div>
