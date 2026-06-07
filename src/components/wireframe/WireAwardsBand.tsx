@@ -149,7 +149,7 @@ export const WireAwardsBand = () => {
                         />
                       )}
                     </div>
-                    <div className="mt-4 text-[11px] uppercase tracking-[0.14em] font-semibold text-white/45">
+                    <div className="mt-4 text-[11px] uppercase tracking-[0.14em] font-semibold text-white/80">
                       {t.date}
                     </div>
                     <div className="mt-1.5 font-display font-medium text-sm md:text-base leading-tight text-white/85">

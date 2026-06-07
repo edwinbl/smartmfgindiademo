@@ -112,7 +112,7 @@ export const ReportDownloadModule = ({ report, onDownload }: Props) => {
                 "Future Outlook",
               ].map((t, i) => (
                 <div key={t} className="flex items-center gap-2">
-                  <span className="font-numeric text-[11px] text-white/55 w-5">
+                  <span className="font-numeric text-[11px] text-white/85 w-5">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span>{t}</span>
