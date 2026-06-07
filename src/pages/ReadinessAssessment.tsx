@@ -578,34 +578,6 @@ const ReadinessAssessment = () => {
           </div>
         </section>
 
-        {/* ============== FINAL CTA ============== */}
-        <section className="relative overflow-hidden" style={{ background: "hsl(var(--navy-900))" }}>
-          <div className="absolute inset-0 blueprint-grid opacity-60 pointer-events-none" />
-          <div
-            className="absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl opacity-40 pointer-events-none"
-            style={{ background: "hsl(var(--orange-500))" }}
-          />
-          <div className="container-cii relative py-16 md:py-20 text-center">
-            <div className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] font-bold text-white/80">
-              <span className="h-1.5 w-1.5 rounded-full bg-[hsl(var(--india-green))]" />
-              Start with readiness
-            </div>
-            <h2 className="mt-4 font-display font-bold text-white text-[28px] md:text-[40px] leading-tight tracking-tight max-w-3xl mx-auto">
-              Start With Readiness
-            </h2>
-            <p className="mt-4 text-white/80 text-base md:text-lg max-w-2xl mx-auto">
-              Understand where your organisation stands before deciding what to adopt, improve or transform.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                Start Assessment <ArrowRight className="!h-4 !w-4" />
-              </a>
-              <Link to="/contact" className="btn-ghost">
-                Talk to an Expert
-              </Link>
-            </div>
-          </div>
-        </section>
       </main>
 
       {/* Mobile sticky CTA */}
