@@ -351,78 +351,157 @@ const SolutionsHero = ({ query, onQuery }: { query: string; onQuery: (v: string)
 };
 
 const SolutionsHeroViz = () => {
-  const stages = [
-    { label: "Challenge", color: "var(--red-600)" },
-    { label: "Solution", color: "var(--navy-600)" },
-    { label: "Example", color: "var(--orange-500)" },
-    { label: "Guidance", color: "var(--india-green)" },
-    { label: "Action", color: "var(--red-600)" },
+  const size = 520;
+  const c = size / 2;
+  const rInner = 138;
+  const rOuter = 226;
+
+  const categories = [
+    { Icon: Workflow, label: "Process" },
+    { Icon: ClipboardCheck, label: "Quality" },
+    { Icon: Compass, label: "Strategy" },
+    { Icon: Send, label: "Logistics" },
+    { Icon: Sparkles, label: "Automation" },
+    { Icon: GraduationCap, label: "Skills" },
+    { Icon: FileText, label: "Standards" },
+    { Icon: MessageCircle, label: "Advisory" },
   ];
+
+  const outcomesRing = [
+    "Productivity",
+    "Quality",
+    "Energy",
+    "Traceability",
+    "Competitiveness",
+    "Safety",
+    "Sustainability",
+  ];
+
+  const polar = (cx: number, cy: number, r: number, deg: number) => {
+    const rad = ((deg - 90) * Math.PI) / 180;
+    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+  };
+
   return (
-    <div className="absolute inset-0">
-      <div className="absolute top-2 right-2 w-[86%] cii-card p-5 rotate-[2deg]">
-        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--red-600))]">
-          <Compass className="h-3.5 w-3.5" /> Pathway Builder
-        </div>
-        <div className="mt-3 space-y-2">
-          {stages.map((s, i) => (
-            <div key={s.label} className="flex items-center gap-3">
-              <span
-                className="h-7 w-7 rounded-full grid place-items-center text-[10px] font-bold text-white flex-shrink-0"
-                style={{ background: `hsl(${s.color})` }}
-              >
-                {i + 1}
-              </span>
-              <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: "hsl(var(--neutral-150))" }}>
-                <div
-                  className="h-full"
-                  style={{ width: `${30 + i * 17}%`, background: `hsl(${s.color})` }}
-                />
-              </div>
-              <span className="text-[11px] font-bold text-[hsl(var(--navy-900))] w-20">{s.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+    <div className="relative w-full max-w-[520px] aspect-square mx-auto">
+      <svg viewBox={`0 0 ${size} ${size}`} className="absolute inset-0 w-full h-full" aria-hidden>
+        <defs>
+          <radialGradient id="solHubGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="hsl(var(--red-600))" stopOpacity="0.35" />
+            <stop offset="60%" stopColor="hsl(var(--orange-500))" stopOpacity="0.08" />
+            <stop offset="100%" stopColor="hsl(var(--orange-500))" stopOpacity="0" />
+          </radialGradient>
+          <linearGradient id="solRingStroke" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="hsl(var(--red-600))" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="hsl(var(--orange-500))" stopOpacity="0.3" />
+          </linearGradient>
+        </defs>
 
-      <div className="absolute top-[58%] left-0 w-[58%] cii-card p-4 -rotate-[3deg]">
-        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--navy-700))]">
-          <Workflow className="h-3.5 w-3.5" /> Outcome Map
-        </div>
-        <div className="mt-2 grid grid-cols-2 gap-2">
-          {["Productivity", "Quality", "Energy", "Traceability"].map((o) => (
-            <div key={o} className="rounded-md px-2 py-1.5 text-[10px] font-bold text-[hsl(var(--navy-900))]" style={{ background: "hsl(var(--navy-050))" }}>
-              {o}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="absolute bottom-6 right-6 cii-card px-4 py-3 rotate-[2deg] flex items-center gap-3">
-        <div
-          className="h-9 w-9 rounded-md grid place-items-center text-white"
-          style={{ background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))" }}
+        <circle cx={c} cy={c} r={140} fill="url(#solHubGlow)" />
+        <circle cx={c} cy={c} r={rInner} fill="none" stroke="hsl(var(--neutral-200))" strokeWidth="1" />
+        <circle
+          cx={c} cy={c} r={rOuter}
+          fill="none" stroke="url(#solRingStroke)" strokeWidth="1" strokeDasharray="3 6"
         >
-          <ClipboardCheck className="h-4 w-4" />
-        </div>
-        <div>
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">Recommendations</div>
-          <div className="text-sm font-bold text-[hsl(var(--navy-900))]">Tailored pathways</div>
-        </div>
-      </div>
+          <animateTransform attributeName="transform" type="rotate"
+            from={`0 ${c} ${c}`} to={`360 ${c} ${c}`} dur="80s" repeatCount="indefinite" />
+        </circle>
 
+        {categories.map((_, i) => {
+          const p = polar(c, c, rInner, (360 / categories.length) * i);
+          return (
+            <line key={`s-${i}`} x1={c} y1={c} x2={p.x} y2={p.y}
+              stroke="hsl(var(--neutral-200))" strokeWidth="1" />
+          );
+        })}
+
+        {outcomesRing.map((_, i) => {
+          const p = polar(c, c, rOuter, (360 / outcomesRing.length) * i + 25);
+          const pIn = polar(c, c, rInner, (360 / outcomesRing.length) * i + 25);
+          return (
+            <line key={`e-${i}`}
+              x1={pIn.x} y1={pIn.y} x2={p.x} y2={p.y}
+              stroke="hsl(var(--red-600))" strokeOpacity="0.35"
+              strokeWidth="1" strokeDasharray="4 5">
+              <animate attributeName="stroke-dashoffset" from="0" to="-18" dur="2.4s" repeatCount="indefinite" />
+            </line>
+          );
+        })}
+
+        {categories.map((_, i) => {
+          const p = polar(c, c, rInner, (360 / categories.length) * i);
+          return (
+            <circle key={`d-${i}`} r="2.4" fill="hsl(var(--red-600))">
+              <animate attributeName="cx" values={`${c};${p.x}`} dur="3s" begin={`${i * 0.25}s`} repeatCount="indefinite" />
+              <animate attributeName="cy" values={`${c};${p.y}`} dur="3s" begin={`${i * 0.25}s`} repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0;1;0" dur="3s" begin={`${i * 0.25}s`} repeatCount="indefinite" />
+            </circle>
+          );
+        })}
+      </svg>
+
+      {/* Center hub */}
       <div
-        className="absolute top-0 left-4 h-12 w-12 rounded-full grid place-items-center text-white shadow-lg"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                   h-[118px] w-[118px] rounded-full grid place-items-center text-center
+                   border border-white text-white shadow-xl"
         style={{
-          background: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
-          animation: "float 6s ease-in-out infinite",
+          background: "linear-gradient(135deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
+          boxShadow: "0 10px 40px hsl(var(--red-600) / 0.35)",
         }}
-        aria-hidden
       >
-        <Compass className="h-5 w-5" />
+        <div>
+          <div className="font-display text-[10px] font-bold tracking-[0.18em] text-white/80 uppercase">
+            Solution
+          </div>
+          <div className="font-display text-[14px] font-extrabold leading-tight mt-0.5">
+            Pathways<br/>Hub
+          </div>
+        </div>
       </div>
 
-      <style>{`@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }`}</style>
+      {/* Inner ring: category nodes */}
+      {categories.map(({ Icon, label }, i) => {
+        const p = polar(c, c, rInner, (360 / categories.length) * i);
+        const xPct = (p.x / size) * 100;
+        const yPct = (p.y / size) * 100;
+        return (
+          <div key={label}
+            className="absolute -translate-x-1/2 -translate-y-1/2 group"
+            style={{ left: `${xPct}%`, top: `${yPct}%` }}>
+            <div className="h-11 w-11 rounded-full grid place-items-center border bg-white shadow-md
+                            transition-all duration-300 group-hover:scale-110"
+              style={{ borderColor: "hsl(var(--neutral-200))" }}>
+              <Icon className="h-4 w-4 text-[hsl(var(--red-600))]" strokeWidth={2} />
+            </div>
+            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1 whitespace-nowrap
+                            text-[9.5px] font-semibold tracking-wide uppercase text-[hsl(var(--navy-700))]
+                            opacity-0 group-hover:opacity-100 transition-opacity">
+              {label}
+            </div>
+          </div>
+        );
+      })}
+
+      {/* Outer ring: outcome chips */}
+      {outcomesRing.map((label, i) => {
+        const p = polar(c, c, rOuter, (360 / outcomesRing.length) * i + 25);
+        const xPct = (p.x / size) * 100;
+        const yPct = (p.y / size) * 100;
+        return (
+          <div key={label}
+            className="absolute -translate-x-1/2 -translate-y-1/2"
+            style={{ left: `${xPct}%`, top: `${yPct}%` }}>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border bg-white shadow-sm"
+              style={{ borderColor: "hsl(var(--orange-500) / 0.4)" }}>
+              <span className="h-1.5 w-1.5 rounded-full bg-[hsl(var(--orange-500))]" />
+              <span className="font-display text-[10.5px] font-semibold tracking-wide whitespace-nowrap text-[hsl(var(--navy-800))]">
+                {label}
+              </span>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
