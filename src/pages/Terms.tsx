@@ -663,8 +663,7 @@ const Terms = () => {
       <BackToTopFab />
       <div className="print:hidden">
         <CommonFinalCta />
-      </main>
-      <WireFooter />
+            <WireFooter />
         <WireChatbotFAB />
       </div>
     </div>

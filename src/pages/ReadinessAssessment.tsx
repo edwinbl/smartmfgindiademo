@@ -565,8 +565,7 @@ const ReadinessAssessment = () => {
       </div>
 
       <CommonFinalCta />
-      </main>
-      <WireFooter />
+            <WireFooter />
       <WireChatbotFAB />
     </div>
   );

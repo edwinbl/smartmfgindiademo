@@ -95,8 +95,7 @@ const EventDetail = () => {
         )}
 
         <CommonFinalCta />
-      </main>
-      <WireFooter />
+            <WireFooter />
       <WireChatbotFAB />
       <RegisterEventModal open={modalOpen} onOpenChange={setModalOpen} event={event} />
     </div>

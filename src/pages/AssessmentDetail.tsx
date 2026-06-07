@@ -889,8 +889,7 @@ const AssessmentDetail = () => {
       </div>
 
       <CommonFinalCta />
-      </main>
-      <WireFooter />
+            <WireFooter />
       <WireChatbotFAB />
     </div>
   );
