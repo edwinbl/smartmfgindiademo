@@ -84,7 +84,8 @@ const ReportDetail = () => {
           </div>
         </section>
         <CommonFinalCta />
-            <WireFooter />
+      </main>
+      <WireFooter />
       <WireChatbotFAB />
       <DownloadModal open={modalOpen} onOpenChange={setModalOpen} report={report} />
     </div>
