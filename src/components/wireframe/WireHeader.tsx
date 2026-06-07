@@ -24,7 +24,19 @@ const navLinks: NavLink[] = [
   { label: "Contact", href: "/contact" },
 ];
 
+function isLinkActive(pathname: string, link: NavLink): boolean {
+  if (link.children) {
+    return link.children.some((c) => {
+      if (!c.href.startsWith("/")) return false;
+      return pathname === c.href || pathname.startsWith(c.href + "/");
+    });
+  }
+  if (!link.href.startsWith("/")) return false;
+  return pathname === link.href || pathname.startsWith(link.href + "/");
+}
+
 export const WireHeader = () => {
+  const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
 
