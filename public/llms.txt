@@ -1,0 +1,28 @@
+# CII Smart Manufacturing
+
+> A national, industry-led platform helping Indian manufacturers assess readiness, discover solutions, learn from peers, and build capabilities for sustainable Industry 4.0 transformation.
+
+CII Smart Manufacturing connects MSMEs and large enterprises with readiness assessments, case studies, training programmes, research reports, and a partner ecosystem to accelerate digital adoption on the shop floor.
+
+## Pages
+
+- [Home](/): Overview of the platform, featured programmes, resources, and pathways to start the smart-manufacturing journey.
+- [About](/about): Mission, pillars, platform journey, ecosystem, and progress of the CII Smart Manufacturing initiative.
+- [Contact](/contact): Get in touch with the CII Smart Manufacturing team.
+- [Reports](/reports): Research reports, whitepapers, and industry insights on Industry 4.0 adoption in India.
+- [Events](/events): Upcoming conferences, summits, webinars, roundtables, and training events.
+- [Programmes](/programmes): Training, certification, and capability-building programmes for manufacturers.
+- [Solutions](/solutions): Curated technology solutions and vendor ecosystem for smart manufacturing.
+- [Case Studies](/case-studies): Real-world transformation stories from Indian manufacturing companies.
+- [Readiness Assessment](/readiness-assessment): Self-assessment tools to evaluate Industry 4.0 maturity.
+- [Terms](/terms): Terms of use and legal information.
+- [Privacy](/privacy): Privacy policy and data handling practices.
+
+## Optional
+
+- [Report detail](/reports/:slug): Individual report download and summary pages.
+- [Event detail](/events/:slug): Detailed event agendas, speakers, and registration.
+- [Programme detail](/programmes/:slug): Individual programme curriculum, schedule, and enrollment.
+- [Solution detail](/solutions/:slug): Deep-dive into specific technology solutions and providers.
+- [Case Study detail](/case-studies/:slug): Detailed breakdown of a single transformation case study.
+- [Assessment detail](/readiness-assessment/:slug): Specific assessment modules and results.
