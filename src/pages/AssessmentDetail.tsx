@@ -618,43 +618,6 @@ const AssessmentDetail = () => {
           </div>
         </section>
 
-        {/* ============== WHO IT'S FOR ============== */}
-        <section className="py-16 md:py-24 bg-[hsl(var(--neutral-50))]">
-          <div className="container-cii">
-            <div className="max-w-2xl">
-              <div className="section-eyebrow mb-3">Who it's for</div>
-              <h2 className="font-display font-bold text-[26px] md:text-[34px] leading-tight tracking-tight text-navy-800">
-                Built for Manufacturing Leaders
-              </h2>
-            </div>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {personas.map(({ icon: Icon, title, desc }, i) => {
-                const c = CARD_PALETTE[i % CARD_PALETTE.length];
-                return (
-                  <div
-                    key={title}
-                    className="cii-card group relative overflow-hidden p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
-                    style={{ background: `linear-gradient(180deg, ${c.tint}, #fff 60%)`, borderColor: c.ring }}
-                  >
-                    <span
-                      className="absolute -bottom-12 -right-12 h-32 w-32 rounded-full blur-2xl opacity-50 pointer-events-none"
-                      style={{ background: c.soft }}
-                      aria-hidden
-                    />
-                    <div
-                      className="relative h-11 w-11 rounded-full grid place-items-center transition-transform group-hover:scale-105"
-                      style={{ background: c.soft, color: c.accent, boxShadow: `0 0 0 4px ${c.tint}` }}
-                    >
-                      <Icon className="h-5 w-5" strokeWidth={1.75} />
-                    </div>
-                    <h3 className="relative mt-4 font-display font-bold text-navy-800 text-base">{title}</h3>
-                    <p className="relative mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
 
         {/* ============== PROCESS TIMELINE ============== */}
         <section className="py-16 md:py-24 bg-white">
