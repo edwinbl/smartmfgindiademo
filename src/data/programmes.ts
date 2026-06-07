@@ -82,6 +82,14 @@ export interface ProgrammeItem {
   }[];
   gallery?: { type: "image" | "video"; url: string; thumbnail?: string; caption?: string }[];
   testimonials?: { name: string; role: string; org: string; quote: string; avatar?: string }[];
+  postProgramme?: {
+    summary?: string;
+    highlights?: string[];
+    stats?: { label: string; value: string }[];
+    reports?: { title: string; description?: string; url: string; size?: string; type?: string }[];
+    presentations?: { title: string; speaker?: string; org?: string; url: string; size?: string }[];
+    recording?: { url: string; platform?: string; duration?: string; thumbnail?: string };
+  };
 }
 
 
@@ -291,6 +299,68 @@ export const programmes: ProgrammeItem[] = [
       { type: "image", url: "/programme-gallery-3.jpg", caption: "Industry visit — Day 3" },
       { type: "image", url: "/programme-gallery-4.jpg", caption: "Mumbai batch plenary presentations" },
     ],
+    postProgramme: {
+      summary:
+        "Across the Gurgaon and Mumbai batches, 84 senior manufacturing leaders worked through Japanese Industry 4.0 case studies, completed individual company analyses with AOTS experts and visited two reference smart factories. Participants left with a prioritised 12-month rollout plan and a peer network spanning auto, process and discrete manufacturing.",
+      highlights: [
+        "84 senior leaders trained across two batches (Gurgaon + Mumbai)",
+        "12 Japanese case studies analysed across large, mid-sized and SME manufacturers",
+        "100% of participants submitted an individual company analysis reviewed by AOTS experts",
+        "2 reference smart-factory industry visits completed",
+        "Net Promoter Score of 72 across both batches",
+      ],
+      stats: [
+        { label: "Participants", value: "84" },
+        { label: "Companies", value: "61" },
+        { label: "Expert faculty", value: "9" },
+        { label: "NPS", value: "72" },
+      ],
+      reports: [
+        {
+          title: "Programme Outcomes Report 2024",
+          description: "Full post-programme report with participant feedback, case-study learnings and rollout benchmarks.",
+          url: "#",
+          size: "3.4 MB",
+          type: "PDF",
+        },
+        {
+          title: "Japan–India Industry 4.0 Benchmark Study",
+          description: "Comparative benchmark of Japanese and Indian manufacturers across 6 maturity dimensions.",
+          url: "#",
+          size: "2.1 MB",
+          type: "PDF",
+        },
+      ],
+      presentations: [
+        {
+          title: "Industry 4.0 Success Factors — Japanese Manufacturers",
+          speaker: "AOTS Faculty",
+          org: "AOTS, Japan",
+          url: "#",
+          size: "8.6 MB",
+        },
+        {
+          title: "Individual Company Analysis — Framework & Worked Examples",
+          speaker: "Dr. Meera Iyer",
+          org: "IIT Madras",
+          url: "#",
+          size: "5.2 MB",
+        },
+        {
+          title: "Plenary Wrap-up — Prioritised Rollout Playbook",
+          speaker: "Ravi Sankaran",
+          org: "CII Smart Mfg.",
+          url: "#",
+          size: "4.1 MB",
+        },
+      ],
+      recording: {
+        url: "#",
+        platform: "YouTube",
+        duration: "1h 48m",
+        thumbnail: "/programme-gallery-4.jpg",
+      },
+    },
     accent: "navy",
   },
 

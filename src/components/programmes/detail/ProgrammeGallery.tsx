@@ -11,7 +11,7 @@ export const ProgrammeGallery = ({ programme }: Props) => {
   return (
     <section>
       <h2 className="font-display font-bold text-2xl text-[hsl(var(--navy-900))]">
-        Programme highlights
+        Photo gallery
       </h2>
       <p className="mt-2 text-sm text-[hsl(var(--neutral-700))]">
         Moments from the {programme.title} sessions.
