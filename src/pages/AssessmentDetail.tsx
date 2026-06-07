@@ -27,7 +27,6 @@ import {
   Truck,
   ListChecks,
   Download,
-  MessageCircle,
   Lightbulb,
   HardHat,
   Lock,
@@ -450,9 +449,6 @@ const AssessmentDetail = () => {
                   <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
                     Start Assessment <ArrowRight className="!h-4 !w-4" />
                   </a>
-                  <Link to="/contact" className="btn-outline">
-                    <MessageCircle className="!h-4 !w-4" /> Request a guided session
-                  </Link>
                 </div>
               </div>
 
