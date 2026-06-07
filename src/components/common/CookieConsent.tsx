@@ -38,8 +38,7 @@ export const CookieConsent = () => {
 
   return (
     <div
-      role="dialog"
-      aria-live="polite"
+      role="region"
       aria-label="Cookie consent"
       className="fixed inset-x-3 bottom-3 z-[70] sm:inset-x-auto sm:right-5 sm:bottom-5 sm:max-w-md print:hidden"
     >
