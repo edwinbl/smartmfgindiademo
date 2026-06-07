@@ -1,4 +1,4 @@
-import { Search, Sparkles, Calendar, MapPin, Users, Mic, Ticket, Clock } from "lucide-react";
+import { Search, Sparkles, Calendar, MapPin, Users, Mic, Ticket, Clock, TrendingUp } from "lucide-react";
 import { CountdownTimer } from "./CountdownTimer";
 import type { EventItem } from "@/data/events";
 
