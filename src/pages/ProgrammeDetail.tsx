@@ -133,8 +133,12 @@ const ProgrammeDetail = () => {
               {programme.certification && !isShort && <CertificationBlock programme={programme} />}
               <FeeTable programme={programme} />
               <ProgrammeBatches programme={programme} onRegister={onRegister} />
+              {isClosed && <PostProgrammeHighlights programme={programme} />}
               {isClosed && <ProgrammeGallery programme={programme} />}
               {isClosed && <ProgrammeTestimonials programme={programme} />}
+              {isClosed && <ProgrammeReports programme={programme} />}
+              {isClosed && <ProgrammePresentations programme={programme} />}
+              {isClosed && <ProgrammeRecording programme={programme} />}
               <ProgrammeContacts programme={programme} />
             </div>
             <div className="lg:col-span-4">
