@@ -267,27 +267,47 @@ const ReadinessAssessment = () => {
               <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 snap-x snap-mandatory pb-2 md:pb-0">
                 {outcomes.map(({ icon: Icon, title, desc }, i) => {
                   const accents = [
-                    { bg: "hsl(var(--india-green)/0.1)", text: "hsl(var(--india-green))" },
-                    { bg: "hsl(var(--navy-100))", text: "hsl(var(--navy-600))" },
-                    { bg: "hsl(var(--orange-100))", text: "hsl(var(--orange-600))" },
-                    { bg: "hsl(var(--navy-050))", text: "hsl(var(--navy-700))" },
-                    { bg: "hsl(var(--red-100))", text: "hsl(var(--red-600))" },
-                    { bg: "hsl(var(--orange-100))", text: "hsl(var(--orange-500))" },
+                    { border: "hsl(var(--india-green))", bg: "hsl(var(--india-green) / 0.06)", iconBg: "hsl(var(--india-green) / 0.12)", text: "hsl(var(--india-green))" },
+                    { border: "hsl(var(--navy-600))", bg: "hsl(var(--navy-100) / 0.5)", iconBg: "hsl(var(--navy-100))", text: "hsl(var(--navy-600))" },
+                    { border: "hsl(var(--orange-500))", bg: "hsl(var(--orange-100) / 0.5)", iconBg: "hsl(var(--orange-100))", text: "hsl(var(--orange-600))" },
+                    { border: "hsl(var(--navy-800))", bg: "hsl(var(--navy-050) / 0.6)", iconBg: "hsl(var(--navy-100))", text: "hsl(var(--navy-700))" },
+                    { border: "hsl(var(--red-600))", bg: "hsl(var(--red-100) / 0.4)", iconBg: "hsl(var(--red-100))", text: "hsl(var(--red-600))" },
+                    { border: "hsl(var(--orange-600))", bg: "hsl(var(--orange-100) / 0.4)", iconBg: "hsl(var(--orange-100))", text: "hsl(var(--orange-500))" },
                   ];
                   const accent = accents[i];
                   return (
                     <div
                       key={title}
-                      className="cii-card group p-5 min-w-[260px] md:min-w-0 snap-start bg-white"
+                      className="group relative overflow-hidden rounded-lg border p-5 min-w-[260px] md:min-w-0 snap-start transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                      style={{
+                        background: accent.bg,
+                        borderColor: "hsl(var(--neutral-150))",
+                      }}
                     >
+                      {/* Colored top accent bar */}
                       <div
-                        className="h-10 w-10 rounded-md grid place-items-center transition-colors"
-                        style={{ background: accent.bg, color: accent.text }}
-                      >
-                        <Icon className="h-5 w-5" strokeWidth={1.75} />
+                        className="absolute top-0 left-0 right-0 h-1"
+                        style={{ background: accent.border }}
+                      />
+                      <div className="flex items-start gap-3">
+                        <div
+                          className="shrink-0 h-10 w-10 rounded-lg grid place-items-center"
+                          style={{ background: accent.iconBg, color: accent.text }}
+                        >
+                          <Icon className="h-5 w-5" strokeWidth={1.75} />
+                        </div>
+                        <div className="min-w-0">
+                          <h3 className="font-display font-bold text-navy-800 text-base">{title}</h3>
+                          <p className="mt-1 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
+                        </div>
                       </div>
-                      <h3 className="mt-3 font-display font-bold text-navy-800 text-base">{title}</h3>
-                      <p className="mt-1.5 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
+                      {/* Hover arrow hint */}
+                      <div
+                        className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
+                        style={{ color: accent.text }}
+                      >
+                        <ArrowRight className="h-4 w-4" />
+                      </div>
                     </div>
                   );
                 })}
