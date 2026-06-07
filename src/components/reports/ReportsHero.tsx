@@ -6,15 +6,6 @@ interface Props {
   onTag?: (tag: string) => void;
 }
 
-const heroTags = [
-  "Productivity",
-  "Industry 4.0",
-  "Sustainability",
-  "MSMEs",
-  "Traceability",
-  "Digital Readiness",
-  "Export Competitiveness",
-];
 
 export const ReportsHero = ({ query = "", onQuery, onTag }: Props) => {
   const focusResults = () => {
