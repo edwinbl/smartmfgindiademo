@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { MapPin, Clock, Users, ArrowRight, Wifi, Lock, GraduationCap, Sparkles } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { accentBar, accentSoft, accentText } from "@/lib/eventsStorage";
 import type { EventItem } from "@/data/events";
 
 interface Props {
   event: EventItem;
   onRegister: (e: EventItem) => void;
+  className?: string;
 }
 
 const TypeBadge = ({ event }: { event: EventItem }) => (
@@ -36,8 +38,8 @@ const SpeakerStack = ({ event, max = 3 }: { event: EventItem; max?: number }) =>
 );
 
 // WEBINAR — compact, learning focus
-const WebinarCard = ({ event, onRegister }: Props) => (
-  <article className="cii-card overflow-hidden flex flex-col">
+const WebinarCard = ({ event, onRegister, className }: Props) => (
+  <article className={cn("cii-card overflow-hidden flex flex-col", className)}>
     <div className={`h-1 ${accentBar[event.accent]}`} />
     <div className="p-5 flex-1 flex flex-col gap-3">
       <div className="flex items-center justify-between">
@@ -78,9 +80,9 @@ const WebinarCard = ({ event, onRegister }: Props) => (
 );
 
 // ROUNDTABLE — premium invite
-const RoundtableCard = ({ event, onRegister }: Props) => (
+const RoundtableCard = ({ event, onRegister, className }: Props) => (
   <article
-    className="cii-card overflow-hidden flex flex-col relative"
+    className={cn("cii-card overflow-hidden flex flex-col relative", className)}
     style={{
       borderColor: "hsl(45_70%_82%)",
       background:
@@ -126,8 +128,8 @@ const RoundtableCard = ({ event, onRegister }: Props) => (
 );
 
 // SUMMIT / CONFERENCE — large immersive
-const SummitCard = ({ event, onRegister }: Props) => (
-  <article className="cii-card overflow-hidden flex flex-col lg:col-span-2">
+const SummitCard = ({ event, onRegister, className }: Props) => (
+  <article className={cn("cii-card overflow-hidden flex flex-col lg:col-span-2", className)}>
     <div className={`relative h-40 md:h-48 overflow-hidden`}>
       <div
         className="absolute inset-0"
@@ -184,8 +186,8 @@ const SummitCard = ({ event, onRegister }: Props) => (
 );
 
 // SEMINAR / PROGRAMME — structured learning
-const ProgrammeCard = ({ event, onRegister }: Props) => (
-  <article className="cii-card overflow-hidden flex flex-col">
+const ProgrammeCard = ({ event, onRegister, className }: Props) => (
+  <article className={cn("cii-card overflow-hidden flex flex-col", className)}>
     <div className={`h-1 ${accentBar[event.accent]}`} />
     <div className="p-5 flex-1 flex flex-col gap-3">
       <div className="flex items-center justify-between">
@@ -228,18 +230,18 @@ const ProgrammeCard = ({ event, onRegister }: Props) => (
   </article>
 );
 
-export const EventCard = ({ event, onRegister }: Props) => {
+export const EventCard = ({ event, onRegister, className }: Props) => {
   switch (event.type) {
     case "Webinar":
-      return <WebinarCard event={event} onRegister={onRegister} />;
+      return <WebinarCard event={event} onRegister={onRegister} className={className} />;
     case "Roundtable":
-      return <RoundtableCard event={event} onRegister={onRegister} />;
+      return <RoundtableCard event={event} onRegister={onRegister} className={className} />;
     case "Summit":
     case "Conference":
-      return <SummitCard event={event} onRegister={onRegister} />;
+      return <SummitCard event={event} onRegister={onRegister} className={className} />;
     case "Seminar":
     case "Programme":
     default:
-      return <ProgrammeCard event={event} onRegister={onRegister} />;
+      return <ProgrammeCard event={event} onRegister={onRegister} className={className} />;
   }
 };
