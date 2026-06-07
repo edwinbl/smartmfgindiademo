@@ -1,89 +1,105 @@
-import { Gauge, BookOpen, Network, Workflow, ArrowUpRight } from "lucide-react";
-
 const pillars = [
   {
-    icon: Gauge,
+    num: "01",
     title: "Assess",
-    desc: "Understand readiness and opportunities through structured maturity assessments.",
+    question: "Where do I stand?",
+    items: ["Maturity assessment · Readiness score", "Gap diagnosis", "Sector benchmarking"],
     tone: "navy",
   },
   {
-    icon: BookOpen,
+    num: "02",
     title: "Learn",
-    desc: "Access reports, insights, case studies and curated research.",
+    question: "What should I know?",
+    items: ["Reports & insights", "Curated case studies", "Expert research & guides"],
     tone: "orange",
   },
   {
-    icon: Network,
+    num: "03",
     title: "Connect",
-    desc: "Discover ecosystem partners, experts and solution providers.",
+    question: "Who should I work with?",
+    items: ["Solution providers", "Domain experts", "Academia & large manufacturers"],
     tone: "green",
   },
   {
-    icon: Workflow,
+    num: "04",
     title: "Transform",
-    desc: "Enable practical adoption pathways and capability building.",
+    question: "How do I adopt correctly?",
+    items: ["Adoption pathways", "Capability building", "Playbooks & training"],
     tone: "red",
   },
 ] as const;
 
 const toneStyles = {
-  navy: { bg: "hsl(var(--navy-050))", fg: "hsl(var(--navy-700))" },
-  orange: { bg: "hsl(var(--orange-100))", fg: "hsl(var(--orange-600))" },
-  green: { bg: "hsl(var(--india-green) / 0.10)", fg: "hsl(var(--india-green))" },
-  red: { bg: "hsl(var(--red-100))", fg: "hsl(var(--red-600))" },
+  navy: {
+    bar: "hsl(var(--navy-700))",
+    bg: "linear-gradient(180deg, hsl(var(--navy-050)) 0%, hsl(0 0% 100%) 60%)",
+    accent: "hsl(var(--navy-700))",
+  },
+  orange: {
+    bar: "hsl(var(--orange-500))",
+    bg: "linear-gradient(180deg, hsl(var(--orange-100)) 0%, hsl(0 0% 100%) 60%)",
+    accent: "hsl(var(--orange-600))",
+  },
+  green: {
+    bar: "hsl(var(--india-green))",
+    bg: "linear-gradient(180deg, hsl(var(--india-green) / 0.12) 0%, hsl(0 0% 100%) 60%)",
+    accent: "hsl(var(--india-green))",
+  },
+  red: {
+    bar: "hsl(var(--red-600))",
+    bg: "linear-gradient(180deg, hsl(var(--red-100)) 0%, hsl(0 0% 100%) 60%)",
+    accent: "hsl(var(--red-600))",
+  },
 };
 
 export const AboutPillars = () => {
   return (
-    <section className="py-16 lg:py-24 bg-background">
+    <section className="py-16 lg:py-24 bg-[hsl(var(--navy-050)/0.4)]">
       <div className="container-cii">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-5 lg:sticky lg:top-28">
-            <div className="section-eyebrow mb-3">About CII Smart Manufacturing</div>
-            <h2 className="font-display text-3xl md:text-[40px] font-extrabold leading-[1.1] tracking-tight text-[hsl(var(--navy-900))]">
-              A platform built to move Indian manufacturing forward.
-            </h2>
-            <p className="mt-5 text-base text-[hsl(var(--neutral-700))] leading-relaxed">
-              CII Smart Manufacturing is an industry-led, mission-driven platform that
-              helps manufacturers progress through every stage of their transformation —
-              from assessing where they stand today to discovering what's possible next.
-            </p>
-            <p className="mt-3 text-base text-[hsl(var(--neutral-700))] leading-relaxed">
-              Built with India's most trusted ecosystem of enterprises, experts, academia
-              and government, the platform is anchored in one belief: smart manufacturing
-              is a journey, and every manufacturer deserves a practical path forward.
-            </p>
-          </div>
+        <div className="max-w-3xl mb-10 lg:mb-14">
+          <div className="section-eyebrow mb-3">About CII Smart Manufacturing</div>
+          <h2 className="font-display text-3xl md:text-[40px] font-extrabold leading-[1.1] tracking-tight text-[hsl(var(--navy-900))]">
+            A platform built to move Indian manufacturing forward.
+          </h2>
+          <p className="mt-5 text-base text-[hsl(var(--neutral-700))] leading-relaxed">
+            CII Smart Manufacturing is an industry-led, mission-driven platform that helps
+            manufacturers progress through every stage of their transformation — anchored
+            in four capability tracks.
+          </p>
+        </div>
 
-          <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
-            {pillars.map((p) => {
-              const Icon = p.icon;
-              const s = toneStyles[p.tone];
-              return (
-                <div
-                  key={p.title}
-                  className="group cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all"
-                >
-                  <div className="flex items-center justify-between">
-                    <div
-                      className="h-11 w-11 rounded-xl grid place-items-center transition-transform group-hover:scale-110"
-                      style={{ background: s.bg, color: s.fg }}
-                    >
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <ArrowUpRight className="h-4 w-4 text-[hsl(var(--neutral-500))] opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {pillars.map((p) => {
+            const s = toneStyles[p.tone];
+            return (
+              <div
+                key={p.title}
+                className="relative overflow-hidden rounded-2xl border border-[hsl(var(--neutral-200))] bg-white shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col"
+                style={{ background: s.bg }}
+              >
+                <div className="h-1.5 w-full" style={{ background: s.bar }} />
+                <div className="p-6 flex flex-col h-full">
+                  <div className="text-sm font-semibold tracking-wider text-[hsl(var(--neutral-500))]">
+                    {p.num}
                   </div>
-                  <div className="mt-4 font-display text-xl font-bold text-[hsl(var(--navy-900))]">
+                  <div className="mt-8 font-display text-2xl font-extrabold text-[hsl(var(--navy-900))]">
                     {p.title}
                   </div>
-                  <p className="mt-1.5 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">
-                    {p.desc}
-                  </p>
+                  <div
+                    className="mt-3 italic text-sm font-medium"
+                    style={{ color: s.accent }}
+                  >
+                    {p.question}
+                  </div>
+                  <ul className="mt-6 space-y-3 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">
+                    {p.items.map((it) => (
+                      <li key={it}>{it}</li>
+                    ))}
+                  </ul>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
