@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Search, Sparkles, GraduationCap, Award, Users, BookOpen, PlayCircle, Trophy, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Search, Sparkles, GraduationCap, Award, Users, BookOpen, PlayCircle, Trophy, CheckCircle2, TrendingUp } from "lucide-react";
 
 interface Props {
   onExplore: () => void;
