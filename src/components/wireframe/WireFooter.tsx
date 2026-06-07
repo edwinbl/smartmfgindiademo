@@ -28,6 +28,7 @@ const cols = [
   {
     title: "Solutions",
     links: [
+      { label: "All Solutions", url: "/solutions" },
       { label: "Case Studies", url: "/case-studies" },
       { label: "Reports & Publications", url: "/reports" },
       { label: "E-Directory", url: "https://www.smartmfgindia.com/e-Directory.aspx" },
