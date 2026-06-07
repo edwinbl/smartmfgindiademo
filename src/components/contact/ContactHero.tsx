@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, Mail, Phone, MessageCircle, Calendar, Zap } from "lucide-react";
+import { ArrowRight, Sparkles, Mail, Phone, MessageCircle, Bot, Zap, Sparkle } from "lucide-react";
 
 export const ContactHero = () => {
   return (
