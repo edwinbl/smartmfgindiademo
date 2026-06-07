@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { ReportCard } from "@/components/reports/ReportCard";
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WireFooter } from "@/components/wireframe/WireFooter";
