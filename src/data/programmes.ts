@@ -82,6 +82,14 @@ export interface ProgrammeItem {
   }[];
   gallery?: { type: "image" | "video"; url: string; thumbnail?: string; caption?: string }[];
   testimonials?: { name: string; role: string; org: string; quote: string; avatar?: string }[];
+  postProgramme?: {
+    summary?: string;
+    highlights?: string[];
+    stats?: { label: string; value: string }[];
+    reports?: { title: string; description?: string; url: string; size?: string; type?: string }[];
+    presentations?: { title: string; speaker?: string; org?: string; url: string; size?: string }[];
+    recording?: { url: string; platform?: string; duration?: string; thumbnail?: string };
+  };
 }
 
 
