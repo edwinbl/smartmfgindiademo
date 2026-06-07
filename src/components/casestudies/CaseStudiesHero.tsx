@@ -49,8 +49,8 @@ export const CaseStudiesHero = (_props: Props) => {
           </p>
         </div>
 
-        <div className="lg:col-span-5 relative h-[420px] sm:h-[480px] lg:h-[520px] animate-scale-in">
-          <IndiaStoriesMap />
+        <div className="lg:col-span-5 relative h-[380px] sm:h-[440px] lg:h-[500px] animate-scale-in">
+          <CaseStudiesCollage />
         </div>
       </div>
     </section>
