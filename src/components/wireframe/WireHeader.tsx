@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Linkedin, Twitter, Facebook, Youtube } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
 
 type NavChild = { label: string; href: string };
@@ -24,7 +24,19 @@ const navLinks: NavLink[] = [
   { label: "Contact", href: "/contact" },
 ];
 
+function isLinkActive(pathname: string, link: NavLink): boolean {
+  if (link.children) {
+    return link.children.some((c) => {
+      if (!c.href.startsWith("/")) return false;
+      return pathname === c.href || pathname.startsWith(c.href + "/");
+    });
+  }
+  if (!link.href.startsWith("/")) return false;
+  return pathname === link.href || pathname.startsWith(link.href + "/");
+}
+
 export const WireHeader = () => {
+  const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
 
@@ -52,7 +64,8 @@ export const WireHeader = () => {
         {/* Nav */}
         <nav className="hidden md:flex items-center gap-7 mx-auto" aria-label="Primary">
           {navLinks.map((l) => {
-            const baseCls = "font-display text-[13px] font-semibold tracking-wide whitespace-nowrap transition-colors text-navy-800 hover:text-cii-red";
+            const active = isLinkActive(pathname, l);
+            const baseCls = `font-display text-[13px] font-semibold tracking-wide whitespace-nowrap transition-colors ${active ? "text-cii-red" : "text-navy-800 hover:text-cii-red"}`;
 
             if (l.children) {
               return (
@@ -65,12 +78,12 @@ export const WireHeader = () => {
                     <ul className="bg-white border border-[hsl(var(--neutral-150))] rounded-md shadow-lg py-2">
                       {l.children.map((c) => {
                         const childInternal = c.href.startsWith("/") && !c.href.startsWith("//");
-                        const childCls =
-                          "block px-4 py-2.5 text-[13px] font-medium font-display text-navy-800 hover:bg-[hsl(var(--neutral-50))] hover:text-cii-red transition-colors";
+                        const childActive = childInternal && (pathname === c.href || pathname.startsWith(c.href + "/"));
+                        const childCls = `block px-4 py-2.5 text-[13px] font-medium font-display transition-colors ${childActive ? "text-cii-red bg-[hsl(var(--red-100))]" : "text-navy-800 hover:bg-[hsl(var(--neutral-50))] hover:text-cii-red"}`;
                         return (
                           <li key={c.label}>
                             {childInternal ? (
-                              <Link to={c.href} className={childCls}>
+                              <Link to={c.href} className={childCls} aria-current={childActive ? "page" : undefined}>
                                 {c.label}
                               </Link>
                             ) : (
@@ -89,7 +102,7 @@ export const WireHeader = () => {
 
             const isInternal = l.href.startsWith("/") && !l.href.startsWith("//");
             return isInternal ? (
-              <Link key={l.label} to={l.href} className={baseCls}>
+              <Link key={l.label} to={l.href} className={baseCls} aria-current={active ? "page" : undefined}>
                 {l.label}
               </Link>
             ) : (
@@ -133,7 +146,7 @@ export const WireHeader = () => {
                     <button
                       type="button"
                       onClick={() => setMobileSubmenu(mobileSubmenu === l.label ? null : l.label)}
-                      className="w-full flex items-center justify-between px-6 py-4 text-base font-semibold font-display text-navy-800"
+                      className={`w-full flex items-center justify-between px-6 py-4 text-base font-semibold font-display ${isLinkActive(pathname, l) ? "text-cii-red" : "text-navy-800"}`}
                       aria-expanded={mobileSubmenu === l.label}
                     >
                       {l.label}
@@ -174,7 +187,8 @@ export const WireHeader = () => {
                   <Link
                     to={l.href}
                     onClick={() => setOpen(false)}
-                    className="block px-6 py-4 text-base font-semibold font-display text-navy-800"
+                    className={`block px-6 py-4 text-base font-semibold font-display ${isLinkActive(pathname, l) ? "text-cii-red" : "text-navy-800"}`}
+                    aria-current={isLinkActive(pathname, l) ? "page" : undefined}
                   >
                     {l.label}
                   </Link>
