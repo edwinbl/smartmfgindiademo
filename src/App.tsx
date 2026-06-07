@@ -25,6 +25,8 @@ const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Privacy = lazy(() => import("./pages/Privacy"));
+const Accessibility = lazy(() => import("./pages/Accessibility"));
+const Cookies = lazy(() => import("./pages/Cookies"));
 const ReadinessAssessment = lazy(() => import("./pages/ReadinessAssessment"));
 const AssessmentDetail = lazy(() => import("./pages/AssessmentDetail"));
 const CaseStudiesIndex = lazy(() => import("./pages/CaseStudiesIndex"));
