@@ -6,16 +6,18 @@ import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
 import { ReportsHero } from "@/components/reports/ReportsHero";
-import { ReportsDiscoveryBar, emptyFilters, type ReportFilters } from "@/components/reports/ReportsDiscoveryBar";
+import { emptyFilters, type ReportFilters } from "@/components/reports/ReportsDiscoveryBar";
+import { ReportsFilterSidebar } from "@/components/reports/ReportsFilterSidebar";
 import { FeaturedCollections } from "@/components/reports/FeaturedCollections";
 import { ReportsThemesExplorer } from "@/components/reports/ReportsThemesExplorer";
 import { ReportsSectorExplorer } from "@/components/reports/ReportsSectorExplorer";
-import { ReportsGrid } from "@/components/reports/ReportsGrid";
+import { ReportsEmptyState } from "@/components/reports/ReportsEmptyState";
 import { PersonalizedShelf } from "@/components/reports/PersonalizedShelf";
 import { DownloadModal } from "@/components/reports/DownloadModal";
 import { reports, reportFacets, type Report, type QuickPickId } from "@/data/reports";
 import { useMockAuth } from "@/hooks/useMockAuth";
 import { toast } from "@/hooks/use-toast";
+
 
 const quickPickFilter = (r: Report, pick: QuickPickId | null) => {
   switch (pick) {
@@ -96,16 +98,6 @@ const ReportsIndex = () => {
       <WireHeader />
       <main>
         <ReportsHero query={query} onQuery={setQuery} onTag={setQuery} />
-        <ReportsDiscoveryBar
-          query={query}
-          onQuery={setQuery}
-          filters={filters}
-          onFilters={setFilters}
-          quickPick={quickPick}
-          onQuickPick={setQuickPick}
-          onClear={clearAll}
-          resultCount={filtered.length}
-        />
         {user && <PersonalizedShelf user={user} />}
         <FeaturedCollections />
 
@@ -136,8 +128,44 @@ const ReportsIndex = () => {
             }
           }}
         />
-        <ReportsGrid reports={filtered} onDownload={handleDownload} onClear={clearAll} />
+
+        {/* All Reports — sidebar + grid layout */}
+        <section id="reports" className="py-12 md:py-16">
+          <div className="container-cii">
+            <div className="grid gap-8 lg:grid-cols-[280px_1fr]">
+              <ReportsFilterSidebar
+                query={query}
+                onQuery={setQuery}
+                filters={filters}
+                onFilters={setFilters}
+                quickPick={quickPick}
+                onQuickPick={setQuickPick}
+                onClear={clearAll}
+                resultCount={filtered.length}
+              />
+              <div className="min-w-0">
+                <div className="mb-6">
+                  <div className="section-eyebrow mb-2">All Reports</div>
+                  <h2 className="font-display font-bold text-[24px] md:text-[28px] text-[hsl(var(--navy-900))] tracking-tight">
+                    {filtered.length} insight{filtered.length === 1 ? "" : "s"} ready to explore
+                  </h2>
+                </div>
+                {filtered.length === 0 ? (
+                  <ReportsEmptyState onClear={clearAll} />
+                ) : (
+                  <div className="grid gap-6 sm:grid-cols-2">
+                    {filtered.map((r) => (
+                      <ReportCard key={r.slug} report={r} onDownload={handleDownload} />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <CommonFinalCta />
+
       </main>
       <WireFooter />
       <WireChatbotFAB />
