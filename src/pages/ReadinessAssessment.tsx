@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   CheckCircle2,
@@ -67,7 +68,30 @@ const dimensions = [
   { label: "People & Skills", v: 60 },
 ];
 
+const Counter = ({ to, start, duration = 1400 }: { to: number; start: boolean; duration?: number }) => {
+  const [v, setV] = useState(0);
+  useEffect(() => {
+    if (!start) { setV(0); return; }
+    let raf = 0; const t0 = performance.now();
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - t0) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setV(Math.round(to * eased));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [to, start, duration]);
+  return <>{v}</>;
+};
+
 const ReadinessAssessment = () => {
+  const [animateOn, setAnimateOn] = useState(false);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setAnimateOn(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -76,6 +100,7 @@ const ReadinessAssessment = () => {
       "Assess your manufacturing readiness across operations, quality, digital adoption and sustainability before deciding what to improve, adopt or transform.",
     url: "https://smartmfgindia-demo4.bluelup.in/readiness-assessment",
   };
+
 
   return (
     <div className="min-h-dvh bg-background text-foreground">
@@ -100,7 +125,9 @@ const ReadinessAssessment = () => {
               <div>
                 <div className="section-eyebrow mb-4">Readiness Assessment</div>
                 <h1 className="font-display font-bold text-[30px] sm:text-[36px] md:text-[44px] leading-[1.1] tracking-tight text-navy-800">
-                  Understand Your Manufacturing Readiness Before You Transform
+                  Understand Your{" "}
+                  <span className="text-[hsl(var(--red-600))]">Manufacturing Readiness</span>{" "}
+                  Before You Transform
                 </h1>
                 <p className="mt-5 text-base md:text-lg text-[hsl(var(--neutral-700))] max-w-xl">
                   Assess your current readiness across operations, productivity, quality and digital adoption before
@@ -114,15 +141,6 @@ const ReadinessAssessment = () => {
                       {t}
                     </span>
                   ))}
-                </div>
-
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                    Start Assessment <ArrowRight className="!h-4 !w-4" />
-                  </a>
-                  <Link to="/contact" className="btn-outline">
-                    Request Assessment Access
-                  </Link>
                 </div>
               </div>
 
@@ -147,12 +165,16 @@ const ReadinessAssessment = () => {
                         <circle
                           cx="50" cy="50" r="42" fill="none"
                           stroke="hsl(var(--india-green))" strokeWidth="10" strokeLinecap="round"
-                          strokeDasharray={`${2 * Math.PI * 42 * 0.62} ${2 * Math.PI * 42}`}
+                          strokeDasharray={2 * Math.PI * 42}
+                          strokeDashoffset={2 * Math.PI * 42 * (1 - 0.62 * (animateOn ? 1 : 0))}
+                          style={{ transition: "stroke-dashoffset 1.6s cubic-bezier(0.22, 1, 0.36, 1)" }}
                         />
                       </svg>
                       <div className="absolute inset-0 grid place-items-center">
                         <div className="text-center">
-                          <div className="font-numeric font-bold text-navy-800 text-2xl leading-none">62</div>
+                          <div className="font-numeric font-bold text-navy-800 text-2xl leading-none">
+                            <Counter to={62} start={animateOn} />
+                          </div>
                           <div className="text-[10px] uppercase tracking-wide text-[hsl(var(--neutral-500))] mt-0.5">Score</div>
                         </div>
                       </div>
@@ -168,17 +190,20 @@ const ReadinessAssessment = () => {
 
                   {/* Dimensions */}
                   <div className="mt-6 space-y-3">
-                    {dimensions.map((d) => (
+                    {dimensions.map((d, idx) => (
                       <div key={d.label}>
                         <div className="flex items-center justify-between text-xs mb-1">
                           <span className="font-semibold text-navy-800">{d.label}</span>
-                          <span className="font-numeric font-semibold text-[hsl(var(--neutral-700))]">{d.v}%</span>
+                          <span className="font-numeric font-semibold text-[hsl(var(--neutral-700))]">
+                            <Counter to={d.v} start={animateOn} duration={1200 + idx * 120} />%
+                          </span>
                         </div>
                         <div className="h-1.5 rounded-full bg-[hsl(var(--neutral-150))] overflow-hidden">
                           <div
                             className="h-full rounded-full"
                             style={{
-                              width: `${d.v}%`,
+                              width: `${animateOn ? d.v : 0}%`,
+                              transition: `width 1.2s cubic-bezier(0.22, 1, 0.36, 1) ${idx * 0.12}s`,
                               background:
                                 d.v >= 65
                                   ? "hsl(var(--india-green))"
@@ -195,12 +220,22 @@ const ReadinessAssessment = () => {
                   {/* Outcome indicators */}
                   <div className="mt-6 grid grid-cols-3 gap-2">
                     {[
-                      { label: "Productivity", v: "+18%", color: "hsl(var(--india-green))" },
-                      { label: "Quality", v: "+12%", color: "hsl(var(--navy-600))" },
-                      { label: "Energy", v: "−9%", color: "hsl(var(--orange-500))" },
-                    ].map((k) => (
-                      <div key={k.label} className="rounded-md border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))] p-2.5 text-center">
-                        <div className="font-numeric font-bold text-sm" style={{ color: k.color }}>{k.v}</div>
+                      { label: "Productivity", v: 18, prefix: "+", suffix: "%", color: "hsl(var(--india-green))" },
+                      { label: "Quality", v: 12, prefix: "+", suffix: "%", color: "hsl(var(--navy-600))" },
+                      { label: "Energy", v: 9, prefix: "−", suffix: "%", color: "hsl(var(--orange-500))" },
+                    ].map((k, idx) => (
+                      <div
+                        key={k.label}
+                        className="rounded-md border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))] p-2.5 text-center transition-all duration-700"
+                        style={{
+                          opacity: animateOn ? 1 : 0,
+                          transform: animateOn ? "translateY(0)" : "translateY(8px)",
+                          transitionDelay: `${800 + idx * 120}ms`,
+                        }}
+                      >
+                        <div className="font-numeric font-bold text-sm" style={{ color: k.color }}>
+                          {k.prefix}<Counter to={k.v} start={animateOn} duration={1000 + idx * 120} />{k.suffix}
+                        </div>
                         <div className="text-[10px] uppercase tracking-wide text-[hsl(var(--neutral-500))] mt-0.5">{k.label}</div>
                       </div>
                     ))}
