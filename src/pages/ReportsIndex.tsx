@@ -43,6 +43,8 @@ const ReportsIndex = () => {
   const [quickPick, setQuickPick] = useState<QuickPickId | null>(null);
   const [modalReport, setModalReport] = useState<Report | null>(null);
 
+  const ciiReports = useMemo(() => reports.filter((r) => r.author.includes("CII")), []);
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return reports.filter((r) => {
