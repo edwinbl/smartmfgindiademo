@@ -1,15 +1,12 @@
 import { useState } from "react";
 import { WireHeader } from "@/components/wireframe/WireHeader";
-import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
 import { ContactHero } from "@/components/contact/ContactHero";
 import { ContactIntentGrid, type IntentKey } from "@/components/contact/ContactIntentGrid";
 import { ContactSmartForm } from "@/components/contact/ContactSmartForm";
-import { EcosystemConnect } from "@/components/contact/EcosystemConnect";
 import { RegionalPresence } from "@/components/contact/RegionalPresence";
-import { BookConsultation } from "@/components/contact/BookConsultation";
 import { SupportChannels } from "@/components/contact/SupportChannels";
 import { ContactFAQ, faqs } from "@/components/contact/ContactFAQ";
 import { MobileStickyCta } from "@/components/contact/MobileStickyCta";
