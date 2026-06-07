@@ -83,7 +83,7 @@ export const ContactSmartForm = ({ intent, embedded = false }: Props) => {
               <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[hsl(var(--navy-900))] tracking-tight mt-1">
                 {activeMeta ? activeMeta.title : "Tell us about you"}
               </h2>
-              <p className="text-sm text-[hsl(var(--neutral-500))] mt-1">
+              <p className="text-sm text-[hsl(var(--neutral-700))] mt-1.5">
                 {activeMeta
                   ? "We've tailored the form for your request — fields adapt as you go."
                   : "Pick an intent above to personalize this form."}
