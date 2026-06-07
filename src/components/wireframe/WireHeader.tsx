@@ -187,7 +187,8 @@ export const WireHeader = () => {
                   <Link
                     to={l.href}
                     onClick={() => setOpen(false)}
-                    className="block px-6 py-4 text-base font-semibold font-display text-navy-800"
+                    className={`block px-6 py-4 text-base font-semibold font-display ${isLinkActive(pathname, l) ? "text-cii-red" : "text-navy-800"}`}
+                    aria-current={isLinkActive(pathname, l) ? "page" : undefined}
                   >
                     {l.label}
                   </Link>
