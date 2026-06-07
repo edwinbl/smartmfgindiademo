@@ -577,25 +577,36 @@ export const ResourcesBand = () => (
         </Link>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {solutionResources.map((r) => (
-          <Link key={r.title} to={r.href} className="group cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all">
-            <div className="flex items-center justify-between">
-              <span
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider"
-                style={{ background: "hsl(var(--navy-050))", color: "hsl(var(--navy-700))" }}
-              >
-                <FileText className="h-3 w-3" /> {r.type}
-              </span>
-              <Download className="h-4 w-4 text-[hsl(var(--neutral-500))] group-hover:text-[hsl(var(--red-600))] transition-colors" />
-            </div>
-            <div className="mt-4 font-display text-base font-bold text-[hsl(var(--navy-900))] leading-snug">
-              {r.title}
-            </div>
-            <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">
-              {r.desc}
-            </p>
-          </Link>
-        ))}
+        {solutionResources.map((r, i) => {
+          const palettes = [
+            { bg: "hsl(var(--navy-050))", fg: "hsl(var(--navy-700))", bar: "hsl(var(--navy-600))" },
+            { bg: "hsl(var(--orange-100))", fg: "hsl(var(--orange-600))", bar: "hsl(var(--orange-500))" },
+            { bg: "hsl(var(--india-green) / 0.10)", fg: "hsl(var(--india-green))", bar: "hsl(var(--india-green))" },
+            { bg: "hsl(var(--red-100))", fg: "hsl(var(--red-600))", bar: "hsl(var(--red-600))" },
+          ];
+          const pal = palettes[i % palettes.length];
+          return (
+            <Link key={r.title} to={r.href} className="group cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all relative overflow-hidden"
+              style={{ background: `linear-gradient(180deg, ${pal.bg}, white 70%)` }}>
+              <div className="absolute top-0 left-0 right-0 h-1" style={{ background: pal.bar }} />
+              <div className="flex items-center justify-between">
+                <span
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider"
+                  style={{ background: pal.bar, color: "white" }}
+                >
+                  <FileText className="h-3 w-3" /> {r.type}
+                </span>
+                <Download className="h-4 w-4 text-[hsl(var(--neutral-500))] group-hover:text-[hsl(var(--red-600))] transition-colors" />
+              </div>
+              <div className="mt-4 font-display text-base font-bold text-[hsl(var(--navy-900))] leading-snug">
+                {r.title}
+              </div>
+              <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">
+                {r.desc}
+              </p>
+            </Link>
+          );
+        })}
       </div>
     </div>
   </section>
