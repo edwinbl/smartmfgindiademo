@@ -1,6 +1,5 @@
 import { Sparkles, TrendingUp, MapPin, Factory, Leaf, ShieldCheck } from "lucide-react";
 
-
 interface Props {
   query?: string;
   onQuery?: (v: string) => void;
@@ -48,23 +47,6 @@ export const CaseStudiesHero = (_props: Props) => {
             Discover how manufacturers across sectors are improving productivity, quality,
             traceability, sustainability and competitiveness.
           </p>
-
-          <div className="mt-9 grid grid-cols-3 gap-6 max-w-md">
-            {[
-              { v: "220+", l: "Stories" },
-              { v: "25", l: "Sectors" },
-              { v: "18", l: "States" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="font-numeric text-2xl font-extrabold text-[hsl(var(--navy-900))]">
-                  {s.v}
-                </div>
-                <div className="text-[11px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--neutral-500))] mt-1">
-                  {s.l}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         <div className="lg:col-span-5 relative h-[420px] sm:h-[480px] lg:h-[520px] animate-scale-in">
@@ -75,68 +57,71 @@ export const CaseStudiesHero = (_props: Props) => {
   );
 };
 
-// Approximate India outline (stylized, not geographically precise) on a 600x640 viewBox.
+// More accurate India outline path (simplified from public-domain India geo data, viewBox 0 0 600 700)
 const INDIA_PATH =
-  "M300 30 C 340 40 360 70 380 95 C 410 105 445 100 470 120 C 485 145 470 170 450 185 C 470 210 495 230 500 265 C 510 305 495 340 470 365 C 460 395 470 430 455 460 C 440 495 410 520 380 540 C 360 560 340 580 320 595 C 305 615 285 625 270 605 C 255 580 245 555 240 525 C 225 495 205 470 195 440 C 180 410 175 375 165 345 C 150 315 130 290 130 255 C 130 220 145 190 165 165 C 175 140 185 115 205 95 C 220 75 240 55 265 45 C 280 35 290 30 300 30 Z";
+  "M252 38 L268 32 L286 36 L298 50 L316 52 L334 46 L352 44 L370 52 L382 68 L398 74 L418 70 L438 76 L452 90 L466 96 L482 92 L490 104 L484 120 L470 128 L454 126 L444 136 L450 152 L440 164 L450 180 L470 192 L488 210 L500 232 L504 256 L498 280 L484 296 L470 306 L458 322 L460 344 L470 364 L468 386 L456 406 L450 428 L438 448 L424 466 L414 488 L402 508 L388 528 L372 546 L354 562 L336 578 L318 594 L308 612 L296 626 L282 634 L268 626 L260 610 L256 590 L250 568 L242 548 L232 528 L222 508 L214 488 L206 466 L196 444 L186 422 L176 400 L166 380 L156 362 L146 348 L136 338 L126 332 L118 322 L114 308 L116 292 L122 276 L130 260 L138 244 L144 228 L148 212 L150 196 L152 180 L158 164 L168 150 L180 138 L190 124 L196 108 L204 92 L214 78 L228 66 L242 54 Z M388 96 L408 98 L426 108 L440 124 L432 138 L416 142 L398 134 L386 120 L382 106 Z M482 140 L498 152 L510 168 L508 184 L494 190 L482 178 L476 162 Z";
 
-// Pin coordinates (x,y) on the 600x640 viewBox, with case-study metadata
+// Pin coordinates (x,y) on the 600x700 viewBox, with case-study metadata
 const pins = [
-  { x: 235, y: 200, city: "Ludhiana", state: "Punjab", sector: "Textile", kpi: "+34% OEE", color: "hsl(var(--orange-500))" },
-  { x: 290, y: 240, city: "Delhi NCR", state: "Delhi", sector: "Electronics", kpi: "+28% Yield", color: "hsl(var(--navy-700))" },
-  { x: 215, y: 305, city: "Ahmedabad", state: "Gujarat", sector: "Pharma", kpi: "-22% Energy", color: "hsl(var(--india-green))" },
-  { x: 380, y: 290, city: "Lucknow", state: "U.P.", sector: "Auto Parts", kpi: "+41% Throughput", color: "hsl(var(--red-600))" },
-  { x: 320, y: 360, city: "Indore", state: "M.P.", sector: "F&B", kpi: "99.2% Quality", color: "hsl(var(--navy-600))" },
-  { x: 260, y: 425, city: "Pune", state: "Maharashtra", sector: "Automotive", kpi: "+38% Throughput", color: "hsl(var(--orange-600))" },
-  { x: 440, y: 405, city: "Jamshedpur", state: "Jharkhand", sector: "Steel", kpi: "-18% Scrap", color: "hsl(var(--navy-800))" },
-  { x: 305, y: 495, city: "Bengaluru", state: "Karnataka", sector: "Aerospace", kpi: "+45% Cycle", color: "hsl(var(--india-green))" },
-  { x: 355, y: 555, city: "Chennai", state: "Tamil Nadu", sector: "Auto", kpi: "+32% OEE", color: "hsl(var(--red-600))" },
+  { x: 218, y: 130, city: "Ludhiana", state: "Punjab", sector: "Textile", kpi: "+34% OEE", color: "hsl(var(--orange-500))" },
+  { x: 260, y: 170, city: "Delhi NCR", state: "Delhi", sector: "Electronics", kpi: "+28% Yield", color: "hsl(var(--navy-700))" },
+  { x: 178, y: 260, city: "Ahmedabad", state: "Gujarat", sector: "Pharma", kpi: "-22% Energy", color: "hsl(var(--india-green))" },
+  { x: 320, y: 240, city: "Lucknow", state: "U.P.", sector: "Auto Parts", kpi: "+41% Throughput", color: "hsl(var(--red-600))" },
+  { x: 250, y: 310, city: "Indore", state: "M.P.", sector: "F&B", kpi: "99.2% Quality", color: "hsl(var(--navy-600))" },
+  { x: 218, y: 370, city: "Pune", state: "Maharashtra", sector: "Automotive", kpi: "+38% Throughput", color: "hsl(var(--orange-600))" },
+  { x: 360, y: 320, city: "Jamshedpur", state: "Jharkhand", sector: "Steel", kpi: "-18% Scrap", color: "hsl(var(--navy-800))" },
+  { x: 260, y: 460, city: "Bengaluru", state: "Karnataka", sector: "Aerospace", kpi: "+45% Cycle", color: "hsl(var(--india-green))" },
+  { x: 292, y: 540, city: "Chennai", state: "Tamil Nadu", sector: "Auto", kpi: "+32% OEE", color: "hsl(var(--red-600))" },
 ];
 
 const IndiaStoriesMap = () => {
   return (
     <div className="absolute inset-0 grid place-items-center">
-      {/* Soft halo behind map */}
       <div
         className="absolute h-[420px] w-[420px] rounded-full blur-3xl opacity-60"
         style={{
           background:
-            "radial-gradient(circle, hsl(var(--orange-500) / 0.25), transparent 70%)",
+            "radial-gradient(circle, hsl(var(--orange-500) / 0.18), transparent 70%)",
         }}
         aria-hidden
       />
 
       <svg
-        viewBox="0 0 600 640"
+        viewBox="0 0 600 700"
         className="relative h-full w-full max-h-[520px]"
         aria-label="Map of India with case study locations"
       >
         <defs>
-          <linearGradient id="indiaFill" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="hsl(var(--navy-800))" stopOpacity="0.95" />
-            <stop offset="100%" stopColor="hsl(var(--navy-600))" stopOpacity="0.85" />
-          </linearGradient>
-          <pattern id="dots" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1" fill="hsl(var(--orange-500) / 0.35)" />
+          <pattern id="dots" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
+            <circle cx="1.5" cy="1.5" r="1" fill="hsl(var(--navy-700) / 0.18)" />
           </pattern>
         </defs>
 
-        {/* Map silhouette */}
-        <path d={INDIA_PATH} fill="url(#indiaFill)" />
-        <path d={INDIA_PATH} fill="url(#dots)" />
+        {/* Map outline only (no fill) */}
+        <path d={INDIA_PATH} fill="url(#dots)" fillRule="evenodd" opacity="0.6" />
         <path
           d={INDIA_PATH}
           fill="none"
-          stroke="hsl(var(--orange-500))"
-          strokeWidth="1.5"
-          strokeDasharray="4 4"
-          opacity="0.7"
+          stroke="hsl(var(--navy-800))"
+          strokeWidth="2"
+          strokeLinejoin="round"
+          fillRule="evenodd"
+        />
+        <path
+          d={INDIA_PATH}
+          fill="none"
+          stroke="hsl(var(--red-600))"
+          strokeWidth="1"
+          strokeDasharray="3 5"
+          opacity="0.55"
+          fillRule="evenodd"
         />
 
         {/* Pings + pins */}
         {pins.map((p, i) => (
           <g key={p.city} style={{ animation: `ping-pin 3s ease-out ${i * 0.25}s infinite` }}>
-            <circle cx={p.x} cy={p.y} r="14" fill={p.color} opacity="0.18" className="origin-center" />
-            <circle cx={p.x} cy={p.y} r="7" fill={p.color} opacity="0.35" />
+            <circle cx={p.x} cy={p.y} r="14" fill={p.color} opacity="0.15" />
+            <circle cx={p.x} cy={p.y} r="7" fill={p.color} opacity="0.30" />
             <circle cx={p.x} cy={p.y} r="4" fill={p.color} />
             <circle cx={p.x} cy={p.y} r="1.8" fill="white" />
           </g>
@@ -238,4 +223,3 @@ const IndiaStoriesMap = () => {
     </div>
   );
 };
-
