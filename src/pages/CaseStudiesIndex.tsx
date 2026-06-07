@@ -183,9 +183,9 @@ const CaseStudiesIndex = () => {
           </div>
 
           <div className="flex gap-5 overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0 snap-x scrollbar-none pb-2">
-            {featured.map((c) => (
+            {featured.map((c, i) => (
               <div key={c.slug} className="snap-start shrink-0 w-[88%] md:w-[420px]">
-                <CaseCard c={c} />
+                <CaseCard c={c} index={i} />
               </div>
             ))}
           </div>
