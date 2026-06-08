@@ -39,30 +39,27 @@ const pillars = [
 const toneStyles = {
   navy: {
     bar: "hsl(var(--navy-700))",
-    bg: "linear-gradient(180deg, hsl(var(--navy-050)) 0%, hsl(0 0% 100%) 60%)",
     accent: "hsl(var(--navy-700))",
   },
   orange: {
     bar: "hsl(var(--orange-500))",
-    bg: "linear-gradient(180deg, hsl(var(--orange-100)) 0%, hsl(0 0% 100%) 60%)",
     accent: "hsl(var(--orange-600))",
   },
   green: {
     bar: "hsl(var(--india-green))",
-    bg: "linear-gradient(180deg, hsl(var(--india-green) / 0.12) 0%, hsl(0 0% 100%) 60%)",
     accent: "hsl(var(--india-green))",
   },
   red: {
     bar: "hsl(var(--red-600))",
-    bg: "linear-gradient(180deg, hsl(var(--red-100)) 0%, hsl(0 0% 100%) 60%)",
     accent: "hsl(var(--red-600))",
   },
   saffron: {
     bar: "hsl(var(--saffron))",
-    bg: "linear-gradient(180deg, hsl(30 100% 94%) 0%, hsl(0 0% 100%) 60%)",
     accent: "hsl(30 90% 45%)",
   },
 };
+
+const unifiedGradient = "linear-gradient(180deg, hsl(var(--neutral-50)) 0%, hsl(0 0% 100%) 70%)";
 
 export const AboutPillars = () => {
   return (
