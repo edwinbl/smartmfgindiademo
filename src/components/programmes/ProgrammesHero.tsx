@@ -12,7 +12,7 @@ interface Props {
 export const ProgrammesHero = ({ onExplore, onFindPath, query = "", onQuery, onTag }: Props) => {
   return (
     <section
-      className="relative overflow-hidden bg-background border-b"
+      className="relative overflow-hidden bg-background border-b min-h-[calc(100svh-72px)] flex items-center"
       style={{ borderColor: "hsl(var(--neutral-150))" }}
       aria-label="Programmes & Training"
     >
