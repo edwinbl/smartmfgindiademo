@@ -1,6 +1,6 @@
 import { WireSection } from "./WireSection";
 import { Quote } from "lucide-react";
-import leaderPortrait from "@/assets/leader-portrait.jpg";
+import leaderPortraitAsset from "@/assets/dilip-sawhney.webp.asset.json";
 
 export const WireLeaderSpeak = () => {
   return (
