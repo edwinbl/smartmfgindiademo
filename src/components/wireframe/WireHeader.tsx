@@ -117,7 +117,7 @@ export const WireHeader = () => {
         {/* CII Logo — right */}
         <div className="flex items-center shrink-0 ml-auto md:ml-0">
           <img
-            src="https://www.smartmfgindia.com/img/CII-Logo.png"
+            src={ciiLogoAsset.url}
             alt="Confederation of Indian Industry"
             width={232}
             height={74}
