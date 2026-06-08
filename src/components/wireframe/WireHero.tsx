@@ -4,7 +4,7 @@ import { HeroEcosystemViz } from "./HeroEcosystemViz";
 
 export const WireHero = () => {
   return (
-    <section className="relative overflow-hidden text-white min-h-screen flex items-center" aria-label="Hero">
+    <section className="relative overflow-hidden text-white min-h-[calc(100svh-72px)] flex items-center" aria-label="Hero">
       {/* Background gradient */}
       <div
         className="absolute inset-0"
