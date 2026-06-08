@@ -1,63 +1,55 @@
-# Unify Internal Page Heroes to the /reports Pattern
+## Findings
 
-Bring all internal listing pages to the same hero anatomy as `/reports` so the platform reads as one consistent system. Each page keeps its own copy and a thematic right-side visual collage, but the structure, background treatment, type scale, and chrome become identical.
+After investigating the codebase, the slow page loads are caused by a combination of issues, not a single bug. Production and preview behave differently; these are the main contributors:
 
-## The /reports hero pattern (reference)
+1. **Route chunks load entirely on demand with no prefetching.** Every page in `src/App.tsx` is wrapped in `React.lazy(...)`. The first time a user clicks any nav link, the browser must download that page's JS chunk before anything renders — so each navigation shows the skeleton for a noticeable beat.
+2. **Heavy hero images are full-size JPGs/PNGs and not preloaded.** `events-flagship-hero.jpg` is ~207 KB, `programmes-hero.jpg` ~228 KB, and several `directory-*.jpg` / `spotlight-*.jpg` files are 50–90 KB. They are imported as plain JPG, served at their natural dimensions, and the LCP image is never preloaded. This delays the largest paint on every page.
+3. **No image optimisation pipeline.** Vite is configured with just the React plugin — no `vite-imagetools`, no responsive `srcSet`, no AVIF/WebP variants for `.jpg` heroes.
+4. **No manual chunking / vendor split.** Radix, Recharts, embla, react-day-picker etc. all land wherever Rollup decides. Without a `manualChunks` strategy, shared vendor code can be re-fetched as part of multiple route chunks.
+5. **A stale lazy-chunk error is in the logs.** `Failed to fetch dynamically imported module: .../src/pages/EventsIndex.tsx` — when a deploy/rebuild invalidates an old hashed chunk that an open tab still references, the lazy import throws and the user sees a blank/stuck page until reload. There is no error boundary around `Suspense` to auto-recover.
+6. **Large static legal pages bundled as TSX.** `Terms.tsx` (27K), `Privacy.tsx` (26K), `Accessibility.tsx` (23K), `Cookies.tsx` (22K) — mostly prose embedded as JSX. Fine, but they push the lazy chunk size up unnecessarily.
 
-Light background hero, two-column 7/5 grid, with these elements (top → bottom on the left):
+## Plan
 
-1. Soft radial wash background (`orange-500/0.10` top-right + `navy-600/0.12` bottom-left) over a faint grid masked with a radial ellipse — same tokens, same values.
-2. Small `cii-chip` eyebrow with a `Sparkles` icon — page-specific label.
-3. Large `font-display` extrabold headline in `navy-900`, with one phrase wrapped in a gradient (`red-600 → orange-500`) + soft orange underline highlight bar.
-4. Lede paragraph in `neutral-700`, max-w-xl.
-5. **Search bar** OR **CTA pair** depending on the page (see "Per-page variation").
-6. Quick chips row (only when the page is searchable).
-7. Three stat tiles (`v` / `l` pairs) in a `grid-cols-3 max-w-md`.
-8. Right column: themed floating-card collage (3 tilted cards + 1 floating accent badge), positioned absolutely inside a `h-[380px] sm:h-[440px] lg:h-[500px]` container, using `cii-card`, the same rotation values, and the same `@keyframes float` animation.
+### 1. Prefetch route chunks on intent
+- Add a small `prefetch()` helper next to each `lazy()` import in `src/App.tsx` so navigation links can warm the chunk on hover/focus.
+- Update the header nav (`src/components/layout/Header.tsx` or equivalent) and primary CTAs to call the matching prefetch on `onMouseEnter` / `onFocus`. This makes most clicks feel instant without changing initial bundle size.
+- Optionally `requestIdleCallback` -prefetch the top routes (Solutions, Programmes, Reports) after the home page is interactive.
 
-A shared internal helper (`InsightHeroShell`) is NOT introduced — each page keeps its own file for content freedom, but every file follows the same skeleton/markup so spacing, type, and motion stay locked.
+### 2. Recover gracefully from stale chunks
+- Wrap the `Suspense` in `App.tsx` with a small error boundary that detects `ChunkLoadError` / "Failed to fetch dynamically imported module" and triggers a single `location.reload()` so users never see a stuck blank screen after a deploy.
 
-## Pages updated
+### 3. Optimise hero / spotlight images
+- Add `vite-imagetools` to the Vite config.
+- Convert the imports for `hero-smart-mfg.jpg`, `programmes-hero.jpg`, `events-flagship-hero.jpg`, `directory-*.jpg`, `spotlight-*.jpg`, `leader-portrait.jpg` to request `?format=avif;webp;jpg&as=picture` (or similar), and render them via `<picture>` with width/height attributes to lock aspect ratio (prevents CLS).
+- Add `loading="eager"` + `fetchpriority="high"` for the first hero on each page; `loading="lazy"` for everything below the fold.
+- Add `<link rel="preload" as="image" ...>` in `index.html` for the home-page LCP image only.
 
-Scope per your answer: **listing pages only**, themed-per-page collage, search bar only where there is searchable content.
+### 4. Manual vendor chunking
+- In `vite.config.ts`, add a `build.rollupOptions.output.manualChunks` config that splits:
+  - `react`, `react-dom`, `react-router-dom` → `vendor-react`
+  - all `@radix-ui/*` → `vendor-radix`
+  - `recharts` → `vendor-charts` (already only used in a few pages — keep it isolated so other routes never pay for it)
+  - `embla-carousel-react`, `react-day-picker`, `vaul`, `cmdk` → `vendor-ui`
+- This stabilises long-term caching and reduces duplicate code in per-route chunks.
 
-| Page | File | Search/CTA mode | Collage theme |
-|---|---|---|---|
-| About | `src/components/about/AboutHero.tsx` | CTA pair: "Explore the Platform" + "Start Your Assessment" | Mission/ecosystem: companies-engaged stat card, sectors card, ecosystem avatars stack |
-| Programmes & Training | `src/components/programmes/ProgrammesHero.tsx` | Search bar + chips (MSMEs, Beginner, Leadership, AI & Automation, Sustainability, Factory Digitization) | Learning theme: "Live cohort" enrollment card, certification badge, "Industry mentor" card |
-| Events | `src/components/events/EventsFlagshipHero.tsx` | CTA pair: "Browse Events" + "View Flagship Summit" (kept) | Events theme: upcoming-event card with countdown chip, agenda card, "registrations open" badge |
-| Case Studies | inline hero block in `src/pages/CaseStudiesIndex.tsx` (lines ~152–207) — extract to `src/components/casestudies/CaseStudiesHero.tsx` | Search bar + outcome chips (Productivity, Quality, Energy, Traceability, MSME, Smart Factory) | Outcome theme: metric card (e.g. "+38% throughput"), sector chip card, geo/state badge |
-| Contact | `src/components/contact/ContactHero.tsx` | CTA pair (kept) — already matches | Already matches — only tightens stat tiles to the same 3-up format for consistency |
-| Reports (reference) | `src/components/reports/ReportsHero.tsx` | unchanged | unchanged |
+### 5. Trim legal page chunks (low priority)
+- Move the prose in `Terms`, `Privacy`, `Accessibility`, `Cookies` into plain `.md`/`.mdx` (or a single shared `<LegalPage content={...} />` driven by a string constant) so the JSX overhead drops. Optional — only if we want to squeeze further.
 
-## Per-page variation rules
+### 6. Verify
+- Run `npx tsc --noEmit` and the production build, then open the preview and check:
+  - Network tab: hero images served as AVIF/WebP and sized appropriately.
+  - Performance: LCP and route-change time on Solutions, Programmes, Events, Reports.
+  - Navigate between pages after hovering nav links — chunk should already be cached.
+- Use `browser--performance_profile` on `/` and one inner route to confirm improvements.
 
-- Headline gradient phrase: pick one keyword per page (e.g., About: "rewire"; Programmes: "Capability Building"; Events: "Convene & Learn"; Case Studies: "Proof in Practice").
-- Eyebrow chip text: page-specific (e.g., "Capability Hub", "Industry Gatherings", "Real Manufacturer Stories").
-- Stat tiles: 3 numbers relevant to the page (Programmes: `120+ programmes / 14.5K leaders / 85 partners`; Events: `40+ events / 12K attendees / 28 cities`; Case Studies: `220+ stories / 25 sectors / 18 states`; About: `1,200+ companies / 25 sectors / 50+ partners`).
-- Right collage: same skeleton (3 tilted `cii-card`s + 1 floating gradient badge with the float animation), themed icons/copy per page.
+### Out of scope
+- No content, copy, layout, animation, or data-binding changes.
+- No backend/Cloud changes.
 
-## Conflict callout (please confirm)
+### Technical notes
+- `React.lazy` `prefetch` pattern: export the `import()` factory once, call it eagerly on hover; `lazy()` reuses the same in-flight promise.
+- `vite-imagetools` integrates as a Vite plugin and is the canonical Lovable-recommended approach for build-time image format conversion.
+- Error boundary must be a class component (or `react-error-boundary`) since Suspense alone cannot catch chunk-load rejections.
 
-Two heroes you redesigned in earlier turns will be **replaced** under this request:
-
-- **Programmes** — the recent "editorial academic" hero (navy serif headline, image right, metrics box, partners row) will be replaced with the Reports-style light hero.
-- **Events flagship** — the current image-led flagship hero will be replaced with the Reports-style light hero (the countdown moves into the right collage as a tilted card).
-
-If either should be preserved instead of unified, say so and I'll exclude it.
-
-## Technical notes
-
-- All colors continue to use HSL design tokens from `index.css` (`--navy-900`, `--neutral-700`, `--orange-500`, `--red-600`, `--neutral-150`, `--neutral-200`, `--india-green`). No hard-coded hex.
-- Reuses `cii-chip`, `cii-card`, `container-cii`, `font-display`, `font-numeric`, and existing `btn-primary` / `btn-outline` utilities.
-- New `CaseStudiesHero` component extracted from `CaseStudiesIndex.tsx` so the page imports it the same way `/reports` imports `ReportsHero`. The existing hero JSX block in `CaseStudiesIndex.tsx` is removed; props mirror Reports: `{ query, onQuery, onTag }`.
-- `ProgrammesHero` prop signature becomes `{ query, onQuery, onTag, onExplore, onFindPath }` — `onExplore`/`onFindPath` retained so existing callers in `ProgrammesIndex.tsx` keep working; the CTAs render as the search "Search" submit + a secondary chip-row action.
-- `EventsFlagshipHero` keeps its `{ event }` prop; the countdown becomes one of the three right-collage tiles.
-- `AboutHero` becomes light-themed (was dark navy). The bottom "pillars" marquee strip is preserved beneath the hero as a `border-t` sub-band so the About narrative doesn't lose its anchor.
-- No business-logic, data, or routing changes. Pure presentation.
-
-## Out of scope
-
-- Detail-page heroes (Report/Programme/Event/Case Study detail) — per your answer.
-- Home page hero.
-- Auth, Privacy, Terms, NotFound.
+Once you approve, I'll implement steps 1–4 first (highest impact) and leave step 5 unless you want it included.

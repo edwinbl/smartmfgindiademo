@@ -8,33 +8,35 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { initGA, trackPageView } from "@/lib/analytics";
 import { PageSkeleton } from "@/components/skeletons/PageSkeleton";
 import { CookieConsent } from "@/components/common/CookieConsent";
+import { ChunkErrorBoundary } from "@/components/common/ChunkErrorBoundary";
+import { routeLoaders, prefetchOnIdle } from "@/lib/routePrefetch";
 
-const Index = lazy(() => import("./pages/Index"));
-const About = lazy(() => import("./pages/About"));
-const Contact = lazy(() => import("./pages/Contact"));
-const ReportsIndex = lazy(() => import("./pages/ReportsIndex"));
-const ReportDetail = lazy(() => import("./pages/ReportDetail"));
-const EventsIndex = lazy(() => import("./pages/EventsIndex"));
-const EventDetail = lazy(() => import("./pages/EventDetail"));
-const ProgrammesIndex = lazy(() => import("./pages/ProgrammesIndex"));
-const ProgrammeDetail = lazy(() => import("./pages/ProgrammeDetail"));
-const Login = lazy(() => import("./pages/auth/Login"));
-const Register = lazy(() => import("./pages/auth/Register"));
-const Welcome = lazy(() => import("./pages/auth/Welcome"));
-const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
-const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
-const NotFound = lazy(() => import("./pages/NotFound"));
-const Terms = lazy(() => import("./pages/Terms"));
-const Privacy = lazy(() => import("./pages/Privacy"));
-const Accessibility = lazy(() => import("./pages/Accessibility"));
-const Cookies = lazy(() => import("./pages/Cookies"));
-const ReadinessAssessment = lazy(() => import("./pages/ReadinessAssessment"));
-const AssessmentDetail = lazy(() => import("./pages/AssessmentDetail"));
-const CaseStudiesIndex = lazy(() => import("./pages/CaseStudiesIndex"));
-const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail"));
-const SolutionsIndex = lazy(() => import("./pages/SolutionsIndex"));
-const SolutionDetail = lazy(() => import("./pages/SolutionDetail"));
-const Directories = lazy(() => import("./pages/Directories"));
+const Index = lazy(routeLoaders["/"]);
+const About = lazy(routeLoaders["/about"]);
+const Contact = lazy(routeLoaders["/contact"]);
+const ReportsIndex = lazy(routeLoaders["/reports"]);
+const ReportDetail = lazy(routeLoaders["/reports/:slug"]);
+const EventsIndex = lazy(routeLoaders["/events"]);
+const EventDetail = lazy(routeLoaders["/events/:slug"]);
+const ProgrammesIndex = lazy(routeLoaders["/programmes"]);
+const ProgrammeDetail = lazy(routeLoaders["/programmes/:slug"]);
+const Login = lazy(routeLoaders["/login"]);
+const Register = lazy(routeLoaders["/register"]);
+const Welcome = lazy(routeLoaders["/welcome"]);
+const ForgotPassword = lazy(routeLoaders["/forgot-password"]);
+const ResetPassword = lazy(routeLoaders["/reset-password"]);
+const NotFound = lazy(routeLoaders["*"]);
+const Terms = lazy(routeLoaders["/terms"]);
+const Privacy = lazy(routeLoaders["/privacy"]);
+const Accessibility = lazy(routeLoaders["/accessibility"]);
+const Cookies = lazy(routeLoaders["/cookies"]);
+const ReadinessAssessment = lazy(routeLoaders["/readiness-assessment"]);
+const AssessmentDetail = lazy(routeLoaders["/readiness-assessment/:slug"]);
+const CaseStudiesIndex = lazy(routeLoaders["/case-studies"]);
+const CaseStudyDetail = lazy(routeLoaders["/case-studies/:slug"]);
+const SolutionsIndex = lazy(routeLoaders["/solutions"]);
+const SolutionDetail = lazy(routeLoaders["/solutions/:slug"]);
+const Directories = lazy(routeLoaders["/directories"]);
 
 const queryClient = new QueryClient();
 
@@ -46,6 +48,21 @@ const RouteTracker = () => {
   useEffect(() => {
     trackPageView(location.pathname + location.search);
   }, [location.pathname, location.search]);
+  return null;
+};
+
+const IdlePrefetch = () => {
+  useEffect(() => {
+    // Warm the most commonly visited routes once the app is interactive.
+    prefetchOnIdle([
+      "/solutions",
+      "/programmes",
+      "/reports",
+      "/events",
+      "/about",
+      "/contact",
+    ]);
+  }, []);
   return null;
 };
 
@@ -61,35 +78,38 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <RouteTracker />
-          <Routes>
-            <Route path="/" element={withSuspense(<Index />)} />
-            <Route path="/about" element={withSuspense(<About />, "detail")} />
-            <Route path="/contact" element={withSuspense(<Contact />, "form")} />
-            <Route path="/reports" element={withSuspense(<ReportsIndex />, "list")} />
-            <Route path="/reports/:slug" element={withSuspense(<ReportDetail />, "detail")} />
-            <Route path="/events" element={withSuspense(<EventsIndex />, "list")} />
-            <Route path="/events/:slug" element={withSuspense(<EventDetail />, "detail")} />
-            <Route path="/programmes" element={withSuspense(<ProgrammesIndex />, "list")} />
-            <Route path="/programmes/:slug" element={withSuspense(<ProgrammeDetail />, "detail")} />
-            <Route path="/login" element={withSuspense(<Login />, "form")} />
-            <Route path="/register" element={withSuspense(<Register />, "form")} />
-            <Route path="/welcome" element={withSuspense(<Welcome />, "form")} />
-            <Route path="/forgot-password" element={withSuspense(<ForgotPassword />, "form")} />
-            <Route path="/reset-password" element={withSuspense(<ResetPassword />, "form")} />
-            <Route path="/terms" element={withSuspense(<Terms />, "detail")} />
-            <Route path="/privacy" element={withSuspense(<Privacy />, "detail")} />
-            <Route path="/accessibility" element={withSuspense(<Accessibility />, "detail")} />
-            <Route path="/cookies" element={withSuspense(<Cookies />, "detail")} />
-            <Route path="/readiness-assessment" element={withSuspense(<ReadinessAssessment />, "detail")} />
-            <Route path="/readiness-assessment/:slug" element={withSuspense(<AssessmentDetail />, "detail")} />
-            <Route path="/case-studies" element={withSuspense(<CaseStudiesIndex />, "list")} />
-            <Route path="/case-studies/:slug" element={withSuspense(<CaseStudyDetail />, "detail")} />
-            <Route path="/solutions" element={withSuspense(<SolutionsIndex />, "list")} />
-            <Route path="/solutions/:slug" element={withSuspense(<SolutionDetail />, "detail")} />
-            <Route path="/directories" element={withSuspense(<Directories />, "detail")} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={withSuspense(<NotFound />)} />
-          </Routes>
+          <IdlePrefetch />
+          <ChunkErrorBoundary>
+            <Routes>
+              <Route path="/" element={withSuspense(<Index />)} />
+              <Route path="/about" element={withSuspense(<About />, "detail")} />
+              <Route path="/contact" element={withSuspense(<Contact />, "form")} />
+              <Route path="/reports" element={withSuspense(<ReportsIndex />, "list")} />
+              <Route path="/reports/:slug" element={withSuspense(<ReportDetail />, "detail")} />
+              <Route path="/events" element={withSuspense(<EventsIndex />, "list")} />
+              <Route path="/events/:slug" element={withSuspense(<EventDetail />, "detail")} />
+              <Route path="/programmes" element={withSuspense(<ProgrammesIndex />, "list")} />
+              <Route path="/programmes/:slug" element={withSuspense(<ProgrammeDetail />, "detail")} />
+              <Route path="/login" element={withSuspense(<Login />, "form")} />
+              <Route path="/register" element={withSuspense(<Register />, "form")} />
+              <Route path="/welcome" element={withSuspense(<Welcome />, "form")} />
+              <Route path="/forgot-password" element={withSuspense(<ForgotPassword />, "form")} />
+              <Route path="/reset-password" element={withSuspense(<ResetPassword />, "form")} />
+              <Route path="/terms" element={withSuspense(<Terms />, "detail")} />
+              <Route path="/privacy" element={withSuspense(<Privacy />, "detail")} />
+              <Route path="/accessibility" element={withSuspense(<Accessibility />, "detail")} />
+              <Route path="/cookies" element={withSuspense(<Cookies />, "detail")} />
+              <Route path="/readiness-assessment" element={withSuspense(<ReadinessAssessment />, "detail")} />
+              <Route path="/readiness-assessment/:slug" element={withSuspense(<AssessmentDetail />, "detail")} />
+              <Route path="/case-studies" element={withSuspense(<CaseStudiesIndex />, "list")} />
+              <Route path="/case-studies/:slug" element={withSuspense(<CaseStudyDetail />, "detail")} />
+              <Route path="/solutions" element={withSuspense(<SolutionsIndex />, "list")} />
+              <Route path="/solutions/:slug" element={withSuspense(<SolutionDetail />, "detail")} />
+              <Route path="/directories" element={withSuspense(<Directories />, "detail")} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={withSuspense(<NotFound />)} />
+            </Routes>
+          </ChunkErrorBoundary>
           <CookieConsent />
         </BrowserRouter>
       </TooltipProvider>

@@ -1,8 +1,18 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Linkedin, Twitter, Facebook, Youtube } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { prefetchRoute } from "@/lib/routePrefetch";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
 import ciiLogoAsset from "@/assets/cii-logo.webp.asset.json";
+
+const prefetchProps = (href: string) =>
+  href.startsWith("/") && !href.startsWith("//")
+    ? {
+        onMouseEnter: () => prefetchRoute(href),
+        onFocus: () => prefetchRoute(href),
+        onTouchStart: () => prefetchRoute(href),
+      }
+    : {};
 
 type NavChild = { label: string; href: string };
 type NavLink = { label: string; href: string; children?: NavChild[] };
@@ -84,7 +94,7 @@ export const WireHeader = () => {
                         return (
                           <li key={c.label}>
                             {childInternal ? (
-                              <Link to={c.href} className={childCls} aria-current={childActive ? "page" : undefined}>
+                              <Link to={c.href} className={childCls} aria-current={childActive ? "page" : undefined} {...prefetchProps(c.href)}>
                                 {c.label}
                               </Link>
                             ) : (
@@ -103,7 +113,7 @@ export const WireHeader = () => {
 
             const isInternal = l.href.startsWith("/") && !l.href.startsWith("//");
             return isInternal ? (
-              <Link key={l.label} to={l.href} className={baseCls} aria-current={active ? "page" : undefined}>
+              <Link key={l.label} to={l.href} className={baseCls} aria-current={active ? "page" : undefined} {...prefetchProps(l.href)}>
                 {l.label}
               </Link>
             ) : (
