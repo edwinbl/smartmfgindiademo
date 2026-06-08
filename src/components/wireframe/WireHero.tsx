@@ -4,7 +4,7 @@ import { HeroEcosystemViz } from "./HeroEcosystemViz";
 
 export const WireHero = () => {
   return (
-    <section className="relative overflow-hidden text-white min-h-[calc(100svh-72px)] flex items-center" aria-label="Hero">
+    <section className="relative overflow-hidden text-white h-[calc(100svh-72px)] flex items-center" aria-label="Hero">
       {/* Background gradient */}
       <div
         className="absolute inset-0"
@@ -24,7 +24,7 @@ export const WireHero = () => {
       {/* Tricolor stripe */}
       <div className="absolute left-0 top-0 bottom-0 w-1 tricolor-stripe" />
 
-      <div className="container-cii relative pt-8 pb-12 md:pt-10 md:pb-16 grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-16 items-center">
+      <div className="container-cii relative py-10 grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-16 items-center">
         <div>
           <div
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-5 border"

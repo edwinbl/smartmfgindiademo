@@ -285,7 +285,7 @@ const SolutionsHero = ({ query, onQuery }: { query: string; onQuery: (v: string)
   const focus = () => document.getElementById("categories")?.scrollIntoView({ behavior: "smooth", block: "start" });
   return (
     <section
-      className="relative overflow-hidden bg-background border-b"
+      className="relative overflow-hidden bg-background border-b h-[calc(100svh-72px)] flex items-center"
       style={{ borderColor: "hsl(var(--neutral-150))" }}
     >
       <div
@@ -307,7 +307,7 @@ const SolutionsHero = ({ query, onQuery }: { query: string; onQuery: (v: string)
         aria-hidden
       />
 
-      <div className="container-cii relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-center py-14 lg:py-20">
+      <div className="container-cii relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-center py-10">
         <div className="lg:col-span-7 animate-fade-in">
           <span className="cii-chip">
             <Sparkles className="h-3.5 w-3.5" /> Solutions &amp; Pathways

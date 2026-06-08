@@ -22,7 +22,7 @@ export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
   };
   return (
     <section
-      className="relative overflow-hidden bg-background border-b min-h-[calc(100svh-72px)] flex items-center"
+      className="relative overflow-hidden bg-background border-b h-[calc(100svh-72px)] flex items-center"
       style={{ borderColor: "hsl(var(--neutral-150))" }}
       aria-label="Events hero"
     >
@@ -45,7 +45,7 @@ export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
         aria-hidden
       />
 
-      <div className="container-cii relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-center py-14 lg:py-20">
+      <div className="container-cii relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-center py-10">
         <div className="lg:col-span-7 animate-fade-in">
           <h1 className="font-display text-[36px] sm:text-5xl lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
             Summits, Webinars &amp;{" "}

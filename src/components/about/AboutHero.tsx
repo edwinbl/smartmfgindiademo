@@ -3,7 +3,7 @@ import { Sparkles, ClipboardCheck, Compass, Rocket, Network, Award } from "lucid
 export const AboutHero = () => {
   return (
     <section
-      className="relative overflow-hidden bg-background border-b min-h-[calc(100svh-72px)] flex items-center"
+      className="relative overflow-hidden bg-background border-b h-[calc(100svh-72px)] flex items-center"
       style={{ borderColor: "hsl(var(--neutral-150))" }}
       aria-label="About hero"
     >
@@ -26,7 +26,7 @@ export const AboutHero = () => {
         aria-hidden
       />
 
-      <div className="container-cii relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-center py-14 lg:py-20">
+      <div className="container-cii relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-center py-10">
         <div className="lg:col-span-7 animate-fade-in">
           <span className="cii-chip">
             <Sparkles className="h-3.5 w-3.5" /> About the Platform

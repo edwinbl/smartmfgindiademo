@@ -8,7 +8,7 @@ interface Props {
 
 export const ReportDetailHero = ({ report }: Props) => {
   return (
-    <section className="relative overflow-hidden bg-background border-b min-h-[calc(100svh-72px)] flex items-center" style={{ borderColor: "hsl(var(--neutral-150))" }}>
+    <section className="relative overflow-hidden bg-background border-b h-[calc(100svh-72px)] flex items-center" style={{ borderColor: "hsl(var(--neutral-150))" }}>
       <div
         className="absolute inset-0 -z-10"
         style={{
@@ -17,7 +17,7 @@ export const ReportDetailHero = ({ report }: Props) => {
         }}
         aria-hidden
       />
-      <div className="container-cii py-10 lg:py-14">
+      <div className="container-cii py-10">
         <nav className="flex items-center gap-1.5 text-xs text-[hsl(var(--neutral-500))] mb-6" aria-label="Breadcrumb">
           <Link to="/" className="hover:text-[hsl(var(--red-600))]">Home</Link>
           <ChevronRight className="h-3 w-3" />

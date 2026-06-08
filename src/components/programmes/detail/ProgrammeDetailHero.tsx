@@ -18,7 +18,7 @@ const statusLabel: Record<ProgrammeItem["status"], string> = {
 export const ProgrammeDetailHero = ({ programme, onRegister }: Props) => {
   const p = programme;
   return (
-    <section className="relative text-white overflow-hidden min-h-[calc(100svh-72px)] flex items-center">
+    <section className="relative text-white overflow-hidden h-[calc(100svh-72px)] flex items-center">
       <div
         className="absolute inset-0"
         style={{
@@ -28,7 +28,7 @@ export const ProgrammeDetailHero = ({ programme, onRegister }: Props) => {
         aria-hidden
       />
       <div className="absolute inset-0 blueprint-grid opacity-25" aria-hidden />
-      <div className="container-cii relative py-14 md:py-20">
+      <div className="container-cii relative py-10">
         <nav className="text-xs text-white/70 flex items-center gap-1.5 mb-5" aria-label="Breadcrumb">
           <Link to="/" className="hover:text-white">Home</Link>
           <ChevronRight className="h-3 w-3" />
