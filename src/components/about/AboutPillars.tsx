@@ -84,7 +84,7 @@ export const AboutPillars = () => {
               <div
                 key={p.title}
                 className="relative overflow-hidden rounded-2xl border border-[hsl(var(--neutral-200))] bg-white shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col"
-                style={{ background: s.bg }}
+                style={{ background: unifiedGradient }}
               >
                 <div className="h-1.5 w-full" style={{ background: s.bar }} />
                 <div className="p-6 flex flex-col h-full">
