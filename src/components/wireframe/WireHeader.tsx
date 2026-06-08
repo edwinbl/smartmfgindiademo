@@ -94,7 +94,7 @@ export const WireHeader = () => {
                         return (
                           <li key={c.label}>
                             {childInternal ? (
-                              <Link to={c.href} className={childCls} aria-current={childActive ? "page" : undefined}>
+                              <Link to={c.href} className={childCls} aria-current={childActive ? "page" : undefined} {...prefetchProps(c.href)}>
                                 {c.label}
                               </Link>
                             ) : (
