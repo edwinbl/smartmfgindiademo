@@ -113,7 +113,7 @@ export const WireHeader = () => {
 
             const isInternal = l.href.startsWith("/") && !l.href.startsWith("//");
             return isInternal ? (
-              <Link key={l.label} to={l.href} className={baseCls} aria-current={active ? "page" : undefined}>
+              <Link key={l.label} to={l.href} className={baseCls} aria-current={active ? "page" : undefined} {...prefetchProps(l.href)}>
                 {l.label}
               </Link>
             ) : (
