@@ -265,34 +265,25 @@ const ReadinessAssessment = () => {
             {/* Mobile: horizontal scroll */}
             <div className="mt-8 -mx-6 px-6 md:mx-0 md:px-0 overflow-x-auto md:overflow-visible">
               <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 snap-x snap-mandatory pb-2 md:pb-0">
-                {outcomes.map(({ icon: Icon, title, desc }, i) => {
-                  const accents = [
-                    { border: "hsl(var(--india-green))", bg: "hsl(var(--india-green) / 0.06)", iconBg: "hsl(var(--india-green) / 0.12)", text: "hsl(var(--india-green))" },
-                    { border: "hsl(var(--navy-600))", bg: "hsl(var(--navy-100) / 0.5)", iconBg: "hsl(var(--navy-100))", text: "hsl(var(--navy-600))" },
-                    { border: "hsl(var(--orange-500))", bg: "hsl(var(--orange-100) / 0.5)", iconBg: "hsl(var(--orange-100))", text: "hsl(var(--orange-600))" },
-                    { border: "hsl(var(--navy-800))", bg: "hsl(var(--navy-050) / 0.6)", iconBg: "hsl(var(--navy-100))", text: "hsl(var(--navy-700))" },
-                    { border: "hsl(var(--red-600))", bg: "hsl(var(--red-100) / 0.4)", iconBg: "hsl(var(--red-100))", text: "hsl(var(--red-600))" },
-                    { border: "hsl(var(--orange-600))", bg: "hsl(var(--orange-100) / 0.4)", iconBg: "hsl(var(--orange-100))", text: "hsl(var(--orange-500))" },
-                  ];
-                  const accent = accents[i];
+                {outcomes.map(({ icon: Icon, title, desc }) => {
                   return (
                     <div
                       key={title}
                       className="group relative overflow-hidden rounded-lg border p-5 min-w-[260px] md:min-w-0 snap-start transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                       style={{
-                        background: accent.bg,
+                        background: "linear-gradient(180deg, hsl(var(--neutral-50)), #ffffff 70%)",
                         borderColor: "hsl(var(--neutral-150))",
                       }}
                     >
-                      {/* Colored top accent bar */}
+                      {/* Consistent top accent bar */}
                       <div
                         className="absolute top-0 left-0 right-0 h-1"
-                        style={{ background: accent.border }}
+                        style={{ background: "hsl(var(--navy-600))" }}
                       />
                       <div className="flex items-start gap-3">
                         <div
                           className="shrink-0 h-10 w-10 rounded-lg grid place-items-center"
-                          style={{ background: accent.iconBg, color: accent.text }}
+                          style={{ background: "hsl(var(--navy-100))", color: "hsl(var(--navy-600))" }}
                         >
                           <Icon className="h-5 w-5" strokeWidth={1.75} />
                         </div>
@@ -304,7 +295,7 @@ const ReadinessAssessment = () => {
                       {/* Hover arrow hint */}
                       <div
                         className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
-                        style={{ color: accent.text }}
+                        style={{ color: "hsl(var(--navy-600))" }}
                       >
                         <ArrowRight className="h-4 w-4" />
                       </div>
