@@ -38,10 +38,10 @@ export const GuidedDiscovery = ({ selected, onSelect }: Props) => {
                 key={o.id}
                 type="button"
                 onClick={() => onSelect(active ? null : o.id)}
-                className={`group text-left cii-card p-5 transition-all relative overflow-hidden animate-fade-in hover:-translate-y-0.5 ${
+                className={`group text-left cii-card bg-white p-5 transition-all relative overflow-hidden animate-fade-in hover:-translate-y-0.5 ${
                   active ? "ring-2 ring-[hsl(var(--red-600))] border-[hsl(var(--red-600))]" : ""
                 }`}
-                style={{ animationDelay: `${i * 60}ms`, background: p.bg, borderColor: active ? undefined : p.border }}
+                style={{ animationDelay: `${i * 60}ms`, borderColor: active ? undefined : p.border }}
               >
                 <span
                   className="h-1 absolute top-0 left-0 right-0 transition-all"
