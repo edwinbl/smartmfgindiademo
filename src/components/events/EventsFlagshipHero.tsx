@@ -22,7 +22,7 @@ export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
   };
   return (
     <section
-      className="relative overflow-hidden bg-background border-b h-[calc(100svh-72px)] flex items-center"
+      className="relative overflow-hidden bg-background border-b lg:h-[calc(100svh-72px)] flex items-center"
       style={{ borderColor: "hsl(var(--neutral-150))" }}
       aria-label="Events hero"
     >
@@ -45,14 +45,14 @@ export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
         aria-hidden
       />
 
-      <div className="container-cii relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-center py-10">
+      <div className="container-cii relative grid lg:grid-cols-12 gap-8 lg:gap-16 items-center py-10 md:py-12">
         <div className="lg:col-span-7 animate-fade-in">
-          <h1 className="font-display text-[36px] sm:text-5xl lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
+          <h1 className="font-display text-[28px] xs:text-[32px] sm:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight text-[hsl(var(--navy-900))]">
             Summits, Webinars &amp;{" "}
             <span className="text-[hsl(var(--red-600))]">Convenings</span>
           </h1>
 
-          <p className="mt-5 text-base sm:text-lg text-[hsl(var(--neutral-700))] max-w-xl leading-relaxed">
+          <p className="mt-4 sm:mt-5 text-sm sm:text-lg text-[hsl(var(--neutral-700))] max-w-xl leading-relaxed">
             Convene with India's manufacturing leaders. Discover flagship summits, expert
             webinars, roundtables and capability programmes across the year.
           </p>
@@ -62,21 +62,21 @@ export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
               e.preventDefault();
               focusResults();
             }}
-            className="mt-7 relative max-w-2xl"
+            className="mt-5 sm:mt-7 relative max-w-2xl"
           >
-            <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-[hsl(var(--neutral-500))]" />
+            <Search className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-[hsl(var(--neutral-500))]" />
             <input
               type="text"
               value={query}
               onChange={(e) => onQuery?.(e.target.value)}
-              placeholder="Search events, topics, speakers or themes…"
-              className="w-full h-14 pl-14 pr-32 rounded-full border bg-white text-sm text-[hsl(var(--neutral-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] shadow-sm transition-shadow"
+              placeholder="Search events, topics, speakers…"
+              className="w-full h-12 sm:h-14 pl-11 sm:pl-14 pr-24 sm:pr-32 rounded-full border bg-white text-sm text-[hsl(var(--neutral-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] shadow-sm transition-shadow"
               style={{ borderColor: "hsl(var(--neutral-200))" }}
               aria-label="Search events"
             />
             <button
               type="submit"
-              className="absolute right-2 top-1/2 -translate-y-1/2 h-10 px-5 rounded-full text-xs font-bold uppercase tracking-wider text-white"
+              className="absolute right-1.5 sm:right-2 top-1/2 -translate-y-1/2 h-9 sm:h-10 px-4 sm:px-5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-white"
               style={{
                 background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
               }}
@@ -86,7 +86,7 @@ export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
           </form>
         </div>
 
-        <div className="lg:col-span-5 relative h-[400px] sm:h-[460px] lg:h-[520px] animate-scale-in">
+        <div className="hidden md:block lg:col-span-5 relative h-[400px] sm:h-[460px] lg:h-[520px] animate-scale-in">
           <EventsCollage event={event} />
         </div>
       </div>
