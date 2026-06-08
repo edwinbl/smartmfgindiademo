@@ -113,14 +113,14 @@ const ReadinessAssessment = () => {
 
       <main className="pb-24 md:pb-0">
         {/* ============== HERO ============== */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-[hsl(var(--navy-050))] to-white">
+        <section className="relative overflow-hidden bg-gradient-to-b from-[hsl(var(--navy-050))] to-white h-[calc(100svh-72px)] flex items-center">
           <div className="absolute inset-0 -z-0 opacity-[0.35] pointer-events-none"
             style={{
               backgroundImage:
                 "radial-gradient(circle at 20% 10%, hsl(var(--navy-100)) 0, transparent 40%), radial-gradient(circle at 90% 80%, hsl(var(--orange-100)) 0, transparent 45%)",
             }}
           />
-          <div className="container-cii relative py-14 md:py-20">
+          <div className="container-cii relative py-10">
             <div className="grid gap-10 lg:gap-14 lg:grid-cols-[1.05fr_1fr] items-center">
               <div>
                 <div className="section-eyebrow mb-4">Readiness Assessment</div>
