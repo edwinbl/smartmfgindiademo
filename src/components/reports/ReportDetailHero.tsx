@@ -8,43 +8,52 @@ interface Props {
 
 export const ReportDetailHero = ({ report }: Props) => {
   return (
-    <section className="relative overflow-hidden bg-background border-b h-[calc(100svh-72px)] flex items-center" style={{ borderColor: "hsl(var(--neutral-150))" }}>
+    <section className="relative text-white overflow-hidden">
       <div
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(900px 400px at 90% 0%, hsl(var(--orange-500) / 0.10), transparent 60%), radial-gradient(700px 400px at 0% 100%, hsl(var(--navy-600) / 0.10), transparent 55%)",
+            "linear-gradient(125deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-700)) 60%, hsl(var(--navy-600)) 100%)",
         }}
         aria-hidden
       />
-      <div className="container-cii py-10">
-        <nav className="flex items-center gap-1.5 text-xs text-[hsl(var(--neutral-500))] mb-6" aria-label="Breadcrumb">
-          <Link to="/" className="hover:text-[hsl(var(--red-600))]">Home</Link>
+      <div className="absolute inset-0 blueprint-grid opacity-25" aria-hidden />
+      <div className="container-cii relative py-10 md:py-14">
+        <nav className="text-xs text-white/70 flex items-center gap-1.5 mb-5 flex-wrap" aria-label="Breadcrumb">
+          <Link to="/" className="hover:text-white">Home</Link>
           <ChevronRight className="h-3 w-3" />
-          <Link to="/reports" className="hover:text-[hsl(var(--red-600))]">Insights &amp; Reports</Link>
+          <Link to="/reports" className="hover:text-white">Insights &amp; Reports</Link>
           <ChevronRight className="h-3 w-3" />
-          <span className="text-[hsl(var(--neutral-700))] truncate">{report.title}</span>
+          <span className="text-white/90 truncate max-w-[60vw]">{report.title}</span>
         </nav>
 
-        <div className="max-w-3xl">
-          <div className="flex flex-wrap items-center gap-2 mb-4">
-            <span className="cii-chip cii-chip-orange">{report.type}</span>
-            <span className="cii-chip">{report.industry}</span>
-            <span className="cii-chip">{report.domain}</span>
+        <div className="max-w-3xl space-y-5">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] uppercase tracking-[0.12em] font-bold bg-[hsl(var(--orange-500))] text-white">
+              {report.type}
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] uppercase tracking-[0.12em] font-bold bg-white/10 backdrop-blur-sm border border-white/20">
+              {report.industry}
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] uppercase tracking-[0.12em] font-bold bg-white/10 backdrop-blur-sm border border-white/20">
+              {report.domain}
+            </span>
           </div>
-          <h1 className="font-display font-extrabold text-3xl md:text-5xl leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
+
+          <h1 className="font-display font-bold text-[26px] sm:text-[32px] md:text-[42px] leading-[1.1] tracking-tight">
             {report.title}
           </h1>
-          <p className="mt-5 text-base md:text-lg text-[hsl(var(--neutral-700))] leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-white/85">
             {report.summary}
           </p>
-          <div className="mt-6 flex flex-wrap items-center gap-5 text-sm text-[hsl(var(--neutral-700))]">
+
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80 pt-1">
             <span className="inline-flex items-center gap-2">
-              <User className="h-4 w-4 text-[hsl(var(--navy-700))]" />
+              <User className="h-4 w-4 text-white/60" />
               {report.author}
             </span>
             <span className="inline-flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-[hsl(var(--navy-700))]" />
+              <Calendar className="h-4 w-4 text-white/60" />
               {report.publishedOn}
             </span>
           </div>

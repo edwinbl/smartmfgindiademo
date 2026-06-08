@@ -4,6 +4,7 @@ import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import {
   ArrowLeft,
   ArrowRight,
+  ChevronRight,
   Download,
   MessageCircle,
   Layers,
@@ -257,107 +258,85 @@ const CaseStudyDetail = () => {
       <WireHeader />
 
       {/* ============ 1. HERO / EXECUTIVE SUMMARY ============ */}
-      <section className="relative bg-gradient-to-b from-[hsl(var(--neutral-50))] to-white border-b border-[hsl(var(--neutral-150))]">
-        <div className="container-cii py-10 md:py-16">
-          <Link
-            to="/case-studies"
-            className="inline-flex items-center gap-1.5 text-sm text-[hsl(var(--navy-700))] hover:text-[hsl(var(--red-600))] font-semibold"
-          >
-            <ArrowLeft className="h-4 w-4" /> Back to Case Studies
-          </Link>
+      <section className="relative text-white overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(125deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-700)) 60%, hsl(var(--navy-600)) 100%)",
+          }}
+          aria-hidden
+        />
+        <div className="absolute inset-0 blueprint-grid opacity-25" aria-hidden />
+        <div className="container-cii relative py-10 md:py-14">
+          <nav className="text-xs text-white/70 flex items-center gap-1.5 mb-5 flex-wrap" aria-label="Breadcrumb">
+            <Link to="/" className="hover:text-white">Home</Link>
+            <ChevronRight className="h-3 w-3" />
+            <Link to="/case-studies" className="hover:text-white">Case Studies</Link>
+            <ChevronRight className="h-3 w-3" />
+            <span className="text-white/90 truncate max-w-[60vw]">{cs.company}</span>
+          </nav>
 
-          <div className="mt-6 grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-10 items-start">
-            {/* Left */}
-            <div>
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            <div className="lg:col-span-8 space-y-5">
               <div className="flex flex-wrap items-center gap-2">
                 {x.categoryTags.map((t, i) => (
-                  <span key={t} className={i === 0 ? "cii-chip" : i === 1 ? "cii-chip cii-chip-orange" : "cii-chip"}>
+                  <span
+                    key={t}
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] uppercase tracking-[0.12em] font-bold ${
+                      i === 0
+                        ? "bg-[hsl(var(--orange-500))] text-white"
+                        : "bg-white/10 backdrop-blur-sm border border-white/20"
+                    }`}
+                  >
                     {t}
                   </span>
                 ))}
               </div>
-              <div className="mt-5 text-sm font-semibold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
+
+              <div className="text-xs font-semibold uppercase tracking-[0.14em] text-white/70">
                 {cs.company}
               </div>
-              <h1 className="mt-2 font-display font-bold text-[32px] md:text-[46px] leading-[1.08] tracking-tight text-[hsl(var(--navy-900))]">
+              <h1 className="font-display font-bold text-[26px] sm:text-[32px] md:text-[42px] leading-[1.1] tracking-tight">
                 {cs.headline}
               </h1>
-              <p className="mt-5 text-base md:text-lg text-[hsl(var(--neutral-700))] max-w-2xl">
+              <p className="text-sm sm:text-base md:text-lg text-white/85 max-w-2xl">
                 {x.executiveSummary}
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm">
-                <Meta icon={Factory} label="Sector" value={cs.sector} />
-                <Meta icon={Building2} label="Size" value={cs.companySize} />
-                <Meta icon={MapPin} label="State" value={cs.state} />
-                <Meta icon={Clock} label="Duration" value={`${cs.durationMonths} months`} />
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80 pt-1">
+                <span className="inline-flex items-center gap-2"><Factory className="h-4 w-4 text-white/60" />{cs.sector}</span>
+                <span className="inline-flex items-center gap-2"><Building2 className="h-4 w-4 text-white/60" />{cs.companySize}</span>
+                <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4 text-white/60" />{cs.state}</span>
+                <span className="inline-flex items-center gap-2"><Clock className="h-4 w-4 text-white/60" />{cs.durationMonths} months</span>
               </div>
 
-              {/* Impact snapshot strip */}
-              <div className="mt-7 grid grid-cols-2 md:grid-cols-4 gap-3">
-                {cs.kpis.slice(0, 4).map((k) => (
-                  <div
-                    key={k.label}
-                    className="rounded-xl bg-white border border-[hsl(var(--neutral-150))] p-3"
-                  >
-                    <div className="font-numeric font-bold text-xl text-[hsl(var(--navy-900))]">{k.value}</div>
-                    <div className="text-[11px] text-[hsl(var(--neutral-500))] leading-tight">{k.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 pt-2">
                 <button className="btn-primary" type="button">
                   <Download className="h-4 w-4" /> Download PDF
                 </button>
-                <a href="#related" className="btn-outline">
+                <a
+                  href="#related"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-md bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-colors"
+                >
                   <Layers className="h-4 w-4" /> Explore Similar
                 </a>
-                <Link to="/reports" className="btn-secondary">
-                  <Lightbulb className="h-4 w-4" /> Related Solution
-                </Link>
               </div>
             </div>
 
-            {/* Right — Outcome Dashboard mock */}
-            <div className="relative rounded-3xl bg-gradient-to-br from-[hsl(var(--navy-800))] to-[hsl(var(--navy-900))] p-6 md:p-8 text-white overflow-hidden shadow-xl">
-              <div className="absolute inset-0 blueprint-grid opacity-40" />
-              <div className="relative">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs uppercase tracking-wider text-white/70">Transformation Snapshot</span>
-                  <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[hsl(var(--india-green)/0.25)] text-white">
-                    <Sparkles className="h-3 w-3" /> Outcomes
-                  </span>
+            {/* Right — Outcome Snapshot */}
+            <div className="lg:col-span-4">
+              <div className="rounded-lg bg-white/10 backdrop-blur-md border border-white/15 p-5">
+                <div className="text-[11px] uppercase tracking-[0.14em] font-bold text-white/70 mb-3">
+                  Transformation Snapshot
                 </div>
-                <div className="mt-4 grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-3">
                   {cs.kpis.slice(0, 4).map((k) => (
-                    <div
-                      key={k.label}
-                      className="rounded-xl bg-white/10 backdrop-blur p-4 border border-white/10"
-                    >
-                      <div className="text-[11px] text-white/70">{k.label}</div>
-                      <div className="mt-1 font-numeric font-bold text-2xl">{k.value}</div>
+                    <div key={k.label} className="rounded-md bg-white/10 border border-white/10 p-3">
+                      <div className="text-[10px] text-white/70 leading-tight">{k.label}</div>
+                      <div className="mt-1 font-numeric font-bold text-lg sm:text-xl">{k.value}</div>
                     </div>
                   ))}
-                </div>
-                <div className="mt-5 space-y-2">
-                  {cs.beforeAfter.slice(0, 3).map((b) => (
-                    <div key={b.label}>
-                      <div className="flex items-center justify-between text-xs text-white/70">
-                        <span>{b.label}</span>
-                        <span>
-                          <span className="opacity-60 line-through mr-2">{b.before}</span>
-                          <span className="text-white font-semibold">{b.after}</span>
-                        </span>
-                      </div>
-                      <div className="mt-1 h-1.5 rounded-full bg-white/15 overflow-hidden">
-                        <div className="h-full w-[78%] bg-gradient-to-r from-[hsl(var(--india-green))] to-[hsl(var(--orange-500))]" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-5 pt-4 border-t border-white/10 text-[11px] text-white/60">
-                  Programme duration · {cs.durationMonths} months · {cs.state}
                 </div>
               </div>
             </div>
