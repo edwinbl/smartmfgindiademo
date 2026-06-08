@@ -8,7 +8,7 @@ interface Props {
 
 export const ReportDetailHero = ({ report }: Props) => {
   return (
-    <section className="relative overflow-hidden bg-background border-b" style={{ borderColor: "hsl(var(--neutral-150))" }}>
+    <section className="relative overflow-hidden bg-background border-b min-h-[calc(100svh-72px)] flex items-center" style={{ borderColor: "hsl(var(--neutral-150))" }}>
       <div
         className="absolute inset-0 -z-10"
         style={{

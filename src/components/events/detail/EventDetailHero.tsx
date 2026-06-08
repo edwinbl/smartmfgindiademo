@@ -18,7 +18,7 @@ const statusLabel: Record<EventItem["status"], string> = {
 
 export const EventDetailHero = ({ event }: Props) => {
   return (
-    <section className="relative text-white overflow-hidden">
+    <section className="relative text-white overflow-hidden min-h-[calc(100svh-72px)] flex items-center">
       <div
         className="absolute inset-0"
         style={{
