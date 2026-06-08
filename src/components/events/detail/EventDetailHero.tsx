@@ -18,7 +18,7 @@ const statusLabel: Record<EventItem["status"], string> = {
 
 export const EventDetailHero = ({ event }: Props) => {
   return (
-    <section className="relative text-white overflow-hidden h-[calc(100svh-72px)] flex items-center">
+    <section className="relative text-white overflow-hidden">
       <div
         className="absolute inset-0"
         style={{
@@ -28,7 +28,7 @@ export const EventDetailHero = ({ event }: Props) => {
         aria-hidden
       />
       <div className="absolute inset-0 blueprint-grid opacity-25" aria-hidden />
-      <div className="container-cii relative py-10">
+      <div className="container-cii relative py-10 md:py-14">
         <nav className="text-xs text-white/70 flex items-center gap-1.5 mb-5" aria-label="Breadcrumb">
           <Link to="/" className="hover:text-white">Home</Link>
           <ChevronRight className="h-3 w-3" />
@@ -51,10 +51,10 @@ export const EventDetailHero = ({ event }: Props) => {
               </span>
             </div>
 
-            <h1 className="font-display font-bold text-[34px] md:text-[48px] leading-[1.05] tracking-tight">
+            <h1 className="font-display font-bold text-[26px] sm:text-[32px] md:text-[42px] leading-[1.1] tracking-tight">
               {event.title}
             </h1>
-            <p className="text-lg text-white/85 max-w-2xl">{event.tagline}</p>
+            <p className="text-sm sm:text-base md:text-lg text-white/85 max-w-2xl">{event.tagline}</p>
 
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80 pt-1">
               <span className="inline-flex items-center gap-2"><Calendar className="h-4 w-4 text-white/60" />{event.date}</span>
