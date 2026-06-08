@@ -24,15 +24,7 @@ const ProgrammeCardImpl = ({ programme, onRegister, recommended }: Props) => {
           className="absolute inset-0"
           style={{
             background:
-              p.accent === "navy"
-                ? "linear-gradient(135deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-700)) 100%)"
-                : p.accent === "red"
-                ? "linear-gradient(135deg, hsl(var(--navy-900)) 0%, hsl(var(--red-600)) 130%)"
-                : p.accent === "orange"
-                ? "linear-gradient(135deg, hsl(var(--navy-800)) 0%, hsl(var(--orange-500)) 130%)"
-                : p.accent === "teal"
-                ? "linear-gradient(135deg, hsl(var(--navy-800)) 0%, hsl(180_60%_38%) 130%)"
-                : "linear-gradient(135deg, hsl(var(--navy-800)) 0%, hsl(var(--saffron)) 130%)",
+              "linear-gradient(135deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-700)) 60%, hsl(var(--red-600)) 130%)",
           }}
         />
         <div className="absolute inset-0 blueprint-grid opacity-30" />
