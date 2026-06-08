@@ -3,6 +3,7 @@ import { Menu, X, ChevronDown, Linkedin, Twitter, Facebook, Youtube } from "luci
 import { Link, useLocation } from "react-router-dom";
 import { prefetchRoute } from "@/lib/routePrefetch";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
+import ciiLogoAsset from "@/assets/cii-logo.webp.asset.json";
 
 const prefetchProps = (href: string) =>
   href.startsWith("/") && !href.startsWith("//")
