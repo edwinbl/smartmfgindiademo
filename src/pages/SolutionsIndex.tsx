@@ -167,7 +167,7 @@ const SolutionsIndex = () => {
                     key={c.slug}
                     to={`/solutions/${c.slug}`}
                     className="group relative cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all overflow-hidden"
-                    style={{ background: `linear-gradient(180deg, ${a.bg}, white 70%)` }}
+                    style={{ background: "linear-gradient(180deg, hsl(var(--neutral-50)), #ffffff 70%)" }}
                   >
                     <div
                       className="absolute top-0 left-0 right-0 h-1"
@@ -533,7 +533,7 @@ export const ExpertPerspectives = () => (
           const pal = palettes[i % palettes.length];
           return (
             <div key={e.name} className="relative cii-card p-7 overflow-hidden"
-              style={{ background: `linear-gradient(180deg, ${pal.bg}, white 75%)` }}>
+              style={{ background: "linear-gradient(180deg, hsl(var(--neutral-50)), #ffffff 70%)" }}>
               <div className="absolute top-0 left-0 right-0 h-1" style={{ background: pal.bar }} />
               <Quote className="h-8 w-8 opacity-40 absolute top-5 right-5" style={{ color: pal.bar }} />
               <div className="font-display text-lg font-bold text-[hsl(var(--navy-900))] leading-snug">
@@ -587,7 +587,7 @@ export const ResourcesBand = () => (
           const pal = palettes[i % palettes.length];
           return (
             <Link key={r.title} to={r.href} className="group cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all relative overflow-hidden"
-              style={{ background: `linear-gradient(180deg, ${pal.bg}, white 70%)` }}>
+              style={{ background: "linear-gradient(180deg, hsl(var(--neutral-50)), #ffffff 70%)" }}>
               <div className="absolute top-0 left-0 right-0 h-1" style={{ background: pal.bar }} />
               <div className="flex items-center justify-between">
                 <span
@@ -637,7 +637,7 @@ export const ProgrammesBand = () => (
           const pal = palettes[i % palettes.length];
           return (
             <div key={p.slug} className="cii-card p-6 relative overflow-hidden"
-              style={{ background: `linear-gradient(180deg, ${pal.bg}, white 70%)` }}>
+              style={{ background: "linear-gradient(180deg, hsl(var(--neutral-50)), #ffffff 70%)" }}>
               <div className="absolute top-0 left-0 right-0 h-1" style={{ background: pal.bar }} />
               <div
                 className="h-11 w-11 rounded-xl grid place-items-center text-white shadow-sm"
