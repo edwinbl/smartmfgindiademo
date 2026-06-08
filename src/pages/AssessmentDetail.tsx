@@ -221,46 +221,58 @@ const AssessmentDetail = () => {
 
       <main className="pb-28 md:pb-0">
         {/* ============== HERO ============== */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-[hsl(var(--navy-050))] to-white">
+        <section className="relative text-white overflow-hidden">
           <div
-            className="absolute inset-0 -z-0 opacity-[0.35] pointer-events-none"
+            className="absolute inset-0"
             style={{
-              backgroundImage:
-                "radial-gradient(circle at 15% 10%, hsl(var(--navy-100)) 0, transparent 40%), radial-gradient(circle at 92% 85%, hsl(var(--orange-100)) 0, transparent 45%)",
+              background:
+                "linear-gradient(125deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-700)) 60%, hsl(var(--navy-600)) 100%)",
             }}
+            aria-hidden
           />
-          <div className="container-cii relative py-12 md:py-20">
-            <nav className="text-xs text-[hsl(var(--neutral-500))] mb-6 flex items-center gap-2 flex-wrap">
-              <Link to="/readiness-assessment" className="hover:text-[hsl(var(--navy-700))] font-semibold">
-                Readiness Assessment
-              </Link>
+          <div className="absolute inset-0 blueprint-grid opacity-25" aria-hidden />
+          <div className="container-cii relative py-10 md:py-14">
+            <nav className="text-xs text-white/70 mb-5 flex items-center gap-1.5 flex-wrap" aria-label="Breadcrumb">
+              <Link to="/" className="hover:text-white">Home</Link>
               <span>/</span>
-              <span className="text-[hsl(var(--neutral-700))]">{cfg.tag}</span>
+              <Link to="/readiness-assessment" className="hover:text-white">Readiness Assessment</Link>
+              <span>/</span>
+              <span className="text-white/90">{cfg.tag}</span>
             </nav>
 
-            <div className="grid gap-10 lg:gap-14 lg:grid-cols-[1.05fr_1fr] items-center">
-              <div>
-
-                <h1 className="font-display font-bold text-[30px] sm:text-[36px] md:text-[44px] leading-[1.1] tracking-tight text-navy-800">
-                  {cfg.title}
-                </h1>
-                <p className="mt-5 text-base md:text-lg text-[hsl(var(--neutral-700))] max-w-xl">
-                  {cfg.subtitle}
-                </p>
-
-                <div className="mt-6 flex flex-wrap gap-2">
-                  <span className="cii-chip">
-                    <Clock className="h-3.5 w-3.5" /> {cfg.duration}
+            <div className="grid gap-8 lg:gap-10 lg:grid-cols-12 items-start">
+              <div className="lg:col-span-8 space-y-5">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] uppercase tracking-[0.12em] font-bold bg-[hsl(var(--orange-500))] text-white">
+                    {cfg.tag}
                   </span>
-                  {microTags.map((t) => (
-                    <span key={t} className="cii-chip">
-                      <CheckCircle2 className="h-3.5 w-3.5" />
-                      {t}
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] uppercase tracking-[0.12em] font-bold bg-white/10 backdrop-blur-sm border border-white/20">
+                    <Clock className="h-3 w-3" /> {cfg.duration}
+                  </span>
+                  {microTags.slice(0, 2).map((t) => (
+                    <span
+                      key={t}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] uppercase tracking-[0.12em] font-bold bg-white/10 backdrop-blur-sm border border-white/20"
+                    >
+                      <CheckCircle2 className="h-3 w-3" /> {t}
                     </span>
                   ))}
                 </div>
 
-                <div className="mt-8 flex flex-wrap gap-3">
+                <h1 className="font-display font-bold text-[26px] sm:text-[32px] md:text-[42px] leading-[1.1] tracking-tight">
+                  {cfg.title}
+                </h1>
+                <p className="text-sm sm:text-base md:text-lg text-white/85 max-w-2xl">
+                  {cfg.subtitle}
+                </p>
+
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80 pt-1">
+                  <span className="inline-flex items-center gap-2"><Clock className="h-4 w-4 text-white/60" />{cfg.duration}</span>
+                  <span className="inline-flex items-center gap-2"><Users className="h-4 w-4 text-white/60" />{cfg.audience}</span>
+                  <span className="inline-flex items-center gap-2"><Layers className="h-4 w-4 text-white/60" />{cfg.coverageAreas}</span>
+                </div>
+
+                <div className="flex flex-wrap gap-3 pt-2">
                   <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
                     Start Assessment <ArrowRight className="!h-4 !w-4" />
                   </a>
@@ -268,110 +280,11 @@ const AssessmentDetail = () => {
                     type="button"
                     disabled
                     title="Coming soon"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-md text-[hsl(var(--neutral-500))] border border-dashed border-[hsl(var(--neutral-150))] cursor-not-allowed"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-md bg-white/10 backdrop-blur-sm border border-white/20 text-white/70 cursor-not-allowed"
                   >
                     <Download className="h-4 w-4" /> Download Sample Report
                   </button>
                 </div>
-              </div>
-
-              {/* Dashboard mockup */}
-              <div className="relative">
-                <div className="cii-card p-5 sm:p-6 bg-white">
-                  <div className="flex items-center justify-between gap-3 flex-wrap">
-                    <div>
-                      <div className="eyebrow text-[hsl(var(--neutral-500))]">Readiness Snapshot</div>
-                      <div className="font-display font-bold text-navy-800 text-base sm:text-lg mt-1">
-                        Sample Plant Overview
-                      </div>
-                    </div>
-                    <span
-                      className="inline-flex items-center gap-1.5 px-3 py-1 text-[11px] font-semibold rounded-full"
-                      style={{ background: cfg.accentSoft, color: cfg.accent }}
-                    >
-                      Preview
-                    </span>
-                  </div>
-
-                  <div className="mt-5 grid grid-cols-[auto_1fr] items-center gap-5">
-                    <div className="relative h-24 w-24 sm:h-28 sm:w-28">
-                      <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
-                        <circle cx="50" cy="50" r="42" fill="none" stroke="hsl(var(--neutral-150))" strokeWidth="10" />
-                        <circle
-                          cx="50"
-                          cy="50"
-                          r="42"
-                          fill="none"
-                          stroke="hsl(var(--india-green))"
-                          strokeWidth="10"
-                          strokeLinecap="round"
-                          strokeDasharray={`${2 * Math.PI * 42 * 0.62} ${2 * Math.PI * 42}`}
-                        />
-                      </svg>
-                      <div className="absolute inset-0 grid place-items-center">
-                        <div className="text-center">
-                          <div className="font-numeric font-bold text-navy-800 text-2xl leading-none">62</div>
-                          <div className="text-[10px] uppercase tracking-wide text-[hsl(var(--neutral-500))] mt-0.5">
-                            Score
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="text-sm font-semibold text-navy-800">Emerging Readiness</div>
-                      <p className="text-xs text-[hsl(var(--neutral-700))] leading-relaxed">
-                        Foundations are in place. Opportunities exist in digital adoption and energy efficiency.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 space-y-3">
-                    {cfg.dimensions.map((d) => (
-                      <div key={d.label}>
-                        <div className="flex items-center justify-between text-xs mb-1">
-                          <span className="font-semibold text-navy-800">{d.label}</span>
-                          <span className="font-numeric font-semibold text-[hsl(var(--neutral-700))]">{d.v}%</span>
-                        </div>
-                        <div className="h-1.5 rounded-full bg-[hsl(var(--neutral-150))] overflow-hidden">
-                          <div
-                            className="h-full rounded-full"
-                            style={{
-                              width: `${d.v}%`,
-                              background:
-                                d.v >= 65
-                                  ? "hsl(var(--india-green))"
-                                  : d.v >= 50
-                                    ? "hsl(var(--orange-500))"
-                                    : "hsl(var(--navy-600))",
-                            }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-6 grid grid-cols-3 gap-2">
-                    {[
-                      { label: "Productivity", v: "+18%", color: "hsl(var(--india-green))" },
-                      { label: "Quality", v: "+12%", color: "hsl(var(--navy-600))" },
-                      { label: "Energy", v: "−9%", color: "hsl(var(--orange-500))" },
-                    ].map((k) => (
-                      <div
-                        key={k.label}
-                        className="rounded-md border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))] p-2.5 text-center"
-                      >
-                        <div className="font-numeric font-bold text-sm" style={{ color: k.color }}>
-                          {k.v}
-                        </div>
-                        <div className="text-[10px] uppercase tracking-wide text-[hsl(var(--neutral-500))] mt-0.5">
-                          {k.label}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="absolute -z-10 -top-6 -right-6 w-40 h-40 rounded-full bg-cii-orange/15 blur-2xl" />
-                <div className="absolute -z-10 -bottom-8 -left-8 w-44 h-44 rounded-full bg-[hsl(var(--navy-100))]/60 blur-2xl" />
               </div>
             </div>
           </div>
