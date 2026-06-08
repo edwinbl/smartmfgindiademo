@@ -13,7 +13,6 @@ const prefetchProps = (href: string) =>
         onTouchStart: () => prefetchRoute(href),
       }
     : {};
-import ciiLogoAsset from "@/assets/cii-logo.webp.asset.json";
 
 type NavChild = { label: string; href: string };
 type NavLink = { label: string; href: string; children?: NavChild[] };
