@@ -1,7 +1,17 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Linkedin, Twitter, Facebook, Youtube } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { prefetchRoute } from "@/lib/routePrefetch";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
+
+const prefetchProps = (href: string) =>
+  href.startsWith("/") && !href.startsWith("//")
+    ? {
+        onMouseEnter: () => prefetchRoute(href),
+        onFocus: () => prefetchRoute(href),
+        onTouchStart: () => prefetchRoute(href),
+      }
+    : {};
 import ciiLogoAsset from "@/assets/cii-logo.webp.asset.json";
 
 type NavChild = { label: string; href: string };
