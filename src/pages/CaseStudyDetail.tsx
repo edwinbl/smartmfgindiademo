@@ -4,6 +4,7 @@ import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import {
   ArrowLeft,
   ArrowRight,
+  ChevronRight,
   Download,
   MessageCircle,
   Layers,
