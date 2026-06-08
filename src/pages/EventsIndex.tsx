@@ -126,7 +126,6 @@ const EventsIndex = () => {
       <main>
         <EventsFlagshipHero event={flagship} query={query} onQuery={setQuery} />
         <CIISignatureEvents onRegister={handleRegister} />
-        <EventsTypeTabs active={type} onChange={setType} counts={counts} />
         {user && <PersonalizedEventsShelf user={user} onRegister={handleRegister} />}
         <section className="py-12 md:py-16" id="all-events">
           <div className="container-cii">
@@ -135,6 +134,9 @@ const EventsIndex = () => {
               <h2 className="font-display font-bold text-[24px] md:text-[28px] text-[hsl(var(--navy-900))] tracking-tight">
                 Discover the ecosystem in motion
               </h2>
+            </div>
+            <div className="mb-6">
+              <EventsTypeTabs active={type} onChange={setType} counts={counts} />
             </div>
             <div className="grid gap-8 lg:grid-cols-[280px_1fr]">
               <EventsFilterSidebar
