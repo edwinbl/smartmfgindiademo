@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Linkedin, Twitter, Facebook, Youtube } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
+import ciiLogoAsset from "@/assets/cii-logo.webp.asset.json";
 
 type NavChild = { label: string; href: string };
 type NavLink = { label: string; href: string; children?: NavChild[] };
@@ -116,7 +117,7 @@ export const WireHeader = () => {
         {/* CII Logo — right */}
         <div className="flex items-center shrink-0 ml-auto md:ml-0">
           <img
-            src="https://www.smartmfgindia.com/img/CII-Logo.png"
+            src={ciiLogoAsset.url}
             alt="Confederation of Indian Industry"
             width={232}
             height={74}
