@@ -205,7 +205,7 @@ const CaseStudiesIndex = () => {
                   key={label}
                   onClick={() => { setVp(v); setChip(null); document.getElementById("all")?.scrollIntoView({ behavior: "smooth" }); }}
                   className="group text-left rounded-2xl border border-[hsl(var(--neutral-150))] p-6 hover:shadow-md hover:-translate-y-0.5 transition-all overflow-hidden relative"
-                  style={{ background: pal.tint }}
+                  style={{ background: "linear-gradient(180deg, hsl(var(--neutral-50)), #ffffff 70%)" }}
                 >
                   <div className="absolute top-0 left-0 right-0 h-1.5" style={{ background: pal.bar }} />
                   <div className={`h-12 w-12 rounded-xl grid place-items-center ${tone}`}><Icon className="h-6 w-6" /></div>
