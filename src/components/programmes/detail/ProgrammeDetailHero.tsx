@@ -18,7 +18,7 @@ const statusLabel: Record<ProgrammeItem["status"], string> = {
 export const ProgrammeDetailHero = ({ programme, onRegister }: Props) => {
   const p = programme;
   return (
-    <section className="relative text-white overflow-hidden">
+    <section className="relative text-white overflow-hidden min-h-[calc(100svh-72px)] flex items-center">
       <div
         className="absolute inset-0"
         style={{
