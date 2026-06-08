@@ -10,7 +10,7 @@ export const WireLeaderSpeak = () => {
         <div className="relative flex justify-center">
           <div className="relative aspect-square w-full max-w-[420px] rounded-full overflow-hidden shadow-2xl border-4 border-white ring-4 ring-cii-orange/20">
             <img
-              src={leaderPortrait}
+              src={leaderPortraitAsset.url}
               alt="CII leadership portrait"
               width={768}
               height={768}
