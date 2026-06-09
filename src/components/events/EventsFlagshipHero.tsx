@@ -1,4 +1,4 @@
-import { Search, Sparkles, Calendar, MapPin, Users, Mic, Ticket, Clock, TrendingUp } from "lucide-react";
+import { Sparkles, Calendar, MapPin, Users, Mic, Ticket, Clock, TrendingUp } from "lucide-react";
 import { CountdownTimer } from "./CountdownTimer";
 import type { EventItem } from "@/data/events";
 
@@ -17,9 +17,6 @@ const statusLabel: Record<EventItem["status"], string> = {
 };
 
 export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
-  const focusResults = () => {
-    document.getElementById("all-events")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
   return (
     <section
       className="relative overflow-hidden bg-background border-b lg:h-[calc(100svh-72px)] flex items-center"
