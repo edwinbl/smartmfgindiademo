@@ -1,6 +1,6 @@
 import { Link, useParams, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { CommonFinalCta } from "@/components/common/CommonFinalCta";
+
 import {
   ArrowRight,
   CheckCircle2,
@@ -749,8 +749,7 @@ const AssessmentDetail = () => {
         </a>
       </div>
 
-      <CommonFinalCta />
-            <WireFooter />
+      <WireFooter />
       <WireChatbotFAB />
     </div>
   );

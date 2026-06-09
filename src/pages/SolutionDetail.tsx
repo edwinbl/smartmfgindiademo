@@ -14,7 +14,7 @@ import {
   Layers,
 } from "lucide-react";
 import { WireHeader } from "@/components/wireframe/WireHeader";
-import { CommonFinalCta } from "@/components/common/CommonFinalCta";
+
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
@@ -414,8 +414,7 @@ const SolutionDetail = () => {
           </div>
         </section>
       </main>
-      <CommonFinalCta />
-            <WireFooter />
+      <WireFooter />
       <WireChatbotFAB />
     </div>
   );

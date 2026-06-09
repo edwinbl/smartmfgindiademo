@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { CommonFinalCta } from "@/components/common/CommonFinalCta";
+
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
@@ -148,7 +148,6 @@ const ProgrammeDetail = () => {
         </section>
 
         <RelatedProgrammes programmes={related} />
-        <CommonFinalCta />
       </main>
       <WireFooter />
       <WireChatbotFAB />
