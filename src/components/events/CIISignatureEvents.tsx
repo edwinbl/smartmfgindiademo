@@ -21,12 +21,12 @@ export const CIISignatureEvents = ({ onRegister }: Props) => {
   if (ciiEvents.length === 0) return null;
 
   return (
-    <section className="py-14 md:py-20 relative overflow-hidden" id="cii-signature">
+    <section className="py-14 md:py-20 relative overflow-hidden bg-[hsl(var(--navy-050))]" id="cii-signature">
       <div
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 -z-10 opacity-60"
         style={{
-          background:
-            "linear-gradient(180deg, hsl(var(--neutral-50)) 0%, hsl(var(--background)) 100%)",
+          backgroundImage:
+            "radial-gradient(circle at 20% 0%, hsl(var(--navy-100) / 0.6) 0%, transparent 50%), radial-gradient(circle at 80% 100%, hsl(var(--red-600) / 0.04) 0%, transparent 50%)",
         }}
         aria-hidden
       />
