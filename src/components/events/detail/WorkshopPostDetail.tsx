@@ -250,7 +250,7 @@ export const WorkshopPostDetail = ({ event }: Props) => {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-display font-bold text-sm text-[hsl(var(--navy-900))] group-hover:underline underline-offset-4">
-                      Workshop report (PDF)
+                      {event.type} report (PDF)
                     </h3>
                     <p className="mt-0.5 text-[11px] text-[hsl(var(--neutral-700))]">Full takeaways, clusters & success stories.</p>
                   </div>
