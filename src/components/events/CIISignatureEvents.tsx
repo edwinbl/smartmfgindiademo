@@ -21,7 +21,7 @@ export const CIISignatureEvents = ({ onRegister }: Props) => {
   if (ciiEvents.length === 0) return null;
 
   return (
-    <section className="py-14 md:py-20 relative overflow-hidden">
+    <section className="py-14 md:py-20 relative overflow-hidden" id="cii-signature">
       <div
         className="absolute inset-0 -z-10"
         style={{
