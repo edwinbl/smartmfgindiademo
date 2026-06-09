@@ -53,7 +53,7 @@ export const CIISignatureEvents = ({ onRegister }: Props) => {
 
         <div className="grid grid-cols-2 gap-4 md:gap-6">
           {ciiEvents.map((e) => (
-            <EventCard key={e.slug} event={e} onRegister={onRegister} />
+            <EventCard key={e.slug} event={e} onRegister={onRegister} className="lg:!col-span-1" />
           ))}
         </div>
       </div>
