@@ -152,30 +152,22 @@ export const PastEventsArchive = () => {
 
                         {/* Actions */}
                         <div className="mt-auto pt-4 flex flex-wrap items-center gap-2">
-                          {e.highlightReelUrl && (
-                            <a
-                              href={e.highlightReelUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1.5 h-8 px-2.5 rounded-sm bg-[hsl(var(--navy-800))] text-white text-[11px] font-semibold hover:bg-[hsl(var(--navy-700))]"
-                            >
-                              <PlayCircle className="h-3.5 w-3.5" /> Highlights
-                            </a>
-                          )}
-                          {e.proceedingsUrl && (
-                            <a
-                              href={e.proceedingsUrl}
-                              className="inline-flex items-center gap-1.5 h-8 px-2.5 rounded-sm border border-[hsl(var(--neutral-200))] text-[hsl(var(--navy-800))] text-[11px] font-semibold hover:bg-[hsl(var(--neutral-100))]"
-                            >
-                              <FileText className="h-3.5 w-3.5" /> Proceedings
-                            </a>
-                          )}
                           <Link
                             to={`/events/${e.slug}`}
-                            className="ml-auto inline-flex items-center gap-1 text-[11px] font-semibold text-[hsl(var(--navy-700))] hover:text-[hsl(var(--red-600))]"
+                            className="inline-flex items-center gap-1.5 h-8 px-3 rounded-sm bg-[hsl(var(--navy-800))] text-white text-[11px] font-semibold hover:bg-[hsl(var(--navy-700))]"
                           >
-                            Event page <ArrowRight className="h-3 w-3" />
+                            Event page <ArrowRight className="h-3.5 w-3.5" />
                           </Link>
+                          {(e.reportPdfUrl || (e.proceedingsUrl && e.proceedingsUrl !== "#")) && (
+                            <a
+                              href={e.reportPdfUrl || e.proceedingsUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 h-8 px-3 rounded-sm border border-[hsl(var(--neutral-200))] text-[hsl(var(--navy-800))] text-[11px] font-semibold hover:bg-[hsl(var(--neutral-100))]"
+                            >
+                              <FileDown className="h-3.5 w-3.5" /> Download PDF
+                            </a>
+                          )}
                         </div>
                       </div>
                     </article>
