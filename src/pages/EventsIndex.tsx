@@ -153,7 +153,7 @@ const EventsIndex = () => {
                 {filtered.length === 0 ? (
                   <EventsEmptyState onClear={clearAll} />
                 ) : (
-                  <div className="grid gap-5 sm:grid-cols-2">
+                  <div className="grid gap-4 sm:gap-5 grid-cols-2">
                     {filtered.map((e) => (
                       <EventCard key={e.slug} event={e} onRegister={handleRegister} />
                     ))}
