@@ -155,7 +155,7 @@ const EventsIndex = () => {
                 ) : (
                   <div className="grid gap-4 sm:gap-5 grid-cols-2">
                     {filtered.map((e) => (
-                      <EventCard key={e.slug} event={e} onRegister={handleRegister} />
+                      <EventCard key={e.slug} event={e} onRegister={handleRegister} className="lg:!col-span-1" />
                     ))}
                   </div>
                 )}
