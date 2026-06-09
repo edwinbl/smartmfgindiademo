@@ -4,7 +4,7 @@ import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
 import { EventsFlagshipHero } from "@/components/events/EventsFlagshipHero";
-import { EventsTypeTabs } from "@/components/events/EventsTypeTabs";
+
 import {
   emptyEventFilters,
   type EventFilters,
@@ -135,9 +135,6 @@ const EventsIndex = () => {
                 Discover the ecosystem in motion
               </h2>
             </div>
-            <div className="mb-6">
-              <EventsTypeTabs active={type} onChange={setType} counts={counts} />
-            </div>
             <div className="grid gap-8 lg:grid-cols-[280px_1fr]">
               <EventsFilterSidebar
                 query={query}
@@ -148,7 +145,11 @@ const EventsIndex = () => {
                 onQuickPick={setQuickPick}
                 onClear={clearAll}
                 resultCount={filtered.length}
+                type={type}
+                onType={setType}
+                typeCounts={counts}
               />
+
               <div className="min-w-0">
                 {filtered.length === 0 ? (
                   <EventsEmptyState onClear={clearAll} />

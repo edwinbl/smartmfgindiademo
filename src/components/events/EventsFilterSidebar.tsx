@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, X, Calendar, Users, Leaf, Cpu, Award, SlidersHorizontal } from "lucide-react";
+import { Search, X, Calendar, Users, Leaf, Cpu, Award, SlidersHorizontal, LayoutGrid, Mic, MessageSquare, Presentation } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -24,7 +24,19 @@ interface Props {
   onQuickPick: (q: QuickPickId | null) => void;
   onClear: () => void;
   resultCount: number;
+  type: string;
+  onType: (t: string) => void;
+  typeCounts: Record<string, number>;
 }
+
+const typeOptions: { id: string; label: string; Icon: typeof Calendar }[] = [
+  { id: "All", label: "All", Icon: LayoutGrid },
+  { id: "Summit", label: "Summit", Icon: Presentation },
+  { id: "Conference", label: "Conference", Icon: Mic },
+  { id: "Roundtable", label: "Roundtable", Icon: MessageSquare },
+  { id: "Webinar", label: "Webinar", Icon: Cpu },
+];
+
 
 const quickPicks: { id: QuickPickId; label: string; Icon: typeof Calendar }[] = [
   { id: "this-month", label: "This Month", Icon: Calendar },
@@ -51,9 +63,13 @@ const FilterPanel = ({
   onQuickPick,
   onClear,
   resultCount,
+  type,
+  onType,
+  typeCounts,
   hasActive,
   activeFilterCount,
 }: Props & { hasActive: boolean; activeFilterCount: number }) => {
+
   const setF = (k: keyof EventFilters, v: string) => onFilters({ ...filters, [k]: v });
   return (
     <div className="space-y-5">
@@ -86,6 +102,45 @@ const FilterPanel = ({
           style={{ borderColor: "hsl(var(--neutral-200))" }}
         />
       </label>
+
+      <div className="pt-1">
+        <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--neutral-500))] mb-2">
+          Event type
+        </div>
+        <div className="flex flex-col gap-1">
+          {typeOptions.map(({ id, label, Icon }) => {
+            const active = type === id;
+            const count = typeCounts[id] ?? 0;
+            return (
+              <button
+                key={id}
+                type="button"
+                onClick={() => onType(id)}
+                className={`group flex items-center justify-between gap-2 px-2.5 h-9 rounded-md text-[12px] font-semibold border transition-all ${
+                  active
+                    ? "bg-[hsl(var(--navy-900))] text-white border-[hsl(var(--navy-900))]"
+                    : "bg-white text-[hsl(var(--navy-800))] border-[hsl(var(--neutral-200))] hover:border-[hsl(var(--navy-800))]"
+                }`}
+              >
+                <span className="inline-flex items-center gap-2">
+                  <Icon className="h-3.5 w-3.5" /> {label}
+                </span>
+                <span
+                  className={`inline-flex items-center justify-center min-w-[22px] h-[18px] px-1 rounded-full text-[10px] font-bold ${
+                    active
+                      ? "bg-white/15 text-white"
+                      : "bg-[hsl(var(--neutral-100))] text-[hsl(var(--neutral-700))]"
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+
 
       <div>
         <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--neutral-500))] mb-2">
