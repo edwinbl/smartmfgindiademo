@@ -54,8 +54,36 @@ export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
 
           <p className="mt-4 sm:mt-5 text-sm sm:text-lg text-[hsl(var(--neutral-700))] max-w-xl leading-relaxed">
             Convene with India's manufacturing leaders. Discover flagship summits, expert
-            webinars, roundtables and capability programmes across the year.
+            webinars, roundtables and capability programmes across the year. From CII-hosted
+            signature convenings to partner conferences and city roundtables — find the right
+            stage to connect, learn and scale.
           </p>
+
+          <div className="mt-4 sm:mt-5 flex flex-wrap items-center gap-3">
+            <a
+              href="#cii-signature"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("cii-signature")?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[hsl(var(--navy-800))] hover:text-[hsl(var(--red-600))] transition-colors"
+            >
+              <span className="h-2 w-2 rounded-full bg-[hsl(var(--red-600))]" />
+              CII Signature events
+            </a>
+            <span className="hidden sm:inline text-[hsl(var(--neutral-300))]">·</span>
+            <a
+              href="#all-events"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("all-events")?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[hsl(var(--navy-800))] hover:text-[hsl(var(--red-600))] transition-colors"
+            >
+              <span className="h-2 w-2 rounded-full bg-[hsl(var(--orange-500))]" />
+              Browse all events
+            </a>
+          </div>
 
           <form
             onSubmit={(e) => {
