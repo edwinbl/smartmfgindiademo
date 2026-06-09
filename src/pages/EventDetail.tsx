@@ -55,12 +55,12 @@ const EventDetail = () => {
   const related = getRelatedEvents(event.slug);
 
   const Detail = () => {
+    if (event.status === "completed") {
+      return <WorkshopPostDetail event={event} />;
+    }
     switch (event.type) {
       case "Workshop":
-        return event.status === "completed"
-          ? <WorkshopPostDetail event={event} />
-          : <WebinarDetail event={event} onRegister={handleRegister} />;
-
+        return <WebinarDetail event={event} onRegister={handleRegister} />;
       case "Summit":
         return <SummitDetail event={event} onRegister={handleRegister} />;
       case "Roundtable":

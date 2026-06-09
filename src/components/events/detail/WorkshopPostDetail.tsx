@@ -24,7 +24,7 @@ export const WorkshopPostDetail = ({ event }: Props) => {
       <div className="container-cii space-y-8">
         {/* 1. Workshop Summary — compact meta strip + summary */}
         <div>
-          <SectionHeading kicker="01 · Overview" title="Workshop Summary" />
+          <SectionHeading kicker="01 · Overview" title={`${event.type} Summary`} />
           <div className="mt-4 grid lg:grid-cols-12 gap-4">
             <div className="lg:col-span-8 cii-card p-5">
               <div className="font-display font-bold text-lg text-[hsl(var(--navy-900))]">{event.title}</div>
@@ -250,7 +250,7 @@ export const WorkshopPostDetail = ({ event }: Props) => {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-display font-bold text-sm text-[hsl(var(--navy-900))] group-hover:underline underline-offset-4">
-                      Workshop report (PDF)
+                      {event.type} report (PDF)
                     </h3>
                     <p className="mt-0.5 text-[11px] text-[hsl(var(--neutral-700))]">Full takeaways, clusters & success stories.</p>
                   </div>

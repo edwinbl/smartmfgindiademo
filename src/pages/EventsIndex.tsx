@@ -15,6 +15,7 @@ import { EventsEmptyState } from "@/components/events/EventsEmptyState";
 import { PersonalizedEventsShelf } from "@/components/events/PersonalizedEventsShelf";
 import { EventsImpactStats } from "@/components/events/EventsImpactStats";
 import { PastEventsArchive } from "@/components/events/PastEventsArchive";
+import { RecentlyConcludedShelf } from "@/components/events/RecentlyConcludedShelf";
 import { CIISignatureEvents } from "@/components/events/CIISignatureEvents";
 import { RegisterEventModal } from "@/components/events/RegisterEventModal";
 import {
@@ -164,8 +165,11 @@ const EventsIndex = () => {
             </div>
           </div>
         </section>
+        <RecentlyConcludedShelf />
         <EventsImpactStats />
-        <PastEventsArchive />
+        <div id="past-events-archive">
+          <PastEventsArchive />
+        </div>
       </main>
       <WireFooter />
       <WireChatbotFAB />
