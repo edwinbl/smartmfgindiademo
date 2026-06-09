@@ -63,9 +63,13 @@ const FilterPanel = ({
   onQuickPick,
   onClear,
   resultCount,
+  type,
+  onType,
+  typeCounts,
   hasActive,
   activeFilterCount,
 }: Props & { hasActive: boolean; activeFilterCount: number }) => {
+
   const setF = (k: keyof EventFilters, v: string) => onFilters({ ...filters, [k]: v });
   return (
     <div className="space-y-5">
