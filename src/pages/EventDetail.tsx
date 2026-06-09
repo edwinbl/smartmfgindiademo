@@ -7,6 +7,8 @@ import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
 import { EventDetailHero } from "@/components/events/detail/EventDetailHero";
 import { WebinarDetail } from "@/components/events/detail/WebinarDetail";
+import { WorkshopPostDetail } from "@/components/events/detail/WorkshopPostDetail";
+
 import { SummitDetail } from "@/components/events/detail/SummitDetail";
 import { RoundtableDetail } from "@/components/events/detail/RoundtableDetail";
 import { ProgrammeDetail } from "@/components/events/detail/ProgrammeDetail";
@@ -55,7 +57,10 @@ const EventDetail = () => {
   const Detail = () => {
     switch (event.type) {
       case "Workshop":
-        return <WebinarDetail event={event} onRegister={handleRegister} />;
+        return event.status === "completed"
+          ? <WorkshopPostDetail event={event} />
+          : <WebinarDetail event={event} onRegister={handleRegister} />;
+
       case "Summit":
         return <SummitDetail event={event} onRegister={handleRegister} />;
       case "Roundtable":
