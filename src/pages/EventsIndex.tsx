@@ -165,8 +165,11 @@ const EventsIndex = () => {
             </div>
           </div>
         </section>
+        <RecentlyConcludedShelf />
         <EventsImpactStats />
-        <PastEventsArchive />
+        <div id="past-events-archive">
+          <PastEventsArchive />
+        </div>
       </main>
       <WireFooter />
       <WireChatbotFAB />
