@@ -1,4 +1,4 @@
-import { Mail, Phone, Download, FileText, Users, Building2, CheckCircle2, Sparkles, Image as ImageIcon, Lightbulb } from "lucide-react";
+import { Mail, Phone, Download, FileText, Users, Building2, CheckCircle2, Sparkles, Image as ImageIcon, Lightbulb, FileDown } from "lucide-react";
 import type { EventItem } from "@/data/events";
 import { EventAgendaTimeline } from "./EventAgendaTimeline";
 

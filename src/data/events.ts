@@ -92,6 +92,7 @@ export interface EventItem {
   // workshop post-event extras
   organizers?: string[];
   report?: WorkshopReport;
+  reportPdfUrl?: string;
   presentations?: WorkshopPresentation[];
   resourcePersons?: ResourcePerson[];
   photographs?: WorkshopPhoto[];
