@@ -1,4 +1,4 @@
-import { Search, Sparkles, Calendar, MapPin, Users, Mic, Ticket, Clock, TrendingUp } from "lucide-react";
+import { Sparkles, Calendar, MapPin, Users, Mic, Ticket, Clock, TrendingUp } from "lucide-react";
 import { CountdownTimer } from "./CountdownTimer";
 import type { EventItem } from "@/data/events";
 
@@ -17,9 +17,6 @@ const statusLabel: Record<EventItem["status"], string> = {
 };
 
 export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
-  const focusResults = () => {
-    document.getElementById("all-events")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
   return (
     <section
       className="relative overflow-hidden bg-background border-b lg:h-[calc(100svh-72px)] flex items-center"
@@ -85,33 +82,6 @@ export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
             </a>
           </div>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              focusResults();
-            }}
-            className="mt-5 sm:mt-7 relative max-w-2xl"
-          >
-            <Search className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-[hsl(var(--neutral-500))]" />
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => onQuery?.(e.target.value)}
-              placeholder="Search events, topics, speakers…"
-              className="w-full h-12 sm:h-14 pl-11 sm:pl-14 pr-24 sm:pr-32 rounded-full border bg-white text-sm text-[hsl(var(--neutral-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] shadow-sm transition-shadow"
-              style={{ borderColor: "hsl(var(--neutral-200))" }}
-              aria-label="Search events"
-            />
-            <button
-              type="submit"
-              className="absolute right-1.5 sm:right-2 top-1/2 -translate-y-1/2 h-9 sm:h-10 px-4 sm:px-5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-white"
-              style={{
-                background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
-              }}
-            >
-              Search
-            </button>
-          </form>
         </div>
 
         <div className="hidden md:block lg:col-span-5 relative h-[400px] sm:h-[460px] lg:h-[520px] animate-scale-in">
