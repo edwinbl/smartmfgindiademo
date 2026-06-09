@@ -57,7 +57,10 @@ const EventDetail = () => {
   const Detail = () => {
     switch (event.type) {
       case "Workshop":
-        return <WebinarDetail event={event} onRegister={handleRegister} />;
+        return event.status === "completed"
+          ? <WorkshopPostDetail event={event} />
+          : <WebinarDetail event={event} onRegister={handleRegister} />;
+
       case "Summit":
         return <SummitDetail event={event} onRegister={handleRegister} />;
       case "Roundtable":
