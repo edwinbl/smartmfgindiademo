@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { PlayCircle, FileText, ArrowRight } from "lucide-react";
+import { ArrowRight, FileDown } from "lucide-react";
 import { getPast } from "@/data/events";
 import type { EventType } from "@/data/events";
 
