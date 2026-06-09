@@ -1,8 +1,7 @@
 export type EventType =
   | "Summit"
-  | "Conference"
+  | "Workshop"
   | "Roundtable"
-  | "Webinar"
   | "Seminar"
   | "Programme";
 
