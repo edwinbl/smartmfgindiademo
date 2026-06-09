@@ -414,8 +414,7 @@ const SolutionDetail = () => {
           </div>
         </section>
       </main>
-      <CommonFinalCta />
-            <WireFooter />
+      <WireFooter />
       <WireChatbotFAB />
     </div>
   );
