@@ -1,8 +1,7 @@
 export type EventType =
   | "Summit"
-  | "Conference"
+  | "Workshop"
   | "Roundtable"
-  | "Webinar"
   | "Seminar"
   | "Programme";
 
@@ -137,7 +136,7 @@ export const events: EventItem[] = [
   // CONFERENCE
   {
     slug: "industry40-leaders-conference",
-    type: "Conference",
+    type: "Workshop",
     title: "Industry 4.0 Leaders Conference",
     tagline: "Scaling digital transformation in Indian manufacturing",
     summary:
@@ -232,7 +231,7 @@ export const events: EventItem[] = [
   // WEBINARS
   {
     slug: "webinar-predictive-maintenance",
-    type: "Webinar",
+    type: "Workshop",
     title: "Predictive Maintenance in 90 Days",
     tagline: "A practical roadmap for MSMEs",
     summary:
@@ -264,7 +263,7 @@ export const events: EventItem[] = [
   },
   {
     slug: "webinar-energy-monitoring",
-    type: "Webinar",
+    type: "Workshop",
     title: "Energy Monitoring for Net-Zero",
     tagline: "From metering to insights",
     summary:
@@ -290,7 +289,7 @@ export const events: EventItem[] = [
   },
   {
     slug: "webinar-cybersecurity-ot",
-    type: "Webinar",
+    type: "Workshop",
     title: "Cybersecurity for OT Environments",
     tagline: "Protecting connected shop floors",
     summary:
@@ -355,7 +354,7 @@ export const events: EventItem[] = [
   },
   {
     slug: "past-msme-conclave-2025",
-    type: "Conference",
+    type: "Workshop",
     title: "MSME Industry 4.0 Conclave 2025",
     tagline: "Bringing digital to India's MSME backbone",
     summary:
@@ -421,9 +420,8 @@ export const events: EventItem[] = [
 export const eventTypes: ("All" | EventType)[] = [
   "All",
   "Summit",
-  "Conference",
+  "Workshop",
   "Roundtable",
-  "Webinar",
 ];
 
 export type QuickPickId =

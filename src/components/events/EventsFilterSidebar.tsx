@@ -30,11 +30,10 @@ interface Props {
 }
 
 const typeOptions: { id: string; label: string; Icon: typeof Calendar }[] = [
-  { id: "All", label: "All", Icon: LayoutGrid },
-  { id: "Summit", label: "Summit", Icon: Presentation },
-  { id: "Conference", label: "Conference", Icon: Mic },
-  { id: "Roundtable", label: "Roundtable", Icon: MessageSquare },
-  { id: "Webinar", label: "Webinar", Icon: Cpu },
+  { id: "All", label: "Events", Icon: LayoutGrid },
+  { id: "Summit", label: "Summits", Icon: Presentation },
+  { id: "Workshop", label: "Workshops", Icon: Cpu },
+  { id: "Roundtable", label: "Roundtables", Icon: MessageSquare },
 ];
 
 
