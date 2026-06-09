@@ -556,8 +556,55 @@ export const events: EventItem[] = [
       { label: "CXOs", value: "18" },
       { label: "Recommendations", value: "12" },
     ],
-    speakers: [S.asha, S.ravi],
+    speakers: [S.asha, S.ravi, S.arjun],
     proceedingsUrl: "#",
+    organizers: [
+      "Confederation of Indian Industry (CII)",
+      "CII Centre of Excellence for Sustainability",
+    ],
+    agenda: [
+      { time: "15:00 – 15:15", title: "Welcome & Framing", speaker: "Ravi Sankaran" },
+      { time: "15:15 – 16:00", title: "State of Net-Zero Manufacturing in India", speaker: "Asha Krishnan" },
+      { time: "16:00 – 17:00", title: "Roundtable — Capital, Carbon & Compliance", track: "Closed door" },
+      { time: "17:00 – 17:45", title: "Working session — 12 ecosystem recommendations" },
+      { time: "17:45 – 18:00", title: "Closing & next steps" },
+    ],
+    report: {
+      attendees: 18,
+      clustersCovered: ["Steel", "Cement", "Chemicals", "Auto", "Capital goods"],
+      mainTakeaways: [
+        "Scope 3 emissions visibility across supply chains is the largest unsolved challenge for Indian manufacturers.",
+        "Carbon pricing and CBAM readiness must become board-level agenda items within 12 months.",
+        "Energy data infrastructure should be treated as a foundational Industry 4.0 layer.",
+        "Green financing instruments are emerging but require pre-validated decarbonisation roadmaps to access.",
+      ],
+      successStories: [
+        "Cement major — 28% reduction in specific energy through digital twin of kiln operations.",
+        "Steel producer — green-hydrogen pilot integrated with real-time emissions dashboarding.",
+        "Auto OEM — supplier scope-3 disclosure portal live across 140 Tier-1s.",
+      ],
+    },
+    reportPdfUrl: "/__l5e/assets-v1/a38bc383-057c-4461-aae3-3874b0a3a028/workshop_report_industry40_2019.pdf",
+    presentations: [
+      { title: "State of Net-Zero Manufacturing in India", speaker: "Asha Krishnan", url: "#", size: "3.6 MB" },
+      { title: "CBAM Readiness — A Practical Checklist", url: "#", size: "1.9 MB" },
+      { title: "Energy Data Infrastructure for Decarbonisation", url: "#", size: "2.8 MB" },
+    ],
+    resourcePersons: [
+      { name: "Asha Krishnan", expertise: "Sustainability strategy, Scope 1/2/3 accounting", org: "Wipro", email: "asha.k@wipro.com" },
+      { name: "Arjun Bhatia", expertise: "Decarbonisation of heavy industry, green hydrogen", org: "Tata Steel", email: "arjun.b@tatasteel.com" },
+    ],
+    photographs: [
+      { url: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80", caption: "CXO roundtable in session" },
+      { url: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80", caption: "Working session — recommendations" },
+      { url: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&w=1200&q=80", caption: "Industry leaders — closing dialogue" },
+    ],
+    learnings: [
+      "Net-zero programmes succeed when paired with measurable, plant-level digital data flows.",
+      "CXO-level peer dialogue accelerates cross-industry adoption of decarbonisation tooling.",
+      "Policy clarity on carbon disclosure will unlock green capital at scale.",
+      "Ecosystem coordination is needed across OEM-supplier chains for credible Scope 3 progress.",
+    ],
     accent: "gold",
   },
   {
