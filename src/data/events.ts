@@ -92,6 +92,7 @@ export interface EventItem {
   // workshop post-event extras
   organizers?: string[];
   report?: WorkshopReport;
+  reportPdfUrl?: string;
   presentations?: WorkshopPresentation[];
   resourcePersons?: ResourcePerson[];
   photographs?: WorkshopPhoto[];
@@ -532,6 +533,7 @@ export const events: EventItem[] = [
         "Adroitec additive manufacturing applications in jigs, fixtures and low-volume spares.",
       ],
     },
+    reportPdfUrl: "/__l5e/assets-v1/a38bc383-057c-4461-aae3-3874b0a3a028/workshop_report_industry40_2019.pdf",
     presentations: [
       { title: "Business Disruptions & Opportunities for Smart Manufacturing in India", speaker: "Ravi Agarwal", url: "#", size: "3.2 MB" },
       { title: "Getting started with Smart Automation & IIoT Layers — Pilot Cyber Physical Line", speaker: "Dr Sunil Jha", url: "#", size: "5.8 MB" },
