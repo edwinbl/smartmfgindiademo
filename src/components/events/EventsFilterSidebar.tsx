@@ -201,58 +201,59 @@ export const EventsFilterSidebar = (props: Props) => {
     <>
       {/* Mobile: search + filter trigger */}
       <div className="lg:hidden space-y-2">
-        <label className="relative block">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--neutral-500))]" />
-          <input
-            type="search"
-            value={props.query}
-            onChange={(e) => props.onQuery(e.target.value)}
-            placeholder="Search events…"
-            className="w-full h-11 pl-9 pr-3 rounded-md border bg-white text-sm text-[hsl(var(--navy-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))]"
-            style={{ borderColor: "hsl(var(--neutral-200))" }}
-          />
-        </label>
+        <div className="flex items-center gap-2">
+          <label className="relative block flex-1 min-w-0">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--neutral-500))]" />
+            <input
+              type="search"
+              value={props.query}
+              onChange={(e) => props.onQuery(e.target.value)}
+              placeholder="Search events…"
+              className="w-full h-10 pl-9 pr-3 rounded-md border bg-white text-sm text-[hsl(var(--navy-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))]"
+              style={{ borderColor: "hsl(var(--neutral-200))" }}
+            />
+          </label>
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <button
+                type="button"
+                className="inline-flex items-center gap-1.5 h-10 px-3 rounded-md border bg-white text-xs font-semibold text-[hsl(var(--navy-800))] shrink-0"
+                style={{ borderColor: "hsl(var(--neutral-200))" }}
+              >
+                <SlidersHorizontal className="h-3.5 w-3.5" />
+                <span className="hidden sm:inline">Filters</span>
+                {totalActive > 0 && (
+                  <span className="ml-0.5 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-[hsl(var(--red-600))] text-white text-[10px] font-bold">
+                    {totalActive}
+                  </span>
+                )}
+              </button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[88%] sm:max-w-sm overflow-y-auto p-5">
+              <FilterPanel {...props} hasActive={hasActive} activeFilterCount={activeFilterCount} />
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="mt-6 w-full h-11 rounded-md bg-[hsl(var(--navy-800))] text-white text-sm font-semibold"
+              >
+                Show {props.resultCount} event{props.resultCount === 1 ? "" : "s"}
+              </button>
+            </SheetContent>
+          </Sheet>
+        </div>
         <div className="flex items-center justify-between gap-2">
           <span className="text-xs text-[hsl(var(--neutral-600))]">
             {props.resultCount} event{props.resultCount === 1 ? "" : "s"}
           </span>
-          <div className="flex items-center gap-2">
-            {hasActive && (
-              <button
-                type="button"
-                onClick={props.onClear}
-                className="inline-flex items-center gap-1 text-[11px] font-semibold text-[hsl(var(--navy-700))]"
-              >
-                <X className="h-3 w-3" /> Clear
-              </button>
-            )}
-            <Sheet open={open} onOpenChange={setOpen}>
-              <SheetTrigger asChild>
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-1.5 h-9 px-3 rounded-md border bg-white text-xs font-semibold text-[hsl(var(--navy-800))]"
-                  style={{ borderColor: "hsl(var(--neutral-200))" }}
-                >
-                  <SlidersHorizontal className="h-3.5 w-3.5" /> Filters
-                  {totalActive > 0 && (
-                    <span className="ml-1 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-[hsl(var(--red-600))] text-white text-[10px] font-bold">
-                      {totalActive}
-                    </span>
-                  )}
-                </button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-[88%] sm:max-w-sm overflow-y-auto p-5">
-                <FilterPanel {...props} hasActive={hasActive} activeFilterCount={activeFilterCount} />
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="mt-6 w-full h-11 rounded-md bg-[hsl(var(--navy-800))] text-white text-sm font-semibold"
-                >
-                  Show {props.resultCount} event{props.resultCount === 1 ? "" : "s"}
-                </button>
-              </SheetContent>
-            </Sheet>
-          </div>
+          {hasActive && (
+            <button
+              type="button"
+              onClick={props.onClear}
+              className="inline-flex items-center gap-1 text-[11px] font-semibold text-[hsl(var(--navy-700))]"
+            >
+              <X className="h-3 w-3" /> Clear
+            </button>
+          )}
         </div>
       </div>
 
