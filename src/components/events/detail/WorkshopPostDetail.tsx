@@ -24,7 +24,7 @@ export const WorkshopPostDetail = ({ event }: Props) => {
       <div className="container-cii space-y-8">
         {/* 1. Workshop Summary — compact meta strip + summary */}
         <div>
-          <SectionHeading kicker="01 · Overview" title="Workshop Summary" />
+          <SectionHeading kicker="01 · Overview" title={`${event.type} Summary`} />
           <div className="mt-4 grid lg:grid-cols-12 gap-4">
             <div className="lg:col-span-8 cii-card p-5">
               <div className="font-display font-bold text-lg text-[hsl(var(--navy-900))]">{event.title}</div>
