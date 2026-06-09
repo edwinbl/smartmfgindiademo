@@ -16,7 +16,7 @@ export const CIISignatureEvents = ({ onRegister }: Props) => {
         /CII/i.test(e.venue || "") ||
         e.highlights.some((h) => /CII/i.test(h.value)),
     )
-    .slice(0, 4);
+    .slice(0, 2);
 
   if (ciiEvents.length === 0) return null;
 
@@ -51,7 +51,7 @@ export const CIISignatureEvents = ({ onRegister }: Props) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 gap-4 md:gap-6">
           {ciiEvents.map((e) => (
             <EventCard key={e.slug} event={e} onRegister={onRegister} />
           ))}
