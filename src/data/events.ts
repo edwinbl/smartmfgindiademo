@@ -14,6 +14,8 @@ export interface EventSpeaker {
   role: string;
   org: string;
   initials: string;
+  email?: string;
+  phone?: string;
 }
 
 export interface AgendaItem {
@@ -22,6 +24,34 @@ export interface AgendaItem {
   track?: string;
   speaker?: string;
 }
+
+export interface WorkshopReport {
+  mainTakeaways: string[];
+  clustersCovered: string[];
+  attendees: number;
+  successStories: string[];
+}
+
+export interface WorkshopPresentation {
+  title: string;
+  speaker?: string;
+  url: string;
+  size?: string;
+}
+
+export interface ResourcePerson {
+  name: string;
+  expertise: string;
+  org: string;
+  email?: string;
+  phone?: string;
+}
+
+export interface WorkshopPhoto {
+  url: string;
+  caption?: string;
+}
+
 
 export interface EventItem {
   slug: string;
