@@ -7,6 +7,8 @@ import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
 import { EventDetailHero } from "@/components/events/detail/EventDetailHero";
 import { WebinarDetail } from "@/components/events/detail/WebinarDetail";
+import { WorkshopPostDetail } from "@/components/events/detail/WorkshopPostDetail";
+
 import { SummitDetail } from "@/components/events/detail/SummitDetail";
 import { RoundtableDetail } from "@/components/events/detail/RoundtableDetail";
 import { ProgrammeDetail } from "@/components/events/detail/ProgrammeDetail";
