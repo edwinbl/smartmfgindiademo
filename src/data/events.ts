@@ -89,8 +89,16 @@ export interface EventItem {
   proceedingsUrl?: string;
   highlightReelUrl?: string;
   pastStats?: { label: string; value: string }[];
+  // workshop post-event extras
+  organizers?: string[];
+  report?: WorkshopReport;
+  presentations?: WorkshopPresentation[];
+  resourcePersons?: ResourcePerson[];
+  photographs?: WorkshopPhoto[];
+  learnings?: string[];
   accent: "navy" | "red" | "gold" | "teal" | "orange";
 }
+
 
 // ----- Speakers pool -----
 const S = {
