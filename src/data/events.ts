@@ -420,9 +420,8 @@ export const events: EventItem[] = [
 export const eventTypes: ("All" | EventType)[] = [
   "All",
   "Summit",
-  "Conference",
+  "Workshop",
   "Roundtable",
-  "Webinar",
 ];
 
 export type QuickPickId =
