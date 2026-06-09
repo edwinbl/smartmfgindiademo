@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, X, Calendar, Users, Leaf, Cpu, Award, SlidersHorizontal } from "lucide-react";
+import { Search, X, Calendar, Users, Leaf, Cpu, Award, SlidersHorizontal, LayoutGrid, Mic, MessageSquare, Presentation } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -24,7 +24,19 @@ interface Props {
   onQuickPick: (q: QuickPickId | null) => void;
   onClear: () => void;
   resultCount: number;
+  type: string;
+  onType: (t: string) => void;
+  typeCounts: Record<string, number>;
 }
+
+const typeOptions: { id: string; label: string; Icon: typeof Calendar }[] = [
+  { id: "All", label: "All", Icon: LayoutGrid },
+  { id: "Summit", label: "Summit", Icon: Presentation },
+  { id: "Conference", label: "Conference", Icon: Mic },
+  { id: "Roundtable", label: "Roundtable", Icon: MessageSquare },
+  { id: "Webinar", label: "Webinar", Icon: Cpu },
+];
+
 
 const quickPicks: { id: QuickPickId; label: string; Icon: typeof Calendar }[] = [
   { id: "this-month", label: "This Month", Icon: Calendar },
