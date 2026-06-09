@@ -189,22 +189,22 @@ const SummitCard = ({ event, onRegister, className }: Props) => (
 const ProgrammeCard = ({ event, onRegister, className }: Props) => (
   <article className={cn("cii-card overflow-hidden flex flex-col", className)}>
     <div className={`h-1 ${accentBar[event.accent]}`} />
-    <div className="p-5 flex-1 flex flex-col gap-3">
-      <div className="flex items-center justify-between">
+    <div className="p-3 sm:p-5 flex-1 flex flex-col gap-2 sm:gap-3">
+      <div className="flex items-center justify-between gap-1">
         <TypeBadge event={event} />
-        <span className={`inline-flex items-center gap-1 text-[11px] font-bold ${accentText[event.accent]}`}>
+        <span className={`hidden sm:inline-flex items-center gap-1 text-[11px] font-bold ${accentText[event.accent]}`}>
           <GraduationCap className="h-3 w-3" /> {event.level}
         </span>
       </div>
-      <h3 className="font-display font-bold text-lg leading-snug text-[hsl(var(--navy-900))]">
+      <h3 className="font-display font-bold text-sm sm:text-lg leading-snug text-[hsl(var(--navy-900))]">
         <Link to={`/events/${event.slug}`} className="hover:text-[hsl(var(--red-600))] transition-colors">
           {event.title}
         </Link>
       </h3>
-      <p className="text-sm text-[hsl(var(--neutral-700))] line-clamp-2">{event.summary}</p>
+      <p className="text-xs sm:text-sm text-[hsl(var(--neutral-700))] line-clamp-2">{event.summary}</p>
 
       {event.outcomes && (
-        <ul className="space-y-1.5 mt-1">
+        <ul className="hidden sm:flex flex-col gap-1 mt-0.5">
           {event.outcomes.slice(0, 3).map((o) => (
             <li key={o} className="text-xs text-[hsl(var(--navy-800))] flex gap-2">
               <span className={`mt-1.5 h-1 w-1 rounded-full shrink-0 ${accentBar[event.accent]}`} />
@@ -214,15 +214,15 @@ const ProgrammeCard = ({ event, onRegister, className }: Props) => (
         </ul>
       )}
 
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[hsl(var(--neutral-500))]">
+      <div className="flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-1 text-[11px] sm:text-xs text-[hsl(var(--neutral-500))]">
         <span className="inline-flex items-center gap-1"><Clock className="h-3 w-3" />{event.duration}</span>
-        <span className="inline-flex items-center gap-1"><Users className="h-3 w-3" />{event.segment}</span>
+        <span className="hidden sm:inline-flex items-center gap-1"><Users className="h-3 w-3" />{event.segment}</span>
         <span>{event.date}</span>
       </div>
 
-      <div className="mt-auto pt-3 flex items-center justify-between">
-        <Link to={`/events/${event.slug}`} className="link-arrow text-xs">Curriculum <ArrowRight className="h-3 w-3" /></Link>
-        <button onClick={() => onRegister(event)} className="btn-primary h-9 px-4 text-xs">
+      <div className="mt-auto pt-2 sm:pt-3 flex items-center justify-between gap-2">
+        <Link to={`/events/${event.slug}`} className="link-arrow text-[11px] sm:text-xs">Curriculum <ArrowRight className="h-3 w-3" /></Link>
+        <button onClick={() => onRegister(event)} className="btn-primary h-8 px-2.5 sm:h-9 sm:px-4 text-[11px] sm:text-xs">
           {event.registrationLabel}
         </button>
       </div>
