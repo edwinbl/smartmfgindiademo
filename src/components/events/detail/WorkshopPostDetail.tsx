@@ -119,6 +119,30 @@ export const WorkshopPostDetail = ({ event }: Props) => {
                 </ul>
               </div>
             </div>
+
+            {/* Downloadable PDF Report */}
+            {event.reportPdfUrl && (
+              <div className="mt-6">
+                <a
+                  href={event.reportPdfUrl}
+                  download
+                  className="cii-card p-5 flex flex-col sm:flex-row sm:items-center gap-4 hover:bg-[hsl(var(--neutral-50))] transition group"
+                >
+                  <div className="h-12 w-12 shrink-0 rounded-lg bg-[hsl(var(--orange-50))] text-[hsl(var(--orange-700))] grid place-items-center">
+                    <FileDown className="h-6 w-6" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-display font-bold text-base text-[hsl(var(--navy-900))] group-hover:underline underline-offset-4">
+                      Download full workshop report (PDF)
+                    </h3>
+                    <p className="mt-1 text-sm text-[hsl(var(--neutral-700))]">
+                      Takeaways, clusters covered, success stories and attendee summary in one document.
+                    </p>
+                  </div>
+                  <Download className="h-5 w-5 text-[hsl(var(--navy-700))] shrink-0" />
+                </a>
+              </div>
+            )}
           </div>
         )}
 
