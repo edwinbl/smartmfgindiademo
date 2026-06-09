@@ -232,12 +232,11 @@ const ProgrammeCard = ({ event, onRegister, className }: Props) => (
 
 export const EventCard = ({ event, onRegister, className }: Props) => {
   switch (event.type) {
-    case "Webinar":
+    case "Workshop":
       return <WebinarCard event={event} onRegister={onRegister} className={className} />;
     case "Roundtable":
       return <RoundtableCard event={event} onRegister={onRegister} className={className} />;
     case "Summit":
-    case "Conference":
       return <SummitCard event={event} onRegister={onRegister} className={className} />;
     case "Seminar":
     case "Programme":
