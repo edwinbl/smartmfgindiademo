@@ -1,4 +1,4 @@
-import { Mail, Phone, Download, FileText, Users, Building2, CheckCircle2, Sparkles, Image as ImageIcon, Lightbulb, FileDown } from "lucide-react";
+import { Mail, Phone, Download, FileText, Users, Building2, CheckCircle2, Sparkles, Image as ImageIcon, Lightbulb, FileDown, Briefcase } from "lucide-react";
 import type { EventItem } from "@/data/events";
 import { EventAgendaTimeline } from "./EventAgendaTimeline";
 
@@ -22,53 +22,40 @@ export const WorkshopPostDetail = ({ event }: Props) => {
   return (
     <section className="py-12 md:py-16">
       <div className="container-cii space-y-14">
-        {/* Workshop overview: date / organizers / title */}
-        <div className="grid lg:grid-cols-3 gap-5">
-          <div className="cii-card p-5">
-            <div className="text-[11px] uppercase tracking-wide font-semibold text-[hsl(var(--neutral-500))]">Date of the Workshop</div>
-            <div className="mt-2 font-display font-bold text-lg text-[hsl(var(--navy-900))]">{event.date}</div>
-            <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">{event.duration} · {event.location}</div>
-            {event.venue && <div className="mt-1 text-xs text-[hsl(var(--neutral-500))]">{event.venue}</div>}
-          </div>
-          <div className="cii-card p-5">
-            <div className="text-[11px] uppercase tracking-wide font-semibold text-[hsl(var(--neutral-500))]">Organizers</div>
-            <ul className="mt-2 space-y-1.5">
-              {(event.organizers ?? []).map((o) => (
-                <li key={o} className="flex items-start gap-2 text-sm text-[hsl(var(--navy-800))]">
-                  <Building2 className="h-4 w-4 mt-0.5 shrink-0 text-[hsl(var(--navy-600))]" />
-                  <span>{o}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="cii-card p-5">
-            <div className="text-[11px] uppercase tracking-wide font-semibold text-[hsl(var(--neutral-500))]">Title of the Workshop</div>
-            <div className="mt-2 font-display font-bold text-lg text-[hsl(var(--navy-900))]">{event.title}</div>
-            {event.tagline && <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">{event.tagline}</div>}
-          </div>
-        </div>
-
-        {/* About */}
+        {/* 1. Workshop Summary */}
         <div>
-          <SectionHeading title="About this workshop" />
-          <p className="mt-3 text-[hsl(var(--neutral-700))] leading-relaxed">{event.summary}</p>
-        </div>
-
-        {/* Programme / Agenda */}
-        {event.agenda && event.agenda.length > 0 && (
-          <div>
-            <SectionHeading kicker="Programme" title="Schedule of sessions" />
-            <div className="mt-4">
-              <EventAgendaTimeline agenda={event.agenda} />
+          <SectionHeading kicker="01 · Overview" title="Workshop Summary" />
+          <div className="mt-5 grid lg:grid-cols-3 gap-5">
+            <div className="cii-card p-5">
+              <div className="text-[11px] uppercase tracking-wide font-semibold text-[hsl(var(--neutral-500))]">Date of the Workshop</div>
+              <div className="mt-2 font-display font-bold text-lg text-[hsl(var(--navy-900))]">{event.date}</div>
+              <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">{event.duration} · {event.location}</div>
+              {event.venue && <div className="mt-1 text-xs text-[hsl(var(--neutral-500))]">{event.venue}</div>}
+            </div>
+            <div className="cii-card p-5">
+              <div className="text-[11px] uppercase tracking-wide font-semibold text-[hsl(var(--neutral-500))]">Organizers</div>
+              <ul className="mt-2 space-y-1.5">
+                {(event.organizers ?? []).map((o) => (
+                  <li key={o} className="flex items-start gap-2 text-sm text-[hsl(var(--navy-800))]">
+                    <Building2 className="h-4 w-4 mt-0.5 shrink-0 text-[hsl(var(--navy-600))]" />
+                    <span>{o}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="cii-card p-5">
+              <div className="text-[11px] uppercase tracking-wide font-semibold text-[hsl(var(--neutral-500))]">Title of the Workshop</div>
+              <div className="mt-2 font-display font-bold text-lg text-[hsl(var(--navy-900))]">{event.title}</div>
+              {event.tagline && <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">{event.tagline}</div>}
             </div>
           </div>
-        )}
+          <p className="mt-5 text-[hsl(var(--neutral-700))] leading-relaxed">{event.summary}</p>
+        </div>
 
-        {/* Report */}
+        {/* 2. Key Insights & Takeaways */}
         {r && (
           <div>
-            <SectionHeading kicker="Report" title="Post-workshop report" />
-
+            <SectionHeading kicker="02 · Insights" title="Key Insights & Takeaways" />
             <div className="mt-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
               <div className="cii-card p-4 bg-[hsl(var(--navy-50))]/60 border-[hsl(var(--navy-100))]">
                 <div className="flex items-center gap-2 text-[hsl(var(--navy-700))]">
@@ -88,68 +75,37 @@ export const WorkshopPostDetail = ({ event }: Props) => {
                 </div>
               </div>
             </div>
-
-            <div className="mt-6 grid md:grid-cols-2 gap-6">
-              <div className="cii-card p-5">
-                <div className="flex items-center gap-2 text-[hsl(var(--navy-900))]">
-                  <Sparkles className="h-4 w-4 text-[hsl(var(--orange-600))]" />
-                  <h3 className="font-display font-bold text-base">Main takeaways</h3>
-                </div>
-                <ul className="mt-3 space-y-2.5">
-                  {r.mainTakeaways.map((t, i) => (
-                    <li key={i} className="flex gap-2.5 text-sm text-[hsl(var(--navy-800))] leading-relaxed">
-                      <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-[hsl(var(--orange-600))]" />
-                      <span>{t}</span>
-                    </li>
-                  ))}
-                </ul>
+            <div className="mt-5 cii-card p-5">
+              <div className="flex items-center gap-2 text-[hsl(var(--navy-900))]">
+                <Sparkles className="h-4 w-4 text-[hsl(var(--orange-600))]" />
+                <h3 className="font-display font-bold text-base">Main takeaways</h3>
               </div>
-              <div className="cii-card p-5">
-                <div className="flex items-center gap-2 text-[hsl(var(--navy-900))]">
-                  <FileText className="h-4 w-4 text-[hsl(var(--navy-600))]" />
-                  <h3 className="font-display font-bold text-base">Success stories to compile & share</h3>
-                </div>
-                <ul className="mt-3 space-y-2.5">
-                  {r.successStories.map((s, i) => (
-                    <li key={i} className="flex gap-2.5 text-sm text-[hsl(var(--navy-800))] leading-relaxed">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[hsl(var(--navy-600))] shrink-0" />
-                      <span>{s}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="mt-3 grid md:grid-cols-2 gap-2.5">
+                {r.mainTakeaways.map((t, i) => (
+                  <li key={i} className="flex gap-2.5 text-sm text-[hsl(var(--navy-800))] leading-relaxed">
+                    <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-[hsl(var(--orange-600))]" />
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            {/* Downloadable PDF Report */}
-            {event.reportPdfUrl && (
-              <div className="mt-6">
-                <a
-                  href={event.reportPdfUrl}
-                  download
-                  className="cii-card p-5 flex flex-col sm:flex-row sm:items-center gap-4 hover:bg-[hsl(var(--neutral-50))] transition group"
-                >
-                  <div className="h-12 w-12 shrink-0 rounded-lg bg-[hsl(var(--orange-50))] text-[hsl(var(--orange-700))] grid place-items-center">
-                    <FileDown className="h-6 w-6" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-display font-bold text-base text-[hsl(var(--navy-900))] group-hover:underline underline-offset-4">
-                      Download full workshop report (PDF)
-                    </h3>
-                    <p className="mt-1 text-sm text-[hsl(var(--neutral-700))]">
-                      Takeaways, clusters covered, success stories and attendee summary in one document.
-                    </p>
-                  </div>
-                  <Download className="h-5 w-5 text-[hsl(var(--navy-700))] shrink-0" />
-                </a>
-              </div>
-            )}
           </div>
         )}
 
-        {/* Speakers with contacts */}
+        {/* 3. Agenda & Sessions */}
+        {event.agenda && event.agenda.length > 0 && (
+          <div>
+            <SectionHeading kicker="03 · Programme" title="Agenda & Sessions" />
+            <div className="mt-4">
+              <EventAgendaTimeline agenda={event.agenda} />
+            </div>
+          </div>
+        )}
+
+        {/* 4. Speaker Profiles */}
         {event.speakers?.length > 0 && (
           <div>
-            <SectionHeading kicker="Speakers" title="List of speakers & contact details" />
+            <SectionHeading kicker="04 · Speakers" title="Speaker Profiles" />
             <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {event.speakers.map((s) => (
                 <div key={s.name} className="cii-card p-4">
@@ -183,10 +139,10 @@ export const WorkshopPostDetail = ({ event }: Props) => {
           </div>
         )}
 
-        {/* Presentations */}
+        {/* 5. Presentation Resources */}
         {event.presentations && event.presentations.length > 0 && (
           <div>
-            <SectionHeading kicker="Presentations" title="Speaker decks & materials" />
+            <SectionHeading kicker="05 · Materials" title="Presentation Resources" />
             <ul className="mt-4 divide-y divide-[hsl(var(--neutral-150))] cii-card overflow-hidden">
               {event.presentations.map((d, i) => (
                 <li key={i}>
@@ -212,40 +168,42 @@ export const WorkshopPostDetail = ({ event }: Props) => {
           </div>
         )}
 
-        {/* Resource persons */}
-        {event.resourcePersons && event.resourcePersons.length > 0 && (
+        {/* 6. Industry Learnings */}
+        {event.learnings && event.learnings.length > 0 && (
           <div>
-            <SectionHeading kicker="Resource persons" title="For consultancy, skilling & guidance" />
+            <SectionHeading kicker="06 · Learnings" title="Industry Learnings" />
+            <ul className="mt-4 grid md:grid-cols-2 gap-2.5">
+              {event.learnings.map((l, i) => (
+                <li key={i} className="cii-card p-4 flex items-start gap-3 text-sm text-[hsl(var(--navy-800))] leading-relaxed">
+                  <Lightbulb className="h-4 w-4 mt-0.5 shrink-0 text-[hsl(var(--orange-600))]" />
+                  <span>{l}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* 7. Case Studies & Demonstrations */}
+        {r && r.successStories?.length > 0 && (
+          <div>
+            <SectionHeading kicker="07 · In Practice" title="Case Studies & Demonstrations" />
             <div className="mt-4 grid md:grid-cols-2 gap-4">
-              {event.resourcePersons.map((p) => (
-                <div key={p.name} className="cii-card p-5">
-                  <div className="font-display font-bold text-[hsl(var(--navy-900))]">{p.name}</div>
-                  <div className="text-xs text-[hsl(var(--neutral-500))]">{p.org}</div>
-                  <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{p.expertise}</p>
-                  {(p.email || p.phone) && (
-                    <div className="mt-3 pt-3 border-t border-[hsl(var(--neutral-150))] flex flex-wrap gap-x-4 gap-y-1.5">
-                      {p.email && (
-                        <a href={`mailto:${p.email}`} className="flex items-center gap-2 text-xs text-[hsl(var(--navy-800))] hover:text-[hsl(var(--red-600))] break-all">
-                          <Mail className="h-3.5 w-3.5 shrink-0" /> {p.email}
-                        </a>
-                      )}
-                      {p.phone && (
-                        <a href={`tel:${p.phone.replace(/[^+\d]/g, "")}`} className="flex items-center gap-2 text-xs text-[hsl(var(--navy-800))] hover:text-[hsl(var(--red-600))]">
-                          <Phone className="h-3.5 w-3.5 shrink-0" /> {p.phone}
-                        </a>
-                      )}
-                    </div>
-                  )}
+              {r.successStories.map((s, i) => (
+                <div key={i} className="cii-card p-5 flex items-start gap-3">
+                  <div className="h-10 w-10 shrink-0 rounded-md bg-[hsl(var(--navy-50))] text-[hsl(var(--navy-700))] grid place-items-center">
+                    <Briefcase className="h-5 w-5" />
+                  </div>
+                  <p className="text-sm text-[hsl(var(--navy-800))] leading-relaxed">{s}</p>
                 </div>
               ))}
             </div>
           </div>
         )}
 
-        {/* Photographs */}
+        {/* 8. Photo Gallery */}
         {event.photographs && event.photographs.length > 0 && (
           <div>
-            <SectionHeading kicker="Photographs" title="Glimpses from the workshop" />
+            <SectionHeading kicker="08 · Gallery" title="Photo Gallery" />
             <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {event.photographs.map((p, i) => (
                 <figure key={i} className="cii-card overflow-hidden group">
@@ -269,18 +227,62 @@ export const WorkshopPostDetail = ({ event }: Props) => {
           </div>
         )}
 
-        {/* Learnings */}
-        {event.learnings && event.learnings.length > 0 && (
+        {/* 9. Downloads & Related Resources */}
+        {(event.reportPdfUrl || (event.resourcePersons && event.resourcePersons.length > 0)) && (
           <div>
-            <SectionHeading kicker="Learnings" title="What we took away from the workshop" />
-            <ul className="mt-4 grid md:grid-cols-2 gap-2.5">
-              {event.learnings.map((l, i) => (
-                <li key={i} className="cii-card p-4 flex items-start gap-3 text-sm text-[hsl(var(--navy-800))] leading-relaxed">
-                  <Lightbulb className="h-4 w-4 mt-0.5 shrink-0 text-[hsl(var(--orange-600))]" />
-                  <span>{l}</span>
-                </li>
-              ))}
-            </ul>
+            <SectionHeading kicker="09 · Downloads" title="Downloads & Related Resources" />
+
+            {event.reportPdfUrl && (
+              <div className="mt-5">
+                <a
+                  href={event.reportPdfUrl}
+                  download
+                  className="cii-card p-5 flex flex-col sm:flex-row sm:items-center gap-4 hover:bg-[hsl(var(--neutral-50))] transition group"
+                >
+                  <div className="h-12 w-12 shrink-0 rounded-lg bg-[hsl(var(--orange-50))] text-[hsl(var(--orange-700))] grid place-items-center">
+                    <FileDown className="h-6 w-6" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-display font-bold text-base text-[hsl(var(--navy-900))] group-hover:underline underline-offset-4">
+                      Download full workshop report (PDF)
+                    </h3>
+                    <p className="mt-1 text-sm text-[hsl(var(--neutral-700))]">
+                      Takeaways, clusters covered, success stories and attendee summary in one document.
+                    </p>
+                  </div>
+                  <Download className="h-5 w-5 text-[hsl(var(--navy-700))] shrink-0" />
+                </a>
+              </div>
+            )}
+
+            {event.resourcePersons && event.resourcePersons.length > 0 && (
+              <div className="mt-5">
+                <h3 className="font-display font-bold text-base text-[hsl(var(--navy-900))] mb-3">Resource persons — for consultancy, skilling & guidance</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {event.resourcePersons.map((p) => (
+                    <div key={p.name} className="cii-card p-5">
+                      <div className="font-display font-bold text-[hsl(var(--navy-900))]">{p.name}</div>
+                      <div className="text-xs text-[hsl(var(--neutral-500))]">{p.org}</div>
+                      <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{p.expertise}</p>
+                      {(p.email || p.phone) && (
+                        <div className="mt-3 pt-3 border-t border-[hsl(var(--neutral-150))] flex flex-wrap gap-x-4 gap-y-1.5">
+                          {p.email && (
+                            <a href={`mailto:${p.email}`} className="flex items-center gap-2 text-xs text-[hsl(var(--navy-800))] hover:text-[hsl(var(--red-600))] break-all">
+                              <Mail className="h-3.5 w-3.5 shrink-0" /> {p.email}
+                            </a>
+                          )}
+                          {p.phone && (
+                            <a href={`tel:${p.phone.replace(/[^+\d]/g, "")}`} className="flex items-center gap-2 text-xs text-[hsl(var(--navy-800))] hover:text-[hsl(var(--red-600))]">
+                              <Phone className="h-3.5 w-3.5 shrink-0" /> {p.phone}
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
