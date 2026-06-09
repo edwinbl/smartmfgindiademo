@@ -484,13 +484,14 @@ export const events: EventItem[] = [
       { label: "Format", value: "In-person workshop" },
     ],
     speakers: [
-      { name: "Satendra Singh", role: "Head — Manufacturing & Strategy", org: "Nokia Solutions and Networks India Pvt. Ltd.", initials: "SS" },
-      { name: "Ravi Agarwal", role: "MD & President, Automation Industry Association", org: "Pepperl+Fuchs Factory Automation", initials: "RA" },
-      { name: "Dr Sunil Jha", role: "Director, FSM & Lead Facilitator FSM Technology Team", org: "IIT Delhi", initials: "SJ" },
-      { name: "Sandeep Singh", role: "Director", org: "Reckers Mechatronics Pvt Ltd", initials: "SS" },
-      { name: "Saroop Chand", role: "Managing Director", org: "Adroitec Information Systems", initials: "SC" },
-      { name: "Anup Wadhwa", role: "Director", org: "Automation Industry Association", initials: "AW" },
+      { name: "Satendra Singh", role: "Head — Manufacturing & Strategy", org: "Nokia Solutions and Networks India Pvt. Ltd.", initials: "SS", email: "satendra.singh@nokia.com", phone: "+91 124 4500 100" },
+      { name: "Ravi Agarwal", role: "MD & President, Automation Industry Association", org: "Pepperl+Fuchs Factory Automation", initials: "RA", email: "ravi.agarwal@pepperl-fuchs.com", phone: "+91 80 6788 1000" },
+      { name: "Dr Sunil Jha", role: "Director, FSM & Lead Facilitator FSM Technology Team", org: "IIT Delhi", initials: "SJ", email: "suniljha@mech.iitd.ac.in", phone: "+91 11 2659 1135" },
+      { name: "Sandeep Singh", role: "Director", org: "Reckers Mechatronics Pvt Ltd", initials: "SS", email: "sandeep@reckers.in", phone: "+91 124 4032 900" },
+      { name: "Saroop Chand", role: "Managing Director", org: "Adroitec Information Systems", initials: "SC", email: "saroop.chand@adroitec.com", phone: "+91 124 4309 200" },
+      { name: "Anup Wadhwa", role: "Director", org: "Automation Industry Association", initials: "AW", email: "director@aia-india.org", phone: "+91 124 4014 444" },
     ],
+
     agenda: [
       { time: "10:00 – 10:30", title: "Registration" },
       { time: "10:30 – 10:40", title: "Welcome Address", speaker: "Satendra Singh — Member, CII Smart Manufacturing Council" },
