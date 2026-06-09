@@ -47,7 +47,7 @@ export const AboutHero = () => {
           </p>
         </div>
 
-        <div className="lg:col-span-5 relative h-[420px] sm:h-[480px] lg:h-[520px] animate-scale-in">
+        <div className="hidden md:block lg:col-span-5 relative h-[420px] sm:h-[480px] lg:h-[520px] animate-scale-in overflow-hidden">
           <PillarsViz />
         </div>
       </div>

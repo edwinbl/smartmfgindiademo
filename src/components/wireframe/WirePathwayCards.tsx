@@ -79,7 +79,7 @@ export const WirePathwayCards = () => {
       title="Where would you like to begin?"
       intro="The portal is designed for action. Pick a pathway and the platform will guide your next steps."
     >
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
         {pathways.map((p, idx) => {
           const a = accentMap[p.accent];
           const Icon = p.icon;

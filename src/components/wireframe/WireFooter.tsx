@@ -70,7 +70,7 @@ export const WireFooter = () => {
                 className="h-11 md:h-12 w-auto brightness-0 invert"
               />
             </Link>
-            <p className="mt-4 text-sm text-white/70 lg:max-w-[240px] sm:max-w-1/2 w-full">
+            <p className="mt-4 text-sm text-white/70 lg:max-w-[240px] sm:max-w-[50%] w-full">
               Helping Indian MSMEs assess, learn and adopt smart manufacturing — convened by the Confederation of Indian
               Industry.
             </p>

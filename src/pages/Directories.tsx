@@ -277,7 +277,7 @@ const DirectoriesHero = ({ onBrowse }: { onBrowse: () => void }) => (
 
       {/* Editorial collage */}
       <div className="lg:col-span-5">
-        <div className="relative h-[360px] sm:h-[420px] lg:h-[460px]">
+        <div className="relative h-[360px] sm:h-[420px] lg:h-[460px] overflow-hidden">
           <div
             className="absolute right-6 top-2 w-[58%] aspect-[3/4] rounded-2xl shadow-2xl overflow-hidden rotate-[6deg] border border-white"
             style={{ background: "hsl(var(--navy-900))" }}

@@ -58,7 +58,7 @@ export const WireHeader = () => {
 
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-[hsl(var(--neutral-150))]">
-      <div className="container-cii flex h-[72px] items-center gap-6">
+      <div className="container-cii flex h-[72px] items-center gap-3 sm:gap-6">
         {/* Logo */}
         <Link to="/" className="flex items-center shrink-0" aria-label="CII Smart Manufacturing Platform — Home">
           <img
@@ -68,7 +68,7 @@ export const WireHeader = () => {
             height={48}
             decoding="async"
             fetchPriority="high"
-            className="h-11 md:h-12 w-auto"
+            className="h-8 sm:h-10 md:h-12 w-auto"
           />
         </Link>
 
@@ -131,7 +131,7 @@ export const WireHeader = () => {
             alt="Confederation of Indian Industry"
             width={232}
             height={74}
-            className="h-9 md:h-14 w-auto object-contain"
+            className="h-8 sm:h-10 md:h-14 w-auto object-contain"
             decoding="async"
             fetchPriority="high"
           />
