@@ -4,7 +4,7 @@ import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
 import { EventsFlagshipHero } from "@/components/events/EventsFlagshipHero";
-import { EventsTypeTabs } from "@/components/events/EventsTypeTabs";
+
 import {
   emptyEventFilters,
   type EventFilters,
