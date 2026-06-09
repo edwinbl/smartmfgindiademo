@@ -4,7 +4,7 @@ import { PlayCircle, FileText, ArrowRight } from "lucide-react";
 import { getPast } from "@/data/events";
 import type { EventType } from "@/data/events";
 
-const TYPES: ("All" | EventType)[] = ["All", "Summit", "Conference", "Roundtable", "Webinar"];
+const TYPES: ("All" | EventType)[] = ["All", "Summit", "Workshop", "Roundtable"];
 
 const extractYear = (date: string): string => {
   const m = date.match(/\b(20\d{2})\b/);
