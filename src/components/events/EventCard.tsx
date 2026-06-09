@@ -19,18 +19,18 @@ const TypeBadge = ({ event }: { event: EventItem }) => (
 );
 
 const SpeakerStack = ({ event, max = 3 }: { event: EventItem; max?: number }) => (
-  <div className="flex items-center -space-x-2">
+  <div className="flex items-center -space-x-1.5 sm:-space-x-2">
     {event.speakers.slice(0, max).map((s) => (
       <div
         key={s.name}
         title={`${s.name} · ${s.org}`}
-        className="h-8 w-8 rounded-full border-2 border-white bg-gradient-to-br from-[hsl(var(--navy-700))] to-[hsl(var(--navy-600))] grid place-items-center text-[10px] font-bold text-white"
+        className="h-6 w-6 sm:h-8 sm:w-8 rounded-full border-2 border-white bg-gradient-to-br from-[hsl(var(--navy-700))] to-[hsl(var(--navy-600))] grid place-items-center text-[9px] sm:text-[10px] font-bold text-white"
       >
         {s.initials}
       </div>
     ))}
     {event.speakers.length > max && (
-      <div className="h-8 w-8 rounded-full border-2 border-white bg-[hsl(var(--neutral-100))] grid place-items-center text-[10px] font-bold text-[hsl(var(--navy-800))]">
+      <div className="h-6 w-6 sm:h-8 sm:w-8 rounded-full border-2 border-white bg-[hsl(var(--neutral-100))] grid place-items-center text-[9px] sm:text-[10px] font-bold text-[hsl(var(--navy-800))]">
         +{event.speakers.length - max}
       </div>
     )}
