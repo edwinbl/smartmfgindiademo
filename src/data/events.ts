@@ -510,9 +510,62 @@ export const events: EventItem[] = [
     ],
     partners: ["CII Smart Manufacturing Council", "Automation Industry Association", "Department of Heavy Industry"],
     proceedingsUrl: "#",
+    organizers: [
+      "Confederation of Indian Industry (CII)",
+      "CII Smart Manufacturing Council",
+      "Automation Industry Association (AIA)",
+    ],
+    report: {
+      attendees: 45,
+      clustersCovered: ["Automotive", "General Engineering"],
+      mainTakeaways: [
+        "Indian manufacturers need a phased adoption path — start with connected assets, then layer analytics and AI.",
+        "IIoT readiness depends as much on workforce reskilling and OT-IT governance as on technology investment.",
+        "Additive manufacturing has moved well beyond prototyping and is now production-relevant for tooling and spares.",
+        "AR and ML on the shop floor deliver measurable gains in first-time-right and operator productivity.",
+        "Shared cyber-physical facility centres can dramatically lower the entry cost for MSMEs.",
+      ],
+      successStories: [
+        "Pilot cyber-physical line at IIT Delhi demonstrating end-to-end IIoT stack — compile a case write-up.",
+        "Pepperl+Fuchs deployment of smart sensors enabling predictive quality at an automotive Tier-1.",
+        "Reckers Mechatronics remote supervision rollout across multi-site operations.",
+        "Adroitec additive manufacturing applications in jigs, fixtures and low-volume spares.",
+      ],
+    },
+    presentations: [
+      { title: "Business Disruptions & Opportunities for Smart Manufacturing in India", speaker: "Ravi Agarwal", url: "#", size: "3.2 MB" },
+      { title: "Getting started with Smart Automation & IIoT Layers — Pilot Cyber Physical Line", speaker: "Dr Sunil Jha", url: "#", size: "5.8 MB" },
+      { title: "Challenges in Automated Tracking, Tracing & Remote Supervision", speaker: "Sandeep Singh", url: "#", size: "2.4 MB" },
+      { title: "Additive Manufacturing beyond Prototyping", speaker: "Saroop Chand", url: "#", size: "2.9 MB" },
+      { title: "AR & Machine Learning — The Next Digital Journey", speaker: "Dr Sunil Jha", url: "#", size: "4.1 MB" },
+      { title: "Common Engineering & Cyber Physical Facilities Centre — Overview", speaker: "Anup Wadhwa", url: "#", size: "1.8 MB" },
+    ],
+    resourcePersons: [
+      { name: "Dr Sunil Jha", expertise: "Cyber-physical systems, IIoT architecture, AR/ML on shop floor", org: "IIT Delhi", email: "suniljha@mech.iitd.ac.in", phone: "+91 11 2659 1135" },
+      { name: "Ravi Agarwal", expertise: "Industrial automation, smart sensors, factory automation strategy", org: "Pepperl+Fuchs / AIA", email: "ravi.agarwal@pepperl-fuchs.com", phone: "+91 80 6788 1000" },
+      { name: "Anup Wadhwa", expertise: "Shared facility centres, automation skilling, policy advocacy", org: "Automation Industry Association", email: "director@aia-india.org", phone: "+91 124 4014 444" },
+      { name: "Saroop Chand", expertise: "Additive manufacturing, digital design, PLM consultancy", org: "Adroitec Information Systems", email: "saroop.chand@adroitec.com", phone: "+91 124 4309 200" },
+    ],
+    photographs: [
+      { url: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80", caption: "Opening session with CII Smart Manufacturing Council members" },
+      { url: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80", caption: "Delegates from automotive and general engineering clusters" },
+      { url: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80", caption: "Panel on IIoT layers and pilot cyber-physical line" },
+      { url: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&w=1200&q=80", caption: "Live demonstration of smart automation sensors" },
+      { url: "https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=1200&q=80", caption: "Additive manufacturing case studies showcase" },
+      { url: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80", caption: "Networking break — cross-cluster knowledge exchange" },
+    ],
+    learnings: [
+      "Awareness on Industry 4.0 is high in pockets but uneven across clusters — sustained engagement is needed for MSMEs.",
+      "Adoption is constrained more by skill gaps and change management than by technology cost.",
+      "A reference architecture for IIoT layers (sensors → connectivity → analytics → AI) helps demystify deployment for industry leaders.",
+      "Shared cyber-physical facility centres should be expanded regionally to give MSMEs a hands-on testbed.",
+      "Future workshops should be cluster-specific (automotive, capital goods, electronics) with focused success stories.",
+      "Follow-up actions: publish proceedings, build a directory of resource persons, and seed a benchmark study on Indian smart-manufacturing maturity.",
+    ],
     accent: "navy",
   },
 ];
+
 
 export const eventTypes: ("All" | EventType)[] = [
   "All",
