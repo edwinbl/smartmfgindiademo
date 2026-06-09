@@ -73,7 +73,9 @@ export const WireHero = () => {
         </div>
 
         {/* Visual */}
-        <HeroEcosystemViz />
+        <div className="hidden lg:block">
+          <HeroEcosystemViz />
+        </div>
       </div>
     </section>
   );

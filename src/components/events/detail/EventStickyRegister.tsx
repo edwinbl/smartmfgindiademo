@@ -57,28 +57,28 @@ export const EventStickyRegister = ({ event, onRegister }: Props) => {
       <button onClick={onRegister} className="btn-primary w-full">
         {event.registrationLabel}
       </button>
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 gap-1.5">
         <button
           onClick={addToCalendar}
-          className="inline-flex items-center justify-center gap-1.5 h-10 rounded-sm border border-[hsl(var(--neutral-200))] text-xs font-semibold text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))]"
+          className="inline-flex items-center justify-center gap-1 h-10 px-1 rounded-sm border border-[hsl(var(--neutral-200))] text-[11px] sm:text-xs font-semibold text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))]"
         >
-          <CalendarPlus className="h-4 w-4" /> Calendar
+          <CalendarPlus className="h-4 w-4 shrink-0" /> <span className="truncate">Calendar</span>
         </button>
         <button
           onClick={() => {
             const next = eventsStorage.toggleSaved(event.slug);
             toast({ title: next ? "Saved" : "Removed", description: event.title });
           }}
-          className="inline-flex items-center justify-center gap-1.5 h-10 rounded-sm border border-[hsl(var(--neutral-200))] text-xs font-semibold text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))]"
+          className="inline-flex items-center justify-center gap-1 h-10 px-1 rounded-sm border border-[hsl(var(--neutral-200))] text-[11px] sm:text-xs font-semibold text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))]"
         >
-          {saved ? <BookmarkCheck className="h-4 w-4" /> : <Bookmark className="h-4 w-4" />}
-          {saved ? "Saved" : "Save"}
+          {saved ? <BookmarkCheck className="h-4 w-4 shrink-0" /> : <Bookmark className="h-4 w-4 shrink-0" />}
+          <span className="truncate">{saved ? "Saved" : "Save"}</span>
         </button>
         <button
           onClick={handleShare}
-          className="inline-flex items-center justify-center gap-1.5 h-10 rounded-sm border border-[hsl(var(--neutral-200))] text-xs font-semibold text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))]"
+          className="inline-flex items-center justify-center gap-1 h-10 px-1 rounded-sm border border-[hsl(var(--neutral-200))] text-[11px] sm:text-xs font-semibold text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))]"
         >
-          <Share2 className="h-4 w-4" /> Share
+          <Share2 className="h-4 w-4 shrink-0" /> <span className="truncate">Share</span>
         </button>
       </div>
 

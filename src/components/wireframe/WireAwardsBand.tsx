@@ -125,9 +125,9 @@ export const WireAwardsBand = () => {
             </div>
             <div className="relative">
               {/* connector line */}
-              <div className="absolute left-0 right-0 top-3 h-px bg-white/20" />
+              <div className="hidden md:block absolute left-0 right-0 top-3 h-px bg-white/20" />
               <div
-                className="absolute left-0 top-3 h-px"
+                className="hidden md:block absolute left-0 top-3 h-px"
                 style={{
                   width: "16%",
                   background: "hsl(var(--red-600))",

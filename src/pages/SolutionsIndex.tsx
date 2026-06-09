@@ -335,7 +335,7 @@ const SolutionsHero = ({ query, onQuery }: { query: string; onQuery: (v: string)
               value={query}
               onChange={(e) => onQuery(e.target.value)}
               placeholder="Search by outcome, problem or solution area…"
-              className="w-full h-14 pl-14 pr-32 rounded-full border bg-white text-sm text-[hsl(var(--neutral-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] shadow-sm"
+              className="w-full h-12 sm:h-14 pl-11 sm:pl-14 pr-24 sm:pr-32 rounded-full border bg-white text-sm text-[hsl(var(--neutral-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] shadow-sm"
               style={{ borderColor: "hsl(var(--neutral-200))" }}
             />
             <button
