@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { WireHeader } from "@/components/wireframe/WireHeader";
-import { CommonFinalCta } from "@/components/common/CommonFinalCta";
+import { PastProgrammesArchive } from "@/components/programmes/PastProgrammesArchive";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
@@ -164,7 +164,7 @@ const ProgrammesIndex = () => {
         </section>
         {user && <PersonalizedProgrammesShelf user={user} onRegister={handleRegister} />}
         <ProgrammesImpactStats />
-        <CommonFinalCta />
+        <PastProgrammesArchive />
       </main>
       <WireFooter />
       <WireChatbotFAB />
