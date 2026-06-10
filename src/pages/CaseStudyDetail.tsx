@@ -12,12 +12,9 @@ import {
   Building2,
   MapPin,
   Clock,
-  TrendingUp,
-  TrendingDown,
   CheckCircle2,
   Lightbulb,
   Sparkles,
-  FileText,
   Users,
   Workflow,
   Cpu,
@@ -29,7 +26,6 @@ import {
   HeartHandshake,
   CircuitBoard,
   ShieldCheck,
-  Leaf,
   Briefcase,
 } from "lucide-react";
 
@@ -39,10 +35,8 @@ import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
 import {
   findCaseStudy,
-  type KPI,
   type CaseStudy,
 } from "@/data/caseStudies";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
 
 /* ---------------- Fallback synthesis ---------------- */
@@ -145,32 +139,6 @@ const SectionHead = ({
     )}
   </div>
 );
-
-const KpiBig = ({
-  kpi,
-  tone = "navy",
-}: {
-  kpi: KPI;
-  tone?: "green" | "orange" | "navy";
-}) => {
-  const Icon = kpi.direction === "down" ? TrendingDown : TrendingUp;
-  const toneMap = {
-    green: "text-[hsl(var(--india-green))] bg-[hsl(var(--india-green)/0.10)]",
-    orange: "text-[hsl(var(--orange-600))] bg-[hsl(var(--orange-500)/0.10)]",
-    navy: "text-[hsl(var(--navy-700))] bg-[hsl(var(--navy-050))]",
-  } as const;
-  return (
-    <div className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5 hover:shadow-md transition-all">
-      <div className={`h-9 w-9 rounded-xl grid place-items-center ${toneMap[tone]}`}>
-        <Icon className="h-4 w-4" />
-      </div>
-      <div className="mt-3 font-display font-bold text-2xl md:text-3xl text-[hsl(var(--navy-900))] font-numeric">
-        {kpi.value}
-      </div>
-      <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">{kpi.label}</div>
-    </div>
-  );
-};
 
 /* ---------------- Sidebar (mirrors ReportSummaryPanel) ---------------- */
 const CaseSummaryPanel = ({
