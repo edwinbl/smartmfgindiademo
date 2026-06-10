@@ -48,6 +48,9 @@ export interface SolutionFeature { title: string; desc: string }
 export interface ImplementationChallenge { challenge: string; mitigation: string; outcome: string }
 export interface OutcomeGroup { operational: KPI[]; business: KPI[]; user: string[] }
 export interface ResourceItem { title: string; type: string; href?: string }
+export interface Testimonial { quote: string; name: string; role: string; company: string }
+export interface ApproachCard { title: string; desc: string }
+export interface WorkforceShift { before: string; after: string[] }
 
 export interface CaseStudy {
   slug: string;
@@ -84,6 +87,10 @@ export interface CaseStudy {
   implementationChallenges?: ImplementationChallenge[];
   outcomes?: OutcomeGroup;
   resources?: ResourceItem[];
+  approachCards?: ApproachCard[];
+  workforceTransformation?: WorkforceShift;
+  testimonial?: Testimonial;
+  replicationInsights?: string[];
 }
 
 export const sectors: Sector[] = [
