@@ -48,6 +48,9 @@ export interface SolutionFeature { title: string; desc: string }
 export interface ImplementationChallenge { challenge: string; mitigation: string; outcome: string }
 export interface OutcomeGroup { operational: KPI[]; business: KPI[]; user: string[] }
 export interface ResourceItem { title: string; type: string; href?: string }
+export interface Testimonial { quote: string; name: string; role: string; company: string }
+export interface ApproachCard { title: string; desc: string }
+export interface WorkforceShift { before: string; after: string[] }
 
 export interface CaseStudy {
   slug: string;
@@ -84,6 +87,10 @@ export interface CaseStudy {
   implementationChallenges?: ImplementationChallenge[];
   outcomes?: OutcomeGroup;
   resources?: ResourceItem[];
+  approachCards?: ApproachCard[];
+  workforceTransformation?: WorkforceShift;
+  testimonial?: Testimonial;
+  replicationInsights?: string[];
 }
 
 export const sectors: Sector[] = [
@@ -168,6 +175,75 @@ export const caseStudies: CaseStudy[] = [
       { label: "OEE", before: "58%", after: "67%" },
     ],
     featured: true,
+    categoryTags: ["Automotive", "MSME", "Digital Monitoring", "Industry 4.0"],
+    executiveSummary:
+      "ABC Components, a Tier-2 automotive supplier, digitised its shop floor with real-time machine monitoring to eliminate reporting lag, expose hidden losses and unlock a measurable lift in OEE — all within a 6-month programme.",
+    solutionProvider: {
+      name: "Aarav Smart Systems",
+      overview:
+        "An accredited Industry 4.0 partner specialising in shop-floor digitisation, IIoT enablement and operator-driven performance programmes for Indian discrete manufacturers.",
+      capabilities: ["IIoT Enablement", "Real-time Monitoring", "Analytics", "Operator Apps", "Change Management"],
+      industries: ["Automotive", "Engineering", "Electronics"],
+      technologies: ["Edge IoT", "Cloud Analytics", "Mobile Dashboards", "Loss Analytics"],
+    },
+    manufacturer: {
+      industry: "Automotive components — precision machining & assembly",
+      footprint: "Single-plant Tier-2 supplier in Tamil Nadu serving leading OEMs",
+      highlights: ["180 employees", "22 critical CNC stations", "Tier-2 to multiple OEMs", "ISO 9001 certified"],
+    },
+    approachCards: [
+      { title: "Connect Critical Assets", desc: "Edge gateways on 22 CNC and assembly stations capturing live state and stoppage signals." },
+      { title: "Unified Live Dashboard", desc: "One supervisor view across lines replacing 24-hour paper reports." },
+      { title: "Operator-friendly UX", desc: "Designed for shop-floor use — minimal training, glove-friendly, mobile-first." },
+      { title: "Daily Performance Huddles", desc: "Live data anchoring 15-minute shift huddles to drive accountability." },
+    ],
+    workforceTransformation: {
+      before: "Supervisors chasing paper shift reports and reacting to stoppages a day late.",
+      after: [
+        "Live loss analysis at the line",
+        "Operator-led problem-solving in daily huddles",
+        "Maintenance shifted from reactive to planned",
+        "Supervisors coaching on data, not policing",
+      ],
+    },
+    outcomes: {
+      operational: [
+        { label: "Downtime", value: "-18%", direction: "down" },
+        { label: "OEE", value: "+9 pts", direction: "up" },
+        { label: "Reporting lag", value: "Live", direction: "down" },
+      ],
+      business: [
+        { label: "Productivity", value: "+12%", direction: "up" },
+        { label: "Rework", value: "-22%", direction: "down" },
+        { label: "OEM delivery score", value: "+15%", direction: "up" },
+      ],
+      user: [
+        "Real-time visibility for supervisors",
+        "Faster stoppage-to-response cycle",
+        "Operator pride in daily scoreboards",
+        "Confident OEM delivery commitments",
+      ],
+    },
+    testimonial: {
+      quote:
+        "Going from 24-hour paper reports to a live dashboard changed how our supervisors lead. Losses we never knew existed are now visible, and the team owns them.",
+      name: "R. Subramanian",
+      role: "Plant Head",
+      company: "ABC Components",
+    },
+    replicationInsights: [
+      "Start with the bottleneck lines, not the whole plant",
+      "Anchor daily huddles in the live data from day one",
+      "Co-design the dashboard with supervisors, not for them",
+      "Treat operators as problem-solvers, not data sources",
+      "Plan for offline-first capture in older sheds",
+    ],
+    resources: [
+      { title: "Full Case Study PDF", type: "PDF" },
+      { title: "Shop-floor Monitoring Framework", type: "Framework" },
+      { title: "Automotive Industry 4.0 Outlook", type: "Report" },
+      { title: "Daily Performance Management Playbook", type: "Guide" },
+    ],
   },
   {
     slug: "vastra-textiles-quality-systems",
