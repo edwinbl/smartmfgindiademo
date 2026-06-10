@@ -7,30 +7,30 @@ import traceability from "@/assets/spotlight-traceability.jpg";
 const resources = [
   {
     image: autoVision,
-    sector: "Automotive",
+    sector: "FMCG",
     type: "Case Study",
-    title: "How a Pune auto-parts MSME reduced defect rates by 40% using vision inspection",
+    title: "B&R Industrial Automation Pvt. Ltd.",
     summary:
-      "A practical account of deploying AI-based visual quality inspection on a legacy shopfloor with minimal disruption.",
+      "B&R combines cutting-edge automation technology with engineering expertise to deliver intelligent solutions for modern manufacturing.",
     cta: "Read case study",
   },
   {
     image: textile,
-    sector: "Textiles",
+    sector: "Industry 4.0",
     type: "Report",
-    title: "Energy monitoring playbook for textile MSMEs: from manual logs to real-time dashboards",
+    title: "Industry 4.0 Adoption and Strategic Roadmap for Indian Manufacturing",
     summary:
-      "A step-by-step guide to deploying IoT-based energy monitoring across weaving and dyeing operations.",
-    cta: "Download report",
+      "Explore how digital technologies are reshaping India’s manufacturing landscape through Industry 4.0.",
+    cta: "Explore report",
   },
   {
     image: traceability,
     sector: "Quality & Traceability",
-    type: "Playbook",
-    title: "A practical playbook for digital traceability in MSMEs",
+    type: "Case Study",
+    title: "Siemens PLM Software",
     summary:
-      "Step-by-step guidance for MSMEs starting their traceability journey, with vendor-neutral options.",
-    cta: "Read playbook",
+      "Transformer device manufacturer uses SIMATIC IT Preactor to increase capacity utilization and improve response to customers.",
+    cta: "Read case study",
   },
 ];
 
@@ -43,7 +43,7 @@ export const WireResources = () => {
           Learn from practical examples and resources
         </h2>
         <p className="mt-2 text-base text-[hsl(var(--neutral-700))] max-w-2xl">
-          Case studies, reports and playbooks from manufacturers who have implemented Industry 4.0 solutions.
+          Case studies, reports and e-directories from manufacturers who have implemented Industry 4.0 solutions.
         </p>
       </div>
 
