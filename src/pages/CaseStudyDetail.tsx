@@ -549,77 +549,6 @@ const CaseStudyDetail = () => {
                 </div>
               </div>
 
-              {/* Benefits Achieved */}
-              <div>
-                <SectionHead
-                  eyebrow="Benefits Achieved"
-                  title="Business outcomes achieved"
-                  intro="Organised across operations, business and workforce impact."
-                />
-                <div className="mt-6">
-                  <Tabs defaultValue="operational" className="w-full">
-                    <TabsList className="bg-white border border-[hsl(var(--neutral-150))]">
-                      <TabsTrigger value="operational">Operational</TabsTrigger>
-                      <TabsTrigger value="business">Business</TabsTrigger>
-                      <TabsTrigger value="workforce">Workforce</TabsTrigger>
-                      <TabsTrigger value="sustainability">Sustainability</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="operational" className="mt-5">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {x.outcomes.operational.map((k) => (
-                          <KpiBig key={k.label} kpi={k} tone="navy" />
-                        ))}
-                      </div>
-                    </TabsContent>
-                    <TabsContent value="business" className="mt-5">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {x.outcomes.business.map((k) => (
-                          <KpiBig key={k.label} kpi={k} tone="green" />
-                        ))}
-                      </div>
-                    </TabsContent>
-                    <TabsContent value="workforce" className="mt-5">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {x.outcomes.user.map((u) => (
-                          <div
-                            key={u}
-                            className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5"
-                          >
-                            <CheckCircle2 className="h-5 w-5 text-[hsl(var(--india-green))]" />
-                            <div className="mt-2 font-display font-semibold text-[hsl(var(--navy-900))]">
-                              {u}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </TabsContent>
-                    <TabsContent value="sustainability" className="mt-5">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {[
-                          { label: "Reduced Power Consumption", desc: "More output per unit of energy." },
-                          { label: "Retention of IP", desc: "Knowledge and data stay with the manufacturer." },
-                          { label: "Long-Term Scalability", desc: "Foundations for the next phase of growth." },
-                        ].map((s) => (
-                          <div
-                            key={s.label}
-                            className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5"
-                          >
-                            <div className="h-9 w-9 rounded-xl bg-[hsl(var(--india-green)/0.10)] text-[hsl(var(--india-green))] grid place-items-center">
-                              <Leaf className="h-4 w-4" />
-                            </div>
-                            <div className="mt-2 font-display font-semibold text-[hsl(var(--navy-900))]">
-                              {s.label}
-                            </div>
-                            <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">
-                              {s.desc}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </TabsContent>
-                  </Tabs>
-                </div>
-              </div>
 
               {/* Testimonial */}
               <div className="rounded-3xl border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))] p-7 md:p-8">
@@ -673,38 +602,6 @@ const CaseStudyDetail = () => {
                 </div>
               </div>
 
-              {/* Downloads */}
-              <div>
-                <SectionHead
-                  eyebrow="Downloads"
-                  title="Take this case study with you"
-                />
-                <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {x.resources.map((r) => (
-                    <button
-                      key={r.title}
-                      type="button"
-                      onClick={handleDownload}
-                      className="text-left rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5 hover:shadow-md hover:-translate-y-0.5 transition-all"
-                    >
-                      <div className="flex items-start justify-between">
-                        <div className="h-10 w-10 rounded-xl bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-800))] grid place-items-center">
-                          <FileText className="h-5 w-5" />
-                        </div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-700))] bg-[hsl(var(--neutral-50))] border border-[hsl(var(--neutral-150))] rounded-full px-2 py-0.5">
-                          {r.type}
-                        </span>
-                      </div>
-                      <div className="mt-3 font-display font-semibold text-[hsl(var(--navy-900))]">
-                        {r.title}
-                      </div>
-                      <div className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[hsl(var(--navy-700))]">
-                        Download <Download className="h-3.5 w-3.5" />
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
 
             </div>
           </div>
