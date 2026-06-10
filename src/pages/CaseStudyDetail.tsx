@@ -191,7 +191,7 @@ const CaseSummaryPanel = ({
         <div className="p-5 space-y-3">
           <button type="button" onClick={onDownload} className="btn-primary w-full">
             <Download className="h-4 w-4" />
-            Download Case Study
+            Explore report
           </button>
           <div className="grid grid-cols-2 gap-2">
             <button
