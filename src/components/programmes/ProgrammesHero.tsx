@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { ArrowRight, Search, Sparkles, GraduationCap, Award, Users, BookOpen, PlayCircle, Trophy, CheckCircle2, TrendingUp } from "lucide-react";
+import { ArrowRight, Sparkles, GraduationCap, Award, Users, BookOpen, PlayCircle, Trophy, CheckCircle2, TrendingUp } from "lucide-react";
 
 interface Props {
   onExplore: () => void;
@@ -9,7 +8,7 @@ interface Props {
   onTag?: (tag: string) => void;
 }
 
-export const ProgrammesHero = ({ onExplore, onFindPath, query = "", onQuery, onTag }: Props) => {
+export const ProgrammesHero = ({ onExplore, onFindPath }: Props) => {
   return (
     <section
       className="relative overflow-hidden bg-background border-b h-[calc(100svh-72px)] flex items-center"
@@ -51,39 +50,21 @@ export const ProgrammesHero = ({ onExplore, onFindPath, query = "", onQuery, onT
             transformation learning pathways designed for industrial leaders.
           </p>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              onExplore();
-            }}
-            className="mt-7 relative max-w-2xl"
-          >
-            <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-[hsl(var(--neutral-500))]" />
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => onQuery?.(e.target.value)}
-              placeholder="Search by programme, topic, level or skill area…"
-              className="w-full h-12 sm:h-14 pl-11 sm:pl-14 pr-24 sm:pr-32 rounded-full border bg-white text-sm text-[hsl(var(--neutral-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] shadow-sm transition-shadow"
-              style={{ borderColor: "hsl(var(--neutral-200))" }}
-              aria-label="Search programmes"
-            />
+          <div className="mt-7 flex flex-wrap items-center gap-3">
             <button
-              type="submit"
-              className="absolute right-2 top-1/2 -translate-y-1/2 h-10 px-5 rounded-full text-xs font-bold uppercase tracking-wider text-white"
+              type="button"
+              onClick={onExplore}
+              className="inline-flex items-center gap-2 h-11 px-6 rounded-full text-sm font-bold uppercase tracking-wider text-white"
               style={{
                 background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
               }}
             >
-              Search
+              Explore Programmes <ArrowRight className="h-4 w-4" />
             </button>
-          </form>
-
-          <div className="mt-6">
             <button
               type="button"
               onClick={onFindPath}
-              className="inline-flex items-center gap-1.5 h-9 px-4 rounded-full text-sm font-semibold text-[hsl(var(--red-600))] hover:text-[hsl(var(--red-700))] transition-colors"
+              className="inline-flex items-center gap-1.5 h-11 px-5 rounded-full text-sm font-semibold text-[hsl(var(--red-600))] hover:text-[hsl(var(--red-700))] transition-colors"
             >
               Find learning path <ArrowRight className="h-3.5 w-3.5" />
             </button>
