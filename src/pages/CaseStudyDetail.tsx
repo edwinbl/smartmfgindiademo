@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import {
-  ArrowRight,
   ChevronRight,
   Download,
   Calendar,
@@ -16,8 +15,6 @@ import {
   TrendingUp,
   TrendingDown,
   CheckCircle2,
-  Compass,
-  GraduationCap,
   Lightbulb,
   Sparkles,
   FileText,
@@ -27,7 +24,6 @@ import {
   Gauge,
   AlertTriangle,
   Quote,
-  Bot,
   Wrench,
   Rocket,
   HeartHandshake,
@@ -35,7 +31,6 @@ import {
   ShieldCheck,
   Leaf,
   Briefcase,
-  MessageCircle,
 } from "lucide-react";
 
 import { WireHeader } from "@/components/wireframe/WireHeader";
