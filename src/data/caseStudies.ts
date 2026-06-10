@@ -95,6 +95,7 @@ export const sectors: Sector[] = [
   "Food & Beverage",
   "Glass Manufacturing",
   "Pharma",
+  "Warehouse Automation & Material Handling",
   "Wire & Cable Manufacturing",
 ];
 
