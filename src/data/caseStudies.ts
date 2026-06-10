@@ -76,6 +76,13 @@ export interface CaseStudy {
   workforceTransformation?: WorkforceShift;
   testimonial?: Testimonial;
   replicationInsights?: string[];
+  // New rich blueprint fields (with synth fallbacks)
+  technologies?: string[];
+  solutionGroups?: { title: string; points: string[] }[];
+  businessChallenges?: { title: string; desc: string }[];
+  businessOutcomes?: { title: string; impact: string }[];
+  benefitsTable?: { area: string; impact: string }[];
+  relatedSolutionAreas?: string[];
 }
 
 export const sectors: Sector[] = [
@@ -88,6 +95,7 @@ export const sectors: Sector[] = [
   "Food & Beverage",
   "Glass Manufacturing",
   "Pharma",
+  "Warehouse Automation & Material Handling",
   "Wire & Cable Manufacturing",
 ];
 
@@ -106,6 +114,7 @@ export const companyTypes: CompanyType[] = ["MSME", "Enterprise", "Supplier", "E
 export const valueProps: ValueProp[] = [
   "Design & Engineering",
   "Digital Enterprise",
+  "Digital Transformation",
   "OEE Improvement",
   "Predictive Maintenance",
   "Process Optimisation",
@@ -633,6 +642,153 @@ export const caseStudies: CaseStudy[] = [
     beforeAfter: [
       { label: "Development cycle", before: "Baseline", after: "-25%" },
       { label: "Customer collaboration", before: "Email", after: "Digital workflows" },
+    ],
+  },
+  {
+    slug: "siemens-warehouse-digital-enterprise",
+    company: "Siemens India",
+    headline:
+      "Transforming the Warehouse & Material Handling Industry with Siemens Digital Enterprise",
+    summary:
+      "A leading Indian warehouse and robotics automation company partnered with Siemens to digitally transform its manufacturing operations using the Siemens Digital Enterprise Suite — connecting design, engineering, production, commissioning, and service into a single digital ecosystem.",
+    challenge:
+      "The customer's own manufacturing facilities had limited digital integration, disconnected engineering systems, long commissioning cycles and no remote connectivity to deployed equipment.",
+    approach:
+      "Siemens implemented an end-to-end Digital Enterprise approach connecting the entire manufacturing and engineering value chain — from design and digital twin through virtual commissioning, MES, cloud connectivity and remote service.",
+    sector: "Warehouse Automation & Material Handling",
+    state: "Delhi",
+    companyType: "Enterprise",
+    valueProps: [
+      "Digital Transformation",
+      "Design & Engineering",
+      "Production & Supply Chain",
+      "Process Optimisation",
+    ],
+    durationMonths: 18,
+    companySize: "Enterprise customer of Siemens India",
+    metric: { label: "Time-to-Market", value: "Faster", direction: "up" },
+    kpis: [
+      { label: "Time-to-Market", value: "Faster", direction: "up" },
+      { label: "Development Cost", value: "Lower", direction: "down" },
+      { label: "Productivity", value: "Higher", direction: "up" },
+      { label: "Product Quality", value: "Improved", direction: "up" },
+    ],
+    challengePoints: [
+      "Lack of Factory Digitalization",
+      "Disconnected Engineering Systems",
+      "Long Commissioning Cycles",
+      "Cross-Functional Collaboration Gaps",
+      "Limited Field Data Visibility",
+      "Downtime & Performance Tracking Challenges",
+      "No Remote Connectivity",
+    ],
+    approachSteps: [
+      { title: "Digital Enterprise", desc: "End-to-end Siemens Digital Enterprise Suite rollout." },
+      { title: "Connect", desc: "Cloud connectivity from deployed equipment back to engineering." },
+      { title: "Service", desc: "Remote monitoring, diagnostics and lifecycle support." },
+    ],
+    capabilities: [
+      "Digital Twin",
+      "Virtual Commissioning",
+      "MES",
+      "Cloud Connectivity",
+      "Industrial IoT",
+      "Product Lifecycle Management (PLM)",
+      "Remote Monitoring",
+      "Digital Enterprise Suite",
+    ],
+    beforeAfter: [
+      { label: "Engineering systems", before: "Disconnected", after: "Unified digital ecosystem" },
+      { label: "Equipment monitoring", before: "On-site only", after: "Remote & continuous" },
+    ],
+    featured: true,
+    categoryTags: ["Digital Enterprise", "Warehouse Automation", "Industry 4.0"],
+    executiveSummary:
+      "A leading Indian warehouse and robotics automation company partnered with Siemens to digitally transform its manufacturing operations using the Siemens Digital Enterprise Suite. The initiative connected design, engineering, production, commissioning, and service functions into a single digital ecosystem, reducing development time, improving collaboration, and enabling remote monitoring of deployed systems.",
+    solutionProvider: {
+      name: "Siemens India",
+      overview:
+        "Siemens India is a leading technology provider in industrial automation, digitalization, smart infrastructure, mobility, energy management, and manufacturing solutions. With decades of experience across multiple industries, Siemens enables organizations to accelerate their Industry 4.0 journey through integrated digital enterprise technologies.",
+      capabilities: ["Industrial Automation", "Digitalization", "Smart Infrastructure", "Energy Management", "Manufacturing Solutions"],
+      industries: ["Manufacturing", "Mobility", "Energy", "Infrastructure"],
+      technologies: ["Digital Enterprise Suite", "Digital Twin", "MES", "PLM", "Industrial IoT"],
+    },
+    manufacturer: {
+      industry: "Warehouse Automation & Material Handling",
+      footprint: "Leading Indian provider of warehouse automation and robotic solutions serving manufacturing and warehousing customers",
+      highlights: [
+        "Conveyor systems",
+        "Automated shuttle storage",
+        "Robotics & vision automation",
+        "Conveyor tracking systems",
+        "Autonomous Mobile Robots (AMRs)",
+        "Automated Guided Vehicles (AGVs)",
+      ],
+    },
+    technologies: [
+      "Siemens Digital Enterprise Suite",
+      "Digital Twin",
+      "Virtual Commissioning",
+      "MES",
+      "Cloud Connectivity",
+      "Business Intelligence Analytics",
+      "Industrial IoT",
+      "Remote Monitoring Systems",
+      "Product Lifecycle Management (PLM)",
+    ],
+    businessChallenges: [
+      { title: "Lack of Factory Digitalization", desc: "Own manufacturing facilities had limited digital integration, making it difficult to showcase a digital factory model to customers." },
+      { title: "Disconnected Engineering Systems", desc: "Multiple design software platforms operated independently without a common database — slowing development, limiting collaboration and creating data silos across the product lifecycle." },
+      { title: "Long Commissioning Cycles", desc: "Complex warehouse automation systems required significant trial-and-error during commissioning, increasing deployment timelines." },
+      { title: "Cross-Functional Collaboration Gaps", desc: "Sales, design, procurement and project teams lacked a unified platform for collaboration and project visibility." },
+      { title: "Limited Field Data Visibility", desc: "No mechanism to collect performance data from installed customer equipment for continuous product improvement." },
+      { title: "Downtime & Performance Tracking Challenges", desc: "Rental and usage-based customer models made monitoring uptime, OEE and productivity increasingly important." },
+      { title: "No Remote Connectivity", desc: "Machines installed at customer sites could not be remotely monitored or diagnosed." },
+    ],
+    solutionGroups: [
+      { title: "Product Design & Engineering", points: ["Unified engineering environment", "Centralized product data management", "Faster prototype development"] },
+      { title: "Digital Twin Implementation", points: ["Creation of virtual machine models", "Simulation of plant and process behavior", "Validation before physical deployment"] },
+      { title: "Virtual Commissioning", points: ["Testing machine logic digitally", "Reduced commissioning risks", "Faster deployment timelines"] },
+      { title: "Production & Project Management Integration", points: ["Improved collaboration between departments", "Connected workflows across engineering, procurement and manufacturing"] },
+      { title: "Cloud Connectivity", points: ["Collection of operational data from deployed equipment", "Remote monitoring and diagnostics capabilities"] },
+      { title: "Customer Service Enablement", points: ["Remote troubleshooting", "Improved service responsiveness", "Better lifecycle support for customers"] },
+      { title: "Future Analytics Foundation", points: ["Historical data collection", "Business Intelligence integration", "Advanced operational insights and optimization"] },
+    ],
+    businessOutcomes: [
+      { title: "Faster Time-to-Market", impact: "Centralized data management accelerated product development and engineering processes." },
+      { title: "Lower Product Development Costs", impact: "Collaborative design reduced material waste and manufacturing costs while improving engineering efficiency." },
+      { title: "Higher Productivity", impact: "Integrated project management improved coordination across departments and stakeholders." },
+      { title: "Increased Innovation", impact: "Digital Twin technology enabled rapid experimentation and innovation without impacting production operations." },
+      { title: "Improved Product Quality", impact: "Standardized processes and digital workflows strengthened quality control and customer satisfaction." },
+    ],
+    benefitsTable: [
+      { area: "Product Development", impact: "Faster prototyping and design cycles" },
+      { area: "Cost Optimization", impact: "Reduced engineering and production costs" },
+      { area: "Collaboration", impact: "Better coordination across teams" },
+      { area: "Innovation", impact: "Digital Twin-based simulation and testing" },
+      { area: "Customer Service", impact: "Remote monitoring and diagnostics" },
+      { area: "Quality", impact: "Improved process consistency and product quality" },
+    ],
+    changeManagement: {
+      challenge: "Embedding Industry 4.0 across engineering, production, project management and digital transformation functions required a cross-functional change effort.",
+      actions: [
+        "Established a cross-functional team across engineering, production, project management and digital transformation",
+        "Agile, iterative implementation with stakeholder reviews",
+        "Structured knowledge transfer from Siemens specialists",
+        "Hands-on enablement of in-house teams on the Digital Enterprise stack",
+      ],
+      outcome: "Successful adoption of Industry 4.0 technologies throughout the organization, with sustained internal capability.",
+    },
+    relatedSolutionAreas: [
+      "Smart Factory",
+      "Warehouse Automation",
+      "Digital Twin",
+      "Industrial IoT",
+      "Production Planning",
+      "Manufacturing Execution Systems",
+      "Predictive Analytics",
+      "Remote Monitoring",
+      "Digital Enterprise",
     ],
   },
 ];
