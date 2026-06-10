@@ -127,7 +127,7 @@ const CaseCard = ({ c, index = 0 }: { c: CaseStudy; index?: number }) => {
 const CaseStudiesIndex = () => {
   const [query, setQuery] = useState("");
   const [chip, setChip] = useState<ValueProp | null>(null);
-  const [sector, setSector] = useState<Sector | "all">("all");
+  const [sector, setSector] = useState<string>("all");
   const [state, setState] = useState<string>("all");
   const [companyType, setCompanyType] = useState<CompanyType | "all">("all");
   const [vp, setVp] = useState<ValueProp | "all">("all");
