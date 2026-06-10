@@ -323,7 +323,7 @@ const CaseStudyDetail = () => {
                 B&R Industrial Automation Pvt. Ltd.
               </h1>
               <p className="text-sm sm:text-base md:text-lg text-white/85">
-                Transformer device manufacturer uses SIMATIC IT Preactor to increase capacity utilization and improve response to customers
+                B&R combines cutting-edge automation technology with engineering expertise to deliver intelligent solutions for modern manufacturing.&nbsp;
               </p>
 
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80 pt-1">
