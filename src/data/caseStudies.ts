@@ -88,12 +88,20 @@ export interface CaseStudy {
 }
 
 export const sectors: Sector[] = [
+  "Automated Storage and Retrieval Systems (ASRS) and stationary racking",
+  "Automobile & Ancillaries",
   "Automotive",
-  "Textiles",
-  "Chemicals",
-  "Food Processing",
-  "Engineering",
-  "Electronics",
+  "Consumer Durables – Electronics",
+  "Electrical equipments",
+  "Engineering - Capital Goods",
+  "Engineering - Industrial Equipments",
+  "FMCG",
+  "Food & Beverage (Dairy)",
+  "Glass",
+  "Home Appliances",
+  "Oil & Gas",
+  "Packaging solutions in the food and pharmaceutical segment",
+  "Pharma",
 ];
 
 export const states = [
