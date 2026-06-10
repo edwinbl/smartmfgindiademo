@@ -320,10 +320,10 @@ const CaseStudyDetail = () => {
                 Engineering - Industrial Equipments · Case Study
               </div>
               <h1 className="font-display font-bold text-[26px] sm:text-[32px] md:text-[42px] leading-[1.1] tracking-tight">
-                B&R Industrial Automation Pvt. Ltd.
+                Industry 4.0 Adoption and Strategic Roadmap for Indian Manufacturing
               </h1>
               <p className="text-sm sm:text-base md:text-lg text-white/85">
-                B&R combines cutting-edge automation technology with engineering expertise to deliver intelligent solutions for modern manufacturing.&nbsp;
+                Explore how digital technologies are reshaping India’s manufacturing landscape through Industry 4.0.
               </p>
 
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80 pt-1">
