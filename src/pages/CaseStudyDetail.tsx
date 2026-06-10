@@ -317,7 +317,7 @@ const CaseStudyDetail = () => {
               </div>
 
               <div className="text-xs font-semibold uppercase tracking-[0.14em] text-white/70">
-                Engineering - Industrial Equipments · Case Study
+                Report
               </div>
               <h1 className="font-display font-bold text-[26px] sm:text-[32px] md:text-[42px] leading-[1.1] tracking-tight">
                 Industry 4.0 Adoption and Strategic Roadmap for Indian Manufacturing
