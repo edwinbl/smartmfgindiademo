@@ -737,40 +737,6 @@ const CaseStudyDetail = () => {
                 </div>
               </div>
 
-              {/* Next Steps */}
-              <div>
-                <SectionHead
-                  eyebrow="Next Steps"
-                  title="Ready to explore similar opportunities?"
-                  intro="Choose your path forward — from self-diagnosis to expert conversation."
-                />
-                <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <NextStep
-                    to="/readiness-assessment"
-                    icon={Compass}
-                    title="Take Readiness Assessment"
-                    desc="Benchmark your current readiness."
-                  />
-                  <NextStep
-                    to="/programmes"
-                    icon={GraduationCap}
-                    title="Programmes & Training"
-                    desc="Build capability in your teams."
-                  />
-                  <NextStep
-                    to="/contact"
-                    icon={MessageCircle}
-                    title="Talk to an Expert"
-                    desc="Get advisory guidance."
-                  />
-                  <NextStep
-                    to="/contact"
-                    icon={Bot}
-                    title="Ask the Assistant"
-                    desc="Smart Manufacturing AI."
-                  />
-                </div>
-              </div>
             </div>
           </div>
         </section>
