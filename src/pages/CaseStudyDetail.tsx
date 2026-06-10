@@ -172,32 +172,6 @@ const KpiBig = ({
   );
 };
 
-const NextStep = ({
-  to,
-  icon: Icon,
-  title,
-  desc,
-}: {
-  to: string;
-  icon: any;
-  title: string;
-  desc: string;
-}) => (
-  <Link
-    to={to}
-    className="group rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5 hover:shadow-md hover:-translate-y-0.5 hover:border-[hsl(var(--navy-200))] transition-all"
-  >
-    <div className="h-10 w-10 rounded-xl bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))] grid place-items-center">
-      <Icon className="h-5 w-5" />
-    </div>
-    <div className="mt-3 font-display font-bold text-[hsl(var(--navy-900))]">{title}</div>
-    <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">{desc}</div>
-    <div className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[hsl(var(--navy-700))] group-hover:text-[hsl(var(--red-600))]">
-      Explore <ArrowRight className="h-3.5 w-3.5" />
-    </div>
-  </Link>
-);
-
 /* ---------------- Sidebar (mirrors ReportSummaryPanel) ---------------- */
 const CaseSummaryPanel = ({
   cs,
