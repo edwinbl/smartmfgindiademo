@@ -164,7 +164,7 @@ const ProgrammesIndex = () => {
         </section>
         {user && <PersonalizedProgrammesShelf user={user} onRegister={handleRegister} />}
         <ProgrammesImpactStats />
-        <CommonFinalCta />
+        <PastProgrammesArchive />
       </main>
       <WireFooter />
       <WireChatbotFAB />
