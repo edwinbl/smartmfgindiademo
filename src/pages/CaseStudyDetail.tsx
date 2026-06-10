@@ -1,8 +1,7 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 
 import {
-  ArrowLeft,
   ArrowRight,
   ChevronRight,
   Download,
@@ -14,7 +13,6 @@ import {
   Clock,
   TrendingUp,
   TrendingDown,
-  Target,
   CheckCircle2,
   Compass,
   GraduationCap,
@@ -24,32 +22,42 @@ import {
   Users,
   Workflow,
   Cpu,
-  GitBranch,
-  ShieldCheck,
   Gauge,
-  Settings,
   AlertTriangle,
   Cog,
-  Activity,
-  BookOpen,
+  Quote,
+  ExternalLink,
   Bot,
+  Briefcase,
+  Wrench,
+  Rocket,
+  HeartHandshake,
+  CircuitBoard,
+  ShieldCheck,
+  Leaf,
+  Globe,
 } from "lucide-react";
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
-import { findCaseStudy, relatedCaseStudies, type KPI, type CaseStudy } from "@/data/caseStudies";
+import {
+  findCaseStudy,
+  relatedCaseStudies,
+  type KPI,
+  type CaseStudy,
+} from "@/data/caseStudies";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 /* ---------------- Fallback synthesis ---------------- */
 const synth = (cs: CaseStudy) => {
-  const categoryTags = cs.categoryTags ?? [cs.sector, ...cs.valueProps.slice(0, 2)];
+  const categoryTags = cs.categoryTags ?? [cs.sector, cs.companyType, ...cs.valueProps.slice(0, 2)];
   const executiveSummary = cs.executiveSummary ?? cs.summary;
   const solutionProvider = cs.solutionProvider ?? {
     name: "CII Smart Manufacturing Partner",
     overview:
       "An accredited Industry 4.0 solution provider on the CII Smart Manufacturing platform with deep experience in digital transformation for Indian manufacturers.",
-    capabilities: ["Consulting", "Analytics", "Optimization", "Cloud", "AI & Cognitive Solutions"],
+    capabilities: ["Consulting", "Analytics", "IIoT", "Cloud", "AI"],
     industries: [cs.sector],
     technologies: ["Cloud", "IIoT", "Analytics", "Mobile"],
   };
@@ -58,68 +66,49 @@ const synth = (cs: CaseStudy) => {
     footprint: `${cs.companySize} based in ${cs.state}`,
     highlights: [cs.companySize, cs.companyType, cs.state],
   };
-  const discoveryFlow =
-    cs.discoveryFlow ??
-    cs.challengePoints.map((p, i) => ({ title: `Signal ${i + 1}`, desc: p }));
-  const complexity =
-    cs.complexity ?? [
-      { value: cs.companySize.split(" ")[0], label: "Workforce" },
-      { value: `${cs.durationMonths} mo`, label: "Programme Duration" },
-      { value: `${cs.valueProps.length}+`, label: "Value Streams" },
-      { value: `${cs.kpis.length}`, label: "KPIs Tracked" },
-    ];
+  const approachCards =
+    cs.approachCards ??
+    cs.approachSteps.map((s) => ({ title: s.title, desc: s.desc }));
   const timeline =
     cs.timeline ?? [
-      { phase: "01", title: "Discovery Workshop", desc: "Baseline diagnostic and goal setting." },
-      { phase: "02", title: "Requirement Finalisation", desc: "Scope, SOPs and success criteria." },
-      { phase: "03", title: "Proof of Concept", desc: "Pilot deployment on critical lines." },
-      { phase: "04", title: "Full Rollout", desc: "Scaled across the manufacturing footprint." },
-      { phase: "05", title: "Deployment & Training", desc: "Operator and supervisor enablement." },
-      { phase: "06", title: "Value Realisation", desc: "Sustained adoption and continuous improvement." },
+      { phase: "01", title: "Discovery & Diagnostic", desc: "Baseline assessment and goal setting." },
+      { phase: "02", title: "Pilot Deployment", desc: "First proof-of-value on critical lines." },
+      { phase: "03", title: "Validation", desc: "Operational integration and refinement." },
+      { phase: "04", title: "Scale-up", desc: "Roll out across the plant footprint." },
+      { phase: "05", title: "Value Realisation", desc: "Sustained adoption and continuous improvement." },
     ];
-  const team =
-    cs.team ?? [
-      { role: "Executive Sponsor", scope: "Plant leadership" },
-      { role: "Project Manager", scope: "Joint PMO" },
-      { role: "Subject Matter Expert", scope: "Domain ownership" },
-      { role: "Solution Lead", scope: "Architecture & delivery" },
-      { role: "Business Consultant", scope: "Change & adoption" },
-      { role: "Technology Resource", scope: "Build & integration" },
-    ];
-  const changeManagement =
-    cs.changeManagement ?? {
-      challenge: "Driving adoption among shop-floor teams and supervisors.",
-      actions: [
-        "Training Programmes",
-        "Tool Capability Workshops",
-        "Simulations",
-        "Historical Data Demonstrations",
-        "Onsite Collaboration",
+  const workforce =
+    cs.workforceTransformation ?? {
+      before: "Teams locked in repetitive, manual operations with limited visibility.",
+      after: [
+        "Higher-value problem solving",
+        "Quality and inspection ownership",
+        "Cross-skilling for new technology",
+        "Data-driven daily routines",
       ],
-      outcome: "Strong user confidence and sustained adoption across teams.",
     };
-  const architecture =
-    cs.architecture ??
-    cs.capabilities.map((c, i) => ({
-      name: c,
-      layer: ["Capture", "Data", "Insights", "Action", "Reporting"][i % 5],
-      desc: `${c} layer of the Industry 4.0 solution stack.`,
-    }));
-  const solutionFeatures =
-    cs.solutionFeatures ?? cs.capabilities.map((c) => ({ title: c, desc: `${c} capability enabled by the programme.` }));
-  const implementationChallenges =
-    cs.implementationChallenges ??
-    cs.challengePoints.map((p) => ({
-      challenge: p,
-      mitigation: "Structured workshops, training and onsite collaboration.",
-      outcome: "Resolved with sustained team adoption.",
-    }));
   const outcomes =
     cs.outcomes ?? {
       operational: cs.kpis.slice(0, Math.ceil(cs.kpis.length / 2)),
       business: cs.kpis.slice(Math.ceil(cs.kpis.length / 2)),
-      user: ["Better Visibility", "Faster Decision-Making", "Improved Communication"],
+      user: ["Better Visibility", "Faster Decisions", "Stronger Collaboration"],
     };
+  const testimonial =
+    cs.testimonial ?? {
+      quote:
+        "The Industry 4.0 journey gave us visibility we never had before — and the confidence to scale what works.",
+      name: "Plant Leadership",
+      role: "Executive Sponsor",
+      company: cs.company,
+    };
+  const replicationInsights =
+    cs.replicationInsights ?? [
+      "Start small and prove value before scaling",
+      "Focus on repeatable, high-frequency processes",
+      "Co-design with operators, not for them",
+      "Anchor daily routines in live data",
+      "Plan for change as much as for technology",
+    ];
   const resources =
     cs.resources ?? [
       { title: "Full Case Study PDF", type: "PDF" },
@@ -132,41 +121,54 @@ const synth = (cs: CaseStudy) => {
     executiveSummary,
     solutionProvider,
     manufacturer,
-    discoveryFlow,
-    complexity,
+    approachCards,
     timeline,
-    team,
-    changeManagement,
-    architecture,
-    solutionFeatures,
-    implementationChallenges,
+    workforce,
     outcomes,
+    testimonial,
+    replicationInsights,
     resources,
   };
 };
 
-/* ---------------- Small UI primitives ---------------- */
+/* ---------------- UI primitives ---------------- */
 const SectionHead = ({
   eyebrow,
   title,
   intro,
   align = "left",
+  invert = false,
 }: {
   eyebrow: string;
   title: string;
   intro?: string;
   align?: "left" | "center";
+  invert?: boolean;
 }) => (
   <div className={align === "center" ? "text-center max-w-3xl mx-auto" : "max-w-3xl"}>
-    <div className="section-eyebrow mb-2">{eyebrow}</div>
-    <h2 className="font-display font-bold text-[26px] md:text-[34px] leading-tight tracking-tight text-[hsl(var(--navy-900))]">
+    <div className={`section-eyebrow mb-2 ${invert ? "text-white/70" : ""}`}>{eyebrow}</div>
+    <h2
+      className={`font-display font-bold text-[26px] md:text-[34px] leading-tight tracking-tight ${
+        invert ? "text-white" : "text-[hsl(var(--navy-900))]"
+      }`}
+    >
       {title}
     </h2>
-    {intro && <p className="mt-3 text-[hsl(var(--neutral-700))] text-base md:text-lg">{intro}</p>}
+    {intro && (
+      <p className={`mt-3 text-base md:text-lg ${invert ? "text-white/80" : "text-[hsl(var(--neutral-700))]"}`}>
+        {intro}
+      </p>
+    )}
   </div>
 );
 
-const KpiBig = ({ kpi, tone = "green" }: { kpi: KPI; tone?: "green" | "orange" | "navy" }) => {
+const KpiBig = ({
+  kpi,
+  tone = "navy",
+}: {
+  kpi: KPI;
+  tone?: "green" | "orange" | "navy";
+}) => {
   const Icon = kpi.direction === "down" ? TrendingDown : TrendingUp;
   const toneMap = {
     green: "text-[hsl(var(--india-green))] bg-[hsl(var(--india-green)/0.10)]",
@@ -185,14 +187,6 @@ const KpiBig = ({ kpi, tone = "green" }: { kpi: KPI; tone?: "green" | "orange" |
     </div>
   );
 };
-
-const Meta = ({ icon: Icon, label, value }: { icon: any; label: string; value: string }) => (
-  <div className="flex items-center gap-2 text-[hsl(var(--neutral-700))]">
-    <Icon className="h-4 w-4 text-[hsl(var(--navy-700))]" />
-    <span className="text-[hsl(var(--neutral-500))]">{label}:</span>
-    <span className="font-semibold text-[hsl(var(--navy-900))]">{value}</span>
-  </div>
-);
 
 const NextStep = ({
   to,
@@ -229,6 +223,7 @@ const CaseStudyDetail = () => {
   if (!cs) return <Navigate to="/case-studies" replace />;
 
   const x = synth(cs);
+  const heroKpis = cs.kpis.slice(0, 5);
 
   return (
     <div className="min-h-screen bg-white">
@@ -237,23 +232,6 @@ const CaseStudyDetail = () => {
         description={cs.summary}
         url={`/case-studies/${cs.slug}`}
         type="article"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "Article",
-          headline: cs.headline,
-          description: cs.summary,
-          image: "https://www.smartmfgindia.com/img/Logo-final.png",
-          articleSection: cs.sector,
-          keywords: [cs.sector, cs.companyType, cs.state, ...cs.valueProps].join(", "),
-          author: { "@type": "Organization", name: "CII Smart Manufacturing" },
-          publisher: {
-            "@type": "Organization",
-            name: "CII Smart Manufacturing",
-            logo: { "@type": "ImageObject", url: "https://www.smartmfgindia.com/img/Logo-final.png" },
-          },
-          about: { "@type": "Organization", name: cs.company },
-          mainEntityOfPage: `https://smartmfgindia-demo4.bluelup.in/case-studies/${cs.slug}`,
-        }}
       />
       <WireHeader />
 
@@ -313,14 +291,20 @@ const CaseStudyDetail = () => {
 
               <div className="flex flex-wrap gap-3 pt-2">
                 <button className="btn-primary" type="button">
-                  <Download className="h-4 w-4" /> Download PDF
+                  <Download className="h-4 w-4" /> Download Case Study
                 </button>
                 <a
                   href="#related"
                   className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-md bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-colors"
                 >
-                  <Layers className="h-4 w-4" /> Explore Similar
+                  <Layers className="h-4 w-4" /> Explore Similar Case Studies
                 </a>
+                <Link
+                  to="/solutions"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-md bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-colors"
+                >
+                  <CircuitBoard className="h-4 w-4" /> Explore Related Solutions
+                </Link>
               </div>
             </div>
 
@@ -328,15 +312,23 @@ const CaseStudyDetail = () => {
             <div className="lg:col-span-4">
               <div className="rounded-lg bg-white/10 backdrop-blur-md border border-white/15 p-5">
                 <div className="text-[11px] uppercase tracking-[0.14em] font-bold text-white/70 mb-3">
-                  Transformation Snapshot
+                  Impact Snapshot
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  {cs.kpis.slice(0, 4).map((k) => (
+                  {heroKpis.slice(0, 4).map((k) => (
                     <div key={k.label} className="rounded-md bg-white/10 border border-white/10 p-3">
                       <div className="text-[10px] text-white/70 leading-tight">{k.label}</div>
                       <div className="mt-1 font-numeric font-bold text-lg sm:text-xl">{k.value}</div>
                     </div>
                   ))}
+                </div>
+                <div className="mt-4 rounded-md bg-[hsl(var(--orange-500)/0.18)] border border-[hsl(var(--orange-500)/0.4)] p-3">
+                  <div className="text-[10px] uppercase tracking-wider font-bold text-white/80">
+                    Headline Outcome
+                  </div>
+                  <div className="mt-0.5 text-sm font-bold">
+                    {cs.metric.value} {cs.metric.label}
+                  </div>
                 </div>
               </div>
             </div>
@@ -345,61 +337,55 @@ const CaseStudyDetail = () => {
       </section>
 
       {/* ============ 2. IMPACT SNAPSHOT DASHBOARD ============ */}
-      <section className="py-16 md:py-20 bg-[hsl(var(--neutral-50))]">
+      <section className="py-14 md:py-20 bg-[hsl(var(--neutral-50))]">
         <div className="container-cii">
           <SectionHead
-            eyebrow="Impact Snapshot"
+            eyebrow="Impact Snapshot Dashboard"
             title="Business impact at a glance"
             intro="A measurable view of how the programme moved the needle across operations, business and people."
           />
-          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5">
             {cs.kpis.map((k, i) => (
               <KpiBig key={k.label} kpi={k} tone={i % 3 === 0 ? "green" : i % 3 === 1 ? "navy" : "orange"} />
             ))}
           </div>
 
           {/* Before vs After */}
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
-            {cs.beforeAfter.map((b) => (
-              <div
-                key={b.label}
-                className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-white overflow-hidden"
-              >
-                <div className="px-5 py-3 border-b border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))]">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-[hsl(var(--neutral-700))]">
-                    {b.label}
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 divide-x divide-[hsl(var(--neutral-150))]">
-                  <div className="p-5">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-700))]">
-                      Before
-                    </div>
-                    <div className="mt-1 font-numeric font-bold text-xl text-[hsl(var(--neutral-700))]">
-                      {b.before}
+          {cs.beforeAfter.length > 0 && (
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
+              {cs.beforeAfter.map((b) => (
+                <div
+                  key={b.label}
+                  className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-white overflow-hidden"
+                >
+                  <div className="px-5 py-3 border-b border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))]">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-[hsl(var(--neutral-700))]">
+                      {b.label}
                     </div>
                   </div>
-                  <div className="p-5 bg-[hsl(var(--india-green)/0.06)]">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--india-green))]">
-                      After
+                  <div className="grid grid-cols-2 divide-x divide-[hsl(var(--neutral-150))]">
+                    <div className="p-5">
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-700))]">Before</div>
+                      <div className="mt-1 font-numeric font-bold text-xl text-[hsl(var(--neutral-700))]">{b.before}</div>
                     </div>
-                    <div className="mt-1 font-numeric font-bold text-xl text-[hsl(var(--navy-900))]">
-                      {b.after}
+                    <div className="p-5 bg-[hsl(var(--india-green)/0.06)]">
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--india-green))]">After</div>
+                      <div className="mt-1 font-numeric font-bold text-xl text-[hsl(var(--navy-900))]">{b.after}</div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
       {/* ============ 3 & 4. SOLUTION PROVIDER + MANUFACTURER ============ */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-14 md:py-20 bg-white">
         <div className="container-cii grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Solution Provider */}
           <div className="rounded-3xl border border-[hsl(var(--neutral-150))] bg-white p-7 md:p-8">
-            <div className="section-eyebrow mb-2">Solution Provider</div>
+            <div className="section-eyebrow mb-2">About the Solution Provider</div>
             <div className="flex items-center gap-4">
               <div className="h-14 w-14 rounded-2xl bg-[hsl(var(--navy-050))] grid place-items-center">
                 <Cog className="h-7 w-7 text-[hsl(var(--navy-800))]" />
@@ -415,41 +401,34 @@ const CaseStudyDetail = () => {
 
             <div className="mt-5">
               <div className="text-xs font-bold uppercase tracking-wider text-[hsl(var(--neutral-700))]">
-                Core Capabilities
+                Capabilities
               </div>
               <div className="mt-2 flex flex-wrap gap-2">
                 {x.solutionProvider.capabilities.map((c) => (
-                  <span key={c} className="cii-chip">
-                    {c}
-                  </span>
+                  <span key={c} className="cii-chip">{c}</span>
                 ))}
               </div>
             </div>
             {x.solutionProvider.technologies && (
-              <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
+              <div className="mt-5 grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-700))]">
-                    Industries
-                  </div>
-                  <div className="mt-1 text-[hsl(var(--navy-900))]">
-                    {x.solutionProvider.industries?.join(", ")}
-                  </div>
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-700))]">Industries</div>
+                  <div className="mt-1 text-[hsl(var(--navy-900))]">{x.solutionProvider.industries?.join(", ")}</div>
                 </div>
                 <div>
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-700))]">
-                    Technologies
-                  </div>
-                  <div className="mt-1 text-[hsl(var(--navy-900))]">
-                    {x.solutionProvider.technologies?.join(", ")}
-                  </div>
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-700))]">Technologies</div>
+                  <div className="mt-1 text-[hsl(var(--navy-900))]">{x.solutionProvider.technologies?.join(", ")}</div>
                 </div>
               </div>
             )}
+            <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[hsl(var(--navy-700))]">
+              <Globe className="h-3.5 w-3.5" /> Visit website <ExternalLink className="h-3 w-3" />
+            </div>
           </div>
 
           {/* Manufacturer */}
           <div className="rounded-3xl border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))] p-7 md:p-8">
-            <div className="section-eyebrow mb-2">The Manufacturer</div>
+            <div className="section-eyebrow mb-2">About the Manufacturer</div>
             <div className="flex items-center gap-4">
               <div className="h-14 w-14 rounded-2xl bg-white border border-[hsl(var(--neutral-150))] grid place-items-center">
                 <Factory className="h-7 w-7 text-[hsl(var(--navy-800))]" />
@@ -459,7 +438,9 @@ const CaseStudyDetail = () => {
                 <div className="text-xs text-[hsl(var(--neutral-700))]">{cs.companyType} · {cs.state}</div>
               </div>
             </div>
-            <p className="mt-4 text-sm text-[hsl(var(--neutral-700))]">{x.manufacturer.industry}. {x.manufacturer.footprint}.</p>
+            <p className="mt-4 text-sm text-[hsl(var(--neutral-700))]">
+              {x.manufacturer.industry}. {x.manufacturer.footprint}.
+            </p>
 
             <div className="mt-5 grid grid-cols-2 gap-3">
               {x.manufacturer.highlights.map((h) => (
@@ -472,23 +453,26 @@ const CaseStudyDetail = () => {
               ))}
             </div>
 
-            <div className="mt-5 flex flex-wrap gap-2">
-              {cs.valueProps.map((v) => (
-                <span key={v} className="cii-chip">
-                  {v}
-                </span>
-              ))}
+            <div className="mt-5">
+              <div className="text-xs font-bold uppercase tracking-wider text-[hsl(var(--neutral-700))]">
+                Focus Areas
+              </div>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {cs.valueProps.map((v) => (
+                  <span key={v} className="cii-chip">{v}</span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ============ 5. CHALLENGE LANDSCAPE ============ */}
-      <section className="py-16 md:py-20 bg-[hsl(var(--neutral-50))]">
+      {/* ============ 5. EXISTING CHALLENGES ============ */}
+      <section className="py-14 md:py-20 bg-[hsl(var(--neutral-50))]">
         <div className="container-cii">
           <SectionHead
-            eyebrow="The Business Challenge"
-            title="The operating reality before transformation"
+            eyebrow="Existing Challenges"
+            title="The business challenge"
             intro={cs.challenge}
           />
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -510,81 +494,93 @@ const CaseStudyDetail = () => {
         </div>
       </section>
 
-      {/* ============ 6. DISCOVERY JOURNEY ============ */}
-      <section className="py-16 md:py-20 bg-white">
+      {/* ============ 6. APPROACH TO INDUSTRY 4.0 ============ */}
+      <section className="py-14 md:py-20 bg-[hsl(var(--navy-900))] text-white">
         <div className="container-cii">
           <SectionHead
-            eyebrow="Identifying the Need for Change"
-            title="What led to the discovery of the problem"
-            intro="A connected chain of signals made the case for a digital, Industry 4.0 intervention."
+            eyebrow="Approach to Industry 4.0"
+            title="How Industry 4.0 was approached"
+            intro={cs.approach}
+            invert
           />
-          <div className="mt-10 relative">
-            <div className="hidden md:block absolute top-8 left-0 right-0 h-0.5 bg-[hsl(var(--neutral-150))]" />
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-5 relative">
-              {x.discoveryFlow.slice(0, 5).map((d, i) => (
-                <div key={d.title} className="text-center md:text-left">
-                  <div className="mx-auto md:mx-0 h-10 w-10 rounded-full bg-white border-2 border-[hsl(var(--navy-700))] text-[hsl(var(--navy-800))] grid place-items-center font-numeric font-bold text-sm relative z-10">
-                    {i + 1}
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {x.approachCards.map((c, i) => {
+              const icons = [Workflow, Rocket, Users, Sparkles, Wrench, Gauge];
+              const Icon = icons[i % icons.length];
+              return (
+                <div key={c.title} className="rounded-2xl bg-white/5 border border-white/10 p-6 backdrop-blur">
+                  <div className="h-10 w-10 rounded-xl bg-white/10 grid place-items-center">
+                    <Icon className="h-5 w-5 text-white" />
                   </div>
-                  <div className="mt-4 font-display font-semibold text-[hsl(var(--navy-900))]">{d.title}</div>
-                  <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">{d.desc}</div>
+                  <div className="mt-4 font-display font-semibold">{c.title}</div>
+                  <div className="mt-1 text-sm text-white/80">{c.desc}</div>
                 </div>
-              ))}
+              );
+            })}
+          </div>
+
+          {/* Before vs After approach */}
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="rounded-2xl bg-white/5 border border-white/10 p-7">
+              <div className="text-[11px] font-bold uppercase tracking-wider text-white/60">Before</div>
+              <div className="mt-2 font-display font-semibold text-xl">Manual, reactive, siloed</div>
+              <ul className="mt-4 space-y-2 text-sm text-white/80">
+                <li className="flex gap-2"><span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[hsl(var(--red-400))] shrink-0" /> Limited shop-floor visibility</li>
+                <li className="flex gap-2"><span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[hsl(var(--red-400))] shrink-0" /> Tribal knowledge dependence</li>
+                <li className="flex gap-2"><span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[hsl(var(--red-400))] shrink-0" /> Slow decision cycles</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl bg-gradient-to-br from-[hsl(var(--india-green)/0.18)] to-white/5 border border-[hsl(var(--india-green)/0.35)] p-7">
+              <div className="text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--india-green))]">After</div>
+              <div className="mt-2 font-display font-semibold text-xl">Connected, data-driven, scalable</div>
+              <ul className="mt-4 space-y-2 text-sm text-white/85">
+                <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-[hsl(var(--india-green))] shrink-0 mt-0.5" /> Real-time visibility & insights</li>
+                <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-[hsl(var(--india-green))] shrink-0 mt-0.5" /> Standardised, repeatable playbooks</li>
+                <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-[hsl(var(--india-green))] shrink-0 mt-0.5" /> Empowered, upskilled teams</li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ============ 7. APPROACH TO INDUSTRY 4.0 ============ */}
-      <section className="py-16 md:py-20 bg-[hsl(var(--navy-900))] text-white">
+      {/* ============ 7. ABOUT THE INDUSTRY 4.0 SOLUTION ============ */}
+      <section className="py-14 md:py-20 bg-white">
         <div className="container-cii">
-          <div className="max-w-3xl">
-            <div className="section-eyebrow mb-2 text-white/70">Approach to Industry 4.0</div>
-            <h2 className="font-display font-bold text-[26px] md:text-[34px] leading-tight tracking-tight">
-              Engineering the solution to match real-world complexity
-            </h2>
-            <p className="mt-3 text-white/80">{cs.approach}</p>
-          </div>
-
-          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {x.complexity.map((c) => (
-              <div key={c.label} className="rounded-2xl bg-white/5 border border-white/10 p-6 backdrop-blur">
-                <div className="font-numeric font-bold text-3xl md:text-4xl text-white">{c.value}</div>
-                <div className="mt-1 text-sm text-white/70">{c.label}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div className="rounded-2xl bg-white/5 border border-white/10 p-7">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-white/60">Traditional Planning</div>
-              <div className="mt-2 font-display font-semibold text-xl">Manual, spreadsheet-driven, reactive</div>
-              <ul className="mt-4 space-y-2 text-sm text-white/80">
-                <li className="flex gap-2"><span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[hsl(var(--red-400))] shrink-0" /> Slow decision cycles</li>
-                <li className="flex gap-2"><span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[hsl(var(--red-400))] shrink-0" /> Limited scenario analysis</li>
-                <li className="flex gap-2"><span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[hsl(var(--red-400))] shrink-0" /> Tribal knowledge dependence</li>
-              </ul>
-            </div>
-            <div className="rounded-2xl bg-gradient-to-br from-[hsl(var(--india-green)/0.18)] to-white/5 border border-[hsl(var(--india-green)/0.35)] p-7">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--india-green))]">Industry 4.0 Approach</div>
-              <div className="mt-2 font-display font-semibold text-xl">Data-driven, optimised, repeatable</div>
-              <ul className="mt-4 space-y-2 text-sm text-white/85">
-                <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-[hsl(var(--india-green))] shrink-0 mt-0.5" /> Real-time visibility & insights</li>
-                <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-[hsl(var(--india-green))] shrink-0 mt-0.5" /> Scenario simulation & optimisation</li>
-                <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-[hsl(var(--india-green))] shrink-0 mt-0.5" /> Standardised, scalable playbooks</li>
-              </ul>
-            </div>
+          <SectionHead
+            eyebrow="About the Industry 4.0 Solution"
+            title="What solution was deployed"
+            intro="An end-to-end Industry 4.0 capability stack, designed for the manufacturer's reality."
+          />
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {cs.capabilities.map((c, i) => {
+              const icons = [Cpu, Gauge, Workflow, ShieldCheck, Activity, Sparkles];
+              const Icon = icons[i % icons.length];
+              return (
+                <div
+                  key={c}
+                  className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5 hover:shadow-md hover:-translate-y-0.5 transition-all"
+                >
+                  <div className="h-10 w-10 rounded-xl bg-[hsl(var(--india-green)/0.10)] text-[hsl(var(--india-green))] grid place-items-center">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div className="mt-4 font-display font-semibold text-[hsl(var(--navy-900))]">{c}</div>
+                  <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">
+                    Capability deployed as part of the Industry 4.0 solution stack.
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ============ 8. IMPLEMENTATION JOURNEY ============ */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-14 md:py-20 bg-[hsl(var(--neutral-50))]">
         <div className="container-cii">
           <SectionHead
             eyebrow="Implementation Journey"
-            title="From ideation to value realisation"
-            intro="A structured six-phase journey designed to de-risk the transformation."
+            title="From adoption to scale"
+            intro="A phased journey designed to de-risk the transformation and build momentum."
           />
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {x.timeline.map((t) => (
@@ -601,175 +597,65 @@ const CaseStudyDetail = () => {
         </div>
       </section>
 
-      {/* ============ 9. TEAM & GOVERNANCE ============ */}
-      <section className="py-16 md:py-20 bg-[hsl(var(--neutral-50))]">
+      {/* ============ 9. HUMAN IMPACT & WORKFORCE TRANSFORMATION ============ */}
+      <section className="py-14 md:py-20 bg-white">
         <div className="container-cii">
           <SectionHead
-            eyebrow="Team & Governance"
-            title="The project team that delivered the outcomes"
-            intro="A balanced team of domain, technical and change resources working as one delivery unit."
+            eyebrow="Human Impact"
+            title="People & workforce transformation"
+            intro="Technology only sticks when people thrive with it. Here's how teams evolved."
           />
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {x.team.map((t) => (
-              <div
-                key={t.role}
-                className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5 flex items-start gap-4"
-              >
-                <div className="h-10 w-10 rounded-full bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-800))] grid place-items-center shrink-0">
-                  <Users className="h-5 w-5" />
-                </div>
-                <div>
-                  <div className="font-display font-semibold text-[hsl(var(--navy-900))]">{t.role}</div>
-                  <div className="text-sm text-[hsl(var(--neutral-700))]">{t.scope}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============ 10. CHANGE MANAGEMENT ============ */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="container-cii">
-          <SectionHead
-            eyebrow="Driving Adoption"
-            title="The change management journey"
-            intro="Technology alone doesn't transform a plant — adoption does. Here's how the team made it stick."
-          />
-          <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="rounded-2xl border border-[hsl(var(--red-100))] bg-white p-7">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--red-600))]">Challenge</div>
-              <div className="mt-2 font-display font-semibold text-[hsl(var(--navy-900))]">
-                {x.changeManagement.challenge}
-              </div>
+              <div className="text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--red-600))]">Before</div>
+              <div className="mt-3 font-display font-semibold text-[hsl(var(--navy-900))]">{x.workforce.before}</div>
             </div>
-            <div className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))] p-7">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--navy-700))]">Actions Taken</div>
+            <div className="rounded-2xl border border-[hsl(var(--india-green)/0.25)] bg-[hsl(var(--india-green)/0.05)] p-7">
+              <div className="text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--india-green))]">After</div>
               <ul className="mt-3 space-y-2">
-                {x.changeManagement.actions.map((a) => (
-                  <li key={a} className="flex items-start gap-2 text-sm text-[hsl(var(--navy-900))]">
-                    <CheckCircle2 className="h-4 w-4 text-[hsl(var(--navy-700))] shrink-0 mt-0.5" />
+                {x.workforce.after.map((a) => (
+                  <li key={a} className="flex items-start gap-2 text-sm text-[hsl(var(--navy-900))] font-medium">
+                    <CheckCircle2 className="h-4 w-4 text-[hsl(var(--india-green))] shrink-0 mt-0.5" />
                     {a}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="rounded-2xl border border-[hsl(var(--india-green)/0.25)] bg-[hsl(var(--india-green)/0.05)] p-7">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--india-green))]">Outcome</div>
-              <div className="mt-2 font-display font-semibold text-[hsl(var(--navy-900))]">
-                {x.changeManagement.outcome}
-              </div>
-            </div>
           </div>
-        </div>
-      </section>
 
-      {/* ============ 11. SOLUTION ARCHITECTURE ============ */}
-      <section className="py-16 md:py-20 bg-[hsl(var(--neutral-50))]">
-        <div className="container-cii">
-          <SectionHead
-            eyebrow="Industry 4.0 Solution Architecture"
-            title="The architecture that powered the transformation"
-            intro="An end-to-end stack spanning capture, data, insight and action — layered for scale and reliability."
-          />
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {x.architecture.map((a) => (
-              <div
-                key={a.name}
-                className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-6 hover:shadow-md transition-all"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="h-10 w-10 rounded-xl bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-800))] grid place-items-center">
-                    <Cpu className="h-5 w-5" />
-                  </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-700))] bg-[hsl(var(--neutral-50))] border border-[hsl(var(--neutral-150))] rounded-full px-2 py-0.5">
-                    {a.layer}
-                  </span>
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {[
+              { icon: GraduationCap, label: "Upskilling", desc: "New capabilities for shop-floor teams." },
+              { icon: HeartHandshake, label: "Empowerment", desc: "Decisions pushed closer to the line." },
+              { icon: Users, label: "Human–Machine Collaboration", desc: "Technology that augments people, not replaces them." },
+            ].map((it) => (
+              <div key={it.label} className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))] p-5">
+                <div className="h-10 w-10 rounded-xl bg-white border border-[hsl(var(--neutral-150))] text-[hsl(var(--navy-800))] grid place-items-center">
+                  <it.icon className="h-5 w-5" />
                 </div>
-                <div className="mt-4 font-display font-bold text-[hsl(var(--navy-900))]">{a.name}</div>
-                <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">{a.desc}</div>
+                <div className="mt-3 font-display font-semibold text-[hsl(var(--navy-900))]">{it.label}</div>
+                <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">{it.desc}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ============ 12. SOLUTION HIGHLIGHTS ============ */}
-      <section className="py-16 md:py-20 bg-white">
+      {/* ============ 10. BENEFITS ACHIEVED ============ */}
+      <section className="py-14 md:py-20 bg-[hsl(var(--neutral-50))]">
         <div className="container-cii">
           <SectionHead
-            eyebrow="Solution Highlights"
-            title="Capabilities that drove the value"
-          />
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {x.solutionFeatures.map((f, i) => {
-              const icons = [Gauge, Workflow, Activity, ShieldCheck, BarChartFallback, GitBranch, Settings, Sparkles];
-              const Icon = icons[i % icons.length];
-              return (
-                <div
-                  key={f.title}
-                  className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5 hover:shadow-md hover:-translate-y-0.5 transition-all"
-                >
-                  <div className="h-10 w-10 rounded-xl bg-[hsl(var(--india-green)/0.10)] text-[hsl(var(--india-green))] grid place-items-center">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <div className="mt-4 font-display font-semibold text-[hsl(var(--navy-900))]">{f.title}</div>
-                  <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">{f.desc}</div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ============ 13. IMPLEMENTATION CHALLENGES ============ */}
-      <section className="py-16 md:py-20 bg-[hsl(var(--neutral-50))]">
-        <div className="container-cii">
-          <SectionHead
-            eyebrow="Challenges During Implementation"
-            title="What got in the way — and how it was solved"
-          />
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
-            {x.implementationChallenges.map((c) => (
-              <div
-                key={c.challenge}
-                className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-6"
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div>
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--red-600))]">Challenge</div>
-                    <div className="mt-1 font-display font-semibold text-sm text-[hsl(var(--navy-900))]">
-                      {c.challenge}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--navy-700))]">Mitigation</div>
-                    <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">{c.mitigation}</div>
-                  </div>
-                  <div>
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--india-green))]">Outcome</div>
-                    <div className="mt-1 text-sm text-[hsl(var(--navy-900))] font-semibold">{c.outcome}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============ 14. BENEFITS & BUSINESS OUTCOMES ============ */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="container-cii">
-          <SectionHead
-            eyebrow="Results Achieved"
-            title="Outcomes across operations, business and people"
+            eyebrow="Benefits Achieved"
+            title="Business outcomes achieved"
+            intro="Organised across operations, business and workforce impact."
           />
           <div className="mt-10">
             <Tabs defaultValue="operational" className="w-full">
-              <TabsList className="bg-[hsl(var(--neutral-50))] border border-[hsl(var(--neutral-150))]">
+              <TabsList className="bg-white border border-[hsl(var(--neutral-150))]">
                 <TabsTrigger value="operational">Operational</TabsTrigger>
                 <TabsTrigger value="business">Business</TabsTrigger>
-                <TabsTrigger value="user">User</TabsTrigger>
+                <TabsTrigger value="workforce">Workforce</TabsTrigger>
+                <TabsTrigger value="sustainability">Sustainability</TabsTrigger>
               </TabsList>
               <TabsContent value="operational" className="mt-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -785,15 +671,29 @@ const CaseStudyDetail = () => {
                   ))}
                 </div>
               </TabsContent>
-              <TabsContent value="user" className="mt-6">
+              <TabsContent value="workforce" className="mt-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {x.outcomes.user.map((u) => (
-                    <div
-                      key={u}
-                      className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5"
-                    >
+                    <div key={u} className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5">
                       <CheckCircle2 className="h-5 w-5 text-[hsl(var(--india-green))]" />
                       <div className="mt-3 font-display font-semibold text-[hsl(var(--navy-900))]">{u}</div>
+                    </div>
+                  ))}
+                </div>
+              </TabsContent>
+              <TabsContent value="sustainability" className="mt-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {[
+                    { label: "Reduced Power Consumption", desc: "More output per unit of energy." },
+                    { label: "Retention of IP", desc: "Knowledge and data stay with the manufacturer." },
+                    { label: "Long-Term Scalability", desc: "Foundations for the next phase of growth." },
+                  ].map((s) => (
+                    <div key={s.label} className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5">
+                      <div className="h-10 w-10 rounded-xl bg-[hsl(var(--india-green)/0.10)] text-[hsl(var(--india-green))] grid place-items-center">
+                        <Leaf className="h-5 w-5" />
+                      </div>
+                      <div className="mt-3 font-display font-semibold text-[hsl(var(--navy-900))]">{s.label}</div>
+                      <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">{s.desc}</div>
                     </div>
                   ))}
                 </div>
@@ -803,78 +703,187 @@ const CaseStudyDetail = () => {
         </div>
       </section>
 
-      {/* ============ 15. DOWNLOADS & RESOURCES ============ */}
-      <section className="py-16 md:py-20 bg-[hsl(var(--neutral-50))]">
+      {/* ============ 11. CUSTOMER TESTIMONIAL ============ */}
+      <section className="py-14 md:py-20 bg-white">
         <div className="container-cii">
-          <SectionHead
-            eyebrow="Downloads & Resources"
-            title="Go deeper with related resources"
-          />
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {x.resources.map((r) => (
-              <button
-                key={r.title}
-                type="button"
-                className="text-left rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5 hover:shadow-md hover:-translate-y-0.5 transition-all"
-              >
-                <div className="flex items-start justify-between">
-                  <div className="h-10 w-10 rounded-xl bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-800))] grid place-items-center">
-                    <FileText className="h-5 w-5" />
+          <SectionHead eyebrow="Voice of the Customer" title="In their own words" />
+          <div className="mt-8 rounded-3xl border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))] p-8 md:p-10 grid md:grid-cols-12 gap-6 items-center">
+            <div className="md:col-span-9">
+              <Quote className="h-8 w-8 text-[hsl(var(--orange-500))]" />
+              <blockquote className="mt-4 font-display text-xl md:text-2xl leading-snug text-[hsl(var(--navy-900))]">
+                “{x.testimonial.quote}”
+              </blockquote>
+              <div className="mt-5 flex items-center gap-3">
+                <div className="h-12 w-12 rounded-full bg-[hsl(var(--navy-800))] text-white grid place-items-center font-bold">
+                  {x.testimonial.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .slice(0, 2)
+                    .join("")}
+                </div>
+                <div>
+                  <div className="font-semibold text-[hsl(var(--navy-900))]">{x.testimonial.name}</div>
+                  <div className="text-sm text-[hsl(var(--neutral-700))]">
+                    {x.testimonial.role} · {x.testimonial.company}
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-700))] bg-[hsl(var(--neutral-50))] border border-[hsl(var(--neutral-150))] rounded-full px-2 py-0.5">
-                    {r.type}
-                  </span>
                 </div>
-                <div className="mt-4 font-display font-semibold text-[hsl(var(--navy-900))]">{r.title}</div>
-                <div className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[hsl(var(--navy-700))]">
-                  Download <Download className="h-3.5 w-3.5" />
-                </div>
-              </button>
-            ))}
+              </div>
+            </div>
+            <div className="md:col-span-3 rounded-2xl bg-white border border-[hsl(var(--neutral-150))] p-5">
+              <div className="text-[11px] uppercase tracking-wider font-bold text-[hsl(var(--neutral-700))]">
+                Headline Outcome
+              </div>
+              <div className="mt-2 font-numeric font-bold text-3xl text-[hsl(var(--india-green))]">
+                {cs.metric.value}
+              </div>
+              <div className="text-sm text-[hsl(var(--neutral-700))]">{cs.metric.label}</div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ============ 16. RELATED CASE STUDIES ============ */}
-      <section id="related" className="py-16 md:py-20 bg-white">
+      {/* ============ 12. REPLICATION INSIGHTS ============ */}
+      <section className="py-14 md:py-20 bg-[hsl(var(--neutral-50))]">
         <div className="container-cii">
           <SectionHead
-            eyebrow="Related Transformations"
-            title="Similar manufacturing transformation stories"
+            eyebrow="Replication Insights"
+            title="What manufacturers can learn"
+            intro="Lessons that other manufacturers can apply to their own Industry 4.0 journey."
           />
-          <div className="mt-8 flex gap-5 overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0 snap-x scrollbar-none pb-2">
-            {related.map((r) => (
-              <Link
-                key={r.slug}
-                to={`/case-studies/${r.slug}`}
-                className="snap-start shrink-0 w-[85%] sm:w-[340px] rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5 hover:shadow-md hover:-translate-y-0.5 transition-all"
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {x.replicationInsights.map((r, i) => (
+              <div
+                key={r}
+                className="rounded-2xl border border-[hsl(var(--orange-500)/0.25)] bg-white p-6 hover:shadow-md transition-all"
               >
-                <div className="flex items-center gap-2 text-xs text-[hsl(var(--neutral-700))]">
-                  <Factory className="h-3 w-3" /> {r.sector} · <MapPin className="h-3 w-3" /> {r.state}
+                <div className="flex items-center gap-3">
+                  <div className="h-9 w-9 rounded-full bg-[hsl(var(--orange-500)/0.12)] text-[hsl(var(--orange-600))] grid place-items-center font-numeric font-bold text-sm">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <Lightbulb className="h-4 w-4 text-[hsl(var(--orange-500))]" />
                 </div>
-                <div className="mt-2 text-xs font-bold uppercase tracking-wider text-[hsl(var(--neutral-700))]">
-                  {r.company}
-                </div>
-                <h3 className="mt-1 font-display font-bold text-base text-[hsl(var(--navy-900))] leading-snug">
-                  {r.headline}
-                </h3>
-                <div className="mt-4 flex items-center gap-2">
-                  <span className="font-numeric font-bold text-lg text-[hsl(var(--india-green))]">
-                    {r.metric.value}
-                  </span>
-                  <span className="text-xs text-[hsl(var(--neutral-700))]">{r.metric.label}</span>
-                </div>
-                <div className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[hsl(var(--navy-700))]">
-                  View <ArrowRight className="h-3.5 w-3.5" />
-                </div>
-              </Link>
+                <div className="mt-3 font-display font-semibold text-[hsl(var(--navy-900))]">{r}</div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ============ 17. NEXT STEPS ============ */}
-      <section className="py-16 md:py-20 bg-[hsl(var(--neutral-50))]">
+      {/* ============ 13. RELATED CONTENT ============ */}
+      <section id="related" className="py-14 md:py-20 bg-white">
+        <div className="container-cii space-y-12">
+          <div>
+            <SectionHead eyebrow="Related Content" title="Similar manufacturing transformation stories" />
+            <div className="mt-8 flex gap-5 overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0 snap-x scrollbar-none pb-2">
+              {related.map((r) => (
+                <Link
+                  key={r.slug}
+                  to={`/case-studies/${r.slug}`}
+                  className="snap-start shrink-0 w-[85%] sm:w-[340px] rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5 hover:shadow-md hover:-translate-y-0.5 transition-all"
+                >
+                  <div className="flex items-center gap-2 text-xs text-[hsl(var(--neutral-700))]">
+                    <Factory className="h-3 w-3" /> {r.sector} · <MapPin className="h-3 w-3" /> {r.state}
+                  </div>
+                  <div className="mt-2 text-xs font-bold uppercase tracking-wider text-[hsl(var(--neutral-700))]">
+                    {r.company}
+                  </div>
+                  <h3 className="mt-1 font-display font-bold text-base text-[hsl(var(--navy-900))] leading-snug">
+                    {r.headline}
+                  </h3>
+                  <div className="mt-4 flex items-center gap-2">
+                    <span className="font-numeric font-bold text-lg text-[hsl(var(--india-green))]">
+                      {r.metric.value}
+                    </span>
+                    <span className="text-xs text-[hsl(var(--neutral-700))]">{r.metric.label}</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div className="section-eyebrow mb-2">Related Solutions</div>
+            <h3 className="font-display font-bold text-2xl text-[hsl(var(--navy-900))]">
+              Solutions referenced in this transformation
+            </h3>
+            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+              {(cs.capabilities.length ? cs.capabilities : ["Robotics", "Automation", "Smart Manufacturing", "IIoT"]).slice(0, 4).map((s) => (
+                <Link
+                  key={s}
+                  to="/solutions"
+                  className="group rounded-2xl border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))] p-5 hover:shadow-md hover:-translate-y-0.5 transition-all"
+                >
+                  <CircuitBoard className="h-5 w-5 text-[hsl(var(--navy-700))]" />
+                  <div className="mt-3 font-display font-semibold text-[hsl(var(--navy-900))]">{s}</div>
+                  <div className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-[hsl(var(--navy-700))] group-hover:text-[hsl(var(--red-600))]">
+                    Explore <ArrowRight className="h-3.5 w-3.5" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <Link
+              to="/reports"
+              className="group rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-6 hover:shadow-md transition-all"
+            >
+              <div className="section-eyebrow mb-2">Related Reports</div>
+              <div className="font-display font-bold text-lg text-[hsl(var(--navy-900))]">
+                Industry 4.0 outlooks for {cs.sector}
+              </div>
+              <div className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-[hsl(var(--navy-700))] group-hover:text-[hsl(var(--red-600))]">
+                Browse reports <ArrowRight className="h-3.5 w-3.5" />
+              </div>
+            </Link>
+            <Link
+              to="/programmes"
+              className="group rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-6 hover:shadow-md transition-all"
+            >
+              <div className="section-eyebrow mb-2">Related Programmes & Training</div>
+              <div className="font-display font-bold text-lg text-[hsl(var(--navy-900))]">
+                Build the capability behind this case study
+              </div>
+              <div className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-[hsl(var(--navy-700))] group-hover:text-[hsl(var(--red-600))]">
+                Explore programmes <ArrowRight className="h-3.5 w-3.5" />
+              </div>
+            </Link>
+          </div>
+
+          {/* Downloads */}
+          <div>
+            <div className="section-eyebrow mb-2">Downloads</div>
+            <h3 className="font-display font-bold text-2xl text-[hsl(var(--navy-900))]">
+              Take this case study with you
+            </h3>
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {x.resources.map((r) => (
+                <button
+                  key={r.title}
+                  type="button"
+                  className="text-left rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5 hover:shadow-md hover:-translate-y-0.5 transition-all"
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="h-10 w-10 rounded-xl bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-800))] grid place-items-center">
+                      <FileText className="h-5 w-5" />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-700))] bg-[hsl(var(--neutral-50))] border border-[hsl(var(--neutral-150))] rounded-full px-2 py-0.5">
+                      {r.type}
+                    </span>
+                  </div>
+                  <div className="mt-4 font-display font-semibold text-[hsl(var(--navy-900))]">{r.title}</div>
+                  <div className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[hsl(var(--navy-700))]">
+                    Download <Download className="h-3.5 w-3.5" />
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ 14. NEXT STEPS ============ */}
+      <section className="py-14 md:py-20 bg-[hsl(var(--neutral-50))]">
         <div className="container-cii">
           <SectionHead
             eyebrow="Next Steps"
@@ -882,10 +891,10 @@ const CaseStudyDetail = () => {
             intro="Choose your path forward — from self-diagnosis to expert conversation."
           />
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            <NextStep to="/readiness-assessment" icon={Compass} title="Readiness Assessment" desc="Benchmark your current readiness." />
-            <NextStep to="/reports" icon={Lightbulb} title="Explore Solutions" desc="Reports, playbooks & frameworks." />
+            <NextStep to="/readiness-assessment" icon={Compass} title="Take Readiness Assessment" desc="Benchmark your current readiness." />
+            <NextStep to="/solutions" icon={CircuitBoard} title="Explore Robotics Solutions" desc="Capabilities & partner solutions." />
             <NextStep to="/programmes" icon={GraduationCap} title="Programmes & Training" desc="Build capability in your teams." />
-            <NextStep to="/contact" icon={MessageCircle} title="Speak with an Expert" desc="Get advisory guidance." />
+            <NextStep to="/contact" icon={MessageCircle} title="Talk to an Expert" desc="Get advisory guidance." />
             <NextStep to="/contact" icon={Bot} title="Ask the Assistant" desc="Smart Manufacturing AI." />
           </div>
         </div>
@@ -904,7 +913,7 @@ const CaseStudyDetail = () => {
   );
 };
 
-// alias for tree-shake safety
-const BarChartFallback = BookOpen;
+/* Activity icon polyfill (used inside section 7) */
+const Activity = Briefcase;
 
 export default CaseStudyDetail;
