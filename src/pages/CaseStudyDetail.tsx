@@ -3,8 +3,6 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import {
   ChevronRight,
   Download,
-  Calendar,
-  User,
   Bookmark,
   Share2,
   Check,
@@ -13,30 +11,24 @@ import {
   MapPin,
   Clock,
   CheckCircle2,
-  Lightbulb,
   Sparkles,
-  Users,
   Workflow,
   Cpu,
   Gauge,
   AlertTriangle,
-  Quote,
   Wrench,
   Rocket,
-  HeartHandshake,
-  CircuitBoard,
   ShieldCheck,
   Briefcase,
+  TrendingUp,
+  Layers,
 } from "lucide-react";
 
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
-import {
-  findCaseStudy,
-  type CaseStudy,
-} from "@/data/caseStudies";
+import { findCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import { toast } from "@/hooks/use-toast";
 
 /* ---------------- Fallback synthesis ---------------- */
@@ -44,66 +36,77 @@ const synth = (cs: CaseStudy) => {
   const categoryTags =
     cs.categoryTags ?? [cs.sector, cs.companyType, ...cs.valueProps.slice(0, 2)];
   const executiveSummary = cs.executiveSummary ?? cs.summary;
+
+  const solutionProvider =
+    cs.solutionProvider ?? {
+      name: "Industry 4.0 Solution Partner",
+      overview:
+        "An accredited Industry 4.0 partner enabling Indian manufacturers across digital engineering, IIoT and smart factory programmes.",
+      capabilities: cs.capabilities.slice(0, 5),
+      technologies: cs.capabilities,
+    };
+
   const manufacturer = cs.manufacturer ?? {
     industry: `${cs.sector} — manufacturing`,
     footprint: `${cs.companySize} based in ${cs.state}`,
     highlights: [cs.companySize, cs.companyType, cs.state],
   };
-  const approachCards =
-    cs.approachCards ?? cs.approachSteps.map((s) => ({ title: s.title, desc: s.desc }));
-  const timeline =
-    cs.timeline ?? [
-      { phase: "01", title: "Discovery & Diagnostic", desc: "Baseline assessment and goal setting." },
-      { phase: "02", title: "Pilot Deployment", desc: "First proof-of-value on critical lines." },
-      { phase: "03", title: "Validation", desc: "Operational integration and refinement." },
-      { phase: "04", title: "Scale-up", desc: "Roll out across the plant footprint." },
-      { phase: "05", title: "Value Realisation", desc: "Sustained adoption and continuous improvement." },
-    ];
-  const workforce = cs.workforceTransformation ?? {
-    before: "Teams locked in repetitive, manual operations with limited visibility.",
-    after: [
-      "Higher-value problem solving",
-      "Quality and inspection ownership",
-      "Cross-skilling for new technology",
-      "Data-driven daily routines",
-    ],
-  };
-  const outcomes = cs.outcomes ?? {
-    operational: cs.kpis.slice(0, Math.ceil(cs.kpis.length / 2)),
-    business: cs.kpis.slice(Math.ceil(cs.kpis.length / 2)),
-    user: ["Better Visibility", "Faster Decisions", "Stronger Collaboration"],
-  };
-  const testimonial = cs.testimonial ?? {
-    quote:
-      "The Industry 4.0 journey gave us visibility we never had before — and the confidence to scale what works.",
-    name: "Plant Leadership",
-    role: "Executive Sponsor",
-    company: cs.company,
-  };
-  const replicationInsights = cs.replicationInsights ?? [
-    "Start small and prove value before scaling",
-    "Focus on repeatable, high-frequency processes",
-    "Co-design with operators, not for them",
-    "Anchor daily routines in live data",
-    "Plan for change as much as for technology",
-  ];
-  const resources = cs.resources ?? [
-    { title: "Full Case Study PDF", type: "PDF" },
-    { title: "Implementation Framework", type: "Framework" },
-    { title: "Related Industry Report", type: "Report" },
-    { title: "Best Practice Guide", type: "Guide" },
-  ];
+
+  const technologies = cs.technologies ?? cs.capabilities;
+
+  const businessChallenges =
+    cs.businessChallenges ??
+    cs.challengePoints.map((p) => ({
+      title: p,
+      desc: "Operational pain point limiting performance prior to the Industry 4.0 intervention.",
+    }));
+
+  const solutionGroups =
+    cs.solutionGroups ??
+    cs.approachSteps.map((s, i) => ({
+      title: s.title,
+      points: [s.desc, cs.capabilities[i] ?? cs.capabilities[0]].filter(Boolean) as string[],
+    }));
+
+  const businessOutcomes =
+    cs.businessOutcomes ??
+    cs.kpis.map((k) => ({
+      title: k.label,
+      impact: `${k.value} — measurable improvement delivered by the programme.`,
+    }));
+
+  const benefitsTable =
+    cs.benefitsTable ??
+    cs.beforeAfter.map((b) => ({ area: b.label, impact: `${b.before} → ${b.after}` }));
+
+  const relatedSolutionAreas =
+    cs.relatedSolutionAreas ?? Array.from(new Set([...cs.valueProps, ...cs.capabilities]));
+
+  const changeManagement =
+    cs.changeManagement ?? {
+      challenge:
+        "Embedding new digital ways of working across cross-functional teams required structured change management.",
+      actions: [
+        "Cross-functional steering committee",
+        "Agile, iterative rollout with stakeholder reviews",
+        "Structured knowledge transfer and enablement",
+        "Hands-on training for in-house teams",
+      ],
+      outcome: "Sustained adoption of the new digital capabilities across the organisation.",
+    };
+
   return {
     categoryTags,
     executiveSummary,
+    solutionProvider,
     manufacturer,
-    approachCards,
-    timeline,
-    workforce,
-    outcomes,
-    testimonial,
-    replicationInsights,
-    resources,
+    technologies,
+    businessChallenges,
+    solutionGroups,
+    businessOutcomes,
+    benefitsTable,
+    relatedSolutionAreas,
+    changeManagement,
   };
 };
 
@@ -140,12 +143,36 @@ const SectionHead = ({
   </div>
 );
 
-/* ---------------- Sidebar (mirrors ReportSummaryPanel) ---------------- */
+const Meta = ({ label, value }: { label: string; value: string }) => (
+  <div className="flex items-center justify-between gap-3">
+    <span className="text-[hsl(var(--neutral-500))]">{label}</span>
+    <span className="font-semibold text-[hsl(var(--navy-900))] text-right">{value}</span>
+  </div>
+);
+
+const ChipGroup = ({ label, items }: { label: string; items: string[] }) => (
+  <div>
+    <div className="text-[10px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--neutral-500))] mb-2">
+      {label}
+    </div>
+    <div className="flex flex-wrap gap-1.5">
+      {items.map((t) => (
+        <span key={t} className="cii-chip">
+          {t}
+        </span>
+      ))}
+    </div>
+  </div>
+);
+
+/* ---------------- Sidebar ---------------- */
 const CaseSummaryPanel = ({
   cs,
+  technologies,
   onDownload,
 }: {
   cs: CaseStudy;
+  technologies: string[];
   onDownload: () => void;
 }) => {
   const [copied, setCopied] = useState(false);
@@ -223,35 +250,20 @@ const CaseSummaryPanel = ({
           style={{ borderColor: "hsl(var(--neutral-150))" }}
         >
           <Meta label="Company" value={cs.company} />
-          <Meta label="Sector" value={cs.sector} />
+          <Meta label="Industry" value={cs.sector} />
+          <Meta label="Location" value={cs.state} />
           <Meta label="Size" value={cs.companySize} />
-          <Meta label="Region" value={cs.state} />
           <Meta label="Duration" value={`${cs.durationMonths} months`} />
         </div>
 
-        <div className="px-5 pb-6">
-          <div className="text-[10px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--neutral-500))] mb-2">
-            Focus Areas
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            {cs.valueProps.map((t) => (
-              <span key={t} className="cii-chip">
-                {t}
-              </span>
-            ))}
-          </div>
+        <div className="px-5 pb-5 space-y-4">
+          <ChipGroup label="Value Proposition" items={cs.valueProps} />
+          <ChipGroup label="Technologies" items={technologies} />
         </div>
       </div>
     </aside>
   );
 };
-
-const Meta = ({ label, value }: { label: string; value: string }) => (
-  <div className="flex items-center justify-between">
-    <span className="text-[hsl(var(--neutral-500))]">{label}</span>
-    <span className="font-semibold text-[hsl(var(--navy-900))] text-right">{value}</span>
-  </div>
-);
 
 /* ---------------- Page ---------------- */
 const CaseStudyDetail = () => {
@@ -277,7 +289,7 @@ const CaseStudyDetail = () => {
       <WireHeader />
 
       <main>
-        {/* ============ HERO (mirrors ReportDetailHero) ============ */}
+        {/* ============ HERO ============ */}
         <section className="relative text-white overflow-hidden">
           <div
             className="absolute inset-0"
@@ -317,13 +329,13 @@ const CaseStudyDetail = () => {
               </div>
 
               <div className="text-xs font-semibold uppercase tracking-[0.14em] text-white/70">
-                Report
+                Case Study
               </div>
               <h1 className="font-display font-bold text-[26px] sm:text-[32px] md:text-[42px] leading-[1.1] tracking-tight">
-                Industry 4.0 Adoption and Strategic Roadmap for Indian Manufacturing
+                {cs.headline}
               </h1>
               <p className="text-sm sm:text-base md:text-lg text-white/85">
-                Explore how digital technologies are reshaping India’s manufacturing landscape through Industry 4.0.
+                {cs.summary}
               </p>
 
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80 pt-1">
@@ -344,18 +356,40 @@ const CaseStudyDetail = () => {
           </div>
         </section>
 
-        {/* ============ Sidebar + Main (mirrors reports layout) ============ */}
+        {/* ============ Sidebar + Main ============ */}
         <section className="py-12 md:py-16">
           <div className="container-cii grid lg:grid-cols-12 gap-10">
             <div className="lg:col-span-4">
-              <CaseSummaryPanel cs={cs} onDownload={handleDownload} />
+              <CaseSummaryPanel cs={cs} technologies={x.technologies} onDownload={handleDownload} />
             </div>
 
             <div className="lg:col-span-8 space-y-14">
-              {/* About the Manufacturer */}
+              {/* Executive Summary */}
+              <div>
+                <SectionHead eyebrow="Executive Summary" title="At a glance" />
+                <p className="mt-4 text-[15px] md:text-base leading-relaxed text-[hsl(var(--neutral-800))]">
+                  {x.executiveSummary}
+                </p>
+              </div>
+
+              {/* About Solution Provider */}
+              <div className="rounded-3xl border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))] p-7 md:p-8">
+                <SectionHead
+                  eyebrow={`About ${x.solutionProvider.name}`}
+                  title={x.solutionProvider.name}
+                  intro={x.solutionProvider.overview}
+                />
+                {x.solutionProvider.capabilities?.length ? (
+                  <div className="mt-5">
+                    <ChipGroup label="Capabilities" items={x.solutionProvider.capabilities} />
+                  </div>
+                ) : null}
+              </div>
+
+              {/* About the Company */}
               <div>
                 <SectionHead
-                  eyebrow="About the Manufacturer"
+                  eyebrow="About the Company"
                   title={cs.company}
                   intro={`${x.manufacturer.industry}. ${x.manufacturer.footprint}.`}
                 />
@@ -371,17 +405,17 @@ const CaseStudyDetail = () => {
                 </div>
               </div>
 
-              {/* Existing Challenges */}
+              {/* Business Challenges */}
               <div>
                 <SectionHead
-                  eyebrow="Existing Challenges"
-                  title="The business challenge"
+                  eyebrow="Business Challenges"
+                  title="The challenges before the programme"
                   intro={cs.challenge}
                 />
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {cs.challengePoints.map((p, i) => (
+                  {x.businessChallenges.map((p, i) => (
                     <div
-                      key={p}
+                      key={p.title}
                       className="rounded-2xl border border-[hsl(var(--red-100))] bg-white p-5 hover:shadow-md transition-all"
                     >
                       <div className="h-9 w-9 rounded-xl bg-[hsl(var(--red-100))] text-[hsl(var(--red-600))] grid place-items-center">
@@ -391,186 +425,181 @@ const CaseStudyDetail = () => {
                         Challenge {String(i + 1).padStart(2, "0")}
                       </div>
                       <div className="mt-1 font-display font-semibold text-[hsl(var(--navy-900))]">
-                        {p}
+                        {p.title}
                       </div>
+                      {p.desc && (
+                        <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">{p.desc}</div>
+                      )}
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Approach */}
+              {/* Industry 4.0 Solution */}
               <div className="rounded-3xl bg-[hsl(var(--navy-900))] text-white p-7 md:p-9">
                 <SectionHead
-                  eyebrow="Approach to Industry 4.0"
-                  title="How Industry 4.0 was approached"
+                  eyebrow="Industry 4.0 Solution"
+                  title="How the solution was deployed"
                   intro={cs.approach}
                   invert
                 />
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {x.approachCards.map((c, i) => {
-                    const icons = [Workflow, Rocket, Users, Sparkles, Wrench, Gauge];
+                  {x.solutionGroups.map((g, i) => {
+                    const icons = [Workflow, Cpu, Rocket, Layers, Gauge, Wrench, Sparkles];
                     const Icon = icons[i % icons.length];
                     return (
                       <div
-                        key={c.title}
+                        key={g.title}
                         className="rounded-2xl bg-white/5 border border-white/10 p-5 backdrop-blur"
                       >
                         <div className="h-9 w-9 rounded-xl bg-white/10 grid place-items-center">
                           <Icon className="h-4 w-4 text-white" />
                         </div>
-                        <div className="mt-3 font-display font-semibold">{c.title}</div>
-                        <div className="mt-1 text-sm text-white/80">{c.desc}</div>
+                        <div className="mt-3 font-display font-semibold">{g.title}</div>
+                        <ul className="mt-2 space-y-1.5">
+                          {g.points.map((pt) => (
+                            <li
+                              key={pt}
+                              className="flex items-start gap-2 text-sm text-white/85"
+                            >
+                              <CheckCircle2 className="h-3.5 w-3.5 text-white/70 shrink-0 mt-1" />
+                              {pt}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     );
                   })}
                 </div>
               </div>
 
-              {/* About the Solution */}
+              {/* Business Outcomes */}
               <div>
                 <SectionHead
-                  eyebrow="About the Industry 4.0 Solution"
-                  title="What solution was deployed"
-                  intro="An end-to-end Industry 4.0 capability stack, designed for the manufacturer's reality."
+                  eyebrow="Business Outcomes"
+                  title="Outcomes delivered"
+                  intro="The measurable business impact of the Industry 4.0 programme."
                 />
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {cs.capabilities.map((c, i) => {
-                    const icons = [Cpu, Gauge, Workflow, ShieldCheck, Briefcase, Sparkles];
+                  {x.businessOutcomes.map((o, i) => {
+                    const icons = [TrendingUp, ShieldCheck, Briefcase, Sparkles, Gauge];
                     const Icon = icons[i % icons.length];
                     return (
                       <div
-                        key={c}
-                        className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5 hover:shadow-md hover:-translate-y-0.5 transition-all"
+                        key={o.title}
+                        className="rounded-2xl border border-[hsl(var(--india-green)/0.25)] bg-white p-5 hover:shadow-md transition-all"
                       >
                         <div className="h-9 w-9 rounded-xl bg-[hsl(var(--india-green)/0.10)] text-[hsl(var(--india-green))] grid place-items-center">
                           <Icon className="h-4 w-4" />
                         </div>
                         <div className="mt-3 font-display font-semibold text-[hsl(var(--navy-900))]">
-                          {c}
+                          {o.title}
                         </div>
-                        <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">
-                          Capability deployed as part of the Industry 4.0 solution stack.
-                        </div>
+                        <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">{o.impact}</div>
                       </div>
                     );
                   })}
                 </div>
               </div>
 
-              {/* Implementation Journey */}
+              {/* Key Benefits at a Glance */}
               <div>
                 <SectionHead
-                  eyebrow="Implementation Journey"
-                  title="From adoption to scale"
-                  intro="A phased journey designed to de-risk the transformation and build momentum."
+                  eyebrow="Key Benefits at a Glance"
+                  title="Benefits across the value chain"
                 />
-                <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {x.timeline.map((t) => (
-                    <div
-                      key={t.title}
-                      className="rounded-2xl border border-[hsl(var(--neutral-150))] bg-white p-5 hover:shadow-md transition-all"
-                    >
-                      <div className="font-numeric font-bold text-2xl text-[hsl(var(--navy-700))]/60">
-                        {t.phase}
-                      </div>
-                      <div className="mt-1 font-display font-bold text-base text-[hsl(var(--navy-900))]">
-                        {t.title}
-                      </div>
-                      <div className="mt-1 text-sm text-[hsl(var(--neutral-700))]">{t.desc}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Workforce */}
-              <div>
-                <SectionHead
-                  eyebrow="Human Impact"
-                  title="People & workforce transformation"
-                  intro="Technology only sticks when people thrive with it. Here's how teams evolved."
-                />
-                <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="rounded-2xl border border-[hsl(var(--red-100))] bg-white p-6">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--red-600))]">
-                      Before
-                    </div>
-                    <div className="mt-2 font-display font-semibold text-[hsl(var(--navy-900))]">
-                      {x.workforce.before}
-                    </div>
-                  </div>
-                  <div className="rounded-2xl border border-[hsl(var(--india-green)/0.25)] bg-[hsl(var(--india-green)/0.05)] p-6">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--india-green))]">
-                      After
-                    </div>
-                    <ul className="mt-2 space-y-2">
-                      {x.workforce.after.map((a) => (
-                        <li
-                          key={a}
-                          className="flex items-start gap-2 text-sm text-[hsl(var(--navy-900))] font-medium"
+                <div className="mt-6 overflow-hidden rounded-2xl border border-[hsl(var(--neutral-150))] bg-white">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="bg-[hsl(var(--neutral-50))] text-left">
+                        <th className="px-5 py-3 font-display font-semibold text-[hsl(var(--navy-900))]">
+                          Benefit Area
+                        </th>
+                        <th className="px-5 py-3 font-display font-semibold text-[hsl(var(--navy-900))]">
+                          Impact
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {x.benefitsTable.map((b, i) => (
+                        <tr
+                          key={b.area}
+                          className={i % 2 === 0 ? "bg-white" : "bg-[hsl(var(--neutral-50))/0.5]"}
+                          style={{ borderTop: "1px solid hsl(var(--neutral-150))" }}
                         >
-                          <CheckCircle2 className="h-4 w-4 text-[hsl(var(--india-green))] shrink-0 mt-0.5" />
-                          {a}
-                        </li>
+                          <td className="px-5 py-3 font-semibold text-[hsl(var(--navy-900))]">
+                            {b.area}
+                          </td>
+                          <td className="px-5 py-3 text-[hsl(var(--neutral-700))]">{b.impact}</td>
+                        </tr>
                       ))}
-                    </ul>
-                  </div>
+                    </tbody>
+                  </table>
                 </div>
               </div>
 
-
-              {/* Testimonial */}
-              <div className="rounded-3xl border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))] p-7 md:p-8">
-                <Quote className="h-7 w-7 text-[hsl(var(--orange-500))]" />
-                <blockquote className="mt-3 font-display text-lg md:text-xl leading-snug text-[hsl(var(--navy-900))]">
-                  “{x.testimonial.quote}”
-                </blockquote>
-                <div className="mt-5 flex items-center gap-3">
-                  <div className="h-11 w-11 rounded-full bg-[hsl(var(--navy-800))] text-white grid place-items-center font-bold">
-                    {x.testimonial.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .slice(0, 2)
-                      .join("")}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-[hsl(var(--navy-900))]">
-                      {x.testimonial.name}
-                    </div>
-                    <div className="text-sm text-[hsl(var(--neutral-700))]">
-                      {x.testimonial.role} · {x.testimonial.company}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Replication Insights */}
+              {/* Technology Stack */}
               <div>
                 <SectionHead
-                  eyebrow="Replication Insights"
-                  title="What manufacturers can learn"
-                  intro="Lessons that other manufacturers can apply to their own Industry 4.0 journey."
+                  eyebrow="Technology Stack"
+                  title="Technologies used"
                 />
-                <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {x.replicationInsights.map((r, i) => (
-                    <div
-                      key={r}
-                      className="rounded-2xl border border-[hsl(var(--orange-500)/0.25)] bg-white p-5 hover:shadow-md transition-all"
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {x.technologies.map((t) => (
+                    <span
+                      key={t}
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium border border-[hsl(var(--neutral-200))] bg-white text-[hsl(var(--navy-900))] hover:border-[hsl(var(--navy-600))] transition-colors"
                     >
-                      <div className="flex items-center gap-3">
-                        <div className="h-8 w-8 rounded-full bg-[hsl(var(--orange-500)/0.12)] text-[hsl(var(--orange-600))] grid place-items-center font-numeric font-bold text-sm">
-                          {String(i + 1).padStart(2, "0")}
-                        </div>
-                        <Lightbulb className="h-4 w-4 text-[hsl(var(--orange-500))]" />
-                      </div>
-                      <div className="mt-2 font-display font-semibold text-[hsl(var(--navy-900))]">
-                        {r}
-                      </div>
-                    </div>
+                      <Cpu className="h-3.5 w-3.5 text-[hsl(var(--navy-600))]" />
+                      {t}
+                    </span>
                   ))}
                 </div>
               </div>
 
+              {/* Change Management Approach */}
+              <div>
+                <SectionHead
+                  eyebrow="Change Management Approach"
+                  title="How adoption was driven"
+                  intro={x.changeManagement.challenge}
+                />
+                <ul className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {x.changeManagement.actions.map((a) => (
+                    <li
+                      key={a}
+                      className="flex items-start gap-2 rounded-xl border border-[hsl(var(--neutral-150))] bg-white p-4 text-sm text-[hsl(var(--navy-900))]"
+                    >
+                      <CheckCircle2 className="h-4 w-4 text-[hsl(var(--india-green))] shrink-0 mt-0.5" />
+                      <span>{a}</span>
+                    </li>
+                  ))}
+                </ul>
+                {x.changeManagement.outcome && (
+                  <div className="mt-4 rounded-xl bg-[hsl(var(--india-green)/0.06)] border border-[hsl(var(--india-green)/0.25)] p-4 text-sm text-[hsl(var(--navy-900))]">
+                    <span className="font-semibold">Outcome: </span>
+                    {x.changeManagement.outcome}
+                  </div>
+                )}
+              </div>
 
+              {/* Related Solution Areas */}
+              <div>
+                <SectionHead
+                  eyebrow="Related Solution Areas"
+                  title="Explore related capabilities"
+                />
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {x.relatedSolutionAreas.map((s) => (
+                    <span
+                      key={s}
+                      className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-800))] border border-[hsl(var(--navy-100))]"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
