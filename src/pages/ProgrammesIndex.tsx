@@ -6,7 +6,7 @@ import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
 import { ProgrammesHero } from "@/components/programmes/ProgrammesHero";
 import { GuidedDiscovery } from "@/components/programmes/GuidedDiscovery";
-import { ProgrammeTypeTabs } from "@/components/programmes/ProgrammeTypeTabs";
+
 import {
   emptyProgrammeFilters,
   type ProgrammeFilters,
@@ -121,9 +121,14 @@ const ProgrammesIndex = () => {
         />
         <FeaturedProgrammes />
         <GuidedDiscovery selected={outcome} onSelect={handleOutcome} />
-        <ProgrammeTypeTabs active={type} onChange={setType} counts={counts} />
         <section className="py-12 md:py-16" id="programmes-grid" ref={gridRef}>
           <div className="container-cii">
+            <div className="mb-8">
+              <div className="section-eyebrow mb-2">All Programmes</div>
+              <h2 className="font-display font-bold text-[24px] md:text-[28px] text-[hsl(var(--navy-900))] tracking-tight">
+                Build the skills the future of manufacturing needs
+              </h2>
+            </div>
             <div className="grid gap-8 lg:grid-cols-[280px_1fr]">
               <ProgrammesFilterSidebar
                 query={query}
@@ -134,18 +139,15 @@ const ProgrammesIndex = () => {
                 onQuickPick={setQuickPick}
                 onClear={clearAll}
                 resultCount={filtered.length}
+                type={type}
+                onType={setType}
+                typeCounts={counts}
               />
               <div className="min-w-0">
-                <div className="mb-6">
-                  <div className="section-eyebrow mb-2">All Programmes</div>
-                  <h2 className="font-display font-bold text-[24px] md:text-[28px] text-[hsl(var(--navy-900))] tracking-tight">
-                    Build the skills the future of manufacturing needs
-                  </h2>
-                </div>
                 {filtered.length === 0 ? (
                   <ProgrammesEmptyState onClear={clearAll} />
                 ) : (
-                  <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                  <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2">
                     {filtered.map((p) => (
                       <ProgrammeCard
                         key={p.slug}
