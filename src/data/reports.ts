@@ -1,4 +1,4 @@
-export type ReportType = "Report" | "Playbook" | "Whitepaper" | "Case Study" | "Research";
+export type ReportType = string;
 
 export interface Report {
   slug: string;
