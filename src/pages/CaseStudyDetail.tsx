@@ -317,13 +317,13 @@ const CaseStudyDetail = () => {
               </div>
 
               <div className="text-xs font-semibold uppercase tracking-[0.14em] text-white/70">
-                {cs.company}
+                Engineering - Industrial Equipments · Case Study
               </div>
               <h1 className="font-display font-bold text-[26px] sm:text-[32px] md:text-[42px] leading-[1.1] tracking-tight">
-                {cs.headline}
+                Siemens PLM Software
               </h1>
               <p className="text-sm sm:text-base md:text-lg text-white/85">
-                {x.executiveSummary}
+                Transformer device manufacturer uses SIMATIC IT Preactor to increase capacity utilization and improve response to customers
               </p>
 
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80 pt-1">
