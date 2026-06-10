@@ -15,15 +15,6 @@ const resources = [
     cta: "Read case study",
   },
   {
-    image: textile,
-    sector: "Industry 4.0",
-    type: "Report",
-    title: "Industry 4.0 Adoption and Strategic Roadmap for Indian Manufacturing",
-    summary:
-      "Explore how digital technologies are reshaping India’s manufacturing landscape through Industry 4.0.",
-    cta: "Explore report",
-  },
-  {
     image: traceability,
     sector: "Quality & Traceability",
     type: "Case Study",
@@ -32,6 +23,16 @@ const resources = [
       "Transformer device manufacturer uses SIMATIC IT Preactor to increase capacity utilization and improve response to customers.",
     cta: "Read case study",
   },
+  {
+    image: textile,
+    sector: "Industry 4.0",
+    type: "Report",
+    title: "Industry 4.0 Adoption and Strategic Roadmap for Indian Manufacturing",
+    summary:
+      "Explore how digital technologies are reshaping India’s manufacturing landscape through Industry 4.0.",
+    cta: "Explore report",
+  },
+
 ];
 
 export const WireResources = () => {
