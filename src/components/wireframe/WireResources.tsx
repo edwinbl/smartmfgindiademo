@@ -16,7 +16,7 @@ const resources = [
   },
   {
     image: traceability,
-    sector: "Quality & Traceability",
+    sector: "Engineering - Industrial Equipments",
     type: "Case Study",
     title: "Siemens PLM Software",
     summary:
