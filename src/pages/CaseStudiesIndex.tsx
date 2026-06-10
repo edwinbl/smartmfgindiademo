@@ -28,7 +28,6 @@ import {
   valueProps,
   quickChips,
   type CaseStudy,
-  type Sector,
   type CompanyType,
   type ValueProp,
 } from "@/data/caseStudies";
