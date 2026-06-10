@@ -114,6 +114,7 @@ export const companyTypes: CompanyType[] = ["MSME", "Enterprise", "Supplier", "E
 export const valueProps: ValueProp[] = [
   "Design & Engineering",
   "Digital Enterprise",
+  "Digital Transformation",
   "OEE Improvement",
   "Predictive Maintenance",
   "Process Optimisation",
