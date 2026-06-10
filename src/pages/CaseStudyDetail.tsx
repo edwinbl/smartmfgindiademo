@@ -320,7 +320,7 @@ const CaseStudyDetail = () => {
                 Engineering - Industrial Equipments · Case Study
               </div>
               <h1 className="font-display font-bold text-[26px] sm:text-[32px] md:text-[42px] leading-[1.1] tracking-tight">
-                Siemens PLM Software
+                B&R Industrial Automation Pvt. Ltd.
               </h1>
               <p className="text-sm sm:text-base md:text-lg text-white/85">
                 Transformer device manufacturer uses SIMATIC IT Preactor to increase capacity utilization and improve response to customers
