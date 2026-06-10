@@ -191,7 +191,7 @@ const CaseSummaryPanel = ({
         <div className="p-5 space-y-3">
           <button type="button" onClick={onDownload} className="btn-primary w-full">
             <Download className="h-4 w-4" />
-            Download Case Study
+            Explore report
           </button>
           <div className="grid grid-cols-2 gap-2">
             <button
@@ -317,7 +317,7 @@ const CaseStudyDetail = () => {
               </div>
 
               <div className="text-xs font-semibold uppercase tracking-[0.14em] text-white/70">
-                Engineering - Industrial Equipments · Case Study
+                Report
               </div>
               <h1 className="font-display font-bold text-[26px] sm:text-[32px] md:text-[42px] leading-[1.1] tracking-tight">
                 Industry 4.0 Adoption and Strategic Roadmap for Indian Manufacturing
