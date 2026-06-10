@@ -1,10 +1,4 @@
-export type Sector =
-  | "Automotive"
-  | "Textiles"
-  | "Chemicals"
-  | "Food Processing"
-  | "Engineering"
-  | "Electronics";
+export type Sector = string;
 
 export type CompanyType = "MSME" | "Enterprise" | "Supplier" | "Export-focused";
 
