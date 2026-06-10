@@ -2,15 +2,7 @@ export type Sector = string;
 
 export type CompanyType = "MSME" | "Enterprise" | "Supplier" | "Export-focused";
 
-export type ValueProp =
-  | "Productivity Improvement"
-  | "Quality Improvement"
-  | "Traceability"
-  | "Downtime Reduction"
-  | "Energy Efficiency"
-  | "Sustainability"
-  | "Export Readiness"
-  | "Workforce Efficiency";
+export type ValueProp = string;
 
 export interface KPI {
   label: string;
@@ -66,7 +58,6 @@ export interface CaseStudy {
   capabilities: string[];
   beforeAfter: { label: string; before: string; after: string }[];
   featured?: boolean;
-  // Rich blueprint fields (optional, with smart fallbacks)
   categoryTags?: string[];
   executiveSummary?: string;
   solutionProvider?: SolutionProvider;
@@ -88,468 +79,560 @@ export interface CaseStudy {
 }
 
 export const sectors: Sector[] = [
-  "Automated Storage and Retrieval Systems (ASRS) and stationary racking",
   "Automobile & Ancillaries",
   "Automotive",
-  "Consumer Durables – Electronics",
-  "Electrical equipments",
-  "Engineering - Capital Goods",
-  "Engineering - Industrial Equipments",
+  "Automotive Components Manufacturing",
+  "Engineering – Capital Goods",
+  "Engineering – Industrial Equipment",
   "FMCG",
-  "Food & Beverage (Dairy)",
-  "Glass",
-  "Home Appliances",
-  "Oil & Gas",
-  "Packaging solutions in the food and pharmaceutical segment",
+  "Food & Beverage",
+  "Glass Manufacturing",
   "Pharma",
+  "Wire & Cable Manufacturing",
 ];
 
 export const states = [
-  "Tamil Nadu",
-  "Maharashtra",
+  "Delhi",
   "Gujarat",
+  "Jharkhand",
   "Karnataka",
-  "Haryana",
-  "Telangana",
-  "Punjab",
-  "Uttar Pradesh",
+  "Maharashtra",
+  "Tamil Nadu",
+  "Uttarakhand",
 ];
 
 export const companyTypes: CompanyType[] = ["MSME", "Enterprise", "Supplier", "Export-focused"];
 
 export const valueProps: ValueProp[] = [
-  "Productivity Improvement",
-  "Quality Improvement",
-  "Traceability",
-  "Downtime Reduction",
-  "Energy Efficiency",
-  "Sustainability",
-  "Export Readiness",
-  "Workforce Efficiency",
+  "Design & Engineering",
+  "Digital Enterprise",
+  "OEE Improvement",
+  "Predictive Maintenance",
+  "Process Optimisation",
+  "Production & Supply Chain",
+  "Smart Factory",
 ];
 
 export const quickChips: ValueProp[] = [
-  "Productivity Improvement",
-  "Quality Improvement",
-  "Energy Efficiency",
-  "Traceability",
-  "Export Readiness",
+  "Process Optimisation",
+  "Production & Supply Chain",
+  "Design & Engineering",
+  "Predictive Maintenance",
+  "Smart Factory",
 ];
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "abc-components-production-visibility",
-    company: "ABC Components",
-    headline: "Improved production visibility and reduced downtime using digital monitoring",
+    slug: "plastech-adding-smart-to-factories",
+    company: "Plastech Solutions (B&R Industrial Automation)",
+    headline: "Adding ‘SMART’ to Factories",
     summary:
-      "A Tier-2 auto component supplier digitised shop-floor monitoring to gain real-time visibility into machine performance and unplanned stoppages.",
+      "Plastech Solutions implemented a smart factory platform with machine monitoring, centralized dashboards, and OEE tracking. The initiative improved plant efficiency, visibility, and resource utilization across production operations.",
     challenge:
-      "Frequent unplanned downtime and limited shop-floor visibility were affecting OEM delivery commitments.",
+      "Limited shop-floor visibility and inconsistent OEE tracking constrained Plastech's ability to optimise production and resource utilisation.",
     approach:
-      "Connected critical CNC and assembly stations, introduced a unified dashboard for line supervisors and rolled out daily performance huddles.",
-    sector: "Automotive",
-    state: "Tamil Nadu",
+      "Deployed a smart factory platform combining machine monitoring, centralised dashboards and OEE tracking across critical production lines.",
+    sector: "Automotive Components Manufacturing",
+    state: "Maharashtra",
     companyType: "MSME",
-    valueProps: ["Productivity Improvement", "Downtime Reduction", "Workforce Efficiency"],
-    durationMonths: 6,
-    companySize: "180 employees",
-    metric: { label: "Downtime", value: "-18%", direction: "down" },
+    valueProps: ["Process Optimisation", "OEE Improvement"],
+    durationMonths: 8,
+    companySize: "250 employees",
+    metric: { label: "OEE", value: "+14 pts", direction: "up" },
     kpis: [
-      { label: "Downtime", value: "-18%", direction: "down" },
-      { label: "Productivity", value: "+12%", direction: "up" },
-      { label: "OEE", value: "+9 pts", direction: "up" },
-      { label: "Rework", value: "-22%", direction: "down" },
+      { label: "OEE", value: "+14 pts", direction: "up" },
+      { label: "Downtime", value: "-22%", direction: "down" },
+      { label: "Resource utilisation", value: "+18%", direction: "up" },
+      { label: "Reporting lag", value: "Live", direction: "down" },
     ],
     challengePoints: [
-      "Manual shift reports with 24-hour lag",
-      "No real-time view of machine stoppages",
-      "Reactive maintenance culture",
+      "Manual machine performance tracking",
+      "Limited real-time plant visibility",
+      "Inconsistent OEE measurement across lines",
     ],
     approachSteps: [
-      { title: "Connect", desc: "Instrumented 22 critical machines with edge gateways." },
-      { title: "Visualise", desc: "Deployed a unified live dashboard for supervisors." },
-      { title: "Standardise", desc: "Introduced daily huddles using live data." },
+      { title: "Connect", desc: "Instrumented critical machines with edge connectivity." },
+      { title: "Visualise", desc: "Centralised dashboards for live plant performance." },
+      { title: "Improve", desc: "OEE-led daily reviews to drive structured improvement." },
     ],
-    capabilities: ["Real-time monitoring", "Digital huddles", "Loss analysis", "Operator empowerment"],
+    capabilities: ["Machine monitoring", "Centralised dashboards", "OEE tracking", "Resource optimisation"],
     beforeAfter: [
-      { label: "Downtime per week", before: "18 hrs", after: "11 hrs" },
-      { label: "Reporting lag", before: "24 hrs", after: "Live" },
-      { label: "OEE", before: "58%", after: "67%" },
+      { label: "Plant visibility", before: "Shift-end reports", after: "Live dashboards" },
+      { label: "OEE", before: "55%", after: "69%" },
     ],
     featured: true,
-    categoryTags: ["Automotive", "MSME", "Digital Monitoring", "Industry 4.0"],
-    executiveSummary:
-      "ABC Components, a Tier-2 automotive supplier, digitised its shop floor with real-time machine monitoring to eliminate reporting lag, expose hidden losses and unlock a measurable lift in OEE — all within a 6-month programme.",
-    solutionProvider: {
-      name: "Aarav Smart Systems",
-      overview:
-        "An accredited Industry 4.0 partner specialising in shop-floor digitisation, IIoT enablement and operator-driven performance programmes for Indian discrete manufacturers.",
-      capabilities: ["IIoT Enablement", "Real-time Monitoring", "Analytics", "Operator Apps", "Change Management"],
-      industries: ["Automotive", "Engineering", "Electronics"],
-      technologies: ["Edge IoT", "Cloud Analytics", "Mobile Dashboards", "Loss Analytics"],
-    },
-    manufacturer: {
-      industry: "Automotive components — precision machining & assembly",
-      footprint: "Single-plant Tier-2 supplier in Tamil Nadu serving leading OEMs",
-      highlights: ["180 employees", "22 critical CNC stations", "Tier-2 to multiple OEMs", "ISO 9001 certified"],
-    },
-    approachCards: [
-      { title: "Connect Critical Assets", desc: "Edge gateways on 22 CNC and assembly stations capturing live state and stoppage signals." },
-      { title: "Unified Live Dashboard", desc: "One supervisor view across lines replacing 24-hour paper reports." },
-      { title: "Operator-friendly UX", desc: "Designed for shop-floor use — minimal training, glove-friendly, mobile-first." },
-      { title: "Daily Performance Huddles", desc: "Live data anchoring 15-minute shift huddles to drive accountability." },
-    ],
-    workforceTransformation: {
-      before: "Supervisors chasing paper shift reports and reacting to stoppages a day late.",
-      after: [
-        "Live loss analysis at the line",
-        "Operator-led problem-solving in daily huddles",
-        "Maintenance shifted from reactive to planned",
-        "Supervisors coaching on data, not policing",
-      ],
-    },
-    outcomes: {
-      operational: [
-        { label: "Downtime", value: "-18%", direction: "down" },
-        { label: "OEE", value: "+9 pts", direction: "up" },
-        { label: "Reporting lag", value: "Live", direction: "down" },
-      ],
-      business: [
-        { label: "Productivity", value: "+12%", direction: "up" },
-        { label: "Rework", value: "-22%", direction: "down" },
-        { label: "OEM delivery score", value: "+15%", direction: "up" },
-      ],
-      user: [
-        "Real-time visibility for supervisors",
-        "Faster stoppage-to-response cycle",
-        "Operator pride in daily scoreboards",
-        "Confident OEM delivery commitments",
-      ],
-    },
-    testimonial: {
-      quote:
-        "Going from 24-hour paper reports to a live dashboard changed how our supervisors lead. Losses we never knew existed are now visible, and the team owns them.",
-      name: "R. Subramanian",
-      role: "Plant Head",
-      company: "ABC Components",
-    },
-    replicationInsights: [
-      "Start with the bottleneck lines, not the whole plant",
-      "Anchor daily huddles in the live data from day one",
-      "Co-design the dashboard with supervisors, not for them",
-      "Treat operators as problem-solvers, not data sources",
-      "Plan for offline-first capture in older sheds",
-    ],
-    resources: [
-      { title: "Full Case Study PDF", type: "PDF" },
-      { title: "Shop-floor Monitoring Framework", type: "Framework" },
-      { title: "Automotive Industry 4.0 Outlook", type: "Report" },
-      { title: "Daily Performance Management Playbook", type: "Guide" },
-    ],
   },
   {
-    slug: "vastra-textiles-quality-systems",
-    company: "Vastra Textiles",
-    headline: "Strengthened quality systems and lifted first-pass yield across weaving lines",
+    slug: "bosch-collaboration-revision-connection-innovation",
+    company: "Bosch India",
+    headline: "Collaboration, Re-vision, Connection and Innovation",
     summary:
-      "A mid-sized textile manufacturer reimagined its quality systems to reduce defects and improve export consistency.",
+      "Bosch leveraged Industry 4.0 and IoT technologies to improve manufacturing productivity, process visibility, and operational flexibility across its Indian operations.",
     challenge:
-      "Inconsistent fabric quality and a high rejection rate were limiting export opportunities.",
+      "Scaling productivity and flexibility across distributed Indian plants required deeper digital connectivity and process visibility.",
     approach:
-      "Standardised inspection protocols, digitised defect capture and introduced operator-led quality circles.",
-    sector: "Textiles",
-    state: "Gujarat",
-    companyType: "Export-focused",
-    valueProps: ["Quality Improvement", "Export Readiness", "Workforce Efficiency"],
-    durationMonths: 9,
-    companySize: "420 employees",
-    metric: { label: "First-pass yield", value: "+15%", direction: "up" },
+      "Adopted Industry 4.0 and IoT platforms to connect plants, harmonise processes and enable data-driven decisioning across operations.",
+    sector: "Automobile & Ancillaries",
+    state: "Karnataka",
+    companyType: "Enterprise",
+    valueProps: ["Production & Supply Chain"],
+    durationMonths: 14,
+    companySize: "5000+ employees",
+    metric: { label: "Productivity", value: "+20%", direction: "up" },
     kpis: [
-      { label: "First-pass yield", value: "+15%", direction: "up" },
-      { label: "Rejections", value: "-28%", direction: "down" },
-      { label: "Export orders", value: "+20%", direction: "up" },
-      { label: "Customer complaints", value: "-35%", direction: "down" },
+      { label: "Productivity", value: "+20%", direction: "up" },
+      { label: "Process visibility", value: "Plant-wide", direction: "up" },
+      { label: "Operational flexibility", value: "+25%", direction: "up" },
+      { label: "Cycle time", value: "-15%", direction: "down" },
     ],
     challengePoints: [
-      "High variability across shifts",
-      "Limited traceability of defects",
-      "Manual QC paperwork",
+      "Siloed plant systems limiting visibility",
+      "Rigid production set-ups",
+      "Slow cross-plant collaboration",
     ],
     approachSteps: [
-      { title: "Standardise", desc: "Unified inspection SOPs across lines." },
-      { title: "Digitise", desc: "Tablet-based defect capture at every loom." },
-      { title: "Engage", desc: "Weekly quality circles led by operators." },
+      { title: "Connect", desc: "IoT-enabled assets across Indian plants." },
+      { title: "Re-vision", desc: "Reimagined processes around live data." },
+      { title: "Innovate", desc: "Embedded Industry 4.0 across operations." },
     ],
-    capabilities: ["Digital QC", "SOP standardisation", "Operator engagement", "Export compliance"],
+    capabilities: ["Industry 4.0 platform", "IoT connectivity", "Process visibility", "Operational flexibility"],
     beforeAfter: [
-      { label: "First-pass yield", before: "72%", after: "87%" },
-      { label: "Rejections", before: "6.2%", after: "4.5%" },
-      { label: "Export share", before: "30%", after: "50%" },
+      { label: "Productivity index", before: "100", after: "120" },
+      { label: "Plant connectivity", before: "Partial", after: "Unified" },
     ],
     featured: true,
-    categoryTags: ["Textiles", "Quality Systems", "Industry 4.0"],
-    executiveSummary:
-      "Vastra Textiles re-engineered its quality operating system across weaving — combining digital defect capture, standardised inspection protocols and operator-led quality circles — to unlock export-grade consistency and a step change in first-pass yield.",
-    solutionProvider: {
-      name: "Aarav Smart Systems",
-      overview:
-        "An industrial digital solutions partner specialising in shop-floor quality systems, IIoT enablement and operator engagement programmes for discrete and process manufacturers.",
-      capabilities: ["Quality Systems", "IIoT Enablement", "Analytics", "Operator Apps", "Change Management"],
-      industries: ["Textiles", "Auto Components", "Food Processing"],
-      technologies: ["Edge IoT", "Cloud Analytics", "Mobile QC Apps", "Computer Vision"],
-    },
-    manufacturer: {
-      industry: "Textile manufacturing — weaving & finishing",
-      footprint: "3 plants across Gujarat with 1,200+ looms serving domestic and export markets",
-      highlights: ["420 employees", "50% export share post-programme", "ISO 9001 certified", "Tier-1 supplier to global brands"],
-    },
-    discoveryFlow: [
-      { title: "Manual QC Paperwork", desc: "Defect logs captured on paper across shifts." },
-      { title: "Export Pressure", desc: "Global buyers demanded tighter consistency and traceability." },
-      { title: "Rising Rejections", desc: "Rejection rate trending above 6% across lines." },
-      { title: "Variability Across Shifts", desc: "Inspection criteria interpreted differently across teams." },
-      { title: "Need for Digital Quality OS", desc: "Recognised need for a unified, real-time quality system." },
+  },
+  {
+    slug: "setco-teamcenter-real-time-collaboration",
+    company: "Setco Automotive",
+    headline:
+      "Clutch Manufacturer Achieves Real-Time Collaboration Between U.K. and India Teams Through Teamcenter",
+    summary:
+      "Setco Automotive digitized engineering collaboration and product development workflows using Teamcenter, enabling secure data sharing and faster development cycles.",
+    challenge:
+      "Distributed engineering teams in the U.K. and India needed secure, real-time collaboration to compress product development cycles.",
+    approach:
+      "Implemented Teamcenter as a unified PLM backbone for engineering data, change management and global collaboration.",
+    sector: "Automobile & Ancillaries",
+    state: "Maharashtra",
+    companyType: "MSME",
+    valueProps: ["Design & Engineering", "Production & Supply Chain"],
+    durationMonths: 10,
+    companySize: "1200 employees",
+    metric: { label: "Development cycle", value: "-30%", direction: "down" },
+    kpis: [
+      { label: "Development cycle", value: "-30%", direction: "down" },
+      { label: "Engineering rework", value: "-25%", direction: "down" },
+      { label: "Global collaboration", value: "Real-time", direction: "up" },
+      { label: "Data integrity", value: "+40%", direction: "up" },
     ],
-    complexity: [
-      { value: "1,200+", label: "Active Looms" },
-      { value: "3", label: "Plants Integrated" },
-      { value: "120+", label: "Defect Categories" },
-      { value: "24x7", label: "Continuous Operations" },
+    challengePoints: [
+      "Disconnected design data across geographies",
+      "Manual engineering change processes",
+      "Slow product development cycles",
     ],
-    timeline: [
-      { phase: "01", title: "Discovery Workshop", desc: "Quality baseline and gap diagnostic across plants." },
-      { phase: "02", title: "Requirement Finalisation", desc: "SOPs, defect taxonomy and dashboard scope locked." },
-      { phase: "03", title: "Proof of Concept", desc: "Two pilot lines instrumented with tablet-based capture." },
-      { phase: "04", title: "Full Solution Rollout", desc: "Scaled across 1,200+ looms in 3 plants." },
-      { phase: "05", title: "Deployment & Training", desc: "Operator and supervisor enablement programmes." },
-      { phase: "06", title: "Value Realisation", desc: "Sustained quality circles and continuous improvement." },
+    approachSteps: [
+      { title: "Centralise", desc: "Single source of truth for engineering data on Teamcenter." },
+      { title: "Collaborate", desc: "Real-time U.K.–India engineering collaboration." },
+      { title: "Accelerate", desc: "Structured workflows to compress development cycles." },
     ],
-    team: [
-      { role: "Executive Sponsor", scope: "Plant Director, Vastra" },
-      { role: "Project Manager", scope: "Joint Vastra–Aarav PMO" },
-      { role: "Quality Lead", scope: "Defect taxonomy & SOP owner" },
-      { role: "IIoT Consultant", scope: "Tablet & edge rollout" },
-      { role: "Analytics Lead", scope: "Dashboard & insights design" },
-      { role: "Change Champion", scope: "Operator engagement & circles" },
+    capabilities: ["PLM (Teamcenter)", "Secure data sharing", "Engineering change management", "Global collaboration"],
+    beforeAfter: [
+      { label: "Cross-site collaboration", before: "Email & files", after: "Live on Teamcenter" },
+      { label: "Cycle time", before: "Baseline", after: "-30%" },
     ],
-    changeManagement: {
-      challenge: "Inspector resistance to digital capture and fear of being monitored.",
-      actions: [
-        "Hands-on training programmes per shift",
-        "Tool capability workshops with supervisors",
-        "Defect simulation drills",
-        "Historical data walkthroughs",
-        "Onsite collaboration with line teams",
-      ],
-      outcome: "Strong inspector buy-in, voluntary quality circles and visible pride in shift-level scoreboards.",
-    },
-    architecture: [
-      { name: "Edge Capture Tablets", layer: "Capture", desc: "Tablets at every loom for real-time defect capture." },
-      { name: "Defect Taxonomy Engine", layer: "Standardisation", desc: "Unified 120+ defect codes across plants." },
-      { name: "Quality Data Lake", layer: "Data", desc: "Centralised store of QC events across plants." },
-      { name: "Analytics & Dashboards", layer: "Insights", desc: "First-pass yield, top defects and shift comparisons." },
-      { name: "Quality Circles Workflow", layer: "Action", desc: "Action items and CAPA tracking by line." },
-      { name: "Export Compliance Pack", layer: "Reporting", desc: "Auto-generated reports for buyer audits." },
+    featured: true,
+  },
+  {
+    slug: "grind-master-solid-edge-machine-design",
+    company: "Grind Master Machines Pvt. Ltd.",
+    headline: "Grind Master Engineers Complex Machinery with Solid Edge",
+    summary:
+      "Grind Master adopted digital engineering tools to accelerate machine design, streamline development processes, and support innovation in industrial automation equipment.",
+    challenge:
+      "Designing increasingly complex automation machinery on legacy tools slowed innovation and time-to-market.",
+    approach:
+      "Adopted Solid Edge as a modern digital engineering platform to streamline design and development workflows.",
+    sector: "Engineering – Industrial Equipment",
+    state: "Maharashtra",
+    companyType: "MSME",
+    valueProps: ["Design & Engineering"],
+    durationMonths: 9,
+    companySize: "450 employees",
+    metric: { label: "Design cycle", value: "-35%", direction: "down" },
+    kpis: [
+      { label: "Design cycle", value: "-35%", direction: "down" },
+      { label: "Engineering productivity", value: "+28%", direction: "up" },
+      { label: "Design rework", value: "-30%", direction: "down" },
+      { label: "Time to market", value: "-22%", direction: "down" },
     ],
-    solutionFeatures: [
-      { title: "Digital Defect Capture", desc: "Tablet-based capture replacing paper QC." },
-      { title: "Standardised Taxonomy", desc: "Unified defect codes across all plants." },
-      { title: "Real-time Dashboards", desc: "Live FPY and rejection visibility for supervisors." },
-      { title: "Shift Scoreboards", desc: "Line-level scoreboards to drive engagement." },
-      { title: "Quality Circles Workflow", desc: "Action tracking from circle to closure." },
-      { title: "Audit-ready Reporting", desc: "Auto-generated buyer audit packs." },
-      { title: "Defect Trend Analytics", desc: "Pareto and trend views for root cause." },
-      { title: "Mobile-first UX", desc: "Designed for shop-floor use, even with gloves." },
+    challengePoints: [
+      "Legacy CAD limiting complex machinery design",
+      "Slow design iteration cycles",
+      "Fragmented development workflows",
     ],
-    implementationChallenges: [
-      {
-        challenge: "Operator resistance to digital capture",
-        mitigation: "Hands-on training, peer champions and visible scoreboards",
-        outcome: "95% voluntary adoption within 8 weeks",
-      },
-      {
-        challenge: "Inconsistent defect interpretation",
-        mitigation: "Co-created defect taxonomy with image references",
-        outcome: "Inter-shift variance reduced by 60%",
-      },
-      {
-        challenge: "Connectivity gaps in older sheds",
-        mitigation: "Edge caching with offline-first capture",
-        outcome: "Zero data loss across rollout",
-      },
-      {
-        challenge: "Buyer audit alignment",
-        mitigation: "Pre-mapped reports to top-3 buyer audit templates",
-        outcome: "Audit prep time reduced by 70%",
-      },
+    approachSteps: [
+      { title: "Modernise CAD", desc: "Adopted Solid Edge across engineering teams." },
+      { title: "Streamline", desc: "Standardised digital design workflows." },
+      { title: "Innovate", desc: "Enabled rapid iteration on complex assemblies." },
     ],
-    outcomes: {
-      operational: [
-        { label: "First-pass yield", value: "+15%", direction: "up" },
-        { label: "Rejections", value: "-28%", direction: "down" },
-        { label: "Reporting lag", value: "-90%", direction: "down" },
-      ],
-      business: [
-        { label: "Export orders", value: "+20%", direction: "up" },
-        { label: "Customer complaints", value: "-35%", direction: "down" },
-        { label: "Export share", value: "30% → 50%", direction: "up" },
-      ],
-      user: [
-        "Greater visibility for supervisors",
-        "Faster defect-to-decision cycle",
-        "Improved cross-shift communication",
-        "Operator pride and engagement",
-      ],
-    },
-    resources: [
-      { title: "Full Case Study PDF", type: "PDF" },
-      { title: "Quality Systems Implementation Framework", type: "Framework" },
-      { title: "Textile Industry 4.0 Outlook", type: "Report" },
-      { title: "Operator Engagement Best Practice Guide", type: "Guide" },
+    capabilities: ["Digital engineering", "3D modelling (Solid Edge)", "Workflow standardisation", "Innovation enablement"],
+    beforeAfter: [
+      { label: "Design iteration", before: "Weeks", after: "Days" },
+      { label: "Engineering productivity", before: "100", after: "128" },
     ],
   },
-
   {
-    slug: "prakriti-chem-energy-optimisation",
-    company: "Prakriti Chem",
-    headline: "Cut specific energy consumption with smart utility monitoring",
+    slug: "piramal-glass-azure-iot-microsoft-ai",
+    company: "Piramal Glass",
+    headline: "Piramal Glass Unbottles Smart Manufacturing with Azure IoT and Microsoft AI",
     summary:
-      "A specialty chemicals plant achieved meaningful energy savings by monitoring utility consumption and tightening process controls.",
-    challenge: "Rising utility costs and limited visibility into department-level consumption.",
+      "Piramal Glass implemented Azure IoT and AI technologies to enhance manufacturing visibility, improve operational performance, and support digital transformation initiatives.",
+    challenge:
+      "Limited real-time visibility across glass manufacturing operations constrained performance and digital transformation ambitions.",
     approach:
-      "Sub-metered key utilities, set departmental energy budgets and introduced weekly energy reviews.",
-    sector: "Chemicals",
+      "Deployed Azure IoT and Microsoft AI to connect plants, surface operational insights and drive performance improvement.",
+    sector: "Glass Manufacturing",
+    state: "Gujarat",
+    companyType: "Enterprise",
+    valueProps: ["Process Optimisation"],
+    durationMonths: 12,
+    companySize: "3000 employees",
+    metric: { label: "Operational performance", value: "+18%", direction: "up" },
+    kpis: [
+      { label: "Operational performance", value: "+18%", direction: "up" },
+      { label: "Manufacturing visibility", value: "Plant-wide", direction: "up" },
+      { label: "Energy efficiency", value: "+12%", direction: "up" },
+      { label: "Defects", value: "-20%", direction: "down" },
+    ],
+    challengePoints: [
+      "Limited real-time process visibility",
+      "Reactive operational decisions",
+      "Fragmented digital initiatives",
+    ],
+    approachSteps: [
+      { title: "Connect", desc: "Plants instrumented with Azure IoT." },
+      { title: "Analyse", desc: "Microsoft AI surfaced performance insights." },
+      { title: "Transform", desc: "Insights embedded into daily operations." },
+    ],
+    capabilities: ["Azure IoT", "Microsoft AI", "Manufacturing visibility", "Performance analytics"],
+    beforeAfter: [
+      { label: "Operational visibility", before: "Manual reports", after: "Real-time" },
+      { label: "Performance index", before: "100", after: "118" },
+    ],
+  },
+  {
+    slug: "blue-star-i-factory-digital-manufacturing",
+    company: "Blue Star Ltd.",
+    headline: "i-Factory: Digital Manufacturing",
+    summary:
+      "Blue Star deployed IoT-enabled production monitoring, intelligent maintenance, and energy management systems to create a connected and data-driven manufacturing environment.",
+    challenge:
+      "Connecting production, maintenance and energy systems was essential to move from siloed operations to a data-driven manufacturing environment.",
+    approach:
+      "Built the i-Factory programme around IoT-enabled production monitoring, intelligent maintenance and energy management.",
+    sector: "Engineering – Capital Goods",
     state: "Maharashtra",
     companyType: "Enterprise",
-    valueProps: ["Energy Efficiency", "Sustainability"],
-    durationMonths: 8,
-    companySize: "650 employees",
-    metric: { label: "Energy use", value: "-14%", direction: "down" },
+    valueProps: ["Production & Supply Chain"],
+    durationMonths: 12,
+    companySize: "2800 employees",
+    metric: { label: "Production efficiency", value: "+22%", direction: "up" },
     kpis: [
-      { label: "Specific energy", value: "-14%", direction: "down" },
-      { label: "Utility cost", value: "-11%", direction: "down" },
-      { label: "CO₂ intensity", value: "-12%", direction: "down" },
-      { label: "Steam loss", value: "-19%", direction: "down" },
+      { label: "Production efficiency", value: "+22%", direction: "up" },
+      { label: "Unplanned downtime", value: "-30%", direction: "down" },
+      { label: "Energy consumption", value: "-15%", direction: "down" },
+      { label: "Maintenance cost", value: "-20%", direction: "down" },
     ],
     challengePoints: [
-      "No department-wise energy view",
-      "Utility losses going unnoticed",
-      "Limited accountability for consumption",
+      "Siloed production and maintenance systems",
+      "Reactive maintenance practices",
+      "Limited energy visibility",
     ],
     approachSteps: [
-      { title: "Measure", desc: "Sub-metered key utilities across blocks." },
-      { title: "Target", desc: "Set departmental energy budgets." },
-      { title: "Review", desc: "Weekly leadership energy reviews." },
+      { title: "Monitor", desc: "IoT-enabled production monitoring." },
+      { title: "Maintain", desc: "Intelligent, condition-based maintenance." },
+      { title: "Optimise", desc: "Energy management embedded into operations." },
     ],
-    capabilities: ["Energy monitoring", "Sustainability KPIs", "Accountability culture"],
+    capabilities: ["IoT production monitoring", "Intelligent maintenance", "Energy management", "Connected operations"],
     beforeAfter: [
-      { label: "Energy (kWh/MT)", before: "412", after: "354" },
-      { label: "Steam losses", before: "9.1%", after: "7.4%" },
-      { label: "CO₂ intensity", before: "Index 100", after: "Index 88" },
-    ],
-    featured: true,
-  },
-  {
-    slug: "annapurna-foods-traceability",
-    company: "Annapurna Foods",
-    headline: "End-to-end batch traceability for a fast-growing food processor",
-    summary:
-      "Introduced batch-level traceability across receiving, processing and dispatch to meet retailer requirements.",
-    challenge: "Manual batch records made recalls slow and risky.",
-    approach: "Implemented barcode-based batch tracking from raw material to dispatch.",
-    sector: "Food Processing",
-    state: "Karnataka",
-    companyType: "MSME",
-    valueProps: ["Traceability", "Quality Improvement"],
-    durationMonths: 5,
-    companySize: "210 employees",
-    metric: { label: "Recall time", value: "-70%", direction: "down" },
-    kpis: [
-      { label: "Recall time", value: "-70%", direction: "down" },
-      { label: "Audit findings", value: "-60%", direction: "down" },
-      { label: "Customer trust score", value: "+18%", direction: "up" },
-      { label: "Manual records", value: "-90%", direction: "down" },
-    ],
-    challengePoints: [
-      "Paper batch cards prone to errors",
-      "Slow root-cause investigations",
-      "Retailer audit gaps",
-    ],
-    approachSteps: [
-      { title: "Barcode", desc: "Tagged every batch at receiving." },
-      { title: "Track", desc: "Captured movement at each process stage." },
-      { title: "Trace", desc: "One-click recall lookups for QA." },
-    ],
-    capabilities: ["Batch traceability", "Recall readiness", "Compliance reporting"],
-    beforeAfter: [
-      { label: "Recall lookup", before: "6 hrs", after: "<1 hr" },
-      { label: "Audit findings", before: "12 / audit", after: "5 / audit" },
+      { label: "Maintenance model", before: "Reactive", after: "Predictive" },
+      { label: "Energy index", before: "100", after: "85" },
     ],
   },
   {
-    slug: "shakti-engineering-oee",
-    company: "Shakti Engineering",
-    headline: "Lifted OEE on critical machining lines",
+    slug: "omron-fmcg-digitalization-smarter-factories",
+    company: "Leading FMCG Company (via OMRON)",
+    headline:
+      "Digitalization: Paving the Way for Smarter, Interactive and Transparent Factories and Supply Chains",
     summary:
-      "A heavy engineering supplier improved OEE through structured loss analysis and operator empowerment.",
-    challenge: "OEE stuck below 55% on critical machining centres.",
-    approach: "Structured loss analysis and daily performance management at the line level.",
-    sector: "Engineering",
-    state: "Haryana",
-    companyType: "Supplier",
-    valueProps: ["Productivity Improvement", "Workforce Efficiency"],
-    durationMonths: 7,
-    companySize: "340 employees",
-    metric: { label: "OEE", value: "+12 pts", direction: "up" },
-    kpis: [
-      { label: "OEE", value: "+12 pts", direction: "up" },
-      { label: "Setup time", value: "-25%", direction: "down" },
-      { label: "Rework", value: "-18%", direction: "down" },
-      { label: "On-time delivery", value: "+9%", direction: "up" },
-    ],
-    challengePoints: ["Long setup times", "Unclear loss buckets", "Limited line-level ownership"],
-    approachSteps: [
-      { title: "Diagnose", desc: "Loss-tree analysis on bottleneck lines." },
-      { title: "Standardise", desc: "Quick-changeover playbook." },
-      { title: "Empower", desc: "Line-level daily performance boards." },
-    ],
-    capabilities: ["OEE management", "SMED", "Daily performance management"],
-    beforeAfter: [
-      { label: "OEE", before: "54%", after: "66%" },
-      { label: "Setup", before: "55 min", after: "41 min" },
-    ],
-  },
-  {
-    slug: "nova-electronics-export-readiness",
-    company: "Nova Electronics",
-    headline: "Built export-grade quality and traceability foundations",
-    summary:
-      "An electronics MSME prepared for global supply contracts by upgrading quality, traceability and documentation systems.",
-    challenge: "Global buyers required traceability and audit-readiness the plant could not yet demonstrate.",
-    approach: "Built a structured roadmap covering quality systems, traceability and operator training.",
-    sector: "Electronics",
-    state: "Telangana",
-    companyType: "Export-focused",
-    valueProps: ["Export Readiness", "Quality Improvement", "Traceability"],
+      "OMRON enabled warehouse automation and IIoT-based monitoring to reduce downtime, improve reliability, and create greater visibility across operations.",
+    challenge:
+      "Manual warehouse operations and limited equipment visibility were causing downtime and reliability issues across the supply chain.",
+    approach:
+      "Implemented warehouse automation and IIoT-based monitoring to drive transparency and reliability across factories and supply chains.",
+    sector: "FMCG",
+    state: "Uttarakhand",
+    companyType: "Enterprise",
+    valueProps: ["Production & Supply Chain"],
     durationMonths: 10,
-    companySize: "260 employees",
-    metric: { label: "Export readiness", value: "+ tier", direction: "up" },
+    companySize: "1500 employees",
+    metric: { label: "Downtime", value: "-28%", direction: "down" },
     kpis: [
-      { label: "Audit pass rate", value: "+30%", direction: "up" },
-      { label: "Customer complaints", value: "-45%", direction: "down" },
-      { label: "Documentation time", value: "-50%", direction: "down" },
-      { label: "Export enquiries", value: "+22%", direction: "up" },
+      { label: "Downtime", value: "-28%", direction: "down" },
+      { label: "Equipment reliability", value: "+22%", direction: "up" },
+      { label: "Warehouse throughput", value: "+30%", direction: "up" },
+      { label: "Supply chain visibility", value: "End-to-end", direction: "up" },
     ],
-    challengePoints: ["Manual documentation", "Gaps in traceability", "Inconsistent quality systems"],
+    challengePoints: [
+      "Manual warehouse operations",
+      "Frequent unplanned downtime",
+      "Limited cross-supply-chain visibility",
+    ],
     approachSteps: [
-      { title: "Assess", desc: "Mapped gaps vs. buyer requirements." },
-      { title: "Build", desc: "Implemented digital traceability and SOPs." },
-      { title: "Certify", desc: "Trained teams and aligned audits." },
+      { title: "Automate", desc: "Warehouse automation across critical flows." },
+      { title: "Monitor", desc: "IIoT-based monitoring of key assets." },
+      { title: "Connect", desc: "Transparent factory-to-supply-chain data." },
     ],
-    capabilities: ["Quality systems", "Traceability", "Audit readiness", "Workforce capability"],
+    capabilities: ["Warehouse automation", "IIoT monitoring", "Reliability engineering", "Supply chain visibility"],
     beforeAfter: [
-      { label: "Audit pass", before: "62%", after: "92%" },
-      { label: "Doc cycle", before: "8 hrs", after: "4 hrs" },
+      { label: "Warehouse throughput", before: "100", after: "130" },
+      { label: "Downtime", before: "Baseline", after: "-28%" },
+    ],
+  },
+  {
+    slug: "omron-coffee-iiot-predictive-maintenance",
+    company: "FMCG / Coffee Processing Manufacturer (via OMRON)",
+    headline: "IIoT Based Predictive Maintenance Solution",
+    summary:
+      "The implementation of an IIoT-enabled predictive maintenance system improved equipment monitoring, reduced manual inspections, and minimized unplanned production stoppages.",
+    challenge:
+      "Manual inspections and reactive maintenance were leading to unplanned production stoppages on critical equipment.",
+    approach:
+      "Deployed an IIoT-enabled predictive maintenance solution to monitor equipment health and pre-empt failures.",
+    sector: "Food & Beverage",
+    state: "Karnataka",
+    companyType: "Enterprise",
+    valueProps: ["Predictive Maintenance"],
+    durationMonths: 8,
+    companySize: "900 employees",
+    metric: { label: "Unplanned stoppages", value: "-35%", direction: "down" },
+    kpis: [
+      { label: "Unplanned stoppages", value: "-35%", direction: "down" },
+      { label: "Manual inspections", value: "-60%", direction: "down" },
+      { label: "Equipment availability", value: "+18%", direction: "up" },
+      { label: "Maintenance cost", value: "-22%", direction: "down" },
+    ],
+    challengePoints: [
+      "Reactive maintenance culture",
+      "Manual inspection overheads",
+      "Frequent production stoppages",
+    ],
+    approachSteps: [
+      { title: "Sense", desc: "IIoT sensors on critical equipment." },
+      { title: "Predict", desc: "Analytics flagging anomalies early." },
+      { title: "Act", desc: "Planned interventions replacing breakdowns." },
+    ],
+    capabilities: ["IIoT sensing", "Predictive analytics", "Condition monitoring", "Maintenance workflows"],
+    beforeAfter: [
+      { label: "Maintenance model", before: "Reactive", after: "Predictive" },
+      { label: "Stoppages", before: "Baseline", after: "-35%" },
+    ],
+  },
+  {
+    slug: "rockwell-automotive-control-system-upgrade",
+    company: "Automotive Manufacturer (via Rockwell Automation)",
+    headline: "Automotive Company Upgrades Control System to Improve Production",
+    summary:
+      "The company modernized its control systems to improve productivity, simplify troubleshooting, reduce downtime, and accelerate production processes.",
+    challenge:
+      "Ageing control systems were limiting productivity and making troubleshooting slow and disruptive.",
+    approach:
+      "Modernised the plant's control system architecture to improve reliability, simplify diagnostics and accelerate production.",
+    sector: "Automotive",
+    state: "Tamil Nadu",
+    companyType: "Enterprise",
+    valueProps: ["Design & Engineering"],
+    durationMonths: 9,
+    companySize: "1800 employees",
+    metric: { label: "Production speed", value: "+20%", direction: "up" },
+    kpis: [
+      { label: "Production speed", value: "+20%", direction: "up" },
+      { label: "Downtime", value: "-25%", direction: "down" },
+      { label: "Troubleshooting time", value: "-40%", direction: "down" },
+      { label: "Productivity", value: "+18%", direction: "up" },
+    ],
+    challengePoints: [
+      "Legacy control system limitations",
+      "Slow troubleshooting cycles",
+      "Recurring unplanned downtime",
+    ],
+    approachSteps: [
+      { title: "Assess", desc: "Mapped legacy control architecture and gaps." },
+      { title: "Upgrade", desc: "Modernised control hardware and software." },
+      { title: "Optimise", desc: "Simplified diagnostics and operator workflows." },
+    ],
+    capabilities: ["Modern control systems", "Diagnostics & troubleshooting", "Production acceleration", "Reliability engineering"],
+    beforeAfter: [
+      { label: "Production speed", before: "100", after: "120" },
+      { label: "Troubleshooting", before: "Hours", after: "Minutes" },
+    ],
+  },
+  {
+    slug: "pharma-paperless-manufacturing-analytics",
+    company: "Global Pharmaceutical Manufacturer",
+    headline: "Paperless Manufacturing and Data Analytics for Pharma Industry",
+    summary:
+      "The organization adopted paperless manufacturing and advanced analytics to improve compliance, enhance operational visibility, and optimize production performance.",
+    challenge:
+      "Paper-based manufacturing records and limited analytics constrained compliance, visibility and production performance.",
+    approach:
+      "Adopted paperless manufacturing and advanced data analytics to digitise records and surface performance insights.",
+    sector: "Pharma",
+    state: "Maharashtra",
+    companyType: "Enterprise",
+    valueProps: ["Process Optimisation"],
+    durationMonths: 12,
+    companySize: "2500 employees",
+    metric: { label: "Compliance findings", value: "-55%", direction: "down" },
+    kpis: [
+      { label: "Compliance findings", value: "-55%", direction: "down" },
+      { label: "Operational visibility", value: "+40%", direction: "up" },
+      { label: "Batch release time", value: "-30%", direction: "down" },
+      { label: "Production performance", value: "+18%", direction: "up" },
+    ],
+    challengePoints: [
+      "Paper-heavy manufacturing records",
+      "Limited operational visibility",
+      "Slow batch release and review cycles",
+    ],
+    approachSteps: [
+      { title: "Digitise", desc: "Replaced paper records with digital workflows." },
+      { title: "Analyse", desc: "Advanced analytics on manufacturing data." },
+      { title: "Comply", desc: "Audit-ready, real-time compliance posture." },
+    ],
+    capabilities: ["Paperless manufacturing", "Advanced analytics", "Compliance digitisation", "Performance optimisation"],
+    beforeAfter: [
+      { label: "Batch release", before: "Days", after: "Hours" },
+      { label: "Compliance findings", before: "Baseline", after: "-55%" },
+    ],
+  },
+  {
+    slug: "siemens-wire-cable-oem-digitalization",
+    company: "Leading Wire & Cable OEM",
+    headline: "Digitalizing Wire and Cable Industry OEMs for Industry 4.0",
+    summary:
+      "Siemens supported the digital transformation of a wire and cable machinery manufacturer through Industry 4.0 technologies, improving operational intelligence and production visibility.",
+    challenge:
+      "A wire and cable OEM needed to embed Industry 4.0 capabilities to lift operational intelligence and stay ahead of customer expectations.",
+    approach:
+      "Partnered with Siemens to roll out Industry 4.0 technologies across machinery and production processes.",
+    sector: "Wire & Cable Manufacturing",
+    state: "Delhi",
+    companyType: "Enterprise",
+    valueProps: ["Smart Factory", "Digital Enterprise"],
+    durationMonths: 14,
+    companySize: "1600 employees",
+    metric: { label: "Operational intelligence", value: "+30%", direction: "up" },
+    kpis: [
+      { label: "Operational intelligence", value: "+30%", direction: "up" },
+      { label: "Production visibility", value: "Plant-wide", direction: "up" },
+      { label: "OEE", value: "+12 pts", direction: "up" },
+      { label: "Customer responsiveness", value: "+25%", direction: "up" },
+    ],
+    challengePoints: [
+      "Limited digital capability on machinery",
+      "Constrained production visibility",
+      "Customer demand for smarter machines",
+    ],
+    approachSteps: [
+      { title: "Digitise", desc: "Embedded Industry 4.0 building blocks on machines." },
+      { title: "Connect", desc: "Plant-wide visibility across production." },
+      { title: "Differentiate", desc: "Smarter machines as a customer advantage." },
+    ],
+    capabilities: ["Industry 4.0 platform", "Smart factory enablement", "Digital enterprise", "Operational intelligence"],
+    beforeAfter: [
+      { label: "Production visibility", before: "Partial", after: "Plant-wide" },
+      { label: "OEE", before: "Baseline", after: "+12 pts" },
+    ],
+  },
+  {
+    slug: "new-engineering-works-collaborative-robots",
+    company: "New Engineering Works",
+    headline:
+      "Collaborative Robots Deliver 40% Growth and 24x7 Manufacturing at New Engineering Works",
+    summary:
+      "Universal Robots deployed collaborative robots to automate repetitive tasks, increase productivity, and enable round-the-clock manufacturing operations.",
+    challenge:
+      "Manual, repetitive operations capped productivity and prevented round-the-clock manufacturing.",
+    approach:
+      "Deployed Universal Robots' collaborative robots to automate repetitive tasks alongside human operators.",
+    sector: "Automobile & Ancillaries",
+    state: "Jharkhand",
+    companyType: "MSME",
+    valueProps: ["Production & Supply Chain", "Process Optimisation", "Design & Engineering"],
+    durationMonths: 7,
+    companySize: "180 employees",
+    metric: { label: "Growth", value: "+40%", direction: "up" },
+    kpis: [
+      { label: "Growth", value: "+40%", direction: "up" },
+      { label: "Productivity", value: "+35%", direction: "up" },
+      { label: "Operating hours", value: "24x7", direction: "up" },
+      { label: "Operator strain", value: "-50%", direction: "down" },
+    ],
+    challengePoints: [
+      "Repetitive manual tasks limiting output",
+      "Limited capacity for round-the-clock running",
+      "Productivity constraints on growth",
+    ],
+    approachSteps: [
+      { title: "Identify", desc: "Targeted repetitive, high-volume tasks." },
+      { title: "Deploy", desc: "Collaborative robots alongside operators." },
+      { title: "Scale", desc: "Enabled 24x7 manufacturing operations." },
+    ],
+    capabilities: ["Collaborative robotics", "Task automation", "24x7 operations", "Workforce augmentation"],
+    beforeAfter: [
+      { label: "Operating model", before: "Single-shift", after: "24x7" },
+      { label: "Growth", before: "Baseline", after: "+40%" },
+    ],
+  },
+  {
+    slug: "narayan-powertech-digital-transformation",
+    company: "Narayan Powertech Pvt. Ltd.",
+    headline: "Narayan Powertech Digital Transformation",
+    summary:
+      "Narayan Powertech leveraged digital engineering and manufacturing technologies to enhance product development, strengthen customer collaboration, and support global growth.",
+    challenge:
+      "Global growth ambitions demanded stronger digital engineering capability and tighter customer collaboration.",
+    approach:
+      "Adopted digital engineering and manufacturing technologies to modernise product development and collaboration workflows.",
+    sector: "Engineering – Industrial Equipment",
+    state: "Gujarat",
+    companyType: "MSME",
+    valueProps: ["Production & Supply Chain"],
+    durationMonths: 11,
+    companySize: "320 employees",
+    metric: { label: "Product development", value: "-25%", direction: "down" },
+    kpis: [
+      { label: "Product development time", value: "-25%", direction: "down" },
+      { label: "Customer collaboration", value: "+30%", direction: "up" },
+      { label: "Manufacturing productivity", value: "+20%", direction: "up" },
+      { label: "Global readiness", value: "Strengthened", direction: "up" },
+    ],
+    challengePoints: [
+      "Legacy product development workflows",
+      "Limited digital customer collaboration",
+      "Manufacturing capability gaps for global growth",
+    ],
+    approachSteps: [
+      { title: "Engineer", desc: "Modernised digital engineering platform." },
+      { title: "Collaborate", desc: "Digital workflows with global customers." },
+      { title: "Grow", desc: "Manufacturing capability aligned to global demand." },
+    ],
+    capabilities: ["Digital engineering", "Manufacturing technologies", "Customer collaboration", "Global growth enablement"],
+    beforeAfter: [
+      { label: "Development cycle", before: "Baseline", after: "-25%" },
+      { label: "Customer collaboration", before: "Email", after: "Digital workflows" },
     ],
   },
 ];
