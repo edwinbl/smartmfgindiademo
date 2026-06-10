@@ -240,7 +240,7 @@ const CaseStudiesIndex = () => {
             {/* Sidebar */}
             <aside className="hidden lg:block">
               <div className="sticky top-[96px] space-y-6">
-                <FilterGroup title="Sector" value={sector} setValue={(v) => setSector(v as Sector | "all")} options={sectors} />
+                <FilterGroup title="Sector" value={sector} setValue={(v) => setSector(v)} options={sectors} />
                 <FilterGroup title="State" value={state} setValue={setState} options={states} />
                 <FilterGroup title="Company type" value={companyType} setValue={(v) => setCompanyType(v as CompanyType | "all")} options={companyTypes} />
                 <FilterGroup title="Value proposition" value={vp} setValue={(v) => setVp(v as ValueProp | "all")} options={valueProps} />
