@@ -76,6 +76,13 @@ export interface CaseStudy {
   workforceTransformation?: WorkforceShift;
   testimonial?: Testimonial;
   replicationInsights?: string[];
+  // New rich blueprint fields (with synth fallbacks)
+  technologies?: string[];
+  solutionGroups?: { title: string; points: string[] }[];
+  businessChallenges?: { title: string; desc: string }[];
+  businessOutcomes?: { title: string; impact: string }[];
+  benefitsTable?: { area: string; impact: string }[];
+  relatedSolutionAreas?: string[];
 }
 
 export const sectors: Sector[] = [
