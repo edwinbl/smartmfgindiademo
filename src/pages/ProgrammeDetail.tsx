@@ -27,14 +27,13 @@ import { ProgrammePresentations } from "@/components/programmes/detail/Programme
 import { ProgrammeRecording } from "@/components/programmes/detail/ProgrammeRecording";
 import { RelatedProgrammes } from "@/components/programmes/detail/RelatedProgrammes";
 import { MobileStickyRegister } from "@/components/programmes/detail/MobileStickyRegister";
-import { ProgrammeRegisterModal } from "@/components/programmes/ProgrammeRegisterModal";
 import { getProgrammeBySlug, getRelatedProgrammes } from "@/data/programmes";
+import { toast } from "@/hooks/use-toast";
 
 const ProgrammeDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const programme = slug ? getProgrammeBySlug(slug) : undefined;
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedBatchId, setSelectedBatchId] = useState<string | undefined>();
+  const [, setSelectedBatchId] = useState<string | undefined>();
 
   if (!programme) {
     return (
@@ -69,9 +68,9 @@ const ProgrammeDetail = () => {
         }
       }
       setSelectedBatchId(batchId ?? programme.batches?.[0]?.id);
-      setModalOpen(true);
+      toast({ title: "Registration started", description: programme.title });
     },
-    [hasMultipleBatches, programme.batches]
+    [hasMultipleBatches, programme.batches, programme.title]
   );
 
   const metaDescription = useMemo(() => {
@@ -152,12 +151,6 @@ const ProgrammeDetail = () => {
       <WireFooter />
       <WireChatbotFAB />
       <MobileStickyRegister programme={programme} onRegister={() => onRegister()} />
-      <ProgrammeRegisterModal
-        open={modalOpen}
-        onOpenChange={setModalOpen}
-        programme={programme}
-        batchId={selectedBatchId}
-      />
     </div>
   );
 };
