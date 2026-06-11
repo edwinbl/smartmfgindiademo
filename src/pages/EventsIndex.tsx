@@ -12,12 +12,10 @@ import {
 import { EventsFilterSidebar } from "@/components/events/EventsFilterSidebar";
 import { EventCard } from "@/components/events/EventCard";
 import { EventsEmptyState } from "@/components/events/EventsEmptyState";
-import { PersonalizedEventsShelf } from "@/components/events/PersonalizedEventsShelf";
 import { EventsImpactStats } from "@/components/events/EventsImpactStats";
 import { PastEventsArchive } from "@/components/events/PastEventsArchive";
 import { RecentlyConcludedShelf } from "@/components/events/RecentlyConcludedShelf";
 import { CIISignatureEvents } from "@/components/events/CIISignatureEvents";
-import { RegisterEventModal } from "@/components/events/RegisterEventModal";
 import {
   events,
   getFlagship,
@@ -26,7 +24,6 @@ import {
   type EventItem,
   type QuickPickId,
 } from "@/data/events";
-import { useMockAuth } from "@/hooks/useMockAuth";
 import { toast } from "@/hooks/use-toast";
 import { eventsStorage } from "@/lib/eventsStorage";
 
