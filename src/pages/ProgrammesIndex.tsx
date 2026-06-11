@@ -160,17 +160,11 @@ const ProgrammesIndex = () => {
             </div>
           </div>
         </section>
-        {user && <PersonalizedProgrammesShelf user={user} onRegister={handleRegister} />}
         <ProgrammesImpactStats />
         <PastProgrammesArchive />
       </main>
       <WireFooter />
       <WireChatbotFAB />
-      <ProgrammeRegisterModal
-        open={modalProgramme !== null}
-        onOpenChange={(v) => !v && setModalProgramme(null)}
-        programme={modalProgramme}
-      />
     </div>
   );
 };
