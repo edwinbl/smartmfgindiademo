@@ -1,5 +1,4 @@
 import { useParams, Link } from "react-router-dom";
-import { useParams, Link } from "react-router-dom";
 
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
@@ -20,8 +19,6 @@ import { EventCard } from "@/components/events/EventCard";
 const EventDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const event = slug ? getEventBySlug(slug) : undefined;
-  const user = useMockAuth();
-  const [modalOpen, setModalOpen] = useState(false);
 
   if (!event) {
     return (
