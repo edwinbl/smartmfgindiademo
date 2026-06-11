@@ -48,12 +48,10 @@ const quickPickFilter = (e: EventItem, pick: QuickPickId | null): boolean => {
 };
 
 const EventsIndex = () => {
-  const user = useMockAuth();
   const [type, setType] = useState<string>("All");
   const [query, setQuery] = useState("");
   const [filters, setFilters] = useState<EventFilters>(emptyEventFilters);
   const [quickPick, setQuickPick] = useState<QuickPickId | null>(null);
-  const [modalEvent, setModalEvent] = useState<EventItem | null>(null);
 
   const upcoming = useMemo(() => getUpcoming(), []);
 
@@ -84,10 +82,6 @@ const EventsIndex = () => {
   }, [upcoming]);
 
   const handleRegister = (e: EventItem) => {
-    if (!user) {
-      setModalEvent(e);
-      return;
-    }
     eventsStorage.addRegistered(e.slug);
     toast({ title: "You're registered", description: e.title });
   };
