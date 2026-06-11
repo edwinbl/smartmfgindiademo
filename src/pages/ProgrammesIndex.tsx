@@ -39,13 +39,11 @@ const quickPickFilter = (p: ProgrammeItem, pick: ProgrammeQuickPickId | null): b
 };
 
 const ProgrammesIndex = () => {
-  const user = useMockAuth();
   const [type, setType] = useState<string>("All");
   const [query, setQuery] = useState("");
   const [filters, setFilters] = useState<ProgrammeFilters>(emptyProgrammeFilters);
   const [quickPick, setQuickPick] = useState<ProgrammeQuickPickId | null>(null);
   const [outcome, setOutcome] = useState<OutcomeId | null>(null);
-  const [modalProgramme, setModalProgramme] = useState<ProgrammeItem | null>(null);
   const gridRef = useRef<HTMLElement>(null);
 
   const filtered = useMemo(() => {
@@ -76,7 +74,9 @@ const ProgrammesIndex = () => {
     return c;
   }, []);
 
-  const handleRegister = (p: ProgrammeItem) => setModalProgramme(p);
+  const handleRegister = (p: ProgrammeItem) => {
+    toast({ title: "Registration started", description: p.title });
+  };
   const handleOutcome = (id: OutcomeId | null) => {
     setOutcome(id);
     if (id) setTimeout(() => gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 150);
