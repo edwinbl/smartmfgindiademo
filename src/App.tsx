@@ -20,11 +20,6 @@ const EventsIndex = lazy(routeLoaders["/events"]);
 const EventDetail = lazy(routeLoaders["/events/:slug"]);
 const ProgrammesIndex = lazy(routeLoaders["/programmes"]);
 const ProgrammeDetail = lazy(routeLoaders["/programmes/:slug"]);
-const Login = lazy(routeLoaders["/login"]);
-const Register = lazy(routeLoaders["/register"]);
-const Welcome = lazy(routeLoaders["/welcome"]);
-const ForgotPassword = lazy(routeLoaders["/forgot-password"]);
-const ResetPassword = lazy(routeLoaders["/reset-password"]);
 const NotFound = lazy(routeLoaders["*"]);
 const Terms = lazy(routeLoaders["/terms"]);
 const Privacy = lazy(routeLoaders["/privacy"]);
@@ -90,11 +85,6 @@ const App = () => (
               <Route path="/events/:slug" element={withSuspense(<EventDetail />, "detail")} />
               <Route path="/programmes" element={withSuspense(<ProgrammesIndex />, "list")} />
               <Route path="/programmes/:slug" element={withSuspense(<ProgrammeDetail />, "detail")} />
-              <Route path="/login" element={withSuspense(<Login />, "form")} />
-              <Route path="/register" element={withSuspense(<Register />, "form")} />
-              <Route path="/welcome" element={withSuspense(<Welcome />, "form")} />
-              <Route path="/forgot-password" element={withSuspense(<ForgotPassword />, "form")} />
-              <Route path="/reset-password" element={withSuspense(<ResetPassword />, "form")} />
               <Route path="/terms" element={withSuspense(<Terms />, "detail")} />
               <Route path="/privacy" element={withSuspense(<Privacy />, "detail")} />
               <Route path="/accessibility" element={withSuspense(<Accessibility />, "detail")} />
