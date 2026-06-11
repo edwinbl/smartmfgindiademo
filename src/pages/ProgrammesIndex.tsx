@@ -16,8 +16,6 @@ import { ProgrammeCard } from "@/components/programmes/ProgrammeCard";
 import { ProgrammesEmptyState } from "@/components/programmes/ProgrammesEmptyState";
 import { FeaturedProgrammes } from "@/components/programmes/FeaturedProgrammes";
 import { ProgrammesImpactStats } from "@/components/programmes/ProgrammesImpactStats";
-import { PersonalizedProgrammesShelf } from "@/components/programmes/PersonalizedProgrammesShelf";
-import { ProgrammeRegisterModal } from "@/components/programmes/ProgrammeRegisterModal";
 import {
   programmes,
   programmeTypes,
@@ -25,7 +23,7 @@ import {
   type ProgrammeQuickPickId,
   type OutcomeId,
 } from "@/data/programmes";
-import { useMockAuth } from "@/hooks/useMockAuth";
+import { toast } from "@/hooks/use-toast";
 
 const quickPickFilter = (p: ProgrammeItem, pick: ProgrammeQuickPickId | null): boolean => {
   if (!pick) return true;
