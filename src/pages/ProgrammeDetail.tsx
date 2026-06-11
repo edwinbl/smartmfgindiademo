@@ -68,9 +68,9 @@ const ProgrammeDetail = () => {
         }
       }
       setSelectedBatchId(batchId ?? programme.batches?.[0]?.id);
-      setModalOpen(true);
+      toast({ title: "Registration started", description: programme.title });
     },
-    [hasMultipleBatches, programme.batches]
+    [hasMultipleBatches, programme.batches, programme.title]
   );
 
   const metaDescription = useMemo(() => {
@@ -151,12 +151,6 @@ const ProgrammeDetail = () => {
       <WireFooter />
       <WireChatbotFAB />
       <MobileStickyRegister programme={programme} onRegister={() => onRegister()} />
-      <ProgrammeRegisterModal
-        open={modalOpen}
-        onOpenChange={setModalOpen}
-        programme={programme}
-        batchId={selectedBatchId}
-      />
     </div>
   );
 };
