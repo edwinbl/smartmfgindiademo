@@ -89,7 +89,7 @@ const ReportsIndex = () => {
       <WireHeader />
       <main>
         <ReportsHero query={query} onQuery={setQuery} onTag={setQuery} />
-        {user && <PersonalizedShelf user={user} />}
+        
         <FeaturedCollections />
 
         {/* CII Reports */}
@@ -160,11 +160,6 @@ const ReportsIndex = () => {
       </main>
       <WireFooter />
       <WireChatbotFAB />
-      <DownloadModal
-        open={modalReport !== null}
-        onOpenChange={(v) => !v && setModalReport(null)}
-        report={modalReport}
-      />
     </div>
   );
 };

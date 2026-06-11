@@ -14,17 +14,13 @@ import { ReportPreview } from "@/components/reports/ReportPreview";
 import { ReportDownloadModule } from "@/components/reports/ReportDownloadModule";
 import { ReportRelated } from "@/components/reports/ReportRelated";
 import { ReportEcosystemRecommendations } from "@/components/reports/ReportEcosystemRecommendations";
-import { DownloadModal } from "@/components/reports/DownloadModal";
 import { getReportBySlug, getRelated } from "@/data/reports";
 import { reportsStorage } from "@/lib/reportsStorage";
-import { useMockAuth } from "@/hooks/useMockAuth";
 import { toast } from "@/hooks/use-toast";
 
 const ReportDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const report = slug ? getReportBySlug(slug) : undefined;
-  const user = useMockAuth();
-  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     if (slug) reportsStorage.pushRecent(slug);
