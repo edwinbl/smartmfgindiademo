@@ -39,10 +39,6 @@ const EventDetail = () => {
   }
 
   const handleRegister = () => {
-    if (!user) {
-      setModalOpen(true);
-      return;
-    }
     eventsStorage.addRegistered(event.slug);
     toast({ title: "You're registered", description: event.title });
   };
@@ -86,7 +82,7 @@ const EventDetail = () => {
               </h2>
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {related.map((e) => (
-                  <EventCard key={e.slug} event={e} onRegister={() => setModalOpen(true)} />
+                  <EventCard key={e.slug} event={e} onRegister={handleRegister} />
                 ))}
               </div>
             </div>
@@ -96,7 +92,7 @@ const EventDetail = () => {
       </main>
       <WireFooter />
       <WireChatbotFAB />
-      <RegisterEventModal open={modalOpen} onOpenChange={setModalOpen} event={event} />
+      
     </div>
   );
 };
