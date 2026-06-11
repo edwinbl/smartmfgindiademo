@@ -45,10 +45,6 @@ const ReportDetail = () => {
   }
 
   const handleDownload = () => {
-    if (report.gated && !user) {
-      setModalOpen(true);
-      return;
-    }
     toast({ title: "Download started", description: report.title });
   };
 
@@ -82,7 +78,7 @@ const ReportDetail = () => {
       </main>
       <WireFooter />
       <WireChatbotFAB />
-      <DownloadModal open={modalOpen} onOpenChange={setModalOpen} report={report} />
+      
     </div>
   );
 };
