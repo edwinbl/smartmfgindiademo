@@ -118,7 +118,7 @@ const EventsIndex = () => {
       <main>
         <EventsFlagshipHero event={flagship} query={query} onQuery={setQuery} />
         <CIISignatureEvents onRegister={handleRegister} />
-        {user && <PersonalizedEventsShelf user={user} onRegister={handleRegister} />}
+        
         <section className="py-12 md:py-16" id="all-events">
           <div className="container-cii">
             <div className="mb-8">
@@ -164,11 +164,6 @@ const EventsIndex = () => {
       </main>
       <WireFooter />
       <WireChatbotFAB />
-      <RegisterEventModal
-        open={modalEvent !== null}
-        onOpenChange={(v) => !v && setModalEvent(null)}
-        event={modalEvent}
-      />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import { useParams, Link } from "react-router-dom";
 
 import { WireHeader } from "@/components/wireframe/WireHeader";
@@ -12,9 +12,7 @@ import { WorkshopPostDetail } from "@/components/events/detail/WorkshopPostDetai
 import { SummitDetail } from "@/components/events/detail/SummitDetail";
 import { RoundtableDetail } from "@/components/events/detail/RoundtableDetail";
 import { ProgrammeDetail } from "@/components/events/detail/ProgrammeDetail";
-import { RegisterEventModal } from "@/components/events/RegisterEventModal";
 import { getEventBySlug, getRelatedEvents } from "@/data/events";
-import { useMockAuth } from "@/hooks/useMockAuth";
 import { toast } from "@/hooks/use-toast";
 import { eventsStorage } from "@/lib/eventsStorage";
 import { EventCard } from "@/components/events/EventCard";
