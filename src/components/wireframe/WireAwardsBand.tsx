@@ -1,6 +1,10 @@
 import { Trophy, ArrowRight, Award, Factory, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import winnerBosch from "@/assets/winner-bosch.jpg";
+import winnerPlastech from "@/assets/winner-plastech.jpg";
+import winnerSetco from "@/assets/winner-setco.jpg";
+import winnerSiemens from "@/assets/winner-siemens.jpg";
 
 const winners = [
   {
@@ -10,6 +14,7 @@ const winners = [
     sector: "Automobile & Ancillaries",
     state: "Karnataka",
     size: "Enterprise",
+    image: winnerBosch,
   },
   {
     slug: "plastech-adding-smart-to-factories",
@@ -18,6 +23,7 @@ const winners = [
     sector: "Automotive Components Manufacturing",
     state: "Maharashtra",
     size: "MSME",
+    image: winnerPlastech,
   },
   {
     slug: "setco-teamcenter-real-time-collaboration",
@@ -26,6 +32,7 @@ const winners = [
     sector: "Automobile & Ancillaries",
     state: "Maharashtra",
     size: "MSME",
+    image: winnerSetco,
   },
   {
     slug: "siemens-warehouse-digital-enterprise",
@@ -34,6 +41,7 @@ const winners = [
     sector: "Warehouse Automation & Material Handling",
     state: "Delhi",
     size: "Enterprise",
+    image: winnerSiemens,
   },
 ];
 
