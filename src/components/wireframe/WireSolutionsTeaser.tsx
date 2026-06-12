@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { WireSection } from "./WireSection";
 import { TrendingUp, ShieldCheck, Network, Timer, Zap, CalendarClock, ArrowRight } from "lucide-react";
 
@@ -5,31 +6,37 @@ const solutions = [
   {
     icon: TrendingUp,
     title: "Improve productivity",
+    id: "productivity",
     desc: "Boost operational efficiency by reducing manual tasks and optimizing machine and workforce performance.",
   },
   {
     icon: ShieldCheck,
     title: "Improve quality",
+    id: "quality",
     desc: "Standardise quality systems and reduce defects across the shopfloor.",
   },
   {
     icon: Network,
     title: "Strengthen traceability",
+    id: "traceability",
     desc: "Track materials, processes and products end-to-end across the value chain.",
   },
   {
     icon: Timer,
     title: "Reduce downtime",
+    id: "downtime",
     desc: "Predict and prevent machine downtime with smart monitoring and analytics.",
   },
   {
     icon: Zap,
     title: "Improve energy efficiency",
+    id: "energy",
     desc: "Cut energy costs and emissions through real-time consumption insight.",
   },
   {
     icon: CalendarClock,
     title: "Improve planning",
+    id: "planning",
     desc: "Improve production planning with real-time insights, forecasting and smarter resource allocation.",
   },
 ];
@@ -54,7 +61,11 @@ export const WireSolutionsTeaser = () => {
         {solutions.map((s) => {
           const Icon = s.icon;
           return (
-            <article key={s.title} className="cii-card p-6 group relative overflow-hidden">
+            <Link
+              key={s.title}
+              to={`/knowledge-hub/${s.id}`}
+              className="cii-card p-6 group relative overflow-hidden"
+            >
               <div className="flex items-start gap-4">
                 <div className="h-11 w-11 rounded-md grid place-items-center bg-[hsl(var(--navy-100))] text-navy-700 shrink-0">
                   <Icon className="h-5 w-5" />
@@ -65,7 +76,10 @@ export const WireSolutionsTeaser = () => {
                 </div>
               </div>
               <div className="absolute right-0 top-0 h-1 w-0 bg-cii-red transition-all group-hover:w-full" />
-            </article>
+              <div className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-[hsl(var(--red-600))] opacity-0 group-hover:opacity-100 transition-opacity">
+                Explore outcome <ArrowRight className="h-3 w-3" />
+              </div>
+            </Link>
           );
         })}
       </div>
