@@ -1,4 +1,4 @@
-import { TrendingUp, Globe2, Leaf, Eye, ArrowRight } from "lucide-react";
+import { TrendingUp, ShieldCheck, Network, Timer, Zap, CalendarClock, ArrowRight } from "lucide-react";
 
 interface Props {
   onSelect?: (tag: string) => void;
@@ -7,9 +7,9 @@ interface Props {
 const themes = [
   {
     key: "Productivity",
-    title: "Improve Productivity",
+    title: "Improve productivity",
     description:
-      "Operational excellence, automation and digital shop-floor reports to lift output and efficiency.",
+      "Boost operational efficiency by reducing manual tasks and optimizing machine and workforce performance.",
     Icon: TrendingUp,
     stat: "32+ reports",
     gradient:
@@ -17,37 +17,59 @@ const themes = [
     accent: "hsl(var(--orange-500))",
   },
   {
-    key: "Export Competitiveness",
-    title: "Export Competitiveness",
+    key: "Quality",
+    title: "Improve quality",
     description:
-      "Global readiness pathways, compliance frameworks and corridors mapped for Indian manufacturers.",
-    Icon: Globe2,
-    stat: "18+ reports",
+      "Standardise quality systems and reduce defects across the shopfloor.",
+    Icon: ShieldCheck,
+    stat: "22+ reports",
     gradient:
       "linear-gradient(135deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
     accent: "hsl(var(--orange-100))",
   },
   {
-    key: "Sustainability",
-    title: "Sustainability & Energy",
+    key: "Traceability",
+    title: "Strengthen traceability",
     description:
-      "Decarbonisation, circularity and energy-efficiency intelligence shaping the next decade.",
-    Icon: Leaf,
+      "Track materials, processes and products end-to-end across the value chain.",
+    Icon: Network,
+    stat: "21+ reports",
+    gradient:
+      "linear-gradient(135deg, hsl(var(--navy-900)), hsl(var(--navy-600)))",
+    accent: "hsl(var(--navy-100))",
+  },
+  {
+    key: "Downtime",
+    title: "Reduce downtime",
+    description:
+      "Predict and prevent machine downtime with smart monitoring and analytics.",
+    Icon: Timer,
+    stat: "16+ reports",
+    gradient:
+      "linear-gradient(135deg, hsl(var(--navy-700)), hsl(var(--red-600)))",
+    accent: "hsl(var(--red-100))",
+  },
+  {
+    key: "Energy Efficiency",
+    title: "Improve energy efficiency",
+    description:
+      "Cut energy costs and emissions through real-time consumption insight.",
+    Icon: Zap,
     stat: "24+ reports",
     gradient:
       "linear-gradient(135deg, hsl(var(--india-green)), hsl(var(--navy-700)))",
     accent: "hsl(var(--india-green))",
   },
   {
-    key: "Traceability",
-    title: "Traceability & Visibility",
+    key: "Planning",
+    title: "Improve planning",
     description:
-      "Data-driven visibility, IIoT and supply-chain traceability research for resilient operations.",
-    Icon: Eye,
-    stat: "21+ reports",
+      "Improve production planning with real-time insights, forecasting and smarter resource allocation.",
+    Icon: CalendarClock,
+    stat: "19+ reports",
     gradient:
-      "linear-gradient(135deg, hsl(var(--navy-900)), hsl(var(--navy-600)))",
-    accent: "hsl(var(--navy-100))",
+      "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--orange-500)))",
+    accent: "hsl(var(--orange-100))",
   },
 ];
 
