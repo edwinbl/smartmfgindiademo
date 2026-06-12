@@ -57,7 +57,7 @@ const SolutionsIndex = () => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Solutions — CII Smart Manufacturing",
+    name: "Knowledge Hub — CII Smart Manufacturing",
     description: "Find practical solution pathways for your manufacturing challenges.",
     url: "https://smartmfgindia-demo4.bluelup.in/solutions",
   };
@@ -65,7 +65,7 @@ const SolutionsIndex = () => {
   return (
     <div className="min-h-dvh bg-background text-foreground">
       <SEO
-        title="Solutions — Practical Pathways for Manufacturing Outcomes"
+        title="Knowledge Hub — Practical Pathways for Manufacturing Outcomes"
         description="Explore solution areas linked to the outcomes manufacturers care about — productivity, quality, traceability, energy, competitiveness."
         jsonLd={jsonLd}
       />
@@ -129,7 +129,7 @@ const SolutionsIndex = () => {
                       <span>{o.caseCount} cases</span>
                     </div>
                     <div className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-[hsl(var(--red-600))] opacity-0 group-hover:opacity-100 transition-opacity">
-                      Explore Solutions <ArrowRight className="h-3 w-3" />
+                      Explore Knowledge Hub <ArrowRight className="h-3 w-3" />
                     </div>
                   </button>
                 );
@@ -310,7 +310,7 @@ const SolutionsHero = ({ query, onQuery }: { query: string; onQuery: (v: string)
       <div className="container-cii relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-center py-10">
         <div className="lg:col-span-7 animate-fade-in">
           <span className="cii-chip">
-            <Sparkles className="h-3.5 w-3.5" /> Solutions &amp; Pathways
+            <Sparkles className="h-3.5 w-3.5" /> Knowledge Hub
           </span>
 
           <h1 className="font-display mt-5 text-[34px] sm:text-5xl lg:text-[52px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">

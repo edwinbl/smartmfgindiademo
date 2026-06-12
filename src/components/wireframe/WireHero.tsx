@@ -57,7 +57,7 @@ export const WireHero = () => {
               Access Maturity Assessments <ArrowRight className="!h-4 !w-4" />
             </Link>
             <Link to="/solutions" className="btn-ghost">
-              Explore Solutions
+              Explore Knowledge Hub
             </Link>
           </div>
 

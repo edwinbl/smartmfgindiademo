@@ -27,12 +27,12 @@ const recos = [
     accent: "hsl(var(--orange-500))",
   },
   {
-    title: "Discover Solutions",
+    title: "Explore the Knowledge Hub",
     description:
       "Connect with ecosystem partners delivering the capabilities you need.",
     Icon: Layers,
-    to: "/about",
-    cta: "View solutions",
+    to: "/solutions",
+    cta: "Open Knowledge Hub",
     accent: "hsl(var(--india-green))",
   },
   {

@@ -183,8 +183,8 @@ const RELATED_MODULES = [
   },
   {
     Icon: Layers,
-    title: "Solutions",
-    body: "Curated Industry 4.0 solutions mapped to outcomes.",
+    title: "Knowledge Hub",
+    body: "Curated Industry 4.0 solution areas mapped to outcomes.",
     to: "/solutions",
   },
   {

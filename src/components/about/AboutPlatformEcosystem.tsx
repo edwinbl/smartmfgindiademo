@@ -21,8 +21,8 @@ const modules = [
   },
   {
     icon: Cpu,
-    label: "Solutions Ecosystem",
-    desc: "Tech for every stage",
+    label: "Knowledge Hub",
+    desc: "Solution areas & insights",
     href: "/solutions",
     color: "hsl(var(--navy-700))",
     tint: "hsl(var(--navy-700) / 0.10)",
