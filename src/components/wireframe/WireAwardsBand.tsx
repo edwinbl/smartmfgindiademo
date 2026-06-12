@@ -17,8 +17,6 @@ const winners = [
     headline: "Adding ‘SMART’ to Factories",
     sector: "Automotive Components Manufacturing",
     state: "Maharashtra",
-    metricLabel: "OEE",
-    metricValue: "+14 pts",
     size: "MSME",
   },
   {
@@ -27,8 +25,6 @@ const winners = [
     headline: "Real-Time Collaboration Between U.K. and India Teams Through Teamcenter",
     sector: "Automobile & Ancillaries",
     state: "Maharashtra",
-    metricLabel: "Development cycle",
-    metricValue: "-30%",
     size: "MSME",
   },
   {
@@ -37,8 +33,6 @@ const winners = [
     headline: "Transforming Warehouse & Material Handling with Digital Enterprise",
     sector: "Warehouse Automation & Material Handling",
     state: "Delhi",
-    metricLabel: "Time-to-Market",
-    metricValue: "Faster",
     size: "Enterprise",
   },
 ];
