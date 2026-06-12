@@ -9,6 +9,8 @@ import {
   BarChart3,
   Cpu,
   Sparkles,
+  TrendingUp,
+  MapPin,
 } from "lucide-react";
 
 export const WireAssessmentTeaser = () => {
