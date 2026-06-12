@@ -140,25 +140,17 @@ export const WireAwardsBand = () => {
                     }}
                   >
                     <div className="flex items-start justify-between gap-4">
-                      <div className="flex items-center gap-2">
-                        <div
-                          className="h-8 w-8 rounded-lg grid place-items-center"
-                          style={{ background: "hsl(var(--orange-500) / 0.15)" }}
-                        >
-                          <Award className="h-4 w-4 text-cii-orange" />
-                        </div>
-                        <span
-                          className="text-[11px] uppercase tracking-[0.14em] font-bold px-2 py-0.5 rounded-full"
-                          style={{
-                            background: "hsl(var(--orange-500) / 0.12)",
-                            color: "hsl(var(--orange-100))",
-                          }}
-                        >
-                          {w.size}
-                        </span>
-                      </div>
+                      <span
+                        className="text-[11px] uppercase tracking-[0.14em] font-bold px-2 py-0.5 rounded-full"
+                        style={{
+                          background: "hsl(var(--orange-500) / 0.12)",
+                          color: "hsl(var(--orange-100))",
+                        }}
+                      >
+                        {w.size}
+                      </span>
                       <div className="flex items-center gap-1 text-cii-orange">
-                        <TrendingUp className="h-3.5 w-3.5" />
+                        <Award className="h-3.5 w-3.5" />
                         <span className="text-[11px] font-bold uppercase tracking-wider">Winner</span>
                       </div>
                     </div>
