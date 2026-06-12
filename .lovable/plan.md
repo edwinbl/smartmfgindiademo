@@ -1,48 +1,68 @@
-# Remove all authentication code
+## Goal
+Replace the "Sector readiness snapshot" card on the right side of the homepage "Maturity Assessment" band with a clean, premium **MSME Digital Maturity Ladder** infographic that reinforces the left-side CTA.
 
-Tear out the mock-auth system and every page, component, hook, helper, and route that exists only for sign-in/up/profile flows. Everything that's currently gated behind auth becomes openly accessible (no login walls, no "create account to download" modals).
+## Scope
+Single file: `src/components/wireframe/WireAssessmentTeaser.tsx` — only the right column markup. Left column (copy + CTA) stays untouched. No new dependencies, no data changes.
 
-## Files to delete
+## Design
 
-Pages & routes
-- `src/pages/auth/Login.tsx`
-- `src/pages/auth/Register.tsx`
-- `src/pages/auth/Welcome.tsx`
-- `src/pages/auth/ForgotPassword.tsx`
-- `src/pages/auth/ResetPassword.tsx`
-- (empty dir `src/pages/auth/` removed)
+A 5-step ascending ladder rendered as stacked rungs inside a rounded card matching the existing `cii-card` styling.
 
-Auth components
-- Entire `src/components/auth/` folder (`AuthLayout`, `AuthBrandPanel`, `AuthCard`, `FloatingInput`, `PasswordInput`, `SocialButton`, `StepProgress`)
+```text
+                                       ╭───────────────╮
+                                  ────▶ │ 5 Smart &     │  🤖
+                                  │     │   Adaptive    │
+                              ╭───┴───╮ ╰───────────────╯
+                         ────▶│ 4 Data-driven │ 📊
+                         │    ╰───┬───────╯
+                     ╭───┴───╮
+                ────▶│ 3 Connected  │ 🔗   ← highlighted band
+                │    ╰───┬───────╯       "You may be closer than you think."
+            ╭───┴───╮
+       ────▶│ 2 Digitised │ 📱           ← highlighted band
+       │    ╰───┬──────╯
+   ╭───┴───╮
+   │ 1 Manual │ 🏭
+   ╰─────────╯
 
-Gating modals (only existed to push users to /register)
-- `src/components/reports/DownloadModal.tsx`
-- `src/components/events/RegisterEventModal.tsx`
-- `src/components/programmes/ProgrammeRegisterModal.tsx`
+         "Find your current stage and next priority."
+```
 
-Auth state & helpers
-- `src/lib/mockAuth.ts`
-- `src/lib/authReturn.ts`
-- `src/lib/authValidation.ts`
-- `src/hooks/useMockAuth.ts`
-- `src/components/wireframe/ProfileMenu.tsx` (only consumer of mockAuth in header chrome; not imported anywhere else)
+### Stage content
+1. **Manual** — Factory icon (`Factory`)
+2. **Digitised** — Tablet icon (`Tablet`)
+3. **Connected** — Connected machines (`Network` or `Share2`)
+4. **Data-driven** — Dashboard (`LineChart` / `BarChart3`)
+5. **Smart & Adaptive** — AI/automation (`Cpu` or `BrainCircuit`)
 
-## Files to edit
+All icons from `lucide-react` (already used across the project).
 
-- `src/App.tsx` — drop the 5 auth lazy imports and their `<Route>` entries (`/login`, `/register`, `/welcome`, `/forgot-password`, `/reset-password`).
-- `src/lib/routePrefetch.ts` — remove the 5 auth entries from `routeLoaders`.
-- `src/pages/ReportsIndex.tsx` & `src/pages/ReportDetail.tsx` — remove `useMockAuth`, `DownloadModal`, gating logic; download buttons trigger the download directly for everyone.
-- `src/pages/EventsIndex.tsx` & `src/pages/EventDetail.tsx` — remove `useMockAuth`, `RegisterEventModal`; "Register" CTAs go straight to the event registration link/action without an auth gate.
-- `src/pages/ProgrammesIndex.tsx` & (if present) programme detail — remove `useMockAuth`, `ProgrammeRegisterModal`; same treatment.
-- `src/components/reports/PersonalizedShelf.tsx`, `src/components/events/PersonalizedEventsShelf.tsx`, `src/components/programmes/PersonalizedProgrammesShelf.tsx` — drop the `MockUser` type import. Replace any "signed-in vs signed-out" branching with the signed-out (public) state and remove the `user` prop from their call sites.
-- `src/components/contact/BookConsultation.tsx` & `src/components/contact/ContactFinalCta.tsx` — replace `/register` link targets with `/contact` (or the nearest sensible public action) so no "create account" CTAs remain.
+### Visual treatment
+- Outer container: existing `cii-card` + same padding as before so vertical rhythm with the left column is preserved.
+- Header strip inside the card: eyebrow "MSME Digital Maturity Ladder" + chip "5 Stages" on the right (mirrors current header pattern).
+- Five rungs stacked bottom→top with **increasing left indent** (e.g., 0, 8%, 16%, 24%, 32%) to read as an ascending staircase. Each rung is a small rounded pill/card:
+  - Number badge (1–5) in navy
+  - Stage name (bold, navy-800)
+  - One-line micro-descriptor in `neutral-500`
+  - Icon on the right inside a soft tinted square
+- Background gradient line behind the rungs: thin diagonal navy→orange gradient suggesting upward motion.
+- **Highlight stages 2 and 3** with a subtle orange ring + faint `orange-100` background to imply "most MSMEs are around here". Other rungs use neutral surface.
+- Inline caption beside the highlighted band: *"You may be closer than you think."* (small, italic, navy-700).
+- Footer line inside the card: *"Find your current stage and next priority."* in `neutral-500`, with a small arrow icon — visually echoes (but doesn't duplicate) the left CTA.
+
+### Tokens (no new ones)
+Uses existing `--navy-*`, `--orange-*`, `--neutral-*` tokens and `cii-card`, `cii-chip`, `cii-chip-orange`, `eyebrow` classes. No `tailwind.config.ts` or `index.css` changes.
+
+### Responsive
+- Desktop (lg+): right column renders as designed alongside left column (existing grid).
+- Mobile/tablet: card stacks below copy (already handled by the parent `lg:grid-cols-[1fr_1.05fr]`). Indents reduce (e.g., 0, 4%, 8%, 12%, 16%) via `sm:` prefix so rungs remain legible on narrow screens.
 
 ## Out of scope
-
-- No backend / Supabase work (none exists for auth today).
-- No nav/header changes beyond removing the unused `ProfileMenu` file — header already doesn't render it.
-- No new content; pages that previously sat behind login simply become open.
+- Left-side copy, CTA, eyebrow, model list.
+- Any other section of the homepage.
+- New assets, images, or data files.
 
 ## Verification
-
-After edits, `rg -n "mockAuth|useMockAuth|AuthLayout|/login|/register|/welcome|/forgot-password|/reset-password|DownloadModal|RegisterEventModal|ProgrammeRegisterModal" src` should return nothing (except possibly `/register` if intentional unrelated copy exists — re-check and clean).
+- Visual check in preview at desktop and mobile widths.
+- Confirm no console/runtime errors.
+- Confirm left column copy/CTA unchanged.
