@@ -1,4 +1,4 @@
-import { Award, Factory, Medal, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Award, Factory, Medal, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
