@@ -9,8 +9,6 @@ const winners = [
     headline: "Collaboration, Re-vision, Connection and Innovation",
     sector: "Automobile & Ancillaries",
     state: "Karnataka",
-    metricLabel: "Productivity",
-    metricValue: "+20%",
     size: "Enterprise",
   },
   {
@@ -19,8 +17,6 @@ const winners = [
     headline: "Adding ‘SMART’ to Factories",
     sector: "Automotive Components Manufacturing",
     state: "Maharashtra",
-    metricLabel: "OEE",
-    metricValue: "+14 pts",
     size: "MSME",
   },
   {
@@ -29,8 +25,6 @@ const winners = [
     headline: "Real-Time Collaboration Between U.K. and India Teams Through Teamcenter",
     sector: "Automobile & Ancillaries",
     state: "Maharashtra",
-    metricLabel: "Development cycle",
-    metricValue: "-30%",
     size: "MSME",
   },
   {
@@ -39,8 +33,6 @@ const winners = [
     headline: "Transforming Warehouse & Material Handling with Digital Enterprise",
     sector: "Warehouse Automation & Material Handling",
     state: "Delhi",
-    metricLabel: "Time-to-Market",
-    metricValue: "Faster",
     size: "Enterprise",
   },
 ];
@@ -175,14 +167,9 @@ export const WireAwardsBand = () => {
                         borderColor: "hsl(var(--navy-500) / 0.35)",
                       }}
                     >
-                      <div>
-                        <div className="text-[10px] uppercase tracking-wider font-bold text-white/50">
-                          {w.metricLabel}
-                        </div>
-                        <div className="text-xl font-extrabold font-numeric text-cii-orange mt-0.5">
-                          {w.metricValue}
-                        </div>
-                      </div>
+                      <span className="text-sm font-semibold text-white/80 group-hover:text-cii-orange transition-colors">
+                        Read case study
+                      </span>
                       <ArrowRight className="h-5 w-5 text-white/40 group-hover:text-cii-orange group-hover:translate-x-1 transition-all" />
                     </div>
                   </a>
