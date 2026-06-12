@@ -315,15 +315,15 @@ const SolutionsHero = ({ query, onQuery }: { query: string; onQuery: (v: string)
           </span>
 
           <h1 className="font-display mt-5 text-[34px] sm:text-5xl lg:text-[52px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
-            Find Practical{" "}
-            <span className="text-[hsl(var(--red-600))]">Solution Pathways</span>{" "}
-            for Your Manufacturing Challenges
+            Your{" "}
+            <span className="text-[hsl(var(--red-600))]">Knowledge Hub</span>{" "}
+            for Manufacturing Challenges
           </h1>
 
           <p className="mt-5 text-base sm:text-lg text-[hsl(var(--neutral-700))] max-w-xl leading-relaxed">
-            Explore solution areas linked to the outcomes manufacturers care about —
-            productivity, quality, traceability, energy efficiency, competitiveness and
-            operational excellence.
+            Explore knowledge areas and practical pathways linked to the outcomes
+            manufacturers care about — productivity, quality, traceability, energy
+            efficiency, competitiveness and operational excellence.
           </p>
 
           <form
@@ -335,7 +335,7 @@ const SolutionsHero = ({ query, onQuery }: { query: string; onQuery: (v: string)
               type="text"
               value={query}
               onChange={(e) => onQuery(e.target.value)}
-              placeholder="Search by outcome, problem or solution area…"
+              placeholder="Search by outcome, problem or knowledge area…"
               className="w-full h-12 sm:h-14 pl-11 sm:pl-14 pr-24 sm:pr-32 rounded-full border bg-white text-sm text-[hsl(var(--neutral-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] shadow-sm"
               style={{ borderColor: "hsl(var(--neutral-200))" }}
             />
@@ -459,10 +459,10 @@ const SolutionsHeroViz = () => {
       >
         <div>
           <div className="font-display text-[10px] font-bold tracking-[0.18em] text-white/80 uppercase">
-            Solution
+            Knowledge
           </div>
           <div className="font-display text-[14px] font-extrabold leading-tight mt-0.5">
-            Pathways<br/>Hub
+            Hub
           </div>
         </div>
       </div>
