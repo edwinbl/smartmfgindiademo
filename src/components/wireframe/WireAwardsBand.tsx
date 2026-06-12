@@ -1,4 +1,4 @@
-import { ArrowRight, Award, Factory, Medal, ChevronLeft, ChevronRight } from "lucide-react";
+import { Trophy, ArrowRight, Award, Factory, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
@@ -9,6 +9,8 @@ const winners = [
     headline: "Collaboration, Re-vision, Connection and Innovation",
     sector: "Automobile & Ancillaries",
     state: "Karnataka",
+    metricLabel: "Productivity",
+    metricValue: "+20%",
     size: "Enterprise",
   },
   {
@@ -17,6 +19,8 @@ const winners = [
     headline: "Adding ‘SMART’ to Factories",
     sector: "Automotive Components Manufacturing",
     state: "Maharashtra",
+    metricLabel: "OEE",
+    metricValue: "+14 pts",
     size: "MSME",
   },
   {
@@ -25,6 +29,8 @@ const winners = [
     headline: "Real-Time Collaboration Between U.K. and India Teams Through Teamcenter",
     sector: "Automobile & Ancillaries",
     state: "Maharashtra",
+    metricLabel: "Development cycle",
+    metricValue: "-30%",
     size: "MSME",
   },
   {
@@ -33,6 +39,8 @@ const winners = [
     headline: "Transforming Warehouse & Material Handling with Digital Enterprise",
     sector: "Warehouse Automation & Material Handling",
     state: "Delhi",
+    metricLabel: "Time-to-Market",
+    metricValue: "Faster",
     size: "Enterprise",
   },
 ];
@@ -86,7 +94,7 @@ export const WireAwardsBand = () => {
       <div
         className="absolute -bottom-32 -right-32 w-[480px] h-[480px] pointer-events-none"
         style={{
-          background: "radial-gradient(circle, hsl(var(--red-600) / 0.22), hsl(var(--red-600) / 0) 60%)",
+          background: "radial-gradient(circle, hsl(var(--orange-500) / 0.22), hsl(var(--orange-500) / 0) 60%)",
         }}
       />
 
@@ -96,15 +104,16 @@ export const WireAwardsBand = () => {
           <div
             className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full mb-6 border"
             style={{
-              background: "hsl(var(--red-600) / 0.15)",
-              borderColor: "hsl(var(--red-600) / 0.4)",
+              background: "hsl(var(--orange-500) / 0.15)",
+              borderColor: "hsl(var(--orange-500) / 0.4)",
             }}
           >
+            <Trophy className="h-4 w-4 text-cii-orange" />
             <span className="text-[12px] uppercase tracking-[0.18em] font-bold text-white">FY25 Concluded</span>
           </div>
 
           <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight">
-            Congratulations to the <span className="text-cii-red">Winners</span>
+            Congratulations to the <span className="text-cii-orange">Winners</span>
           </h2>
           <p className="mt-4 text-base md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
             CII National Best Practices Award on Future Ready Manufacturing — recognising Indian industry
@@ -134,22 +143,22 @@ export const WireAwardsBand = () => {
                       <div className="flex items-center gap-2">
                         <div
                           className="h-8 w-8 rounded-lg grid place-items-center"
-                          style={{ background: "hsl(var(--red-600) / 0.15)" }}
+                          style={{ background: "hsl(var(--orange-500) / 0.15)" }}
                         >
-                          <Award className="h-4 w-4 text-cii-red" />
+                          <Award className="h-4 w-4 text-cii-orange" />
                         </div>
                         <span
                           className="text-[11px] uppercase tracking-[0.14em] font-bold px-2 py-0.5 rounded-full"
                           style={{
-                            background: "hsl(var(--red-600) / 0.12)",
-                            color: "hsl(var(--red-100))",
+                            background: "hsl(var(--orange-500) / 0.12)",
+                            color: "hsl(var(--orange-100))",
                           }}
                         >
                           {w.size}
                         </span>
                       </div>
-                      <div className="flex items-center gap-1 text-cii-red">
-                        <Medal className="h-3.5 w-3.5" />
+                      <div className="flex items-center gap-1 text-cii-orange">
+                        <TrendingUp className="h-3.5 w-3.5" />
                         <span className="text-[11px] font-bold uppercase tracking-wider">Winner</span>
                       </div>
                     </div>
@@ -159,7 +168,7 @@ export const WireAwardsBand = () => {
                         <Factory className="h-3 w-3" />
                         {w.state} · {w.sector}
                       </div>
-                      <h3 className="mt-2 font-display font-bold text-lg md:text-xl leading-snug text-white group-hover:text-cii-red transition-colors">
+                      <h3 className="mt-2 font-display font-bold text-lg md:text-xl leading-snug text-white group-hover:text-cii-orange transition-colors">
                         {w.company}
                       </h3>
                       <p className="mt-2 text-sm text-white/70 leading-relaxed line-clamp-3">
@@ -174,10 +183,15 @@ export const WireAwardsBand = () => {
                         borderColor: "hsl(var(--navy-500) / 0.35)",
                       }}
                     >
-                      <span className="text-[12px] font-semibold text-white/80 group-hover:text-cii-red transition-colors">
-                        Read case study
-                      </span>
-                      <ArrowRight className="h-5 w-5 text-white/50 group-hover:text-cii-red group-hover:translate-x-1 transition-all" />
+                      <div>
+                        <div className="text-[10px] uppercase tracking-wider font-bold text-white/50">
+                          {w.metricLabel}
+                        </div>
+                        <div className="text-xl font-extrabold font-numeric text-cii-orange mt-0.5">
+                          {w.metricValue}
+                        </div>
+                      </div>
+                      <ArrowRight className="h-5 w-5 text-white/40 group-hover:text-cii-orange group-hover:translate-x-1 transition-all" />
                     </div>
                   </a>
                 </div>
@@ -185,21 +199,13 @@ export const WireAwardsBand = () => {
             </div>
           </div>
 
-          {/* Carousel arrows removed — moved to bottom CTA area */}
-          <div aria-hidden="true" />
-        </div>
-
-        {/* Carousel controls + next edition note */}
-        <div className="mt-12 md:mt-16 pt-8 border-t border-white/15 flex flex-col items-center gap-5">
-          <div className="flex items-center gap-3">
+          {/* Carousel arrows */}
+          <div className="flex items-center justify-center gap-3 mt-8">
             <button
               onClick={scrollPrev}
               disabled={!canScrollPrev}
-              className="h-11 w-11 rounded-full grid place-items-center transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:scale-105 active:scale-95"
-              style={{
-                background: "linear-gradient(135deg, hsl(var(--red-600)) 0%, hsl(var(--red-700)) 100%)",
-                boxShadow: "0 8px 24px -8px hsl(var(--red-600) / 0.6)",
-              }}
+              className="h-10 w-10 rounded-full border grid place-items-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10"
+              style={{ borderColor: "hsl(0 0% 100% / 0.25)" }}
               aria-label="Previous winner"
             >
               <ChevronLeft className="h-5 w-5 text-white" />
@@ -207,18 +213,22 @@ export const WireAwardsBand = () => {
             <button
               onClick={scrollNext}
               disabled={!canScrollNext}
-              className="h-11 w-11 rounded-full grid place-items-center transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:scale-105 active:scale-95"
-              style={{
-                background: "linear-gradient(135deg, hsl(var(--red-600)) 0%, hsl(var(--red-700)) 100%)",
-                boxShadow: "0 8px 24px -8px hsl(var(--red-600) / 0.6)",
-              }}
+              className="h-10 w-10 rounded-full border grid place-items-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10"
+              style={{ borderColor: "hsl(0 0% 100% / 0.25)" }}
               aria-label="Next winner"
             >
               <ChevronRight className="h-5 w-5 text-white" />
             </button>
           </div>
-          <p className="text-white/70 text-sm md:text-base">
-            Applications for the next edition will open soon.
+        </div>
+
+        {/* Next edition CTA */}
+        <div className="mt-12 md:mt-16 pt-8 border-t border-white/15 text-center">
+          <p className="text-white/60 text-sm md:text-base">
+            Applications for the next edition will open soon.{" "}
+            <a href="/contact" className="text-cii-orange font-semibold hover:underline inline-flex items-center gap-1">
+              Get notified <ArrowRight className="h-4 w-4" />
+            </a>
           </p>
         </div>
       </div>
