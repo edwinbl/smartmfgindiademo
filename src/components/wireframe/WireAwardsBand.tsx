@@ -86,7 +86,7 @@ export const WireAwardsBand = () => {
       <div
         className="absolute -bottom-32 -right-32 w-[480px] h-[480px] pointer-events-none"
         style={{
-          background: "radial-gradient(circle, hsl(var(--orange-500) / 0.22), hsl(var(--orange-500) / 0) 60%)",
+          background: "radial-gradient(circle, hsl(var(--red-600) / 0.22), hsl(var(--red-600) / 0) 60%)",
         }}
       />
 
