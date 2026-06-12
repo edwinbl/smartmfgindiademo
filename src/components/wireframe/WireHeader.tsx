@@ -175,6 +175,13 @@ export const WireHeader = () => {
                     </button>
                     {mobileSubmenu === l.label && (
                       <ul className="pb-2 bg-[hsl(var(--neutral-50))]">
+                        {l.href.startsWith("/") && !l.href.startsWith("//") && (
+                          <li>
+                            <Link to={l.href} onClick={() => setOpen(false)} className="block px-8 py-2.5 text-sm font-semibold text-navy-800 hover:text-cii-red">
+                              {l.label} overview
+                            </Link>
+                          </li>
+                        )}
                         {l.children.map((c) => {
                           const childInternal = c.href.startsWith("/") && !c.href.startsWith("//");
                           const mobChildCls =
