@@ -9,8 +9,6 @@ const winners = [
     headline: "Collaboration, Re-vision, Connection and Innovation",
     sector: "Automobile & Ancillaries",
     state: "Karnataka",
-    metricLabel: "Productivity",
-    metricValue: "+20%",
     size: "Enterprise",
   },
   {
