@@ -1,4 +1,4 @@
-import { Trophy, ArrowRight, Award, Factory, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
+import { Trophy, ArrowRight, Award, Factory, Medal, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
@@ -9,8 +9,6 @@ const winners = [
     headline: "Collaboration, Re-vision, Connection and Innovation",
     sector: "Automobile & Ancillaries",
     state: "Karnataka",
-    metricLabel: "Productivity",
-    metricValue: "+20%",
     size: "Enterprise",
   },
   {
@@ -19,8 +17,6 @@ const winners = [
     headline: "Adding ‘SMART’ to Factories",
     sector: "Automotive Components Manufacturing",
     state: "Maharashtra",
-    metricLabel: "OEE",
-    metricValue: "+14 pts",
     size: "MSME",
   },
   {
@@ -29,8 +25,6 @@ const winners = [
     headline: "Real-Time Collaboration Between U.K. and India Teams Through Teamcenter",
     sector: "Automobile & Ancillaries",
     state: "Maharashtra",
-    metricLabel: "Development cycle",
-    metricValue: "-30%",
     size: "MSME",
   },
   {
@@ -39,8 +33,6 @@ const winners = [
     headline: "Transforming Warehouse & Material Handling with Digital Enterprise",
     sector: "Warehouse Automation & Material Handling",
     state: "Delhi",
-    metricLabel: "Time-to-Market",
-    metricValue: "Faster",
     size: "Enterprise",
   },
 ];
@@ -158,7 +150,7 @@ export const WireAwardsBand = () => {
                         </span>
                       </div>
                       <div className="flex items-center gap-1 text-cii-orange">
-                        <TrendingUp className="h-3.5 w-3.5" />
+                        <Medal className="h-3.5 w-3.5" />
                         <span className="text-[11px] font-bold uppercase tracking-wider">Winner</span>
                       </div>
                     </div>
@@ -183,15 +175,10 @@ export const WireAwardsBand = () => {
                         borderColor: "hsl(var(--navy-500) / 0.35)",
                       }}
                     >
-                      <div>
-                        <div className="text-[10px] uppercase tracking-wider font-bold text-white/50">
-                          {w.metricLabel}
-                        </div>
-                        <div className="text-xl font-extrabold font-numeric text-cii-orange mt-0.5">
-                          {w.metricValue}
-                        </div>
-                      </div>
-                      <ArrowRight className="h-5 w-5 text-white/40 group-hover:text-cii-orange group-hover:translate-x-1 transition-all" />
+                      <span className="text-[12px] font-semibold text-white/80 group-hover:text-cii-orange transition-colors">
+                        Read case study
+                      </span>
+                      <ArrowRight className="h-5 w-5 text-white/50 group-hover:text-cii-orange group-hover:translate-x-1 transition-all" />
                     </div>
                   </a>
                 </div>
@@ -224,12 +211,19 @@ export const WireAwardsBand = () => {
 
         {/* Next edition CTA */}
         <div className="mt-12 md:mt-16 pt-8 border-t border-white/15 text-center">
-          <p className="text-white/60 text-sm md:text-base">
-            Applications for the next edition will open soon.{" "}
-            <a href="/contact" className="text-cii-orange font-semibold hover:underline inline-flex items-center gap-1">
-              Get notified <ArrowRight className="h-4 w-4" />
-            </a>
+          <p className="text-white/70 text-sm md:text-base mb-5">
+            Applications for the next edition will open soon.
           </p>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-semibold text-white text-sm md:text-base shadow-lg transition-all hover:-translate-y-0.5"
+            style={{
+              background: "linear-gradient(135deg, hsl(var(--red-600)) 0%, hsl(var(--red-700)) 100%)",
+              boxShadow: "0 10px 30px -10px hsl(var(--red-600) / 0.6)",
+            }}
+          >
+            Notify me for the next edition <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </section>
