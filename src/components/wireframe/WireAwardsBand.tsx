@@ -20,7 +20,7 @@ const winners = [
     slug: "plastech-adding-smart-to-factories",
     company: "Plastech Solutions",
     headline: "Adding ‘SMART’ to Factories",
-    sector: "Automotive Components Manufacturing",
+    sector: "Automotive Manufacturing",
     state: "Maharashtra",
     size: "MSME",
     image: winnerPlastech,
