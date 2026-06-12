@@ -132,30 +132,54 @@ export const WireAwardsBand = () => {
                 >
                   <a
                     href={`/case-studies/${w.slug}`}
-                    className="group block h-full rounded-xl border p-6 md:p-7 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1"
+                    className="group block h-full rounded-xl border overflow-hidden backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1"
                     style={{
                       background:
                         "linear-gradient(180deg, hsl(var(--navy-700) / 0.55) 0%, hsl(var(--navy-800) / 0.45) 100%)",
                       borderColor: "hsl(var(--navy-500) / 0.5)",
                     }}
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <span
-                        className="text-[11px] uppercase tracking-[0.14em] font-bold px-2 py-0.5 rounded-full"
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <img
+                        src={w.image}
+                        alt={`${w.company} receiving the CII National Best Practices Award`}
+                        loading="lazy"
+                        width={800}
+                        height={500}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div
+                        className="absolute inset-0"
                         style={{
-                          background: "hsl(var(--orange-500) / 0.12)",
-                          color: "hsl(var(--orange-100))",
+                          background:
+                            "linear-gradient(180deg, hsl(var(--navy-900) / 0.1) 0%, hsl(var(--navy-900) / 0.85) 100%)",
                         }}
-                      >
-                        {w.size}
-                      </span>
-                      <div className="flex items-center gap-1 text-cii-orange">
-                        <Award className="h-3.5 w-3.5" />
-                        <span className="text-[11px] font-bold uppercase tracking-wider">Winner</span>
+                      />
+                      <div className="absolute top-3 left-3 right-3 flex items-start justify-between gap-3">
+                        <span
+                          className="text-[11px] uppercase tracking-[0.14em] font-bold px-2 py-0.5 rounded-full backdrop-blur"
+                          style={{
+                            background: "hsl(var(--navy-900) / 0.55)",
+                            color: "hsl(var(--orange-100))",
+                            border: "1px solid hsl(var(--orange-500) / 0.4)",
+                          }}
+                        >
+                          {w.size}
+                        </span>
+                        <div
+                          className="flex items-center gap-1 text-cii-orange px-2 py-0.5 rounded-full backdrop-blur"
+                          style={{
+                            background: "hsl(var(--navy-900) / 0.55)",
+                            border: "1px solid hsl(var(--orange-500) / 0.4)",
+                          }}
+                        >
+                          <Award className="h-3.5 w-3.5" />
+                          <span className="text-[11px] font-bold uppercase tracking-wider">Winner</span>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="mt-5">
+                    <div className="p-6 md:p-7">
                       <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white/60">
                         <Factory className="h-3 w-3" />
                         {w.state} · {w.sector}
@@ -166,6 +190,7 @@ export const WireAwardsBand = () => {
                       <p className="mt-2 text-sm text-white/70 leading-relaxed line-clamp-3">
                         {w.headline}
                       </p>
+
                     </div>
 
                     <div
