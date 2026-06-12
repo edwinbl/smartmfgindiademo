@@ -86,7 +86,7 @@ export const WireAwardsBand = () => {
       <div
         className="absolute -bottom-32 -right-32 w-[480px] h-[480px] pointer-events-none"
         style={{
-          background: "radial-gradient(circle, hsl(var(--orange-500) / 0.22), hsl(var(--orange-500) / 0) 60%)",
+          background: "radial-gradient(circle, hsl(var(--red-600) / 0.22), hsl(var(--red-600) / 0) 60%)",
         }}
       />
 
@@ -96,15 +96,15 @@ export const WireAwardsBand = () => {
           <div
             className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full mb-6 border"
             style={{
-              background: "hsl(var(--orange-500) / 0.15)",
-              borderColor: "hsl(var(--orange-500) / 0.4)",
+              background: "hsl(var(--red-600) / 0.15)",
+              borderColor: "hsl(var(--red-600) / 0.4)",
             }}
           >
             <span className="text-[12px] uppercase tracking-[0.18em] font-bold text-white">FY25 Concluded</span>
           </div>
 
           <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight">
-            Congratulations to the <span className="text-cii-orange">Winners</span>
+            Congratulations to the <span className="text-cii-red">Winners</span>
           </h2>
           <p className="mt-4 text-base md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
             CII National Best Practices Award on Future Ready Manufacturing — recognising Indian industry
@@ -134,21 +134,21 @@ export const WireAwardsBand = () => {
                       <div className="flex items-center gap-2">
                         <div
                           className="h-8 w-8 rounded-lg grid place-items-center"
-                          style={{ background: "hsl(var(--orange-500) / 0.15)" }}
+                          style={{ background: "hsl(var(--red-600) / 0.15)" }}
                         >
-                          <Award className="h-4 w-4 text-cii-orange" />
+                          <Award className="h-4 w-4 text-cii-red" />
                         </div>
                         <span
                           className="text-[11px] uppercase tracking-[0.14em] font-bold px-2 py-0.5 rounded-full"
                           style={{
-                            background: "hsl(var(--orange-500) / 0.12)",
-                            color: "hsl(var(--orange-100))",
+                            background: "hsl(var(--red-600) / 0.12)",
+                            color: "hsl(var(--red-100))",
                           }}
                         >
                           {w.size}
                         </span>
                       </div>
-                      <div className="flex items-center gap-1 text-cii-orange">
+                      <div className="flex items-center gap-1 text-cii-red">
                         <Medal className="h-3.5 w-3.5" />
                         <span className="text-[11px] font-bold uppercase tracking-wider">Winner</span>
                       </div>
@@ -159,7 +159,7 @@ export const WireAwardsBand = () => {
                         <Factory className="h-3 w-3" />
                         {w.state} · {w.sector}
                       </div>
-                      <h3 className="mt-2 font-display font-bold text-lg md:text-xl leading-snug text-white group-hover:text-cii-orange transition-colors">
+                      <h3 className="mt-2 font-display font-bold text-lg md:text-xl leading-snug text-white group-hover:text-cii-red transition-colors">
                         {w.company}
                       </h3>
                       <p className="mt-2 text-sm text-white/70 leading-relaxed line-clamp-3">
@@ -174,10 +174,10 @@ export const WireAwardsBand = () => {
                         borderColor: "hsl(var(--navy-500) / 0.35)",
                       }}
                     >
-                      <span className="text-[12px] font-semibold text-white/80 group-hover:text-cii-orange transition-colors">
+                      <span className="text-[12px] font-semibold text-white/80 group-hover:text-cii-red transition-colors">
                         Read case study
                       </span>
-                      <ArrowRight className="h-5 w-5 text-white/50 group-hover:text-cii-orange group-hover:translate-x-1 transition-all" />
+                      <ArrowRight className="h-5 w-5 text-white/50 group-hover:text-cii-red group-hover:translate-x-1 transition-all" />
                     </div>
                   </a>
                 </div>
