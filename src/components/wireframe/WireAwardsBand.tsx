@@ -84,14 +84,6 @@ export const WireAwardsBand = () => {
       }}
       aria-label="CII National Best Practices Award Winners"
     >
-      {/* Pepper-red top accent */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[3px]"
-        style={{
-          background:
-            "linear-gradient(90deg, hsl(var(--red-600)) 0%, hsl(var(--red-600) / 0.6) 35%, transparent 100%)",
-        }}
-      />
       <div className="absolute inset-0 blueprint-grid opacity-25" />
       <div
         className="absolute -top-32 -left-32 w-[420px] h-[420px] pointer-events-none"
