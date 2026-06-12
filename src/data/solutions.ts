@@ -26,6 +26,7 @@ export type OutcomeId =
   | "traceability"
   | "downtime"
   | "energy"
+  | "planning"
   | "export"
   | "workforce"
   | "visibility";
@@ -41,15 +42,22 @@ export interface Outcome {
 }
 
 export const outcomes: Outcome[] = [
-  { id: "productivity", title: "Improve Productivity", desc: "Increase efficiency and operational throughput.", icon: Gauge, accent: "navy", solutionCount: 6, caseCount: 24 },
-  { id: "quality", title: "Improve Quality", desc: "Reduce defects and improve consistency.", icon: ShieldCheck, accent: "green", solutionCount: 4, caseCount: 18 },
-  { id: "traceability", title: "Improve Traceability", desc: "Transparency across operations and supply.", icon: Network, accent: "orange", solutionCount: 3, caseCount: 12 },
-  { id: "downtime", title: "Reduce Downtime", desc: "Minimize unplanned stoppages and disruptions.", icon: Timer, accent: "red", solutionCount: 4, caseCount: 15 },
-  { id: "energy", title: "Improve Energy Efficiency", desc: "Optimize resource utilization and emissions.", icon: Leaf, accent: "green", solutionCount: 3, caseCount: 11 },
+  { id: "productivity", title: "Improve productivity", desc: "Boost operational efficiency by reducing manual tasks and optimizing machine and workforce performance.", icon: Gauge, accent: "navy", solutionCount: 6, caseCount: 24 },
+  { id: "quality", title: "Improve quality", desc: "Standardise quality systems and reduce defects across the shopfloor.", icon: ShieldCheck, accent: "green", solutionCount: 4, caseCount: 18 },
+  { id: "traceability", title: "Strengthen traceability", desc: "Track materials, processes and products end-to-end across the value chain.", icon: Network, accent: "orange", solutionCount: 3, caseCount: 12 },
+  { id: "downtime", title: "Reduce downtime", desc: "Predict and prevent machine downtime with smart monitoring and analytics.", icon: Timer, accent: "red", solutionCount: 4, caseCount: 15 },
+  { id: "energy", title: "Improve energy efficiency", desc: "Cut energy costs and emissions through real-time consumption insight.", icon: Zap, accent: "green", solutionCount: 3, caseCount: 11 },
+  { id: "planning", title: "Improve planning", desc: "Improve production planning with real-time insights, forecasting and smarter resource allocation.", icon: BarChart3, accent: "navy", solutionCount: 4, caseCount: 10 },
   { id: "export", title: "Export Readiness", desc: "Meet evolving global standards and benchmarks.", icon: Globe2, accent: "navy", solutionCount: 5, caseCount: 9 },
   { id: "workforce", title: "Workforce Capability", desc: "Build skills for Industry 4.0 adoption.", icon: GraduationCap, accent: "orange", solutionCount: 4, caseCount: 14 },
   { id: "visibility", title: "Digital Visibility", desc: "Real-time insight into shopfloor operations.", icon: Eye, accent: "navy", solutionCount: 5, caseCount: 20 },
 ];
+
+const EXPLORER_OUTCOME_IDS: OutcomeId[] = ["productivity", "quality", "traceability", "downtime", "energy", "planning"];
+export const explorerOutcomes: Outcome[] = EXPLORER_OUTCOME_IDS
+  .map((id) => outcomes.find((o) => o.id === id)!)
+  .filter(Boolean);
+
 
 export interface SolutionCategory {
   slug: string;

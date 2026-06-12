@@ -22,6 +22,7 @@ import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
 import {
   outcomes,
+  explorerOutcomes,
   solutionCategories,
   featuredSolutionCases,
   expertInsights,
@@ -88,8 +89,8 @@ const SolutionsIndex = () => {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {outcomes.map((o) => {
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {explorerOutcomes.map((o) => {
                 const Icon = o.icon;
                 const a = accentMap[o.accent];
                 const active = activeOutcome === o.id;
