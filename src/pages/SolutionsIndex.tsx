@@ -22,6 +22,7 @@ import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
 import {
   outcomes,
+  explorerOutcomes,
   solutionCategories,
   featuredSolutionCases,
   expertInsights,
