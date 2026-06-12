@@ -22,6 +22,7 @@ export const routeLoaders = {
   "/case-studies/:slug": () => import("@/pages/CaseStudyDetail"),
   "/solutions": () => import("@/pages/SolutionsIndex"),
   "/solutions/:slug": () => import("@/pages/SolutionDetail"),
+  "/knowledge-hub/:outcomeId": () => import("@/pages/OutcomeDetail"),
   "/directories": () => import("@/pages/Directories"),
   "*": () => import("@/pages/NotFound"),
 } as const;
