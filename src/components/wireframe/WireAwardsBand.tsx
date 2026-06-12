@@ -1,4 +1,4 @@
-import { Trophy, ArrowRight, Award, Factory, Medal, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Award, Factory, Medal, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
@@ -100,7 +100,6 @@ export const WireAwardsBand = () => {
               borderColor: "hsl(var(--orange-500) / 0.4)",
             }}
           >
-            <Trophy className="h-4 w-4 text-cii-orange" />
             <span className="text-[12px] uppercase tracking-[0.18em] font-bold text-white">FY25 Concluded</span>
           </div>
 
@@ -186,13 +185,21 @@ export const WireAwardsBand = () => {
             </div>
           </div>
 
-          {/* Carousel arrows */}
-          <div className="flex items-center justify-center gap-3 mt-8">
+          {/* Carousel arrows removed — moved to bottom CTA area */}
+          <div aria-hidden="true" />
+        </div>
+
+        {/* Carousel controls + next edition note */}
+        <div className="mt-12 md:mt-16 pt-8 border-t border-white/15 flex flex-col items-center gap-5">
+          <div className="flex items-center gap-3">
             <button
               onClick={scrollPrev}
               disabled={!canScrollPrev}
-              className="h-10 w-10 rounded-full border grid place-items-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10"
-              style={{ borderColor: "hsl(0 0% 100% / 0.25)" }}
+              className="h-11 w-11 rounded-full grid place-items-center transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:scale-105 active:scale-95"
+              style={{
+                background: "linear-gradient(135deg, hsl(var(--red-600)) 0%, hsl(var(--red-700)) 100%)",
+                boxShadow: "0 8px 24px -8px hsl(var(--red-600) / 0.6)",
+              }}
               aria-label="Previous winner"
             >
               <ChevronLeft className="h-5 w-5 text-white" />
@@ -200,30 +207,19 @@ export const WireAwardsBand = () => {
             <button
               onClick={scrollNext}
               disabled={!canScrollNext}
-              className="h-10 w-10 rounded-full border grid place-items-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10"
-              style={{ borderColor: "hsl(0 0% 100% / 0.25)" }}
+              className="h-11 w-11 rounded-full grid place-items-center transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:scale-105 active:scale-95"
+              style={{
+                background: "linear-gradient(135deg, hsl(var(--red-600)) 0%, hsl(var(--red-700)) 100%)",
+                boxShadow: "0 8px 24px -8px hsl(var(--red-600) / 0.6)",
+              }}
               aria-label="Next winner"
             >
               <ChevronRight className="h-5 w-5 text-white" />
             </button>
           </div>
-        </div>
-
-        {/* Next edition CTA */}
-        <div className="mt-12 md:mt-16 pt-8 border-t border-white/15 text-center">
-          <p className="text-white/70 text-sm md:text-base mb-5">
+          <p className="text-white/70 text-sm md:text-base">
             Applications for the next edition will open soon.
           </p>
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-semibold text-white text-sm md:text-base shadow-lg transition-all hover:-translate-y-0.5"
-            style={{
-              background: "linear-gradient(135deg, hsl(var(--red-600)) 0%, hsl(var(--red-700)) 100%)",
-              boxShadow: "0 10px 30px -10px hsl(var(--red-600) / 0.6)",
-            }}
-          >
-            Notify me for the next edition <ArrowRight className="h-4 w-4" />
-          </a>
         </div>
       </div>
     </section>
