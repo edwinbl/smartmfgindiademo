@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { WireSection } from "./WireSection";
 import { TrendingUp, ShieldCheck, Network, Timer, Zap, CalendarClock, ArrowRight } from "lucide-react";
 
@@ -5,31 +6,37 @@ const solutions = [
   {
     icon: TrendingUp,
     title: "Improve productivity",
+    id: "productivity",
     desc: "Boost operational efficiency by reducing manual tasks and optimizing machine and workforce performance.",
   },
   {
     icon: ShieldCheck,
     title: "Improve quality",
+    id: "quality",
     desc: "Standardise quality systems and reduce defects across the shopfloor.",
   },
   {
     icon: Network,
     title: "Strengthen traceability",
+    id: "traceability",
     desc: "Track materials, processes and products end-to-end across the value chain.",
   },
   {
     icon: Timer,
     title: "Reduce downtime",
+    id: "downtime",
     desc: "Predict and prevent machine downtime with smart monitoring and analytics.",
   },
   {
     icon: Zap,
     title: "Improve energy efficiency",
+    id: "energy",
     desc: "Cut energy costs and emissions through real-time consumption insight.",
   },
   {
     icon: CalendarClock,
     title: "Improve planning",
+    id: "planning",
     desc: "Improve production planning with real-time insights, forecasting and smarter resource allocation.",
   },
 ];
