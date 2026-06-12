@@ -191,20 +191,20 @@ export const WireAwardsBand = () => {
                         {w.headline}
                       </p>
 
+                      <div
+                        className="mt-6 rounded-lg border px-4 py-3 flex items-center justify-between transition-colors group-hover:border-cii-red/40"
+                        style={{
+                          background: "hsl(var(--navy-900) / 0.4)",
+                          borderColor: "hsl(var(--navy-500) / 0.35)",
+                        }}
+                      >
+                        <span className="text-sm font-semibold text-white/80 group-hover:text-cii-red transition-colors">
+                          Read case study
+                        </span>
+                        <ArrowRight className="h-5 w-5 text-white/40 group-hover:text-cii-red group-hover:translate-x-1 transition-all" />
+                      </div>
                     </div>
 
-                    <div
-                      className="mt-6 rounded-lg border px-4 py-3 flex items-center justify-between transition-colors group-hover:border-cii-red/40"
-                      style={{
-                        background: "hsl(var(--navy-900) / 0.4)",
-                        borderColor: "hsl(var(--navy-500) / 0.35)",
-                      }}
-                    >
-                      <span className="text-sm font-semibold text-white/80 group-hover:text-cii-red transition-colors">
-                        Read case study
-                      </span>
-                      <ArrowRight className="h-5 w-5 text-white/40 group-hover:text-cii-red group-hover:translate-x-1 transition-all" />
-                    </div>
                   </a>
                 </div>
               ))}
