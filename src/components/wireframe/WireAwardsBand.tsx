@@ -100,7 +100,6 @@ export const WireAwardsBand = () => {
               borderColor: "hsl(var(--orange-500) / 0.4)",
             }}
           >
-            <Trophy className="h-4 w-4 text-cii-orange" />
             <span className="text-[12px] uppercase tracking-[0.18em] font-bold text-white">FY25 Concluded</span>
           </div>
 
