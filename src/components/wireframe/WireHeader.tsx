@@ -22,9 +22,8 @@ const navLinks: NavLink[] = [
   { label: "Readiness Assessment", href: "/readiness-assessment" },
   {
     label: "Knowledge Hub",
-    href: "#solutions",
+    href: "/solutions",
     children: [
-      { label: "Solution Areas", href: "/solutions" },
       { label: "Case Studies", href: "/case-studies" },
       { label: "Reports & Publications", href: "/reports" },
       { label: "E-Directory", href: "/directories" },
@@ -79,12 +78,20 @@ export const WireHeader = () => {
             const baseCls = `font-display text-[13px] font-semibold tracking-wide whitespace-nowrap transition-colors ${active ? "text-cii-red" : "text-navy-800 hover:text-cii-red"}`;
 
             if (l.children) {
+              const parentInternal = l.href.startsWith("/") && !l.href.startsWith("//");
               return (
                 <div key={l.label} className="relative group">
-                  <button type="button" className={`${baseCls} inline-flex items-center gap-1`} aria-haspopup="true">
-                    {l.label}
-                    <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
-                  </button>
+                  {parentInternal ? (
+                    <Link to={l.href} className={`${baseCls} inline-flex items-center gap-1`} aria-current={active ? "page" : undefined} {...prefetchProps(l.href)}>
+                      {l.label}
+                      <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
+                    </Link>
+                  ) : (
+                    <button type="button" className={`${baseCls} inline-flex items-center gap-1`} aria-haspopup="true">
+                      {l.label}
+                      <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
+                    </button>
+                  )}
                   <div className="absolute left-0 top-full pt-3 min-w-[240px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity z-50">
                     <ul className="bg-white border border-[hsl(var(--neutral-150))] rounded-md shadow-lg py-2">
                       {l.children.map((c) => {
@@ -110,6 +117,7 @@ export const WireHeader = () => {
                 </div>
               );
             }
+
 
             const isInternal = l.href.startsWith("/") && !l.href.startsWith("//");
             return isInternal ? (
@@ -167,6 +175,13 @@ export const WireHeader = () => {
                     </button>
                     {mobileSubmenu === l.label && (
                       <ul className="pb-2 bg-[hsl(var(--neutral-50))]">
+                        {l.href.startsWith("/") && !l.href.startsWith("//") && (
+                          <li>
+                            <Link to={l.href} onClick={() => setOpen(false)} className="block px-8 py-2.5 text-sm font-semibold text-navy-800 hover:text-cii-red">
+                              {l.label} overview
+                            </Link>
+                          </li>
+                        )}
                         {l.children.map((c) => {
                           const childInternal = c.href.startsWith("/") && !c.href.startsWith("//");
                           const mobChildCls =
