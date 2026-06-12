@@ -175,14 +175,9 @@ export const WireAwardsBand = () => {
                         borderColor: "hsl(var(--navy-500) / 0.35)",
                       }}
                     >
-                      <div>
-                        <div className="text-[10px] uppercase tracking-wider font-bold text-white/50">
-                          {w.metricLabel}
-                        </div>
-                        <div className="text-xl font-extrabold font-numeric text-cii-orange mt-0.5">
-                          {w.metricValue}
-                        </div>
-                      </div>
+                      <span className="text-sm font-semibold text-white/80 group-hover:text-cii-orange transition-colors">
+                        Read case study
+                      </span>
                       <ArrowRight className="h-5 w-5 text-white/40 group-hover:text-cii-orange group-hover:translate-x-1 transition-all" />
                     </div>
                   </a>
