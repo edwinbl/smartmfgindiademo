@@ -211,12 +211,19 @@ export const WireAwardsBand = () => {
 
         {/* Next edition CTA */}
         <div className="mt-12 md:mt-16 pt-8 border-t border-white/15 text-center">
-          <p className="text-white/60 text-sm md:text-base">
-            Applications for the next edition will open soon.{" "}
-            <a href="/contact" className="text-cii-orange font-semibold hover:underline inline-flex items-center gap-1">
-              Get notified <ArrowRight className="h-4 w-4" />
-            </a>
+          <p className="text-white/70 text-sm md:text-base mb-5">
+            Applications for the next edition will open soon.
           </p>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-semibold text-white text-sm md:text-base shadow-lg transition-all hover:-translate-y-0.5"
+            style={{
+              background: "linear-gradient(135deg, hsl(var(--red-600)) 0%, hsl(var(--red-700)) 100%)",
+              boxShadow: "0 10px 30px -10px hsl(var(--red-600) / 0.6)",
+            }}
+          >
+            Notify me for the next edition <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </section>
