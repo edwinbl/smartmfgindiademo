@@ -93,20 +93,11 @@ const SolutionsIndex = () => {
               {explorerOutcomes.map((o) => {
                 const Icon = o.icon;
                 const a = accentMap[o.accent];
-                const active = activeOutcome === o.id;
                 return (
-                  <button
+                  <Link
                     key={o.id}
-                    onClick={() => {
-                      const next = active ? null : o.id;
-                      setActiveOutcome(next);
-                      if (next) {
-                        setTimeout(() => document.getElementById("categories")?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
-                      }
-                    }}
-                    className={`group text-left cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all ${
-                      active ? "ring-2 ring-[hsl(var(--red-600))]" : ""
-                    }`}
+                    to={`/knowledge-hub/${o.id}`}
+                    className="group relative text-left cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all"
                   >
                     <div
                       className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl"
@@ -130,12 +121,13 @@ const SolutionsIndex = () => {
                       <span>{o.caseCount} cases</span>
                     </div>
                     <div className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-[hsl(var(--red-600))] opacity-0 group-hover:opacity-100 transition-opacity">
-                      Explore Knowledge Hub <ArrowRight className="h-3 w-3" />
+                      Explore outcome <ArrowRight className="h-3 w-3" />
                     </div>
-                  </button>
+                  </Link>
                 );
               })}
             </div>
+
           </div>
         </section>
 
