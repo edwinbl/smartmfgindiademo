@@ -315,9 +315,9 @@ const SolutionsHero = ({ query, onQuery }: { query: string; onQuery: (v: string)
           </span>
 
           <h1 className="font-display mt-5 text-[34px] sm:text-5xl lg:text-[52px] font-extrabold leading-[1.05] tracking-tight text-[hsl(var(--navy-900))]">
-            Find Practical{" "}
-            <span className="text-[hsl(var(--red-600))]">Solution Pathways</span>{" "}
-            for Your Manufacturing Challenges
+            Your{" "}
+            <span className="text-[hsl(var(--red-600))]">Knowledge Hub</span>{" "}
+            for Manufacturing Challenges
           </h1>
 
           <p className="mt-5 text-base sm:text-lg text-[hsl(var(--neutral-700))] max-w-xl leading-relaxed">
