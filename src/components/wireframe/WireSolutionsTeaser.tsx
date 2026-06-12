@@ -39,9 +39,9 @@ export const WireSolutionsTeaser = () => {
     <WireSection id="solutions">
       <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
         <div className="max-w-2xl">
-          <div className="section-eyebrow mb-3">Solutions</div>
+          <div className="section-eyebrow mb-3">Knowledge Hub</div>
           <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight text-navy-800">
-            Transform Operations with AI-Driven Solutions
+            Transform Operations with AI-Driven Knowledge
           </h2>
           <p className="mt-4 text-base md:text-lg text-[hsl(var(--neutral-700))]">
             Find AI-powered solution areas that help manufacturers improve efficiency, reduce downtime and drive smarter operations.

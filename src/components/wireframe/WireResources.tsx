@@ -39,7 +39,7 @@ export const WireResources = () => {
   return (
     <WireSection id="resources" alt>
       <div className="mb-6">
-        <div className="section-eyebrow mb-2">Solutions Spotlight</div>
+        <div className="section-eyebrow mb-2">Knowledge Hub Spotlight</div>
         <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight text-navy-800">
           Learn from practical examples and resources
         </h2>

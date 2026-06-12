@@ -13,9 +13,9 @@ const pathways = [
   },
   {
     icon: Layers,
-    title: "Explore Solutions",
-    desc: "Explore solution areas linked to business problems and outcomes.",
-    cta: "Explore solutions",
+    title: "Knowledge Hub",
+    desc: "Explore solution areas, case studies and resources linked to business problems and outcomes.",
+    cta: "Explore Knowledge Hub",
     href: "/solutions",
     accent: "navy" as const,
   },

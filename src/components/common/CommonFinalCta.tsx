@@ -53,7 +53,7 @@ const ROUTE_CONTENT: { match: (path: string) => boolean; content: CtaContent }[]
         "Benchmark your manufacturing maturity and discover the pathways that helped these leaders succeed.",
       actions: [
         { label: "Take Readiness Assessment", to: "/readiness-assessment", icon: ClipboardCheck, variant: "primary" },
-        { label: "Browse Solutions", to: "/solutions", icon: GraduationCap, variant: "secondary" },
+        { label: "Browse Knowledge Hub", to: "/solutions", icon: GraduationCap, variant: "secondary" },
         { label: "Talk to an Expert", to: "/contact", icon: Send, variant: "ghost" },
       ],
       assistant: {
@@ -113,7 +113,7 @@ const ROUTE_CONTENT: { match: (path: string) => boolean; content: CtaContent }[]
         "Use these reports to benchmark, plan and accelerate your Industry 4.0 transformation journey.",
       actions: [
         { label: "Take Readiness Assessment", to: "/readiness-assessment", icon: ClipboardCheck, variant: "primary" },
-        { label: "Explore Solutions", to: "/solutions", icon: GraduationCap, variant: "secondary" },
+        { label: "Explore Knowledge Hub", to: "/solutions", icon: GraduationCap, variant: "secondary" },
         { label: "Request Custom Insights", to: "/contact", icon: Send, variant: "ghost" },
       ],
       assistant: {
@@ -133,7 +133,7 @@ const ROUTE_CONTENT: { match: (path: string) => boolean; content: CtaContent }[]
         "Explore real-world case studies of Indian manufacturers using Industry 4.0 to drive measurable outcomes — and discover what's possible for your plant.",
       actions: [
         { label: "Browse Case Studies", to: "/case-studies", icon: BookOpen, variant: "primary" },
-        { label: "Explore Solutions", to: "/solutions", icon: Lightbulb, variant: "secondary" },
+        { label: "Explore Knowledge Hub", to: "/solutions", icon: Lightbulb, variant: "secondary" },
         { label: "Talk to an Expert", to: "/contact", icon: Send, variant: "ghost" },
       ],
       assistant: {
@@ -173,7 +173,7 @@ const ROUTE_CONTENT: { match: (path: string) => boolean; content: CtaContent }[]
         "Benchmark your readiness, browse solutions and discover programmes while our team gets back to you.",
       actions: [
         { label: "Take Readiness Assessment", to: "/readiness-assessment", icon: ClipboardCheck, variant: "primary" },
-        { label: "Explore Solutions", to: "/solutions", icon: GraduationCap, variant: "secondary" },
+        { label: "Explore Knowledge Hub", to: "/solutions", icon: GraduationCap, variant: "secondary" },
         { label: "Browse Programmes", to: "/programmes", icon: Send, variant: "ghost" },
       ],
       assistant: {

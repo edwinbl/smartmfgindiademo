@@ -49,7 +49,7 @@ const SolutionDetail = () => {
   return (
     <div className="min-h-dvh bg-background text-foreground">
       <SEO
-        title={`${category.name} — Solutions`}
+        title={`${category.name} — Knowledge Hub`}
         description={category.summary}
       />
       <WireHeader />
@@ -71,7 +71,7 @@ const SolutionDetail = () => {
             <nav className="flex items-center gap-1.5 text-xs text-[hsl(var(--neutral-500))] mb-6" aria-label="Breadcrumb">
               <Link to="/" className="hover:text-[hsl(var(--red-600))]">Home</Link>
               <ChevronRight className="h-3 w-3" />
-              <Link to="/solutions" className="hover:text-[hsl(var(--red-600))]">Solutions</Link>
+              <Link to="/solutions" className="hover:text-[hsl(var(--red-600))]">Knowledge Hub</Link>
               <ChevronRight className="h-3 w-3" />
               <span className="text-[hsl(var(--neutral-700))]">{category.name}</span>
             </nav>

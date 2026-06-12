@@ -21,10 +21,10 @@ const navLinks: NavLink[] = [
   { label: "About", href: "/about" },
   { label: "Readiness Assessment", href: "/readiness-assessment" },
   {
-    label: "Solutions",
+    label: "Knowledge Hub",
     href: "#solutions",
     children: [
-      { label: "All Solutions", href: "/solutions" },
+      { label: "Solution Areas", href: "/solutions" },
       { label: "Case Studies", href: "/case-studies" },
       { label: "Reports & Publications", href: "/reports" },
       { label: "E-Directory", href: "/directories" },

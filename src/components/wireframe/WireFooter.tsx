@@ -26,9 +26,9 @@ const cols = [
     ],
   },
   {
-    title: "Solutions",
+    title: "Knowledge Hub",
     links: [
-      { label: "All Solutions", url: "/solutions" },
+      { label: "Solution Areas", url: "/solutions" },
       { label: "Case Studies", url: "/case-studies" },
       { label: "Reports & Publications", url: "/reports" },
       { label: "E-Directory", url: "/directories" },
