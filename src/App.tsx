@@ -81,6 +81,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <RouteTracker />
           <IdlePrefetch />
           <ChunkErrorBoundary>
