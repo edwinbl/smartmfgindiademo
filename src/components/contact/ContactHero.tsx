@@ -4,7 +4,7 @@ import { ArrowRight, Sparkles, Mail, Phone, MessageCircle, Bot, Zap, Sparkle } f
 export const ContactHero = () => {
   return (
     <section
-      className="relative overflow-hidden bg-background border-b h-[calc(100svh-72px)] flex items-center"
+      className="relative overflow-hidden bg-background border-b min-h-[60svh] md:min-h-[calc(100svh-72px)] flex items-start md:items-center pt-8 md:pt-0"
       style={{ borderColor: "hsl(var(--neutral-150))" }}
     >
       <div
