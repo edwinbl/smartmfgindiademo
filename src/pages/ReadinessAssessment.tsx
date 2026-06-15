@@ -18,7 +18,9 @@ import {
   FileBarChart,
   Clock,
   HelpCircle,
-  
+  Factory,
+  Tablet,
+  Cpu,
   Layers,
   PlayCircle,
 } from "lucide-react";
