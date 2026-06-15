@@ -9,7 +9,6 @@ import { ContactSmartForm } from "@/components/contact/ContactSmartForm";
 import { RegionalPresence } from "@/components/contact/RegionalPresence";
 import { SupportChannels } from "@/components/contact/SupportChannels";
 import { ContactFAQ, faqs } from "@/components/contact/ContactFAQ";
-import { MobileStickyCta } from "@/components/contact/MobileStickyCta";
 
 const Contact = () => {
   const [intent, setIntent] = useState<IntentKey | null>(null);
@@ -79,7 +78,6 @@ const Contact = () => {
       </main>
       <WireFooter />
       <WireChatbotFAB />
-      <MobileStickyCta />
     </div>
   );
 };
