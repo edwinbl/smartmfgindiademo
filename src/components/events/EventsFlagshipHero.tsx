@@ -83,7 +83,7 @@ export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
 
         </div>
 
-        <div className="hidden md:block lg:col-span-5 relative h-[400px] sm:h-[460px] lg:h-[520px] animate-scale-in">
+        <div className="lg:col-span-5 relative h-[320px] sm:h-[460px] lg:h-[520px] animate-scale-in">
           <EventsCollage event={event} />
         </div>
       </div>
