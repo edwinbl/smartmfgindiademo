@@ -113,7 +113,7 @@ const ReadinessAssessment = () => {
       />
       <WireHeader />
 
-      <main className="pb-24 md:pb-0">
+      <main>
         {/* ============== HERO ============== */}
         <section className="relative overflow-hidden bg-gradient-to-b from-[hsl(var(--navy-050))] to-white min-h-[60svh] md:min-h-[calc(100svh-72px)] flex items-start md:items-center pt-8 md:pt-0">
           <div className="absolute inset-0 -z-0 opacity-[0.35] pointer-events-none"
