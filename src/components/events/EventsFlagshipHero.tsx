@@ -19,7 +19,7 @@ const statusLabel: Record<EventItem["status"], string> = {
 export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
   return (
     <section
-      className="relative overflow-hidden bg-background lg:h-[calc(100svh-72px)] flex items-center"
+      className="relative overflow-hidden bg-background min-h-[60svh] lg:h-[calc(100svh-72px)] flex items-start lg:items-center pt-8 lg:pt-0"
       aria-label="Events hero"
     >
       <div
@@ -83,7 +83,7 @@ export const EventsFlagshipHero = ({ event, query = "", onQuery }: Props) => {
 
         </div>
 
-        <div className="hidden md:block lg:col-span-5 relative h-[400px] sm:h-[460px] lg:h-[520px] animate-scale-in">
+        <div className="lg:col-span-5 relative h-[320px] sm:h-[460px] lg:h-[520px] animate-scale-in">
           <EventsCollage event={event} />
         </div>
       </div>
