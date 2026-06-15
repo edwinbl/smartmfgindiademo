@@ -113,7 +113,7 @@ const ReadinessAssessment = () => {
       />
       <WireHeader />
 
-      <main className="pb-24 md:pb-0">
+      <main>
         {/* ============== HERO ============== */}
         <section className="relative overflow-hidden bg-gradient-to-b from-[hsl(var(--navy-050))] to-white min-h-[60svh] md:min-h-[calc(100svh-72px)] flex items-start md:items-center pt-8 md:pt-0">
           <div className="absolute inset-0 -z-0 opacity-[0.35] pointer-events-none"
@@ -568,15 +568,6 @@ const ReadinessAssessment = () => {
 
       </main>
 
-      {/* Mobile sticky CTA */}
-      <div className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-[hsl(var(--neutral-150))] bg-white/95 backdrop-blur p-3 flex gap-2">
-        <Link to="/contact" className="btn-outline flex-1 !h-11">
-          Assist
-        </Link>
-        <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer" className="btn-primary flex-[1.4] !h-11">
-          Start Assessment <ArrowRight className="!h-4 !w-4" />
-        </a>
-      </div>
 
       <CommonFinalCta />
             <WireFooter />
