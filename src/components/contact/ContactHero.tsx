@@ -66,7 +66,7 @@ export const ContactHero = () => {
           </div>
         </div>
 
-        <div className="hidden md:block lg:col-span-5 relative h-[380px] sm:h-[440px] lg:h-[500px] animate-scale-in overflow-hidden">
+        <div className="lg:col-span-5 relative h-[320px] sm:h-[440px] lg:h-[500px] animate-scale-in overflow-hidden">
           <ContactCollage />
         </div>
       </div>
