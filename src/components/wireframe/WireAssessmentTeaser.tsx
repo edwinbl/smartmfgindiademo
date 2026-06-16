@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom";
 import { WireSection } from "./WireSection";
-import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  FileText,
+  Lightbulb,
+  Users,
+  TrendingUp,
+  BarChart3,
+  Award,
+  ArrowRightCircle,
+} from "lucide-react";
 
 export const WireAssessmentTeaser = () => {
   return (
