@@ -13,6 +13,7 @@ import { ReportsThemesExplorer } from "@/components/reports/ReportsThemesExplore
 import { ReportsSectorExplorer } from "@/components/reports/ReportsSectorExplorer";
 import { ReportsEmptyState } from "@/components/reports/ReportsEmptyState";
 import { reports, reportFacets, type Report, type QuickPickId } from "@/data/reports";
+import { toast } from "@/hooks/use-toast";
 import type { OutcomeId } from "@/data/solutions";
 import { outcomeLabel } from "@/data/solutions";
 
