@@ -7,6 +7,7 @@ type Post = {
   time: string;
   text: string;
   url: string;
+  image?: string;
 };
 
 const POSTS: Post[] = [
@@ -14,57 +15,70 @@ const POSTS: Post[] = [
     platform: "linkedin",
     handle: "CII Smart Manufacturing",
     time: "2h",
-    text: "Registrations open for the CII National Best Practices Award on Future Ready Manufacturing 2026. Apply by 30 July.",
+    text:
+      "Registrations are now open for the CII National Best Practices Award on Future Ready Manufacturing 2026. Indian manufacturers across sectors are invited to showcase their digital and smart manufacturing journeys. Apply by 30 July — link in bio.",
     url: "https://www.linkedin.com/company/cii-smart-manufacturing/",
+    image:
+      "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&w=800&q=70",
   },
   {
     platform: "x",
     handle: "@CIISmartMfg",
     time: "5h",
-    text: "Smart Manufacturing Maturity Assessment Model now live — 49 elements across 5 functional areas. Find your stage.",
+    text: "Smart Manufacturing Maturity Assessment Model now live — 49 elements across 5 functional areas. Find your stage in under 30 minutes.",
     url: "https://x.com/",
   },
   {
     platform: "linkedin",
     handle: "CII Smart Manufacturing",
     time: "1d",
-    text: "Highlights from the Industry 4.0 Adoption workshop in Pune — 80+ MSMEs joined sessions on cobots, MES and predictive maintenance.",
+    text:
+      "Highlights from the Industry 4.0 Adoption workshop in Pune — 80+ MSMEs joined hands-on sessions on cobots, MES rollouts and predictive maintenance. Thank you to everyone who participated and to our partner ecosystem for the rich exchange of ideas.",
     url: "https://www.linkedin.com/company/cii-smart-manufacturing/",
+    image:
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=70",
   },
   {
     platform: "x",
     handle: "@CIISmartMfg",
     time: "1d",
-    text: "New case study: a Tier-2 auto supplier cut unplanned downtime 38% in 9 months using condition monitoring + analytics.",
+    text: "New case study: a Tier-2 auto supplier cut unplanned downtime 38% in 9 months using condition monitoring + analytics. Read the full story →",
     url: "https://x.com/",
+    image:
+      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=70",
   },
   {
     platform: "linkedin",
     handle: "CII Smart Manufacturing",
     time: "2d",
-    text: "The Centre for Digital Transformation welcomes its 12th cohort of MSME leaders. Congratulations and welcome aboard.",
+    text: "The Centre for Digital Transformation welcomes its 12th cohort of MSME leaders. Congratulations and welcome aboard — the next 12 weeks will be intense and rewarding.",
     url: "https://www.linkedin.com/company/cii-smart-manufacturing/",
   },
   {
     platform: "x",
     handle: "@CIISmartMfg",
     time: "3d",
-    text: "Energy efficiency in SMEs — short read on how digital metering + analytics is unlocking 10–18% savings on shop floors.",
+    text:
+      "Energy efficiency in SMEs — a short read on how digital metering and analytics is unlocking 10–18% savings on Indian shop floors, with case examples from textiles, foundries and food processing.",
     url: "https://x.com/",
+    image:
+      "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=70",
   },
   {
     platform: "linkedin",
     handle: "CII Smart Manufacturing",
     time: "4d",
-    text: "Calling all manufacturing leaders: nominate your plant for the Future Ready Manufacturing recognition cycle 2026.",
+    text: "Calling all manufacturing leaders: nominate your plant for the Future Ready Manufacturing recognition cycle 2026. A chance to benchmark and celebrate progress.",
     url: "https://www.linkedin.com/company/cii-smart-manufacturing/",
   },
   {
     platform: "x",
     handle: "@CIISmartMfg",
     time: "5d",
-    text: "Webinar replay: Building a digital roadmap for the Indian MSME — from manual records to AI-led decision support.",
+    text: "Webinar replay: Building a digital roadmap for the Indian MSME — from manual records to AI-led decision support. Watch now.",
     url: "https://x.com/",
+    image:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=70",
   },
 ];
 
@@ -88,9 +102,9 @@ const Card = ({ p }: { p: Post }) => (
     href={p.url}
     target="_blank"
     rel="noopener noreferrer"
-    className="group flex h-full w-[320px] sm:w-[360px] shrink-0 flex-col rounded-xl border border-[hsl(var(--neutral-150))] bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[hsl(var(--orange-500)/0.4)] hover:shadow-md"
+    className="group flex h-[260px] w-[320px] sm:w-[360px] shrink-0 flex-col overflow-hidden rounded-xl border border-[hsl(var(--neutral-150))] bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-[hsl(var(--orange-500)/0.4)] hover:shadow-md"
   >
-    <div className="flex items-center gap-2.5">
+    <div className="flex items-center gap-2.5 px-4 pt-4">
       <PlatformIcon platform={p.platform} />
       <div className="min-w-0 flex-1">
         <div className="text-[13px] font-semibold text-navy-800 truncate">{p.handle}</div>
@@ -98,11 +112,38 @@ const Card = ({ p }: { p: Post }) => (
       </div>
       <ExternalLink className="h-3.5 w-3.5 text-[hsl(var(--neutral-500))] opacity-0 group-hover:opacity-100 transition-opacity" />
     </div>
-    <p className="mt-3 text-[13px] leading-relaxed text-[hsl(var(--neutral-700))] line-clamp-4">
-      {p.text}
-    </p>
+
+    <div className="flex flex-1 min-h-0 gap-3 px-4 pt-3 pb-3">
+      <div className="relative flex-1 min-w-0">
+        <p className="text-[13px] leading-relaxed text-[hsl(var(--neutral-700))] line-clamp-6">
+          {p.text}
+        </p>
+        {/* fade-out for truncated text */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-white to-transparent" />
+      </div>
+      {p.image && (
+        <div className="relative w-[88px] sm:w-[96px] shrink-0 overflow-hidden rounded-md bg-[hsl(var(--neutral-100))]">
+          <img
+            src={p.image}
+            alt=""
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+      )}
+    </div>
+
+    <div className="flex items-center justify-between border-t border-[hsl(var(--neutral-100))] px-4 py-2.5">
+      <span className="text-[11px] text-[hsl(var(--neutral-500))]">
+        {p.platform === "x" ? "View on X" : "View on LinkedIn"}
+      </span>
+      <span className="text-[11px] font-semibold text-[hsl(var(--orange-600))] group-hover:translate-x-0.5 transition-transform">
+        Read more →
+      </span>
+    </div>
   </a>
 );
+
 
 export const WireSocialTicker = () => {
   // duplicate for seamless marquee loop
