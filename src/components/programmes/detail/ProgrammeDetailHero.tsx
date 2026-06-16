@@ -17,6 +17,8 @@ const statusLabel: Record<ProgrammeItem["status"], string> = {
 
 export const ProgrammeDetailHero = ({ programme, onRegister }: Props) => {
   const p = programme;
+  const heroImage = p.gallery?.[0];
+
   return (
     <section className="relative text-white overflow-hidden">
       <div
@@ -37,8 +39,8 @@ export const ProgrammeDetailHero = ({ programme, onRegister }: Props) => {
           <span className="text-white/90">{p.type}</span>
         </nav>
 
-        <div className="grid lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-8 space-y-5">
+        <div className={`grid gap-10 items-start ${heroImage ? "lg:grid-cols-12" : "lg:grid-cols-12"}`}>
+          <div className={heroImage ? "lg:col-span-7 space-y-5" : "lg:col-span-8 space-y-5"}>
             <div className="flex flex-wrap items-center gap-2">
               <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] uppercase tracking-[0.12em] font-bold ${accentSoft[p.accent]}`}>
                 {p.type}
@@ -79,6 +81,20 @@ export const ProgrammeDetailHero = ({ programme, onRegister }: Props) => {
               </div>
             )}
           </div>
+
+          {heroImage && (
+            <div className="lg:col-span-5 flex items-start justify-center lg:justify-end">
+              <div className="relative w-full max-w-md lg:max-w-none rounded-xl overflow-hidden ring-1 ring-white/20 shadow-2xl shadow-black/30">
+                <img
+                  src={heroImage.url}
+                  alt={heroImage.caption ?? `${p.title} photograph`}
+                  className="w-full h-auto object-cover"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" aria-hidden />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
