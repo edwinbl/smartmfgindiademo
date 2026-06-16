@@ -148,7 +148,6 @@ const Card = ({ p }: { p: Post }) => (
 export const WireSocialTicker = () => {
   // duplicate for seamless marquee loop
   const row1 = [...POSTS, ...POSTS];
-  const row2 = [...POSTS.slice().reverse(), ...POSTS.slice().reverse()];
 
   return (
     <WireSection id="social" alt>
