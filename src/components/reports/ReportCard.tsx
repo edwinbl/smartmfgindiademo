@@ -45,7 +45,7 @@ export const ReportCard = ({ report, onDownload }: Props) => {
               src={report.coverImage}
               alt={`${report.title} cover`}
               loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover object-top"
+              className="absolute inset-0 h-full w-full object-cover object-center"
             />
             <div
               className="absolute inset-0 pointer-events-none"
