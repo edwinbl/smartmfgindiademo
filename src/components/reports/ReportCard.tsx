@@ -60,6 +60,10 @@ export const ReportCard = ({ report, onDownload }: Props) => {
           <div className="text-[11px] uppercase tracking-[0.14em] font-bold opacity-90 mt-1">
             {report.highlightStat.label}
           </div>
+          <div className="mt-3 inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-black/25 backdrop-blur text-[10px] font-bold uppercase tracking-wider">
+            <span className="h-1.5 w-1.5 rounded-full bg-white/80" />
+            {report.author}
+          </div>
         </div>
 
         <div
