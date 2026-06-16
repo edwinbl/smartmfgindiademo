@@ -22,6 +22,7 @@ export interface Report {
   tags: string[];
   highlightStat: { value: string; label: string };
   coverGradient: string;
+  coverImage?: string;
   collectionIds: string[];
   keyFindings: { title: string; description: string }[];
   topicsCovered: string[];
@@ -581,11 +582,27 @@ export const collections: Collection[] = [
   },
 ];
 
+const coverImages: Record<string, string> = {
+  "industry-40-adoption-strategic-roadmap-indian-manufacturing": "/__l5e/assets-v1/21ccae13-bca6-403e-be76-c98f038795bb/industry-40-roadmap.jpg",
+  "transforming-india-chemical-sector-digital-analytics": "/__l5e/assets-v1/7d825ffa-dda5-4ca8-9f88-e465e83a1341/chemical-sector.jpg",
+  "manufacturing-in-india-creating-a-smarter-future": "/__l5e/assets-v1/f84747f3-7df5-4d2f-8df0-eb43244af12b/smarter-future.jpg",
+  "action-plan-fostering-adoption-smart-manufacturing": "/__l5e/assets-v1/03342fe8-1438-49d3-ad83-d1f90883ce85/action-plan-smart.jpg",
+  "predictive-maintenance-for-oil-and-gas": "/__l5e/assets-v1/cb50fbaf-a4b6-4a01-8a7f-ee8a9767cbc0/predictive-maint.jpg",
+  "manufacturing-reimagining-resilient-sustainable-future": "/__l5e/assets-v1/3bfe4c03-2a02-457a-8459-d17804fba415/reimagining-mfg.jpg",
+  "ai-can-help-keep-workforce-safe": "/__l5e/assets-v1/23eb7ee4-d065-4874-9b50-918ccbaeb204/ai-workforce-safe.jpg",
+  "smart-manufacturing-reducing-costs-virtual-simulation": "/__l5e/assets-v1/e570e291-169a-4023-b661-384dbf9bbae7/smart-factory-sim.jpg",
+  "additive-manufacturing-2020-first-time-right": "/__l5e/assets-v1/2420aeed-cc2f-4d53-aebf-5aad84b38873/additive-mfg.jpg",
+  "7-habits-of-highly-effective-generative-design": "/__l5e/assets-v1/140f36da-b800-4b8b-a251-fce01f47ad12/generative-design.jpg",
+  "ai-ml-trimmed-body-ntf-odyssee-cae-satven": "/__l5e/assets-v1/0520f7cb-742f-4560-b63f-7b0ae125abad/ai-ml-ntf.jpg",
+  "ai-ml-crash-parameters-odyssee-cae-satven": "/__l5e/assets-v1/5e1d786a-2308-465b-bb17-54cb56e8c1c4/ai-ml-crash.jpg",
+};
+
 export const reports: Report[] = seeds.map((s, i) => ({
   ...s,
   state: s.state ?? "Pan-India",
   readingTime: readingTime(s.pages),
   coverGradient: s.coverGradient ?? gradients[i % gradients.length],
+  coverImage: coverImages[s.slug],
 }));
 
 export const reportFacets = {

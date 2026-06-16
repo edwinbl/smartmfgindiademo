@@ -37,9 +37,28 @@ export const ReportCard = ({ report, onDownload }: Props) => {
     >
       {/* cover */}
       <div
-        className={`relative h-44 bg-gradient-to-br ${report.coverGradient} text-white p-5 flex flex-col justify-between overflow-hidden`}
+        className={`relative h-44 ${report.coverImage ? "bg-[hsl(var(--navy-900))]" : `bg-gradient-to-br ${report.coverGradient}`} text-white p-5 flex flex-col justify-between overflow-hidden`}
       >
-        <div className="flex items-center justify-between">
+        {report.coverImage && (
+          <>
+            <img
+              src={report.coverImage}
+              alt={`${report.title} cover`}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover object-top"
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(10,15,30,0.15) 0%, rgba(10,15,30,0.55) 60%, rgba(10,15,30,0.85) 100%)",
+              }}
+              aria-hidden
+            />
+          </>
+        )}
+
+        <div className="relative flex items-center justify-between">
           <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/15 backdrop-blur">
             {report.type}
           </span>
@@ -55,25 +74,27 @@ export const ReportCard = ({ report, onDownload }: Props) => {
           </button>
         </div>
 
-        <div>
-          <h4 className="font-display font-bold text-[18px] leading-tight line-clamp-3 drop-shadow-sm">
+        <div className="relative">
+          <h4 className="font-display font-bold text-[18px] leading-tight line-clamp-3 drop-shadow-md">
             {report.title}
           </h4>
-          <div className="mt-3 inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-black/25 backdrop-blur text-[10px] font-bold uppercase tracking-wider">
+          <div className="mt-3 inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-black/40 backdrop-blur text-[10px] font-bold uppercase tracking-wider">
             <span className="h-1.5 w-1.5 rounded-full bg-white/80" />
             {report.author}
           </div>
         </div>
 
-        <div
-          className="absolute inset-0 opacity-[0.15] pointer-events-none"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)",
-            backgroundSize: "22px 22px",
-          }}
-          aria-hidden
-        />
+        {!report.coverImage && (
+          <div
+            className="absolute inset-0 opacity-[0.15] pointer-events-none"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)",
+              backgroundSize: "22px 22px",
+            }}
+            aria-hidden
+          />
+        )}
       </div>
 
       {/* body */}
