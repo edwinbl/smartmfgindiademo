@@ -1,15 +1,6 @@
 import { Link } from "react-router-dom";
 import { WireSection } from "./WireSection";
-import {
-  ArrowRight,
-  CheckCircle2,
-  Factory,
-  Tablet,
-  Network,
-  BarChart3,
-  Cpu,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 
 export const WireAssessmentTeaser = () => {
   return (
@@ -55,15 +46,15 @@ export const WireAssessmentTeaser = () => {
           </div>
         </div>
 
-        {/* MSME Digital Maturity Ladder */}
+        {/* Sample Maturity Snapshot — faux assessment result */}
         <div className="relative">
-          <div className="cii-card p-5 sm:p-8 bg-white relative overflow-hidden">
-            {/* subtle diagonal gradient backdrop suggesting upward motion */}
+          <div className="cii-card p-5 sm:p-7 bg-white relative overflow-hidden">
+            {/* subtle backdrop */}
             <div
-              className="pointer-events-none absolute inset-0 opacity-[0.06]"
+              className="pointer-events-none absolute inset-0 opacity-[0.05]"
               style={{
                 background:
-                  "linear-gradient(135deg, hsl(var(--navy-800)) 0%, transparent 45%, hsl(var(--orange-500)) 100%)",
+                  "radial-gradient(circle at 80% 0%, hsl(var(--orange-500)) 0%, transparent 55%), linear-gradient(180deg, hsl(var(--navy-800)) 0%, transparent 60%)",
               }}
               aria-hidden
             />
@@ -71,129 +62,185 @@ export const WireAssessmentTeaser = () => {
             <div className="relative flex items-center justify-between gap-3 flex-wrap">
               <div className="min-w-0">
                 <div className="eyebrow text-[hsl(var(--neutral-500))]">
-                  MSME Digital Maturity Ladder
+                  Sample Maturity Snapshot
                 </div>
                 <div className="font-display font-bold text-navy-800 text-sm sm:text-base mt-1 leading-snug">
-                  From Manual to Smart &amp; Adaptive
+                  Your Smart Manufacturing scorecard
                   <br />
                   <span className="text-[hsl(var(--neutral-500))] font-medium text-xs sm:text-sm">
-                    A 5-stage journey for Indian manufacturers
+                    49 elements · 5 functional categories · scored out of 100
                   </span>
                 </div>
               </div>
-              <span className="cii-chip cii-chip-orange shrink-0">5 Stages</span>
+              <span className="cii-chip cii-chip-orange shrink-0">Preview</span>
             </div>
 
-            {/* Ladder rungs — rendered bottom→top via flex-col-reverse */}
-            <div className="relative mt-6 sm:mt-7 flex flex-col-reverse gap-2.5">
-              {[
-                {
-                  n: 1,
-                  name: "Manual",
-                  desc: "Paper-based, isolated processes",
-                  Icon: Factory,
-                },
-                {
-                  n: 2,
-                  name: "Digitised",
-                  desc: "Basic digital tools & records",
-                  Icon: Tablet,
-                  highlight: true,
-                },
-                {
-                  n: 3,
-                  name: "Connected",
-                  desc: "Machines & systems linked",
-                  Icon: Network,
-                  highlight: true,
-                },
-                {
-                  n: 4,
-                  name: "Data-driven",
-                  desc: "Insights guide decisions",
-                  Icon: BarChart3,
-                },
-                {
-                  n: 5,
-                  name: "Smart & Adaptive",
-                  desc: "AI-led, self-optimising",
-                  Icon: Cpu,
-                },
-              ].map((s, i) => {
-                // ascending indent: 0, 6, 12, 18, 24% on sm+; halved on mobile
-                const indentSm = i * 6;
-                const indentXs = i * 3;
-                return (
-                  <div
-                    key={s.n}
-                    className="relative"
-                    style={{
-                      marginLeft: `${indentXs}%`,
-                    }}
-                  >
-                    <div
-                      className="sm:!ml-[var(--indent-sm)]"
-                      style={
-                        {
-                          ["--indent-sm" as string]: `${indentSm - indentXs}%`,
-                        } as React.CSSProperties
-                      }
-                    >
-                      <div
-                        className={[
-                          "flex items-center gap-3 rounded-lg border px-3 py-2.5 sm:px-3.5 sm:py-3 transition-colors",
-                          s.highlight
-                            ? "bg-[hsl(var(--orange-100)/0.55)] border-[hsl(var(--orange-500)/0.45)] ring-1 ring-[hsl(var(--orange-500)/0.25)]"
-                            : "bg-white border-[hsl(var(--neutral-150))]",
-                        ].join(" ")}
-                      >
-                        <span
-                          className={[
-                            "flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-md text-[11px] sm:text-xs font-bold",
-                            s.highlight
-                              ? "bg-[hsl(var(--orange-500))] text-white"
-                              : "bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))]",
-                          ].join(" ")}
+            {/* Score + Radar */}
+            <div className="relative mt-6 grid grid-cols-[auto_1fr] gap-5 sm:gap-6 items-center">
+              {/* Circular score gauge */}
+              <div className="relative">
+                <svg viewBox="0 0 120 120" className="w-[110px] h-[110px] sm:w-[128px] sm:h-[128px] -rotate-90">
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r="50"
+                    fill="none"
+                    stroke="hsl(var(--neutral-150))"
+                    strokeWidth="10"
+                  />
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r="50"
+                    fill="none"
+                    stroke="hsl(var(--orange-500))"
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                    strokeDasharray={`${(68 / 100) * 314} 314`}
+                  />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <span className="font-display font-bold text-navy-800 text-2xl sm:text-3xl leading-none">
+                    68
+                  </span>
+                  <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[hsl(var(--neutral-500))] mt-1">
+                    / 100
+                  </span>
+                </div>
+              </div>
+
+              {/* Radar of 5 categories */}
+              <div className="relative">
+                <svg viewBox="-110 -110 220 220" className="w-full max-w-[200px] mx-auto">
+                  {/* concentric pentagons */}
+                  {[0.25, 0.5, 0.75, 1].map((r) => {
+                    const pts = Array.from({ length: 5 }, (_, i) => {
+                      const a = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                      return `${Math.cos(a) * 90 * r},${Math.sin(a) * 90 * r}`;
+                    }).join(" ");
+                    return (
+                      <polygon
+                        key={r}
+                        points={pts}
+                        fill="none"
+                        stroke="hsl(var(--neutral-150))"
+                        strokeWidth="1"
+                      />
+                    );
+                  })}
+                  {/* axes */}
+                  {Array.from({ length: 5 }, (_, i) => {
+                    const a = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                    return (
+                      <line
+                        key={i}
+                        x1="0"
+                        y1="0"
+                        x2={Math.cos(a) * 90}
+                        y2={Math.sin(a) * 90}
+                        stroke="hsl(var(--neutral-150))"
+                        strokeWidth="1"
+                      />
+                    );
+                  })}
+                  {/* data polygon */}
+                  {(() => {
+                    const scores = [0.78, 0.62, 0.55, 0.72, 0.6];
+                    const pts = scores
+                      .map((s, i) => {
+                        const a = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                        return `${Math.cos(a) * 90 * s},${Math.sin(a) * 90 * s}`;
+                      })
+                      .join(" ");
+                    return (
+                      <>
+                        <polygon
+                          points={pts}
+                          fill="hsl(var(--orange-500))"
+                          fillOpacity="0.18"
+                          stroke="hsl(var(--orange-500))"
+                          strokeWidth="2"
+                          strokeLinejoin="round"
+                        />
+                        {scores.map((s, i) => {
+                          const a = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                          return (
+                            <circle
+                              key={i}
+                              cx={Math.cos(a) * 90 * s}
+                              cy={Math.sin(a) * 90 * s}
+                              r="3"
+                              fill="hsl(var(--orange-500))"
+                            />
+                          );
+                        })}
+                      </>
+                    );
+                  })()}
+                  {/* labels */}
+                  {["Operations", "Supply Chain", "Tech", "People", "Strategy"].map(
+                    (label, i) => {
+                      const a = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                      const x = Math.cos(a) * 108;
+                      const y = Math.sin(a) * 108;
+                      return (
+                        <text
+                          key={label}
+                          x={x}
+                          y={y}
+                          textAnchor={Math.abs(Math.cos(a)) < 0.2 ? "middle" : Math.cos(a) > 0 ? "start" : "end"}
+                          dominantBaseline="middle"
+                          fontSize="9"
+                          fontWeight="600"
+                          fill="hsl(var(--navy-700))"
                         >
-                          {s.n}
-                        </span>
-                        <div className="min-w-0 flex-1">
-                          <div className="text-[13px] sm:text-sm font-bold text-navy-800 leading-tight">
-                            {s.name}
-                          </div>
-                          <div className="text-[11px] sm:text-xs text-[hsl(var(--neutral-500))] leading-snug truncate">
-                            {s.desc}
-                          </div>
-                        </div>
-                        <span
-                          className={[
-                            "flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-md",
-                            s.highlight
-                              ? "bg-white text-[hsl(var(--orange-600))]"
-                              : "bg-[hsl(var(--neutral-100))] text-[hsl(var(--navy-700))]",
-                          ].join(" ")}
-                        >
-                          <s.Icon className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+                          {label}
+                        </text>
+                      );
+                    }
+                  )}
+                </svg>
+              </div>
             </div>
 
-            {/* Encouraging line tied to highlighted middle band */}
-            <div className="relative mt-4 flex items-center gap-2 text-[12px] sm:text-[13px] italic text-[hsl(var(--navy-700))]">
-              <Sparkles className="h-3.5 w-3.5 text-[hsl(var(--orange-500))] shrink-0" />
-              You may be closer than you think.
+            {/* Industry maturity band */}
+            <div className="relative mt-5">
+              <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[hsl(var(--neutral-500))] mb-1.5">
+                <span>Industry 1.0</span>
+                <span>2.0</span>
+                <span>3.0</span>
+                <span>4.0</span>
+              </div>
+              <div className="relative h-2.5 rounded-full bg-[hsl(var(--neutral-100))] overflow-hidden">
+                <div
+                  className="absolute inset-y-0 left-0 rounded-full"
+                  style={{
+                    width: "68%",
+                    background:
+                      "linear-gradient(90deg, hsl(var(--navy-700)) 0%, hsl(var(--orange-500)) 100%)",
+                  }}
+                />
+                <div
+                  className="absolute -top-1 h-4.5 w-0.5 bg-navy-800"
+                  style={{ left: "68%", height: "18px" }}
+                  aria-hidden
+                />
+              </div>
+              <div className="mt-2 flex items-center gap-2 text-[11px] sm:text-xs text-[hsl(var(--navy-700))]">
+                <Sparkles className="h-3.5 w-3.5 text-[hsl(var(--orange-500))] shrink-0" />
+                <span>
+                  You're at <span className="font-bold">Industry 3.2</span> — ahead of 54% of peers.
+                </span>
+              </div>
             </div>
 
+            {/* Footer CTA */}
             <div className="relative mt-5 pt-4 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between gap-3 flex-wrap">
               <span className="text-[11px] sm:text-xs text-[hsl(var(--neutral-500))]">
-                Find your current stage and next priority.
+                Free · 20 minutes · Confidential
               </span>
               <Link to="/readiness-assessment" className="link-arrow">
-                Take assessment <ArrowRight className="h-3.5 w-3.5" />
+                Get your score <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
           </div>
