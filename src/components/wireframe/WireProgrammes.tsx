@@ -3,8 +3,9 @@ import { WireSection } from "./WireSection";
 import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
 import { programmes } from "@/data/programmes";
 
+const now = Date.now();
 const upcoming = programmes
-  .filter((p) => p.status === "open" || p.status === "soon")
+  .filter((p) => (p.status === "open" || p.status === "soon") && new Date(p.isoDate).getTime() >= now)
   .sort((a, b) => new Date(a.isoDate).getTime() - new Date(b.isoDate).getTime())
   .slice(0, 3);
 
