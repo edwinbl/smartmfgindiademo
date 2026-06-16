@@ -64,6 +64,7 @@ const Index = () => {
         <WirePartners />
         <CommonFinalCta />
         <WireSocialTicker />
+        <WireShareContent />
       </main>
 
       <WireFooter />
