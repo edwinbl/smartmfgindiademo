@@ -90,7 +90,7 @@ const ReportsIndex = () => {
       <main>
         <ReportsHero query={query} onQuery={setQuery} onTag={setQuery} />
         
-        <FeaturedCollections />
+        {/* <FeaturedCollections /> */}
 
         {/* CII Reports */}
         <section id="cii-reports" className="py-14 md:py-20">
