@@ -24,7 +24,7 @@ export const WireHero = () => {
       {/* Tricolor stripe */}
       <div className="absolute left-0 top-0 bottom-0 w-1 tricolor-stripe" />
 
-      <div className="container-cii relative py-10 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+      <div className="container-cii relative py-10 grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-16 items-center">
         <div>
           <div
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-5 border"
@@ -73,7 +73,7 @@ export const WireHero = () => {
         </div>
 
         {/* Visual */}
-        <div className="hidden lg:block min-w-0">
+        <div className="hidden lg:block">
           <HeroEcosystemViz />
         </div>
       </div>
