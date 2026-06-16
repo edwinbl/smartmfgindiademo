@@ -584,17 +584,17 @@ export const collections: Collection[] = [
 
 const coverImages: Record<string, string> = {
   "industry-40-adoption-strategic-roadmap-indian-manufacturing": "/__l5e/assets-v1/21ccae13-bca6-403e-be76-c98f038795bb/industry-40-roadmap.jpg",
-  "transforming-india-chemical-sector-digital-analytics": "/__l5e/assets-v1/7d825ffa-dda5-4ca8-9f88-e465e83a1341/chemical-sector.jpg",
-  "manufacturing-in-india-creating-a-smarter-future": "/__l5e/assets-v1/f84747f3-7df5-4d2f-8df0-eb43244af12b/smarter-future.jpg",
-  "action-plan-fostering-adoption-smart-manufacturing": "/__l5e/assets-v1/03342fe8-1438-49d3-ad83-d1f90883ce85/action-plan-smart.jpg",
-  "predictive-maintenance-for-oil-and-gas": "/__l5e/assets-v1/cb50fbaf-a4b6-4a01-8a7f-ee8a9767cbc0/predictive-maint.jpg",
+  "transforming-india-chemical-sector-digital-analytics": "/__l5e/assets-v1/613e03de-e914-4e30-bb2d-1e09c3625a46/chemical-sector-v2.jpg",
+  "manufacturing-in-india-creating-a-smarter-future": "/__l5e/assets-v1/091d9411-fe31-4601-87b3-80ccfe08251f/smarter-future-v2.jpg",
+  "action-plan-fostering-adoption-smart-manufacturing": "/__l5e/assets-v1/166b6726-ef90-479a-99c8-64d01fe50159/action-plan-smart-v2.jpg",
+  "predictive-maintenance-for-oil-and-gas": "/__l5e/assets-v1/df291b0a-d7c8-40f0-bc4d-c0e0a1643e31/predictive-maint-v2.jpg",
   "manufacturing-reimagining-resilient-sustainable-future": "/__l5e/assets-v1/3bfe4c03-2a02-457a-8459-d17804fba415/reimagining-mfg.jpg",
   "ai-can-help-keep-workforce-safe": "/__l5e/assets-v1/23eb7ee4-d065-4874-9b50-918ccbaeb204/ai-workforce-safe.jpg",
-  "smart-manufacturing-reducing-costs-virtual-simulation": "/__l5e/assets-v1/e570e291-169a-4023-b661-384dbf9bbae7/smart-factory-sim.jpg",
-  "additive-manufacturing-2020-first-time-right": "/__l5e/assets-v1/2420aeed-cc2f-4d53-aebf-5aad84b38873/additive-mfg.jpg",
-  "7-habits-of-highly-effective-generative-design": "/__l5e/assets-v1/140f36da-b800-4b8b-a251-fce01f47ad12/generative-design.jpg",
-  "ai-ml-trimmed-body-ntf-odyssee-cae-satven": "/__l5e/assets-v1/0520f7cb-742f-4560-b63f-7b0ae125abad/ai-ml-ntf.jpg",
-  "ai-ml-crash-parameters-odyssee-cae-satven": "/__l5e/assets-v1/5e1d786a-2308-465b-bb17-54cb56e8c1c4/ai-ml-crash.jpg",
+  "smart-manufacturing-reducing-costs-virtual-simulation": "/__l5e/assets-v1/d1f1a949-662b-4d6a-85ae-da8b40d42722/smart-factory-sim-v2.jpg",
+  "additive-manufacturing-2020-first-time-right": "/__l5e/assets-v1/e14f83f3-04b1-487a-86b1-f3922fb1fa35/additive-mfg-v2.jpg",
+  "7-habits-of-highly-effective-generative-design": "/__l5e/assets-v1/982e07a0-16bc-4c55-9be1-039d261882af/generative-design-v2.jpg",
+  "ai-ml-trimmed-body-ntf-odyssee-cae-satven": "/__l5e/assets-v1/638f98af-9e9b-4665-b3fd-fa2546b643c3/ai-ml-ntf-v2.jpg",
+  "ai-ml-crash-parameters-odyssee-cae-satven": "/__l5e/assets-v1/b2d06009-f35a-4de6-934c-14ddcc6c043f/ai-ml-crash-v2.jpg",
 };
 
 export const reports: Report[] = seeds.map((s, i) => ({
