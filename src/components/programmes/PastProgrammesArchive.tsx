@@ -5,11 +5,28 @@ import { programmes, programmeTypes, type ProgrammeItem, type ProgrammeType } fr
 
 const TYPES: ("All" | ProgrammeType)[] = programmeTypes;
 
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+const parseIso = (iso: string): Date | null => {
+  if (!iso) return null;
+  const d = new Date(iso);
+  return isNaN(d.getTime()) ? null : d;
+};
+
 const extractYear = (p: ProgrammeItem): string => {
-  const d = new Date(p.isoDate);
-  if (!isNaN(d.getTime())) return String(d.getFullYear());
+  const d = parseIso(p.isoDate);
+  if (d) return String(d.getUTCFullYear());
   const m = p.startDate.match(/\b(20\d{2})\b/);
   return m ? m[1] : "Other";
+};
+
+// Always returns a clean date label like "Sep 2025" or "Feb 2026" from isoDate
+// so every card shows the same date metadata, even when startDate is descriptive
+// (e.g. "Multiple editions" or "Six editions").
+const formatMonthYear = (p: ProgrammeItem): string => {
+  const d = parseIso(p.isoDate);
+  if (!d) return extractYear(p);
+  return `${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 };
 
 const getPastProgrammes = (): ProgrammeItem[] => {
