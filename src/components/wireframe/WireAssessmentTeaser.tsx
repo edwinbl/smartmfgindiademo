@@ -3,12 +3,12 @@ import { WireSection } from "./WireSection";
 import {
   ArrowRight,
   CheckCircle2,
-  FileText,
-  Lightbulb,
-  Users,
-  TrendingUp,
+  Factory,
+  Tablet,
+  Network,
   BarChart3,
-  Award,
+  Cpu,
+  Sparkles,
 } from "lucide-react";
 
 export const WireAssessmentTeaser = () => {
@@ -55,148 +55,145 @@ export const WireAssessmentTeaser = () => {
           </div>
         </div>
 
-        {/* What you get — prognosis card */}
+        {/* MSME Digital Maturity Ladder */}
         <div className="relative">
-          <div className="cii-card p-5 sm:p-7 bg-white relative overflow-hidden">
-            {/* subtle backdrop */}
+          <div className="cii-card p-5 sm:p-8 bg-white relative overflow-hidden">
+            {/* subtle diagonal gradient backdrop suggesting upward motion */}
             <div
-              className="pointer-events-none absolute inset-0 opacity-[0.05]"
+              className="pointer-events-none absolute inset-0 opacity-[0.06]"
               style={{
                 background:
-                  "radial-gradient(circle at 80% 0%, hsl(var(--orange-500)) 0%, transparent 55%), linear-gradient(180deg, hsl(var(--navy-800)) 0%, transparent 60%)",
+                  "linear-gradient(135deg, hsl(var(--navy-800)) 0%, transparent 45%, hsl(var(--orange-500)) 100%)",
               }}
               aria-hidden
             />
 
-            {/* Header */}
             <div className="relative flex items-center justify-between gap-3 flex-wrap">
               <div className="min-w-0">
-                <div className="eyebrow text-[hsl(var(--neutral-500))]">What you get</div>
+                <div className="eyebrow text-[hsl(var(--neutral-500))]">
+                  MSME Digital Maturity Ladder
+                </div>
                 <div className="font-display font-bold text-navy-800 text-sm sm:text-base mt-1 leading-snug">
-                  Your personalised readiness report
+                  From Manual to Smart &amp; Adaptive
                   <br />
                   <span className="text-[hsl(var(--neutral-500))] font-medium text-xs sm:text-sm">
-                    20 minutes · 49 elements · Instant insights
+                    A 5-stage journey for Indian manufacturers
                   </span>
                 </div>
               </div>
-              <span className="cii-chip cii-chip-orange shrink-0">Free</span>
+              <span className="cii-chip cii-chip-orange shrink-0">5 Stages</span>
             </div>
 
-            {/* Simple 3-step flow */}
-            <div className="relative mt-6">
-              <div className="flex items-stretch gap-2">
-                {[
-                  { icon: FileText, label: "Answer", desc: "49 guided questions" },
-                  { icon: BarChart3, label: "Analyse", desc: "Real-time scoring" },
-                  { icon: Lightbulb, label: "Act", desc: "Actionable roadmap" },
-                ].map((step, idx, arr) => (
-                  <div key={step.label} className="flex-1 flex items-center gap-2 min-w-0">
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-1.5">
-                        <div className="flex items-center justify-center w-6 h-6 rounded-full bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))]">
-                          <step.icon className="h-3 w-3" />
-                        </div>
-                        <span className="text-xs font-bold text-navy-800">{step.label}</span>
-                      </div>
-                      <p className="text-[10px] sm:text-[11px] text-[hsl(var(--neutral-500))] mt-0.5 leading-snug">
-                        {step.desc}
-                      </p>
-                    </div>
-                    {idx < arr.length - 1 && (
-                      <ArrowRight className="h-3 w-3 text-[hsl(var(--neutral-200))] shrink-0" />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 5 pillars */}
-            <div className="relative mt-6">
-              <div className="flex items-center gap-1.5 mb-2.5">
-                <Award className="h-3.5 w-3.5 text-[hsl(var(--red-600))]" />
-                <span className="text-xs font-bold text-navy-800 uppercase tracking-wider">
-                  Evaluated across 5 pillars
-                </span>
-              </div>
-              <div className="grid grid-cols-5 gap-2">
-                {[
-                  { label: "Operations", abbr: "Ops" },
-                  { label: "Supply Chain", abbr: "SCM" },
-                  { label: "Technology", abbr: "Tech" },
-                  { label: "People", abbr: "People" },
-                  { label: "Strategy", abbr: "Strat" },
-                ].map((p) => (
+            {/* Ladder rungs — rendered bottom→top via flex-col-reverse */}
+            <div className="relative mt-6 sm:mt-7 flex flex-col-reverse gap-2.5">
+              {[
+                {
+                  n: 1,
+                  name: "Manual",
+                  desc: "Paper-based, isolated processes",
+                  Icon: Factory,
+                },
+                {
+                  n: 2,
+                  name: "Digitised",
+                  desc: "Basic digital tools & records",
+                  Icon: Tablet,
+                  highlight: true,
+                },
+                {
+                  n: 3,
+                  name: "Connected",
+                  desc: "Machines & systems linked",
+                  Icon: Network,
+                  highlight: true,
+                },
+                {
+                  n: 4,
+                  name: "Data-driven",
+                  desc: "Insights guide decisions",
+                  Icon: BarChart3,
+                },
+                {
+                  n: 5,
+                  name: "Smart & Adaptive",
+                  desc: "AI-led, self-optimising",
+                  Icon: Cpu,
+                },
+              ].map((s, i) => {
+                // ascending indent: 0, 6, 12, 18, 24% on sm+; halved on mobile
+                const indentSm = i * 6;
+                const indentXs = i * 3;
+                return (
                   <div
-                    key={p.label}
-                    className="flex flex-col items-center text-center p-2 rounded-md border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))]"
-                    title={p.label}
+                    key={s.n}
+                    className="relative"
+                    style={{
+                      marginLeft: `${indentXs}%`,
+                    }}
                   >
-                    <CheckCircle2 className="h-3.5 w-3.5 text-[hsl(var(--india-green))] mb-1" />
-                    <span className="text-[10px] sm:text-[11px] font-semibold text-navy-800 leading-tight">
-                      {p.abbr}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Expert insight highlight */}
-            <div className="relative mt-5 p-3 rounded-md border border-[hsl(var(--orange-100))] bg-[hsl(var(--orange-100))]/40">
-              <div className="flex items-start gap-2.5">
-                <div className="flex items-center justify-center w-7 h-7 rounded-full bg-white shrink-0 shadow-sm">
-                  <Users className="h-3.5 w-3.5 text-[hsl(var(--orange-600))]" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-navy-800 leading-snug">
-                    Curated by CII industry experts
-                  </p>
-                  <p className="text-[11px] text-[hsl(var(--neutral-500))] leading-snug mt-0.5">
-                    Benchmark against peers, identify capability gaps, and receive a tailored
-                    improvement roadmap.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Why it matters — business outcomes */}
-            <div className="relative mt-5">
-              <div className="flex items-center gap-1.5 mb-2">
-                <TrendingUp className="h-3.5 w-3.5 text-[hsl(var(--navy-700))]" />
-                <span className="text-xs font-bold text-navy-800 uppercase tracking-wider">
-                  Why it matters
-                </span>
-              </div>
-              <p className="text-[11px] text-[hsl(var(--neutral-500))] leading-snug mb-2.5">
-                Maturity scores directly link to measurable business outcomes — so you invest where
-                it counts.
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {["Productivity", "Quality", "Traceability", "Energy", "Exports", "Value-chain"].map(
-                  (tag) => (
-                    <span
-                      key={tag}
-                      className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold border"
-                      style={{
-                        background: "hsl(var(--navy-050))",
-                        borderColor: "hsl(var(--navy-100))",
-                        color: "hsl(var(--navy-700))",
-                      }}
+                    <div
+                      className="sm:!ml-[var(--indent-sm)]"
+                      style={
+                        {
+                          ["--indent-sm" as string]: `${indentSm - indentXs}%`,
+                        } as React.CSSProperties
+                      }
                     >
-                      {tag}
-                    </span>
-                  )
-                )}
-              </div>
+                      <div
+                        className={[
+                          "flex items-center gap-3 rounded-lg border px-3 py-2.5 sm:px-3.5 sm:py-3 transition-colors",
+                          s.highlight
+                            ? "bg-[hsl(var(--orange-100)/0.55)] border-[hsl(var(--orange-500)/0.45)] ring-1 ring-[hsl(var(--orange-500)/0.25)]"
+                            : "bg-white border-[hsl(var(--neutral-150))]",
+                        ].join(" ")}
+                      >
+                        <span
+                          className={[
+                            "flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-md text-[11px] sm:text-xs font-bold",
+                            s.highlight
+                              ? "bg-[hsl(var(--orange-500))] text-white"
+                              : "bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))]",
+                          ].join(" ")}
+                        >
+                          {s.n}
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <div className="text-[13px] sm:text-sm font-bold text-navy-800 leading-tight">
+                            {s.name}
+                          </div>
+                          <div className="text-[11px] sm:text-xs text-[hsl(var(--neutral-500))] leading-snug truncate">
+                            {s.desc}
+                          </div>
+                        </div>
+                        <span
+                          className={[
+                            "flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-md",
+                            s.highlight
+                              ? "bg-white text-[hsl(var(--orange-600))]"
+                              : "bg-[hsl(var(--neutral-100))] text-[hsl(var(--navy-700))]",
+                          ].join(" ")}
+                        >
+                          <s.Icon className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
-            {/* Footer CTA */}
+            {/* Encouraging line tied to highlighted middle band */}
+            <div className="relative mt-4 flex items-center gap-2 text-[12px] sm:text-[13px] italic text-[hsl(var(--navy-700))]">
+              <Sparkles className="h-3.5 w-3.5 text-[hsl(var(--orange-500))] shrink-0" />
+              You may be closer than you think.
+            </div>
+
             <div className="relative mt-5 pt-4 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between gap-3 flex-wrap">
               <span className="text-[11px] sm:text-xs text-[hsl(var(--neutral-500))]">
-                Free · 20 minutes · Confidential
+                Find your current stage and next priority.
               </span>
               <Link to="/readiness-assessment" className="link-arrow">
-                Start assessment <ArrowRight className="h-3.5 w-3.5" />
+                Take assessment <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
           </div>
