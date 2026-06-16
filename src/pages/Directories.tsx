@@ -435,14 +435,13 @@ const DirectoryCard = ({
 
           {/* Actions */}
           <div className="mt-6 flex flex-wrap gap-3">
-            <button
-              type="button"
-              onClick={onView}
+            <Link
+              to={`/directories/${directory.slug}`}
               className="inline-flex items-center gap-2 h-11 px-5 rounded-md font-semibold text-white"
               style={{ background: "hsl(var(--navy-800))" }}
             >
-              View Details <ArrowRight className="h-4 w-4" />
-            </button>
+              <Sparkles className="h-4 w-4" /> Explore Interactively <ArrowRight className="h-4 w-4" />
+            </Link>
             <button
               type="button"
               onClick={onDownload}
