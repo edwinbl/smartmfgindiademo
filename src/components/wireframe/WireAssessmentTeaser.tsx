@@ -56,7 +56,7 @@ export const WireAssessmentTeaser = () => {
           </div>
         </div>
 
-        {/* Sample Maturity Snapshot — faux assessment result */}
+        {/* What you get — prognosis card */}
         <div className="relative">
           <div className="cii-card p-5 sm:p-7 bg-white relative overflow-hidden">
             {/* subtle backdrop */}
@@ -69,178 +69,125 @@ export const WireAssessmentTeaser = () => {
               aria-hidden
             />
 
+            {/* Header */}
             <div className="relative flex items-center justify-between gap-3 flex-wrap">
               <div className="min-w-0">
-                <div className="eyebrow text-[hsl(var(--neutral-500))]">
-                  Sample Maturity Snapshot
-                </div>
+                <div className="eyebrow text-[hsl(var(--neutral-500))]">What you get</div>
                 <div className="font-display font-bold text-navy-800 text-sm sm:text-base mt-1 leading-snug">
-                  Your Smart Manufacturing scorecard
+                  Your personalised readiness report
                   <br />
                   <span className="text-[hsl(var(--neutral-500))] font-medium text-xs sm:text-sm">
-                    49 elements · 5 functional categories · scored out of 100
+                    20 minutes · 49 elements · Instant insights
                   </span>
                 </div>
               </div>
-              <span className="cii-chip cii-chip-orange shrink-0">Preview</span>
+              <span className="cii-chip cii-chip-orange shrink-0">Free</span>
             </div>
 
-            {/* Score + Radar */}
-            <div className="relative mt-6 grid grid-cols-[auto_1fr] gap-5 sm:gap-6 items-center">
-              {/* Circular score gauge */}
-              <div className="relative">
-                <svg viewBox="0 0 120 120" className="w-[110px] h-[110px] sm:w-[128px] sm:h-[128px] -rotate-90">
-                  <circle
-                    cx="60"
-                    cy="60"
-                    r="50"
-                    fill="none"
-                    stroke="hsl(var(--neutral-150))"
-                    strokeWidth="10"
-                  />
-                  <circle
-                    cx="60"
-                    cy="60"
-                    r="50"
-                    fill="none"
-                    stroke="hsl(var(--orange-500))"
-                    strokeWidth="10"
-                    strokeLinecap="round"
-                    strokeDasharray={`${(68 / 100) * 314} 314`}
-                  />
-                </svg>
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="font-display font-bold text-navy-800 text-2xl sm:text-3xl leading-none">
-                    68
-                  </span>
-                  <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[hsl(var(--neutral-500))] mt-1">
-                    / 100
-                  </span>
-                </div>
-              </div>
-
-              {/* Radar of 5 categories */}
-              <div className="relative">
-                <svg viewBox="-110 -110 220 220" className="w-full max-w-[200px] mx-auto">
-                  {/* concentric pentagons */}
-                  {[0.25, 0.5, 0.75, 1].map((r) => {
-                    const pts = Array.from({ length: 5 }, (_, i) => {
-                      const a = (Math.PI * 2 * i) / 5 - Math.PI / 2;
-                      return `${Math.cos(a) * 90 * r},${Math.sin(a) * 90 * r}`;
-                    }).join(" ");
-                    return (
-                      <polygon
-                        key={r}
-                        points={pts}
-                        fill="none"
-                        stroke="hsl(var(--neutral-150))"
-                        strokeWidth="1"
-                      />
-                    );
-                  })}
-                  {/* axes */}
-                  {Array.from({ length: 5 }, (_, i) => {
-                    const a = (Math.PI * 2 * i) / 5 - Math.PI / 2;
-                    return (
-                      <line
-                        key={i}
-                        x1="0"
-                        y1="0"
-                        x2={Math.cos(a) * 90}
-                        y2={Math.sin(a) * 90}
-                        stroke="hsl(var(--neutral-150))"
-                        strokeWidth="1"
-                      />
-                    );
-                  })}
-                  {/* data polygon */}
-                  {(() => {
-                    const scores = [0.78, 0.62, 0.55, 0.72, 0.6];
-                    const pts = scores
-                      .map((s, i) => {
-                        const a = (Math.PI * 2 * i) / 5 - Math.PI / 2;
-                        return `${Math.cos(a) * 90 * s},${Math.sin(a) * 90 * s}`;
-                      })
-                      .join(" ");
-                    return (
-                      <>
-                        <polygon
-                          points={pts}
-                          fill="hsl(var(--orange-500))"
-                          fillOpacity="0.18"
-                          stroke="hsl(var(--orange-500))"
-                          strokeWidth="2"
-                          strokeLinejoin="round"
-                        />
-                        {scores.map((s, i) => {
-                          const a = (Math.PI * 2 * i) / 5 - Math.PI / 2;
-                          return (
-                            <circle
-                              key={i}
-                              cx={Math.cos(a) * 90 * s}
-                              cy={Math.sin(a) * 90 * s}
-                              r="3"
-                              fill="hsl(var(--orange-500))"
-                            />
-                          );
-                        })}
-                      </>
-                    );
-                  })()}
-                  {/* labels */}
-                  {["Operations", "Supply Chain", "Tech", "People", "Strategy"].map(
-                    (label, i) => {
-                      const a = (Math.PI * 2 * i) / 5 - Math.PI / 2;
-                      const x = Math.cos(a) * 108;
-                      const y = Math.sin(a) * 108;
-                      return (
-                        <text
-                          key={label}
-                          x={x}
-                          y={y}
-                          textAnchor={Math.abs(Math.cos(a)) < 0.2 ? "middle" : Math.cos(a) > 0 ? "start" : "end"}
-                          dominantBaseline="middle"
-                          fontSize="9"
-                          fontWeight="600"
-                          fill="hsl(var(--navy-700))"
-                        >
-                          {label}
-                        </text>
-                      );
-                    }
-                  )}
-                </svg>
+            {/* Simple 3-step flow */}
+            <div className="relative mt-6">
+              <div className="flex items-stretch gap-2">
+                {[
+                  { icon: FileText, label: "Answer", desc: "49 guided questions" },
+                  { icon: BarChart3, label: "Analyse", desc: "Real-time scoring" },
+                  { icon: Lightbulb, label: "Act", desc: "Actionable roadmap" },
+                ].map((step, idx, arr) => (
+                  <div key={step.label} className="flex-1 flex items-center gap-2 min-w-0">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-1.5">
+                        <div className="flex items-center justify-center w-6 h-6 rounded-full bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))]">
+                          <step.icon className="h-3 w-3" />
+                        </div>
+                        <span className="text-xs font-bold text-navy-800">{step.label}</span>
+                      </div>
+                      <p className="text-[10px] sm:text-[11px] text-[hsl(var(--neutral-500))] mt-0.5 leading-snug">
+                        {step.desc}
+                      </p>
+                    </div>
+                    {idx < arr.length - 1 && (
+                      <ArrowRight className="h-3 w-3 text-[hsl(var(--neutral-200))] shrink-0" />
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Industry maturity band */}
-            <div className="relative mt-5">
-              <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[hsl(var(--neutral-500))] mb-1.5">
-                <span>Industry 1.0</span>
-                <span>2.0</span>
-                <span>3.0</span>
-                <span>4.0</span>
-              </div>
-              <div className="relative h-2.5 rounded-full bg-[hsl(var(--neutral-100))] overflow-hidden">
-                <div
-                  className="absolute inset-y-0 left-0 rounded-full"
-                  style={{
-                    width: "68%",
-                    background:
-                      "linear-gradient(90deg, hsl(var(--navy-700)) 0%, hsl(var(--orange-500)) 100%)",
-                  }}
-                />
-                <div
-                  className="absolute -top-1 h-4.5 w-0.5 bg-navy-800"
-                  style={{ left: "68%", height: "18px" }}
-                  aria-hidden
-                />
-              </div>
-              <div className="mt-2 flex items-center gap-2 text-[11px] sm:text-xs text-[hsl(var(--navy-700))]">
-                <Sparkles className="h-3.5 w-3.5 text-[hsl(var(--orange-500))] shrink-0" />
-                <span>
-                  You're at <span className="font-bold">Industry 3.2</span> — ahead of 54% of peers.
+            {/* 5 pillars */}
+            <div className="relative mt-6">
+              <div className="flex items-center gap-1.5 mb-2.5">
+                <Award className="h-3.5 w-3.5 text-[hsl(var(--red-600))]" />
+                <span className="text-xs font-bold text-navy-800 uppercase tracking-wider">
+                  Evaluated across 5 pillars
                 </span>
+              </div>
+              <div className="grid grid-cols-5 gap-2">
+                {[
+                  { label: "Operations", abbr: "Ops" },
+                  { label: "Supply Chain", abbr: "SCM" },
+                  { label: "Technology", abbr: "Tech" },
+                  { label: "People", abbr: "People" },
+                  { label: "Strategy", abbr: "Strat" },
+                ].map((p) => (
+                  <div
+                    key={p.label}
+                    className="flex flex-col items-center text-center p-2 rounded-md border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))]"
+                    title={p.label}
+                  >
+                    <CheckCircle2 className="h-3.5 w-3.5 text-[hsl(var(--india-green))] mb-1" />
+                    <span className="text-[10px] sm:text-[11px] font-semibold text-navy-800 leading-tight">
+                      {p.abbr}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Expert insight highlight */}
+            <div className="relative mt-5 p-3 rounded-md border border-[hsl(var(--orange-100))] bg-[hsl(var(--orange-100))]/40">
+              <div className="flex items-start gap-2.5">
+                <div className="flex items-center justify-center w-7 h-7 rounded-full bg-white shrink-0 shadow-sm">
+                  <Users className="h-3.5 w-3.5 text-[hsl(var(--orange-600))]" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-navy-800 leading-snug">
+                    Curated by CII industry experts
+                  </p>
+                  <p className="text-[11px] text-[hsl(var(--neutral-500))] leading-snug mt-0.5">
+                    Benchmark against peers, identify capability gaps, and receive a tailored
+                    improvement roadmap.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Why it matters — business outcomes */}
+            <div className="relative mt-5">
+              <div className="flex items-center gap-1.5 mb-2">
+                <TrendingUp className="h-3.5 w-3.5 text-[hsl(var(--navy-700))]" />
+                <span className="text-xs font-bold text-navy-800 uppercase tracking-wider">
+                  Why it matters
+                </span>
+              </div>
+              <p className="text-[11px] text-[hsl(var(--neutral-500))] leading-snug mb-2.5">
+                Maturity scores directly link to measurable business outcomes — so you invest where
+                it counts.
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {["Productivity", "Quality", "Traceability", "Energy", "Exports", "Value-chain"].map(
+                  (tag) => (
+                    <span
+                      key={tag}
+                      className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold border"
+                      style={{
+                        background: "hsl(var(--navy-050))",
+                        borderColor: "hsl(var(--navy-100))",
+                        color: "hsl(var(--navy-700))",
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  )
+                )}
               </div>
             </div>
 
@@ -250,7 +197,7 @@ export const WireAssessmentTeaser = () => {
                 Free · 20 minutes · Confidential
               </span>
               <Link to="/readiness-assessment" className="link-arrow">
-                Get your score <ArrowRight className="h-3.5 w-3.5" />
+                Start assessment <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
           </div>
