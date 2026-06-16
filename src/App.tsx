@@ -33,6 +33,7 @@ const SolutionsIndex = lazy(routeLoaders["/solutions"]);
 const SolutionDetail = lazy(routeLoaders["/solutions/:slug"]);
 const OutcomeDetail = lazy(routeLoaders["/knowledge-hub/:outcomeId"]);
 const Directories = lazy(routeLoaders["/directories"]);
+const DirectoryExplorer = lazy(() => import("@/pages/DirectoryExplorer"));
 
 const queryClient = new QueryClient();
 
