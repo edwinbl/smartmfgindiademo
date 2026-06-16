@@ -1,49 +1,59 @@
-import { Trophy, ArrowRight, Award, Factory, ChevronLeft, ChevronRight } from "lucide-react";
+import { Trophy, Award, MapPin, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import winnerBosch from "@/assets/winner-bosch.jpg";
-import winnerPlastech from "@/assets/winner-plastech.jpg";
-import winnerSetco from "@/assets/winner-setco.jpg";
-import winnerSiemens from "@/assets/winner-siemens.jpg";
 
-const winners = [
-  {
-    slug: "bosch-collaboration-revision-connection-innovation",
-    company: "Bosch India",
-    headline: "Collaboration, Re-vision, Connection and Innovation",
-    sector: "Automobile & Ancillaries",
-    state: "Karnataka",
-    size: "Enterprise",
-    image: winnerBosch,
-  },
-  {
-    slug: "plastech-adding-smart-to-factories",
-    company: "Plastech Solutions",
-    headline: "Adding ‘SMART’ to Factories",
-    sector: "Automotive Manufacturing",
-    state: "Maharashtra",
-    size: "MSME",
-    image: winnerPlastech,
-  },
-  {
-    slug: "setco-teamcenter-real-time-collaboration",
-    company: "Setco Automotive",
-    headline: "Real-Time Collaboration Between U.K. and India Teams Through Teamcenter",
-    sector: "Automobile & Ancillaries",
-    state: "Maharashtra",
-    size: "MSME",
-    image: winnerSetco,
-  },
-  {
-    slug: "siemens-warehouse-digital-enterprise",
-    company: "Siemens India",
-    headline: "Transforming Warehouse & Material Handling with Digital Enterprise",
-    sector: "Warehouse Automation & Material Handling",
-    state: "Delhi",
-    size: "Enterprise",
-    image: winnerSiemens,
-  },
+import img01 from "@/assets/awards2026/01-lt-heavy.jpg.asset.json";
+import img02 from "@/assets/awards2026/02-lt-precision.jpg.asset.json";
+import img03 from "@/assets/awards2026/03-hul-sumerpur.jpg.asset.json";
+import img04 from "@/assets/awards2026/04-dcm-shriram.jpg.asset.json";
+import img05 from "@/assets/awards2026/05-tvs-motor.jpg.asset.json";
+import img06 from "@/assets/awards2026/06-bpcl-bina.jpg.asset.json";
+import img07 from "@/assets/awards2026/07-patil-rail.jpg.asset.json";
+import img08 from "@/assets/awards2026/08-elofic.jpg.asset.json";
+import img09 from "@/assets/awards2026/09-lt-rubber.jpg.asset.json";
+import img10 from "@/assets/awards2026/10-circor.jpg.asset.json";
+import img11 from "@/assets/awards2026/11-alloy-steels.jpg.asset.json";
+import img12 from "@/assets/awards2026/12-gayatri.jpg.asset.json";
+import img13 from "@/assets/awards2026/13-m2nxt.jpg.asset.json";
+
+type Rank = "Winner" | "1st Runner-Up" | "2nd Runner-Up" | "Special Recognition";
+type Scale = "Large Scale" | "Medium Scale" | "Small Scale";
+
+interface Winner {
+  company: string;
+  unit?: string;
+  location: string;
+  rank: Rank;
+  scale: Scale;
+  segment?: string;
+  image: string;
+}
+
+const winners: Winner[] = [
+  // Large Scale
+  { company: "L&T Heavy Engineering (HEIC)", unit: "Hazira Plant", location: "Hazira, Gujarat", rank: "Winner", scale: "Large Scale", image: img01.url },
+  { company: "L&T Precision Engineering and Systems", location: "Pune, Maharashtra", rank: "Winner", scale: "Large Scale", image: img02.url },
+  { company: "Hindustan Unilever Limited", unit: "Sumerpur Detergents Factory", location: "Sumerpur", rank: "1st Runner-Up", scale: "Large Scale", image: img03.url },
+  { company: "DCM Shriram Ltd", unit: "Jhagadia Plant", location: "Jhagadia, Gujarat", rank: "1st Runner-Up", scale: "Large Scale", image: img04.url },
+  { company: "TVS Motor Company Limited", unit: "Hosur Plant", location: "Hosur, Tamil Nadu", rank: "2nd Runner-Up", scale: "Large Scale", image: img05.url },
+  { company: "Bharat Petroleum Corporation Limited", unit: "Bina Refinery", location: "Bina, Madhya Pradesh", rank: "Special Recognition", scale: "Large Scale", segment: "Public Sector Undertaking", image: img06.url },
+  { company: "Patil Rail Infrastructure Pvt Ltd", location: "Hyderabad, Telangana", rank: "Special Recognition", scale: "Large Scale", segment: "Diversified Industry Segment", image: img07.url },
+  // Medium Scale
+  { company: "Elofic Industries Ltd", unit: "Faridabad Plant", location: "Faridabad, Haryana", rank: "Winner", scale: "Medium Scale", image: img08.url },
+  { company: "Larsen & Toubro Ltd", unit: "Rubber Processing Machinery", location: "Kanchipuram, Tamil Nadu", rank: "1st Runner-Up", scale: "Medium Scale", image: img09.url },
+  { company: "Circor Flow Technologies India Pvt Ltd", location: "Coimbatore, Tamil Nadu", rank: "2nd Runner-Up", scale: "Medium Scale", image: img10.url },
+  // Small Scale
+  { company: "Alloy Steels", location: "Shilori, Kolhapur", rank: "Winner", scale: "Small Scale", image: img11.url },
+  { company: "Gayatri Agency", location: "Bhubaneshwar, Odisha", rank: "1st Runner-Up", scale: "Small Scale", image: img12.url },
+  { company: "M2NXT Solutions Pvt Ltd", location: "Bangalore, Karnataka", rank: "2nd Runner-Up", scale: "Small Scale", image: img13.url },
 ];
+
+const rankStyles: Record<Rank, { bg: string; border: string; color: string }> = {
+  "Winner": { bg: "hsl(var(--orange-500) / 0.95)", border: "hsl(var(--orange-500))", color: "white" },
+  "1st Runner-Up": { bg: "hsl(var(--navy-900) / 0.7)", border: "hsl(var(--orange-500) / 0.5)", color: "hsl(var(--orange-100))" },
+  "2nd Runner-Up": { bg: "hsl(var(--navy-900) / 0.7)", border: "hsl(var(--orange-500) / 0.4)", color: "hsl(var(--orange-100))" },
+  "Special Recognition": { bg: "hsl(var(--red-600) / 0.9)", border: "hsl(var(--red-600))", color: "white" },
+};
 
 export const WireAwardsBand = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -82,7 +92,7 @@ export const WireAwardsBand = () => {
         background:
           "linear-gradient(120deg, hsl(var(--navy-900)) 0%, hsl(var(--navy-800)) 55%, hsl(var(--navy-700)) 100%)",
       }}
-      aria-label="CII National Best Practices Award Winners"
+      aria-label="CII National Best Practices Award 2026 Winners"
     >
       <div className="absolute inset-0 blueprint-grid opacity-25" />
       <div
@@ -109,15 +119,15 @@ export const WireAwardsBand = () => {
             }}
           >
             <Trophy className="h-4 w-4 text-cii-orange" />
-            <span className="text-[12px] uppercase tracking-[0.18em] font-bold text-white">FY25 Concluded</span>
+            <span className="text-[12px] uppercase tracking-[0.18em] font-bold text-white">2nd Edition · 2026</span>
           </div>
 
           <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight">
-            Congratulations to the <span className="text-cii-orange">Winners</span>
+            Congratulations to the <span className="text-cii-orange">2026 Honourees</span>
           </h2>
           <p className="mt-4 text-base md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
-            CII National Best Practices Award on Future Ready Manufacturing — recognising Indian industry
-            leaders who have delivered measurable outcomes through Industry 4.0 adoption.
+            CII National Best Practices Award on Future Ready Manufacturing — recognising 13 Indian manufacturers
+            across Large, Medium and Small Scale categories at the Annual Business Summit 2026, New Delhi.
           </p>
         </div>
 
@@ -125,89 +135,83 @@ export const WireAwardsBand = () => {
         <div className="mt-12 md:mt-16 relative">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex gap-5 md:gap-6">
-              {winners.map((w) => (
-                <div
-                  key={w.slug}
-                  className="min-w-0 flex-shrink-0 flex-grow-0 w-[calc(100%-1rem)] sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
-                >
-                  <a
-                    href={`/case-studies/${w.slug}`}
-                    className="group block h-full rounded-xl border overflow-hidden backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, hsl(var(--navy-700) / 0.55) 0%, hsl(var(--navy-800) / 0.45) 100%)",
-                      borderColor: "hsl(var(--navy-500) / 0.5)",
-                    }}
+              {winners.map((w, idx) => {
+                const r = rankStyles[w.rank];
+                return (
+                  <div
+                    key={idx}
+                    className="min-w-0 flex-shrink-0 flex-grow-0 w-[calc(100%-1rem)] sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
                   >
-                    <div className="relative aspect-[16/10] overflow-hidden">
-                      <img
-                        src={w.image}
-                        alt={`${w.company} receiving the CII National Best Practices Award`}
-                        loading="lazy"
-                        width={800}
-                        height={500}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div
-                        className="absolute inset-0"
-                        style={{
-                          background:
-                            "linear-gradient(180deg, hsl(var(--navy-900) / 0.1) 0%, hsl(var(--navy-900) / 0.85) 100%)",
-                        }}
-                      />
-                      <div className="absolute top-3 left-3 right-3 flex items-start justify-between gap-3">
-                        <span
-                          className="text-[11px] uppercase tracking-[0.14em] font-bold px-2 py-0.5 rounded-full backdrop-blur"
-                          style={{
-                            background: "hsl(var(--navy-900) / 0.55)",
-                            color: "hsl(var(--orange-100))",
-                            border: "1px solid hsl(var(--orange-500) / 0.4)",
-                          }}
-                        >
-                          {w.size}
-                        </span>
+                    <article
+                      className="h-full rounded-xl border overflow-hidden backdrop-blur-2xl"
+                      style={{
+                        background:
+                          "linear-gradient(180deg, hsl(var(--navy-700) / 0.55) 0%, hsl(var(--navy-800) / 0.45) 100%)",
+                        borderColor: "hsl(var(--navy-500) / 0.5)",
+                      }}
+                    >
+                      <div className="relative aspect-[16/10] overflow-hidden">
+                        <img
+                          src={w.image}
+                          alt={`${w.company} receiving the CII National Best Practices Award 2026`}
+                          loading="lazy"
+                          width={800}
+                          height={500}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
                         <div
-                          className="flex items-center gap-1 text-cii-orange px-2 py-0.5 rounded-full backdrop-blur"
+                          className="absolute inset-0"
                           style={{
-                            background: "hsl(var(--navy-900) / 0.55)",
-                            border: "1px solid hsl(var(--orange-500) / 0.4)",
+                            background:
+                              "linear-gradient(180deg, hsl(var(--navy-900) / 0.05) 0%, hsl(var(--navy-900) / 0.75) 100%)",
                           }}
-                        >
-                          <Award className="h-3.5 w-3.5" />
-                          <span className="text-[11px] font-bold uppercase tracking-wider">Winner</span>
+                        />
+                        <div className="absolute top-3 left-3 right-3 flex items-start justify-between gap-3">
+                          <span
+                            className="text-[11px] uppercase tracking-[0.14em] font-bold px-2 py-0.5 rounded-full backdrop-blur"
+                            style={{
+                              background: "hsl(var(--navy-900) / 0.55)",
+                              color: "hsl(var(--orange-100))",
+                              border: "1px solid hsl(var(--orange-500) / 0.4)",
+                            }}
+                          >
+                            {w.scale}
+                          </span>
+                          <div
+                            className="flex items-center gap-1 px-2 py-0.5 rounded-full backdrop-blur"
+                            style={{
+                              background: r.bg,
+                              border: `1px solid ${r.border}`,
+                              color: r.color,
+                            }}
+                          >
+                            <Award className="h-3.5 w-3.5" />
+                            <span className="text-[11px] font-bold uppercase tracking-wider">{w.rank}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="p-6 md:p-7">
-                      <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white/60">
-                        <Factory className="h-3 w-3" />
-                        {w.state} · {w.sector}
+                      <div className="p-6 md:p-7">
+                        <h3 className="font-display font-bold text-lg md:text-xl leading-snug text-white">
+                          {w.company}
+                        </h3>
+                        {w.unit && (
+                          <p className="mt-1 text-sm text-white/75 leading-snug">{w.unit}</p>
+                        )}
+                        <div className="mt-3 flex items-center gap-1.5 text-[12px] text-white/60">
+                          <MapPin className="h-3.5 w-3.5" />
+                          <span>{w.location}</span>
+                        </div>
+                        {w.segment && (
+                          <p className="mt-3 text-[11px] uppercase tracking-[0.14em] font-bold text-cii-orange">
+                            {w.segment}
+                          </p>
+                        )}
                       </div>
-                      <h3 className="mt-2 font-display font-bold text-lg md:text-xl leading-snug text-white group-hover:text-cii-orange transition-colors">
-                        {w.company}
-                      </h3>
-                      <p className="mt-2 text-sm text-white/70 leading-relaxed line-clamp-3">
-                        {w.headline}
-                      </p>
-
-                      <div
-                        className="mt-6 rounded-lg border px-4 py-3 flex items-center justify-between transition-colors group-hover:border-cii-red/40"
-                        style={{
-                          background: "hsl(var(--navy-900) / 0.4)",
-                          borderColor: "hsl(var(--navy-500) / 0.35)",
-                        }}
-                      >
-                        <span className="text-sm font-semibold text-white/80 group-hover:text-cii-red transition-colors">
-                          Read case study
-                        </span>
-                        <ArrowRight className="h-5 w-5 text-white/40 group-hover:text-cii-red group-hover:translate-x-1 transition-all" />
-                      </div>
-                    </div>
-
-                  </a>
-                </div>
-              ))}
+                    </article>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
