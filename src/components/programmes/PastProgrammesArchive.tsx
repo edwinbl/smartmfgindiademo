@@ -29,6 +29,19 @@ const formatMonthYear = (p: ProgrammeItem): string => {
   return `${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 };
 
+// When startDate starts with a specific date (e.g. "2 September 2025 · New Delhi"),
+// the month+year is already shown by the date pill. This extracts the location/venue
+// part to avoid repetition while keeping useful context.
+const formatStartDateExtra = (p: ProgrammeItem): string | null => {
+  const sd = p.startDate;
+  // If it doesn't start with a digit, it's descriptive (e.g. "Multiple editions")
+  // — keep the full text.
+  if (!/^\d/.test(sd)) return sd;
+  // Otherwise take the last fragment after " · " (venue/location).
+  const parts = sd.split(" · ");
+  return parts.length > 1 ? parts[parts.length - 1] : null;
+};
+
 const getPastProgrammes = (): ProgrammeItem[] => {
   const now = Date.now();
   return programmes
