@@ -253,7 +253,7 @@ const CaseSummaryPanel = ({
           <Meta label="Industry" value={cs.sector} />
           <Meta label="Location" value={cs.state} />
           <Meta label="Size" value={cs.companySize} />
-          <Meta label="Duration" value={`${cs.durationMonths} months`} />
+          {cs.durationMonths > 0 && <Meta label="Duration" value={`${cs.durationMonths} months`} />}
         </div>
 
         <div className="px-5 pb-5 space-y-4">
@@ -348,9 +348,11 @@ const CaseStudyDetail = () => {
                 <span className="inline-flex items-center gap-2">
                   <MapPin className="h-4 w-4 text-white/60" /> {cs.state}
                 </span>
-                <span className="inline-flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-white/60" /> {cs.durationMonths} months
-                </span>
+                {cs.durationMonths > 0 && (
+                  <span className="inline-flex items-center gap-2">
+                    <Clock className="h-4 w-4 text-white/60" /> {cs.durationMonths} months
+                  </span>
+                )}
               </div>
             </div>
           </div>

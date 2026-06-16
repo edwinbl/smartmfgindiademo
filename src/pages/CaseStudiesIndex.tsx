@@ -119,7 +119,7 @@ const CaseCard = ({ c, index = 0 }: { c: CaseStudy; index?: number }) => {
           ))}
         </div>
         <div className="mt-4 pt-4 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between text-sm">
-          <span className="text-[hsl(var(--neutral-500))]">{c.durationMonths} mo · {c.companySize}</span>
+          <span className="text-[hsl(var(--neutral-500))]">{c.durationMonths > 0 ? `${c.durationMonths} mo · ` : ""}{c.companySize}</span>
           <span className="font-semibold inline-flex items-center gap-1 group-hover:text-[hsl(var(--red-600))]" style={{ color: pal.bar }}>
             View Case Study <ArrowRight className="h-3.5 w-3.5" />
           </span>

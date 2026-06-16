@@ -120,6 +120,9 @@ const matches = (haystack: string, keywords: string[]) => {
 export const featuredCasesForOutcome = (id: OutcomeId, limit = 4) => {
   const meta = outcomeDetails[id];
   if (!meta) return [];
+  // Prefer the explicit `outcomes` tag on each case study; fall back to keyword match.
+  const tagged = caseStudies.filter((c) => (c.outcomes || []).includes(id));
+  if (tagged.length) return tagged.slice(0, limit);
   const hits = caseStudies.filter((c) =>
     matches(
       `${c.headline} ${c.summary} ${c.challenge} ${c.approach} ${(c.valueProps || []).join(" ")} ${(c.capabilities || []).join(" ")}`,
