@@ -151,8 +151,13 @@ export const PastProgrammesArchive = () => {
                       </Link>
 
                       <div className="flex flex-1 flex-col p-5">
-                        <div className="text-[11px] uppercase tracking-[0.12em] font-bold text-[hsl(var(--neutral-500))]">
-                          {p.startDate} · {p.format}
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="inline-flex items-center h-6 px-2 rounded-sm bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-800))] text-[11px] uppercase tracking-[0.12em] font-bold">
+                            {formatMonthYear(p)}
+                          </span>
+                          <span className="text-[hsl(var(--neutral-500))] font-semibold text-[11px] truncate">
+                            {p.startDate}
+                          </span>
                         </div>
                         <h4 className="font-display font-bold text-base md:text-lg text-[hsl(var(--navy-900))] mt-2 leading-snug">
                           <Link to={`/programmes/${p.slug}`} className="hover:text-[hsl(var(--red-600))]">
@@ -160,11 +165,15 @@ export const PastProgrammesArchive = () => {
                           </Link>
                         </h4>
 
+                        <p className="mt-2 text-xs text-[hsl(var(--neutral-600))] line-clamp-2">
+                          {p.tagline}
+                        </p>
+
                         {p.highlights && p.highlights.length > 0 && (
                           <div className="mt-4 grid grid-cols-2 gap-2">
                             {p.highlights.slice(0, 2).map((h) => (
                               <div key={h.label} className="rounded-md bg-[hsl(var(--neutral-100))] px-2.5 py-1.5">
-                                <div className="font-numeric font-bold text-sm text-[hsl(var(--navy-900))]">{h.value}</div>
+                                <div className="font-numeric font-bold text-sm text-[hsl(var(--navy-900))] truncate">{h.value}</div>
                                 <div className="text-[9px] uppercase tracking-[0.1em] font-bold text-[hsl(var(--neutral-500))] truncate">
                                   {h.label}
                                 </div>
