@@ -116,11 +116,11 @@ export const WireAwardsBand = () => {
             className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full mb-2 border"
             style={{
               background: "hsl(var(--navy-700) / 0.5)",
-              borderColor: "hsl(var(--red-500) / 0.4)",
+              borderColor: "hsl(var(--red-600) / 0.4)",
             }}
           >
-            <Trophy className="h-4 w-4" style={{ color: "hsl(var(--red-500))" }} />
-            <span className="text-[12px] uppercase tracking-[0.18em] font-bold" style={{ color: "hsl(var(--red-500))" }}>2nd Edition · 2026</span>
+            <Trophy className="h-4 w-4" style={{ color: "hsl(var(--red-600))" }} />
+            <span className="text-[12px] uppercase tracking-[0.18em] font-bold" style={{ color: "hsl(var(--red-600))" }}>2nd Edition · 2026</span>
           </div>
 
           <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-[3.25rem] leading-[1.05] tracking-tight">
