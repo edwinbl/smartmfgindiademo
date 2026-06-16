@@ -76,9 +76,15 @@ const ProgrammeCardImpl = ({ programme, onRegister, recommended }: Props) => {
           <Link to={`/programmes/${p.slug}`} className="link-arrow text-xs">
             Explore <ArrowRight className="h-3 w-3" />
           </Link>
-          <button onClick={() => onRegister(p)} className="btn-primary h-9 px-4 text-xs">
-            {p.registrationLabel}
-          </button>
+          {p.status === "closed" ? (
+            <Link to={`/programmes/${p.slug}`} className="btn-primary h-9 px-4 text-xs">
+              View highlights
+            </Link>
+          ) : (
+            <button onClick={() => onRegister(p)} className="btn-primary h-9 px-4 text-xs">
+              {p.registrationLabel}
+            </button>
+          )}
         </div>
       </div>
     </article>
