@@ -216,27 +216,25 @@ export const WireAwardsBand = () => {
             </div>
           </div>
 
-          {/* Carousel arrows */}
-          <div className="flex items-center justify-center gap-3 mt-8">
-            <button
-              onClick={scrollPrev}
-              disabled={!canScrollPrev}
-              className="h-10 w-10 rounded-full border grid place-items-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10"
-              style={{ borderColor: "hsl(0 0% 100% / 0.25)" }}
-              aria-label="Previous winner"
-            >
-              <ChevronLeft className="h-5 w-5 text-white" />
-            </button>
-            <button
-              onClick={scrollNext}
-              disabled={!canScrollNext}
-              className="h-10 w-10 rounded-full border grid place-items-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10"
-              style={{ borderColor: "hsl(0 0% 100% / 0.25)" }}
-              aria-label="Next winner"
-            >
-              <ChevronRight className="h-5 w-5 text-white" />
-            </button>
-          </div>
+          {/* Carousel arrows — positioned on left and right sides */}
+          <button
+            onClick={scrollPrev}
+            disabled={!canScrollPrev}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 h-10 w-10 rounded-full border grid place-items-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 bg-[hsl(var(--navy-800)/0.8)]"
+            style={{ borderColor: "hsl(0 0% 100% / 0.25)" }}
+            aria-label="Previous winner"
+          >
+            <ChevronLeft className="h-5 w-5 text-white" />
+          </button>
+          <button
+            onClick={scrollNext}
+            disabled={!canScrollNext}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 h-10 w-10 rounded-full border grid place-items-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 bg-[hsl(var(--navy-800)/0.8)]"
+            style={{ borderColor: "hsl(0 0% 100% / 0.25)" }}
+            aria-label="Next winner"
+          >
+            <ChevronRight className="h-5 w-5 text-white" />
+          </button>
         </div>
 
         {/* Next edition CTA */}
