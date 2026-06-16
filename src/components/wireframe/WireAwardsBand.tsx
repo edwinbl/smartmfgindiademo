@@ -115,16 +115,16 @@ export const WireAwardsBand = () => {
           <div
             className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full mb-6 border"
             style={{
-              background: "hsl(var(--orange-500) / 0.15)",
-              borderColor: "hsl(var(--orange-500) / 0.4)",
+              background: "hsl(var(--red-600) / 0.15)",
+              borderColor: "hsl(var(--red-600) / 0.4)",
             }}
           >
-            <Trophy className="h-4 w-4 text-cii-orange" />
+            <Trophy className="h-4 w-4 text-cii-red" />
             <span className="text-[12px] uppercase tracking-[0.18em] font-bold text-white">2nd Edition · 2026</span>
           </div>
 
           <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight">
-            Congratulations to the <span className="text-cii-orange">2026 Honourees</span>
+            Congratulations to the <span className="text-cii-red">2026 Honourees</span>
           </h2>
           <p className="mt-4 text-base md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
             CII National Best Practices Award on Future Ready Manufacturing — recognising 13 Indian manufacturers
