@@ -113,6 +113,11 @@ const persona = {
   sust: { persona: "Sustainability Leads", description: "ESG, energy and decarbonization owners." },
 };
 
+import chicagoAsset from "@/assets/programmes/chicago-delegation.jpg.asset.json";
+import iitdAsset from "@/assets/programmes/iitd-aifsm-training.jpg.asset.json";
+import aiManufacturingAsset from "@/assets/programmes/ai-in-manufacturing.jpg.asset.json";
+import digitalTwinAsset from "@/assets/programmes/digital-twin-workshop.jpg.asset.json";
+
 export const programmes: ProgrammeItem[] = [
   // UPCOMING — Architecting the AI-Driven Factory of the Future
   {
@@ -320,7 +325,7 @@ export const programmes: ProgrammeItem[] = [
     title: "CII Smart Manufacturing Delegation to Chicago, USA",
     tagline: "Indian industry leaders explore the global smart manufacturing frontier",
     summary:
-      "CII organised a Smart Manufacturing Delegation to Chicago, USA, from 17–20 November 2025, providing a strategic platform for Indian industry to explore cutting-edge manufacturing technologies, build high-value global networks, and catalyse innovation and collaboration opportunities between India and the United States. The delegation comprised senior leadership — MDs, CTOs, CIOs, CDIOs and Directors — across chemicals, automotive, engineering, metals, FMCG and solution providers.",
+      "CII organised a Smart Manufacturing Delegation to Chicago, USA, from 17–20 November 2025, with the objective of providing a strategic platform for Indian industry to explore cutting-edge manufacturing technologies, build high-value global networks, and catalyse innovation and collaboration opportunities between India and the United States.\n\nThe delegation comprised senior leadership including MDs, CTOs, CIOs, CDIOs and Directors representing diverse manufacturing sectors such as chemicals, automotive, engineering, metals, FMCG and solution providers, enabling cross-sectoral learning and engagement with the global smart manufacturing ecosystem.",
     startDate: "17–20 November 2025 · Chicago, USA",
     isoDate: "2025-11-17T09:00:00-06:00",
     duration: "4 days",
@@ -342,46 +347,28 @@ export const programmes: ProgrammeItem[] = [
       { label: "Delegates", value: "Senior leadership" },
       { label: "Sectors", value: "Cross-industry" },
     ],
-    learningOutcomes: [
-      "Direct exposure to cutting-edge smart manufacturing technologies",
-      "High-value global networks across the India–US manufacturing ecosystem",
-      "Cross-sectoral learning across chemicals, automotive, engineering, metals and FMCG",
-      "Insights into collaboration and innovation opportunities between India and the US",
-    ],
-    audience: [
-      { persona: "MDs & CXOs", description: "Managing Directors and senior C-suite leaders." },
-      { persona: "CTOs / CIOs / CDIOs", description: "Technology and digital leaders shaping the smart manufacturing agenda." },
-      { persona: "Directors — Manufacturing", description: "Senior directors across diverse manufacturing sectors." },
-    ],
-    modules: [
-      { label: "Day 1", title: "Automation Fair 2025 — opening day", duration: "Full day", topics: ["Keynotes & technology showcases", "Exhibition walkthrough"] },
-      { label: "Day 2", title: "Industry deep-dives & networking", duration: "Full day", topics: ["Sector sessions", "B2B networking with US ecosystem"] },
-      { label: "Day 3", title: "Site visits & innovation tours", duration: "Full day", topics: ["Reference factory visits", "Innovation centre tours"] },
-      { label: "Day 4", title: "Roundtables & closing", duration: "Full day", topics: ["India–US collaboration roundtables", "Closing reflections"] },
-    ],
-    faculty: [
-      { name: "CII Smart Manufacturing Leadership", role: "Delegation Lead", org: "Confederation of Indian Industry", initials: "CII" },
-    ],
+    learningOutcomes: [],
+    audience: [],
+    modules: [],
+    faculty: [],
     accent: "navy",
-    postProgramme: {
-      summary:
-        "A senior India delegation engaged with the global smart manufacturing ecosystem at Automation Fair 2025 and partner facilities across Chicago — anchoring new India–US collaboration pathways.",
-      highlights: [
-        "Delegation across chemicals, automotive, engineering, metals, FMCG and solution providers",
-        "Engagement with the global smart manufacturing ecosystem at Automation Fair 2025",
-        "India–US collaboration and innovation conversations",
-      ],
-    },
+    gallery: [
+      {
+        type: "image",
+        url: chicagoAsset.url,
+        caption: "CII Smart Manufacturing Delegation at Automation Fair 2025, Chicago, USA",
+      },
+    ],
   },
 
   // PAST — CII-IITD AIA FSM Training Programme on Smart Manufacturing
   {
     slug: "cii-iitd-aifsm-smart-manufacturing-training",
     type: "Workshop",
-    title: "CII–IITD AIA FSM Training Programme on Smart Manufacturing",
+    title: "CII–IITD AIA FSM Training Programme on Smart Manufacturing, New Delhi",
     tagline: "Sector-specific, hands-on capability building with IIT Delhi",
     summary:
-      "Under its capacity-building initiatives in Smart Manufacturing, CII — in partnership with the IIT Delhi – AIA Foundation for Smart Manufacturing (IAFSM) — organised a range of sector-specific training programmes for member companies on themes such as Industry 4.0, Artificial Intelligence and Robotics. The programmes combined expert-led sessions with hands-on learning, enabling participants to understand the practical implementation of smart manufacturing solutions within their organisations.",
+      "Under its capacity-building initiatives in Smart Manufacturing, CII, in partnership with IIT Delhi – AIA Foundation for Smart Manufacturing (IAFSM), organised a range of sector-specific training programmes for member companies on themes such as Industry 4.0, Artificial Intelligence and Robotics. These programmes combined expert-led sessions with hands-on learning to enable participants to understand the practical implementation of smart manufacturing solutions within their respective organisations.",
     startDate: "Multiple editions · New Delhi",
     isoDate: "2025-09-15T09:30:00+05:30",
     duration: "Multi-day editions",
@@ -391,7 +378,7 @@ export const programmes: ProgrammeItem[] = [
     industry: "Manufacturing",
     technology: "Industry 4.0",
     segment: "Enterprise",
-    certification: true,
+    certification: false,
     status: "closed",
     featured: false,
     registrationLabel: "View highlights",
@@ -403,45 +390,28 @@ export const programmes: ProgrammeItem[] = [
       { label: "Format", value: "Expert + hands-on" },
       { label: "Audience", value: "Member companies" },
     ],
-    learningOutcomes: [
-      "Practical implementation of smart manufacturing solutions in member companies",
-      "Sector-specific learning across Industry 4.0, AI and robotics",
-      "Hands-on exposure at the IIT Delhi smart manufacturing facility",
-    ],
-    audience: [
-      { persona: "Plant & Production Leaders", description: "Operations leaders driving shop-floor adoption." },
-      { persona: "Digital & Automation Heads", description: "Owners of AI, automation and Industry 4.0 initiatives." },
-      { persona: "Quality & Maintenance Managers", description: "Functional leads exploring digital quality and PdM." },
-    ],
-    modules: [
-      { label: "Module 1", title: "Industry 4.0 foundations", duration: "Multi-session", topics: ["Reference architectures", "Adoption playbooks"] },
-      { label: "Module 2", title: "Artificial Intelligence in manufacturing", duration: "Multi-session", topics: ["Use case mapping", "Hands-on labs"] },
-      { label: "Module 3", title: "Robotics & automation", duration: "Multi-session", topics: ["Cell design", "Integration patterns"] },
-    ],
-    faculty: [
-      { name: "IIT Delhi · IAFSM Faculty", role: "Master Trainers", org: "IIT Delhi / IAFSM", initials: "IT" },
-      { name: "CII Smart Manufacturing Faculty", role: "Programme Lead", org: "Confederation of Indian Industry", initials: "CII" },
-    ],
+    learningOutcomes: [],
+    audience: [],
+    modules: [],
+    faculty: [],
     accent: "red",
-    postProgramme: {
-      summary:
-        "Multiple sector-specific editions enabled CII member companies to translate Industry 4.0, AI and robotics learning into practical implementation back at their plants.",
-      highlights: [
-        "Sector-specific training editions for member companies",
-        "Expert-led sessions blended with hands-on labs at IIT Delhi",
-        "Focus on practical, on-the-ground smart manufacturing adoption",
-      ],
-    },
+    gallery: [
+      {
+        type: "image",
+        url: iitdAsset.url,
+        caption: "Participants at CII–IITD AIA FSM Training Programme on Smart Manufacturing, New Delhi",
+      },
+    ],
   },
 
   // PAST — Training Programme on AI in Manufacturing (six editions)
   {
     slug: "training-programme-ai-in-manufacturing-rockwell",
     type: "Workshop",
-    title: "Training Programme on AI in Manufacturing",
+    title: "Training Programme on AI in Manufacturing — Delhi NCR",
     tagline: "Six editions · 200+ senior executives equipped for AI",
     summary:
-      "As part of its capacity-building initiative, CII — in collaboration with Rockwell Automation India Pvt Ltd — organised six editions of the “Two-Day Training Programme on AI in Manufacturing”. The programme was designed to equip senior executives with a strategic understanding of AI, its practical applications, and pathways to leverage AI for competitive advantage. Through expert sessions, virtual tours, live demonstrations and interactive discussions, 200+ participants gained actionable insights and built networks to support development and implementation of their organisation’s AI roadmap.",
+      "As part of its capacity-building initiative, CII, in collaboration with Rockwell Automation India Pvt Ltd, organised six editions of the “Two-Day Training Programme on AI in Manufacturing”. The programme was designed to equip senior executives with a strategic understanding of AI, its practical applications, and pathways to leverage AI for competitive advantage. Through expert sessions, virtual tours, live demonstrations and interactive discussions, 200+ participants gained actionable insights and built networks to support the development and implementation of their organisation’s AI roadmap.",
     startDate: "Six editions · Delhi NCR",
     isoDate: "2025-10-10T09:30:00+05:30",
     duration: "2 days (per edition)",
@@ -451,7 +421,7 @@ export const programmes: ProgrammeItem[] = [
     industry: "Manufacturing",
     technology: "AI & Automation",
     segment: "Enterprise",
-    certification: true,
+    certification: false,
     status: "closed",
     featured: false,
     registrationLabel: "View highlights",
@@ -463,35 +433,21 @@ export const programmes: ProgrammeItem[] = [
       { label: "Partner", value: "Rockwell Automation" },
       { label: "Plant visit", value: "MSIL, Gurugram" },
     ],
-    learningOutcomes: [
-      "Strategic understanding of AI and its practical applications in manufacturing",
-      "Pathways to leverage AI for competitive advantage",
-      "Exposure to live demonstrations and a digital enterprise plant visit",
-      "Networks to support the AI roadmap of participating organisations",
-    ],
-    audience: [
-      { persona: "Senior Executives", description: "Manufacturing leaders shaping the enterprise AI agenda." },
-      { persona: "Technology & Digital Heads", description: "CIOs, CDOs and heads of automation / AI." },
-      { persona: "Plant Leadership", description: "Plant heads exploring AI for shop-floor impact." },
-    ],
-    modules: [
-      { label: "Day 1", title: "Strategic AI for manufacturing", duration: "Full day", topics: ["AI fundamentals & enterprise impact", "Use case discovery"] },
-      { label: "Day 1 · PM", title: "Live demonstrations & virtual tours", duration: "Half day", topics: ["Reference plant tours", "Demonstration labs"] },
-      { label: "Day 2", title: "AI roadmap & plant visit — MSIL, Gurugram", duration: "Full day", topics: ["Digital Enterprise Vertical visit", "Roadmap workshop"] },
-    ],
-    faculty: [
-      { name: "Rockwell Automation India Faculty", role: "Lead Trainers", org: "Rockwell Automation India", initials: "RA" },
-      { name: "CII Smart Manufacturing Faculty", role: "Programme Lead", org: "Confederation of Indian Industry", initials: "CII" },
-    ],
+    learningOutcomes: [],
+    audience: [],
+    modules: [],
+    faculty: [],
     accent: "orange",
+    gallery: [
+      {
+        type: "image",
+        url: aiManufacturingAsset.url,
+        caption: "Participants during the visit of Digital Enterprise Vertical of Maruti Suzuki India Limited (MSIL), Gurugram",
+      },
+    ],
     postProgramme: {
       summary:
         "Six editions of the programme equipped 200+ senior executives with a strategic and practical understanding of AI — anchored by a visit to the Digital Enterprise Vertical of Maruti Suzuki India Limited, Gurugram.",
-      highlights: [
-        "Six editions delivered with Rockwell Automation India",
-        "200+ senior executives trained across cohorts",
-        "Plant visit to the Digital Enterprise Vertical of MSIL, Gurugram",
-      ],
       stats: [
         { label: "Editions", value: "6" },
         { label: "Participants", value: "200+" },
@@ -506,7 +462,7 @@ export const programmes: ProgrammeItem[] = [
     title: "CII & IITD-AIA FSM Two-Day Workshop on Digital Twin",
     tagline: "Design, simulate and optimise digital replicas of industrial systems",
     summary:
-      "Digital Twins are a critical enabler of Industry 4.0 — supporting smarter decision-making, predictive maintenance, improved asset utilisation and faster innovation. For Indian manufacturers in brownfield environments, they help bridge legacy systems with advanced digital capabilities, reduce downtime, improve quality and enable scenario-based planning. CII and the IITD-AIA Foundation for Smart Manufacturing (IAFSM) jointly organised this two-day workshop at IIT Delhi Campus, blending expert-led sessions with tool-based hands-on labs.",
+      "Digital Twins are a critical enabler of Industry 4.0 — supporting smarter decision-making, predictive maintenance, improved asset utilisation and faster innovation. For Indian manufacturers in brownfield environments, they help bridge legacy systems with advanced digital capabilities, reduce downtime, improve quality and enable scenario-based planning.\n\nIn this context, Confederation of Indian Industry (CII) and IITD-AIA Foundation for Smart Manufacturing (IAFSM) jointly organised the “Two-Day Workshop on Digital Twin” on 26–27 February 2026 at IIT Delhi Campus. The programme blended expert-led sessions with tool-based labs (hands-on learning experience) to help participants design, simulate and optimise digital replicas of real-world industrial systems. More than 30 participants across sectors attended the workshop.",
     startDate: "26–27 February 2026 · IIT Delhi Campus, New Delhi",
     isoDate: "2026-02-26T09:30:00+05:30",
     duration: "2 days",
@@ -516,7 +472,7 @@ export const programmes: ProgrammeItem[] = [
     industry: "Manufacturing",
     technology: "Industry 4.0",
     segment: "Enterprise",
-    certification: true,
+    certification: false,
     status: "closed",
     featured: false,
     registrationLabel: "View highlights",
@@ -528,36 +484,28 @@ export const programmes: ProgrammeItem[] = [
       { label: "Participants", value: "30+ across sectors" },
       { label: "Master Trainer", value: "Prof. Sunil Jha" },
     ],
-    learningOutcomes: [
-      "Design, simulate and optimise digital replicas of real-world industrial systems",
-      "Bridge legacy / brownfield systems with advanced digital capabilities",
-      "Use Digital Twins for predictive maintenance and asset utilisation",
-      "Enable scenario-based planning and faster innovation",
-    ],
-    audience: [
-      { persona: "Plant & Operations Heads", description: "Leaders managing brownfield plants and asset performance." },
-      { persona: "Digital & Automation Heads", description: "Heads of Industry 4.0, automation and digital transformation." },
-      { persona: "Maintenance & Reliability Managers", description: "Leaders responsible for uptime, PdM and asset health." },
-    ],
-    modules: [
-      { label: "Day 1 · AM", title: "Digital Twin foundations", duration: "4 hrs", topics: ["Concepts & reference architectures", "Industry use cases"] },
-      { label: "Day 1 · PM", title: "Hands-on lab — modelling & simulation", duration: "4 hrs", topics: ["Tool-based modelling", "Simulation walkthrough"] },
-      { label: "Day 2 · AM", title: "Digital Twins for predictive maintenance", duration: "4 hrs", topics: ["Asset health models", "Scenario planning"] },
-      { label: "Day 2 · PM", title: "Optimisation & roadmap", duration: "4 hrs", topics: ["Brownfield integration patterns", "Implementation roadmap"] },
-    ],
+    learningOutcomes: [],
+    audience: [],
+    modules: [],
     faculty: [
-      { name: "Prof. Sunil Jha", role: "Master Trainer · Professor, IIT Delhi · Director, IITD-AIA Foundation for Smart Manufacturing", org: "IIT Delhi / IAFSM", initials: "SJ" },
-      { name: "CII Smart Manufacturing Faculty", role: "Programme Lead", org: "Confederation of Indian Industry", initials: "CII" },
+      {
+        name: "Prof. Sunil Jha",
+        role: "Master Trainer · Professor, IIT Delhi · Director, IITD-AIA Foundation for Smart Manufacturing",
+        org: "IIT Delhi / IAFSM",
+        initials: "SJ",
+      },
     ],
     accent: "teal",
+    gallery: [
+      {
+        type: "image",
+        url: digitalTwinAsset.url,
+        caption: "CII & IITD-AIA FSM Two-Day Workshop on Digital Twin, IIT Delhi Campus",
+      },
+    ],
     postProgramme: {
       summary:
         "More than 30 participants across sectors attended the workshop, blending expert-led sessions with hands-on labs to design, simulate and optimise digital replicas of real-world industrial systems.",
-      highlights: [
-        "30+ participants across sectors",
-        "Tool-based hands-on labs at IIT Delhi Campus",
-        "Brownfield-friendly Digital Twin patterns for Indian manufacturers",
-      ],
       stats: [
         { label: "Participants", value: "30+" },
         { label: "Duration", value: "2 days" },
