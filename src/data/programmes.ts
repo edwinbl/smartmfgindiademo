@@ -519,7 +519,110 @@ export const programmes: ProgrammeItem[] = [
       ],
     },
   },
-];
+
+  // PAST — Seminar on Industrial Automation and AI Driven Innovations
+  {
+    slug: "seminar-industrial-automation-ai-driven-innovations-2025",
+    type: "Industry Session",
+    title: "Seminar on Industrial Automation and AI Driven Innovations",
+    tagline: "Accelerating India's manufacturing competitiveness through frontier technologies",
+    summary:
+      "Industrial automation and AI-driven innovation are reshaping the manufacturing landscape — enabling productivity, precision and cost efficiency. While automation streamlines repetitive operations, AI adds intelligence across the value chain through predictive maintenance, real-time quality monitoring, demand forecasting and adaptive process optimisation.\n\nIn this context, the Confederation of Indian Industry (CII) organised the Seminar on Industrial Automation and AI Driven Innovations with the theme \"Accelerating India's Manufacturing Competitiveness through Frontier Technologies\" on 2 September 2025 in New Delhi. The seminar brought together industry leaders, policymakers, technology providers and experts to exchange insights and explore collaborative opportunities for building smarter, more agile manufacturing systems.",
+    startDate: "2 September 2025 · New Delhi",
+    isoDate: "2025-09-02T09:30:00+05:30",
+    duration: "1 day",
+    format: "In-person · New Delhi",
+    mode: "In-person",
+    level: "All Levels",
+    industry: "Manufacturing",
+    technology: "AI & Automation",
+    segment: "Enterprise",
+    certification: false,
+    status: "closed",
+    featured: false,
+    registrationLabel: "View highlights",
+    outcomes: ["digital-transformation", "smart-factory", "leadership-innovation"],
+    tags: ["Automation", "AI", "Industry 4.0", "Predictive Maintenance", "Cobots"],
+    highlights: [
+      { label: "Date", value: "2 September 2025" },
+      { label: "Location", value: "New Delhi" },
+      { label: "Theme", value: "Frontier Technologies" },
+      { label: "Format", value: "Industry seminar" },
+    ],
+    learningOutcomes: [],
+    audience: [],
+    modules: [],
+    keyHighlights: [
+      "Factory automation is a critical enabler for accelerating Industry 4.0 adoption and improving productivity, quality and operational agility.",
+      "Collaborative robots (cobots) and autonomous systems are gamechangers for enhancing productivity, improving consistency and enabling flexible manufacturing — particularly in high-mix, low-volume environments.",
+      "Workforce upskilling and change management are as important as technology deployment for driving Industry 4.0.",
+      "Combined deployment of IIoT, digital twins, robotics and edge computing is enabling Indian manufacturers to build smart, connected, future-ready factories.",
+      "Predictive maintenance, powered by machine learning, enables early detection of equipment anomalies — significantly reducing unplanned downtime and maintenance costs.",
+      "A phased, scalable approach — starting with critical assets and high-impact use cases — is a best practice for process industries embarking on AI-enabled automation journeys.",
+    ],
+    focusedDiscussions: [
+      "Factory Automation & Smart Technologies: Driving Industry 4.0 in discrete industries",
+      "Process Automation & Predictive Intelligence in oil & gas, chemicals, utilities and energy",
+    ],
+    faculty: [
+      { name: "Mr Dilip Sawhney", role: "Chairman, CII National Committee on Smart Manufacturing · Managing Director", org: "Rockwell Automation India Pvt Ltd", initials: "DS" },
+      { name: "Mr CV Raman", role: "Member of Executive Committee & Former CTO", org: "Maruti Suzuki India Ltd", initials: "CR" },
+      { name: "Mr Sameer Gandhi", role: "Managing Director", org: "Omron Automation India Pvt Ltd", initials: "SG" },
+      { name: "Mr Sandeep Chittora", role: "Associate Partner", org: "KPMG Assurance and Consulting Services LLP", initials: "SC" },
+      { name: "Mr Falgun Chokshi", role: "Executive Vice President", org: "L&T Heavy Engineering Ltd", initials: "FC" },
+      { name: "Mr Anil Kumar Satapathy", role: "Executive Director and CTO", org: "DiFACTO Robotics and Automation Pvt Ltd", initials: "AS" },
+      { name: "Mr Gaurav Kataria", role: "Vice President — Digital (Manufacturing) and CDIO, ITC Paperboard", org: "ITC Ltd", initials: "GK" },
+      { name: "Mr Sanket Virkar", role: "Vice President and Site Head — Pune Operations", org: "JCB India Ltd", initials: "SV" },
+      { name: "Mr Vikrant Deoras", role: "Chief Digital & Information Officer", org: "Tata Chemicals Ltd", initials: "VD" },
+      { name: "Mr Chandra Sekhar Davuluri", role: "Chief Digital and Technology Officer", org: "ONGC", initials: "CD" },
+      { name: "Mr Aman Kirloskar", role: "Vice President", org: "Kirloskar Pneumatic Co. Ltd", initials: "AK" },
+      { name: "Mr Indradyumna Datta", role: "Group Chief Digital Officer", org: "Jindal Steel & Power Ltd", initials: "ID" },
+      { name: "Mr Sunil Mehta", role: "President, Automation Industry Association · Assistant Vice President", org: "Mitsubishi Electric India Pvt Ltd", initials: "SM" },
+      { name: "Mr Sanjeev Sehgal", role: "Managing Director", org: "Samriddhi Automations Pvt Ltd", initials: "SS" },
+    ],
+    partners: [
+      { name: "Kirloskar Pneumatic Co. Ltd", logo: partnerKirloskar.url },
+      { name: "L&T Heavy Engineering", logo: partnerLTHeavy.url },
+      { name: "DiFACTO Robotics and Automation", logo: partnerDifacto.url },
+    ],
+    accent: "navy",
+    gallery: [
+      {
+        type: "image",
+        url: seminarInaugural.url,
+        caption: "Inaugural — Mr Sameer Gandhi (Omron Automation), Mr Dilip Sawhney (Rockwell Automation India / Chairman, CII National Committee on Smart Manufacturing) and Mr CV Raman (Maruti Suzuki India).",
+      },
+      {
+        type: "image",
+        url: seminarSession1.url,
+        caption: "Panel 1 — Factory Automation & Smart Technologies: Driving Industry 4.0 in discrete industries.",
+      },
+      {
+        type: "image",
+        url: seminarSession2.url,
+        caption: "Panel 2 — Process Automation & Predictive Intelligence across process industries.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Mr Dilip Sawhney",
+        role: "Chairman, CII National Committee on Smart Manufacturing · Managing Director",
+        org: "Rockwell Automation India Pvt Ltd",
+        quote:
+          "Manufacturing is evolving from automation to autonomy — moving beyond pre-programmed systems to intelligent, self-learning technologies that can adapt and respond to real-time production scenarios and enhance operational resilience.",
+      },
+    ],
+    postProgramme: {
+      summary:
+        "The seminar convened industry leaders, policymakers and technology providers around two panel discussions — Factory Automation & Smart Technologies, and Process Automation & Predictive Intelligence — surfacing practical roadmaps for Industry 4.0 adoption across discrete and process industries.",
+      stats: [
+        { label: "Date", value: "2 Sep 2025" },
+        { label: "Panels", value: "2" },
+        { label: "Speakers", value: "14" },
+      ],
+    },
+  },
+
 
 // Outcome metadata for guided discovery
 export const outcomes: { id: OutcomeId; title: string; description: string; icon: "rocket" | "gauge" | "factory" | "leaf" | "users" | "store" | "compass" }[] = [
