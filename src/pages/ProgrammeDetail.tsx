@@ -12,6 +12,7 @@ import { LearningOutcomes } from "@/components/programmes/detail/LearningOutcome
 import { WhoShouldAttend } from "@/components/programmes/detail/WhoShouldAttend";
 import { ProgrammeAgenda } from "@/components/programmes/detail/ProgrammeAgenda";
 import { ExpertsFaculty } from "@/components/programmes/detail/ExpertsFaculty";
+import { ProgrammePartners } from "@/components/programmes/detail/ProgrammePartners";
 import { CertificationBlock } from "@/components/programmes/detail/CertificationBlock";
 import { ProgrammeObjective } from "@/components/programmes/detail/ProgrammeObjective";
 import { KeyHighlights } from "@/components/programmes/detail/KeyHighlights";
@@ -129,6 +130,7 @@ const ProgrammeDetail = () => {
               <WhoShouldAttend programme={programme} />
               <ProgrammeAgenda programme={programme} />
               <ExpertsFaculty programme={programme} />
+              <ProgrammePartners programme={programme} />
               {programme.certification && !isShort && <CertificationBlock programme={programme} />}
               <FeeTable programme={programme} />
               <ProgrammeBatches programme={programme} onRegister={onRegister} />
