@@ -1,74 +1,66 @@
 import { TrendingUp, ShieldCheck, Network, Timer, Zap, CalendarClock, ArrowRight } from "lucide-react";
+import type { OutcomeId } from "@/data/solutions";
+import { reports } from "@/data/reports";
 
 interface Props {
-  onSelect?: (tag: string) => void;
+  onSelect?: (outcome: OutcomeId) => void;
 }
 
-const themes = [
+const themes: { id: OutcomeId; key: string; title: string; description: string; Icon: typeof TrendingUp; gradient: string; accent: string }[] = [
   {
+    id: "productivity",
     key: "Productivity",
     title: "Improve productivity",
     description:
       "Boost operational efficiency by reducing manual tasks and optimizing machine and workforce performance.",
     Icon: TrendingUp,
-    stat: "32+ reports",
-    gradient:
-      "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
+    gradient: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
     accent: "hsl(var(--orange-500))",
   },
   {
+    id: "quality",
     key: "Quality",
     title: "Improve quality",
-    description:
-      "Standardise quality systems and reduce defects across the shopfloor.",
+    description: "Standardise quality systems and reduce defects across the shopfloor.",
     Icon: ShieldCheck,
-    stat: "22+ reports",
-    gradient:
-      "linear-gradient(135deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
+    gradient: "linear-gradient(135deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
     accent: "hsl(var(--orange-100))",
   },
   {
+    id: "traceability",
     key: "Traceability",
     title: "Strengthen traceability",
-    description:
-      "Track materials, processes and products end-to-end across the value chain.",
+    description: "Track materials, processes and products end-to-end across the value chain.",
     Icon: Network,
-    stat: "21+ reports",
-    gradient:
-      "linear-gradient(135deg, hsl(var(--navy-900)), hsl(var(--navy-600)))",
+    gradient: "linear-gradient(135deg, hsl(var(--navy-900)), hsl(var(--navy-600)))",
     accent: "hsl(var(--navy-100))",
   },
   {
+    id: "downtime",
     key: "Downtime",
     title: "Reduce downtime",
-    description:
-      "Predict and prevent machine downtime with smart monitoring and analytics.",
+    description: "Predict and prevent machine downtime with smart monitoring and analytics.",
     Icon: Timer,
-    stat: "16+ reports",
-    gradient:
-      "linear-gradient(135deg, hsl(var(--navy-700)), hsl(var(--red-600)))",
+    gradient: "linear-gradient(135deg, hsl(var(--navy-700)), hsl(var(--red-600)))",
     accent: "hsl(var(--red-100))",
   },
   {
+    id: "energy",
     key: "Energy Efficiency",
     title: "Improve energy efficiency",
-    description:
-      "Cut energy costs and emissions through real-time consumption insight.",
+    description: "Cut energy costs and emissions through real-time consumption insight.",
     Icon: Zap,
-    stat: "24+ reports",
-    gradient:
-      "linear-gradient(135deg, hsl(var(--india-green)), hsl(var(--navy-700)))",
+    gradient: "linear-gradient(135deg, hsl(var(--india-green)), hsl(var(--navy-700)))",
     accent: "hsl(var(--india-green))",
   },
   {
+    id: "planning",
     key: "Planning",
     title: "Improve planning",
     description:
       "Improve production planning with real-time insights, forecasting and smarter resource allocation.",
     Icon: CalendarClock,
-    stat: "19+ reports",
-    gradient:
-      "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--orange-500)))",
+    gradient: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--orange-500)))",
     accent: "hsl(var(--orange-100))",
   },
 ];
@@ -99,7 +91,7 @@ export const ReportsThemesExplorer = ({ onSelect }: Props) => {
                 key={t.key}
                 type="button"
                 onClick={() => {
-                  onSelect?.(t.key);
+                  onSelect?.(t.id);
                   document
                     .getElementById("reports")
                     ?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -124,7 +116,7 @@ export const ReportsThemesExplorer = ({ onSelect }: Props) => {
                       <Icon className="h-6 w-6" />
                     </div>
                     <span className="text-[10px] uppercase tracking-[0.14em] font-bold bg-white/15 backdrop-blur px-2.5 py-1 rounded-full">
-                      {t.stat}
+                      {reports.filter((r) => (r.outcomes || []).includes(t.id)).length} reports
                     </span>
                   </div>
                   <h3 className="relative mt-6 font-display font-bold text-xl md:text-2xl leading-tight">

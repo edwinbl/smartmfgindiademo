@@ -2,6 +2,8 @@
 // Do not invent statistics, findings, authors, or quotes — values must
 // trace back to the corresponding PDF in /scripts source.
 
+import type { OutcomeId } from "./solutions";
+
 export type ReportType = string;
 
 export interface Report {
@@ -23,6 +25,7 @@ export interface Report {
   highlightStat: { value: string; label: string };
   coverGradient: string;
   coverImage?: string;
+  outcomes: OutcomeId[];
   collectionIds: string[];
   keyFindings: { title: string; description: string }[];
   topicsCovered: string[];
@@ -39,9 +42,10 @@ export interface Collection {
 
 const readingTime = (pages: number) => `${Math.max(3, Math.round((pages * 25) / 60))} min`;
 
-type Seed = Omit<Report, "readingTime" | "coverGradient" | "state"> & {
+type Seed = Omit<Report, "readingTime" | "coverGradient" | "state" | "outcomes"> & {
   state?: string;
   coverGradient?: string;
+  outcomes?: OutcomeId[];
 };
 
 const gradients = [
@@ -597,12 +601,33 @@ const coverImages: Record<string, string> = {
   "ai-ml-crash-parameters-odyssee-cae-satven": "/__l5e/assets-v1/b2d06009-f35a-4de6-934c-14ddcc6c043f/ai-ml-crash-v2.jpg",
 };
 
+// Map each of the 13 reports to the 6 platform outcomes, based on the
+// content actually discussed in each PDF (no inventing — these tags drive
+// the "Explore by Outcome" filter on /reports and the related lists on
+// outcome pages).
+const reportOutcomes: Record<string, OutcomeId[]> = {
+  "industry-40-adoption-strategic-roadmap-indian-manufacturing": ["productivity", "quality", "planning"],
+  "transforming-india-chemical-sector-digital-analytics": ["productivity", "energy", "planning"],
+  "manufacturing-in-india-creating-a-smarter-future": ["productivity", "quality", "planning"],
+  "action-plan-fostering-adoption-smart-manufacturing": ["productivity", "planning"],
+  "predictive-maintenance-for-oil-and-gas": ["downtime", "productivity"],
+  "manufacturing-reimagining-resilient-sustainable-future": ["productivity", "energy", "planning"],
+  "iot-cloud-edge-business-context-sap": ["productivity", "traceability", "planning"],
+  "ai-can-help-keep-workforce-safe": ["quality", "traceability"],
+  "smart-manufacturing-reducing-costs-virtual-simulation": ["productivity", "quality", "energy"],
+  "additive-manufacturing-2020-first-time-right": ["quality", "productivity", "energy"],
+  "7-habits-of-highly-effective-generative-design": ["quality", "energy", "productivity"],
+  "ai-ml-trimmed-body-ntf-odyssee-cae-satven": ["quality", "productivity"],
+  "ai-ml-crash-parameters-odyssee-cae-satven": ["quality", "productivity"],
+};
+
 export const reports: Report[] = seeds.map((s, i) => ({
   ...s,
   state: s.state ?? "Pan-India",
   readingTime: readingTime(s.pages),
   coverGradient: s.coverGradient ?? gradients[i % gradients.length],
   coverImage: coverImages[s.slug],
+  outcomes: reportOutcomes[s.slug] ?? [],
 }));
 
 export const reportFacets = {
