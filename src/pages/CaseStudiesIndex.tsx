@@ -12,8 +12,11 @@ import {
   Filter,
   Gauge,
   ShieldCheck,
-  Leaf,
+  
   Network,
+  Timer,
+  Zap,
+  BarChart3,
 } from "lucide-react";
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { WireFooter } from "@/components/wireframe/WireFooter";
@@ -33,10 +36,12 @@ import {
 } from "@/data/caseStudies";
 
 const outcomeTiles = [
-  { vp: "Productivity Improvement" as ValueProp, icon: Gauge, label: "Improve Productivity", tone: "bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))]" },
-  { vp: "Quality Improvement" as ValueProp, icon: ShieldCheck, label: "Improve Quality", tone: "bg-[hsl(var(--india-green)/0.08)] text-[hsl(var(--india-green))]" },
-  { vp: "Energy Efficiency" as ValueProp, icon: Leaf, label: "Reduce Energy Usage", tone: "bg-[hsl(var(--orange-100))] text-[hsl(var(--orange-600))]" },
-  { vp: "Traceability" as ValueProp, icon: Network, label: "Improve Traceability", tone: "bg-[hsl(var(--navy-100))] text-[hsl(var(--navy-700))]" },
+  { id: "productivity", icon: Gauge, label: "Improve productivity", desc: "Boost operational efficiency by reducing manual tasks and optimizing machine and workforce performance.", tone: "bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))]" },
+  { id: "quality", icon: ShieldCheck, label: "Improve quality", desc: "Standardise quality systems and reduce defects across the shopfloor.", tone: "bg-[hsl(var(--india-green)/0.08)] text-[hsl(var(--india-green))]" },
+  { id: "traceability", icon: Network, label: "Strengthen traceability", desc: "Track materials, processes and products end-to-end across the value chain.", tone: "bg-[hsl(var(--navy-100))] text-[hsl(var(--navy-700))]" },
+  { id: "downtime", icon: Timer, label: "Reduce downtime", desc: "Predict and prevent machine downtime with smart monitoring and analytics.", tone: "bg-[hsl(var(--red-600)/0.08)] text-[hsl(var(--red-600))]" },
+  { id: "energy", icon: Zap, label: "Improve energy efficiency", desc: "Cut energy costs and emissions through real-time consumption insight.", tone: "bg-[hsl(var(--orange-100))] text-[hsl(var(--orange-600))]" },
+  { id: "planning", icon: BarChart3, label: "Improve planning", desc: "Improve production planning with real-time insights, forecasting and smarter resource allocation.", tone: "bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))]" },
 ];
 
 const MetricPill = ({ value, direction }: { value: string; direction: "up" | "down" | "flat" }) => {
@@ -195,27 +200,28 @@ const CaseStudiesIndex = () => {
           <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight text-[hsl(var(--navy-900))] max-w-2xl">
             Find stories based on the business outcome you care about
           </h2>
-          <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-            {outcomeTiles.map(({ vp: v, icon: Icon, label, tone }, i) => {
-              const count = caseStudies.filter((c) => c.valueProps.includes(v)).length;
-              const pal = cardPalettes[i % cardPalettes.length];
-              return (
-                <button
-                  key={label}
-                  onClick={() => { setVp(v); setChip(null); document.getElementById("all")?.scrollIntoView({ behavior: "smooth" }); }}
-                  className="group text-left rounded-2xl border border-[hsl(var(--neutral-150))] p-6 hover:shadow-md hover:-translate-y-0.5 transition-all overflow-hidden relative"
-                  style={{ background: "linear-gradient(180deg, hsl(var(--neutral-50)), #ffffff 70%)" }}
-                >
-                  <div className="absolute top-0 left-0 right-0 h-1.5" style={{ background: pal.bar }} />
-                  <div className={`h-12 w-12 rounded-xl grid place-items-center ${tone}`}><Icon className="h-6 w-6" /></div>
-                  <div className="mt-5 font-display font-bold text-lg text-[hsl(var(--navy-900))]">{label}</div>
-                  <div className="mt-1 text-xs text-[hsl(var(--neutral-500))]">{count} case stud{count === 1 ? "y" : "ies"}</div>
-                  <div className="mt-5 inline-flex items-center gap-1 text-sm font-semibold group-hover:text-[hsl(var(--red-600))]" style={{ color: pal.bar }}>
-                    Explore <ArrowRight className="h-3.5 w-3.5" />
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {outcomeTiles.map(({ id, icon: Icon, label, desc }) => (
+              <Link
+                key={id}
+                to={`/knowledge-hub/${id}`}
+                className="cii-card p-6 group relative overflow-hidden"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="h-11 w-11 rounded-md grid place-items-center bg-[hsl(var(--navy-100))] text-navy-700 shrink-0">
+                    <Icon className="h-5 w-5" />
                   </div>
-                </button>
-              );
-            })}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-display font-bold text-navy-800 text-[17px] leading-snug">{label}</h3>
+                    <p className="mt-2 text-sm text-[hsl(var(--neutral-700))]">{desc}</p>
+                  </div>
+                </div>
+                <div className="absolute right-0 top-0 h-1 w-0 bg-cii-red transition-all group-hover:w-full" />
+                <div className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-[hsl(var(--red-600))] opacity-0 group-hover:opacity-100 transition-opacity">
+                  Explore outcome <ArrowRight className="h-3 w-3" />
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
