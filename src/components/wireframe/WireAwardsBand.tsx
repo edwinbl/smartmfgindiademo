@@ -111,23 +111,23 @@ export const WireAwardsBand = () => {
 
       <div className="container-cii relative py-16 md:py-20 lg:py-24 text-white">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto">
+        <div className="text-center max-w-4xl mx-auto">
           <div
-            className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full mb-6 border"
+            className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full mb-2 border"
             style={{
-              background: "hsl(var(--orange-500) / 0.15)",
-              borderColor: "hsl(var(--orange-500) / 0.4)",
+              background: "hsl(var(--navy-700) / 0.5)",
+              borderColor: "hsl(var(--red-500) / 0.4)",
             }}
           >
-            <Trophy className="h-4 w-4 text-cii-orange" />
-            <span className="text-[12px] uppercase tracking-[0.18em] font-bold text-white">2nd Edition · 2026</span>
+            <Trophy className="h-4 w-4" style={{ color: "hsl(var(--red-500))" }} />
+            <span className="text-[12px] uppercase tracking-[0.18em] font-bold" style={{ color: "hsl(var(--red-500))" }}>2nd Edition · 2026</span>
           </div>
 
-          <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight">
-            Congratulations to the <span className="text-cii-orange">2026 Honourees</span>
+          <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-[3.25rem] leading-[1.05] tracking-tight">
+            CII National Best Practices Award <span className="text-cii-orange">on Future Ready Manufacturing</span>
           </h2>
-          <p className="mt-4 text-base md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
-            CII National Best Practices Award on Future Ready Manufacturing — recognising 13 Indian manufacturers
+          <p className="mt-3 text-base md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+            Congratulations to the 2026 Honourees — recognising 13 Indian manufacturers
             across Large, Medium and Small Scale categories at the Annual Business Summit 2026, New Delhi.
           </p>
         </div>
