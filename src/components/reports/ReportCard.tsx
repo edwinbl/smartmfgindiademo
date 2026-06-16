@@ -83,10 +83,8 @@ export const ReportCard = ({ report, onDownload }: Props) => {
           <span className="cii-chip cii-chip-orange">{report.domain}</span>
           <span className="text-[11px] font-semibold text-[hsl(var(--neutral-500))]">· {report.year}</span>
         </div>
-        <h3 className="font-display font-bold text-base text-[hsl(var(--navy-900))] leading-snug group-hover:text-[hsl(var(--red-600))] transition-colors">
-          {report.title}
-        </h3>
-        <p className="mt-2 text-[13px] text-[hsl(var(--neutral-700))] leading-relaxed line-clamp-2">{report.summary}</p>
+        <p className="mt-1 text-[13px] text-[hsl(var(--neutral-700))] leading-relaxed line-clamp-3">{report.summary}</p>
+
 
         <div className="mt-4 flex items-center gap-4 text-[11px] text-[hsl(var(--neutral-500))]">
           <span className="inline-flex items-center gap-1">
