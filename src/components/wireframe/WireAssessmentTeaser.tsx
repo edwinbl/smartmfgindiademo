@@ -234,8 +234,13 @@ export const WireAssessmentTeaser = () => {
               </div>
             </div>
 
+            {/* Footer CTA */}
+            <div className="relative mt-5 pt-4 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between gap-3 flex-wrap">
+              <span className="text-[11px] sm:text-xs text-[hsl(var(--neutral-500))]">
+                Free · 20 minutes · Confidential
+              </span>
               <Link to="/readiness-assessment" className="link-arrow">
-                Take assessment <ArrowRight className="h-3.5 w-3.5" />
+                Get your score <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
           </div>
