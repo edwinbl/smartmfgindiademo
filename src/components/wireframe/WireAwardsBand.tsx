@@ -111,28 +111,62 @@ export const WireAwardsBand = () => {
 
       <div className="container-cii relative py-16 md:py-20 lg:py-24 text-white">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto">
+        <div className="text-center max-w-5xl mx-auto">
           <div
-            className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full mb-6 border"
+            className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full mb-8 border"
             style={{
-              background: "hsl(var(--red-600) / 0.15)",
-              borderColor: "hsl(var(--red-600) / 0.4)",
+              background: "hsl(var(--red-600) / 0.12)",
+              borderColor: "hsl(var(--red-600) / 0.3)",
             }}
           >
             <Trophy className="h-4 w-4 text-cii-red" />
-            <span className="text-[12px] uppercase tracking-[0.18em] font-bold text-white">2nd Edition · 2026</span>
+            <span className="text-[12px] uppercase tracking-[0.18em] font-bold text-white/80">2nd Edition · 2026</span>
           </div>
 
-          <p className="font-display font-semibold text-lg md:text-xl text-white/90 tracking-tight">
-            Congratulations to the <span className="text-cii-orange">2026 Honourees</span>
-          </p>
+          {/* Honourees subtitle with line dividers */}
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-white/20" />
+            <span className="text-[11px] md:text-xs font-bold uppercase tracking-[0.3em] text-white/50">
+              Congratulations to the 2026 Honourees
+            </span>
+            <div className="h-px w-12 bg-gradient-to-l from-transparent to-white/20" />
+          </div>
 
-          <h2 className="mt-2 font-display font-extrabold text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight text-cii-red">
-            CII National Best Practices Award<br className="hidden md:block" /> on Future Ready Manufacturing
+          {/* Main Award Title */}
+          <h2 className="font-display font-extrabold text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight">
+            <span className="block text-white">CII National Best Practices Award</span>
+            <span
+              className="block mt-1"
+              style={{
+                background: "linear-gradient(180deg, hsl(var(--red-400)) 0%, hsl(var(--red-600)) 50%, hsl(var(--red-800)) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                filter: "drop-shadow(0 2px 8px hsl(var(--red-600) / 0.35))",
+              }}
+            >
+              on Future Ready Manufacturing
+            </span>
           </h2>
-          <p className="mt-4 text-base md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+
+          <p className="mt-6 text-base md:text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
             Recognising 13 Indian manufacturers across Large, Medium and Small Scale categories at the Annual Business Summit 2026, New Delhi.
           </p>
+
+          {/* Decorative element */}
+          <div className="mt-8 flex justify-center items-center gap-4">
+            <div className="h-px w-16 bg-gradient-to-r from-transparent to-white/10" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border backdrop-blur-sm"
+              style={{
+                background: "hsl(var(--red-600) / 0.08)",
+                borderColor: "hsl(var(--red-600) / 0.25)",
+              }}
+            >
+              <div className="w-1.5 h-1.5 rounded-full bg-cii-red" />
+              <span className="text-[10px] font-medium text-red-200 uppercase tracking-widest">Excellence in Industry 4.0</span>
+            </div>
+            <div className="h-px w-16 bg-gradient-to-l from-transparent to-white/10" />
+          </div>
         </div>
 
         {/* Winner carousel */}
