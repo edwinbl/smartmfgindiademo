@@ -29,6 +29,19 @@ const formatMonthYear = (p: ProgrammeItem): string => {
   return `${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 };
 
+// When startDate starts with a specific date (e.g. "2 September 2025 · New Delhi"),
+// the month+year is already shown by the date pill. This extracts the location/venue
+// part to avoid repetition while keeping useful context.
+const formatStartDateExtra = (p: ProgrammeItem): string | null => {
+  const sd = p.startDate;
+  // If it doesn't start with a digit, it's descriptive (e.g. "Multiple editions")
+  // — keep the full text.
+  if (!/^\d/.test(sd)) return sd;
+  // Otherwise take the last fragment after " · " (venue/location).
+  const parts = sd.split(" · ");
+  return parts.length > 1 ? parts[parts.length - 1] : null;
+};
+
 const getPastProgrammes = (): ProgrammeItem[] => {
   const now = Date.now();
   return programmes
@@ -155,9 +168,14 @@ export const PastProgrammesArchive = () => {
                           <span className="inline-flex items-center h-6 px-2 rounded-sm bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-800))] text-[11px] uppercase tracking-[0.12em] font-bold">
                             {formatMonthYear(p)}
                           </span>
-                          <span className="text-[hsl(var(--neutral-500))] font-semibold text-[11px] truncate">
-                            {p.startDate}
-                          </span>
+                          {(() => {
+                            const extra = formatStartDateExtra(p);
+                            return extra ? (
+                              <span className="text-[hsl(var(--neutral-500))] font-semibold text-[11px] truncate">
+                                {extra}
+                              </span>
+                            ) : null;
+                          })()}
                         </div>
                         <h4 className="font-display font-bold text-base md:text-lg text-[hsl(var(--navy-900))] mt-2 leading-snug">
                           <Link to={`/programmes/${p.slug}`} className="hover:text-[hsl(var(--red-600))]">
