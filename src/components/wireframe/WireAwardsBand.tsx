@@ -50,10 +50,10 @@ const winners: Winner[] = [
 ];
 
 const rankStyles: Record<Rank, { bg: string; border: string; color: string }> = {
-  "Winner": { bg: "hsl(var(--orange-500) / 0.95)", border: "hsl(var(--orange-500))", color: "white" },
-  "1st Runner-Up": { bg: "hsl(var(--navy-900) / 0.7)", border: "hsl(var(--orange-500) / 0.5)", color: "hsl(var(--orange-100))" },
-  "2nd Runner-Up": { bg: "hsl(var(--navy-900) / 0.7)", border: "hsl(var(--orange-500) / 0.4)", color: "hsl(var(--orange-100))" },
-  "Special Recognition": { bg: "hsl(var(--red-600) / 0.9)", border: "hsl(var(--red-600))", color: "white" },
+  "Winner": { bg: "hsl(var(--red-600) / 0.95)", border: "hsl(var(--red-600))", color: "white" },
+  "1st Runner-Up": { bg: "hsl(var(--navy-900) / 0.7)", border: "hsl(var(--red-600) / 0.5)", color: "hsl(var(--red-100))" },
+  "2nd Runner-Up": { bg: "hsl(var(--navy-900) / 0.7)", border: "hsl(var(--red-600) / 0.4)", color: "hsl(var(--red-100))" },
+  "Special Recognition": { bg: "hsl(var(--red-800) / 0.9)", border: "hsl(var(--red-800))", color: "white" },
 };
 
 export const WireAwardsBand = () => {
