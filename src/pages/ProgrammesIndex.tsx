@@ -15,7 +15,7 @@ import { ProgrammesFilterSidebar } from "@/components/programmes/ProgrammesFilte
 import { ProgrammeCard } from "@/components/programmes/ProgrammeCard";
 import { ProgrammesEmptyState } from "@/components/programmes/ProgrammesEmptyState";
 import { FeaturedProgrammes } from "@/components/programmes/FeaturedProgrammes";
-import { ProgrammesImpactStats } from "@/components/programmes/ProgrammesImpactStats";
+
 import {
   programmes,
   programmeTypes,
@@ -160,7 +160,7 @@ const ProgrammesIndex = () => {
             </div>
           </div>
         </section>
-        <ProgrammesImpactStats />
+        
         <PastProgrammesArchive />
       </main>
       <WireFooter />
