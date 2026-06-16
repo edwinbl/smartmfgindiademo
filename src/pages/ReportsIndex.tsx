@@ -41,6 +41,7 @@ const ReportsIndex = () => {
   const [query, setQuery] = useState("");
   const [filters, setFilters] = useState<ReportFilters>(emptyFilters);
   const [quickPick, setQuickPick] = useState<QuickPickId | null>(null);
+  const [outcome, setOutcome] = useState<OutcomeId | null>(null);
 
   const ciiReports = useMemo(() => reports.filter((r) => r.author.includes("CII")), []);
 
@@ -51,6 +52,7 @@ const ReportsIndex = () => {
         const hay = `${r.title} ${r.summary} ${r.tags.join(" ")} ${r.industry} ${r.domain} ${r.technology}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
+      if (outcome && !(r.outcomes || []).includes(outcome)) return false;
       if (filters.industry !== "all" && r.industry !== filters.industry) return false;
       if (filters.domain !== "all" && r.domain !== filters.domain) return false;
       if (filters.technology !== "all" && r.technology !== filters.technology) return false;
@@ -60,7 +62,7 @@ const ReportsIndex = () => {
       if (!quickPickFilter(r, quickPick)) return false;
       return true;
     });
-  }, [query, filters, quickPick]);
+  }, [query, filters, quickPick, outcome]);
 
   const handleDownload = (r: Report) => {
     toast({ title: "Download started", description: r.title });
@@ -70,6 +72,7 @@ const ReportsIndex = () => {
     setQuery("");
     setFilters(emptyFilters);
     setQuickPick(null);
+    setOutcome(null);
   };
 
   const jsonLd = {
