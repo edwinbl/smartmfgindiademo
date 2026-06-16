@@ -13,6 +13,7 @@ import { WireProgrammes } from "@/components/wireframe/WireProgrammes";
 import { WireAwardsBand } from "@/components/wireframe/WireAwardsBand";
 import { WirePartners } from "@/components/wireframe/WirePartners";
 import { WireSocialTicker } from "@/components/wireframe/WireSocialTicker";
+import { WireShareContent } from "@/components/wireframe/WireShareContent";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 
 
