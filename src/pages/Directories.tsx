@@ -438,7 +438,7 @@ const DirectoryCard = ({
             <Link
               to={`/directories/${directory.slug}`}
               className="inline-flex items-center gap-2 h-11 px-5 rounded-md font-semibold text-white"
-              style={{ background: "hsl(var(--navy-800))" }}
+              style={{ background: "hsl(var(--red-600))" }}
             >
               <Sparkles className="h-4 w-4" /> Explore Interactively <ArrowRight className="h-4 w-4" />
             </Link>
@@ -653,7 +653,7 @@ const Directories = () => {
                 ecosystems.
               </p>
             </div>
-            <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {DIRECTORIES.map((d) => (
                 <DirectoryCard
                   key={d.slug}
