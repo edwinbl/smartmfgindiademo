@@ -81,6 +81,7 @@ export interface ProgrammeItem {
     url?: string;
   }[];
   gallery?: { type: "image" | "video"; url: string; thumbnail?: string; caption?: string }[];
+  partners?: { name: string; logo: string }[];
   testimonials?: { name: string; role: string; org: string; quote: string; avatar?: string }[];
   postProgramme?: {
     summary?: string;
@@ -117,6 +118,12 @@ import chicagoAsset from "@/assets/programmes/chicago-delegation.jpg.asset.json"
 import iitdAsset from "@/assets/programmes/iitd-aifsm-training.jpg.asset.json";
 import aiManufacturingAsset from "@/assets/programmes/ai-in-manufacturing.jpg.asset.json";
 import digitalTwinAsset from "@/assets/programmes/digital-twin-workshop.jpg.asset.json";
+import seminarInaugural from "@/assets/programmes/seminar-automation-inaugural.jpg.asset.json";
+import seminarSession1 from "@/assets/programmes/seminar-automation-session1.jpg.asset.json";
+import seminarSession2 from "@/assets/programmes/seminar-automation-session2.jpg.asset.json";
+import partnerKirloskar from "@/assets/programmes/partner-kirloskar-pneumatic.jpg.asset.json";
+import partnerDifacto from "@/assets/programmes/partner-difacto.png.asset.json";
+import partnerLTHeavy from "@/assets/programmes/partner-lt-heavy-eng.jpg.asset.json";
 
 export const programmes: ProgrammeItem[] = [
   // UPCOMING — Architecting the AI-Driven Factory of the Future
