@@ -42,9 +42,10 @@ export interface Collection {
 
 const readingTime = (pages: number) => `${Math.max(3, Math.round((pages * 25) / 60))} min`;
 
-type Seed = Omit<Report, "readingTime" | "coverGradient" | "state"> & {
+type Seed = Omit<Report, "readingTime" | "coverGradient" | "state" | "outcomes"> & {
   state?: string;
   coverGradient?: string;
+  outcomes?: OutcomeId[];
 };
 
 const gradients = [
