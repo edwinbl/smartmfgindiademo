@@ -124,10 +124,10 @@ export const WireAwardsBand = () => {
           </div>
 
           <p className="font-display font-semibold text-lg md:text-xl text-white/90 tracking-tight">
-            Congratulations to the <span className="text-cii-red">2026 Honourees</span>
+            Congratulations to the <span className="text-cii-orange">2026 Honourees</span>
           </p>
 
-          <h2 className="mt-2 font-display font-extrabold text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight">
+          <h2 className="mt-2 font-display font-extrabold text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight text-cii-red">
             CII National Best Practices Award<br className="hidden md:block" /> on Future Ready Manufacturing
           </h2>
           <p className="mt-4 text-base md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
