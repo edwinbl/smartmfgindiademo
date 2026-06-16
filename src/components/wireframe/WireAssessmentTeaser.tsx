@@ -9,7 +9,6 @@ import {
   TrendingUp,
   BarChart3,
   Award,
-  ArrowRightCircle,
 } from "lucide-react";
 
 export const WireAssessmentTeaser = () => {
