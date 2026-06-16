@@ -22,11 +22,11 @@ interface Props {
 
 const quickPicks: { id: QuickPickId; label: string; Icon: typeof Sparkles }[] = [
   { id: "latest", label: "Latest", Icon: Sparkles },
-  { id: "downloaded", label: "Most Downloaded", Icon: Download },
+  { id: "cii", label: "CII", Icon: Download },
   { id: "msme", label: "MSME", Icon: Users },
   { id: "sustainability", label: "Sustainability", Icon: Leaf },
   { id: "smart", label: "Smart Mfg", Icon: Factory },
-  { id: "export", label: "Export", Icon: Globe2 },
+  { id: "automotive", label: "Automotive", Icon: Globe2 },
 ];
 
 const facetSelects: { key: keyof ReportFilters; label: string }[] = [
