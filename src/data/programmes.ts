@@ -622,6 +622,9 @@ export const programmes: ProgrammeItem[] = [
       ],
     },
   },
+];
+
+
 
 
 // Outcome metadata for guided discovery
