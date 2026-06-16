@@ -168,9 +168,14 @@ export const PastProgrammesArchive = () => {
                           <span className="inline-flex items-center h-6 px-2 rounded-sm bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-800))] text-[11px] uppercase tracking-[0.12em] font-bold">
                             {formatMonthYear(p)}
                           </span>
-                          <span className="text-[hsl(var(--neutral-500))] font-semibold text-[11px] truncate">
-                            {p.startDate}
-                          </span>
+                          {(() => {
+                            const extra = formatStartDateExtra(p);
+                            return extra ? (
+                              <span className="text-[hsl(var(--neutral-500))] font-semibold text-[11px] truncate">
+                                {extra}
+                              </span>
+                            ) : null;
+                          })()}
                         </div>
                         <h4 className="font-display font-bold text-base md:text-lg text-[hsl(var(--navy-900))] mt-2 leading-snug">
                           <Link to={`/programmes/${p.slug}`} className="hover:text-[hsl(var(--red-600))]">
