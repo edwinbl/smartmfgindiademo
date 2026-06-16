@@ -12,7 +12,9 @@ import { WireResources } from "@/components/wireframe/WireResources";
 import { WireProgrammes } from "@/components/wireframe/WireProgrammes";
 import { WireAwardsBand } from "@/components/wireframe/WireAwardsBand";
 import { WirePartners } from "@/components/wireframe/WirePartners";
+import { WireSocialTicker } from "@/components/wireframe/WireSocialTicker";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
+
 
 const Index = () => {
   const jsonLd = [
@@ -60,7 +62,9 @@ const Index = () => {
         <WireAwardsBand />
         <WirePartners />
         <CommonFinalCta />
+        <WireSocialTicker />
       </main>
+
       <WireFooter />
       <WireChatbotFAB />
     </div>
