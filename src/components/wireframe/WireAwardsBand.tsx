@@ -172,8 +172,8 @@ export const WireAwardsBand = () => {
                             className="text-[11px] uppercase tracking-[0.14em] font-bold px-2 py-0.5 rounded-full backdrop-blur"
                             style={{
                               background: "hsl(var(--navy-900) / 0.55)",
-                              color: "hsl(var(--orange-100))",
-                              border: "1px solid hsl(var(--orange-500) / 0.4)",
+                              color: "hsl(var(--red-100))",
+                              border: "1px solid hsl(var(--red-600) / 0.4)",
                             }}
                           >
                             {w.scale}
