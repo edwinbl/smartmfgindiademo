@@ -204,7 +204,7 @@ export const WireAwardsBand = () => {
                           <span>{w.location}</span>
                         </div>
                         {w.segment && (
-                          <p className="mt-3 text-[11px] uppercase tracking-[0.14em] font-bold text-cii-orange">
+                          <p className="mt-3 text-[11px] uppercase tracking-[0.14em] font-bold text-cii-red">
                             {w.segment}
                           </p>
                         )}
@@ -241,7 +241,7 @@ export const WireAwardsBand = () => {
         <div className="mt-12 md:mt-16 pt-8 border-t border-white/15 text-center">
           <p className="text-white/60 text-sm md:text-base">
             Applications for the next edition will open soon.{" "}
-            <a href="/contact" className="text-cii-orange font-semibold hover:underline inline-flex items-center gap-1">
+            <a href="/contact" className="text-cii-red font-semibold hover:underline inline-flex items-center gap-1">
               Get notified <ArrowRight className="h-4 w-4" />
             </a>
           </p>
