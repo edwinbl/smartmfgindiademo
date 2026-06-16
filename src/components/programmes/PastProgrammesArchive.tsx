@@ -5,11 +5,28 @@ import { programmes, programmeTypes, type ProgrammeItem, type ProgrammeType } fr
 
 const TYPES: ("All" | ProgrammeType)[] = programmeTypes;
 
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+const parseIso = (iso: string): Date | null => {
+  if (!iso) return null;
+  const d = new Date(iso);
+  return isNaN(d.getTime()) ? null : d;
+};
+
 const extractYear = (p: ProgrammeItem): string => {
-  const d = new Date(p.isoDate);
-  if (!isNaN(d.getTime())) return String(d.getFullYear());
+  const d = parseIso(p.isoDate);
+  if (d) return String(d.getUTCFullYear());
   const m = p.startDate.match(/\b(20\d{2})\b/);
   return m ? m[1] : "Other";
+};
+
+// Always returns a clean date label like "Sep 2025" or "Feb 2026" from isoDate
+// so every card shows the same date metadata, even when startDate is descriptive
+// (e.g. "Multiple editions" or "Six editions").
+const formatMonthYear = (p: ProgrammeItem): string => {
+  const d = parseIso(p.isoDate);
+  if (!d) return extractYear(p);
+  return `${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 };
 
 const getPastProgrammes = (): ProgrammeItem[] => {
@@ -134,8 +151,13 @@ export const PastProgrammesArchive = () => {
                       </Link>
 
                       <div className="flex flex-1 flex-col p-5">
-                        <div className="text-[11px] uppercase tracking-[0.12em] font-bold text-[hsl(var(--neutral-500))]">
-                          {p.startDate} · {p.format}
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="inline-flex items-center h-6 px-2 rounded-sm bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-800))] text-[11px] uppercase tracking-[0.12em] font-bold">
+                            {formatMonthYear(p)}
+                          </span>
+                          <span className="text-[hsl(var(--neutral-500))] font-semibold text-[11px] truncate">
+                            {p.startDate}
+                          </span>
                         </div>
                         <h4 className="font-display font-bold text-base md:text-lg text-[hsl(var(--navy-900))] mt-2 leading-snug">
                           <Link to={`/programmes/${p.slug}`} className="hover:text-[hsl(var(--red-600))]">
@@ -143,11 +165,15 @@ export const PastProgrammesArchive = () => {
                           </Link>
                         </h4>
 
+                        <p className="mt-2 text-xs text-[hsl(var(--neutral-600))] line-clamp-2">
+                          {p.tagline}
+                        </p>
+
                         {p.highlights && p.highlights.length > 0 && (
                           <div className="mt-4 grid grid-cols-2 gap-2">
                             {p.highlights.slice(0, 2).map((h) => (
                               <div key={h.label} className="rounded-md bg-[hsl(var(--neutral-100))] px-2.5 py-1.5">
-                                <div className="font-numeric font-bold text-sm text-[hsl(var(--navy-900))]">{h.value}</div>
+                                <div className="font-numeric font-bold text-sm text-[hsl(var(--navy-900))] truncate">{h.value}</div>
                                 <div className="text-[9px] uppercase tracking-[0.1em] font-bold text-[hsl(var(--neutral-500))] truncate">
                                   {h.label}
                                 </div>
