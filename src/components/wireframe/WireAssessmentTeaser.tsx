@@ -193,9 +193,13 @@ export const WireAssessmentTeaser = () => {
               </div>
             </div>
 
-            <div className="relative mt-4 flex items-center gap-2 text-[12px] sm:text-[13px] italic text-white/85">
-              <Sparkles className="h-3.5 w-3.5 text-[hsl(var(--orange-500))] shrink-0" />
-              You may be closer than you think.
+            <div className="relative mt-5 rounded-lg border-l-[3px] border-white/10 bg-white/[0.07] backdrop-blur-sm px-4 py-3.5 flex items-center gap-3" style={{ borderLeftColor: "hsl(var(--orange-500) / 0.85)" }}>
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{ background: "hsl(var(--orange-500) / 0.15)" }}>
+                <Sparkles className="h-5 w-5 text-[hsl(var(--orange-300))]" />
+              </span>
+              <p className="text-sm sm:text-base font-semibold text-white leading-snug tracking-tight">
+                You may be closer than you think.
+              </p>
             </div>
 
             <div className="relative mt-4 pt-4 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
