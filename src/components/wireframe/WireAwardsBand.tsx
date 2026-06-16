@@ -50,10 +50,10 @@ const winners: Winner[] = [
 ];
 
 const rankStyles: Record<Rank, { bg: string; border: string; color: string }> = {
-  "Winner": { bg: "hsl(var(--orange-500) / 0.95)", border: "hsl(var(--orange-500))", color: "white" },
-  "1st Runner-Up": { bg: "hsl(var(--navy-900) / 0.7)", border: "hsl(var(--orange-500) / 0.5)", color: "hsl(var(--orange-100))" },
-  "2nd Runner-Up": { bg: "hsl(var(--navy-900) / 0.7)", border: "hsl(var(--orange-500) / 0.4)", color: "hsl(var(--orange-100))" },
-  "Special Recognition": { bg: "hsl(var(--red-600) / 0.9)", border: "hsl(var(--red-600))", color: "white" },
+  "Winner": { bg: "hsl(var(--red-600) / 0.95)", border: "hsl(var(--red-600))", color: "white" },
+  "1st Runner-Up": { bg: "hsl(var(--navy-900) / 0.7)", border: "hsl(var(--red-600) / 0.5)", color: "hsl(var(--red-100))" },
+  "2nd Runner-Up": { bg: "hsl(var(--navy-900) / 0.7)", border: "hsl(var(--red-600) / 0.4)", color: "hsl(var(--red-100))" },
+  "Special Recognition": { bg: "hsl(var(--red-800) / 0.9)", border: "hsl(var(--red-800))", color: "white" },
 };
 
 export const WireAwardsBand = () => {
@@ -105,7 +105,7 @@ export const WireAwardsBand = () => {
       <div
         className="absolute -bottom-32 -right-32 w-[480px] h-[480px] pointer-events-none"
         style={{
-          background: "radial-gradient(circle, hsl(var(--orange-500) / 0.22), hsl(var(--orange-500) / 0) 60%)",
+          background: "radial-gradient(circle, hsl(var(--red-600) / 0.22), hsl(var(--red-600) / 0) 60%)",
         }}
       />
 
@@ -115,16 +115,16 @@ export const WireAwardsBand = () => {
           <div
             className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full mb-6 border"
             style={{
-              background: "hsl(var(--orange-500) / 0.15)",
-              borderColor: "hsl(var(--orange-500) / 0.4)",
+              background: "hsl(var(--red-600) / 0.15)",
+              borderColor: "hsl(var(--red-600) / 0.4)",
             }}
           >
-            <Trophy className="h-4 w-4 text-cii-orange" />
+            <Trophy className="h-4 w-4 text-cii-red" />
             <span className="text-[12px] uppercase tracking-[0.18em] font-bold text-white">2nd Edition · 2026</span>
           </div>
 
           <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight">
-            Congratulations to the <span className="text-cii-orange">2026 Honourees</span>
+            Congratulations to the <span className="text-cii-red">2026 Honourees</span>
           </h2>
           <p className="mt-4 text-base md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
             CII National Best Practices Award on Future Ready Manufacturing — recognising 13 Indian manufacturers
@@ -172,8 +172,8 @@ export const WireAwardsBand = () => {
                             className="text-[11px] uppercase tracking-[0.14em] font-bold px-2 py-0.5 rounded-full backdrop-blur"
                             style={{
                               background: "hsl(var(--navy-900) / 0.55)",
-                              color: "hsl(var(--orange-100))",
-                              border: "1px solid hsl(var(--orange-500) / 0.4)",
+                              color: "hsl(var(--red-100))",
+                              border: "1px solid hsl(var(--red-600) / 0.4)",
                             }}
                           >
                             {w.scale}
@@ -204,7 +204,7 @@ export const WireAwardsBand = () => {
                           <span>{w.location}</span>
                         </div>
                         {w.segment && (
-                          <p className="mt-3 text-[11px] uppercase tracking-[0.14em] font-bold text-cii-orange">
+                          <p className="mt-3 text-[11px] uppercase tracking-[0.14em] font-bold text-cii-red">
                             {w.segment}
                           </p>
                         )}
@@ -241,7 +241,7 @@ export const WireAwardsBand = () => {
         <div className="mt-12 md:mt-16 pt-8 border-t border-white/15 text-center">
           <p className="text-white/60 text-sm md:text-base">
             Applications for the next edition will open soon.{" "}
-            <a href="/contact" className="text-cii-orange font-semibold hover:underline inline-flex items-center gap-1">
+            <a href="/contact" className="text-cii-red font-semibold hover:underline inline-flex items-center gap-1">
               Get notified <ArrowRight className="h-4 w-4" />
             </a>
           </p>
