@@ -200,13 +200,6 @@ export const WireSocialTicker = () => {
             ))}
           </div>
         </div>
-        <div className="group/marquee py-2 px-4 sm:px-6">
-          <div className="flex gap-4 animate-marquee-right will-change-transform group-hover/marquee:[animation-play-state:paused]">
-            {row2.map((p, i) => (
-              <Card key={`r2-${i}`} p={p} />
-            ))}
-          </div>
-        </div>
       </div>
     </WireSection>
   );
