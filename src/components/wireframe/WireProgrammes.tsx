@@ -1,30 +1,12 @@
 import { Link } from "react-router-dom";
 import { WireSection } from "./WireSection";
 import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
+import { programmes } from "@/data/programmes";
 
-const programmes = [
-  {
-    title: "CII-JICA-AOTS Training Programme on Industry 4.0",
-    date: "12–14 Jun 2026",
-    format: "In-person · Pune",
-    audience: "MSME leadership",
-    tag: "Bootcamp",
-  },
-  {
-    title: "CII & IITD-AIA FSM Two-Days Masterclass",
-    date: "27 Jun 2026",
-    format: "Online · 4 hrs",
-    audience: "Quality & Operations heads",
-    tag: "Masterclass",
-  },
-  {
-    title: "CII & RA Two-Day Training Programme on Industry 4.0",
-    date: "08–09 Jul 2026",
-    format: "Hybrid · Bengaluru",
-    audience: "Plant heads, Sustainability leads",
-    tag: "Programme",
-  },
-];
+const upcoming = programmes
+  .filter((p) => p.status === "open" || p.status === "soon")
+  .sort((a, b) => new Date(a.isoDate).getTime() - new Date(b.isoDate).getTime())
+  .slice(0, 3);
 
 export const WireProgrammes = () => {
   return (
@@ -46,8 +28,8 @@ export const WireProgrammes = () => {
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {programmes.map((p) => (
-          <article key={p.title} className="cii-card overflow-hidden flex flex-col">
+        {upcoming.map((p) => (
+          <article key={p.slug} className="cii-card overflow-hidden flex flex-col">
             <div
               className="h-32 relative"
               style={{
@@ -55,24 +37,26 @@ export const WireProgrammes = () => {
               }}
             >
               <div className="absolute inset-0 blueprint-grid opacity-40" />
-              <span className="absolute top-4 left-4 cii-chip cii-chip-orange">{p.tag}</span>
+              <span className="absolute top-4 left-4 cii-chip cii-chip-orange">{p.type}</span>
             </div>
             <div className="p-6 flex flex-col flex-1">
-              <h3 className="font-display font-bold text-navy-800 text-[17px] leading-snug">{p.title}</h3>
+              <h3 className="font-display font-bold text-navy-800 text-[17px] leading-snug line-clamp-3">
+                {p.title}
+              </h3>
               <ul className="mt-4 space-y-2 text-sm text-[hsl(var(--neutral-700))]">
-                <li className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-navy-600" /> {p.date}
+                <li className="flex items-start gap-2">
+                  <Calendar className="h-4 w-4 text-navy-600 mt-0.5 shrink-0" /> <span>{p.startDate}</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-navy-600" /> {p.format}
+                <li className="flex items-start gap-2">
+                  <MapPin className="h-4 w-4 text-navy-600 mt-0.5 shrink-0" /> <span>{p.format}</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Users className="h-4 w-4 text-navy-600" /> {p.audience}
+                <li className="flex items-start gap-2">
+                  <Users className="h-4 w-4 text-navy-600 mt-0.5 shrink-0" /> <span>{p.audience[0]?.persona ?? p.segment}</span>
                 </li>
               </ul>
-              <a href="#" className="link-arrow mt-5">
+              <Link to={`/programmes/${p.slug}`} className="link-arrow mt-5">
                 View details <ArrowRight className="h-3.5 w-3.5" />
-              </a>
+              </Link>
             </div>
           </article>
         ))}
