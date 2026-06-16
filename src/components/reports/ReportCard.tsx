@@ -56,10 +56,9 @@ export const ReportCard = ({ report, onDownload }: Props) => {
         </div>
 
         <div>
-          <div className="font-numeric text-[28px] font-extrabold leading-none">{report.highlightStat.value}</div>
-          <div className="text-[11px] uppercase tracking-[0.14em] font-bold opacity-90 mt-1">
-            {report.highlightStat.label}
-          </div>
+          <h4 className="font-display font-bold text-[18px] leading-tight line-clamp-3 drop-shadow-sm">
+            {report.title}
+          </h4>
           <div className="mt-3 inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-black/25 backdrop-blur text-[10px] font-bold uppercase tracking-wider">
             <span className="h-1.5 w-1.5 rounded-full bg-white/80" />
             {report.author}
