@@ -114,7 +114,16 @@ const ReportsIndex = () => {
           </div>
         </section>
 
-        <ReportsThemesExplorer onSelect={(t) => setQuery(t)} />
+        <ReportsThemesExplorer onSelect={(o) => { setOutcome(o); setQuery(""); }} />
+
+        {outcome && (
+          <div className="container-cii -mt-4 mb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[hsl(var(--neutral-100))] border text-xs font-semibold text-[hsl(var(--navy-800))]" style={{ borderColor: "hsl(var(--neutral-200))" }}>
+              Outcome filter: {outcomeLabel(outcome)}
+              <button type="button" onClick={() => setOutcome(null)} className="text-[hsl(var(--red-600))] hover:underline">Clear</button>
+            </div>
+          </div>
+        )}
         <ReportsSectorExplorer
           onSelect={(industry) => {
             if (reportFacets.industry.includes(industry)) {
