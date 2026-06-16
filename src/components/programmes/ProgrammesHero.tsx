@@ -1,4 +1,5 @@
-import { ArrowRight, Sparkles, GraduationCap, Award, Users, BookOpen, PlayCircle, Trophy, CheckCircle2, TrendingUp } from "lucide-react";
+import { ArrowRight, Sparkles, GraduationCap, Factory, Cpu } from "lucide-react";
+import { programmes } from "@/data/programmes";
 
 interface Props {
   onExplore: () => void;
@@ -80,9 +81,14 @@ export const ProgrammesHero = ({ onExplore, onFindPath }: Props) => {
 };
 
 const ProgrammesCollage = () => {
+  const now = Date.now();
+  const upcoming = programmes
+    .filter((p) => (p.status === "open" || p.status === "soon") && new Date(p.isoDate).getTime() >= now)
+    .sort((a, b) => new Date(a.isoDate).getTime() - new Date(b.isoDate).getTime())
+    .slice(0, 3);
+
   return (
     <div className="absolute inset-0 grid place-items-center">
-      {/* Soft halo */}
       <div
         className="absolute h-[360px] w-[360px] rounded-full blur-3xl opacity-60"
         style={{
@@ -91,161 +97,43 @@ const ProgrammesCollage = () => {
         }}
         aria-hidden
       />
-
-      {/* Back programme brochure */}
-      <div
-        className="absolute left-[8%] top-[10%] w-[58%] h-[78%] rounded-xl shadow-xl border border-[hsl(var(--neutral-150))] overflow-hidden -rotate-[8deg] bg-white"
-        style={{ animation: "float 7s ease-in-out infinite" }}
-      >
-        <div
-          className="h-[42%] w-full p-4 flex flex-col justify-between text-white"
-          style={{
-            background:
-              "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
-          }}
-        >
-          <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.14em] opacity-90">
-            <GraduationCap className="h-3 w-3" /> Live Cohort
-          </div>
-          <div>
-            <div className="text-[10px] opacity-80">Cohort 12 · 2025</div>
-            <div className="text-sm font-extrabold leading-snug">
-              Industry 4.0 Leadership Programme
-            </div>
-          </div>
+      <div className="relative w-full max-w-sm space-y-3">
+        <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--neutral-500))]">
+          <GraduationCap className="h-3.5 w-3.5 text-[hsl(var(--red-600))]" /> Upcoming programmes
         </div>
-        <div className="p-4 space-y-3">
-          <div className="text-[9px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
-            Modules
-          </div>
-          {[
-            { label: "Foundations", icon: PlayCircle, done: true },
-            { label: "Smart Factory Design", icon: BookOpen, done: true },
-            { label: "Capstone & Certification", icon: Trophy, done: false },
-          ].map((m, i) => {
-            const Ico = m.done ? CheckCircle2 : m.icon;
-            return (
-              <div key={i} className="flex items-center gap-2">
-                <Ico
-                  className="h-3.5 w-3.5"
-                  style={{
-                    color: m.done
-                      ? "hsl(var(--india-green))"
-                      : "hsl(var(--neutral-500))",
-                  }}
-                />
-                <div className="text-[10px] font-semibold text-[hsl(var(--navy-900))]">
-                  {m.label}
+        {upcoming.map((p, i) => {
+          const Icon = i === 0 ? Cpu : i === 1 ? Sparkles : Factory;
+          return (
+            <article
+              key={p.slug}
+              className="cii-card bg-white p-4 flex items-start gap-3 shadow-sm"
+              style={{ animation: `float 7s ease-in-out infinite ${i * 0.4}s` }}
+            >
+              <div
+                className="h-10 w-10 rounded-md grid place-items-center text-white shrink-0"
+                style={{
+                  background:
+                    "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
+                }}
+              >
+                <Icon className="h-5 w-5" />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[10px] uppercase tracking-[0.12em] font-bold text-[hsl(var(--neutral-500))]">
+                  {p.type} · {p.startDate.split("·")[0].trim()}
+                </div>
+                <div className="text-sm font-extrabold text-[hsl(var(--navy-900))] leading-snug line-clamp-2">
+                  {p.title}
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </article>
+          );
+        })}
       </div>
-
-      {/* Front programme card with progress + cohort */}
-      <div
-        className="absolute right-[6%] top-[18%] w-[62%] h-[74%] rounded-xl shadow-2xl border border-[hsl(var(--neutral-150))] overflow-hidden rotate-[4deg] bg-white"
-        style={{ animation: "float 6s ease-in-out infinite 0.4s" }}
-      >
-        <div
-          className="h-[36%] w-full p-4 flex items-start justify-between text-white"
-          style={{
-            background:
-              "linear-gradient(135deg, hsl(var(--red-600)), hsl(var(--orange-500)))",
-          }}
-        >
-          <div>
-            <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.14em] opacity-90">
-              <Sparkles className="h-3 w-3" /> Learning Path
-            </div>
-            <div className="mt-2 text-sm font-extrabold leading-snug max-w-[80%]">
-              Smart Manufacturing Leader
-            </div>
-          </div>
-          <div className="h-9 w-9 rounded-lg bg-white/15 backdrop-blur grid place-items-center">
-            <Trophy className="h-5 w-5" />
-          </div>
-        </div>
-        <div className="p-4">
-          <div className="flex items-center justify-between">
-            <div className="text-[10px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
-              Cohort Progress
-            </div>
-            <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-[hsl(var(--india-green))]">
-              <TrendingUp className="h-3 w-3" /> 65%
-            </span>
-          </div>
-          <div className="mt-3 h-2 w-full rounded-full bg-[hsl(var(--neutral-100))] overflow-hidden">
-            <div
-              className="h-full rounded-full"
-              style={{
-                width: "65%",
-                background:
-                  "linear-gradient(90deg, hsl(var(--orange-500)), hsl(var(--red-600)))",
-              }}
-            />
-          </div>
-          <div className="mt-4 flex items-center justify-between">
-            <div className="flex items-center -space-x-2">
-              {["AR", "PK", "SM", "JV"].map((t, i) => (
-                <span
-                  key={t}
-                  className="h-7 w-7 rounded-full grid place-items-center text-[9px] font-bold text-white border-2 border-white"
-                  style={{ background: `hsl(var(--navy-${800 - i * 100}))` }}
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-            <div className="text-[10px] font-semibold text-[hsl(var(--neutral-700))]">
-              +42 enrolled
-            </div>
-          </div>
-          <div className="mt-3 flex items-center justify-between text-[10px] text-[hsl(var(--neutral-500))]">
-            <span>Week 1</span><span>Week 12</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Floating learners badge */}
-      <div
-        className="absolute bottom-2 left-2 cii-card px-3 py-2 flex items-center gap-2 -rotate-[3deg] bg-white"
-        style={{ animation: "float 7.5s ease-in-out infinite 1s" }}
-      >
-        <div
-          className="h-8 w-8 rounded-lg grid place-items-center text-white"
-          style={{
-            background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
-          }}
-        >
-          <Users className="h-4 w-4" />
-        </div>
-        <div>
-          <div className="text-[9px] uppercase tracking-wider font-bold text-[hsl(var(--neutral-500))]">
-            Leaders Trained
-          </div>
-          <div className="text-sm font-extrabold text-[hsl(var(--navy-900))] font-numeric">
-            14.5K+
-          </div>
-        </div>
-      </div>
-
-      {/* Floating certificate chip */}
-      <div
-        className="absolute top-2 right-4 cii-card px-3 py-2 flex items-center gap-2 rotate-[4deg] bg-white"
-        style={{ animation: "float 8s ease-in-out infinite 0.7s" }}
-      >
-        <Award className="h-4 w-4 text-[hsl(var(--red-600))]" />
-        <div className="text-[10px] font-bold text-[hsl(var(--navy-900))]">
-          120+ Programmes · CII Certified
-        </div>
-      </div>
-
       <style>{`
         @keyframes float {
-          0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
-          50% { transform: translateY(-8px) rotate(var(--r, 0deg)); }
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
         }
       `}</style>
     </div>
