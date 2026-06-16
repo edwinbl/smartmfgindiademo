@@ -67,7 +67,7 @@ const ReportDetail = () => {
             <div className="lg:col-span-8">
               <ReportKeyInsightsSnapshot report={report} />
               <ReportKeyHighlights report={report} />
-              <ReportThemes />
+              <ReportThemes report={report} />
               <ReportPreview report={report} onUnlock={handleDownload} />
               <ReportDownloadModule report={report} onDownload={handleDownload} />
               <ReportRelated related={related} />
