@@ -33,6 +33,7 @@ const SolutionsIndex = lazy(routeLoaders["/solutions"]);
 const SolutionDetail = lazy(routeLoaders["/solutions/:slug"]);
 const OutcomeDetail = lazy(routeLoaders["/knowledge-hub/:outcomeId"]);
 const Directories = lazy(routeLoaders["/directories"]);
+const DirectoryExplorer = lazy(() => import("@/pages/DirectoryExplorer"));
 
 const queryClient = new QueryClient();
 
@@ -107,6 +108,7 @@ const App = () => (
               <Route path="/solutions/:slug" element={withSuspense(<SolutionDetail />, "detail")} />
               <Route path="/knowledge-hub/:outcomeId" element={withSuspense(<OutcomeDetail />, "detail")} />
               <Route path="/directories" element={withSuspense(<Directories />, "detail")} />
+              <Route path="/directories/:slug" element={withSuspense(<DirectoryExplorer />, "detail")} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={withSuspense(<NotFound />)} />
             </Routes>
