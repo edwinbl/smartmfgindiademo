@@ -8,15 +8,15 @@ const pillars = [
   { Icon: Wifi, label: "IoT" },
   { Icon: Bot, label: "AI / ML" },
   { Icon: Cpu, label: "Robotics" },
-  { Icon: Boxes, label: "Additive Mfg" },
+  { Icon: Boxes, label: "Additive" },
   { Icon: Glasses, label: "AR / VR" },
   { Icon: Cloud, label: "Cloud" },
   { Icon: Database, label: "Big Data" },
-  { Icon: ShieldCheck, label: "Cybersecurity" },
+  { Icon: ShieldCheck, label: "Cyber" },
   { Icon: Network, label: "Integration" },
   { Icon: Layers, label: "Digital Twin" },
   { Icon: Radio, label: "5G / Edge" },
-  { Icon: Activity, label: "Predictive Mx" },
+  { Icon: Activity, label: "Predictive" },
 ];
 
 const ecosystem = [
@@ -29,176 +29,132 @@ const ecosystem = [
   { Icon: Landmark, label: "Govt / Policy" },
 ];
 
-const polar = (cx: number, cy: number, r: number, deg: number) => {
-  const rad = ((deg - 90) * Math.PI) / 180;
-  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
-};
-
 export const HeroEcosystemViz = () => {
-  const size = 520;
-  const c = size / 2;
-  const rInner = 138;
-  const rOuter = 232;
-
   return (
-    <div className="relative w-full max-w-[520px] aspect-square mx-auto">
-      <svg
-        viewBox={`0 0 ${size} ${size}`}
-        className="absolute inset-0 w-full h-full"
-        aria-hidden="true"
-      >
-        <defs>
-          <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="hsl(var(--orange-500))" stopOpacity="0.55" />
-            <stop offset="60%" stopColor="hsl(var(--orange-500))" stopOpacity="0.05" />
-            <stop offset="100%" stopColor="hsl(var(--orange-500))" stopOpacity="0" />
-          </radialGradient>
-          <linearGradient id="ringStroke" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="hsl(var(--orange-500))" stopOpacity="0.55" />
-            <stop offset="100%" stopColor="hsl(var(--saffron))" stopOpacity="0.25" />
-          </linearGradient>
-        </defs>
-
-        {/* Hub glow */}
-        <circle cx={c} cy={c} r={120} fill="url(#hubGlow)" />
-
-        {/* Concentric rings */}
-        <circle cx={c} cy={c} r={rInner} fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth="1" />
-        <circle
-          cx={c} cy={c} r={rOuter}
-          fill="none" stroke="url(#ringStroke)" strokeWidth="1" strokeDasharray="3 6"
-        >
-          <animateTransform
-            attributeName="transform" type="rotate"
-            from={`0 ${c} ${c}`} to={`360 ${c} ${c}`} dur="80s" repeatCount="indefinite"
-          />
-        </circle>
-
-        {/* Spokes: hub -> pillars */}
-        {pillars.map((_, i) => {
-          const p = polar(c, c, rInner, (360 / pillars.length) * i);
-          return (
-            <line
-              key={`s-${i}`} x1={c} y1={c} x2={p.x} y2={p.y}
-              stroke="rgba(255,255,255,0.12)" strokeWidth="1"
-            />
-          );
-        })}
-
-        {/* Pillar -> nearest ecosystem connectors (dashed, animated) */}
-        {ecosystem.map((_, i) => {
-          const p = polar(c, c, rOuter, (360 / ecosystem.length) * i + 36);
-          const pIn = polar(c, c, rInner, (360 / ecosystem.length) * i + 36);
-          return (
-            <line
-              key={`e-${i}`}
-              x1={pIn.x} y1={pIn.y} x2={p.x} y2={p.y}
-              stroke="hsl(var(--orange-500))" strokeOpacity="0.45"
-              strokeWidth="1" strokeDasharray="4 5"
-            >
-              <animate
-                attributeName="stroke-dashoffset"
-                from="0" to="-18" dur="2.4s" repeatCount="indefinite"
-              />
-            </line>
-          );
-        })}
-
-        {/* Pulse dots traveling on spokes */}
-        {pillars.map((_, i) => {
-          const p = polar(c, c, rInner, (360 / pillars.length) * i);
-          return (
-            <circle key={`d-${i}`} r="2.2" fill="hsl(var(--orange-500))">
-              <animate
-                attributeName="cx" values={`${c};${p.x}`}
-                dur="3s" begin={`${i * 0.25}s`} repeatCount="indefinite"
-              />
-              <animate
-                attributeName="cy" values={`${c};${p.y}`}
-                dur="3s" begin={`${i * 0.25}s`} repeatCount="indefinite"
-              />
-              <animate
-                attributeName="opacity" values="0;1;0"
-                dur="3s" begin={`${i * 0.25}s`} repeatCount="indefinite"
-              />
-            </circle>
-          );
-        })}
-      </svg>
-
-      {/* Center hub */}
+    <div className="relative w-full max-w-[520px] mx-auto">
+      {/* Ambient glow */}
       <div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-                   h-[112px] w-[112px] rounded-full grid place-items-center text-center
-                   border border-white/25 backdrop-blur-sm"
+        className="absolute -inset-8 -z-10 rounded-[40px] blur-3xl opacity-70"
         style={{
           background:
-            "radial-gradient(circle at 50% 30%, hsl(var(--orange-500) / 0.55), hsl(var(--navy-900)) 75%)",
-          boxShadow: "0 0 40px hsl(var(--orange-500) / 0.35)",
+            "conic-gradient(from 140deg at 50% 50%, hsl(var(--orange-500) / 0.45), hsl(var(--saffron) / 0.35), hsl(var(--red-600) / 0.30), hsl(var(--orange-500) / 0.45))",
+        }}
+        aria-hidden
+      />
+
+      <div
+        className="relative rounded-3xl border border-white/15 overflow-hidden p-5 sm:p-6"
+        style={{
+          background:
+            "linear-gradient(160deg, hsl(var(--navy-900) / 0.85) 0%, hsl(var(--navy-800) / 0.7) 100%)",
+          backdropFilter: "blur(8px)",
+          boxShadow:
+            "0 30px 80px -30px hsl(var(--orange-500) / 0.45), inset 0 1px 0 hsl(0 0% 100% / 0.08)",
         }}
       >
-        <div>
-          <div className="font-display text-[11px] font-semibold tracking-[0.18em] text-white/70 uppercase">
-            CII
+        {/* Hub */}
+        <div className="relative flex items-center gap-4 mb-5">
+          <div
+            className="relative h-16 w-16 shrink-0 rounded-2xl grid place-items-center"
+            style={{
+              background:
+                "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--saffron)) 60%, hsl(var(--red-600)))",
+              boxShadow:
+                "0 12px 30px -8px hsl(var(--orange-500) / 0.7), inset 0 1px 0 hsl(0 0% 100% / 0.4)",
+            }}
+          >
+            <span className="font-display text-white font-extrabold text-sm tracking-wider">CII</span>
+            <span className="absolute -inset-1 rounded-2xl border border-white/25 animate-pulse" aria-hidden />
           </div>
-          <div className="font-display text-[13px] font-bold text-white leading-tight mt-0.5">
-            Smart<br />Manufacturing
+          <div className="min-w-0">
+            <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-[hsl(var(--orange-300,var(--orange-500)))]">
+              National Platform
+            </div>
+            <div className="font-display text-white font-extrabold text-lg leading-tight">
+              Smart Manufacturing<br />Capability Hub
+            </div>
           </div>
         </div>
+
+        {/* Pillars */}
+        <div>
+          <div className="flex items-center gap-2 mb-2.5">
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+            <span className="text-[9.5px] uppercase tracking-[0.22em] font-bold text-white/60">
+              12 Industry 4.0 Pillars
+            </span>
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+          </div>
+          <div className="grid grid-cols-6 gap-1.5 sm:gap-2">
+            {pillars.map(({ Icon, label }, i) => (
+              <div
+                key={label}
+                className="group relative aspect-square rounded-xl border border-white/12 bg-white/[0.04] hover:bg-white/[0.10] hover:border-[hsl(var(--orange-500))]/60 transition-all duration-300 grid place-items-center"
+                title={label}
+                style={{ animation: `pillarPulse 6s ease-in-out ${i * 0.15}s infinite` }}
+              >
+                <Icon className="h-4 w-4 sm:h-4.5 sm:w-4.5 text-[hsl(var(--orange-500))] group-hover:text-[hsl(var(--saffron))] group-hover:scale-110 transition-transform" strokeWidth={2} />
+              </div>
+            ))}
+          </div>
+          <div className="mt-1.5 grid grid-cols-6 gap-1.5 sm:gap-2">
+            {pillars.map(({ label }) => (
+              <div key={`l-${label}`} className="text-[8.5px] text-center font-semibold tracking-wide text-white/55 uppercase truncate">
+                {label}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Ecosystem chips */}
+        <div className="mt-5">
+          <div className="flex items-center gap-2 mb-2.5">
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+            <span className="text-[9.5px] uppercase tracking-[0.22em] font-bold text-white/60">
+              Ecosystem
+            </span>
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {ecosystem.map(({ Icon, label }) => (
+              <div
+                key={label}
+                className="inline-flex items-center gap-1.5 pl-1.5 pr-2.5 py-1 rounded-full border border-white/15 bg-gradient-to-r from-white/[0.06] to-white/[0.02]"
+              >
+                <span
+                  className="grid place-items-center h-4.5 w-4.5 rounded-full"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, hsl(var(--orange-500) / 0.35), hsl(var(--saffron) / 0.25))",
+                  }}
+                >
+                  <Icon className="h-2.5 w-2.5 text-[hsl(var(--saffron))]" strokeWidth={2.4} />
+                </span>
+                <span className="font-display text-[10px] font-semibold tracking-wide text-white/85 whitespace-nowrap">
+                  {label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom shine */}
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 100%, hsl(var(--orange-500) / 0.18), transparent 70%)",
+          }}
+          aria-hidden
+        />
       </div>
 
-      {/* Inner ring: I4.0 pillar nodes */}
-      {pillars.map(({ Icon, label }, i) => {
-        const p = polar(c, c, rInner, (360 / pillars.length) * i);
-        const xPct = (p.x / size) * 100;
-        const yPct = (p.y / size) * 100;
-        return (
-          <div
-            key={label}
-            className="absolute -translate-x-1/2 -translate-y-1/2 group"
-            style={{ left: `${xPct}%`, top: `${yPct}%` }}
-          >
-            <div
-              className="h-10 w-10 rounded-full grid place-items-center border border-white/20
-                         bg-[hsl(var(--navy-800))]/80 backdrop-blur-sm
-                         transition-all duration-300 group-hover:border-cii-orange group-hover:scale-110"
-            >
-              <Icon className="h-4 w-4 text-cii-orange" strokeWidth={2} />
-            </div>
-            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1.5 whitespace-nowrap
-                            text-[9.5px] font-semibold tracking-wide text-white/85 uppercase
-                            opacity-0 group-hover:opacity-100 transition-opacity">
-              {label}
-            </div>
-          </div>
-        );
-      })}
-
-      {/* Outer ring: ecosystem chips */}
-      {ecosystem.map(({ Icon, label }, i) => {
-        const p = polar(c, c, rOuter, (360 / ecosystem.length) * i + 36);
-        const xPct = (p.x / size) * 100;
-        const yPct = (p.y / size) * 100;
-        return (
-          <div
-            key={label}
-            className="absolute -translate-x-1/2 -translate-y-1/2"
-            style={{ left: `${xPct}%`, top: `${yPct}%` }}
-          >
-            <div
-              className="inline-flex items-center gap-1.5 pl-1.5 pr-2.5 py-1 rounded-full
-                         border border-white/25 bg-white/[0.06] backdrop-blur-md"
-            >
-              <span className="grid place-items-center h-5 w-5 rounded-full bg-cii-orange/20">
-                <Icon className="h-3 w-3 text-cii-orange" strokeWidth={2.2} />
-              </span>
-              <span className="font-display text-[10.5px] font-semibold tracking-wide text-white/85 whitespace-nowrap">
-                {label}
-              </span>
-            </div>
-          </div>
-        );
-      })}
+      <style>{`
+        @keyframes pillarPulse {
+          0%, 100% { box-shadow: 0 0 0 0 hsl(var(--orange-500) / 0); }
+          50% { box-shadow: 0 0 14px 0 hsl(var(--orange-500) / 0.25); }
+        }
+      `}</style>
     </div>
   );
 };
