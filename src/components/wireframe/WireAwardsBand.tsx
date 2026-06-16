@@ -30,22 +30,23 @@ interface Winner {
 }
 
 const winners: Winner[] = [
-  // Large Scale
+  // Winners
   { company: "L&T Heavy Engineering (HEIC)", unit: "Hazira Plant", location: "Hazira, Gujarat", rank: "Winner", scale: "Large Scale", image: img01.url },
   { company: "L&T Precision Engineering and Systems", location: "Pune, Maharashtra", rank: "Winner", scale: "Large Scale", image: img02.url },
+  { company: "Elofic Industries Ltd", unit: "Faridabad Plant", location: "Faridabad, Haryana", rank: "Winner", scale: "Medium Scale", image: img08.url },
+  { company: "Alloy Steels", location: "Shilori, Kolhapur", rank: "Winner", scale: "Small Scale", image: img11.url },
+  // 1st Runner-Up
   { company: "Hindustan Unilever Limited", unit: "Sumerpur Detergents Factory", location: "Sumerpur", rank: "1st Runner-Up", scale: "Large Scale", image: img03.url },
   { company: "DCM Shriram Ltd", unit: "Jhagadia Plant", location: "Jhagadia, Gujarat", rank: "1st Runner-Up", scale: "Large Scale", image: img04.url },
+  { company: "Larsen & Toubro Ltd", unit: "Rubber Processing Machinery", location: "Kanchipuram, Tamil Nadu", rank: "1st Runner-Up", scale: "Medium Scale", image: img09.url },
+  { company: "Gayatri Agency", location: "Bhubaneshwar, Odisha", rank: "1st Runner-Up", scale: "Small Scale", image: img12.url },
+  // 2nd Runner-Up
   { company: "TVS Motor Company Limited", unit: "Hosur Plant", location: "Hosur, Tamil Nadu", rank: "2nd Runner-Up", scale: "Large Scale", image: img05.url },
+  { company: "Circor Flow Technologies India Pvt Ltd", location: "Coimbatore, Tamil Nadu", rank: "2nd Runner-Up", scale: "Medium Scale", image: img10.url },
+  { company: "M2NXT Solutions Pvt Ltd", location: "Bangalore, Karnataka", rank: "2nd Runner-Up", scale: "Small Scale", image: img13.url },
+  // Special Recognition
   { company: "Bharat Petroleum Corporation Limited", unit: "Bina Refinery", location: "Bina, Madhya Pradesh", rank: "Special Recognition", scale: "Large Scale", segment: "Public Sector Undertaking", image: img06.url },
   { company: "Patil Rail Infrastructure Pvt Ltd", location: "Hyderabad, Telangana", rank: "Special Recognition", scale: "Large Scale", segment: "Diversified Industry Segment", image: img07.url },
-  // Medium Scale
-  { company: "Elofic Industries Ltd", unit: "Faridabad Plant", location: "Faridabad, Haryana", rank: "Winner", scale: "Medium Scale", image: img08.url },
-  { company: "Larsen & Toubro Ltd", unit: "Rubber Processing Machinery", location: "Kanchipuram, Tamil Nadu", rank: "1st Runner-Up", scale: "Medium Scale", image: img09.url },
-  { company: "Circor Flow Technologies India Pvt Ltd", location: "Coimbatore, Tamil Nadu", rank: "2nd Runner-Up", scale: "Medium Scale", image: img10.url },
-  // Small Scale
-  { company: "Alloy Steels", location: "Shilori, Kolhapur", rank: "Winner", scale: "Small Scale", image: img11.url },
-  { company: "Gayatri Agency", location: "Bhubaneshwar, Odisha", rank: "1st Runner-Up", scale: "Small Scale", image: img12.url },
-  { company: "M2NXT Solutions Pvt Ltd", location: "Bangalore, Karnataka", rank: "2nd Runner-Up", scale: "Small Scale", image: img13.url },
 ];
 
 const rankStyles: Record<Rank, { bg: string; border: string; color: string }> = {
