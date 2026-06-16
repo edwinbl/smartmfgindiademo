@@ -19,17 +19,17 @@ import { toast } from "@/hooks/use-toast";
 const quickPickFilter = (r: Report, pick: QuickPickId | null) => {
   switch (pick) {
     case "latest":
-      return r.year >= 2025;
-    case "downloaded":
-      return r.gated === false; // mock
+      return r.year >= 2023;
+    case "cii":
+      return /CII/i.test(r.author);
     case "msme":
-      return r.domain === "MSME";
+      return /MSME/i.test(`${r.summary} ${r.tags.join(" ")}`);
     case "sustainability":
       return r.domain === "Sustainability";
     case "smart":
       return r.domain === "Smart Manufacturing";
-    case "export":
-      return /export/i.test(r.title) || /Trade/i.test(r.technology);
+    case "automotive":
+      return r.industry === "Automotive";
     default:
       return true;
   }
