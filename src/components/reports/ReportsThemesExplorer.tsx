@@ -91,7 +91,7 @@ export const ReportsThemesExplorer = ({ onSelect }: Props) => {
                 key={t.key}
                 type="button"
                 onClick={() => {
-                  onSelect?.(t.key);
+                  onSelect?.(t.id);
                   document
                     .getElementById("reports")
                     ?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -116,7 +116,7 @@ export const ReportsThemesExplorer = ({ onSelect }: Props) => {
                       <Icon className="h-6 w-6" />
                     </div>
                     <span className="text-[10px] uppercase tracking-[0.14em] font-bold bg-white/15 backdrop-blur px-2.5 py-1 rounded-full">
-                      {t.stat}
+                      {reports.filter((r) => (r.outcomes || []).includes(t.id)).length} reports
                     </span>
                   </div>
                   <h3 className="relative mt-6 font-display font-bold text-xl md:text-2xl leading-tight">
