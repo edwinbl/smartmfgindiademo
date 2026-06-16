@@ -9,6 +9,8 @@ interface Props {
 }
 
 export const StickyActionPanel = ({ programme, onRegister }: Props) => {
+  const isClosed = programme.status === "closed";
+
   const handleShare = async () => {
     const url = typeof window !== "undefined" ? window.location.href : "";
     try {
@@ -26,32 +28,53 @@ export const StickyActionPanel = ({ programme, onRegister }: Props) => {
     <aside className="cii-card p-5 lg:sticky lg:top-[88px] space-y-3">
       <div>
         <div className="text-[11px] uppercase tracking-[0.14em] font-bold text-[hsl(var(--red-600))]">
-          {programme.status === "soon" ? "Coming Soon" : "Registration"}
+          {isClosed ? "Status" : programme.status === "soon" ? "Coming Soon" : "Registration"}
         </div>
         <div className="font-display font-bold text-lg text-[hsl(var(--navy-900))] mt-1">
-          {programme.fee ?? "Open"}
+          {isClosed ? "Concluded" : programme.fee ?? "Open"}
         </div>
-        {programme.seats && <div className="text-xs text-[hsl(var(--neutral-500))]">{programme.seats}</div>}
+        {!isClosed && programme.seats && (
+          <div className="text-xs text-[hsl(var(--neutral-500))]">{programme.seats}</div>
+        )}
+        {isClosed && (
+          <div className="text-xs text-[hsl(var(--neutral-500))]">{programme.startDate}</div>
+        )}
       </div>
-      <button onClick={onRegister} className="btn-primary w-full">
-        {programme.registrationLabel}
-      </button>
-      <div className="grid grid-cols-2 gap-2">
-        <button
-          onClick={addToCalendar}
-          aria-label="Add programme to calendar"
-          className="inline-flex items-center justify-center gap-1.5 h-10 rounded-sm border border-[hsl(var(--neutral-200))] text-xs font-semibold text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--navy-600))] focus-visible:ring-offset-2"
-        >
-          <CalendarPlus className="h-4 w-4" /> Calendar
-        </button>
+
+      {!isClosed && (
+        <>
+          <button onClick={onRegister} className="btn-primary w-full">
+            {programme.registrationLabel}
+          </button>
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              onClick={addToCalendar}
+              aria-label="Add programme to calendar"
+              className="inline-flex items-center justify-center gap-1.5 h-10 rounded-sm border border-[hsl(var(--neutral-200))] text-xs font-semibold text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--navy-600))] focus-visible:ring-offset-2"
+            >
+              <CalendarPlus className="h-4 w-4" /> Calendar
+            </button>
+            <button
+              onClick={handleShare}
+              aria-label="Share programme"
+              className="inline-flex items-center justify-center gap-1.5 h-10 rounded-sm border border-[hsl(var(--neutral-200))] text-xs font-semibold text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--navy-600))] focus-visible:ring-offset-2"
+            >
+              <Share2 className="h-4 w-4" /> Share
+            </button>
+          </div>
+        </>
+      )}
+
+      {isClosed && (
         <button
           onClick={handleShare}
           aria-label="Share programme"
-          className="inline-flex items-center justify-center gap-1.5 h-10 rounded-sm border border-[hsl(var(--neutral-200))] text-xs font-semibold text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--navy-600))] focus-visible:ring-offset-2"
+          className="inline-flex items-center justify-center gap-1.5 h-10 w-full rounded-sm border border-[hsl(var(--neutral-200))] text-xs font-semibold text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))]"
         >
           <Share2 className="h-4 w-4" /> Share
         </button>
-      </div>
+      )}
+
       <div className="pt-3 border-t border-[hsl(var(--neutral-150))] space-y-2 text-xs">
         {programme.highlights.map((h) => (
           <div key={h.label} className="flex items-center justify-between">

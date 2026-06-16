@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ChevronRight, Calendar, Clock, MapPin, Award, Download } from "lucide-react";
+import { ChevronRight, Calendar, Clock, MapPin, Award } from "lucide-react";
 import { accentSoft } from "@/lib/programmesStorage";
 import type { ProgrammeItem } from "@/data/programmes";
 
@@ -67,14 +67,17 @@ export const ProgrammeDetailHero = ({ programme, onRegister }: Props) => {
               <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4 text-white/60" />{p.format}</span>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <button onClick={onRegister} className="btn-primary">
-                {p.registrationLabel}
-              </button>
-              <a href="#" className="btn-ghost">
-                <Download className="h-4 w-4" /> Download Brochure
-              </a>
-            </div>
+            {p.status === "closed" ? (
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-sm font-semibold text-white/90">
+                Programme concluded — view highlights below
+              </div>
+            ) : (
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <button onClick={onRegister} className="btn-primary">
+                  {p.registrationLabel}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
