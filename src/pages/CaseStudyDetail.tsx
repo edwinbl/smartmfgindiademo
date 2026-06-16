@@ -253,7 +253,7 @@ const CaseSummaryPanel = ({
           <Meta label="Industry" value={cs.sector} />
           <Meta label="Location" value={cs.state} />
           <Meta label="Size" value={cs.companySize} />
-          <Meta label="Duration" value={`${cs.durationMonths} months`} />
+          {cs.durationMonths > 0 && <Meta label="Duration" value={`${cs.durationMonths} months`} />}
         </div>
 
         <div className="px-5 pb-5 space-y-4">
