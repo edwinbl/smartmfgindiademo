@@ -1,10 +1,12 @@
 import { TrendingUp, ShieldCheck, Network, Timer, Zap, CalendarClock, ArrowRight } from "lucide-react";
+import type { OutcomeId } from "@/data/solutions";
+import { reports } from "@/data/reports";
 
 interface Props {
-  onSelect?: (tag: string) => void;
+  onSelect?: (outcome: OutcomeId) => void;
 }
 
-const themes = [
+const themes: { id: OutcomeId; key: string; title: string; description: string; Icon: typeof TrendingUp; gradient: string; accent: string }[] = [
   {
     key: "Productivity",
     title: "Improve productivity",

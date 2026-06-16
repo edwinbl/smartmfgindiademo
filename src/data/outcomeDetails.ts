@@ -136,6 +136,9 @@ export const featuredCasesForOutcome = (id: OutcomeId, limit = 4) => {
 export const featuredReportsForOutcome = (id: OutcomeId, limit = 4) => {
   const meta = outcomeDetails[id];
   if (!meta) return [];
+  // Prefer the explicit `outcomes` tag on each report; fall back to keywords.
+  const tagged = reports.filter((r) => (r.outcomes || []).includes(id));
+  if (tagged.length) return tagged.slice(0, limit);
   const hits = reports.filter((r) =>
     matches(`${r.title} ${r.summary} ${(r.tags || []).join(" ")} ${r.domain} ${r.technology}`, meta.keywords),
   );
