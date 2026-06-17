@@ -136,7 +136,7 @@ const SolutionDetail = () => {
                     </div>
                     <div>
                       <div className="font-numeric text-2xl font-extrabold text-[hsl(var(--navy-900))]">
-                        {category.resourceCount}
+                        {realResourceCount}
                       </div>
                       <div className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--neutral-500))] mt-1">
                         Resources
