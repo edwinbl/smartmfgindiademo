@@ -20,7 +20,7 @@ import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
 import {
   findCategory,
-  featuredSolutionCases,
+  
   outcomeLabel,
   type OutcomeId,
 } from "@/data/solutions";
