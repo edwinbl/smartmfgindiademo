@@ -6,7 +6,7 @@ import {
   ClipboardCheck,
   Send,
   MessageCircle,
-  Quote,
+  
   Workflow,
   Target,
   Rocket,
