@@ -231,6 +231,7 @@ export const solutionCategories: SolutionCategory[] = [
 ];
 
 export interface SolutionCaseStudy {
+  slug: string;
   company: string;
   sector: string;
   state: string;
@@ -240,104 +241,95 @@ export interface SolutionCaseStudy {
   metric: string;
 }
 
+// Sourced from the 8 featured entries in src/data/caseStudies.ts (real case studies).
 export const featuredSolutionCases: SolutionCaseStudy[] = [
   {
-    company: "Auro Components",
-    sector: "Auto",
+    slug: "48-microsoft-india-piramal-glass-unbottles-smart-manufacturing-with-a",
+    company: "Microsoft India — Piramal Glass",
+    sector: "Glass Manufacturing",
+    state: "Gujarat",
+    challenge: "1,375 tons/day across 60 lines running 24/7 with limited real-time quality and traceability.",
+    category: "Data & Analytics",
+    outcome: "Manual Data Effort",
+    metric: "↓ 40% Manual Data",
+  },
+  {
+    slug: "71-siemens-india-transforming-the-warehouse-and-material-handling-i",
+    company: "Siemens India",
+    sector: "Warehouse & Material Handling",
+    state: "Delhi",
+    challenge: "No digitization on their own manufacturing line — needed a showcase for the warehouse and material handling industry.",
+    category: "MES & Production Visibility",
+    outcome: "Material & Time",
+    metric: "↓ 70% Reduction",
+  },
+  {
+    slug: "22-skf-india-ltd-reliability-improvement-of-rotating-equipment-s-by",
+    company: "SKF India Ltd",
+    sector: "Engineering – Industrial Equipment",
     state: "Maharashtra",
-    challenge: "Frequent unplanned downtime on critical machining lines",
+    challenge: "Spindle failure breakdowns on grinding machines hurting productivity and quality for automotive and railway customers.",
     category: "Predictive Maintenance",
-    outcome: "Reduced Downtime",
-    metric: "↓ 18% Downtime",
+    outcome: "Scrap Cost",
+    metric: "↓ 15% Scrap Cost",
   },
   {
-    company: "Nimara Foods",
-    sector: "F&B",
-    state: "Karnataka",
-    challenge: "Inconsistent product quality across batches",
-    category: "Quality Management",
-    outcome: "Improved Quality",
-    metric: "↓ 42% Defects",
-  },
-  {
-    company: "Vikram Pharma",
-    sector: "Pharma",
-    state: "Telangana",
-    challenge: "Manual lot tracking blocking export compliance",
-    category: "Traceability Systems",
-    outcome: "Export Readiness",
-    metric: "100% Lot Traceability",
-  },
-  {
-    company: "GreenSteel Works",
-    sector: "Steel",
-    state: "Odisha",
-    challenge: "High energy intensity per tonne",
-    category: "Energy Management",
-    outcome: "Energy Efficiency",
-    metric: "↓ 22% Energy / Tonne",
-  },
-];
-
-export interface ExpertInsight {
-  name: string;
-  role: string;
-  initials: string;
-  headline: string;
-  quote: string;
-}
-
-export const expertInsights: ExpertInsight[] = [
-  {
-    name: "Dr. Anand Krishnan",
-    role: "Principal Advisor, Industry 4.0 · CII",
-    initials: "AK",
-    headline: "Start with visibility before automation.",
-    quote: "You can't improve what you can't see. Most plants underestimate how much value sits in simply digitizing what's already happening.",
-  },
-  {
-    name: "Priya Menon",
-    role: "Smart Manufacturing Lead · Bosch India",
-    initials: "PM",
-    headline: "Focus on measurable outcomes, not technology adoption.",
-    quote: "Anchor every initiative to a number on a balance sheet — throughput, defects, energy, OTIF — not the technology name.",
-  },
-  {
-    name: "Suresh Iyer",
-    role: "Director, Operations · Tata Steel",
-    initials: "SI",
-    headline: "Data readiness is often the first bottleneck.",
-    quote: "Before AI or analytics, invest in clean, time-stamped, structured data. That foundation determines how far you can go.",
+    slug: "56-universal-robots-collaborative-robots-deliver-40-growth-and-24x7-ma",
+    company: "Universal Robots — New Engineering Works",
+    sector: "Automobile & Ancillaries",
+    state: "Jharkhand",
+    challenge: "Manual operations limiting capacity and preventing 24×7 manufacturing on precision components.",
+    category: "Industrial Automation",
+    outcome: "Growth",
+    metric: "+40% Growth, 24×7",
   },
 ];
 
 export interface SolutionResource {
-  type: "Report" | "Whitepaper" | "Framework" | "Toolkit" | "Playbook";
+  type: "Report" | "e-Directory";
   title: string;
   desc: string;
   href: string;
 }
 
+// Sourced from the 13 reports in src/data/reports.ts + 2 real e-Directories.
 export const solutionResources: SolutionResource[] = [
-  { type: "Report", title: "Industry 4.0 Readiness Report 2025", desc: "Maturity benchmarks across 1,200+ Indian manufacturers.", href: "/reports" },
-  { type: "Framework", title: "Smart Manufacturing Maturity Framework", desc: "A six-dimension model to assess and prioritize transformation.", href: "/reports" },
-  { type: "Toolkit", title: "MSME Digital Readiness Toolkit", desc: "Self-paced assessment and quick-win recommendations.", href: "/reports" },
-  { type: "Playbook", title: "OEE Improvement Playbook", desc: "Step-by-step approach to lifting OEE in 90 days.", href: "/reports" },
-  { type: "Whitepaper", title: "Energy Intensity Reduction Whitepaper", desc: "Patterns from 50+ energy management deployments.", href: "/reports" },
-];
-
-export interface SolutionProgramme {
-  slug: string;
-  name: string;
-  duration: string;
-  audience: string;
-  outcomes: string;
-}
-
-export const solutionProgrammes: SolutionProgramme[] = [
-  { slug: "industry-4-leadership", name: "Industry 4.0 Leadership Programme", duration: "6 weekends · Hybrid", audience: "CXOs, Plant Heads", outcomes: "Build strategic transformation roadmap" },
-  { slug: "smart-mfg-practitioner", name: "Smart Manufacturing Practitioner", duration: "8 weeks · Online", audience: "Mid-management", outcomes: "Hands-on tools, frameworks and playbooks" },
-  { slug: "msme-digital-bootcamp", name: "MSME Digital Bootcamp", duration: "3 days · On-site", audience: "MSME owners", outcomes: "Quick-start digital transformation plan" },
+  {
+    type: "Report",
+    title: "Industry 4.0 Adoption and Strategic Roadmap for Indian Manufacturing",
+    desc: "Leadership commitment, upskilling and cybersecurity gaps that separate top-quartile manufacturers.",
+    href: "/reports/industry-40-adoption-strategic-roadmap-indian-manufacturing",
+  },
+  {
+    type: "Report",
+    title: "Manufacturing in India: Creating a Smarter Future",
+    desc: "Smart-factory blueprint and IT/OT integration patterns, with eight Indian case studies.",
+    href: "/reports/manufacturing-in-india-creating-a-smarter-future",
+  },
+  {
+    type: "Report",
+    title: "Action Plan for Fostering Adoption of Smart Manufacturing",
+    desc: "Recommended national programmes, cluster pilots and DHI actions for scale-up.",
+    href: "/reports/action-plan-fostering-adoption-smart-manufacturing",
+  },
+  {
+    type: "Report",
+    title: "Predictive Maintenance for Oil and Gas",
+    desc: "Physics-informed models for heat-exchanger fouling, pump deterioration and online energy KPIs.",
+    href: "/reports/predictive-maintenance-for-oil-and-gas",
+  },
+  {
+    type: "e-Directory",
+    title: "India's Industry 4.0 e-Directory",
+    desc: "Curated directory of Industry 4.0 solution providers and capabilities across India.",
+    href: "/directories/india",
+  },
+  {
+    type: "e-Directory",
+    title: "Singapore's Industry 4.0 e-Directory",
+    desc: "Ecosystem of Industry 4.0 enablers across Singapore for cross-border collaboration.",
+    href: "/directories/singapore",
+  },
 ];
 
 export const findCategory = (slug: string) =>
