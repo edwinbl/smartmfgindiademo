@@ -83,16 +83,33 @@ const OutcomeDetail = () => {
       ctaLabel: r.gated ? "Download" : "View report",
       ctaIcon: Download,
     }));
-    const dirCards: AssetCard[] = meta.directory.map((d, i) => ({
-      key: `d-${i}`,
-      type: "E-Directory",
-      title: d.name,
-      summary: d.focus,
-      tag: d.type,
-      href: "/directories",
-      ctaLabel: "Browse directory",
-      ctaIcon: ArrowRight,
-    }));
+    // The Knowledge Hub ships exactly two real e-Directories (India + Singapore).
+    // Both are broad ecosystem compendiums relevant to every outcome — surface
+    // them as-is rather than inventing per-outcome entries.
+    const dirCards: AssetCard[] = [
+      {
+        key: "d-india",
+        type: "E-Directory",
+        title: "India's Industry 4.0 e-Directory",
+        summary:
+          "300+ Indian organisations across 10+ technology domains — providers, consultants and manufacturers driving smart manufacturing adoption.",
+        tag: "India · 2025 Edition",
+        href: "/directories/india",
+        ctaLabel: "Browse directory",
+        ctaIcon: ArrowRight,
+      },
+      {
+        key: "d-singapore",
+        type: "E-Directory",
+        title: "Singapore's Industry 4.0 e-Directory",
+        summary:
+          "200+ Singapore-based organisations — automation specialists and digital transformation enablers for cross-border collaboration.",
+        tag: "Singapore · International Edition",
+        href: "/directories/singapore",
+        ctaLabel: "Browse directory",
+        ctaIcon: ArrowRight,
+      },
+    ];
     return [caseCards[0], reportCards[0], caseCards[1], dirCards[0], reportCards[1], caseCards[2], reportCards[2], dirCards[1], caseCards[3], reportCards[3]]
       .filter(Boolean) as AssetCard[];
   }, [id, meta]);
