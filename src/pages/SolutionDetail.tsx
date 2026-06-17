@@ -21,13 +21,12 @@ import { SEO } from "@/components/SEO";
 import {
   findCategory,
   featuredSolutionCases,
-  expertInsights,
   outcomeLabel,
+  type OutcomeId,
 } from "@/data/solutions";
-import {
-  ResourcesBand,
-  ProgrammesBand,
-} from "./SolutionsIndex";
+import { caseStudies } from "@/data/caseStudies";
+import { reports } from "@/data/reports";
+import { ResourcesBand } from "./SolutionsIndex";
 
 const SolutionDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -36,7 +35,13 @@ const SolutionDetail = () => {
   if (!category) return <Navigate to="/solutions" replace />;
 
   const Icon = category.icon;
-  const relatedCases = featuredSolutionCases.slice(0, 3);
+  // Real counts from actual case-study + report datasets, scoped to this category's outcomes.
+  const catOutcomes = category.outcomes as OutcomeId[];
+  const realCaseCount = caseStudies.filter((c) => (c.outcomes || []).some((o) => catOutcomes.includes(o))).length;
+  const realResourceCount = reports.filter((r) => (r.outcomes || []).some((o) => catOutcomes.includes(o))).length;
+  // Prefer cases whose outcomes overlap this solution area; fall back to featured list.
+  const matched = caseStudies.filter((c) => (c.outcomes || []).some((o) => catOutcomes.includes(o)));
+  const relatedCases = (matched.length >= 3 ? matched : caseStudies).slice(0, 3);
 
   const stages = [
     { icon: ClipboardCheck, title: "Assess", desc: "Baseline current state" },
