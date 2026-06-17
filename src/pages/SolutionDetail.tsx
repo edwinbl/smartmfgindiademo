@@ -314,21 +314,18 @@ const SolutionDetail = () => {
             </div>
             <div className="grid lg:grid-cols-3 gap-4">
               {relatedCases.map((c) => (
-                <Link key={c.company} to="/case-studies" className="group cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all">
+                <Link key={c.slug} to={`/case-studies/${c.slug}`} className="group cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all">
                   <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
                     <span>{c.sector}</span>
                     <span className="h-1 w-1 rounded-full bg-[hsl(var(--neutral-200))]" />
                     <span>{c.state}</span>
                   </div>
                   <div className="mt-2 font-display text-lg font-bold text-[hsl(var(--navy-900))]">{c.company}</div>
-                  <p className="mt-3 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">
+                  <p className="mt-3 text-sm text-[hsl(var(--neutral-700))] leading-relaxed line-clamp-3">
                     <span className="font-semibold text-[hsl(var(--navy-900))]">Challenge:</span> {c.challenge}
                   </p>
-                  <p className="mt-2 text-sm text-[hsl(var(--neutral-700))]">
-                    <span className="font-semibold text-[hsl(var(--navy-900))]">Solution:</span> {c.category}
-                  </p>
                   <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ background: "hsl(var(--india-green) / 0.10)" }}>
-                    <span className="text-xs font-bold text-[hsl(var(--india-green))] font-numeric">{c.metric}</span>
+                    <span className="text-xs font-bold text-[hsl(var(--india-green))] font-numeric">{c.metric.label}: {c.metric.value}</span>
                   </div>
                   <div className="mt-5 inline-flex items-center gap-1 text-xs font-bold text-[hsl(var(--red-600))]">
                     View Full Case Study <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
@@ -339,41 +336,8 @@ const SolutionDetail = () => {
           </div>
         </section>
 
-        {/* EXPERT ADVISORY NOTE */}
-        <section className="py-16 lg:py-20 bg-background">
-          <div className="container-cii">
-            <div className="max-w-3xl mb-10">
-              <div className="section-eyebrow mb-3">Advisory Note</div>
-              <h2 className="font-display text-3xl md:text-[36px] font-extrabold leading-tight tracking-tight text-[hsl(var(--navy-900))]">
-                Expert recommendations for this solution area.
-              </h2>
-            </div>
-            <div className="grid md:grid-cols-2 gap-4">
-              {expertInsights.slice(0, 2).map((e) => (
-                <div key={e.name} className="relative cii-card p-7">
-                  <Quote className="h-8 w-8 text-[hsl(var(--orange-500))] opacity-30 absolute top-5 right-5" />
-                  <div className="font-display text-lg font-bold text-[hsl(var(--navy-900))] leading-snug">"{e.headline}"</div>
-                  <p className="mt-3 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{e.quote}</p>
-                  <div className="mt-6 pt-5 border-t border-[hsl(var(--neutral-150))] flex items-center gap-3">
-                    <div
-                      className="h-10 w-10 rounded-full grid place-items-center text-xs font-bold text-white"
-                      style={{ background: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))" }}
-                    >
-                      {e.initials}
-                    </div>
-                    <div className="text-xs">
-                      <div className="font-bold text-[hsl(var(--navy-900))]">{e.name}</div>
-                      <div className="text-[hsl(var(--neutral-500))]">{e.role}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <ResourcesBand />
-        <ProgrammesBand />
+
 
         {/* FINAL CTA */}
         <section className="py-16 lg:py-24 bg-background">
