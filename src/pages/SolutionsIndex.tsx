@@ -223,8 +223,8 @@ const SolutionsIndex = () => {
             <div className="grid lg:grid-cols-2 gap-4">
               {featuredSolutionCases.map((c) => (
                 <Link
-                  key={c.company}
-                  to="/case-studies"
+                  key={c.slug}
+                  to={`/case-studies/${c.slug}`}
                   className="group cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all"
                 >
                   <div className="flex items-center gap-2 flex-wrap text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
