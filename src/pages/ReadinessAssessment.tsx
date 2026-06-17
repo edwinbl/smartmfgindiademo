@@ -29,6 +29,7 @@ import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
+import { HeroEcosystemViz } from "@/components/wireframe/HeroEcosystemViz";
 
 const ASSESSMENT_URL = "https://www.smartmfgindia.com/Assesment.aspx";
 
