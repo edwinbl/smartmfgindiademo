@@ -561,57 +561,6 @@ export const ResourcesBand = () => (
   </section>
 );
 
-export const ProgrammesBand = () => (
-  <section className="py-16 lg:py-24 bg-[hsl(var(--neutral-50))]">
-    <div className="container-cii">
-      <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
-        <div>
-          <div className="section-eyebrow mb-3">Capability Building</div>
-          <h2 className="font-display text-3xl md:text-[36px] font-extrabold leading-tight tracking-tight text-[hsl(var(--navy-900))]">
-            Related Programmes &amp; Training
-          </h2>
-        </div>
-        <Link to="/programmes" className="text-xs font-bold uppercase tracking-wider text-[hsl(var(--red-600))] hover:underline inline-flex items-center gap-1">
-          Browse all <ArrowRight className="h-3 w-3" />
-        </Link>
-      </div>
-      <div className="grid md:grid-cols-3 gap-4">
-        {solutionProgrammes.map((p, i) => {
-          const palettes = [
-            { bg: "hsl(var(--orange-100))", bar: "hsl(var(--orange-500))" },
-            { bg: "hsl(var(--navy-050))", bar: "hsl(var(--navy-600))" },
-            { bg: "hsl(var(--india-green) / 0.10)", bar: "hsl(var(--india-green))" },
-            { bg: "hsl(var(--red-100))", bar: "hsl(var(--red-600))" },
-          ];
-          const pal = palettes[i % palettes.length];
-          return (
-            <div key={p.slug} className="cii-card p-6 relative overflow-hidden"
-              style={{ background: "linear-gradient(180deg, hsl(var(--neutral-50)), #ffffff 70%)" }}>
-              <div className="absolute top-0 left-0 right-0 h-1" style={{ background: pal.bar }} />
-              <div
-                className="h-11 w-11 rounded-xl grid place-items-center text-white shadow-sm"
-                style={{ background: pal.bar }}
-              >
-                <GraduationCap className="h-5 w-5" />
-              </div>
-              <div className="mt-4 font-display text-lg font-bold text-[hsl(var(--navy-900))] leading-snug">
-                {p.name}
-              </div>
-              <div className="mt-3 space-y-1.5 text-xs text-[hsl(var(--neutral-700))]">
-                <div><span className="font-bold text-[hsl(var(--navy-900))]">Duration:</span> {p.duration}</div>
-                <div><span className="font-bold text-[hsl(var(--navy-900))]">For:</span> {p.audience}</div>
-                <div><span className="font-bold text-[hsl(var(--navy-900))]">Outcomes:</span> {p.outcomes}</div>
-              </div>
-              <Link to="/programmes" className="mt-5 inline-flex items-center gap-1 text-xs font-bold text-[hsl(var(--red-600))] hover:underline">
-                View Programme <ArrowRight className="h-3 w-3" />
-              </Link>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-);
 
 export const NextStepCta = () => (
   <section className="py-16 lg:py-24 bg-background">
