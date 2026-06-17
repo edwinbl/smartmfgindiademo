@@ -25,12 +25,22 @@ import {
   explorerOutcomes,
   solutionCategories,
   featuredSolutionCases,
-  expertInsights,
   solutionResources,
-  solutionProgrammes,
   outcomeLabel,
   type OutcomeId,
 } from "@/data/solutions";
+import { caseStudies } from "@/data/caseStudies";
+import { reports } from "@/data/reports";
+
+// Real counts derived from the actual case-study and report datasets.
+const caseCountByOutcome = (id: OutcomeId) =>
+  caseStudies.filter((c) => (c.outcomes || []).includes(id)).length;
+const reportCountByOutcome = (id: OutcomeId) =>
+  reports.filter((r) => (r.outcomes || []).includes(id)).length;
+const categoryCaseCount = (cat: { outcomes: OutcomeId[] }) =>
+  caseStudies.filter((c) => (c.outcomes || []).some((o) => cat.outcomes.includes(o))).length;
+const categoryResourceCount = (cat: { outcomes: OutcomeId[] }) =>
+  reports.filter((r) => (r.outcomes || []).some((o) => cat.outcomes.includes(o))).length;
 
 const accentMap = {
   navy: { bg: "hsl(var(--navy-050))", fg: "hsl(var(--navy-700))", bar: "hsl(var(--navy-600))" },
