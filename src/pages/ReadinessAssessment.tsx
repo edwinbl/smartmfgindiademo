@@ -24,6 +24,7 @@ import {
   Layers,
   PlayCircle,
 } from "lucide-react";
+import { AssessmentHeroCard } from "@/components/assessment/AssessmentHeroCard";
 import { WireHeader } from "@/components/wireframe/WireHeader";
 import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WireFooter } from "@/components/wireframe/WireFooter";
