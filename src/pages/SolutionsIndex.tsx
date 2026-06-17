@@ -263,14 +263,8 @@ const SolutionsIndex = () => {
           </div>
         </section>
 
-        {/* EXPERT PERSPECTIVES */}
-        <ExpertPerspectives />
-
         {/* RESOURCES */}
         <ResourcesBand />
-
-        {/* PROGRAMMES */}
-        <ProgrammesBand />
 
         {/* NEXT STEP */}
         <CommonFinalCta />
