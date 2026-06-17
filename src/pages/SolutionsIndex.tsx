@@ -200,7 +200,7 @@ const SolutionsIndex = () => {
                       ))}
                     </div>
                     <div className="mt-4 pt-4 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
-                      <span>{c.caseCount} cases · {c.resourceCount} resources</span>
+                      <span>{categoryCaseCount(c)} cases · {categoryResourceCount(c)} reports</span>
                       <ChevronRight className="h-3 w-3 text-[hsl(var(--red-600))] opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                   </Link>
