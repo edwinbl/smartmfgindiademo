@@ -6,7 +6,7 @@ import {
   ChevronRight,
   Compass,
   Workflow,
-  Quote,
+  
   Download,
   FileText,
   GraduationCap,
@@ -25,12 +25,22 @@ import {
   explorerOutcomes,
   solutionCategories,
   featuredSolutionCases,
-  expertInsights,
   solutionResources,
-  solutionProgrammes,
   outcomeLabel,
   type OutcomeId,
 } from "@/data/solutions";
+import { caseStudies } from "@/data/caseStudies";
+import { reports } from "@/data/reports";
+
+// Real counts derived from the actual case-study and report datasets.
+const caseCountByOutcome = (id: OutcomeId) =>
+  caseStudies.filter((c) => (c.outcomes || []).includes(id)).length;
+const reportCountByOutcome = (id: OutcomeId) =>
+  reports.filter((r) => (r.outcomes || []).includes(id)).length;
+const categoryCaseCount = (cat: { outcomes: OutcomeId[] }) =>
+  caseStudies.filter((c) => (c.outcomes || []).some((o) => cat.outcomes.includes(o))).length;
+const categoryResourceCount = (cat: { outcomes: OutcomeId[] }) =>
+  reports.filter((r) => (r.outcomes || []).some((o) => cat.outcomes.includes(o))).length;
 
 const accentMap = {
   navy: { bg: "hsl(var(--navy-050))", fg: "hsl(var(--navy-700))", bar: "hsl(var(--navy-600))" },
@@ -117,7 +127,7 @@ const SolutionsIndex = () => {
                       {o.desc}
                     </p>
                     <div className="mt-4 pt-4 border-t border-[hsl(var(--neutral-150))] text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
-                      <span>{o.solutionCount + o.caseCount} knowledge assets</span>
+                      <span>{caseCountByOutcome(o.id)} cases · {reportCountByOutcome(o.id)} reports</span>
                     </div>
                     <div className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-[hsl(var(--red-600))] opacity-0 group-hover:opacity-100 transition-opacity">
                       Explore outcome <ArrowRight className="h-3 w-3" />
@@ -190,7 +200,7 @@ const SolutionsIndex = () => {
                       ))}
                     </div>
                     <div className="mt-4 pt-4 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
-                      <span>{c.caseCount} cases · {c.resourceCount} resources</span>
+                      <span>{categoryCaseCount(c)} cases · {categoryResourceCount(c)} reports</span>
                       <ChevronRight className="h-3 w-3 text-[hsl(var(--red-600))] opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                   </Link>
@@ -213,8 +223,8 @@ const SolutionsIndex = () => {
             <div className="grid lg:grid-cols-2 gap-4">
               {featuredSolutionCases.map((c) => (
                 <Link
-                  key={c.company}
-                  to="/case-studies"
+                  key={c.slug}
+                  to={`/case-studies/${c.slug}`}
                   className="group cii-card p-6 hover:-translate-y-1 hover:shadow-lg transition-all"
                 >
                   <div className="flex items-center gap-2 flex-wrap text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
@@ -253,14 +263,8 @@ const SolutionsIndex = () => {
           </div>
         </section>
 
-        {/* EXPERT PERSPECTIVES */}
-        <ExpertPerspectives />
-
         {/* RESOURCES */}
         <ResourcesBand />
-
-        {/* PROGRAMMES */}
-        <ProgrammesBand />
 
         {/* NEXT STEP */}
         <CommonFinalCta />
@@ -506,53 +510,6 @@ const SolutionsHeroViz = () => {
 
 /* ---------- Shared bands ---------- */
 
-export const ExpertPerspectives = () => (
-  <section className="py-16 lg:py-24 bg-[hsl(var(--neutral-50))]">
-    <div className="container-cii">
-      <div className="max-w-3xl mb-10">
-        <div className="section-eyebrow mb-3">Expert Perspectives</div>
-        <h2 className="font-display text-3xl md:text-[40px] font-extrabold leading-[1.1] tracking-tight text-[hsl(var(--navy-900))]">
-          Advisory guidance from manufacturing leaders.
-        </h2>
-      </div>
-      <div className="grid md:grid-cols-3 gap-4">
-        {expertInsights.map((e, i) => {
-          const palettes = [
-            { bg: "hsl(var(--navy-050))", bar: "hsl(var(--navy-600))", grad: "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))" },
-            { bg: "hsl(var(--orange-100))", bar: "hsl(var(--orange-500))", grad: "linear-gradient(135deg, hsl(var(--orange-500)), hsl(var(--red-600)))" },
-            { bg: "hsl(var(--india-green) / 0.10)", bar: "hsl(var(--india-green))", grad: "linear-gradient(135deg, hsl(var(--india-green)), hsl(var(--navy-700)))" },
-          ];
-          const pal = palettes[i % palettes.length];
-          return (
-            <div key={e.name} className="relative cii-card p-7 overflow-hidden"
-              style={{ background: "linear-gradient(180deg, hsl(var(--neutral-50)), #ffffff 70%)" }}>
-              <div className="absolute top-0 left-0 right-0 h-1" style={{ background: pal.bar }} />
-              <Quote className="h-8 w-8 opacity-40 absolute top-5 right-5" style={{ color: pal.bar }} />
-              <div className="font-display text-lg font-bold text-[hsl(var(--navy-900))] leading-snug">
-                "{e.headline}"
-              </div>
-              <p className="mt-3 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">
-                {e.quote}
-              </p>
-              <div className="mt-6 pt-5 border-t border-[hsl(var(--neutral-150))] flex items-center gap-3">
-                <div
-                  className="h-10 w-10 rounded-full grid place-items-center text-xs font-bold text-white shadow-sm"
-                  style={{ background: pal.grad }}
-                >
-                  {e.initials}
-                </div>
-                <div className="text-xs">
-                  <div className="font-bold text-[hsl(var(--navy-900))]">{e.name}</div>
-                  <div className="text-[hsl(var(--neutral-500))]">{e.role}</div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-);
 
 export const ResourcesBand = () => (
   <section className="py-16 lg:py-24 bg-background">
@@ -604,57 +561,6 @@ export const ResourcesBand = () => (
   </section>
 );
 
-export const ProgrammesBand = () => (
-  <section className="py-16 lg:py-24 bg-[hsl(var(--neutral-50))]">
-    <div className="container-cii">
-      <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
-        <div>
-          <div className="section-eyebrow mb-3">Capability Building</div>
-          <h2 className="font-display text-3xl md:text-[36px] font-extrabold leading-tight tracking-tight text-[hsl(var(--navy-900))]">
-            Related Programmes &amp; Training
-          </h2>
-        </div>
-        <Link to="/programmes" className="text-xs font-bold uppercase tracking-wider text-[hsl(var(--red-600))] hover:underline inline-flex items-center gap-1">
-          Browse all <ArrowRight className="h-3 w-3" />
-        </Link>
-      </div>
-      <div className="grid md:grid-cols-3 gap-4">
-        {solutionProgrammes.map((p, i) => {
-          const palettes = [
-            { bg: "hsl(var(--orange-100))", bar: "hsl(var(--orange-500))" },
-            { bg: "hsl(var(--navy-050))", bar: "hsl(var(--navy-600))" },
-            { bg: "hsl(var(--india-green) / 0.10)", bar: "hsl(var(--india-green))" },
-            { bg: "hsl(var(--red-100))", bar: "hsl(var(--red-600))" },
-          ];
-          const pal = palettes[i % palettes.length];
-          return (
-            <div key={p.slug} className="cii-card p-6 relative overflow-hidden"
-              style={{ background: "linear-gradient(180deg, hsl(var(--neutral-50)), #ffffff 70%)" }}>
-              <div className="absolute top-0 left-0 right-0 h-1" style={{ background: pal.bar }} />
-              <div
-                className="h-11 w-11 rounded-xl grid place-items-center text-white shadow-sm"
-                style={{ background: pal.bar }}
-              >
-                <GraduationCap className="h-5 w-5" />
-              </div>
-              <div className="mt-4 font-display text-lg font-bold text-[hsl(var(--navy-900))] leading-snug">
-                {p.name}
-              </div>
-              <div className="mt-3 space-y-1.5 text-xs text-[hsl(var(--neutral-700))]">
-                <div><span className="font-bold text-[hsl(var(--navy-900))]">Duration:</span> {p.duration}</div>
-                <div><span className="font-bold text-[hsl(var(--navy-900))]">For:</span> {p.audience}</div>
-                <div><span className="font-bold text-[hsl(var(--navy-900))]">Outcomes:</span> {p.outcomes}</div>
-              </div>
-              <Link to="/programmes" className="mt-5 inline-flex items-center gap-1 text-xs font-bold text-[hsl(var(--red-600))] hover:underline">
-                View Programme <ArrowRight className="h-3 w-3" />
-              </Link>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-);
 
 export const NextStepCta = () => (
   <section className="py-16 lg:py-24 bg-background">
