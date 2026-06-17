@@ -6,7 +6,7 @@ import {
   ChevronRight,
   Compass,
   Workflow,
-  Quote,
+  
   Download,
   FileText,
   GraduationCap,
