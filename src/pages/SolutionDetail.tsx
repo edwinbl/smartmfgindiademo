@@ -128,7 +128,7 @@ const SolutionDetail = () => {
                   <div className="mt-4 grid grid-cols-2 gap-4">
                     <div>
                       <div className="font-numeric text-2xl font-extrabold text-[hsl(var(--navy-900))]">
-                        {category.caseCount}
+                        {realCaseCount}
                       </div>
                       <div className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--neutral-500))] mt-1">
                         Case Studies
