@@ -127,7 +127,7 @@ const SolutionsIndex = () => {
                       {o.desc}
                     </p>
                     <div className="mt-4 pt-4 border-t border-[hsl(var(--neutral-150))] text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))]">
-                      <span>{o.solutionCount + o.caseCount} knowledge assets</span>
+                      <span>{caseCountByOutcome(o.id)} cases · {reportCountByOutcome(o.id)} reports</span>
                     </div>
                     <div className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-[hsl(var(--red-600))] opacity-0 group-hover:opacity-100 transition-opacity">
                       Explore outcome <ArrowRight className="h-3 w-3" />
