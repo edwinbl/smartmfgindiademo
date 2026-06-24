@@ -455,6 +455,8 @@ export const events: EventItem[] = [
   // PAST — SAMPLE master template (placeholder content for layout reference only)
   {
     slug: "past-sample-future-ready-conclave-2024",
+    isMasterTemplate: true,
+
     type: "Summit",
     title: "Future-Ready Manufacturing Conclave 2024",
     tagline: "Sample concluded-event template",
