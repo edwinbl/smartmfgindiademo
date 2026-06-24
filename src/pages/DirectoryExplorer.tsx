@@ -383,6 +383,9 @@ const DirectoryExplorer = () => {
               <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em]">
                 <Sparkles className="h-3.5 w-3.5" /> Interactive Explorer
               </div>
+              <span className="inline-flex ml-2 items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] bg-[hsl(45_100%_96%)] text-[hsl(28_80%_32%)] border border-[hsl(38_92%_55%)]" title="AI answers shown are sample responses for design preview">
+                Sample AI
+              </span>
               <h1 className="mt-3 font-display text-2xl md:text-[34px] font-extrabold leading-tight tracking-tight">
                 {directory.title}
               </h1>

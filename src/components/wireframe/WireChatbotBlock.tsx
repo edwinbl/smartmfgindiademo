@@ -1,5 +1,6 @@
 import { WireSection } from "./WireSection";
 import { Send, Sparkles } from "lucide-react";
+import { SampleInlineTag } from "@/components/common/FabricatedMarker";
 
 const prompts = [
   "What is the readiness assessment?",
@@ -33,6 +34,7 @@ export const WireChatbotBlock = () => {
                  style={{ background: "hsl(0 0% 100% / 0.08)", borderColor: "hsl(0 0% 100% / 0.2)" }}>
               <Sparkles className="h-3.5 w-3.5 text-cii-orange" />
               <span className="eyebrow text-white/80">Smart Manufacturing Assistant</span>
+              <SampleInlineTag label="Sample" className="ml-1" />
             </div>
             <h2 className="font-display font-bold text-[28px] md:text-[36px] leading-tight tracking-tight">
               Ask the Smart Manufacturing Assistant

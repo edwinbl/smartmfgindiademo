@@ -1,5 +1,6 @@
 import { WireSection } from "./WireSection";
 import { Twitter, Linkedin, ExternalLink, Radio } from "lucide-react";
+import { SampleInlineTag } from "@/components/common/FabricatedMarker";
 
 type Post = {
   platform: "x" | "linkedin";
@@ -164,7 +165,7 @@ export const WireSocialTicker = () => {
             Latest from CII Smart Manufacturing
           </h2>
           <p className="mt-2 text-sm sm:text-base text-[hsl(var(--neutral-500))] max-w-2xl">
-            Updates, recognitions and conversations from across our social channels.
+            Updates, recognitions and conversations from across our social channels. <SampleInlineTag label="Sample feed" className="ml-1 align-middle" />
           </p>
         </div>
         <div className="flex items-center gap-2">

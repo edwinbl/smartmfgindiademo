@@ -1,5 +1,6 @@
 import { MessageCircle, Send, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { SampleInlineTag } from "@/components/common/FabricatedMarker";
 
 const prompts = [
   "How do I apply for the Future Ready Manufacturing Award?",
@@ -72,6 +73,7 @@ export const WireChatbotFAB = () => {
                   <div className="flex items-center gap-1.5 text-xs text-white/80 mt-0.5">
                     <span className="h-2 w-2 rounded-full bg-green-400" />
                     Grounded in CII content
+                    <SampleInlineTag label="Sample" className="ml-1" />
                   </div>
                 </div>
                 <button
