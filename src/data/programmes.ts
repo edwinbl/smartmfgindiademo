@@ -36,6 +36,7 @@ export interface ProgrammeModule {
 
 export interface ProgrammeItem {
   slug: string;
+  isSample?: boolean;
   type: ProgrammeType;
   title: string;
   tagline: string;
