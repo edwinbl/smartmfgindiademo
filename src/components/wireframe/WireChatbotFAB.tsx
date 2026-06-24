@@ -1,5 +1,6 @@
 import { MessageCircle, Send, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { SampleInlineTag } from "@/components/common/FabricatedMarker";
 
 const prompts = [
   "How do I apply for the Future Ready Manufacturing Award?",
