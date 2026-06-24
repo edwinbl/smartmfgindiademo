@@ -4,14 +4,14 @@ const SEG_LABELS = ["Initial", "Defined", "Repeatable", "Managed", "Optimised"];
 const SEGMENTS = SEG_LABELS.length;
 const TARGETS = [42, 58, 64, 71, 55, 68]; // cycles to feel "live"
 
-export const HeroMaturityDial = () => {
-  const [maturity, setMaturity] = useState(0);
+export const HeroReadinessDial = () => {
+  const [readiness, setReadiness] = useState(0);
   const [cycle, setCycle] = useState(0);
 
   // Animate up to current target, then after a pause move to next
   useEffect(() => {
     const target = TARGETS[cycle % TARGETS.length];
-    const from = maturity;
+    const from = readiness;
     const start = performance.now();
     const duration = 1400;
     let raf = 0;
@@ -19,7 +19,7 @@ export const HeroMaturityDial = () => {
     const step = (t: number) => {
       const p = Math.min((t - start) / duration, 1);
       const eased = 1 - Math.pow(1 - p, 3);
-      setMaturity(from + (target - from) * eased);
+      setReadiness(from + (target - from) * eased);
       if (p < 1) raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
@@ -32,8 +32,8 @@ export const HeroMaturityDial = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cycle]);
 
-  const activeSeg = Math.min(SEGMENTS - 1, Math.floor(maturity / 20));
-  const arcLen = (maturity / 100) * Math.PI * 150;
+  const activeSeg = Math.min(SEGMENTS - 1, Math.floor(readiness / 20));
+  const arcLen = (readiness / 100) * Math.PI * 150;
 
   return (
     <div className="relative w-full max-w-[480px] ml-auto" style={{ aspectRatio: "1 / 1" }}>
@@ -68,7 +68,7 @@ export const HeroMaturityDial = () => {
         <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth="1" />
         <circle cx="200" cy="200" r="120" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
 
-        {/* maturity gauge */}
+        {/* readiness gauge */}
         <g transform="translate(200,200)">
           <path d="M -150 0 A 150 150 0 0 1 150 0" fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth="14" strokeLinecap="round" />
           <path
@@ -110,9 +110,9 @@ export const HeroMaturityDial = () => {
 
       {/* center label */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
-        <div className="eyebrow text-[hsl(var(--orange-100))] mb-2">Industry Maturity</div>
+        <div className="eyebrow text-[hsl(var(--orange-100))] mb-2">Industry Readiness</div>
         <div className="font-numeric font-extrabold text-white text-5xl md:text-6xl leading-none">
-          {Math.round(maturity)}
+          {Math.round(readiness)}
           <span className="text-2xl text-white/60 ml-1">/100</span>
         </div>
         <div

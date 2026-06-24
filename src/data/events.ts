@@ -234,7 +234,7 @@ export const events: EventItem[] = [
     speakers: [S.ravi, S.arjun, S.priya],
     outcomes: [
       "Shared playbook on AI deployment across operations",
-      "Cross-industry benchmark on AI maturity",
+      "Cross-industry benchmark on AI readiness",
       "Curated peer network for ongoing exchange",
     ],
     accent: "gold",
@@ -494,7 +494,7 @@ export const events: EventItem[] = [
       clustersCovered: ["Auto components", "Textiles", "Foundry", "Light engineering", "Food processing"],
       mainTakeaways: [
         "Affordable, modular digital solutions designed for MSME shop floors are now widely available.",
-        "Cluster-led adoption — anchored by a tier-1 OEM — accelerates MSME maturity 2–3x faster than standalone efforts.",
+        "Cluster-led adoption — anchored by a tier-1 OEM — accelerates MSME readiness 2–3x faster than standalone efforts.",
         "Working capital and CapEx subsidy access remain the most-cited barriers to adoption.",
         "Workforce upskilling at the operator level produces the highest ROI in the first 12 months.",
       ],
@@ -715,7 +715,7 @@ export const events: EventItem[] = [
       "A reference architecture for IIoT layers (sensors → connectivity → analytics → AI) helps demystify deployment for industry leaders.",
       "Shared cyber-physical facility centres should be expanded regionally to give MSMEs a hands-on testbed.",
       "Future workshops should be cluster-specific (automotive, capital goods, electronics) with focused success stories.",
-      "Follow-up actions: publish proceedings, build a directory of resource persons, and seed a benchmark study on Indian smart-manufacturing maturity.",
+      "Follow-up actions: publish proceedings, build a directory of resource persons, and seed a benchmark study on Indian smart-manufacturing readiness.",
     ],
     accent: "navy",
   },

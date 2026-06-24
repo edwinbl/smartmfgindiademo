@@ -9,7 +9,7 @@ const futures = [
   {
     icon: BarChart3,
     title: "Industry Benchmarking",
-    desc: "Compare your maturity against peers by sector, size and geography.",
+    desc: "Compare your readiness against peers by sector, size and geography.",
   },
   {
     icon: Wand2,

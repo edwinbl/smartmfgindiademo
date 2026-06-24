@@ -50,7 +50,7 @@ const ROUTE_CONTENT: { match: (path: string) => boolean; content: CtaContent }[]
       eyebrow: "Inspired By These Stories?",
       title: "Ready to write your own transformation story?",
       description:
-        "Benchmark your manufacturing maturity and discover the pathways that helped these leaders succeed.",
+        "Benchmark your manufacturing readiness and discover the pathways that helped these leaders succeed.",
       actions: [
         { label: "Take Readiness Assessment", to: "/readiness-assessment", icon: ClipboardCheck, variant: "primary" },
         { label: "Browse Knowledge Hub", to: "/solutions", icon: GraduationCap, variant: "secondary" },

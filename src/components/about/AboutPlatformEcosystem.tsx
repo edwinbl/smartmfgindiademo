@@ -14,7 +14,7 @@ const modules = [
   {
     icon: Gauge,
     label: "Readiness Assessments",
-    desc: "Benchmark maturity",
+    desc: "Benchmark readiness",
     href: "/readiness-assessment",
     color: "hsl(var(--orange-500))",
     tint: "hsl(var(--orange-500) / 0.10)",

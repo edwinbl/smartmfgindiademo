@@ -77,7 +77,7 @@ export const ContactHero = () => {
 const QA_PAIRS: { q: string; a: string; chips?: string[] }[] = [
   {
     q: "How do I assess my plant's Industry 4.0 readiness?",
-    a: "Take our 15-min readiness assessment — you'll get a maturity score and roadmap.",
+    a: "Take our 15-min readiness assessment — you'll get a readiness score and roadmap.",
     chips: ["Start Assessment", "See Sample Report"],
   },
   {

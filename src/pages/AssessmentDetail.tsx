@@ -93,7 +93,7 @@ const SHARED_COVERAGE = [
   { icon: Factory, label: "Operations", scope: "Shop-floor flow, throughput and OEE foundations." },
   { icon: Workflow, label: "Production Planning", scope: "Scheduling, capacity and demand alignment." },
   { icon: ShieldCheck, label: "Quality Systems", scope: "Process controls, inspections and defect handling." },
-  { icon: Database, label: "Data & Visibility", scope: "Data capture, dashboards and reporting maturity." },
+  { icon: Database, label: "Data & Visibility", scope: "Data capture, dashboards and reporting readiness." },
   { icon: Cpu, label: "Machine Connectivity", scope: "Sensors, PLCs and machine-to-system integration." },
   { icon: HardHat, label: "Workforce Readiness", scope: "Skills, change-readiness and digital fluency." },
   { icon: Leaf, label: "Sustainability", scope: "Energy, emissions and resource efficiency posture." },
@@ -101,10 +101,10 @@ const SHARED_COVERAGE = [
 ];
 
 const ASSESSMENTS: Record<string, AssessmentConfig> = {
-  "smart-manufacturing-maturity": {
-    slug: "smart-manufacturing-maturity",
+  "smart-manufacturing-readiness": {
+    slug: "smart-manufacturing-readiness",
     tag: "Smart Manufacturing",
-    title: "Smart Manufacturing Maturity Assessment Model",
+    title: "Smart Manufacturing Readiness Assessment Model",
     subtitle: "Evaluate your operational, digital and business readiness before identifying the next steps in your transformation journey.",
     description:
       "A guided readiness lens across smart manufacturing dimensions — operations, digital adoption, quality and sustainability — purpose-built for MSME and mid-sized manufacturers in India.",
@@ -123,17 +123,17 @@ const ASSESSMENTS: Record<string, AssessmentConfig> = {
     ],
     coverage: SHARED_COVERAGE,
   },
-  "industry-4-0-maturity": {
-    slug: "industry-4-0-maturity",
+  "industry-4-0-readiness": {
+    slug: "industry-4-0-readiness",
     tag: "Industry 4.0",
-    title: "Industry 4.0 Maturity Assessment",
-    subtitle: "Benchmark your Industry 4.0 maturity across technology, processes, people and data foundations.",
+    title: "Industry 4.0 Readiness Assessment",
+    subtitle: "Benchmark your Industry 4.0 readiness across technology, processes, people and data foundations.",
     description:
       "An executive-friendly readiness review across Industry 4.0 building blocks — designed for manufacturing leaders and plant heads driving digital transformation.",
     duration: "30–45 mins",
     audience: "Manufacturing leaders & plant heads",
-    coverageAreas: "8 maturity dimensions",
-    expectedOutput: "Maturity snapshot & roadmap cues",
+    coverageAreas: "8 readiness dimensions",
+    expectedOutput: "Readiness snapshot & roadmap cues",
     accent: "hsl(var(--orange-600))",
     accentSoft: "hsl(var(--orange-100))",
     dimensions: [
@@ -204,7 +204,7 @@ const AssessmentDetail = () => {
   };
 
   const summary = [
-    { icon: ClipboardList, label: "Assessment Type", value: "Readiness & Maturity" },
+    { icon: ClipboardList, label: "Assessment Type", value: "Readiness & Readiness" },
     { icon: Clock, label: "Duration", value: cfg.duration },
     { icon: Layers, label: "Coverage Areas", value: cfg.coverageAreas },
     { icon: FileBarChart, label: "Expected Output", value: cfg.expectedOutput },
@@ -626,7 +626,7 @@ const AssessmentDetail = () => {
                   <div className="flex items-start gap-3">
                     <Lightbulb className="h-5 w-5 mt-0.5 shrink-0 text-[hsl(var(--orange-600))]" />
                     <p className="text-sm text-navy-800 leading-relaxed">
-                      <span className="font-semibold">Insight:</span> Operational visibility maturity is moderate,
+                      <span className="font-semibold">Insight:</span> Operational visibility readiness is moderate,
                       while data integration readiness remains low — prioritise machine connectivity first.
                     </p>
                   </div>

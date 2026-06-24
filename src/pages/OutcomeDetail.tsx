@@ -338,7 +338,7 @@ const OutcomeDetail = () => {
                 to="/readiness-assessment"
                 icon={ClipboardCheck}
                 title="Readiness Assessment"
-                desc="Benchmark your maturity for this outcome."
+                desc="Benchmark your readiness for this outcome."
               />
               <NextAction
                 to="/programmes"

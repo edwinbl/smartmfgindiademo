@@ -25,7 +25,7 @@ const POSTS: Post[] = [
     platform: "x",
     handle: "@CIISmartMfg",
     time: "5h",
-    text: "Smart Manufacturing Maturity Assessment Model now live — 49 elements across 5 functional areas. Find your stage in under 30 minutes.",
+    text: "Smart Manufacturing Readiness Assessment Model now live — 49 elements across 5 functional areas. Find your stage in under 30 minutes.",
     url: "https://x.com/",
   },
   {

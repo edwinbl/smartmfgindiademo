@@ -1,7 +1,7 @@
 import { Gauge, BookOpen, Compass, Network, Workflow } from "lucide-react";
 
 const steps = [
-  { icon: Gauge, title: "Assess", desc: "Understand your current readiness with structured maturity assessments." },
+  { icon: Gauge, title: "Assess", desc: "Understand your current readiness with structured readiness assessments." },
   { icon: BookOpen, title: "Learn", desc: "Access practical insights, research and curated knowledge resources." },
   { icon: Compass, title: "Discover", desc: "Learn from real-world implementations and peer case studies." },
   { icon: Network, title: "Connect", desc: "Find ecosystem partners, solution providers and domain experts." },

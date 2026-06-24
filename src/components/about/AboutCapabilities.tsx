@@ -4,7 +4,7 @@ import {
 } from "lucide-react";
 
 const tiles = [
-  { Icon: Gauge, title: "Maturity Assessment", body: "Benchmark your readiness in minutes.", span: "lg:col-span-2 lg:row-span-2", accent: true },
+  { Icon: Gauge, title: "Readiness Assessment", body: "Benchmark your readiness in minutes.", span: "lg:col-span-2 lg:row-span-2", accent: true },
   { Icon: LayoutGrid, title: "Knowledge Hub", body: "Vetted Industry 4.0 solution areas, case studies and resources.", span: "" },
   { Icon: MessageSquare, title: "Expert Guidance", body: "Talk to seasoned advisors.", span: "" },
   { Icon: GraduationCap, title: "Programmes", body: "Capability building at scale.", span: "lg:col-span-2" },

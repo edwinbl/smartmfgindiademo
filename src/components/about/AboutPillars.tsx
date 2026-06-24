@@ -3,7 +3,7 @@ const pillars = [
     num: "01",
     title: "Assess",
     subtitle:
-      "Start with a clear maturity baseline. Benchmark against sector peers and identify the priority gaps to address first.",
+      "Start with a clear readiness baseline. Benchmark against sector peers and identify the priority gaps to address first.",
     tone: "navy" as const,
   },
   {

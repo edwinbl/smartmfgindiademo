@@ -196,7 +196,7 @@ const RELATED_MODULES = [
   {
     Icon: ClipboardCheck,
     title: "Readiness Assessment",
-    body: "Benchmark your plant's smart manufacturing maturity.",
+    body: "Benchmark your plant's smart manufacturing readiness.",
     to: "/readiness-assessment",
   },
 ];

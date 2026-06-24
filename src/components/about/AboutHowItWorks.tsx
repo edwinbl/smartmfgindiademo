@@ -1,7 +1,7 @@
 import { ClipboardCheck, Compass, Rocket, ArrowRight } from "lucide-react";
 
 const steps = [
-  { Icon: ClipboardCheck, title: "Assess", body: "Take the maturity assessment and see where you stand." },
+  { Icon: ClipboardCheck, title: "Assess", body: "Take the readiness assessment and see where you stand." },
   { Icon: Compass, title: "Get Guidance", body: "Receive a personalised roadmap from experts." },
   { Icon: Rocket, title: "Connect & Adopt", body: "Engage partners, deploy solutions, and scale." },
 ];

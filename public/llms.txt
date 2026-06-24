@@ -14,7 +14,7 @@ CII Smart Manufacturing connects MSMEs and large enterprises with readiness asse
 - [Programmes](/programmes): Training, certification, and capability-building programmes for manufacturers.
 - [Knowledge Hub](/solutions): Curated solution areas, case studies and resources mapped to manufacturing outcomes.
 - [Case Studies](/case-studies): Real-world transformation stories from Indian manufacturing companies.
-- [Readiness Assessment](/readiness-assessment): Self-assessment tools to evaluate Industry 4.0 maturity.
+- [Readiness Assessment](/readiness-assessment): Self-assessment tools to evaluate Industry 4.0 readiness.
 - [Terms](/terms): Terms of use and legal information.
 - [Privacy](/privacy): Privacy policy and data handling practices.
 

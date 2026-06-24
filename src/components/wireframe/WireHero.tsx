@@ -54,7 +54,7 @@ export const WireHero = () => {
 
           <div className="mt-7 flex flex-wrap gap-3">
             <Link to="/readiness-assessment" className="btn-primary">
-              Access Maturity Assessments <ArrowRight className="!h-4 !w-4" />
+              Access Readiness Assessments <ArrowRight className="!h-4 !w-4" />
             </Link>
             <Link to="/solutions" className="btn-ghost">
               Explore Knowledge Hub

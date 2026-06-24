@@ -136,11 +136,11 @@ export const AssessmentHeroCard = () => {
           </div>
         </div>
 
-        {/* Maturity scale */}
+        {/* Readiness scale */}
         <div className="relative mt-5 rounded-md border border-white/10 bg-white/[0.04] px-3 py-2.5">
           <div className="flex items-center gap-2 text-[11px] sm:text-[12px] text-white/80">
             <Layers className="h-3.5 w-3.5 text-[hsl(var(--orange-500))] shrink-0" />
-            <span className="font-semibold text-white">Maturity scale:</span>
+            <span className="font-semibold text-white">Readiness scale:</span>
             <span className="text-white/60">Industry 1.0 → 2.0 → 3.0 → 4.0</span>
           </div>
         </div>

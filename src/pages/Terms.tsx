@@ -439,7 +439,7 @@ const Terms = () => {
               summary="Assessment scores and reports are diagnostic tools — informative, not prescriptive — and shouldn't replace professional judgement."
             >
               <p>
-                Readiness assessments, maturity scores and reports generated on the
+                Readiness assessments, readiness scores and reports generated on the
                 Platform are based on the inputs you provide and on industry-standard
                 frameworks. They are intended to support — not replace — independent
                 expert advice.
