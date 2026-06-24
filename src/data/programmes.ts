@@ -611,6 +611,7 @@ export const programmes: ProgrammeItem[] = [
         org: "Rockwell Automation India Pvt Ltd",
         quote:
           "Manufacturing is evolving from automation to autonomy — moving beyond pre-programmed systems to intelligent, self-learning technologies that can adapt and respond to real-time production scenarios and enhance operational resilience.",
+        avatar: "/__l5e/assets-v1/31bef873-4071-4e59-9f19-452ab6c57caa/dilip-sawhney.webp",
       },
     ],
     postProgramme: {
