@@ -1,5 +1,6 @@
 import { WireSection } from "./WireSection";
 import { Twitter, Linkedin, ExternalLink, Radio } from "lucide-react";
+import { SampleInlineTag } from "@/components/common/FabricatedMarker";
 
 type Post = {
   platform: "x" | "linkedin";
