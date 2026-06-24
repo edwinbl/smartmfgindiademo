@@ -532,6 +532,7 @@ export const events: EventItem[] = [
       "Sample concluded-event master template — speakers, agenda, stats, photographs, presentations and report PDF are placeholders that demonstrate the full layout. Replace with real event data when supplied.",
   },
 
+  {
     slug: "past-awareness-workshop-industry40-2019",
     type: "Workshop",
     title: "Awareness Workshop on Industry 4.0",
