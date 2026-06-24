@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, FileDown } from "lucide-react";
-import { SampleCardFold } from "@/components/common/FabricatedMarker";
+import { SampleCardFold, MasterCardFold } from "@/components/common/FabricatedMarker";
 
 import { getPast } from "@/data/events";
 import type { EventType } from "@/data/events";
