@@ -116,7 +116,7 @@ export const PastEventsArchive = () => {
                 {items.map((e) => (
                   <li key={e.slug}>
                     <article className="cii-card group relative h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
-                      {e.isFabricated && <SampleCardFold />}
+                      {e.isMasterTemplate ? <MasterCardFold /> : e.isFabricated && <SampleCardFold />}
 
                       {/* Thumbnail */}
                       <Link
