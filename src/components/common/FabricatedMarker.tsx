@@ -16,11 +16,12 @@ const AMBER = "hsl(38 92% 55%)";
 const AMBER_DARK = "hsl(28 80% 32%)";
 const AMBER_BG = "hsl(45 100% 96%)";
 
-// Stark magenta-violet treatment reserved for the MASTER TEMPLATE marker so it
-// is unmistakably different from the amber Sample marker.
-const GOLD = "hsl(322 84% 45%)";
-const GOLD_DARK = "hsl(322 80% 22%)";
-const GOLD_BG = "hsl(322 80% 96%)";
+// Stark electric-magenta treatment reserved for the MASTER TEMPLATE marker so
+// it is unmistakably different from the amber Sample marker at any glance.
+const GOLD = "hsl(310 92% 48%)";
+const GOLD_DEEP = "hsl(285 85% 38%)";
+const GOLD_DARK = "hsl(300 80% 22%)";
+const GOLD_BG = "hsl(312 90% 97%)";
 
 
 
