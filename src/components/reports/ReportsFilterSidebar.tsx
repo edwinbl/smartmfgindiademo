@@ -53,7 +53,7 @@ export const ReportsFilterSidebar = ({
   const hasActive = query.length > 0 || quickPick !== null || activeFilterCount > 0;
 
   return (
-    <aside className="lg:sticky lg:top-[140px] lg:self-start">
+    <aside className="lg:sticky lg:top-[140px] lg:self-start lg:max-h-[calc(100vh-160px)] lg:overflow-y-auto">
       <div className="cii-card p-5 space-y-5 bg-white">
         <div className="flex items-center justify-between">
           <div>
