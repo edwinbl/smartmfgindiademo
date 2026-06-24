@@ -279,7 +279,7 @@ export const ProgrammesFilterSidebar = (props: Props) => {
       </div>
 
       {/* Desktop: sticky sidebar */}
-      <aside className="hidden lg:block lg:sticky lg:top-[140px] lg:self-start">
+      <aside className="hidden lg:block lg:sticky lg:top-[140px] lg:self-start lg:max-h-[calc(100vh-160px)] lg:overflow-y-auto">
         <div className="cii-card p-5 bg-white">
           <FilterPanel {...props} hasActive={hasActive} />
         </div>

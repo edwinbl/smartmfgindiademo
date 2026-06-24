@@ -251,7 +251,7 @@ const CaseStudiesIndex = () => {
 
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-8">
             {/* Sidebar */}
-            <aside className="hidden lg:block lg:sticky lg:top-[140px] lg:self-start">
+            <aside className="hidden lg:block lg:sticky lg:top-[140px] lg:self-start lg:max-h-[calc(100vh-160px)] lg:overflow-y-auto">
               <CaseFacetsCard
                 query={query}
                 onQuery={setQuery}
