@@ -3,6 +3,7 @@ import { MapPin, Clock, Users, ArrowRight, Wifi, Lock, GraduationCap, Sparkles }
 import { cn } from "@/lib/utils";
 import { accentBar, accentSoft, accentText } from "@/lib/eventsStorage";
 import type { EventItem } from "@/data/events";
+import { FabricatedCardRibbon } from "@/components/common/FabricatedMarker";
 
 interface Props {
   event: EventItem;
@@ -231,16 +232,33 @@ const ProgrammeCard = ({ event, onRegister, className }: Props) => (
 );
 
 export const EventCard = ({ event, onRegister, className }: Props) => {
-  switch (event.type) {
-    case "Workshop":
-      return <WebinarCard event={event} onRegister={onRegister} className={className} />;
-    case "Roundtable":
-      return <RoundtableCard event={event} onRegister={onRegister} className={className} />;
-    case "Summit":
-      return <SummitCard event={event} onRegister={onRegister} className={className} />;
-    case "Seminar":
-    case "Programme":
-    default:
-      return <ProgrammeCard event={event} onRegister={onRegister} className={className} />;
-  }
+  const wrapperClass = cn(
+    "relative",
+    event.isFabricated &&
+      "ring-2 ring-offset-2 ring-offset-background rounded-xl",
+    className,
+  );
+  const ringStyle = event.isFabricated
+    ? { boxShadow: "0 0 0 2px hsl(38 92% 55%)", borderRadius: 12 }
+    : undefined;
+  const inner = (() => {
+    switch (event.type) {
+      case "Workshop":
+        return <WebinarCard event={event} onRegister={onRegister} />;
+      case "Roundtable":
+        return <RoundtableCard event={event} onRegister={onRegister} />;
+      case "Summit":
+        return <SummitCard event={event} onRegister={onRegister} />;
+      case "Seminar":
+      case "Programme":
+      default:
+        return <ProgrammeCard event={event} onRegister={onRegister} />;
+    }
+  })();
+  return (
+    <div className={cn("relative", className)} style={ringStyle}>
+      {event.isFabricated && <FabricatedCardRibbon />}
+      {inner}
+    </div>
+  );
 };
