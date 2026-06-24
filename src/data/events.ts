@@ -343,9 +343,9 @@ export const events: EventItem[] = [
       "Sample learning — public-private skilling partnerships are essential to keep pace with demand.",
     ],
     accent: "navy",
-    isFabricated: true,
     fabricationNote:
-      "Sample concluded-event master template — speakers, agenda, stats, photographs, presentations and report PDF are placeholders that demonstrate the full layout. Replace with real event data when supplied.",
+      "Master template for concluded-event detail pages — speakers, agenda, stats, photographs, presentations and report PDF demonstrate every section the layout supports. Content is sample; replace with real event data when supplied.",
+
   },
 
   {
