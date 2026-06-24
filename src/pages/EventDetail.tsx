@@ -73,7 +73,12 @@ const EventDetail = () => {
       <WireHeader />
       <main>
         <EventDetailHero event={event} />
-        {event.isFabricated && <FabricatedBanner note={event.fabricationNote} />}
+        {event.isMasterTemplate ? (
+          <MasterBanner note={event.fabricationNote} />
+        ) : (
+          event.isFabricated && <FabricatedBanner note={event.fabricationNote} />
+        )}
+
         <Detail />
 
         {related.length > 0 && (
