@@ -16,11 +16,12 @@ const AMBER = "hsl(38 92% 55%)";
 const AMBER_DARK = "hsl(28 80% 32%)";
 const AMBER_BG = "hsl(45 100% 96%)";
 
-// Distinct rich-gold treatment reserved for the MASTER TEMPLATE marker so it
+// Stark magenta-violet treatment reserved for the MASTER TEMPLATE marker so it
 // is unmistakably different from the amber Sample marker.
-const GOLD = "hsl(43 74% 45%)";
-const GOLD_DARK = "hsl(36 70% 22%)";
-const GOLD_BG = "hsl(45 70% 94%)";
+const GOLD = "hsl(322 84% 45%)";
+const GOLD_DARK = "hsl(322 80% 22%)";
+const GOLD_BG = "hsl(322 80% 96%)";
+
 
 
 /** Corner fold for cards. Sits at the top-right and reads as "Sample". */
