@@ -738,13 +738,15 @@ export type QuickPickId =
 
 export const getEventBySlug = (slug: string) => events.find((e) => e.slug === slug);
 export const getFlagship = () => events.find((e) => e.flagship) ?? events[0];
-export const getUpcoming = () => events.filter((e) => e.status !== "completed");
-export const getPast = () => events.filter((e) => e.status === "completed");
+const isConcluded = (e: EventItem) =>
+  e.status === "completed" || new Date(e.isoDate).getTime() < Date.now();
+export const getUpcoming = () => events.filter((e) => !isConcluded(e));
+export const getPast = () => events.filter((e) => isConcluded(e));
 export const getRelatedEvents = (slug: string, count = 3) => {
   const cur = getEventBySlug(slug);
   if (!cur) return [];
   return events
-    .filter((e) => e.slug !== slug && e.status !== "completed")
+    .filter((e) => e.slug !== slug && !isConcluded(e))
     .sort((a, b) => (a.type === cur.type ? -1 : 1) - (b.type === cur.type ? -1 : 1))
     .slice(0, count);
 };
