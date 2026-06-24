@@ -19,8 +19,20 @@ const SectionHeading = ({ kicker, title, compact = false }: { kicker?: string; t
 
 export const WorkshopPostDetail = ({ event }: Props) => {
   const r = event.report;
+  const tinted = event.isFabricated;
   return (
-    <section className="py-10 md:py-12">
+    <section
+      className="py-10 md:py-12"
+      style={
+        tinted
+          ? {
+              background:
+                "linear-gradient(180deg, hsl(45 100% 98%) 0%, hsl(45 100% 99.5%) 100%)",
+              borderLeft: "4px solid hsl(38 92% 55%)",
+            }
+          : undefined
+      }
+    >
       <div className="container-cii space-y-8">
         {/* 1. Workshop Summary — compact meta strip + summary */}
         <div>
