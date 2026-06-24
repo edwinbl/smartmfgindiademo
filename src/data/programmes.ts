@@ -24,6 +24,7 @@ export interface ProgrammeFaculty {
   role: string;
   org: string;
   initials: string;
+  photo?: string;
 }
 
 export interface ProgrammeModule {
@@ -565,7 +566,7 @@ export const programmes: ProgrammeItem[] = [
       "Process Automation & Predictive Intelligence in oil & gas, chemicals, utilities and energy",
     ],
     faculty: [
-      { name: "Mr Dilip Sawhney", role: "Chairman, CII National Committee on Smart Manufacturing · Managing Director", org: "Rockwell Automation India Pvt Ltd", initials: "DS" },
+      { name: "Mr Dilip Sawhney", role: "Chairman, CII National Committee on Smart Manufacturing · Managing Director", org: "Rockwell Automation India Pvt Ltd", initials: "DS", photo: "/__l5e/assets-v1/31bef873-4071-4e59-9f19-452ab6c57caa/dilip-sawhney.webp" },
       { name: "Mr CV Raman", role: "Member of Executive Committee & Former CTO", org: "Maruti Suzuki India Ltd", initials: "CR" },
       { name: "Mr Sameer Gandhi", role: "Managing Director", org: "Omron Automation India Pvt Ltd", initials: "SG" },
       { name: "Mr Sandeep Chittora", role: "Associate Partner", org: "KPMG Assurance and Consulting Services LLP", initials: "SC" },
@@ -610,6 +611,7 @@ export const programmes: ProgrammeItem[] = [
         org: "Rockwell Automation India Pvt Ltd",
         quote:
           "Manufacturing is evolving from automation to autonomy — moving beyond pre-programmed systems to intelligent, self-learning technologies that can adapt and respond to real-time production scenarios and enhance operational resilience.",
+        avatar: "/__l5e/assets-v1/31bef873-4071-4e59-9f19-452ab6c57caa/dilip-sawhney.webp",
       },
     ],
     postProgramme: {

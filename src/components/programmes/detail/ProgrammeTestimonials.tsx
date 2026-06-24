@@ -21,9 +21,18 @@ export const ProgrammeTestimonials = ({ programme }: Props) => {
               "{t.quote}"
             </blockquote>
             <figcaption className="flex items-center gap-3 pt-2 border-t border-[hsl(var(--neutral-150))]">
-              <div className="h-10 w-10 rounded-full bg-[hsl(var(--navy-100))] text-[hsl(var(--navy-700))] grid place-items-center text-sm font-bold">
-                {t.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
-              </div>
+              {t.avatar ? (
+                <img
+                  src={t.avatar}
+                  alt={t.name}
+                  loading="lazy"
+                  className="h-10 w-10 rounded-full object-cover ring-1 ring-[hsl(var(--neutral-150))]"
+                />
+              ) : (
+                <div className="h-10 w-10 rounded-full bg-[hsl(var(--navy-100))] text-[hsl(var(--navy-700))] grid place-items-center text-sm font-bold">
+                  {t.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
+                </div>
+              )}
               <div className="text-xs">
                 <div className="font-semibold text-[hsl(var(--navy-900))]">{t.name}</div>
                 <div className="text-[hsl(var(--neutral-500))]">{t.role} · {t.org}</div>
