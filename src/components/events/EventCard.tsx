@@ -3,7 +3,7 @@ import { MapPin, Clock, Users, ArrowRight, Wifi, Lock, GraduationCap, Sparkles }
 import { cn } from "@/lib/utils";
 import { accentBar, accentSoft, accentText } from "@/lib/eventsStorage";
 import type { EventItem } from "@/data/events";
-import { FabricatedCardRibbon } from "@/components/common/FabricatedMarker";
+import { FabricatedCardRibbon, MasterCardFold } from "@/components/common/FabricatedMarker";
 
 interface Props {
   event: EventItem;
@@ -248,7 +248,7 @@ export const EventCard = ({ event, onRegister, className }: Props) => {
   })();
   return (
     <div className={cn("relative overflow-hidden rounded-xl", className)}>
-      {event.isFabricated && <FabricatedCardRibbon />}
+      {event.isMasterTemplate ? <MasterCardFold /> : event.isFabricated && <FabricatedCardRibbon />}
       {inner}
     </div>
   );

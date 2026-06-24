@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, FileDown } from "lucide-react";
-import { SampleCardFold } from "@/components/common/FabricatedMarker";
+import { SampleCardFold, MasterCardFold } from "@/components/common/FabricatedMarker";
 
 import { getPast } from "@/data/events";
 import type { EventType } from "@/data/events";
@@ -116,7 +116,7 @@ export const PastEventsArchive = () => {
                 {items.map((e) => (
                   <li key={e.slug}>
                     <article className="cii-card group relative h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
-                      {e.isFabricated && <SampleCardFold />}
+                      {e.isMasterTemplate ? <MasterCardFold /> : e.isFabricated && <SampleCardFold />}
 
                       {/* Thumbnail */}
                       <Link

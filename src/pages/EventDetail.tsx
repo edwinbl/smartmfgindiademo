@@ -15,7 +15,7 @@ import { getEventBySlug, getRelatedEvents } from "@/data/events";
 import { toast } from "@/hooks/use-toast";
 import { eventsStorage } from "@/lib/eventsStorage";
 import { EventCard } from "@/components/events/EventCard";
-import { FabricatedBanner } from "@/components/common/FabricatedMarker";
+import { FabricatedBanner, MasterBanner } from "@/components/common/FabricatedMarker";
 
 const EventDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -73,7 +73,12 @@ const EventDetail = () => {
       <WireHeader />
       <main>
         <EventDetailHero event={event} />
-        {event.isFabricated && <FabricatedBanner note={event.fabricationNote} />}
+        {event.isMasterTemplate ? (
+          <MasterBanner note={event.fabricationNote} />
+        ) : (
+          event.isFabricated && <FabricatedBanner note={event.fabricationNote} />
+        )}
+
         <Detail />
 
         {related.length > 0 && (
