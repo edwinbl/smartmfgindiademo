@@ -1,8 +1,11 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, FileDown } from "lucide-react";
+import { SampleCardFold } from "@/components/common/FabricatedMarker";
+
 import { getPast } from "@/data/events";
 import type { EventType } from "@/data/events";
+
 
 const TYPES: ("All" | EventType)[] = ["All", "Summit", "Workshop", "Roundtable"];
 
@@ -112,7 +115,9 @@ export const PastEventsArchive = () => {
               <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {items.map((e) => (
                   <li key={e.slug}>
-                    <article className="cii-card group h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
+                    <article className="cii-card group relative h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
+                      {e.isFabricated && <SampleCardFold />}
+
                       {/* Thumbnail */}
                       <Link
                         to={`/events/${e.slug}`}
