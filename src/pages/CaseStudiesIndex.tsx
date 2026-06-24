@@ -319,31 +319,99 @@ const CaseStudiesIndex = () => {
   );
 };
 
-const FilterGroup = ({
-  title, value, setValue, options,
-}: { title: string; value: string; setValue: (v: string) => void; options: readonly string[] }) => (
-  <div>
-    <div className="text-xs font-bold uppercase tracking-wider text-[hsl(var(--neutral-500))] mb-2">{title}</div>
-    <div className="space-y-1">
-      <FilterRadio label="All" active={value === "all"} onClick={() => setValue("all")} />
-      {options.map((o) => (
-        <FilterRadio key={o} label={o} active={value === o} onClick={() => setValue(o)} />
-      ))}
+interface CaseFacetsCardProps {
+  query: string;
+  onQuery: (v: string) => void;
+  sector: string;
+  setSector: (v: string) => void;
+  state: string;
+  setState: (v: string) => void;
+  companyType: CompanyType | "all";
+  setCompanyType: (v: CompanyType | "all") => void;
+  vp: ValueProp | "all";
+  setVp: (v: ValueProp | "all") => void;
+  resultCount: number;
+  onClear: () => void;
+}
+
+const CaseFacetsCard = ({
+  query, onQuery,
+  sector, setSector,
+  state, setState,
+  companyType, setCompanyType,
+  vp, setVp,
+  resultCount, onClear,
+}: CaseFacetsCardProps) => {
+  const hasActive =
+    query.length > 0 ||
+    sector !== "all" ||
+    state !== "all" ||
+    companyType !== "all" ||
+    vp !== "all";
+
+  return (
+    <div className="cii-card p-5 space-y-5 bg-white">
+      <div className="flex items-center justify-between">
+        <div>
+          <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--neutral-500))]">Refine</div>
+          <h3 className="font-display font-bold text-[15px] text-[hsl(var(--navy-900))]">
+            {resultCount} case stud{resultCount === 1 ? "y" : "ies"}
+          </h3>
+        </div>
+        {hasActive && (
+          <button
+            type="button"
+            onClick={onClear}
+            className="inline-flex items-center gap-1 text-[11px] font-semibold text-[hsl(var(--navy-700))] hover:text-[hsl(var(--red-600))]"
+          >
+            <X className="h-3 w-3" /> Clear
+          </button>
+        )}
+      </div>
+
+      <label className="relative block">
+        <span className="sr-only">Search case studies</span>
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--neutral-500))]" />
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => onQuery(e.target.value)}
+          placeholder="Search case studies…"
+          className="w-full h-10 pl-9 pr-3 rounded-sm border bg-white text-sm text-[hsl(var(--navy-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))]"
+          style={{ borderColor: "hsl(var(--neutral-200))" }}
+        />
+      </label>
+
+      <div className="space-y-3 pt-2 border-t border-[hsl(var(--neutral-150))]">
+        <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-[hsl(var(--neutral-500))]">
+          Advanced
+        </div>
+
+        <FacetSelect label="Sector" value={sector} onChange={setSector} options={sectors} />
+        <FacetSelect label="State" value={state} onChange={setState} options={states} />
+        <FacetSelect label="Company type" value={companyType} onChange={(v) => setCompanyType(v as CompanyType | "all")} options={companyTypes} />
+        <FacetSelect label="Value proposition" value={vp} onChange={(v) => setVp(v as ValueProp | "all")} options={valueProps} />
+      </div>
     </div>
+  );
+};
+
+const FacetSelect = ({
+  label, value, onChange, options,
+}: { label: string; value: string; onChange: (v: string) => void; options: readonly string[] }) => (
+  <div className="space-y-1">
+    <label className="text-[11px] font-semibold text-[hsl(var(--neutral-700))]">{label}</label>
+    <Select value={value} onValueChange={onChange}>
+      <SelectTrigger className="h-9 text-xs"><SelectValue /></SelectTrigger>
+      <SelectContent>
+        <SelectItem value="all">All {label.toLowerCase()}</SelectItem>
+        {options.map((o) => (
+          <SelectItem key={o} value={o}>{o}</SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   </div>
 );
 
-const FilterRadio = ({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) => (
-  <button
-    onClick={onClick}
-    className={`w-full text-left px-3 py-1.5 rounded-md text-sm transition-colors ${
-      active
-        ? "bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-800))] font-semibold"
-        : "text-[hsl(var(--neutral-700))] hover:bg-[hsl(var(--neutral-50))]"
-    }`}
-  >
-    {label}
-  </button>
-);
 
 export default CaseStudiesIndex;
