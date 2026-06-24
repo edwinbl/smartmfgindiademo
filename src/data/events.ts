@@ -101,8 +101,11 @@ export interface EventItem {
   accent: "navy" | "red" | "gold" | "teal" | "orange";
   /** Marks this entry as a fabricated master-template example (no real source data). */
   isFabricated?: boolean;
+  /** Marks this entry as THE master template other detail pages adhere to. */
+  isMasterTemplate?: boolean;
   /** Optional short note explaining what the template demonstrates. */
   fabricationNote?: string;
+
 }
 
 
