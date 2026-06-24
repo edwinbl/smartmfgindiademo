@@ -23,24 +23,24 @@ export const SampleCardFold = () => (
     title="Sample content — master template for design reference"
     aria-label="Sample"
   >
-    <div className="relative" style={{ width: 120, height: 120 }}>
+    <div className="relative" style={{ width: 76, height: 76 }}>
       <div
         className="absolute inset-0"
         style={{
           background: `linear-gradient(225deg, ${AMBER} 0%, ${AMBER} 52%, transparent 52%)`,
-          filter: "drop-shadow(-2px 3px 6px rgba(0,0,0,0.25))",
+          filter: "drop-shadow(-1px 2px 4px rgba(0,0,0,0.18))",
           borderTopRightRadius: 12,
         }}
       />
       <span
-        className="absolute text-white font-extrabold uppercase tracking-[0.18em]"
+        className="absolute text-white font-bold uppercase tracking-[0.14em]"
         style={{
-          top: 26,
-          right: 6,
-          fontSize: 12,
+          top: 16,
+          right: 2,
+          fontSize: 9,
           transform: "rotate(45deg)",
           transformOrigin: "center",
-          textShadow: "0 1px 2px rgba(0,0,0,0.25)",
+          textShadow: "0 1px 1px rgba(0,0,0,0.2)",
         }}
       >
         Sample
