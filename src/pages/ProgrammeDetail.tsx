@@ -119,6 +119,7 @@ const ProgrammeDetail = () => {
       <WireHeader />
       <main>
         <ProgrammeDetailHero programme={programme} onRegister={() => onRegister()} />
+        {programme.isSample && <SampleBanner />}
 
         <section className="py-12 md:py-16">
           <div className="container-cii grid lg:grid-cols-12 gap-10">
