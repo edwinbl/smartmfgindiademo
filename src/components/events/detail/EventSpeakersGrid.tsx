@@ -10,9 +10,18 @@ export const EventSpeakersGrid = ({ speakers }: Props) => (
     <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
       {speakers.map((s) => (
         <div key={s.name} className="cii-card p-4 flex items-center gap-3">
-          <div className="h-12 w-12 rounded-full bg-gradient-to-br from-[hsl(var(--navy-700))] to-[hsl(var(--navy-600))] grid place-items-center text-sm font-bold text-white shrink-0">
-            {s.initials}
-          </div>
+          {s.photo ? (
+            <img
+              src={s.photo}
+              alt={s.name}
+              loading="lazy"
+              className="h-14 w-14 rounded-full object-cover shrink-0 ring-2 ring-[hsl(var(--navy-100))]"
+            />
+          ) : (
+            <div className="h-14 w-14 rounded-full bg-gradient-to-br from-[hsl(var(--navy-700))] to-[hsl(var(--navy-600))] grid place-items-center text-sm font-bold text-white shrink-0">
+              {s.initials}
+            </div>
+          )}
           <div className="min-w-0">
             <div className="font-display font-semibold text-[hsl(var(--navy-900))] truncate">{s.name}</div>
             <div className="text-xs text-[hsl(var(--neutral-700))] truncate">{s.role}</div>
