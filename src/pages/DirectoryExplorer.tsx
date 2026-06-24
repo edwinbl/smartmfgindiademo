@@ -477,7 +477,7 @@ const DirectoryExplorer = () => {
                         Ask AI about this directory
                       </div>
                       <div className="text-[11px] text-[hsl(var(--neutral-500))]">
-                        Powered by Lovable AI · grounded in {directory.pages} pages
+                        Grounded in {directory.pages} pages
                       </div>
                     </div>
                   </div>
