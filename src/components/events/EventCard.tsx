@@ -248,7 +248,7 @@ export const EventCard = ({ event, onRegister, className }: Props) => {
   })();
   return (
     <div className={cn("relative overflow-hidden rounded-xl", className)}>
-      {event.isFabricated && <FabricatedCardRibbon />}
+      {event.isMasterTemplate ? <MasterCardFold /> : event.isFabricated && <FabricatedCardRibbon />}
       {inner}
     </div>
   );
