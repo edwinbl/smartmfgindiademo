@@ -2,7 +2,15 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   X,
+  Search,
   ArrowRight,
   TrendingUp,
   TrendingDown,
@@ -12,7 +20,6 @@ import {
   Filter,
   Gauge,
   ShieldCheck,
-  
   Network,
   Timer,
   Zap,
