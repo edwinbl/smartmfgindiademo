@@ -16,6 +16,7 @@ export interface EventSpeaker {
   initials: string;
   email?: string;
   phone?: string;
+  photo?: string;
 }
 
 export interface AgendaItem {
