@@ -98,6 +98,10 @@ export interface EventItem {
   photographs?: WorkshopPhoto[];
   learnings?: string[];
   accent: "navy" | "red" | "gold" | "teal" | "orange";
+  /** Marks this entry as a fabricated master-template example (no real source data). */
+  isFabricated?: boolean;
+  /** Optional short note explaining what the template demonstrates. */
+  fabricationNote?: string;
 }
 
 
@@ -444,6 +448,9 @@ export const events: EventItem[] = [
       "Sustainability metrics should be integrated into every smart manufacturing programme by default.",
     ],
     accent: "navy",
+    isFabricated: true,
+    fabricationNote:
+      "Master template — every element of a concluded event detail page is shown here for layout reference. Speakers, agenda, stats, photographs, presentations and report PDF are placeholders and will be replaced when the real summit content is supplied.",
   },
   {
     slug: "past-msme-conclave-2025",
