@@ -115,7 +115,9 @@ export const PastEventsArchive = () => {
               <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {items.map((e) => (
                   <li key={e.slug}>
-                    <article className="cii-card group h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
+                    <article className="cii-card group relative h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
+                      {e.isFabricated && <SampleCardFold />}
+
                       {/* Thumbnail */}
                       <Link
                         to={`/events/${e.slug}`}
