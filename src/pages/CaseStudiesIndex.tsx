@@ -251,14 +251,17 @@ const CaseStudiesIndex = () => {
 
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-8">
             {/* Sidebar */}
-            <aside className="hidden lg:block">
-              <div className="sticky top-[96px] space-y-6">
-                <FilterGroup title="Sector" value={sector} setValue={(v) => setSector(v)} options={sectors} />
-                <FilterGroup title="State" value={state} setValue={setState} options={states} />
-                <FilterGroup title="Company type" value={companyType} setValue={(v) => setCompanyType(v as CompanyType | "all")} options={companyTypes} />
-                <FilterGroup title="Value proposition" value={vp} setValue={(v) => setVp(v as ValueProp | "all")} options={valueProps} />
-                <button onClick={clearAll} className="text-xs font-semibold text-[hsl(var(--red-600))] hover:underline">Clear all filters</button>
-              </div>
+            <aside className="hidden lg:block lg:sticky lg:top-[140px] lg:self-start">
+              <CaseFacetsCard
+                query={query}
+                onQuery={setQuery}
+                sector={sector} setSector={setSector}
+                state={state} setState={setState}
+                companyType={companyType} setCompanyType={setCompanyType}
+                vp={vp} setVp={setVp}
+                resultCount={filtered.length}
+                onClear={clearAll}
+              />
             </aside>
 
             {/* Grid */}
@@ -289,13 +292,17 @@ const CaseStudiesIndex = () => {
                 <span className="font-display font-bold text-lg text-[hsl(var(--navy-900))]">Filters</span>
                 <button onClick={() => setDrawerOpen(false)} aria-label="Close" className="h-9 w-9 grid place-items-center rounded-full hover:bg-[hsl(var(--neutral-100))]"><X className="h-4 w-4" /></button>
               </div>
-              <div className="space-y-6">
-                <FilterGroup title="Sector" value={sector} setValue={(v) => setSector(v)} options={sectors} />
-                <FilterGroup title="State" value={state} setValue={setState} options={states} />
-                <FilterGroup title="Company type" value={companyType} setValue={(v) => setCompanyType(v as CompanyType | "all")} options={companyTypes} />
-                <FilterGroup title="Value proposition" value={vp} setValue={(v) => setVp(v as ValueProp | "all")} options={valueProps} />
-              </div>
-              <div className="mt-8 flex gap-3">
+              <CaseFacetsCard
+                query={query}
+                onQuery={setQuery}
+                sector={sector} setSector={setSector}
+                state={state} setState={setState}
+                companyType={companyType} setCompanyType={setCompanyType}
+                vp={vp} setVp={setVp}
+                resultCount={filtered.length}
+                onClear={clearAll}
+              />
+              <div className="mt-6 flex gap-3">
                 <button onClick={clearAll} className="flex-1 btn-outline h-11">Clear</button>
                 <button onClick={() => setDrawerOpen(false)} className="flex-1 btn-secondary h-11">Apply</button>
               </div>
@@ -303,6 +310,7 @@ const CaseStudiesIndex = () => {
           </div>
         )}
       </section>
+
 
       <CommonFinalCta />
       <WireFooter />
