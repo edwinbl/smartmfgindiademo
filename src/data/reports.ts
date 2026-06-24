@@ -66,7 +66,7 @@ const seeds: Seed[] = [
     slug: "industry-40-adoption-strategic-roadmap-indian-manufacturing",
     title: "Industry 4.0 Adoption and Strategic Roadmap for Indian Manufacturing",
     summary:
-      "CII and KPMG's first annual survey of Industry 4.0 digital maturity across ten Indian manufacturing sectors, benchmarked against Germany, Japan, South Korea, China, the US, the UK and Singapore. The report exposes wide disparities — large firms score 3.4/5 while MSMEs trail at 2.4 — and although 85% of senior leaders prioritise digitalisation, only 30% of organisations have successfully scaled their initiatives.",
+      "CII and KPMG's first annual survey of Industry 4.0 digital readiness across ten Indian manufacturing sectors, benchmarked against Germany, Japan, South Korea, China, the US, the UK and Singapore. The report exposes wide disparities — large firms score 3.4/5 while MSMEs trail at 2.4 — and although 85% of senior leaders prioritise digitalisation, only 30% of organisations have successfully scaled their initiatives.",
     industry: "Cross-sector",
     domain: "Smart Manufacturing",
     technology: "Industry 4.0",
@@ -76,7 +76,7 @@ const seeds: Seed[] = [
     author: "Confederation of Indian Industry (CII) & KPMG",
     publishedOn: "Dec 2024",
     gated: true,
-    tags: ["Industry 4.0", "Digital Maturity", "MSME", "CII-KPMG"],
+    tags: ["Industry 4.0", "Digital Readiness", "MSME", "CII-KPMG"],
     highlightStat: { value: "85% vs 30%", label: "Leaders prioritising digitalisation vs those who have scaled it" },
     collectionIds: ["smart-mfg-starter", "msme-readiness"],
     keyFindings: [
@@ -88,14 +88,14 @@ const seeds: Seed[] = [
     topicsCovered: [
       "Study objective and research methodology",
       "The digital economy: fueling global and Indian growth",
-      "Understanding Industry 4.0 maturity of Indian manufacturers",
+      "Understanding Industry 4.0 readiness of Indian manufacturers",
       "Government support for accelerating Industry 4.0 adoption",
       "Sector-wise Industry 4.0 adoption levels",
       "Strategic recommendations for Indian manufacturers",
       "Harnessing Global Value Chains (GVCs)",
     ],
     executiveSummary: [
-      "Indian manufacturers display wide disparities in digital maturity: large firms average 3.4, medium-sized 2.9 and MSMEs 2.4 on a 5-point scale; the top quartile scores 4.3 while the bottom quartile scores only 1.9 — underscoring an urgent need for targeted interventions.",
+      "Indian manufacturers display wide disparities in digital readiness: large firms average 3.4, medium-sized 2.9 and MSMEs 2.4 on a 5-point scale; the top quartile scores 4.3 while the bottom quartile scores only 1.9 — underscoring an urgent need for targeted interventions.",
       "Despite 85% of business leaders prioritising digital transformation, only 30% of organisations have successfully scaled their digital initiatives — a gap the report calls the 'Industry 4.0 paradox', attributed to unclear roadmaps, limited expertise and resource constraints.",
       "Automotive, electronics and pharmaceuticals are the frontrunner sectors; textiles, metals & mining, and heavy equipment lag, constrained by financial barriers, legacy system incompatibility and skilled workforce shortages.",
     ],

@@ -6,7 +6,7 @@ const pathways = [
   {
     icon: ClipboardCheck,
     title: "Assess Readiness",
-    desc: "Access maturity assessment models to understand where your organisation stands.",
+    desc: "Access readiness assessment models to understand where your organisation stands.",
     cta: "Access assessments",
     href: "/readiness-assessment",
     accent: "red" as const,

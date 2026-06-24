@@ -270,7 +270,7 @@ const IntentFields = ({
     <div className="grid sm:grid-cols-2 gap-4">
       <SelectField label="Industry Sector" value={values.sector || ""} onChange={(v) => setField("sector", v)}
         options={["Automotive", "Pharma", "FMCG", "Electronics", "Heavy Engineering", "Textiles", "Other"]} />
-      <SelectField label="Current Digital Maturity" value={values.maturity || ""} onChange={(v) => setField("maturity", v)}
+      <SelectField label="Current Digital Readiness" value={values.readiness || ""} onChange={(v) => setField("readiness", v)}
         options={["Just Starting", "Exploring", "Piloting", "Scaling", "Mature"]} />
       <div className="sm:col-span-2">
         <FloatingInput label="Key Business Challenges" value={values.challenges || ""} onChange={(e) => setField("challenges", e.target.value)} />

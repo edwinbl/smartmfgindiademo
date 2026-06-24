@@ -19,7 +19,7 @@ export const faqs = [
   },
   {
     q: "How does ecosystem matchmaking work?",
-    a: "Based on your maturity, sector and goals we suggest relevant programmes, peer enterprises, technology partners and demo centres so you can move forward with confidence.",
+    a: "Based on your readiness, sector and goals we suggest relevant programmes, peer enterprises, technology partners and demo centres so you can move forward with confidence.",
   },
 ];
 

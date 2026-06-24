@@ -237,9 +237,9 @@ const ReadinessAssessment = () => {
             <div className="mt-10 grid gap-6 md:grid-cols-2">
               {[
                 {
-                  slug: "smart-manufacturing-maturity",
+                  slug: "smart-manufacturing-readiness",
                   tag: "Smart Manufacturing",
-                  title: "Smart Manufacturing Maturity Assessment Model",
+                  title: "Smart Manufacturing Readiness Assessment Model",
                   desc: "Evaluate your readiness across smart manufacturing dimensions — operations, digital adoption, quality and sustainability.",
                   dimensions: ["Operations", "Digital", "Quality", "Sustainability"],
                   duration: "25–40 mins",
@@ -248,10 +248,10 @@ const ReadinessAssessment = () => {
                   accentSoft: "hsl(var(--navy-050))",
                 },
                 {
-                  slug: "industry-4-0-maturity",
+                  slug: "industry-4-0-readiness",
                   tag: "Industry 4.0",
-                  title: "Industry 4.0 Maturity Assessment",
-                  desc: "Benchmark your Industry 4.0 maturity across technology, processes, people and data foundations.",
+                  title: "Industry 4.0 Readiness Assessment",
+                  desc: "Benchmark your Industry 4.0 readiness across technology, processes, people and data foundations.",
                   dimensions: ["Technology", "Processes", "People", "Data"],
                   duration: "30–45 mins",
                   audience: "Manufacturing leaders & plant heads",

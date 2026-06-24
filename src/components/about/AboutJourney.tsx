@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ClipboardCheck, Compass, Cog, Network, Award } from "lucide-react";
 
 const steps = [
-  { Icon: ClipboardCheck, title: "Assess", line: "Understand where you stand on the maturity curve." },
+  { Icon: ClipboardCheck, title: "Assess", line: "Understand where you stand on the readiness curve." },
   { Icon: Compass, title: "Guide", line: "Get a tailored roadmap built around your priorities." },
   { Icon: Cog, title: "Enable", line: "Access programmes, training and proven solutions." },
   { Icon: Network, title: "Connect", line: "Plug into the ecosystem of experts and partners." },

@@ -12,19 +12,19 @@ export const WireAssessmentTeaser = () => {
     <WireSection id="assessment" alt>
       <div className="grid gap-8 md:gap-12 lg:grid-cols-[1fr_1.05fr] items-center">
         <div>
-          <div className="section-eyebrow mb-3">Maturity Assessments</div>
+          <div className="section-eyebrow mb-3">Readiness Assessments</div>
           <h2 className="font-display font-bold text-2xl sm:text-[28px] md:text-[36px] leading-tight tracking-tight text-navy-800">
             Assessment to Transformation
           </h2>
           <p className="mt-5 text-base md:text-lg text-[hsl(var(--neutral-700))] max-w-xl">
-            Access current smart manufacturing and Industry 4.0 maturity assessment models to understand where your
+            Access current smart manufacturing and Industry 4.0 readiness assessment models to understand where your
             organisation stands before deciding what to adopt.
           </p>
 
           <div className="mt-6 space-y-3">
             {[
-              { name: "Smart Manufacturing Maturity Assessment Model", tag: "Available" },
-              { name: "Industry 4.0 Maturity Assessment", tag: "Available" },
+              { name: "Smart Manufacturing Readiness Assessment Model", tag: "Available" },
+              { name: "Industry 4.0 Readiness Assessment", tag: "Available" },
             ].map((m) => (
               <div
                 key={m.name}
@@ -46,7 +46,7 @@ export const WireAssessmentTeaser = () => {
 
           <div className="mt-7">
             <Link to="/readiness-assessment" className="btn-primary">
-              Access Maturity Assessments <ArrowRight className="!h-4 !w-4" />
+              Access Readiness Assessments <ArrowRight className="!h-4 !w-4" />
             </Link>
           </div>
         </div>
