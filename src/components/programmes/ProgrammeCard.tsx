@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Clock, MapPin, ArrowRight, GraduationCap, Award, Sparkles } from "lucide-react";
 import { accentBar, accentSoft, accentText } from "@/lib/programmeAccents";
 import type { ProgrammeItem } from "@/data/programmes";
+import { SampleCardFold } from "@/components/common/FabricatedMarker";
 
 interface Props {
   programme: ProgrammeItem;
@@ -14,7 +15,8 @@ const ProgrammeCardImpl = ({ programme, onRegister, recommended }: Props) => {
   const p = programme;
   return (
     <article className="cii-card overflow-hidden flex flex-col group relative">
-      {recommended && (
+      {p.isSample && <SampleCardFold />}
+      {recommended && !p.isSample && (
         <span className="absolute top-3 right-3 z-10 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[hsl(var(--red-600))] text-white text-[10px] uppercase tracking-[0.12em] font-bold shadow-sm">
           <Sparkles className="h-2.5 w-2.5" /> Recommended
         </span>
