@@ -24,6 +24,7 @@ export interface ProgrammeFaculty {
   role: string;
   org: string;
   initials: string;
+  photo?: string;
 }
 
 export interface ProgrammeModule {
