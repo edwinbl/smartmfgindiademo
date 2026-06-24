@@ -1,5 +1,6 @@
 import { WireSection } from "./WireSection";
 import { Send, Sparkles } from "lucide-react";
+import { SampleInlineTag } from "@/components/common/FabricatedMarker";
 
 const prompts = [
   "What is the readiness assessment?",
