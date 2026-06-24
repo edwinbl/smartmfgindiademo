@@ -1,55 +1,51 @@
 import { Info } from "lucide-react";
 
 /**
- * Visual markers that flag content as SAMPLE (master-template example).
- * Use the same amber treatment everywhere so it is unmistakable across the platform.
+ * Single, unmistakable "Sample" treatment used wherever a page or card
+ * exists only to demonstrate the layout/template before real content is
+ * supplied. One colour (electric magenta) so it's instantly recognisable
+ * across the platform.
  *
- * - SampleCardFold: corner fold on cards
- * - SampleBanner: thin ribbon shown beneath the hero on detail pages
- * - SampleInlineTag: small inline pill to mark any sample snippet (stat, quote, etc.)
+ * - SampleCardFold:  corner fold on cards
+ * - SampleBanner:    thin ribbon shown beneath the hero on detail pages
+ * - SampleInlineTag: small pill to mark any sample snippet (stat, quote, chat)
  *
- * Legacy aliases (FabricatedCardRibbon, FabricatedBanner) are kept so existing
- * imports continue to work without churn.
+ * Legacy aliases (MasterCardFold, MasterBanner, FabricatedCardRibbon,
+ * FabricatedBanner) are kept so existing imports continue to work.
  */
 
-const AMBER = "hsl(38 92% 55%)";
-const AMBER_DARK = "hsl(28 80% 32%)";
-const AMBER_BG = "hsl(45 100% 96%)";
+const PINK = "hsl(310 92% 48%)";
+const PINK_DEEP = "hsl(285 85% 38%)";
+const PINK_DARK = "hsl(300 80% 22%)";
+const PINK_BG = "hsl(312 90% 97%)";
 
-// Stark electric-magenta treatment reserved for the MASTER TEMPLATE marker so
-// it is unmistakably different from the amber Sample marker at any glance.
-const GOLD = "hsl(310 92% 48%)";
-const GOLD_DEEP = "hsl(285 85% 38%)";
-const GOLD_DARK = "hsl(300 80% 22%)";
-const GOLD_BG = "hsl(312 90% 97%)";
-
-
-
-/** Corner fold for cards. Sits at the top-right and reads as "Sample". */
+/** Corner fold for sample/template cards. */
 export const SampleCardFold = () => (
   <div
     className="pointer-events-none absolute top-0 right-0 z-20 select-none"
-    title="Sample content — master template for design reference"
+    title="Sample content — template for design reference"
     aria-label="Sample"
   >
-    <div className="relative" style={{ width: 76, height: 76 }}>
+    <div className="relative" style={{ width: 86, height: 86 }}>
       <div
         className="absolute inset-0"
         style={{
-          background: `linear-gradient(225deg, ${AMBER} 0%, ${AMBER} 52%, transparent 52%)`,
-          filter: "drop-shadow(-1px 2px 4px rgba(0,0,0,0.18))",
+          background: `linear-gradient(225deg, ${PINK} 0%, ${PINK_DEEP} 52%, transparent 52%)`,
+          filter: "drop-shadow(-1px 2px 5px rgba(0,0,0,0.22))",
           borderTopRightRadius: 12,
         }}
       />
       <span
         className="absolute text-white font-bold uppercase tracking-[0.14em]"
         style={{
-          top: 16,
-          right: 2,
+          top: 17,
+          right: 0,
           fontSize: 9,
           transform: "rotate(45deg)",
           transformOrigin: "center",
-          textShadow: "0 1px 1px rgba(0,0,0,0.2)",
+          textShadow: "0 1px 1px rgba(0,0,0,0.25)",
+          width: 86,
+          textAlign: "center",
         }}
       >
         Sample
@@ -62,21 +58,21 @@ export const SampleCardFold = () => (
 export const SampleBanner = ({ note }: { note?: string }) => (
   <div
     className="border-y"
-    style={{ background: AMBER_BG, borderColor: AMBER }}
+    style={{ background: PINK_BG, borderColor: PINK }}
     role="note"
     aria-label="Sample content"
   >
     <div className="container-cii py-2.5 flex items-center gap-3">
       <span
         className="inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[10px] uppercase tracking-[0.14em] font-bold text-white shrink-0"
-        style={{ background: AMBER }}
+        style={{ background: PINK }}
       >
         <Info className="h-3 w-3" />
         Sample
       </span>
-      <p className="text-xs sm:text-sm leading-snug" style={{ color: AMBER_DARK }}>
+      <p className="text-xs sm:text-sm leading-snug" style={{ color: PINK_DARK }}>
         {note ??
-          "This page is a master template — the layout and elements are real, but the content shown is sample data and will be replaced with verified source material."}
+          "This page is a sample template — the layout and every section are real, but the content shown is illustrative and will be replaced with verified source material."}
       </p>
     </div>
   </div>
@@ -86,7 +82,7 @@ export const SampleBanner = ({ note }: { note?: string }) => (
 export const SampleInlineTag = ({ label = "Sample", className = "" }: { label?: string; className?: string }) => (
   <span
     className={`inline-flex items-center gap-1 rounded-full px-1.5 py-0.5 text-[9px] uppercase tracking-[0.12em] font-bold ${className}`}
-    style={{ background: AMBER_BG, color: AMBER_DARK, border: `1px solid ${AMBER}` }}
+    style={{ background: PINK_BG, color: PINK_DARK, border: `1px solid ${PINK}` }}
     title="Sample content"
   >
     <Info className="h-2.5 w-2.5" />
@@ -94,67 +90,9 @@ export const SampleInlineTag = ({ label = "Sample", className = "" }: { label?: 
   </span>
 );
 
-/** Rich-gold corner fold reserved for the MASTER TEMPLATE card. */
-export const MasterCardFold = () => (
-  <div
-    className="pointer-events-none absolute top-0 right-0 z-20 select-none"
-    title="Master template — reference layout other detail pages follow"
-    aria-label="Master template"
-  >
-    <div className="relative" style={{ width: 92, height: 92 }}>
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `linear-gradient(225deg, ${GOLD} 0%, ${GOLD_DEEP} 52%, transparent 52%)`,
-          filter: "drop-shadow(-1px 2px 5px rgba(0,0,0,0.22))",
-          borderTopRightRadius: 12,
-        }}
-      />
-      <span
-        className="absolute text-white font-bold uppercase tracking-[0.14em]"
-        style={{
-          top: 18,
-          right: 0,
-          fontSize: 9,
-          transform: "rotate(45deg)",
-          transformOrigin: "center",
-          textShadow: "0 1px 1px rgba(0,0,0,0.25)",
-          width: 92,
-          textAlign: "center",
-        }}
-      >
-        Master
-      </span>
-    </div>
-  </div>
-);
-
-/** Gold banner under the hero on the master-template detail page. */
-export const MasterBanner = ({ note }: { note?: string }) => (
-  <div
-    className="border-y"
-    style={{ background: GOLD_BG, borderColor: GOLD }}
-    role="note"
-    aria-label="Master template"
-  >
-    <div className="container-cii py-2.5 flex items-center gap-3">
-      <span
-        className="inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[10px] uppercase tracking-[0.14em] font-bold text-white shrink-0"
-        style={{ background: GOLD }}
-      >
-        <Info className="h-3 w-3" />
-        Master Template
-      </span>
-      <p className="text-xs sm:text-sm leading-snug" style={{ color: GOLD_DARK }}>
-        {note ??
-          "This page is the master template — every section and layout pattern other detail pages in this category follow is exemplified here. Content shown is sample and will be replaced with verified source material."}
-      </p>
-    </div>
-  </div>
-);
-
-
 // Legacy aliases — keep existing imports working.
+export const MasterCardFold = SampleCardFold;
+export const MasterBanner = SampleBanner;
 export const FabricatedCardRibbon = SampleCardFold;
 export const FabricatedBanner = SampleBanner;
 export const FabricatedSectionTint = ({ children }: { children: React.ReactNode }) => <>{children}</>;
