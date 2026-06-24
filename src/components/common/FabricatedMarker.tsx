@@ -105,7 +105,7 @@ export const MasterCardFold = () => (
       <div
         className="absolute inset-0"
         style={{
-          background: `linear-gradient(225deg, ${GOLD} 0%, hsl(43 80% 38%) 52%, transparent 52%)`,
+          background: `linear-gradient(225deg, ${GOLD} 0%, ${GOLD_DEEP} 52%, transparent 52%)`,
           filter: "drop-shadow(-1px 2px 5px rgba(0,0,0,0.22))",
           borderTopRightRadius: 12,
         }}
