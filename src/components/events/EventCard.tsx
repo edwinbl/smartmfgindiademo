@@ -232,15 +232,6 @@ const ProgrammeCard = ({ event, onRegister, className }: Props) => (
 );
 
 export const EventCard = ({ event, onRegister, className }: Props) => {
-  const wrapperClass = cn(
-    "relative",
-    event.isFabricated &&
-      "ring-2 ring-offset-2 ring-offset-background rounded-xl",
-    className,
-  );
-  const ringStyle = event.isFabricated
-    ? { boxShadow: "0 0 0 2px hsl(38 92% 55%)", borderRadius: 12 }
-    : undefined;
   const inner = (() => {
     switch (event.type) {
       case "Workshop":
@@ -256,7 +247,7 @@ export const EventCard = ({ event, onRegister, className }: Props) => {
     }
   })();
   return (
-    <div className={cn("relative", className)} style={ringStyle}>
+    <div className={cn("relative overflow-hidden rounded-xl", className)}>
       {event.isFabricated && <FabricatedCardRibbon />}
       {inner}
     </div>
