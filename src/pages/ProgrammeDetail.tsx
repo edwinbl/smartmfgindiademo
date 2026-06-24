@@ -29,6 +29,7 @@ import { ProgrammeRecording } from "@/components/programmes/detail/ProgrammeReco
 import { RelatedProgrammes } from "@/components/programmes/detail/RelatedProgrammes";
 import { MobileStickyRegister } from "@/components/programmes/detail/MobileStickyRegister";
 import { getProgrammeBySlug, getRelatedProgrammes } from "@/data/programmes";
+import { SampleBanner } from "@/components/common/FabricatedMarker";
 import { toast } from "@/hooks/use-toast";
 
 const ProgrammeDetail = () => {
