@@ -122,6 +122,8 @@ export const events: EventItem[] = [
   // FLAGSHIP
   {
     slug: "smart-mfg-summit-2026",
+    isFabricated: true,
+    fabricationNote: "Sample upcoming-event template — illustrates layout only. No source content has been supplied for this event yet.",
     type: "Summit",
     title: "Smart Manufacturing Summit 2026",
     tagline: "India's flagship Industry 4.0 leadership convening",
@@ -179,6 +181,8 @@ export const events: EventItem[] = [
   // CONFERENCE
   {
     slug: "industry40-leaders-conference",
+    isFabricated: true,
+    fabricationNote: "Sample upcoming-event template — illustrates layout only. No source content has been supplied for this event yet.",
     type: "Workshop",
     title: "Industry 4.0 Leaders Conference",
     tagline: "Scaling digital transformation in Indian manufacturing",
@@ -211,6 +215,8 @@ export const events: EventItem[] = [
   // ROUNDTABLES
   {
     slug: "ceo-roundtable-ai-operations",
+    isFabricated: true,
+    fabricationNote: "Sample upcoming-event template — illustrates layout only. No source content has been supplied for this event yet.",
     type: "Roundtable",
     title: "CEO Roundtable: AI in Operations",
     tagline: "Invitation-only discussion with manufacturing CEOs",
@@ -245,6 +251,8 @@ export const events: EventItem[] = [
   },
   {
     slug: "msme-leaders-roundtable",
+    isFabricated: true,
+    fabricationNote: "Sample upcoming-event template — illustrates layout only. No source content has been supplied for this event yet.",
     type: "Roundtable",
     title: "MSME Leaders Roundtable: Cost of Digital",
     tagline: "Frank conversations on what really works for MSMEs",
@@ -274,6 +282,8 @@ export const events: EventItem[] = [
   // WEBINARS
   {
     slug: "webinar-predictive-maintenance",
+    isFabricated: true,
+    fabricationNote: "Sample upcoming-event template — illustrates layout only. No source content has been supplied for this event yet.",
     type: "Workshop",
     title: "Predictive Maintenance in 90 Days",
     tagline: "A practical roadmap for MSMEs",
@@ -306,6 +316,8 @@ export const events: EventItem[] = [
   },
   {
     slug: "webinar-energy-monitoring",
+    isFabricated: true,
+    fabricationNote: "Sample upcoming-event template — illustrates layout only. No source content has been supplied for this event yet.",
     type: "Workshop",
     title: "Energy Monitoring for Net-Zero",
     tagline: "From metering to insights",
@@ -332,6 +344,8 @@ export const events: EventItem[] = [
   },
   {
     slug: "webinar-cybersecurity-ot",
+    isFabricated: true,
+    fabricationNote: "Sample upcoming-event template — illustrates layout only. No source content has been supplied for this event yet.",
     type: "Workshop",
     title: "Cybersecurity for OT Environments",
     tagline: "Protecting connected shop floors",
