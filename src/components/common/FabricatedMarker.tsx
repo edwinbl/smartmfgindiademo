@@ -92,6 +92,66 @@ export const SampleInlineTag = ({ label = "Sample", className = "" }: { label?: 
   </span>
 );
 
+/** Rich-gold corner fold reserved for the MASTER TEMPLATE card. */
+export const MasterCardFold = () => (
+  <div
+    className="pointer-events-none absolute top-0 right-0 z-20 select-none"
+    title="Master template — reference layout other detail pages follow"
+    aria-label="Master template"
+  >
+    <div className="relative" style={{ width: 92, height: 92 }}>
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `linear-gradient(225deg, ${GOLD} 0%, hsl(43 80% 38%) 52%, transparent 52%)`,
+          filter: "drop-shadow(-1px 2px 5px rgba(0,0,0,0.22))",
+          borderTopRightRadius: 12,
+        }}
+      />
+      <span
+        className="absolute text-white font-bold uppercase tracking-[0.14em]"
+        style={{
+          top: 18,
+          right: 0,
+          fontSize: 9,
+          transform: "rotate(45deg)",
+          transformOrigin: "center",
+          textShadow: "0 1px 1px rgba(0,0,0,0.25)",
+          width: 92,
+          textAlign: "center",
+        }}
+      >
+        Master
+      </span>
+    </div>
+  </div>
+);
+
+/** Gold banner under the hero on the master-template detail page. */
+export const MasterBanner = ({ note }: { note?: string }) => (
+  <div
+    className="border-y"
+    style={{ background: GOLD_BG, borderColor: GOLD }}
+    role="note"
+    aria-label="Master template"
+  >
+    <div className="container-cii py-2.5 flex items-center gap-3">
+      <span
+        className="inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[10px] uppercase tracking-[0.14em] font-bold text-white shrink-0"
+        style={{ background: GOLD }}
+      >
+        <Info className="h-3 w-3" />
+        Master Template
+      </span>
+      <p className="text-xs sm:text-sm leading-snug" style={{ color: GOLD_DARK }}>
+        {note ??
+          "This page is the master template — every section and layout pattern other detail pages in this category follow is exemplified here. Content shown is sample and will be replaced with verified source material."}
+      </p>
+    </div>
+  </div>
+);
+
+
 // Legacy aliases — keep existing imports working.
 export const FabricatedCardRibbon = SampleCardFold;
 export const FabricatedBanner = SampleBanner;
