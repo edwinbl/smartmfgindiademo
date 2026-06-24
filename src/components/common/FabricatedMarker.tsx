@@ -19,34 +19,28 @@ const AMBER_BG = "hsl(45 100% 96%)";
 /** Corner fold for cards. Sits at the top-right and reads as "Sample". */
 export const SampleCardFold = () => (
   <div
-    className="pointer-events-none absolute top-0 right-0 z-10 select-none"
+    className="pointer-events-none absolute top-0 right-0 z-20 select-none"
     title="Sample content — master template for design reference"
     aria-label="Sample"
   >
-    {/* Triangular fold */}
-    <div
-      className="relative"
-      style={{
-        width: 76,
-        height: 76,
-      }}
-    >
+    <div className="relative" style={{ width: 120, height: 120 }}>
       <div
         className="absolute inset-0"
         style={{
-          background: `linear-gradient(225deg, ${AMBER} 0%, ${AMBER} 50%, transparent 50%)`,
-          filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.18))",
+          background: `linear-gradient(225deg, ${AMBER} 0%, ${AMBER} 52%, transparent 52%)`,
+          filter: "drop-shadow(-2px 3px 6px rgba(0,0,0,0.25))",
           borderTopRightRadius: 12,
         }}
       />
       <span
-        className="absolute text-white font-bold uppercase tracking-[0.14em]"
+        className="absolute text-white font-extrabold uppercase tracking-[0.18em]"
         style={{
-          top: 14,
+          top: 26,
           right: 6,
-          fontSize: 10,
+          fontSize: 12,
           transform: "rotate(45deg)",
           transformOrigin: "center",
+          textShadow: "0 1px 2px rgba(0,0,0,0.25)",
         }}
       >
         Sample
