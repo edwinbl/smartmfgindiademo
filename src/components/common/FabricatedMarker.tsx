@@ -1,72 +1,97 @@
-import { AlertTriangle, FlaskConical } from "lucide-react";
+import { Info } from "lucide-react";
 
 /**
- * Visual markers that flag content as a fabricated master-template example.
+ * Visual markers that flag content as SAMPLE (master-template example).
  * Use the same amber treatment everywhere so it is unmistakable across the platform.
+ *
+ * - SampleCardFold: corner fold on cards
+ * - SampleBanner: thin ribbon shown beneath the hero on detail pages
+ * - SampleInlineTag: small inline pill to mark any sample snippet (stat, quote, etc.)
+ *
+ * Legacy aliases (FabricatedCardRibbon, FabricatedBanner) are kept so existing
+ * imports continue to work without churn.
  */
 
+const AMBER = "hsl(38 92% 55%)";
+const AMBER_DARK = "hsl(28 80% 32%)";
 const AMBER_BG = "hsl(45 100% 96%)";
-const AMBER_BORDER = "hsl(38 92% 55%)";
-const AMBER_TEXT = "hsl(28 80% 32%)";
 
-/** Small corner ribbon for cards. */
-export const FabricatedCardRibbon = () => (
+/** Corner fold for cards. Sits at the top-right and reads as "Sample". */
+export const SampleCardFold = () => (
   <div
-    className="absolute top-2 right-2 z-10 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] uppercase tracking-[0.12em] font-bold shadow-sm"
-    style={{
-      background: AMBER_BORDER,
-      color: "white",
-    }}
-    title="Master template — fabricated example for design reference"
+    className="pointer-events-none absolute top-0 right-0 z-10 select-none"
+    title="Sample content — master template for design reference"
+    aria-label="Sample"
   >
-    <FlaskConical className="h-2.5 w-2.5" />
-    Template
-  </div>
-);
-
-/** Full-width banner for detail pages. */
-export const FabricatedBanner = ({ note }: { note?: string }) => (
-  <div
-    className="border-y"
-    style={{
-      background: AMBER_BG,
-      borderColor: AMBER_BORDER,
-    }}
-    role="note"
-    aria-label="Fabricated master-template content"
-  >
-    <div className="container-cii py-3 flex items-start gap-3">
+    {/* Triangular fold */}
+    <div
+      className="relative"
+      style={{
+        width: 76,
+        height: 76,
+      }}
+    >
       <div
-        className="h-8 w-8 shrink-0 rounded-full grid place-items-center"
-        style={{ background: AMBER_BORDER, color: "white" }}
+        className="absolute inset-0"
+        style={{
+          background: `linear-gradient(225deg, ${AMBER} 0%, ${AMBER} 50%, transparent 50%)`,
+          filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.18))",
+          borderTopRightRadius: 12,
+        }}
+      />
+      <span
+        className="absolute text-white font-bold uppercase tracking-[0.14em]"
+        style={{
+          top: 14,
+          right: 6,
+          fontSize: 10,
+          transform: "rotate(45deg)",
+          transformOrigin: "center",
+        }}
       >
-        <AlertTriangle className="h-4 w-4" />
-      </div>
-      <div className="min-w-0">
-        <div
-          className="text-[11px] uppercase tracking-[0.14em] font-bold"
-          style={{ color: AMBER_TEXT }}
-        >
-          Master template · Fabricated example
-        </div>
-        <p className="mt-0.5 text-xs sm:text-sm" style={{ color: AMBER_TEXT }}>
-          {note ??
-            "This page demonstrates the layout and all available elements. The content is fabricated and will be replaced with real source data."}
-        </p>
-      </div>
+        Sample
+      </span>
     </div>
   </div>
 );
 
-/** Subtle full-section tint wrapper. Use around the detail body so the entire example reads as template. */
-export const FabricatedSectionTint = ({ children }: { children: React.ReactNode }) => (
+/** Full-width ribbon shown directly beneath the hero on a detail page. */
+export const SampleBanner = ({ note }: { note?: string }) => (
   <div
-    className="relative"
-    style={{
-      background: "linear-gradient(180deg, hsl(45 100% 98%) 0%, hsl(45 100% 99%) 100%)",
-      borderLeft: `4px solid ${AMBER_BORDER}`,
-    }}
+    className="border-y"
+    style={{ background: AMBER_BG, borderColor: AMBER }}
+    role="note"
+    aria-label="Sample content"
   >
-    {children}
+    <div className="container-cii py-2.5 flex items-center gap-3">
+      <span
+        className="inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[10px] uppercase tracking-[0.14em] font-bold text-white shrink-0"
+        style={{ background: AMBER }}
+      >
+        <Info className="h-3 w-3" />
+        Sample
+      </span>
+      <p className="text-xs sm:text-sm leading-snug" style={{ color: AMBER_DARK }}>
+        {note ??
+          "This page is a master template — the layout and elements are real, but the content shown is sample data and will be replaced with verified source material."}
+      </p>
+    </div>
   </div>
 );
+
+/** Inline pill — use beside any sample stat, quote, image or paragraph. */
+export const SampleInlineTag = ({ label = "Sample", className = "" }: { label?: string; className?: string }) => (
+  <span
+    className={`inline-flex items-center gap-1 rounded-full px-1.5 py-0.5 text-[9px] uppercase tracking-[0.12em] font-bold ${className}`}
+    style={{ background: AMBER_BG, color: AMBER_DARK, border: `1px solid ${AMBER}` }}
+    title="Sample content"
+  >
+    <Info className="h-2.5 w-2.5" />
+    {label}
+  </span>
+);
+
+// Legacy aliases — keep existing imports working.
+export const FabricatedCardRibbon = SampleCardFold;
+export const FabricatedBanner = SampleBanner;
+export const FabricatedSectionTint = ({ children }: { children: React.ReactNode }) => <>{children}</>;
