@@ -36,6 +36,7 @@ export interface ProgrammeModule {
 
 export interface ProgrammeItem {
   slug: string;
+  isSample?: boolean;
   type: ProgrammeType;
   title: string;
   tagline: string;
@@ -623,6 +624,73 @@ export const programmes: ProgrammeItem[] = [
         { label: "Speakers", value: "14" },
       ],
     },
+  },
+  // SAMPLE TEMPLATE — exercises every section of the programme detail layout.
+  // Replace this entry with a real programme once content is supplied.
+  {
+    slug: "sample-smart-factory-leadership-bootcamp",
+    isSample: true,
+    type: "Leadership",
+    title: "Sample · Smart Factory Leadership Bootcamp",
+    tagline: "Sample programme — template for design reference",
+    summary:
+      "A sample programme entry retained as the template for the programme detail layout. Every section a real CII programme page can carry — overview, learning outcomes, audience, modules, faculty, batches, partners, fees, testimonials, gallery and FAQs — is shown here so the design can be reviewed end-to-end. Replace this entry with real content when the corresponding programme brochure is supplied.",
+    startDate: "Sample · Q4 2026 · Multi-city",
+    isoDate: "2026-11-12T09:30:00+05:30",
+    duration: "3 days",
+    format: "In-person · Multi-city",
+    mode: "In-person",
+    level: "Advanced",
+    industry: "Manufacturing",
+    technology: "Smart Manufacturing",
+    segment: "Enterprise",
+    certification: true,
+    status: "open",
+    seats: "Sample · 35 seats per batch",
+    featured: false,
+    registrationLabel: "Sample · Register Now",
+    outcomes: ["smart-factory", "leadership-innovation", "operational-efficiency"],
+    tags: ["Sample", "Template", "Leadership", "Smart Factory"],
+    highlights: [
+      { label: "Duration", value: "3 days" },
+      { label: "Format", value: "In-person" },
+      { label: "Certification", value: "CII Joint Certificate" },
+      { label: "Cohort", value: "35 leaders" },
+    ],
+    learningOutcomes: [
+      "Sample outcome — translate enterprise vision into a smart-factory roadmap.",
+      "Sample outcome — sequence digital, automation and workforce investments for ROI.",
+      "Sample outcome — diagnose readiness gaps and select the right interventions.",
+      "Sample outcome — build the governance to scale pilots into enterprise programmes.",
+    ],
+    audience: [
+      { persona: "Plant Heads", description: "Sample audience — plant leaders setting the smart-factory agenda." },
+      { persona: "COOs / VPs Operations", description: "Sample audience — operations leaders sponsoring transformation." },
+      { persona: "Digital Transformation Leads", description: "Sample audience — heads of digital, IT-OT and Industry 4.0." },
+    ],
+    modules: [
+      { label: "Day 1", title: "Sample module — smart-factory strategy", duration: "8 hrs", topics: ["Sample topic — vision & value", "Sample topic — readiness diagnostic", "Sample topic — roadmap canvas"] },
+      { label: "Day 2", title: "Sample module — technology & people", duration: "8 hrs", topics: ["Sample topic — automation stack", "Sample topic — data foundations", "Sample topic — Workforce 4.0"] },
+      { label: "Day 3", title: "Sample module — scaling & governance", duration: "8 hrs", topics: ["Sample topic — pilot to scale", "Sample topic — KPI governance", "Sample topic — next 90 days"] },
+    ],
+    faculty: [
+      { name: "Sample Faculty A", role: "Sample · Programme Director", org: "CII Smart Manufacturing", initials: "SA" },
+      { name: "Sample Faculty B", role: "Sample · Lead Trainer", org: "Sample Partner Institute", initials: "SB" },
+    ],
+    faqs: [
+      { q: "Sample question — who should attend?", a: "Sample answer — senior manufacturing leaders driving smart-factory programmes at enterprise scale." },
+      { q: "Sample question — is certification provided?", a: "Sample answer — yes, a joint certificate from CII and the partner institute on completion." },
+    ],
+    batches: [
+      { id: "sample-batch-1", label: "Sample Batch · Mumbai", dates: "12–14 November 2026", location: "Mumbai", status: "open" },
+      { id: "sample-batch-2", label: "Sample Batch · Bengaluru", dates: "9–11 December 2026", location: "Bengaluru", status: "open" },
+    ],
+    feeTable: [
+      { segment: "CII Member", member: "₹ Sample", nonMember: "₹ Sample" },
+      { segment: "Non-Member", member: "₹ Sample", nonMember: "₹ Sample" },
+    ],
+    feeNote: "Sample fee note — GST as applicable. Replace with verified pricing.",
+    accent: "navy",
   },
 ];
 
