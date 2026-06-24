@@ -126,8 +126,9 @@ export const events: EventItem[] = [
   // FLAGSHIP
   {
     slug: "smart-mfg-summit-2026",
-    isFabricated: true,
-    fabricationNote: "Sample upcoming-event template — illustrates layout only. No source content has been supplied for this event yet.",
+    isMasterTemplate: true,
+    fabricationNote: "Master template for upcoming-event detail pages — illustrates every section the layout supports (highlights, speakers, tracks, agenda, partners, FAQs). Content is sample and will be replaced when real event documentation is supplied.",
+
     type: "Summit",
     title: "Smart Manufacturing Summit 2026",
     tagline: "India's flagship Industry 4.0 leadership convening",
