@@ -31,7 +31,8 @@ export const WireProgrammes = () => {
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {upcoming.map((p) => (
-          <article key={p.slug} className="cii-card overflow-hidden flex flex-col">
+          <article key={p.slug} className="cii-card overflow-hidden flex flex-col relative">
+            {p.isSample && <SampleCardFold />}
             <div
               className="h-32 relative"
               style={{
@@ -43,7 +44,7 @@ export const WireProgrammes = () => {
             </div>
             <div className="p-6 flex flex-col flex-1">
               <h3 className="font-display font-bold text-navy-800 text-[17px] leading-snug line-clamp-3">
-                {p.title}
+                {p.isSample ? p.title.replace(/^Sample\s*·\s*/i, "") : p.title}
               </h3>
               <ul className="mt-4 space-y-2 text-sm text-[hsl(var(--neutral-700))]">
                 <li className="flex items-start gap-2">
