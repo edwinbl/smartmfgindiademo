@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { WireSection } from "./WireSection";
 import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
 import { programmes } from "@/data/programmes";
+import { SampleCardFold } from "@/components/common/FabricatedMarker";
 
 const now = Date.now();
 const upcoming = programmes
