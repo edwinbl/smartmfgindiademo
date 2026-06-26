@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { Bookmark, Download, Share2, Check } from "lucide-react";
+import { useState } from "react";
+import { Download, Share2, Check } from "lucide-react";
 import type { Report } from "@/data/reports";
-import { reportsStorage } from "@/lib/reportsStorage";
 import { toast } from "@/hooks/use-toast";
 
 interface Props {
@@ -10,13 +9,8 @@ interface Props {
 }
 
 export const ReportSummaryPanel = ({ report, onDownload }: Props) => {
-  const [saved, setSaved] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
-    setSaved(reportsStorage.isSaved(report.slug));
-    return reportsStorage.subscribe(() => setSaved(reportsStorage.isSaved(report.slug)));
-  }, [report.slug]);
 
   const handleShare = async () => {
     try {
