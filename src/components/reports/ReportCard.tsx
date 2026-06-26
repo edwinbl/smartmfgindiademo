@@ -47,17 +47,8 @@ export const ReportCard = ({ report, onDownload }: Props) => {
           <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/15 backdrop-blur">
             {report.type}
           </span>
-          <button
-            type="button"
-            onClick={toggleSave}
-            className={`h-8 w-8 grid place-items-center rounded-full bg-white/15 backdrop-blur hover:bg-white/25 transition-colors ${
-              saved ? "text-white" : "text-white/80"
-            }`}
-            aria-label={saved ? "Unsave" : "Save"}
-          >
-            <Bookmark className="h-4 w-4" fill={saved ? "currentColor" : "none"} />
-          </button>
         </div>
+
 
         <div className="relative">
           <h4 className="font-display font-bold text-[18px] leading-tight line-clamp-3 drop-shadow-md">
