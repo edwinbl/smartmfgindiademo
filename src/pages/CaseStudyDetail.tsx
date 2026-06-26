@@ -220,29 +220,16 @@ const CaseSummaryPanel = ({
             <Download className="h-4 w-4" />
             Explore report
           </button>
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              type="button"
-              onClick={() => {
-                setSaved((s) => !s);
-                toast({ title: !saved ? "Saved" : "Removed" });
-              }}
-              className="h-10 inline-flex items-center justify-center gap-2 text-xs font-semibold rounded-sm border bg-white text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))] transition-colors"
-              style={{ borderColor: "hsl(var(--neutral-200))" }}
-            >
-              <Bookmark className="h-3.5 w-3.5" fill={saved ? "currentColor" : "none"} />
-              {saved ? "Saved" : "Save"}
-            </button>
-            <button
-              type="button"
-              onClick={handleShare}
-              className="h-10 inline-flex items-center justify-center gap-2 text-xs font-semibold rounded-sm border bg-white text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))] transition-colors"
-              style={{ borderColor: "hsl(var(--neutral-200))" }}
-            >
-              {copied ? <Check className="h-3.5 w-3.5 text-[hsl(var(--india-green))]" /> : <Share2 className="h-3.5 w-3.5" />}
-              {copied ? "Copied" : "Share"}
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={handleShare}
+            className="h-10 w-full inline-flex items-center justify-center gap-2 text-xs font-semibold rounded-sm border bg-white text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))] transition-colors"
+            style={{ borderColor: "hsl(var(--neutral-200))" }}
+          >
+            {copied ? <Check className="h-3.5 w-3.5 text-[hsl(var(--india-green))]" /> : <Share2 className="h-3.5 w-3.5" />}
+            {copied ? "Copied" : "Share"}
+          </button>
+
         </div>
 
         <div
