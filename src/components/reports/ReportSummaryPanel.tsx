@@ -52,29 +52,16 @@ export const ReportSummaryPanel = ({ report, onDownload }: Props) => {
             <Download className="h-4 w-4" />
             Download Report
           </button>
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              type="button"
-              onClick={() => {
-                const next = reportsStorage.toggleSaved(report.slug);
-                toast({ title: next ? "Saved" : "Removed" });
-              }}
-              className="h-10 inline-flex items-center justify-center gap-2 text-xs font-semibold rounded-sm border bg-white text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))] transition-colors"
-              style={{ borderColor: "hsl(var(--neutral-200))" }}
-            >
-              <Bookmark className="h-3.5 w-3.5" fill={saved ? "currentColor" : "none"} />
-              {saved ? "Saved" : "Save"}
-            </button>
-            <button
-              type="button"
-              onClick={handleShare}
-              className="h-10 inline-flex items-center justify-center gap-2 text-xs font-semibold rounded-sm border bg-white text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))] transition-colors"
-              style={{ borderColor: "hsl(var(--neutral-200))" }}
-            >
-              {copied ? <Check className="h-3.5 w-3.5 text-[hsl(var(--india-green))]" /> : <Share2 className="h-3.5 w-3.5" />}
-              {copied ? "Copied" : "Share"}
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={handleShare}
+            className="h-10 w-full inline-flex items-center justify-center gap-2 text-xs font-semibold rounded-sm border bg-white text-[hsl(var(--navy-800))] hover:bg-[hsl(var(--neutral-50))] transition-colors"
+            style={{ borderColor: "hsl(var(--neutral-200))" }}
+          >
+            {copied ? <Check className="h-3.5 w-3.5 text-[hsl(var(--india-green))]" /> : <Share2 className="h-3.5 w-3.5" />}
+            {copied ? "Copied" : "Share"}
+          </button>
+
         </div>
 
         <div className="px-5 pb-5 pt-2 space-y-3 text-sm border-t" style={{ borderColor: "hsl(var(--neutral-150))" }}>
