@@ -54,35 +54,6 @@ export const ReportsHero = ({ query = "", onQuery, onTag }: Props) => {
             operational readiness and business transformation.
           </p>
 
-          {/* Smart search bar */}
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              focusResults();
-            }}
-            className="mt-7 relative max-w-2xl"
-          >
-            <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-[hsl(var(--neutral-500))]" />
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => onQuery?.(e.target.value)}
-              placeholder="Search by sector, topic, business challenge or report title…"
-              className="w-full h-14 pl-14 pr-32 rounded-full border bg-white text-sm text-[hsl(var(--neutral-900))] placeholder:text-[hsl(var(--neutral-500))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] shadow-sm transition-shadow"
-              style={{ borderColor: "hsl(var(--neutral-200))" }}
-              aria-label="Search reports"
-            />
-            <button
-              type="submit"
-              className="absolute right-2 top-1/2 -translate-y-1/2 h-10 px-5 rounded-full text-xs font-bold uppercase tracking-wider text-white"
-              style={{
-                background:
-                  "linear-gradient(135deg, hsl(var(--navy-800)), hsl(var(--navy-600)))",
-              }}
-            >
-              Search
-            </button>
-          </form>
 
 
         </div>
