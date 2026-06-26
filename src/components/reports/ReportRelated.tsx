@@ -26,8 +26,8 @@ export const ReportRelated = ({ related }: Props) => {
                 {r.title}
               </h3>
               <p className="mt-1.5 text-xs text-[hsl(var(--neutral-700))] leading-relaxed line-clamp-2">{r.summary}</p>
-              <div className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-[hsl(var(--navy-700))] group-hover:text-[hsl(var(--red-600))]">
-                Read more <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+              <div className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-[hsl(var(--navy-700))] group-hover:text-[hsl(var(--red-600))]" aria-label={`Read the ${r.title} report`}>
+                Read the {r.type.toLowerCase()} <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
               </div>
             </div>
           </Link>

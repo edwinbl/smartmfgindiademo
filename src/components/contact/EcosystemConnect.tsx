@@ -37,8 +37,8 @@ export const EcosystemConnect = () => {
               <h3 className="font-display mt-4 text-base font-bold text-[hsl(var(--navy-900))]">{title}</h3>
               <p className="mt-1.5 text-sm text-[hsl(var(--neutral-500))] leading-relaxed">{desc}</p>
               <div className="mt-4 flex items-center gap-4">
-                <a href="#intent" className="link-arrow text-xs">Connect →</a>
-                <a href="#intent" className="text-xs font-semibold text-[hsl(var(--neutral-500))] hover:text-[hsl(var(--navy-700))]">Learn more</a>
+                <a href="#intent" className="link-arrow text-xs" aria-label={`Connect with ${title}`}>Connect with {title} →</a>
+                <a href="#intent" className="text-xs font-semibold text-[hsl(var(--neutral-500))] hover:text-[hsl(var(--navy-700))]" aria-label={`Explore ${title} opportunities`}>Explore {title}</a>
               </div>
             </div>
           ))}
