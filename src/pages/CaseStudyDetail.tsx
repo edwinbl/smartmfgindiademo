@@ -176,7 +176,7 @@ const CaseSummaryPanel = ({
   onDownload: () => void;
 }) => {
   const [copied, setCopied] = useState(false);
-  const [saved, setSaved] = useState(false);
+  
 
   const handleShare = async () => {
     try {
