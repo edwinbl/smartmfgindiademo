@@ -25,7 +25,7 @@ const About = () => {
   return (
     <div className="min-h-dvh bg-background text-foreground">
       <SEO
-        title="About — Accelerating India's Smart Manufacturing Transformation"
+        title="About — India's Smart Manufacturing Transformation"
         description="A mission-driven platform helping manufacturers assess readiness, discover solutions, learn from peers and build capabilities for sustainable growth."
         jsonLd={jsonLd}
       />
