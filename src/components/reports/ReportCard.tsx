@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
-import { Bookmark, Download, ArrowRight, Clock, FileText } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Download, ArrowRight, Clock, FileText } from "lucide-react";
 import type { Report } from "@/data/reports";
-import { reportsStorage } from "@/lib/reportsStorage";
-import { toast } from "@/hooks/use-toast";
 
 interface Props {
   report: Report;
@@ -11,24 +8,12 @@ interface Props {
 }
 
 export const ReportCard = ({ report, onDownload }: Props) => {
-  const [saved, setSaved] = useState(false);
-  useEffect(() => {
-    setSaved(reportsStorage.isSaved(report.slug));
-    return reportsStorage.subscribe(() => setSaved(reportsStorage.isSaved(report.slug)));
-  }, [report.slug]);
-
-  const toggleSave = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const next = reportsStorage.toggleSaved(report.slug);
-    toast({ title: next ? "Saved to your library" : "Removed from library" });
-  };
-
   const handleDownload = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     onDownload?.(report);
   };
+
 
   return (
     <Link
