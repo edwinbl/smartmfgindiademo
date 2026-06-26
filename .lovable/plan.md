@@ -1,42 +1,17 @@
-# Product Requirements Document Generation
+## Fix high-severity dependency vulnerabilities
 
-Generate a comprehensive PRD based on the current state of the Smart Manufacturing India platform, derived from actual code, routes, data files, and components — no invented features.
+Both flagged packages have safe upgrade paths within the major versions already in use — no app code changes needed.
 
-## Approach
+### Changes
+1. **react-router-dom**: bump from `^6.30.1` to `^6.31.0` (patches the XSS-via-open-redirect advisory in `@remix-run/router`). Stays on v6, so the existing `BrowserRouter`, `Routes`, and `Route` usage in `src/App.tsx` and all `Link`/`useNavigate` callers continue to work unchanged.
+2. **recharts**: bump from `^2.15.4` to `^2.15.5` (drops the vulnerable transitive `lodash` for the `_.template` code-injection advisory). All chart components used in the app remain API-compatible.
+3. Refresh `bun.lockb` so the resolved transitive `@remix-run/router` and `lodash` versions move to patched releases.
+4. Re-run `bun audit` / dependency scan to confirm the high-severity rows clear, then mark the supply-chain finding fixed.
 
-1. **Audit the codebase** to enumerate real modules:
-   - Routes from `src/App.tsx`
-   - Pages in `src/pages/` (Index, About, Contact, ReportsIndex/Detail, CaseStudiesIndex/Detail, ProgrammesIndex/Detail, EventsIndex/Detail, SolutionsIndex/Detail, OutcomeDetail, Directories, DirectoryExplorer, ReadinessAssessment, AssessmentDetail, legal pages)
-   - Data sources (`src/data/` — reports.ts, caseStudies.ts, programmes.ts, events.ts, solutions.ts, outcomeDetails.ts)
-   - Homepage sections from `src/components/wireframe/`
-   - Feature components (assessment, reports filters, outcome explorer, chatbot FAB, cookie consent, etc.)
+### Out of scope
+- No migration to `react-router-dom` v7 (would require code changes; not needed to clear the advisory).
+- No swap of `recharts` for another charting library.
 
-2. **Structure the PRD** with these sections:
-   - Executive Summary & Product Vision
-   - Target Users & Personas (MSMEs, large manufacturers, ecosystem partners)
-   - Information Architecture (sitemap of all routes)
-   - Module-by-Module Requirements:
-     - Homepage (hero, outcome explorer, assessment teaser, programmes, resources, awards, ecosystem, leader speak, chatbot)
-     - Knowledge Hub / Solutions (6 outcomes mapping)
-     - Reports module (13 reports, filters, themes/sector explorers, detail page)
-     - Case Studies (61 entries, filters, detail page)
-     - Programmes module (listing, filters, detail with batches, registration)
-     - Events module (signature events, types, detail variants — summit/workshop/webinar/roundtable)
-     - Readiness Assessment (hero card, 4-step flow, assessment detail)
-     - E-Directories (India, Singapore)
-     - About, Contact, Legal pages
-   - Cross-cutting features (SEO, analytics, prefetch, cookie consent, accessibility)
-   - Data model summary (content sources, no backend currently)
-   - Tech stack & non-functional notes
-
-3. **Deliver as DOCX** to `/mnt/documents/SmartMfgIndia-PRD.docx` using the docx skill, with proper heading hierarchy, tables for route/module summaries, and a TOC. Include a `<presentation-artifact>` tag in the final reply.
-
-## Deliverable
-
-A single downloadable PRD (.docx, ~15-25 pages) grounded entirely in the current codebase — every feature listed maps to an actual route, component, or data file.
-
-## Out of scope
-
-- No code changes
-- No invented roadmap items, KPIs, or future features unless explicitly grounded in existing TODOs
-- Not generating a PDF version (can add if requested)
+### Technical notes
+- Commands: `bun add react-router-dom@^6.31.0 recharts@^2.15.5`.
+- Verify the dev server boots, the `/reports/:slug` charts still render, and routing deep links continue to resolve.
