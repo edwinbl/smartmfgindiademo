@@ -3,7 +3,7 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import {
   ChevronRight,
   Download,
-  Bookmark,
+  
   Share2,
   Check,
   Factory,
