@@ -47,7 +47,7 @@ const Index = () => {
       }}
     >
       <SEO
-        title="Home"
+        title="CII Smart Manufacturing — Industry 4.0 Platform"
         description="CII Smart Manufacturing helps Indian MSMEs assess, learn and adopt Industry 4.0 — readiness assessments, case studies, training and partner ecosystem."
         jsonLd={jsonLd}
       />
