@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
-import { Bookmark, Download, ArrowRight, Clock, FileText } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Download, ArrowRight, Clock, FileText } from "lucide-react";
 import type { Report } from "@/data/reports";
-import { reportsStorage } from "@/lib/reportsStorage";
-import { toast } from "@/hooks/use-toast";
 
 interface Props {
   report: Report;
@@ -11,24 +8,12 @@ interface Props {
 }
 
 export const ReportCard = ({ report, onDownload }: Props) => {
-  const [saved, setSaved] = useState(false);
-  useEffect(() => {
-    setSaved(reportsStorage.isSaved(report.slug));
-    return reportsStorage.subscribe(() => setSaved(reportsStorage.isSaved(report.slug)));
-  }, [report.slug]);
-
-  const toggleSave = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const next = reportsStorage.toggleSaved(report.slug);
-    toast({ title: next ? "Saved to your library" : "Removed from library" });
-  };
-
   const handleDownload = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     onDownload?.(report);
   };
+
 
   return (
     <Link
@@ -62,17 +47,8 @@ export const ReportCard = ({ report, onDownload }: Props) => {
           <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/15 backdrop-blur">
             {report.type}
           </span>
-          <button
-            type="button"
-            onClick={toggleSave}
-            className={`h-8 w-8 grid place-items-center rounded-full bg-white/15 backdrop-blur hover:bg-white/25 transition-colors ${
-              saved ? "text-white" : "text-white/80"
-            }`}
-            aria-label={saved ? "Unsave" : "Save"}
-          >
-            <Bookmark className="h-4 w-4" fill={saved ? "currentColor" : "none"} />
-          </button>
         </div>
+
 
         <div className="relative">
           <h4 className="font-display font-bold text-[18px] leading-tight line-clamp-3 drop-shadow-md">
