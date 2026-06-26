@@ -1,6 +1,4 @@
-import { CalendarPlus, Share2, Bookmark, BookmarkCheck } from "lucide-react";
-import { useEffect, useState } from "react";
-import { eventsStorage } from "@/lib/eventsStorage";
+import { CalendarPlus, Share2 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import type { EventItem } from "@/data/events";
 
@@ -10,12 +8,7 @@ interface Props {
 }
 
 export const EventStickyRegister = ({ event, onRegister }: Props) => {
-  const [saved, setSaved] = useState(false);
 
-  useEffect(() => {
-    setSaved(eventsStorage.isSaved(event.slug));
-    return eventsStorage.subscribe(() => setSaved(eventsStorage.isSaved(event.slug)));
-  }, [event.slug]);
 
   const handleShare = async () => {
     const url = typeof window !== "undefined" ? window.location.href : "";
