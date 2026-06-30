@@ -49,18 +49,6 @@ const outcomeTiles = [
   { id: "planning", icon: BarChart3, label: "Improve planning", desc: "Improve production planning with real-time insights, forecasting and smarter resource allocation.", tone: "bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))]" },
 ];
 
-const MetricPill = ({ value, direction }: { value: string; direction: "up" | "down" | "flat" }) => {
-  const Icon = direction === "down" ? TrendingDown : TrendingUp;
-  const color = direction === "down"
-    ? "text-[hsl(var(--india-green))] bg-[hsl(var(--india-green)/0.08)]"
-    : "text-[hsl(var(--navy-700))] bg-[hsl(var(--navy-050))]";
-  return (
-    <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold font-numeric ${color}`}>
-      <Icon className="h-3.5 w-3.5" />
-      {value}
-    </span>
-  );
-};
 
 const cardPalettes = [
   {
