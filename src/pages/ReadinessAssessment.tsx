@@ -23,6 +23,10 @@ import {
   Cpu,
   Layers,
   PlayCircle,
+  Download,
+  Users,
+  Truck,
+  BookOpen,
 } from "lucide-react";
 import { AssessmentHeroCard } from "@/components/assessment/AssessmentHeroCard";
 import { WireHeader } from "@/components/wireframe/WireHeader";
@@ -30,8 +34,118 @@ import { CommonFinalCta } from "@/components/common/CommonFinalCta";
 import { WireFooter } from "@/components/wireframe/WireFooter";
 import { WireChatbotFAB } from "@/components/wireframe/WireChatbotFAB";
 import { SEO } from "@/components/SEO";
+import deckAsset from "@/assets/assessment-model-deck.pptx.asset.json";
 
 const ASSESSMENT_URL = "https://www.smartmfgindia.com/Assesment.aspx";
+const DECK_URL = deckAsset.url;
+
+const modelCategories = [
+  { icon: Users, title: "Leadership & Strategy", desc: "Current and goal state on Industry 1.0 → 4.0, management commitment, resource and financial planning, cyber/data security policy, research and data science." },
+  { icon: Users, title: "People & Culture", desc: "Engagement and competence on smart manufacturing core concepts — digitalisation, IoT, automation, robotics — collaboration, metrics, training and professional tie-ups." },
+  { icon: Layers, title: "Infrastructure", desc: "ERP/workflow, cloud, digital sensors, EAM, reporting platforms, IT systems integration, shop-floor safety monitoring and information security." },
+  { icon: Factory, title: "Operations", desc: "Production planning, design, execution and post-production — DfM, DfQ, simulation, automation, IoT sensing, AI/ML and additive manufacturing." },
+  { icon: Truck, title: "Supply Chain & Logistics", desc: "Information flow with customers and suppliers, digitised warehousing, collaborative tools, inbound/outbound tracking and component-level traceability." },
+];
+
+const modelTechnologies = [
+  "Systems Integration",
+  "Big Data & Analytics",
+  "Simulation & Digital Twins",
+  "Internet of Things (IoT)",
+  "Cloud Storage & Computing",
+  "Automation & Robotics",
+  "Artificial Intelligence",
+  "Augmented Reality",
+  "Additive Manufacturing",
+  "Cyber & Data Security",
+];
+
+const AssessmentModelSection = () => (
+  <section className="py-16 md:py-24 bg-white border-t border-[hsl(var(--neutral-150))]">
+    <div className="container-cii">
+      <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] items-start">
+        <div>
+          <div className="section-eyebrow mb-3">The framework</div>
+          <h2 className="font-display font-bold text-[26px] md:text-[34px] leading-tight tracking-tight text-navy-800">
+            The CII Smart Manufacturing Maturity Model
+          </h2>
+          <p className="mt-4 text-base text-[hsl(var(--neutral-700))] leading-relaxed">
+            The assessment is powered by an end-to-end model developed by the CII Smart Manufacturing Council — a
+            task force of senior industry professionals from Tata, Tech Mahindra, Siemens, Microsoft, Bosch, Blue Star,
+            IISc and others. The model adapts global maturity frameworks for Indian manufacturing, with specific focus
+            on MSMEs.
+          </p>
+
+          <div className="mt-6 grid grid-cols-3 gap-3">
+            {[
+              { k: "5", v: "Functional categories" },
+              { k: "49", v: "Key elements" },
+              { k: "10", v: "Marks per element" },
+            ].map((s) => (
+              <div key={s.v} className="rounded-md border border-[hsl(var(--neutral-150))] bg-[hsl(var(--neutral-50))] px-3 py-3 text-center">
+                <div className="font-display font-bold text-navy-800 text-2xl leading-none">{s.k}</div>
+                <div className="text-[11px] text-[hsl(var(--neutral-700))] mt-1 leading-tight">{s.v}</div>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-6 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">
+            Each element is rated on two 5-point scales — <span className="font-semibold text-navy-800">depth</span> of
+            use of smart technologies and <span className="font-semibold text-navy-800">scale</span> of deployment —
+            combining into a score out of 10. Outputs are presented as criteria-wise scores on a scale of 100, with
+            radar charts and (as response data builds) industry averages and best-in-class benchmarks.
+          </p>
+
+          <div className="mt-6">
+            <div className="text-[11px] uppercase tracking-wide font-bold text-[hsl(var(--neutral-500))] mb-2">
+              Technologies covered
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {modelTechnologies.map((t) => (
+                <span key={t} className="px-2.5 py-1 text-[11px] font-semibold rounded-full bg-[hsl(var(--navy-050))] text-[hsl(var(--navy-700))] border border-[hsl(var(--navy-100))]">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-7 flex flex-wrap gap-3">
+            <a href={DECK_URL} target="_blank" rel="noopener noreferrer" className="btn-outline">
+              <Download className="!h-4 !w-4" /> Download Model Deck
+            </a>
+            <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              Take the Assessment <ArrowRight className="!h-4 !w-4" />
+            </a>
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          {modelCategories.map(({ icon: Icon, title, desc }, i) => (
+            <div key={title} className="cii-card p-5 bg-white flex items-start gap-4 hover:shadow-md transition-shadow">
+              <div className="shrink-0 h-10 w-10 rounded-md grid place-items-center bg-[hsl(var(--orange-100))] text-[hsl(var(--orange-600))] font-display font-bold">
+                {String.fromCharCode(65 + i)}
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center gap-2">
+                  <Icon className="h-4 w-4 text-[hsl(var(--navy-600))]" />
+                  <h3 className="font-display font-bold text-navy-800 text-base">{title}</h3>
+                </div>
+                <p className="mt-1 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{desc}</p>
+              </div>
+            </div>
+          ))}
+          <div className="rounded-lg border border-dashed border-[hsl(var(--neutral-200))] bg-[hsl(var(--neutral-50))] p-4 flex items-start gap-3">
+            <BookOpen className="h-4 w-4 mt-0.5 text-[hsl(var(--navy-600))] shrink-0" />
+            <p className="text-xs text-[hsl(var(--neutral-700))] leading-relaxed">
+              On-site detailed assessments by CII Institute of Quality experts use the same model to produce a
+              comprehensive report on current state and the next steps to reach your goal state.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
 
 const microTags = ["MSME-focused", "Guided process", "Outcome-oriented", "Readiness insights"];
 
@@ -211,7 +325,7 @@ const ReadinessAssessment = () => {
           </div>
         </section>
 
-        {/* ============== LIVE ASSESSMENTS ============== */}
+        {/* ============== LIVE ASSESSMENT ============== */}
         <section className="py-16 md:py-24 bg-[hsl(var(--neutral-50))]">
           <div className="container-cii">
             <div className="flex items-end justify-between gap-6 flex-wrap">
@@ -224,42 +338,31 @@ const ReadinessAssessment = () => {
                   Live now
                 </div>
                 <h2 className="font-display font-bold text-[26px] md:text-[34px] leading-tight tracking-tight text-navy-800">
-                  Assessments Currently Available
+                  The Assessment, Open for Participation
                 </h2>
                 <p className="mt-4 text-base text-[hsl(var(--neutral-700))]">
-                  Two readiness assessments are open for participation. Choose the one most aligned to your
-                  manufacturing transformation priorities.
+                  One guided readiness assessment is available — backed by the CII Smart Manufacturing Maturity Model
+                  developed by senior industry leaders.
                 </p>
               </div>
-              <span className="cii-chip">2 assessments live</span>
+              <span className="cii-chip">1 assessment live</span>
             </div>
 
-            <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <div className="mt-10">
               {[
-                {
-                  slug: "smart-manufacturing-readiness",
-                  tag: "Smart Manufacturing",
-                  title: "Smart Manufacturing Readiness Assessment Model",
-                  desc: "Evaluate your readiness across smart manufacturing dimensions — operations, digital adoption, quality and sustainability.",
-                  dimensions: ["Operations", "Digital", "Quality", "Sustainability"],
-                  duration: "25–40 mins",
-                  audience: "MSME & mid-sized manufacturers",
-                  accent: "hsl(var(--navy-700))",
-                  accentSoft: "hsl(var(--navy-050))",
-                },
                 {
                   slug: "industry-4-0-readiness",
                   tag: "Industry 4.0",
                   title: "Industry 4.0 Readiness Assessment",
-                  desc: "Benchmark your Industry 4.0 readiness across technology, processes, people and data foundations.",
-                  dimensions: ["Technology", "Processes", "People", "Data"],
+                  desc: "An objective self-assessment across 5 functional categories and 49 key elements — covering leadership, people, infrastructure, operations and supply chain. Each element is scored on depth × scale of adoption to produce a readiness view from Industry 1.0 to 4.0.",
+                  dimensions: ["Leadership & Strategy", "People & Culture", "Infrastructure", "Operations", "Supply Chain"],
                   duration: "30–45 mins",
-                  audience: "Manufacturing leaders & plant heads",
+                  audience: "Manufacturing leaders, plant heads & MSMEs",
                   accent: "hsl(var(--orange-600))",
                   accentSoft: "hsl(var(--orange-100))",
                 },
               ].map((a) => (
-                <div key={a.title} className="cii-card p-6 sm:p-7 bg-white flex flex-col">
+                <div key={a.title} className="cii-card p-6 sm:p-8 bg-white flex flex-col max-w-3xl mx-auto">
                   <div className="flex items-center justify-between gap-3 flex-wrap">
                     <span
                       className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full"
@@ -274,11 +377,11 @@ const ReadinessAssessment = () => {
                   </div>
 
                   <Link to={`/readiness-assessment/${a.slug}`} className="mt-4 group">
-                    <h3 className="font-display font-bold text-navy-800 text-lg leading-snug group-hover:underline underline-offset-4 decoration-2 decoration-[hsl(var(--orange-500))]">
+                    <h3 className="font-display font-bold text-navy-800 text-xl leading-snug group-hover:underline underline-offset-4 decoration-2 decoration-[hsl(var(--orange-500))]">
                       {a.title}
                     </h3>
                   </Link>
-                  <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{a.desc}</p>
+                  <p className="mt-3 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{a.desc}</p>
 
                   <div className="mt-5 flex flex-wrap gap-2">
                     {a.dimensions.map((d) => (
@@ -308,7 +411,7 @@ const ReadinessAssessment = () => {
                     </div>
                   </dl>
 
-                  <div className="mt-12 flex flex-wrap gap-2 mt-auto pt-4">
+                  <div className="mt-6 flex flex-wrap gap-2 pt-2">
                     <Link
                       to={`/readiness-assessment/${a.slug}`}
                       className="btn-primary flex-1 min-w-[160px]"
@@ -329,6 +432,11 @@ const ReadinessAssessment = () => {
             </div>
           </div>
         </section>
+
+        {/* ============== THE MODEL ============== */}
+        <AssessmentModelSection />
+
+
 
         {/* ============== CURRENT ASSESSMENT ACCESS ============== */}
         <section className="py-16 md:py-24 bg-[hsl(var(--neutral-50))]">

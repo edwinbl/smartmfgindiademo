@@ -101,51 +101,30 @@ const SHARED_COVERAGE = [
 ];
 
 const ASSESSMENTS: Record<string, AssessmentConfig> = {
-  "smart-manufacturing-readiness": {
-    slug: "smart-manufacturing-readiness",
-    tag: "Smart Manufacturing",
-    title: "Smart Manufacturing Readiness Assessment Model",
-    subtitle: "Evaluate your operational, digital and business readiness before identifying the next steps in your transformation journey.",
-    description:
-      "A guided readiness lens across smart manufacturing dimensions — operations, digital adoption, quality and sustainability — purpose-built for MSME and mid-sized manufacturers in India.",
-    duration: "25–40 mins",
-    audience: "MSME & mid-sized manufacturers",
-    coverageAreas: "8 readiness dimensions",
-    expectedOutput: "Readiness snapshot & priorities",
-    accent: "hsl(var(--navy-700))",
-    accentSoft: "hsl(var(--navy-050))",
-    dimensions: [
-      { label: "Operations", v: 72 },
-      { label: "Quality Systems", v: 64 },
-      { label: "Digital Adoption", v: 48 },
-      { label: "Energy & Sustainability", v: 56 },
-      { label: "People & Skills", v: 60 },
-    ],
-    coverage: SHARED_COVERAGE,
-  },
   "industry-4-0-readiness": {
     slug: "industry-4-0-readiness",
     tag: "Industry 4.0",
     title: "Industry 4.0 Readiness Assessment",
-    subtitle: "Benchmark your Industry 4.0 readiness across technology, processes, people and data foundations.",
+    subtitle: "Objectively gauge where your enterprise stands on its smart manufacturing journey — and the next steps to get to your goal state.",
     description:
-      "An executive-friendly readiness review across Industry 4.0 building blocks — designed for manufacturing leaders and plant heads driving digital transformation.",
+      "A guided self-assessment powered by the CII Smart Manufacturing Maturity Model — developed by senior industry leaders from Tata, Tech Mahindra, Siemens, Microsoft, Bosch, Blue Star and IISc. It spans 5 functional categories and 49 key elements, with specific focus on MSMEs.",
     duration: "30–45 mins",
-    audience: "Manufacturing leaders & plant heads",
-    coverageAreas: "8 readiness dimensions",
-    expectedOutput: "Readiness snapshot & roadmap cues",
+    audience: "Manufacturing leaders, plant heads & MSMEs",
+    coverageAreas: "5 categories · 49 elements",
+    expectedOutput: "Readiness scores (out of 100), radar charts & priority areas",
     accent: "hsl(var(--orange-600))",
     accentSoft: "hsl(var(--orange-100))",
     dimensions: [
-      { label: "Technology", v: 55 },
-      { label: "Processes", v: 68 },
-      { label: "People", v: 62 },
-      { label: "Data", v: 44 },
-      { label: "Strategy & Governance", v: 58 },
+      { label: "Leadership & Strategy", v: 58 },
+      { label: "People & Culture", v: 62 },
+      { label: "Infrastructure", v: 55 },
+      { label: "Operations", v: 68 },
+      { label: "Supply Chain & Logistics", v: 60 },
     ],
     coverage: SHARED_COVERAGE,
   },
 };
+
 
 const microTags = ["MSME-focused", "Guided process", "Outcome-based", "Readiness insights"];
 
@@ -183,7 +162,6 @@ const faqs = [
 
 const AssessmentDetail = () => {
   const { slug = "" } = useParams();
-  const cfg = ASSESSMENTS[slug];
 
   const [showSticky, setShowSticky] = useState(false);
   useEffect(() => {
@@ -193,7 +171,16 @@ const AssessmentDetail = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Legacy slug — the "Smart Manufacturing Readiness Assessment Model" is the framework deck,
+  // not a separate assessment. Redirect to the single live assessment.
+  if (slug === "smart-manufacturing-readiness") {
+    return <Navigate to="/readiness-assessment/industry-4-0-readiness" replace />;
+  }
+
+  const cfg = ASSESSMENTS[slug];
   if (!cfg) return <Navigate to="/readiness-assessment" replace />;
+
+
 
   const jsonLd = {
     "@context": "https://schema.org",
