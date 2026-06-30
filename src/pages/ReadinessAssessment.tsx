@@ -211,7 +211,7 @@ const ReadinessAssessment = () => {
           </div>
         </section>
 
-        {/* ============== LIVE ASSESSMENTS ============== */}
+        {/* ============== LIVE ASSESSMENT ============== */}
         <section className="py-16 md:py-24 bg-[hsl(var(--neutral-50))]">
           <div className="container-cii">
             <div className="flex items-end justify-between gap-6 flex-wrap">
@@ -224,42 +224,31 @@ const ReadinessAssessment = () => {
                   Live now
                 </div>
                 <h2 className="font-display font-bold text-[26px] md:text-[34px] leading-tight tracking-tight text-navy-800">
-                  Assessments Currently Available
+                  The Assessment, Open for Participation
                 </h2>
                 <p className="mt-4 text-base text-[hsl(var(--neutral-700))]">
-                  Two readiness assessments are open for participation. Choose the one most aligned to your
-                  manufacturing transformation priorities.
+                  One guided readiness assessment is available — backed by the CII Smart Manufacturing Maturity Model
+                  developed by senior industry leaders.
                 </p>
               </div>
-              <span className="cii-chip">2 assessments live</span>
+              <span className="cii-chip">1 assessment live</span>
             </div>
 
-            <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <div className="mt-10">
               {[
-                {
-                  slug: "smart-manufacturing-readiness",
-                  tag: "Smart Manufacturing",
-                  title: "Smart Manufacturing Readiness Assessment Model",
-                  desc: "Evaluate your readiness across smart manufacturing dimensions — operations, digital adoption, quality and sustainability.",
-                  dimensions: ["Operations", "Digital", "Quality", "Sustainability"],
-                  duration: "25–40 mins",
-                  audience: "MSME & mid-sized manufacturers",
-                  accent: "hsl(var(--navy-700))",
-                  accentSoft: "hsl(var(--navy-050))",
-                },
                 {
                   slug: "industry-4-0-readiness",
                   tag: "Industry 4.0",
                   title: "Industry 4.0 Readiness Assessment",
-                  desc: "Benchmark your Industry 4.0 readiness across technology, processes, people and data foundations.",
-                  dimensions: ["Technology", "Processes", "People", "Data"],
+                  desc: "An objective self-assessment across 5 functional categories and 49 key elements — covering leadership, people, infrastructure, operations and supply chain. Each element is scored on depth × scale of adoption to produce a readiness view from Industry 1.0 to 4.0.",
+                  dimensions: ["Leadership & Strategy", "People & Culture", "Infrastructure", "Operations", "Supply Chain"],
                   duration: "30–45 mins",
-                  audience: "Manufacturing leaders & plant heads",
+                  audience: "Manufacturing leaders, plant heads & MSMEs",
                   accent: "hsl(var(--orange-600))",
                   accentSoft: "hsl(var(--orange-100))",
                 },
               ].map((a) => (
-                <div key={a.title} className="cii-card p-6 sm:p-7 bg-white flex flex-col">
+                <div key={a.title} className="cii-card p-6 sm:p-8 bg-white flex flex-col max-w-3xl mx-auto">
                   <div className="flex items-center justify-between gap-3 flex-wrap">
                     <span
                       className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full"
@@ -274,11 +263,11 @@ const ReadinessAssessment = () => {
                   </div>
 
                   <Link to={`/readiness-assessment/${a.slug}`} className="mt-4 group">
-                    <h3 className="font-display font-bold text-navy-800 text-lg leading-snug group-hover:underline underline-offset-4 decoration-2 decoration-[hsl(var(--orange-500))]">
+                    <h3 className="font-display font-bold text-navy-800 text-xl leading-snug group-hover:underline underline-offset-4 decoration-2 decoration-[hsl(var(--orange-500))]">
                       {a.title}
                     </h3>
                   </Link>
-                  <p className="mt-2 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{a.desc}</p>
+                  <p className="mt-3 text-sm text-[hsl(var(--neutral-700))] leading-relaxed">{a.desc}</p>
 
                   <div className="mt-5 flex flex-wrap gap-2">
                     {a.dimensions.map((d) => (
@@ -308,7 +297,7 @@ const ReadinessAssessment = () => {
                     </div>
                   </dl>
 
-                  <div className="mt-12 flex flex-wrap gap-2 mt-auto pt-4">
+                  <div className="mt-6 flex flex-wrap gap-2 pt-2">
                     <Link
                       to={`/readiness-assessment/${a.slug}`}
                       className="btn-primary flex-1 min-w-[160px]"
@@ -329,6 +318,11 @@ const ReadinessAssessment = () => {
             </div>
           </div>
         </section>
+
+        {/* ============== THE MODEL ============== */}
+        <AssessmentModelSection />
+
+
 
         {/* ============== CURRENT ASSESSMENT ACCESS ============== */}
         <section className="py-16 md:py-24 bg-[hsl(var(--neutral-50))]">
