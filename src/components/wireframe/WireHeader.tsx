@@ -259,7 +259,7 @@ export const WireHeader = () => {
               <div className="flex items-center gap-3">
                 {[
                   { Icon: Linkedin, href: "https://www.linkedin.com", label: "LinkedIn" },
-                  { Icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+                  { Icon: XIcon, href: "https://x.com", label: "X" },
                   { Icon: Facebook, href: "https://facebook.com", label: "Facebook" },
                   { Icon: Youtube, href: "https://youtube.com", label: "YouTube" },
                 ].map(({ Icon, href, label }) => (
