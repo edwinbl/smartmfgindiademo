@@ -1,9 +1,10 @@
-import { Twitter, Linkedin, Facebook, Youtube } from "lucide-react";
+import { Linkedin, Facebook, Youtube } from "lucide-react";
+import { XIcon } from "@/components/icons/XIcon";
 import { Link } from "react-router-dom";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
 
 const socials = [
-  { label: "Twitter", href: "#", Icon: Twitter },
+  { label: "X", href: "#", Icon: XIcon },
   { label: "LinkedIn", href: "#", Icon: Linkedin },
   { label: "Facebook", href: "#", Icon: Facebook },
   { label: "YouTube", href: "#", Icon: Youtube },

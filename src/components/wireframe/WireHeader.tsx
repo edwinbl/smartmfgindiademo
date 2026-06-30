@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Linkedin, Twitter, Facebook, Youtube } from "lucide-react";
+import { Menu, X, ChevronDown, Linkedin, Facebook, Youtube } from "lucide-react";
+import { XIcon } from "@/components/icons/XIcon";
 import { Link, useLocation } from "react-router-dom";
 import { prefetchRoute } from "@/lib/routePrefetch";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
@@ -258,7 +259,7 @@ export const WireHeader = () => {
               <div className="flex items-center gap-3">
                 {[
                   { Icon: Linkedin, href: "https://www.linkedin.com", label: "LinkedIn" },
-                  { Icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+                  { Icon: XIcon, href: "https://x.com", label: "X" },
                   { Icon: Facebook, href: "https://facebook.com", label: "Facebook" },
                   { Icon: Youtube, href: "https://youtube.com", label: "YouTube" },
                 ].map(({ Icon, href, label }) => (
