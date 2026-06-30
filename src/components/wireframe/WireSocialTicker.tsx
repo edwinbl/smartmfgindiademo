@@ -88,7 +88,7 @@ const PlatformIcon = ({ platform }: { platform: Post["platform"] }) => {
   if (platform === "x") {
     return (
       <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-black text-white shrink-0">
-        <Twitter className="h-3.5 w-3.5" />
+        <XIcon className="h-3.5 w-3.5" />
       </span>
     );
   }
@@ -176,7 +176,7 @@ export const WireSocialTicker = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 rounded-md border border-[hsl(var(--neutral-150))] bg-white px-3 py-1.5 text-[12px] font-semibold text-navy-800 hover:border-navy-700 transition-colors"
           >
-            <Twitter className="h-3.5 w-3.5" /> Follow on X
+            <XIcon className="h-3.5 w-3.5" /> Follow on X
           </a>
           <a
             href="https://www.linkedin.com/company/cii-smart-manufacturing/"
