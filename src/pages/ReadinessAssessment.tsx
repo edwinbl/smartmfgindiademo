@@ -131,67 +131,10 @@ const AssessmentModelSection = () => (
   </section>
 );
 
-const microTags = ["MSME-focused", "Guided process", "Outcome-oriented", "Readiness insights"];
-
-const outcomes = [
-  { icon: TrendingUp, title: "Productivity", desc: "Identify readiness to improve throughput, OEE and shop-floor performance." },
-  { icon: ShieldCheck, title: "Quality", desc: "Evaluate readiness for consistent quality systems and defect reduction." },
-  { icon: Network, title: "Traceability", desc: "Assess foundations for end-to-end product and process traceability." },
-  { icon: Leaf, title: "Energy Efficiency", desc: "Understand readiness to track, reduce and optimise energy consumption." },
-  { icon: Globe2, title: "Export Readiness", desc: "Benchmark capabilities required for global compliance and exports." },
-  { icon: Layers, title: "Value Chain Participation", desc: "Gauge readiness to integrate into larger OEM and supplier ecosystems." },
-];
-
-const processSteps = [
-  { n: "01", title: "Access Assessment", desc: "Open the current readiness assessment via a guided web interface." },
-  { n: "02", title: "Complete Inputs", desc: "Answer structured questions across operational and digital dimensions." },
-  { n: "03", title: "Receive Readiness Insights", desc: "Get a readiness snapshot with outcome-aligned priority areas." },
-];
-
-const currentBenefits = [
-  { icon: Gauge, title: "Readiness Snapshot", desc: "A clear, executive-friendly view of your current manufacturing readiness." },
-  { icon: BarChart3, title: "Outcome Insights", desc: "Understand readiness mapped to productivity, quality, energy and exports." },
-  { icon: ListChecks, title: "Priority Areas", desc: "Identify the focus areas that will most influence your transformation." },
-  { icon: Compass, title: "Next-Step Guidance", desc: "Direction on where to begin — improve, adopt or transform." },
-];
-
-const futureBenefits = [
-  { icon: LineChart, title: "Benchmarking", desc: "Compare your readiness against peers, sector and national averages." },
-  { icon: Sparkles, title: "Recommendations Engine", desc: "Personalised pathway suggestions based on your readiness profile." },
-  { icon: FileBarChart, title: "Interactive Readiness Reports", desc: "Dynamic, drill-down reports for leadership and operations teams." },
-];
-
-const dimensions = [
-  { label: "Operations", v: 72 },
-  { label: "Quality Systems", v: 64 },
-  { label: "Digital Adoption", v: 48 },
-  { label: "Energy & Sustainability", v: 56 },
-  { label: "People & Skills", v: 60 },
-];
-
-const Counter = ({ to, start, duration = 1400 }: { to: number; start: boolean; duration?: number }) => {
-  const [v, setV] = useState(0);
-  useEffect(() => {
-    if (!start) { setV(0); return; }
-    let raf = 0; const t0 = performance.now();
-    const tick = (t: number) => {
-      const p = Math.min(1, (t - t0) / duration);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setV(Math.round(to * eased));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [to, start, duration]);
-  return <>{v}</>;
-};
+const microTags = ["MSME-focused", "Guided process", "Backed by industry leaders", "Free self-assessment"];
 
 const ReadinessAssessment = () => {
-  const [animateOn, setAnimateOn] = useState(false);
-  useEffect(() => {
-    const id = requestAnimationFrame(() => setAnimateOn(true));
-    return () => cancelAnimationFrame(id);
-  }, []);
+
 
   const jsonLd = {
     "@context": "https://schema.org",
