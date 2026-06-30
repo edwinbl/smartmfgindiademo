@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Linkedin, Twitter, Facebook, Youtube } from "lucide-react";
+import { Menu, X, ChevronDown, Linkedin, Facebook, Youtube } from "lucide-react";
+import { XIcon } from "@/components/icons/XIcon";
 import { Link, useLocation } from "react-router-dom";
 import { prefetchRoute } from "@/lib/routePrefetch";
 import logoSrc from "@/assets/cii-smart-mfg-logo.png";
