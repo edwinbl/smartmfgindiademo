@@ -12,8 +12,6 @@ import {
   X,
   Search,
   ArrowRight,
-  TrendingUp,
-  TrendingDown,
   Factory,
   MapPin,
   Building2,
