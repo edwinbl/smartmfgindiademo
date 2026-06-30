@@ -1,26 +1,9 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   ArrowRight,
   CheckCircle2,
-  Gauge,
-  TrendingUp,
-  ShieldCheck,
-  Leaf,
-  Globe2,
-  Network,
   ClipboardList,
-  ListChecks,
-  LineChart,
-  Compass,
-  BarChart3,
-  Sparkles,
-  FileBarChart,
-  Clock,
-  HelpCircle,
   Factory,
-  Tablet,
-  Cpu,
   Layers,
   PlayCircle,
   Download,
@@ -38,6 +21,7 @@ import deckAsset from "@/assets/assessment-model-deck.pptx.asset.json";
 
 const ASSESSMENT_URL = "https://www.smartmfgindia.com/Assesment.aspx";
 const DECK_URL = deckAsset.url;
+
 
 const modelCategories = [
   { icon: Users, title: "Leadership & Strategy", desc: "Current and goal state on Industry 1.0 → 4.0, management commitment, resource and financial planning, cyber/data security policy, research and data science." },
