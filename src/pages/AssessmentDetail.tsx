@@ -163,14 +163,6 @@ const faqs = [
 const AssessmentDetail = () => {
   const { slug = "" } = useParams();
 
-  // Legacy slug — the "Smart Manufacturing Readiness Assessment Model" is the framework deck,
-  // not a separate assessment. Redirect to the single live assessment.
-  if (slug === "smart-manufacturing-readiness") {
-    return <Navigate to="/readiness-assessment/industry-4-0-readiness" replace />;
-  }
-
-  const cfg = ASSESSMENTS[slug];
-
   const [showSticky, setShowSticky] = useState(false);
   useEffect(() => {
     const onScroll = () => setShowSticky(window.scrollY > 480);
@@ -179,7 +171,15 @@ const AssessmentDetail = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Legacy slug — the "Smart Manufacturing Readiness Assessment Model" is the framework deck,
+  // not a separate assessment. Redirect to the single live assessment.
+  if (slug === "smart-manufacturing-readiness") {
+    return <Navigate to="/readiness-assessment/industry-4-0-readiness" replace />;
+  }
+
+  const cfg = ASSESSMENTS[slug];
   if (!cfg) return <Navigate to="/readiness-assessment" replace />;
+
 
 
   const jsonLd = {
