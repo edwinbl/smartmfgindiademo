@@ -96,17 +96,16 @@ const CaseCard = ({ c, index = 0 }: { c: CaseStudy; index?: number }) => {
       style={{ background: pal.tint }}
     >
       <div className="h-1.5 w-full" style={{ background: pal.bar }} />
-      <div className="relative h-44 overflow-hidden" style={{ background: pal.header }}>
+      <div className="relative h-36 overflow-hidden" style={{ background: pal.header }}>
         <div className="absolute inset-0 blueprint-grid opacity-40" />
         <div className="absolute inset-0 p-5 flex flex-col justify-between text-white">
           <div className="flex items-center justify-between">
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/15 backdrop-blur text-[11px] font-semibold">
               <Factory className="h-3 w-3" /> {c.sector}
             </span>
-            <MetricPill value={c.metric.value} direction={c.metric.direction} />
           </div>
           <div>
-            <div className="text-xs uppercase tracking-wider text-white/70">{c.company}</div>
+            <div className="text-sm font-bold uppercase tracking-wider text-white">{c.company}</div>
             <div className="mt-1 flex items-center gap-2 text-[11px] text-white/80">
               <MapPin className="h-3 w-3" /> {c.state}
               <span className="h-1 w-1 rounded-full bg-white/40" />
@@ -126,7 +125,11 @@ const CaseCard = ({ c, index = 0 }: { c: CaseStudy; index?: number }) => {
           ))}
         </div>
         <div className="mt-4 pt-4 border-t border-[hsl(var(--neutral-150))] flex items-center justify-between text-sm">
-          <span className="text-[hsl(var(--neutral-500))]">{c.durationMonths > 0 ? `${c.durationMonths} mo · ` : ""}{c.companySize}</span>
+          <span className="text-[hsl(var(--neutral-500))]">
+            {c.durationMonths > 0 ? `${c.durationMonths} mo` : ""}
+            {c.durationMonths > 0 && c.companySize && c.companySize !== "Not disclosed" ? " · " : ""}
+            {c.companySize && c.companySize !== "Not disclosed" ? c.companySize : ""}
+          </span>
           <span className="font-semibold inline-flex items-center gap-1 group-hover:text-[hsl(var(--red-600))]" style={{ color: pal.bar }}>
             View Case Study <ArrowRight className="h-3.5 w-3.5" />
           </span>
