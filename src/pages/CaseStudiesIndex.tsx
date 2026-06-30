@@ -182,7 +182,7 @@ const CaseStudiesIndex = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {featured.map((c, i) => (
+            {featured.slice(0, 3).map((c, i) => (
               <CaseCard key={c.slug} c={c} index={i} />
             ))}
           </div>
